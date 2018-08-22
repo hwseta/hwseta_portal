@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === News Archive Page === -->
+		<template id="news_archive" name="News Archive" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article  breadcrumbs">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h4>Archived News</h4>
+											</div>
+										</article>
+										<article id="post-449"
+											class="oc-post oc-article  post-449 post type-post status-publish format-standard hentry category-archived-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=449" rel="bookmark"
+													title="Stakeholder Interaction Remains  – ARCHIVED">Stakeholder Interaction Remains – ARCHIVED</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="2:31 pm">October 15, 2014</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													In striving to meet the needs of learners in the health, social
+													development and veterinary sectors, the HWSETA realises the
+													importance of maintaining effective stakeholder communication that
+													guides the direction skills development initiatives should be
+													taking.
+													<a href="http://www.hwseta.org.za/?p=449#more-449" class="more-link">
+														Continue reading
+														<span class="meta-nav">→</span>
+													</a>
+												</p>
+											</div>
+										</article>
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

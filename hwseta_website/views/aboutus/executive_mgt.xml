@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Finance Page === -->
+		<template id="executive_mgt" name="Executive Management"
+			page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-558"
+											class="oc-post oc-article  post-558 page type-page status-publish hentry">
+											<h1 class="oc-postheader">HWSETA Executive Management</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<table border="0" width="444" cellspacing="0"
+													cellpadding="0">
+													<tbody>
+														<tr>
+															<td width="190">
+																<em>
+																	<img src="/hwseta_website/static/src/wp-content/uploads/2014/10/yvonne.png"
+																		alt="" width="190" height="190"/>
+																</em>
+															</td>
+															<td></td>
+															<td width="190">
+																<img src="/hwseta_website/static/src/wp-content/uploads/2014/10/sikhumbizo.png"
+																	alt="" width="190" height="190"/>
+															</td>
+														</tr>
+														<tr>
+															<td valign="top" width="190">
+																<span class="boardname">
+																	Chief Executive Officer
+																	<br/>
+																		<strong>Ms Yvonne Mbane</strong>
+																</span>
+																<br/>
+																	Secretary: Ms Reena Takoorpersadh
+																	<br/>
+																		Tel: 011 607
+																		6900
+																		<br/>
+																			e-mail:
+																			<a href="mailto:reenat@hwseta.org.za">reenat@hwseta.org.za</a>
+															</td>
+															<td valign="top"></td>
+															<td valign="top" width="190">
+																<span class="boardname">
+																	Executive Manager: Research Information Monitoring and
+																	Evaluation
+																	<br/>
+																		<strong>Mr Sikhumbuzo Gcabashe</strong>
+																</span>
+																<br/>
+																	Secretary: Amanda Matswele
+																	<br/>
+																		Tel: 011 607
+																		6933
+																		<br/>
+																			e-mail:
+																			<a href="mailto:amandam@hwseta.org.za">amandam@hwseta.org.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="190" height="10"></td>
+															<td height="10"></td>
+															<td width="190" height="10"></td>
+														</tr>
+														<tr>
+															<td width="190">
+																<img src="/hwseta_website/static/src/wp-content/uploads/2014/10/patrick.png"
+																	alt="" width="190" height="190"/>
+															</td>
+															<td></td>
+															<td width="190">
+																<img src="/hwseta_website/static/src/wp-content/uploads/2014/10/jane.png" alt=""
+																	width="190" height="190"/>
+															</td>
+														</tr>
+														<tr>
+															<td valign="top" width="190">
+																<span class="boardname">
+																	Executive Manager:
+																	<br/>
+																		Skills Development Planning Division
+																		<br/>
+																			<strong>Mr Patrick Samuels</strong>
+																</span>
+																<br/>
+																	Secretary: Moloko Magolele
+																	<br/>
+																		Tel: 011 607
+																		6975
+																		<br/>
+																			e-mail:
+																			<a href="mailto:molokom@hwseta.org.za">molokom@hwseta.org.za</a>
+															</td>
+															<td valign="top"></td>
+															<td valign="top" width="190">
+																<span class="boardname">
+																	Executive Manager: Education and Training Quality
+																	Assurance
+																	<br/>
+																		<strong>Mr Jane Motubatse</strong>
+																</span>
+																<br/>
+																	Secretary: Ms Tebogo Senne
+																	<br/>
+																		Tel: 011 607
+																		6965
+																		<br/>
+																			e-mail:
+																			<a href="mailto:tebogos@hwseta.org.za">tebogos@hwseta.org.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td height="10"></td>
+															<td height="10"></td>
+															<td height="10"></td>
+														</tr>
+														<tr>
+															<td>
+																<img src="/hwseta_website/static/src/wp-content/uploads/2014/10/elaine.png"
+																	alt="" width="190" height="190"/>
+															</td>
+															<td></td>
+															<td>
+																<img src="/hwseta_website/static/src/wp-content/uploads/2014/10/bob.png" alt=""
+																	width="190" height="190"/>
+															</td>
+														</tr>
+														<tr>
+															<td valign="top">
+																<span class="boardname">
+																	Executive Manager: Finance Division
+																	<br/>
+																		<strong>Ms Elaine Brass</strong>
+																</span>
+																<br/>
+																	Secretary: Position currently vacant
+																	<br/>
+																		<span class="Apple-style-span">Tel:
+																			011 607 6911
+																			<br/>
+																		</span>
+															</td>
+															<td valign="top"></td>
+															<td valign="top">
+																<span class="boardname">
+																	Executive Manager: Corporate Services
+																	<br/>
+																		<strong>Mr Bob Pardesi</strong>
+																</span>
+																<br/>
+																	Secretary: Ms Mashudu Mogale
+																	<br/>
+																		Tel: 011 607
+																		7013
+																		<br/>
+																			e-mail:
+																			<a href="mailto:mashudum@hwseta.org.za">mashudum@hwseta.org.za</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

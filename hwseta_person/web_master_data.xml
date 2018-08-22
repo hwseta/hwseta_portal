@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+        <record id="hwseta_sic_master1" model="hwseta.sic.master">
+            <field name="name">Ambulance services</field>
+        </record>
+
+        <record id="hwseta_sic_master2" model="hwseta.sic.master">
+            <field name="name">Ancillary health care services</field>
+        </record>
+        
+        <record id="hwseta_sic_master3" model="hwseta.sic.master">
+            <field name="name">Biomedical engineering</field>
+        </record>
+        
+        <record id="hwseta_sic_master4" model="hwseta.sic.master">
+            <field name="name">Blood transfusion</field>
+        </record>
+        
+        <record id="hwseta_sic_master5" model="hwseta.sic.master">
+            <field name="name">Clinics and related health care services</field>
+        </record>
+        
+        <record id="hwseta_sic_master6" model="hwseta.sic.master">
+            <field name="name">Clinics and related health care services</field>
+        </record>
+        
+        <record id="hwseta_sic_master7" model="hwseta.sic.master">
+            <field name="name">Community services</field>
+        </record>
+        
+        <record id="hwseta_sic_master8" model="hwseta.sic.master">
+            <field name="name">Company-owned hospitals</field>
+        </record>
+        
+        <record id="hwseta_sic_master9" model="hwseta.sic.master">
+            <field name="name">Complementary health services</field>
+        </record>
+        
+        
+        <record id="hwseta_sic_master10" model="hwseta.sic.master">
+            <field name="name">Defence force hospitals</field>
+        </record>
+        
+        <record id="hwseta_sic_master11" model="hwseta.sic.master">
+            <field name="name">Dental laboratories</field>
+        </record>
+        
+        
+        <record id="hwseta_sic_master12" model="hwseta.sic.master">
+            <field name="name">Dental therapists</field>
+        </record>
+        
+        <record id="hwseta_sic_master13" model="hwseta.sic.master">
+            <field name="name">Development and social services</field>
+        </record>
+        
+        <record id="hwseta_sic_master14" model="hwseta.sic.master">
+            <field name="name">Dietetics and nutritional services</field>
+        </record>
+        
+        <record id="hwseta_sic_master15" model="hwseta.sic.master">
+            <field name="name">Doctors in charitable organisations</field>
+        </record>
+        
+        <record id="hwseta_sic_master16" model="hwseta.sic.master">
+            <field name="name">Environmental and occupational health and safety services</field>
+        </record>
+        
+        <record id="hwseta_sic_master17" model="hwseta.sic.master">
+            <field name="name">General and specialist practice
+        </field>
+        </record>
+        
+        <record id="hwseta_sic_master18" model="hwseta.sic.master">
+            <field name="name">Health maintenance organisations</field>
+        </record>
+        
+        <record id="hwseta_sic_master19" model="hwseta.sic.master">
+            <field name="name">Health professionals employment agencies</field>
+        </record>
+        
+        <record id="hwseta_sic_master20" model="hwseta.sic.master">
+            <field name="name">Hearing and audiometric services</field>
+        </record>
+        
+        <record id="hwseta_sic_master21" model="hwseta.sic.master">
+            <field name="name">Hospice care facilities</field>
+        </record>
+        
+        <record id="hwseta_sic_master22" model="hwseta.sic.master">
+            <field name="name">Hospices</field>
+        </record>
+        
+        <record id="hwseta_sic_master23" model="hwseta.sic.master">
+            <field name="name">Hospital activities</field>
+        </record>
+        
+        <record id="hwseta_sic_master24" model="hwseta.sic.master">
+            <field name="name">Industry based doctors</field>
+        </record>
+        
+        <record id="hwseta_sic_master25" model="hwseta.sic.master">
+            <field name="name">Laboratory services</field>
+        </record>
+        
+        <record id="hwseta_sic_master26" model="hwseta.sic.master">
+            <field name="name">Manufacture of medical and surgical equipment and orthopaedic appliances</field>
+        </record>
+        
+        <record id="hwseta_sic_master27" model="hwseta.sic.master">
+            <field name="name">Medical aid schemes</field>
+        </record>
+        
+        <record id="hwseta_sic_master28" model="hwseta.sic.master">
+            <field name="name">Medical and veterinary research</field>
+        </record>
+        
+        <record id="hwseta_sic_master29" model="hwseta.sic.master">
+            <field name="name">Mine hospitals</field>
+        </record>
+        
+        <record id="hwseta_sic_master30" model="hwseta.sic.master">
+            <field name="name">NGOs involved in health work</field>
+        </record>
+        
+        <record id="hwseta_sic_master31" model="hwseta.sic.master">
+            <field name="name">Nursing services</field>
+        </record>
+        
+        <record id="hwseta_sic_master32" model="hwseta.sic.master">
+            <field name="name">Optical and optometric services</field>
+        </record>
+        
+        <record id="hwseta_sic_master33" model="hwseta.sic.master">
+            <field name="name">Oral hygienists</field>
+        </record>
+        
+        <record id="hwseta_sic_master34" model="hwseta.sic.master">
+            <field name="name">Orthopaedic appliances</field>
+        </record>
+        
+        <record id="hwseta_sic_master35" model="hwseta.sic.master">
+            <field name="name">Other community, social and personal service activities</field>
+        </record>
+        
+        <record id="hwseta_sic_master36" model="hwseta.sic.master">
+            <field name="name">Other health services</field>
+        </record>
+        
+        <record id="hwseta_sic_master37" model="hwseta.sic.master">
+            <field name="name">Other human health activities</field>
+        </record>
+        <record id="hwseta_sic_master38" model="hwseta.sic.master">
+            <field name="name">Other services including local government, mines and industry</field>
+        </record>
+        
+        <record id="hwseta_sic_master39" model="hwseta.sic.master">
+            <field name="name">Paediatrics</field>
+        </record>
+        
+        <record id="hwseta_sic_master40" model="hwseta.sic.master">
+            <field name="name">Private hospitals</field>
+        </record>
+        
+        <record id="hwseta_sic_master41" model="hwseta.sic.master">
+            <field name="name">Private hospitals and clinics</field>
+        </record>
+        
+        <record id="hwseta_sic_master42" model="hwseta.sic.master">
+            <field name="name">Private sector dentists</field>
+        </record>
+        
+        <record id="hwseta_sic_master43" model="hwseta.sic.master">
+            <field name="name">Psychological and psychometric testing</field>
+        </record>
+        
+        <record id="hwseta_sic_master44" model="hwseta.sic.master">
+            <field name="name">Public and private rehabilitation</field>
+        </record>
+        
+        <record id="hwseta_sic_master45" model="hwseta.sic.master">
+            <field name="name">Public hospitals and clinics</field>
+        </record>
+        
+        <record id="hwseta_sic_master46" model="hwseta.sic.master">
+            <field name="name">Public sector</field>
+        </record>
+        
+        <record id="hwseta_sic_master47" model="hwseta.sic.master">
+            <field name="name">Public sector doctors</field>
+        </record>
+        
+        <record id="hwseta_sic_master48" model="hwseta.sic.master">
+            <field name="name">Public sector emergency services</field>
+        </record>
+        
+        <record id="hwseta_sic_master49" model="hwseta.sic.master">
+            <field name="name">Public service dentists</field>
+        </record>
+        
+        <record id="hwseta_sic_master50" model="hwseta.sic.master">
+            <field name="name">Rehabilitation services</field>
+        </record>
+        
+        <record id="hwseta_sic_master51" model="hwseta.sic.master">
+            <field name="name">Research and development</field>
+        </record>
+        
+        <record id="hwseta_sic_master52" model="hwseta.sic.master">
+            <field name="name">Research and experimental development on social sciences and humanities</field>
+        </record>
+        
+        <record id="hwseta_sic_master53" model="hwseta.sic.master">
+            <field name="name">Residential care facilities</field>
+        </record>
+        
+        <record id="hwseta_sic_master54" model="hwseta.sic.master">
+            <field name="name">Retail of prescribed medicines and pharmaceutical products by registered/licensed pharmacy</field>
+        </record>
+        
+        <record id="hwseta_sic_master55" model="hwseta.sic.master">
+            <field name="name">SA medical research council</field>
+        </record>
+        
+        <record id="hwseta_sic_master56" model="hwseta.sic.master">
+            <field name="name">Social work activities</field>
+        </record>
+        
+        <record id="hwseta_sic_master57" model="hwseta.sic.master">
+            <field name="name">State services</field>
+        </record>
+        
+        <record id="hwseta_sic_master58" model="hwseta.sic.master">
+            <field name="name">Traditional healing services</field>
+        </record>
+        
+        <record id="hwseta_sic_master59" model="hwseta.sic.master">
+            <field name="name">Universities, specialist pharmaceutical and drug information services</field>
+        </record>
+        
+        <record id="hwseta_sic_master60" model="hwseta.sic.master">
+            <field name="name">Veterinary activities</field>
+        </record>
+        
+        <record id="hwseta_sic_master61" model="hwseta.sic.master">
+            <field name="name">Unknown</field>
+        </record>
+        
+        
+        <!-- Hwseta Organisation Legal Status -->
+        
+        
+        
+        <record id="hwseta_organisation_legal_status1" model="hwseta.organisation.legal.status">
+            <field name="name">Pty (Ltd)</field>
+        </record>
+        
+        <record id="hwseta_organisation_legal_status2" model="hwseta.organisation.legal.status">
+            <field name="name">Closed Corporation</field>
+        </record>
+        
+        <record id="hwseta_organisation_legal_status3" model="hwseta.organisation.legal.status">
+            <field name="name">Unknown</field>
+        </record>
+
+
+
+         hwseta_chamber_master
+        
+        <record id="hwseta_chamber_master1" model="hwseta.chamber.master">
+            <field name="name">81110 - MONETARY INTERMEDIATION</field>
+        </record>
+        
+         <record id="hwseta_chamber_master2" model="hwseta.chamber.master">
+            <field name="name">81121 - DISCOUNT HOUSES AND COMMERCIAL AND OTHER BANKING</field>
+        </record>
+        
+         <record id="hwseta_chamber_master3" model="hwseta.chamber.master">
+            <field name="name">81122 - BUILDING SOCIETY ACTIVITIES</field>
+        </record>
+        
+         <record id="hwseta_chamber_master4" model="hwseta.chamber.master">
+            <field name="name">81900 - OTHER FINANCIAL INTERMEDIATION N.E.C.</field>
+        </record>
+        
+         <record id="hwseta_chamber_master5" model="hwseta.chamber.master">
+            <field name="name">81910 - LEASE FINANCING</field>
+        </record>
+        
+         <record id="hwseta_chamber_focus_master6" model="hwseta.chamber.master">
+            <field name="name">83101 - SECURITIES DEALING</field>
+        </record>
+        
+        <record id="hwseta_chamber_master7" model="hwseta.chamber.master">
+            <field name="name">83102 - ACTIVITIES ANCILLIARY TO FINANCIAL MEDIATION</field>
+        </record>
+
+
+         Hwseta Provider Focus Master
+        
+        <record id="hwseta_provider_focus_master1" model="hwseta.provider.focus.master">
+            <field name="name">Assessment Site</field>
+        </record>
+        
+         <record id="hwseta_provider_focus_master2" model="hwseta.provider.focus.master">
+            <field name="name">Both</field>
+        </record>
+        
+         <record id="hwseta_provider_focus_master3" model="hwseta.provider.focus.master">
+            <field name="name">Delivery Site</field>
+        </record>
+        
+         <record id="hwseta_provider_focus_master4" model="hwseta.provider.focus.master">
+            <field name="name">Foreign</field>
+        </record>
+        
+         <record id="hwseta_provider_focus_master5" model="hwseta.provider.focus.master">
+            <field name="name">Interim (for SAQA use only )</field>
+        </record>
+        
+         <record id="hwseta_provider_focus_master6" model="hwseta.provider.focus.master">
+            <field name="name">Mixed: Public and Private</field>
+        </record>
+        
+        <record id="hwseta_provider_focus_master7" model="hwseta.provider.focus.master">
+            <field name="name">NGO/CBO</field>
+        </record>
+        
+        <record id="hwseta_provider_focus_master8" model="hwseta.provider.focus.master">
+            <field name="name">Private</field>
+        </record>
+        
+         <record id="hwseta_provider_focus_master9" model="hwseta.provider.focus.master">
+            <field name="name">Public</field>
+        </record>
+        
+        <record id="hwseta_provider_focus_master10" model="hwseta.provider.focus.master">
+            <field name="name">Unknown</field>
+        </record>
+        
+        
+        <!-- hwseta_master -->
+        
+        
+        
+        <record id="hwseta_master_val1" model="hwseta.master">
+            <field name="name">SA Pharmacy Council</field>
+        </record>
+        
+        <record id="hwseta_master_val2" model="hwseta.master">
+            <field name="name">SA Nursing Council</field>
+        </record>
+        
+        <record id="hwseta_master_val3" model="hwseta.master">
+            <field name="name">SERVICES SETA</field>
+        </record>
+        
+        <record id="hwseta_master_val4" model="hwseta.master">
+            <field name="name">Umalusi</field>
+        </record>
+        
+        <record id="hwseta_master_val5" model="hwseta.master">
+            <field name="name">Agriseta</field>
+        </record>
+        
+        <record id="hwseta_master_val6" model="hwseta.master">
+            <field name="name">CHE</field>
+        </record>
+        
+        <record id="hwseta_master_val7" model="hwseta.master">
+            <field name="name">ISETT</field>
+        </record>
+        
+        <record id="hwseta_master_val8" model="hwseta.master">
+            <field name="name">int ETQA</field>
+        </record>
+        
+        <record id="hwseta_master_val9" model="hwseta.master">
+            <field name="name">BANKSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val10" model="hwseta.master">
+            <field name="name">CETA</field>
+        </record>
+        
+        <record id="hwseta_master_val11" model="hwseta.master">
+            <field name="name">CHIETA</field>
+        </record>
+        
+        <record id="hwseta_master_val12" model="hwseta.master">
+            <field name="name">ESETA</field>
+        </record>
+        
+        <record id="hwseta_master_val13" model="hwseta.master">
+            <field name="name">ETDP</field>
+        </record>
+        
+        <record id="hwseta_master_val14" model="hwseta.master">
+            <field name="name">FASSET</field>
+        </record>
+        
+        <record id="hwseta_master_val16" model="hwseta.master">
+            <field name="name">INSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val17" model="hwseta.master">
+            <field name="name">MAPPP</field>
+        </record>
+        
+        <record id="hwseta_master_val18" model="hwseta.master">
+            <field name="name">MQA</field>
+        </record>
+        
+        <record id="hwseta_master_val19" model="hwseta.master">
+            <field name="name">PSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val20" model="hwseta.master">
+            <field name="name">SABPP</field>
+        </record>
+        
+        <record id="hwseta_master_val21" model="hwseta.master">
+            <field name="name">SAICA</field>
+        </record>
+        
+        <record id="hwseta_master_val22" model="hwseta.master">
+            <field name="name">MICT</field>
+        </record>
+        
+        <record id="hwseta_master_val23" model="hwseta.master">
+            <field name="name">QCTO</field>
+        </record>
+        
+        <record id="hwseta_master_val24" model="hwseta.master">
+            <field name="name">CTFL</field>
+        </record>
+        
+        <record id="hwseta_master_val25" model="hwseta.master">
+            <field name="name">FIETA</field>
+        </record>
+        
+        <record id="hwseta_master_val26" model="hwseta.master">
+            <field name="name">FOODBEV</field>
+        </record>
+        
+        <record id="hwseta_master_val27" model="hwseta.master">
+            <field name="name">HPCSA</field>
+        </record>
+        
+        <record id="hwseta_master_val28" model="hwseta.master">
+            <field name="name">ISETT</field>
+        </record>
+        
+        <record id="hwseta_master_val29" model="hwseta.master">
+            <field name="name">LGSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val30" model="hwseta.master">
+            <field name="name">PAB</field>
+        </record>
+        
+        <record id="hwseta_master_val31" model="hwseta.master">
+            <field name="name">SANC</field>
+        </record>
+        
+        <record id="hwseta_master_val32" model="hwseta.master">
+            <field name="name">MERSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val33" model="hwseta.master">
+            <field name="name">SASSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val34" model="hwseta.master">
+            <field name="name">TETA</field>
+        </record>
+        
+        <record id="hwseta_master_val35" model="hwseta.master">
+            <field name="name">THETA</field>
+        </record>
+        
+        <record id="hwseta_master_val36" model="hwseta.master">
+            <field name="name">RSETA</field>
+        </record>
+        
+        <record id="hwseta_master_val37" model="hwseta.master">
+            <field name="name">CHE - HEQC</field>
+        </record>
+
+        <record id="hwseta_relation_provider_master_val1" model="hwseta.relation.to.provider.status">
+            <field name="name">Full-time staff member</field>
+        </record>
+		<record id="hwseta_relation_provider_master_val2" model="hwseta.relation.to.provider.status">
+            <field name="name">Fixed term contract</field>
+        </record>
+        <record id="hwseta_relation_provider_master_val3" model="hwseta.relation.to.provider.status">
+            <field name="name">Consultant</field>
+        </record>
+		
+		<!-- South African Languages -->
+		<!-- <record id="south_african_lang_afrikans" model="res.lang">
+            <field name="name">Afrikaans</field>
+            <field name="code">Afr</field>
+        </record>
+		<record id="south_african_lang_isixhosa" model="res.lang">
+            <field name="name">isiXhosa</field>
+            <field name="code">Xho</field>
+        </record>
+        <record id="south_african_lang_setswana" model="res.lang">
+            <field name="name">seTswana</field>
+            <field name="code">Set</field>
+        </record> -->
+        <record id="south_african_lang_isizulu" model="res.lang">
+            <field name="name">isiZulu</field>
+            <field name="code">Zul</field>
+        </record>
+        <record id="south_african_lang_sepedi" model="res.lang">
+            <field name="name">sePedi</field>
+            <field name="code">Sep</field>
+        </record>
+        <record id="south_african_lang_tshivenda" model="res.lang">
+            <field name="name">tshivenda</field>
+            <field name="code">Tsh</field>
+        </record>
+        <record id="south_african_lang_sesotho" model="res.lang">
+            <field name="name">seSotho</field>
+            <field name="code">Ses</field>
+        </record>
+        <record id="south_african_lang_xitsonga" model="res.lang">
+            <field name="name">xiTsonga</field>
+            <field name="code">Xit</field>
+        </record>
+        <record id="south_african_lang_other" model="res.lang">
+            <field name="name">Other</field>
+            <field name="code">Oth</field>
+        </record>-
+        <record id="south_african_lang_siswati" model="res.lang">
+            <field name="name">siSwati</field>
+            <field name="code">Swa</field>
+        </record> 
+        <record id="south_african_lang_unknown" model="res.lang">
+            <field name="name">Unknown</field>
+            <field name="code">U</field>
+        </record>
+        <record id="south_african_lang_ndebele" model="res.lang">
+            <field name="name">Ndebele</field>
+            <field name="code">Nde</field>
+        </record>
+    </data>
+</openerp>

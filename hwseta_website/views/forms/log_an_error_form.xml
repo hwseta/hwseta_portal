@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === SDF Registration Page === -->
+		<template id="website.log_error" name="Log an Error" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<form action="/hwseta/log_error" method="post" style="z-index:1 !important; position:relative !important">
+							<div class="h1class text-muted">SYSTEM ERROR </div>
+							<div class=" form-bg">
+								<div class="tableclass">
+									<table width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF"
+									border-collapse="collapse" align="center">
+										<tbody><tr>
+											<td colspan="4">
+												
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4"><font>You are welcome to send us a message/complaint. Simply complete 
+													the form provided below and click on the SUBMIT button.</font></td>
+										</tr>
+										<tr>
+											<td colspan="4" height="10"></td>
+										</tr>
+										<tr>
+											<td colspan="4"><b><font>Please provide the following personal details:</font></b></td>
+										</tr>
+										<tr>
+											<td colspan="4" height="5"></td>
+										</tr>
+										<tr>
+											<td><font>Name and Surname</font></td>
+											<td width="20"></td>
+											<td><font class="red"><b>*</b></font></td>
+											<td><input type="text" name="txtName" size="35" maxlength="50" value=""/></td>
+											<script language="javascript">
+											<!--
+											document.theForm.txtName.select();
+											-->
+											</script>
+										</tr>
+										<tr>
+											<td><font>Telephone number</font></td>
+											<td width="20"></td>
+											<td></td>
+											<td><input type="text" name="txtPhone" onkeypress="javascript:keyNumerics()" size="35" maxlength="15" value=""/></td>
+										</tr>
+										<tr>
+											<td><font>Cellphone number</font></td>
+											<td width="20"></td>
+											<td></td>
+											<td><input type="text" name="txtCell" size="35" onkeypress="javascript:keyNumerics()" maxlength="15" value=""/></td>
+										</tr>
+										<tr>
+											<td><font>Email address</font></td>
+											<td width="20"></td>
+											<td><font class="red"><b>*</b></font></td>
+											<td><input type="text" name="txtEmail" size="35" maxlength="50" value=""/></td>
+										</tr>
+										<tr>
+											<td colspan="4" height="10"></td>
+										</tr>
+										<tr>
+											<td colspan="4"><font>Message explaining the error/problem:</font></td>
+										</tr>
+										<tr>
+											<td colspan="4" height="5"></td>
+										</tr>
+										<tr>
+											<td colspan="4"><font><textarea rows="4" name="Comments" id="Comments" cols="50" onkeydown="lim(this.id)"></textarea></font></td>
+										</tr>
+										<tr>
+											<td colspan="4" height="10"></td>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<table cellpadding="0" cellspacing="0" border="0">
+													<tbody><tr>
+														<td valign="top"><input type="button" value="Back" name="btn_Back" class="button" id="btn_Back" onclick="javascript:GoBack('/')"/></td>
+														<td width="50"></td>
+														<td valign="top"><input type="Submit" value="Submit" name="btn_Submit" class="button" id="Submit1"/></td>
+														<td width="50"></td>
+														<td><input type="button" value="Reset" name="btnReset" class="button" id="Reset1" onclick="javascript:GoReset()"/></td>
+													</tr>
+												</tbody></table>
+											</td>
+										</tr>
+									</tbody>
+									</table>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>	

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="form_view_levy_exempted_wiz" model="ir.ui.view">
+            <field name="name">form.view.levy.exempted.wiz</field>
+            <field name="model">levy.exempted.wiz</field>
+            <field name="arch" type="xml">
+            	<form string="Levy Exempted Organisations Report">
+            			<group col="4">
+            				<field name="from_date" required = "True" />
+            				<field name="to_date" required = "True" readonly="1"/>
+            			</group>
+            			<footer>
+            		   		<button name="generate_levy_exempted_report" string="Print Report" type="object" class="oe_highlight"/>
+            				or
+                    		<button string="Cancel" class="oe_link" special="cancel" />
+            			</footer>
+            	</form>
+            </field>
+       	</record>
+       	
+       	<record id="action_levy_exempted_wiz" model="ir.actions.act_window">
+            <field name="name">Levy Exempted Organisations Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">levy.exempted.wiz</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_mode">form</field>
+        </record>	 
+        
+        <menuitem 
+            name="Levy Exempted Report" 
+            id="menu_levy_exempted_wiz" 
+            parent="account.menu_finance_reports" 
+            action="action_levy_exempted_wiz" 
+            sequence="10" 
+           />
+	</data>
+</openerp>

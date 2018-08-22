@@ -1,0 +1,28 @@
+*****************SQL Queries To update Provider Accreditation Status in Provider Master*****************
+
+1.	select distinct("provider_status_Id") from res_partner where provider = True;
+
+2.	select id, "provider_status_Id", provider_end_date from res_partner where provider= True and provider_end_date >= '07-06-2018' and "provider_status_Id" = 'Expired';
+3.	update res_partner set "provider_status_Id" = 'Reaccredited' where id in (select id from res_partner where provider= True and provider_end_date > '07-06-2018' and "provider_status_Id" = 'Expired');
+
+4.	select id, "provider_status_Id", provider_end_date from res_partner where provider= True and provider_end_date >= '07-06-2018' and "provider_status_Id" = 'Active';
+5.	update res_partner set "provider_status_Id" = 'Accredited' where id in (select id from res_partner where provider= True and provider_end_date >= '07-06-2018' and "provider_status_Id" = 'Active');
+
+6.	select id, "provider_status_Id", provider_end_date from res_partner where provider = True and "provider_status_Id" = 'Appointed' and provider_end_date < '07-06-2018';
+7.	update res_partner set "provider_status_Id" = 'Expired' where id in (select id from res_partner where provider = True and "provider_status_Id" = 'Appointed' and provider_end_date < '07-06-2018');
+
+
+8.	select id, "provider_status_Id", provider_end_date from res_partner where provider = True and "provider_status_Id" = 'Appointed' and provider_end_date > '07-06-2018';
+9.	update res_partner set "provider_status_Id" = 'Accredited' where id in (select id from res_partner where provider = True and "provider_status_Id" = 'Appointed' and provider_end_date > '07-06-2018');
+
+10.	select id, provider_end_date from res_partner where provider = True and provider_start_date = '08-31-2017';
+11.	update res_partner set provider_end_date = '03-31-2020' where id in (select id from res_partner where provider = True and provider_start_date = '08-31-2017');
+
+12.	select id, "provider_status_Id", provider_end_date from res_partner where provider = True and "provider_status_Id" in ('Appointed','Accreditation') and provider_end_date > '07-06-2018';
+13.	update res_partner set "provider_status_Id" = 'Accredited' where id in (select id from res_partner where provider = True and "provider_status_Id" in ('Appointed','Accreditation') and provider_end_date > '07-06-2018');
+
+14.	select id, "provider_status_Id", provider_end_date from res_partner where provider = True and "provider_status_Id" = 'Registered' and provider_end_date > '07-06-2018';
+15.	update res_partner set "provider_status_Id" = 'Accredited' where id in (select id from res_partner where provider = True and "provider_status_Id" = 'Registered' and provider_end_date > '07-06-2018');
+
+16.	select id, "provider_status_Id" from res_partner where provider = True and "provider_status_Id" not in ('Reaccredited', 'Accredited', 'Expired');
+17.	update res_partner set "provider_status_Id" = 'Accredited' where id in (select id from res_partner where provider = True and "provider_status_Id" not in ('Reaccredited', 'Accredited', 'Expired'));

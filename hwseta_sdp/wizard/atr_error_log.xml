@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="atr_error_log_form_view" model="ir.ui.view">
+			<field name="name">atr.error.log.form.view</field>
+			<field name="model">atr.error.log</field>
+			<field name="arch" type="xml">
+				<form string="ATR Error Log">
+					<group>
+						<field name="show_atr_error_log" nolabel="1" readonly="1" />
+					</group>
+					<footer>
+						<group col="3" colspan="4">
+							<button name="action_download_incorrect_atr_file" string="Download Incorrect Data File"
+								type="object" class="oe_highlight" />
+							<button name="action_download_error_log" string="Download ATR Error Log"
+								type="object" class="oe_highlight" />
+							<button name="action_delete_incorrect_records" string="Clear Incorrect Records"
+								type="object" class="oe_highlight" confirm="Are you sure you want clear all incorrect records?"/>
+							<group>
+							</group>
+						</group>
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

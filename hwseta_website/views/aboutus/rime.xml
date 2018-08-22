@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === RIME (Research) Page === -->
+		<template id="rime" name="RIME (Research)" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-275"
+											class="oc-post oc-article  post-275 page type-page status-publish hentry">
+											<h1 class="oc-postheader">RIME (Research)</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Overview and Functions of RIME Division</h2>
+												<p>The Research Information Monitoring and Evaluation (RIME)
+													Division plays a pivotal role in managing knowledge
+													generation, as well as packaging and presenting it in a way
+													that influences policy and projects in the HWSETA.
+												</p>
+												<p>The division is also charged with the responsibility to
+													monitor and evaluate implemented skills development
+													projects and programmes and to find causal links to
+													positive impacts of these skills development projects. In
+													short, the RIME division:</p>
+												<ul>
+													<li>commissions and internally conducts sector specific
+														research on areas to enrich the existing body of knowledge
+														on skills development practices</li>
+													<li>track and report on progress made by learners on
+														learning programmes, their perceptions of the programme as
+														they experience it and problems encountered. With this
+														information, RIME makes judgements whether the desired
+														impact will be made</li>
+													<li>monitors and reports on the training activities of
+														constituent training providers in relation to quality
+														provision, objectives of the training programme and
+														transfer of knowledge to learners</li>
+													<li>monitors the usage of training (skills development)
+														grants given to employers</li>
+												</ul>
+												<p>In performing its functions, an ETQA Body:</p>
+												<ul>
+													<li>shall abide by regulations 2 to 12 of the National
+														Standards Bodies Regulations (R452 of 28 March 1998,
+														Government Gazette No 18787);
+													</li>
+													<li>may delegate selected functions contemplated in
+														subregulation (1) to a constituent provider or other body
+														with the prior approval of the Authority, but may not
+														delegate its accountability to the Authority; and
+													</li>
+													<li>if established under another Act of Parliament to
+														govern a single coordinated system of multi-qualification
+														providers, shall delegate the function of registering
+														constituent assessors, contemplated in subregulation
+														(1)(e), to its providers if their quality management
+														system includes the monitoring of this function and the
+														South African Qualifications Authority is notified.</li>
+												</ul>
+												<h2>Contacts</h2>
+												<p>Click on the name below to send an e-mail</p>
+												<table width="100%" class="contacttable" border="0"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Title</td>
+															<td class="contactshead" width="30%">Tel </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:sikhumbuzog@hwseta.org.za">Mr. Sikhumbuzo Gcabashe</a>
+															</td>
+															<td class="contacts" width="30%">Executive Manager: RIME
+															</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:amandam@hwseta.org.za">Ms. Amanda Matswele</a>
+															</td>
+															<td class="contacts" width="30%">Executive Secretary: RIME
+															</td>
+															<td class="contacts" width="30%">(011) 607 6933</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">Vacant </td>
+															<td class="contacts" width="30%">Data Warehouse
+																Administrator </td>
+															<td class="contacts" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">Vacant </td>
+															<td class="contacts" width="30%">Impact Assessment
+																Practitioner </td>
+															<td class="contacts" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3> Monitoring and Evaluation</h3>
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="bulelwap@hwseta.org.za">Ms. Bulelwa Plaatjie</a>
+															</td>
+															<td class="contacts" width="30%">M&amp;E Manager</td>
+															<td class="contacts" width="30%">(011) 607 6973</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:welcomem@hwseta.org.za">Vacant</a>
+															</td>
+															<td class="contacts" width="30%">M&amp;E Officer </td>
+															<td class="contacts" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:dineom@hwseta.org.za">Ms. Dineo Mokheseng</a>
+															</td>
+															<td class="contacts" width="30%">M&amp;E Officer </td>
+															<td class="contacts" width="30%">(011) 607 6918</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">Vacant</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3> Research and Information </h3>
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:sibusisom@hwseta.org.za">Mr. Sibusiso Miya</a>
+															</td>
+															<td class="contacts" width="30%">R&amp;I Manager</td>
+															<td class="contacts" width="30%">(011) 607 6993</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto: mphop@hwseta.org.za">Ms. Mpho Phago</a>
+															</td>
+															<td class="contacts" width="30%">Researcher </td>
+															<td class="contacts" width="30%">(011) 607 7008</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:richardm@hwseta.org.za">Mr. Richard Machava</a>
+															</td>
+															<td class="contacts" width="30%">Researcher </td>
+															<td class="contacts" width="30%">(011) 607 6916 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:lebot@hwseta.org.za">Ms. Lebo Thwala</a>
+															</td>
+															<td class="contacts" width="30%">Intern </td>
+															<td class="contacts" width="30%">(011) 607 7023</td>
+														</tr>
+													</tbody>
+												</table>
+												<h2>Document Downloads</h2>
+												<p>
+													<code></code>
+												</p>
+												<code>
+													<div id="pdf_download_red">
+														<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/hwseta-ssp-2014.pdf">HWSETA Sector Skills Plan </a>
+														(download pdf)
+													</div>
+													<div id="pdf_download_white">
+														<a href="?page_id=87"> HWSETA Research Findings </a>
+													</div>
+												</code>
+												<p>
+													<code></code>
+												</p>
+											</div>
+										</article>
+									</div>
+
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Gauteng Page === -->
+		<template id="gauteng" name="Gauteng" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-303"
+											class="oc-post oc-article  post-303 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Gauteng</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>The Team</h2>
+												<p>Click on a name below to send an e-mail</p>
+												<table class="contacttable" border="0" width="100%"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Position</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:richardm1@hwseta.org.za">Mr. Richard Molefe</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Manager</td>
+															<td class="contactsnoline" width="30%">(011) 205 0200</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:lebogangm@hwseta.org.za">Ms. Lebogang Moono</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Office
+																Administrator</td>
+															<td class="contactsnoline" width="30%">(011) 205 0200</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:sibusisoz@hwseta.org.za">Mr. Sibusiso Zulu</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(011) 205 0200</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a>Vacant</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:penelopem@hwseta.org.za">Ms. Penelope Malebo</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(011) 205 0200</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:ncubei@hwseta.org.za">Mr. Ian Ncube</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(011) 205 0200</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:mankatanet@hwseta.org.za">Mankatane Thoejane</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Intern</td>
+															<td class="contactsnoline" width="30%">(011) 205 0200</td>
+														</tr>
+													</tbody>
+												</table>
+												<h2>Postal Address</h2>
+												<p>
+													Private Bag X15
+													<br/>
+														Bradford Corner
+														<br/>
+															Gardenview, 2047
+												</p>
+												<h2>Physical Address</h2>
+												<p>
+													563 Old Pretoria Main Road,
+													<br/>
+														Unit 5, Midrand Business Park,
+														<br/>
+															Midrand
+												</p>
+												<h2>North West Satellite Office</h2>
+												<p>
+													Taletso TVET College
+													<br/>
+														Leah Mangope Highway (between fire station and Lehurutshe Hospital)
+														<br/>
+															2880
+												</p>
+												<p>Tel: 018 363 3017</p>
+											</div>
+									
+									
+										</article>
+									
+									
+									
+									</div>
+                        						
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

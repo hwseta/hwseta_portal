@@ -1,0 +1,21 @@
+***************Moving Learner's & Assessment Back To Draft*****************
+
+Provider Name: Lethubuntu 2 Health Care Services (PTY) Ltd
+Assessment: PR-AS179
+
+Imp Note: Please execute these Queries as per the given sequence!!!
+
+===============Update Learner Master====================
+1.	select learner_id from learner_registration_qualification where batch_id = 217 and provider_id = 78605;
+2.	update hr_employee set state = 'active', learner_status = 'Active', learners_status = 'active' where provider_learner = True and id in (select learner_id from learner_registration_qualification where batch_id = 217 and provider_id = 78605);
+
+===============Remove Learner Master Reference===========
+3.	select id from learner_registration_qualification where batch_id = 217 and provider_id = 78605;
+4.	update learner_registration_qualification set learner_id = NULL where id in (select id from learner_registration_qualification where batch_id = 217 and provider_id = 78605);
+
+===============Update Learner Registration===============
+5.	select learner_qualification_id from learner_registration_qualification where batch_id = 217 and provider_id = 78605;
+6.	update learner_registration set state = 'draft', approved = False where id in (select learner_qualification_id from learner_registration_qualification where batch_id = 217 and provider_id = 78605);
+
+==============Removing Learners from Assessment==========
+7. delete from learner_assessment_line where provider_assessment_ref_id = 179;

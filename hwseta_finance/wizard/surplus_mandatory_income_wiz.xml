@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="form_view_surplus_mandatory_wiz" model="ir.ui.view">
+            <field name="name">form.view.mandatory.wiz</field>
+            <field name="model">mandatory.credit.wiz</field>
+            <field name="arch" type="xml">
+            	<form string="Surplus Mandatory Income Report">
+            			<group string="Select Period" col="4">
+            				<field name="from_date" required = "True"/>
+            				<field name="to_date" required = "True"/>
+            			</group>
+            			<footer>
+            		   		<button name="generate_surplus_report" string="Print Report" type="object" class="oe_highlight"/>
+            				or
+                    		<button string="Cancel" class="oe_link" special="cancel" />
+            			</footer>
+            	</form>
+            </field>
+       	</record>
+       	
+       	<record id="action_surplus_mandatory_wiz" model="ir.actions.act_window">
+            <field name="name">Mandatory Income Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mandatory.credit.wiz</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_mode">form</field>
+        </record>	 
+        
+        <menuitem 
+            name="Mandatory Income Report" 
+            id="menu_surplus_mandatory_wiz" 
+            parent="account.menu_finance_reports" 
+            action="action_surplus_mandatory_wiz" 
+            sequence="10" 
+            groups="account.group_account_manager,hwseta_finance.group_employer_user"
+           />
+	</data>
+</openerp>

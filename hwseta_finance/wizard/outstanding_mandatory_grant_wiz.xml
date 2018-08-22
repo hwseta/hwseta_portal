@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+        <record id="view_outstanding_mandatory_grant" model="ir.ui.view">
+            <field name="name">Outstanding Mandatory Grant Wizard</field>
+            <field name="model">outstanding.mandatory.grant.wiz</field>
+            <field name="arch" type="xml">
+             <form string="Outstanding Mandatory Grant">
+                <footer>
+                    <button name="print_report" string="Print Report" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_outstanding_mandatory_grant_wiz" model="ir.actions.act_window">
+            <field name="name">Outstanding Mandatory Grant</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">outstanding.mandatory.grant.wiz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_outstanding_mandatory_grant"/>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+        	id="menu_outstanding_mandatory_grant"
+            name="Outstanding Mandatory Grant Report"
+            parent="account.menu_finance_reports"
+            action="action_outstanding_mandatory_grant_wiz"
+           />
+
+    </data>
+</openerp>

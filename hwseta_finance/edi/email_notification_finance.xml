@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<openerp>
+		<data noupdate="0">
+		
+			<record id="email_template_org_payment" model="email.template">
+	            <field name="name">Organisation Payment</field>
+	            <field name="subject"> Organisation Payment for ${object.partner_id.name}</field>
+	            <field name="email_to">${object.partner_id.email}</field>
+	            <field name="email_from">no-reply@hwseta.org.za</field>
+	            <field name="model_id" ref="account_voucher.model_account_voucher"/>
+	            <field name="auto_delete" eval="False"/>
+	             <field name="lang">en_US</field> 
+	            <field name="body_html">
+	                <![CDATA[
+	                <table>
+	                	<tr>
+	                		<td>
+	                			<div>Organisation Name # :<b>&nbsp;${object.partner_id.name}</b></div>
+	                		</td>
+	                	</tr>
+	                </table>
+	                </br>
+	                
+	                <table>
+	                	<tr>
+	                		<td>
+	                			<div> Amount of Payment :</td><td><b>&nbsp;${object.amount}</b></div>
+	                		</td>
+	                	</tr>
+	                </table>
+	                </br>
+	                
+	                <table>
+	                	<tr>
+	                		<td>
+	                			<div> Date of Payment :</td><td><b>&nbsp;${object.date}</b></div>
+	                		</td>
+	                	</tr>
+	                </table>
+	                </br>
+	                
+	                <table>
+	                	<tr>
+	                		<td>
+	                			<div> Payment Reference :</td><td><b>&nbsp;${object.reference}</b></div>
+	                		</td>
+	                	</tr>
+	                </table>
+	                </br>
+	                
+	                ]]>
+	            </field>
+	        </record>
+	        
+	       <record id="email_template_mgrant_payment_notification" model="email.template">
+		        <field name="name">Mandatory Grant Payment Notification</field>
+		        <field name="subject">'Mandatory Grant Payment Notification'</field>
+		        <field name="email_to">${object.partner_id.email}</field>
+		        <field name="email_from">no-reply@hwseta.org.za</field>
+		        <field name="model_id" ref="account_voucher.model_account_voucher"/>
+		        <field name="auto_delete" eval="False"/>
+		         <field name="lang">en_US</field> 
+		        <field name="body_html"><![CDATA[
+			        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+			        <p>Mandatory Grant Payment Amount: <b>${object.amount}</b> /n Mandatory Grant Payment Date: <b>${object.date}</b>  </p>
+			        </div>
+		            ]]></field>
+   		  </record>         
+		
+		</data>
+	</openerp>

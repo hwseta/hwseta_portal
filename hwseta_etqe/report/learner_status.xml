@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="learner_status_id"
+            string="Assessment Status Report"
+            model="provider.assessment" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_learner_status_report" 
+            name="hwseta_etqe.report_learner_status_report"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+     </data>
+</openerp>

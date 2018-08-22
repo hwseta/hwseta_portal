@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Other SETA's and Authorities Page === -->
+		<template id="seta_authorities" name="Other SETA's and Authorities" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-295"
+											class="oc-post oc-article  post-295 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Other SETAs and Authorities</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Skills Education Training Authorities</h2>
+												<table width="100%" border="0" cellpadding="0" cellspacing="0"
+													class="contacttable">
+													<tbody>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.fasset.org.za" target="_new">
+																	FASSET
+																	<br/>
+																		www.fasset.org.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">
+																Financial and Accounting Services Sector Education and Training Authority
+															</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 476-8570
+																<br/>
+																	Fax: 011 476-5756
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.bankseta.org.za" target="_new">
+																	BANKSETA
+																	<br/>
+																		www.bankseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Banking Sector
+																Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 805-9661
+																<br/>
+																	Fax: 011 805-8348
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.chieta.org.za" target="_new">
+																	CHIETA
+																	<br/>
+																		www.chieta.org.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Chemical Industries
+																Education and Training Authority</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 726-4026
+																<br/>
+																	Fax: 011 726-2425
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.fpmseta.org.za" target="_new">FP&amp;M
+																	SETA
+																	<br/>
+																		www.fpmseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Fibre Processing
+																Manufacturing Sector Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011-234 2311
+																<br/>
+																	Fax: 011-234 2350
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.ceta.org.za" target="_new">
+																	CETA
+																	<br/>
+																		www.ceta.org.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Construction Education and
+																Training Authority</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 265-5900
+																<br/>
+																	Fax: 011 265-5924/5
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.etdpseta.org.za" target="_new">
+																	ETDP
+																	<br/>
+																		www.etdpseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Education,
+																Training and Development Practices</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 372 3300
+																<br/>
+																	Fax: 086 604 8934
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.eseta.org.za" target="_new">
+																	EWSETA
+																	<br/>
+																		www.eseta.org.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Energy Sector Education and
+																Training Authority</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 689-5320
+																<br/>
+																	Fax: 011 689 5340/5341
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.foodbev.co.za" target="_new">
+																	FOODBEV
+																	<br/>
+																		www.foodbev.co.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Food and
+																Beverages Manufacturing Industry Sector Education and Training
+																Authority </td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 253-7300
+																<br/>
+																	Fax: 011 253-7333
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.hwseta.org.za" target="_new">
+																	HWSETA
+																	<br/>
+																		www.hwseta.org.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Health and Welfare Sector
+																Education and Training Authority</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 607-6907
+																<br/>
+																	Fax: 011 616-7393
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://INSETA www.inseta.org.za" target="_new">
+																	INSETA
+																	<br/>
+																		www.inseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Insurance Sector
+																Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 544 2000
+																<br/>
+																	Fax: 011 484 0862
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://LGSETA www.lgseta.co.za" target="_new">
+																	LGSETA
+																	<br/>
+																		www.lgseta.co.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Local Government Sector
+																Education and Training Authority</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 456-8579
+																<br/>
+																	Fax: 011 450-4948
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.isett.org.za" target="_new">
+																	MICT
+																	<br/>
+																		www.isett.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Media,
+																Advertising, Information and Communication Technologies Sector
+																Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 207 2600
+																<br/>
+																	Fax: 011 805 6833
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.mqa.org.za" target="_new">
+																	MQA
+																	<br/>
+																		www.mqa.org.za
+																</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Mining Qualifications
+																Authority</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																Tel: 011 630-3503
+																<br/>
+																	Fax: 011 832-1044
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.merseta.org.za" target="_new">
+																	MERSETA
+																	<br/>
+																		www.merseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Manufacturing,
+																Engineering and Related Services Sector Education and Training
+																Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 484-9310
+																<br/>
+																	Fax: 011 484-9319
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.sasseta.org.za" target="_new">
+																	SASSETA
+																	<br/>
+																		www.sasseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Safety and
+																Security Sector Education &amp; Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 347-0200
+																<br/>
+																	Call Centre: 086 110 2477
+																	<br/>
+																		Fax: 011 805-6630
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.agriseta.co.za" target="_new">
+																	AGRISETA
+																	<br/>
+																		www.agriseta.co.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Agriculture
+																Sector Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 012 301-5600
+																<br/>
+																	Fax: 012 325-1677
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.pseta.gov.za" target="_new">
+																	PSETA
+																	<br/>
+																		www.pseta.gov.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Public Service
+																Sector Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel:012 423-5700
+																<br/>
+																	Fax: 012 423-5755
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.serviceseta.org.za" target="_new">
+																	SERVICES
+																	<br/>
+																		www.serviceseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Services Sector
+																Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 276 9600
+																<br/>
+																	Fax: 011 276-9650
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.cathsseta.org.za" target="_new">
+																	CATHSSETA
+																	<br/>
+																		www.cathsseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Culture, Arts,
+																Tourism, Hospitality and Sport Education and Training Authority
+															</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 217-0600
+																<br/>
+																	Fax: 011 783-7745
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.teta.org.za" target="_new">
+																	TETA
+																	<br/>
+																		www.teta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Transport
+																Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 011 781-1280
+																<br/>
+																	Fax: 011 781-0200
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.wrseta.org.za" target="_new">W&amp;RSETA
+																	<br/>
+																		www.wrseta.org.za
+																</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top">Wholesale and
+																Retail Sector Education and Training Authority</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																Tel: 012 622 9500
+																<br/>
+																	Fax: 012 665 2559
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>				
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

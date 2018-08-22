@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<openerp>
+		<data>
+			<menuitem name="Supply Chain"
+            id="base.menu_purchase_root"
+            groups="purchase.group_purchase_manager,purchase.group_purchase_user"
+            sequence="60"/>
+            
+			
+			<!-- Indent/Requisiton Menus -->
+        	<menuitem name="Requisition" parent="base.menu_purchase_root" id="menu_supply_chain_requisition" sequence="1" />
+        	<menuitem action="stock_indent.action_indent_indent" name="Purchase Requisition" parent="menu_supply_chain_requisition" id="menu_purchase_requisition_supply" sequence="1" />
+        	<menuitem action="stock_indent.action_indent_indent" name="Petty Cash Requisition" parent="menu_supply_chain_requisition" id="menu_petty_cash_requisition_supply" sequence="2" />
+        	<menuitem action="stock_indent.action_indent_indent" name="Travel Requisition" parent="menu_supply_chain_requisition" id="menu_travel_requisition_supply" sequence="3" />			
+			<!--  -->
+			<menuitem id="purchase.menu_procurement_management" name="Purchase"
+            parent="base.menu_purchase_root" sequence="2"/>
+		</data>
+	</openerp>

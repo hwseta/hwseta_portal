@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Document Downloads Page === -->
+		<template id="doc_downloads" name="Document Downloads" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+								<t t-call="hwseta_website.sidebar1" />
+							
+								<div class="oc-layout-cell oc-content">
+									<article id="post-54"
+										class="oc-post oc-article  post-54 page type-page status-publish hentry">
+										<h1 class="oc-postheader">Document Downloads</h1>
+										<div class="oc-postcontent oc-postcontent-0 clearfix">
+											<h2>Education Training and Quality Assurance</h2>
+											<h2>Legislation </h2>
+											<p>
+												<code></code>
+											</p>
+											<code>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/grant-regulations.pdf">Grant Regulations </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/hwseta-constitution.pdf">HWSETA Constitution </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/pfma.pdf">PFMA </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/skills-development-act.pdf">Skills Development Act </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/skills-development-levies-act.pdf">Skills Development Levies Act </a>
+													(download pdf)
+												</div>
+												
+												<div id="pdf_download_red">
+                                                    <a href="/hwseta_website/static/src/CDAS/WSP/Annexures/Training manuals for AssessorsModerators 25032012.zip">Download Assessor Moderator Training Manual</a>
+                                                    (download pdf)
+                                                </div>
+                                    			<div id="pdf_download_red">
+                                                    <a href="/hwseta_website/static/src/CDAS/WSP/Annexures/Actual(ATR).xlsx">Annual Training Report</a>
+                                                    (download)
+                                                </div>
+                                    			<div id="pdf_download_red">
+                                                    <a href="/hwseta_website/static/src/CDAS/WSP/Annexures/Planned(WSP).xlsx">Workplace Skills Plan</a>
+                                                    (download)
+                                                </div>                                                
+                                                
+											</code>
+											<p>
+												<code></code>
+											</p>
+											<h2>Policies </h2>
+											<p>
+												<code></code>
+											</p>
+											<code>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/NSDSIII.pdf">National Skills Development Strategy </a>
+													(download pdf)
+												</div>
+											</code>
+											<p>
+												<code></code>
+											</p>
+											<h2>Research Information Monitoring and Evaluation</h2>
+											<p>
+												<code></code>
+											</p>
+											<code>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/10/indicator-protocol-reference-sheets.pdf">Indicator Protocol Reference Sheets </a>
+													(download pdf)
+												</div>
+											</code>
+											<p>
+												<code></code>
+											</p>
+											<h2>Skills Development Planning</h2>
+											<p>
+												<code></code>
+											</p>
+											<code>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/grant-regulations.pdf">Grant Regulations </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/10/Copy_of_OFO_Version_2013_Data-Tables.xls">Copy of OFO Version 2013 Data Tables </a>
+													(download excel file)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_SIC_CODES_2014.pdf">HWSETA SIC Codes - 2014 </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/inter_seta_transfer_form.pdf">Inter SETA Transfer Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/sdf-registration-form.pdf">Skills Development Levy Registration Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/T_number_application_form.pdf">T Number Application Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/treasury-regulations.pdf">Treasury Regulations </a>
+													(download pdf)
+												</div>
+											</code>
+											<p>
+												<code></code>
+											</p>
+										</div>
+								
+								
+									</article>
+								
+								
+								
+								</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

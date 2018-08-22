@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+<!-- 		<template id="hwseta_logo" inherit_id="website.layout_logo_show" -->
+<!-- 			name="HWSETA Logo"> -->
+<!-- 			<xpath expr="//a" position="replace"> -->
+<!-- 				<a href="/" class="navbar-brand logo"> -->
+<!-- 					<img src="/hwseta_website/static/src/img/logo-hwseta.png" -->
+<!-- 						t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name" /> -->
+<!-- 				</a> -->
+<!-- 			</xpath> -->
+<!-- 		</template> -->
+		<template id="header_menuitems" name="Top menu" inherit_id="website.layout">
+
+			<xpath expr="//*[@id='wrapwrap']/header/div" position="replace">
+				<div>
+					<nav class="oc-nav desktop-nav">
+						<div class="oc-nav-inner">
+	
+							<div style="width:900px" align="center">
+								<div class="oc-nav-extras">
+									<a href="/">
+										<div class="oc-logo-hwseta">
+											<img class="img img-responsive" src="/hwseta_website/static/src/img/logo-hwseta.png"
+														alt="Image not found" />
+										</div>
+									</a>
+	
+	
+									<div class="top-form">
+										
+										<div class="oc-footerfacebookicon">
+											<img class="img img-responsive" src="/hwseta_website/static/src/img/footerfacebookicon.png"
+														alt="Image not found" />
+										</div>
+										<div class="oc-textblock oc-search-top">
+											<form class="oc-search" method="get" name="searchform"
+												action="/">
+												<input name="s" type="text" value="" />
+												<input class="oc-search-button" type="submit" value="" />
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="#" class="oc-menu-btn">
+								<span></span>
+								<span></span>
+								<span></span>
+							</a>
+							<ul class="oc-hmenu menu-2" id="top_menu">
+								<t t-foreach="website.menu_id.child_id" t-as="submenu">
+									<t t-call="website.submenu" />
+								</t>
+							</ul>
+						</div>
+						
+					</nav>
+					<div class="top-admin">
+						<ul class="oc-hmenu menu-2">
+							<li class="divider" t-ignore="true" t-if="website.user_id != user_id" />
+							<li class="dropdown" t-ignore="true" t-if="website.user_id != user_id">
+								<a href="#" class="admin dropdown-toggle" data-toggle="dropdown">
+									<b>
+										<span t-esc="user_id.name" />
+										<!-- <span class="caret"></span> -->
+									</b>
+								</a>
+								<ul role="menu">
+									<li class="admin">
+										<a href="/web" role="menuitem">My Account</a>
+									</li>
+	<!-- 								<li class="divider" /> -->
+									<li class="admin">
+										<a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</xpath>
+
+		</template>
+		<template id="hwseta_website.submenu" name="HWSETA Menu"
+			inherit_id="website.submenu">
+			<xpath expr="//li" position="replace">
+				<li t-if="not submenu.child_id and submenu.id != 2"
+					t-att-class="
+			        ((submenu.url and submenu.url != '/' and request.httprequest.path.startswith(submenu.url)) or
+			         request.httprequest.path == submenu.url) and 'active'
+			        ">
+					<a
+						t-att-href="(website.menu_id.child_id[0] == submenu) and '/' or submenu.url"
+						t-ignore="true" t-att-target="'_blank' if submenu.new_window else None"
+						t-field="submenu.name">
+					</a>
+				</li>
+			</xpath>
+			<xpath expr="//li[2]/ul" position="attributes">
+				<attribute name="class"></attribute> 
+			</xpath>
+			<xpath expr="//li[2]/a" position="replace">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"	t-field="submenu.name" t-ignore="true">
+				</a>			
+			</xpath>
+		</template>
+		<template id="hwseta" inherit_id="website.layout" name="HWSETA">
+		
+			<!-- set css classes to html -->
+			<xpath expr="//html" position="attributes">
+				<attribute name="class">chrome chrome43 desktop</attribute>
+			</xpath>
+			<!-- set css classes to body -->
+			<xpath expr="//body" position="attributes">
+				<attribute name="class">home page page-id-960 page-template-default</attribute>
+<!-- 				<attribute name="id">oc-main</attribute> -->
+			</xpath>
+			<!-- Customize body -->
+<!-- 			<xpath expr="//body/div[@id='wrapwrap']" position="attributes"> -->
+<!-- 				<attribute name="class">oc-main</attribute> -->
+<!-- 			</xpath> -->
+			<xpath expr="//body/div[@id='wrapwrap']" position="inside">
+				<div>
+					<div class="oc-lines"></div>
+				</div>
+			</xpath>
+			<!-- Customize header -->
+			<!-- Assign an id -->
+			<xpath expr="//div[@id='wrapwrap']/header" position="attributes">
+				<attribute name="id">hwseta_header</attribute>
+				<attribute name="class">oc-main</attribute>
+			</xpath>
+
+			<!-- Add an element after the top menu -->
+			<xpath expr="//div[@id='wrapwrap']/header/div" position="after">
+				<div id="wrap" class="oe_structure">
+					<section class="oc-header oe_img_bg"
+						data-scroll-background-offset="0" data-scroll-background-ratio="0.3"
+						style="background-attachment: scroll; background-position: 0px 73.2px;">
+						<div>
+							<div>
+								<div>
+									<div class="carousel quotecarousel slide mb0" id="myCarousel3">
+										<ol class="carousel-indicators mb0">
+											<li class="active" data-slide-to="0" data-target="#myCarousel3" />
+											<li data-slide-to="1" data-target="#myCarousel3" />
+											<li data-slide-to="2" data-target="#myCarousel3" />
+											<li data-slide-to="3" data-target="#myCarousel3" />
+											<li data-slide-to="4" data-target="#myCarousel3" />
+											<li data-slide-to="5" data-target="#myCarousel3" />
+											<li data-slide-to="6" data-target="#myCarousel3" />
+										</ol>
+										<div class="carousel-inner">
+<!-- 											style="background-image:url(/hwseta_website/static/src/img/vmenuitem.png);"> -->
+											<div class="item active">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader0.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+											<div class="item oe_img_bg">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader1.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+											<div class="item oe_img_bg">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader2.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+											<div class="item oe_img_bg">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader3.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+											<div class="item oe_img_bg">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader4.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+											<div class="item oe_img_bg">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader5.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+											<div class="item oe_img_bg">
+												<div style="text-align: center !important;">
+													<img class="img img-responsive" src="/hwseta_website/static/src/img/slideheader6.jpg"
+														alt="Image not found" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</xpath>
+		</template>
+<!-- 		<template id="hwseta_website.main" inherit_id="website.layout" customize_show="True" name="HWSETA Main"> -->
+<!-- 			<xpath expr="//main" position="replace"> -->
+<!-- 			<t t-raw="0"/> -->
+<!-- 				<div class="oc-sheet clearfix"> -->
+<!-- 					<div class="oc-layout-wrapper"> -->
+<!-- 						<div class="oc-content-layout"> -->
+<!-- 							<div class="oc-content-layout-row"> -->
+				
+<!-- 								<t t-call="hwseta_website.sidebar1"/> -->
+	
+<!-- 								<div id="main_content" class="oc-layout-cell oc-content"></div> -->
+								
+<!-- 								<t t-call="hwseta_website.sidebar2"/> -->
+				
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 		  </xpath> -->
+<!-- 		</template> -->
+		<template id="hwseta_footer" inherit_id="website.layout" customize_show="True" name="HWSETA Footer">
+			<xpath expr="//footer" position="replace">
+				<footer class="oc-footer">
+					<div class="oe_structure">
+						<div class="oc-footer-inner" style="padding-left: 0px !important;">
+							<div class="oc-footer-text">
+				
+								<div class="oc-content-layout">
+									<div class="oc-content-layout-row">
+										<div class="oc-layout-cell" style="width: 25%">
+											<p>
+												<img width="207" height="94" alt="" class="oc-lightbox"
+													src="/hwseta_website/static/src/img/logo-high-edu.png"
+													style="float: left; margin-bottom: 50px;"/>
+													<a href="/">
+														<br/>
+													</a>
+											</p>
+										</div>
+										<div class="oc-layout-cell" style="width: 18%">
+											<p>
+												<a href="#">
+													<br/>
+												</a>
+											</p>
+											<p style="text-align: left;">
+												<span style="text-align: center;">© 2014
+													HWSETA
+												</span>
+											</p>
+											<p style="text-align: left;">
+												<span style="text-align: center;">All rights Reserved</span>
+											</p>
+										</div>
+										<div class="oc-layout-cell layout-item-0" style="width: 56%">
+											<p style="text-align: right;">
+												<a href="/">Home</a> : 
+												<a href="/page/hwseta_website.overview">About Us</a> : 
+												<a href="/page/hwseta_website.annual_reports">Publications</a> : 
+												<a href="/page/hwseta_website.recruitment">Recruitment</a> : 
+												<a href="/page/hwseta_website.faqs">FAQs</a> : 
+												<a href="/page/hwseta_website.seta_authorities">Links</a> : 
+												<a href="/page/hwseta_website.head_office">Contact Us</a>
+											</p>
+											<p>
+												<br/>
+											</p>
+										</div>
+										<div class="oc-layout-cell" style="width: 1%">
+											<p>
+												<br/>
+											</p>
+										</div>
+									</div>
+								</div>
+				
+				
+				
+							</div>
+						</div>
+					</div>
+				</footer>
+				<div class="oe_structure"></div>
+			</xpath>
+		</template>
+		
+<!-- Special templates for side bar -->
+		<template id="sidebar1" name="Sidebar1">
+            <div class="oc-layout-cell oc-sidebar1">
+                <div id="vmenuwidget-7" class="oc-vmenublock clearfix">
+                    <div class="oc-vmenublockheader">
+                        <div class="t">Stakeholder Zone</div>
+                    </div>
+                    <div class="oc-vmenublockcontent">
+                        <ul class="oc-vmenu goo-collapsible goo-coll-stacked" id="nav">
+<!--                         <ul id="nav"> -->
+
+<!-- Code comment 24/04/2017  -->
+<!--                             <li class="menu-item-47">
+                                <a href="/page/hwseta_website.notices"
+                                    class="moveme47">Important HWSETA Notices</a>
+                            </li>
+                            <li class="menu-item-70">
+                                <a href="/page/hwseta_website.expr_interest"
+                                    class="moveme70">Expressions of Interest</a>
+                            </li>
+ -->                            <li class="menu-item-458">
+                                <a href="/web/login"
+                                    class="moveme458">Stakeholder login</a>
+                            </li>
+                            
+                            
+                            <li><a class='' style="background: url(/hwseta_website/static/src/img/down.gif) no-repeat left center;"> Application</a>
+                                <ul>
+                                    <li ><a href='/page/sdf_registration'>Register as a Skills Development Facilitator</a></li>
+                                    <li ><a href='/page/providerAccreditation'>Provider Accreditation</a></li>
+                                    <li ><a href='/page/assessorModerator'>Apply to register as an Assessor or Moderator</a></li>
+                                   <!--   <li ><a href='/page/hwseta_website.assessor_moderator'>Assessors/Moderators</a></li> -->
+                                </ul>
+                            </li>
+                            
+<!-- Code comment 24/04/2017  -->                            
+<!--                             <li class="menu-item-68">
+                                <a href="/page/hwseta_website.doc_downloads"
+                                    class="moveme68">Document Downloads</a>
+                            </li>
+                            <li class="menu-item-67">
+                                <a href="/page/hwseta_website.learner"
+                                    class="moveme67">Learner?</a>
+                            </li>
+                            <li class="menu-item-66">
+                                <a href="/page/hwseta_website.employer"
+                                    class="moveme66">Employer?</a>
+                            </li>
+                            <li class="menu-item-65">
+                                <a href="/page/hwseta_website.training_provider"
+                                    class="moveme65">Training Provider?</a>
+                            </li>
+                            <li class="menu-item-64">
+                                <a href="/page/hwseta_website.qualification_dev"
+                                    class="moveme64">Qualifications Development</a>
+                            </li>
+                            <li class="menu-item-456">
+                                <a href="/page/hwseta_website.tenderAndServiceProvider_info"
+                                    class="moveme456">Tender &amp; Service Provider Info</a>
+                            </li>
+ -->                        </ul>
+                    </div>
+                </div>
+            </div>
+        </template>
+		<template id="sidebar2" name="Sidebar2">
+			<div class="oc-layout-cell oc-sidebar2">
+				<div id="nav_menu-6" class="oc-block widget widget_nav_menu  clearfix">
+<!-- Code comment 24/04/2017  -->				
+<!-- 					<div class="oc-blockheader">
+						<div class="t">Quick Links</div>
+					</div>
+					<div class="oc-blockcontent">
+						<div class="menu-quick-links-container">
+							<ul id="menu-quick-links" class="menu">
+								<li id="menu-item-99"
+									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-99">
+									<a href="/page/hwseta_website.sector_skill_plan">Sector Skills Plan</a>
+								</li>
+								<li id="menu-item-98"
+									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-98">
+									<a href="/page/hwseta_website.service_delivery_charter">Service Delivery Charter</a>
+								</li>
+								<li id="menu-item-473"
+									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-473">
+									<a href="/page/hwseta_website.report_corruption">Report Corruption</a>
+								</li>
+								<li id="menu-item-477"
+									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477">
+									<a href="/page/hwseta_website.research_findings">Research Findings</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="custom-recent-posts-2" class="oc-block widget widget_recent_entries  clearfix">
+					<div class="oc-blockheader">
+						<div class="t">Latest News</div>
+					</div>
+					<div class="oc-blockcontent">
+						<ul>
+							<li class="crpw-item">
+	
+								<a href="/page/hwseta_website.news1" rel="bookmark"
+									class="crpw-title">Expressions of Interest for 2015 – 2016 Now Open</a>
+	
+							</li>
+							<li class="crpw-item">
+	
+								<a href="/page/hwseta_website.news2" rel="bookmark"
+									class="crpw-title">SkillsTalk@HWSETA Newsletter June 2015 edition out now
+								</a>
+	
+							</li>
+							<li class="crpw-item">
+	
+								<a href="/page/hwseta_website.news3" rel="bookmark"
+									class="crpw-title">HWSETA Funds Animal Health Studies in Eastern Cape</a>
+	
+							</li>
+							<li class="crpw-item">
+	
+								<a href="/page/hwseta_website.news4" rel="bookmark"
+									class="crpw-title">Qualification Development and Maintenance a Key Focus
+									for the HWSETA</a>
+	
+							</li>
+							<li class="crpw-item">
+	
+								<a href="/page/hwseta_website.news5" rel="bookmark"
+									class="crpw-title">HWSETA Urges Caution When Enrolling at Private Training
+									Institutions</a>
+	
+							</li>
+						</ul>
+					</div>
+ -->				</div>
+			</div>	
+		</template>
+		<template id="stake_holder_login" inherit_id="web.login" name="login">
+			<xpath expr="//form" position="attributes">
+				<attribute name="style">z-index:1 !important;position:relative !important;</attribute>
+			</xpath>
+			<!-- <xpath expr="//form" position="after">
+				<div>
+					<div class="form-group"></div>
+					<div class="form-group">
+						<a id="sdf" href="/page/sdf_registration">Register as a Skills Development Facilitator</a>
+					</div>
+					<div class="form-group">
+						<a href="/page/providerAccreditation">Provider Accreditation</a>
+					</div>
+					<div class="form-group">
+						<a href="/page/assessorModerator">Register as an Assessors/Moderators</a>
+					</div>
+					<div class="form-group">
+						<a href="/hwseta_website/static/src/CDAS/WSP/Annexures/Training manuals for AssessorsModerators 25032012.zip">Download Assessor Moderator Training Manual</a>
+					</div>
+				</div>
+			</xpath> -->
+		</template>
+	</data>
+</openerp>

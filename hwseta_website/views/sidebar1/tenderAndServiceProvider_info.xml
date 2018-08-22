@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Tender & Service Provider Information Page === -->
+		<template id="tenderAndServiceProvider_info" name="Tender &amp; Service Provider Information" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-91"
+											class="oc-post oc-article  post-91 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Tender &amp; Service Provider Information</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Tender Updates</h2>
+												<h6>TENDER NUMBER: HWSETA 001/2016</h6>
+												<p>Call for Bids to Provide Training on the following Course for 150
+													ETD Practitioners of HWSETA Accredited / Approved and Prospective
+													Skills Development Providers in Five selected Provinces: 115759:
+													Conduct Moderation of Outcome Based Assessments. The HWSETA wishes
+													to appoint an accredited/Approved and prospective Skills
+													Development Provider (SDP) to train 150 ETD Practitioners of the
+													HWSETA in five Provinces.</p>
+												<p>The following bidders submitted their proposals:</p>
+												<p>Sogwa Solutions; Training B2B; Training at Work; Lephalale Core
+													Skills Academy; Assessment College of SA; DM Management and
+													Consulting; Zubuntu Management; Kgang-Kgolo; Sail Southern
+													Institute of Learning; MSP; Tlotlang Thuto Training and Consulting;
+													PMA Holding; Primserv Corporate Solutions; History Makers; Khosithi
+													Training; Bantubanye Skills; NCD; Faranang Business Solutions;
+													Inkwenkwezi Private Cause; Boardergates Events Management; Kholau
+													Group of Companies; HRD Training and Consulting; Xtensive
+													Academy;Bohlali Provider Support; The Training Edge; Tembe Service
+													Providers; Nomngwanishe Investment; ATTI; ENJO Consulting;
+													Emergence Human Capital; Batho Pele; Siza Nesu; KMS College; Sowing
+													Seed; Lona Ulwazi Consultants; Designa Qualifications;
+													Amandlolwazi; Halcyspace; M28 Trading Enterprise; Pineridge
+													Training Centre; Simskhula; Katiso Kuno; PC Educational Holding;
+													Project Literacy; Vutlhari By Dzonga Consultants; Aubrey Nyiko
+													Business Enterprise; Central Business Academy; Edutel Skills
+													Development; Africa Competency Development; The Training Edge</p>
+												<h6>TENDER NUMBER: HWSETA 002/2016</h6>
+												<p>Call for Bids to provide training on the following Unit Standard
+													for 197 Skills Development Providers Accredited and Approved by the
+													HWSETA for full qualifications in five provinces. 116587: Develop,
+													support and Promote RPL Practices. The HWSETA wishes to appoint an
+													accredited and approved Skills Development Provider (SDP) to train
+													197 RPL Practitioners of the HWSETA in five provinces.</p>
+												<p>The following bidders submitted their proposals:</p>
+												<p>
+													Networx
+													<br/>
+														Zubuntu Management
+														<br/>
+															PMA Holdings
+															<br/>
+																KMS College
+																<br/>
+																	PI Company SA
+																	<br/>
+																		PC Educational Holdings
+																		<br/>
+																			Resonance
+																			<br/>
+																				Edutel
+												</p>
+												<h6>TENDER NUMBER: HWSETA 003/2016</h6>
+												<p>Call for Bids to provide Printing Services of Marketing Material
+													for HWSETA</p>
+												<p>The following bidders submitted their proposals:</p>
+												<p>
+													Shereno Printers
+													<br/>
+														By Design Africa
+														<br/>
+															Macaw Printers
+															<br/>
+																Kemesamo Printing Solution
+																<br/>
+																	Law Print
+																	<br/>
+																		Creative Harvest
+																		<br/>
+																			Panlab Printing and Stationery
+																			<br/>
+																				Creda Communications
+																				<br/>
+																					JKMN Consulting
+																					<br/>
+																						Impumelelo Print
+																						<br/>
+																							ZY Trading CC
+																							<br/>
+																								Neon Printers
+																								<br/>
+																									Okicart Trading
+																									<br/>
+																										Leitam Business Solutions
+																										<br/>
+																											Imvusa Trading 1692
+																											<br/>
+																												Busi Ntuli
+																												<br/>
+																													SCM Media and Communications
+																													<br/>
+																														CAB Holdings
+																														<br/>
+																															Y-Land Printing and Promotions
+																															<br/>
+																																MYT Productions and Advertising
+												</p>
+												<h2>Tenders Awarded</h2>
+												<h6>TENDER NUMBER: HWSETA002/2015</h6>
+												<h6>Supplier to provide Travel Agency Services to the HWSETA within
+													the borders of South Africa for the period of one year</h6>
+												<p>
+													Name of Bidder: Atlantis Corporate Travel
+													<br/>
+														Point Score for Price: 90
+														<br/>
+															BBBEE Status Level of Contribution: 9
+															<br/>
+																Total Score: 99
+																<br/>
+																	Price: Average of R46.00 per request
+												</p>
+												<h6>TENDER NUMBER: HWSETA005/2015</h6>
+												<h6>Training of 150 Labour Representatives on Skills Development
+													Facilitator course</h6>
+												<p>
+													Name of Bidder: HRD Training Consulting
+													<br/>
+														Point Score for Price: 90
+														<br/>
+															BBBEE Status Level of Contribution: 5
+															<br/>
+																Total Score: 95
+																<br/>
+																	Price: R1 874 700.00
+												</p>
+												<h6>TENDER: HWSETA003/2015</h6>
+												<h6>
+													For the Training of 100 ETD Practitioners of HWSETA’s Accredited
+													and Approved SDPs in the five selected provinces
+													<br/>
+														115755: Design and Develop Outcome-Based assessments
+														<br/>
+															115753: Conduct outcomes-based assessment
+												</h6>
+												<p>
+													Name of Bidder: Xtensive Academy
+													<br/>
+														Point Score for Price: 90
+														<br/>
+															BBBEE Status Level of Contribution: 9
+															<br/>
+																Total Score: 99
+																<br/>
+																	Price: R530 100.00
+												</p>
+												<h6>TENDER: HWSETA004/2015</h6>
+												<h6>
+													For the Training of 100 ETD Practitioners of HWSETA’s Accredited
+													and Approved SDPs in the five selected provinces
+													<br/>
+														115759: Conduct Moderation of Outcome-Based Assessment
+														<br/>
+															123394: Develop Outcome-Based Learning Programmes
+												</h6>
+												<p>The HWSETA has decided NOT TO award this tender. Below is a list
+													of suppliers who submitted their proposals:</p>
+												<p>PC Educational Holdings; Primserv; Ulwazi Training and
+													Development; History Makers Business Consulting; M28 Training and
+													Development; Faranang Business and Trining Solutions JV Isamon
+													Integrated; Vulthari Bya Dzongas; Resonance Institute of Learning;
+													Pitt Instituate JV Imsimbi; Bulls Business and Skills Training BBT
+													Trading as NSA Consultants; MTK Corporate Solutions; Eskil; Omni HR
+													Consulting; Mogale Solution Provider; Knowledge Quest PTY Ltd;
+													Regenesys Business School; Xtensive Academy; Network for Career
+													Development; Quality Executive Development; D and D Lwazi
+													Renaissance Research Development Institute; Academy of People
+													Development; Sigodi Development Services JV Lona Ulwazi; Edutel
+													Skills Development; Training at Work; Verycoolideas; Siza Nesu
+													Trading 7; Accreditation and Training Services; Regent Business
+													School.</p>
+												<p>For more information please contact Mrs. N Motloung in the
+													Procurement Unit on (011) 607 6900. Tel: (011) 607 6900. Fax: (011)
+													615 4078. Email: ntombizodwam@hwseta.org.za</p>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/01/general_conditions_of_contract-inclusion_of_par_34_CIBD.pdf">General Conditions of Contract Inclusion of Par 34 CIBD</a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/01/preference_points_claim_form_hwseta.pdf">Preference Points Claim Form HWSETA.pdf</a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/sbd4-form.pdf">SBD4 Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/01/sbd2_tax_clearance_certificate_requirements.pdf">SBD2 Tax Clearance Certificate Requirements </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2015/01/SBD8.pdf">SBD8 </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/01/SBD9_certificate_of_independent_bid_determination.pdf">SBD9 Certificate of Independent Bid Determination</a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/cipc-registration-notice.pdf">CIPC Registration Notice </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/hwseta-database-form.pdf">HWSETA Database Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/sbd4-form.pdf">SBD4 Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/tender-response-guidelines.pdf">Tender Response Guidelines </a>
+													(download pdf)
+												</div>
+												<div>
+													<div id="pdf_download_white">
+														<a
+															href="/hwseta_website/static/src/wp-content/uploads/2015/06/tender_checklist_service_providers_printing_services.pdf">Tender Checklist Service Providers Printing Services </a>
+														(download pdf)
+													</div>
+													<div id="pdf_download_red">
+														<a
+															href="/hwseta_website/static/src/wp-content/uploads/2015/06/tender_completion_checklist_assessors_and_moderators_RPL.pdf">Tender Completion Checklist Assessors and Moderators RPL </a>
+														(download pdf)
+													</div>
+												</div>
+												<div></div>
+												<p> 
+												</p>
+												<h4></h4>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

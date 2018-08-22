@@ -1,0 +1,81 @@
+.petty_cash_heading
+{
+	font-weight:bold;
+	font-size:35px;
+	text-align:center;
+}
+
+.petty_cash_subhead
+{
+	font-weight:bold;
+	font-size:25px;
+	padding:15px;
+}
+
+.petty_cash_subhead_val
+{
+	font-size:30px;
+	padding:15px
+}
+
+table.petty_border_table
+{
+	border-spacing:100px;
+	width:1100px;
+	border:1px solid;
+}
+
+table.petty_approve_receive
+{
+	width:1100px;
+	border-spacing:100px;
+}
+
+table.petty_desc
+{
+	width:1100px;
+	padding:15px;
+}
+
+table.petty_border_table tr
+{
+	border-top:1px solid;
+	border-bottom:1px solid;
+}
+
+td.petty_header_td
+{
+	font-weight:bold;
+	font-size:20px;
+	padding:15px;
+	background-color:#BDBDBD;
+	border-left:1px solid;
+	border-right:1px solid;
+}
+
+td.petty_header_td_val
+{
+	font-size:20px;
+	padding:15px;
+	border-left:1px solid;
+	border-right:1px solid;
+}
+
+td.petty_header_bottom_td
+{
+	font-weight:bold;
+	font-size:25px;
+	padding:15px;
+}
+
+td.petty_header_bottom_td_val
+{
+	font-size:20px;
+	padding:15px;
+}
+
+table tr
+{
+	page-break-inside: avoid;
+}
+

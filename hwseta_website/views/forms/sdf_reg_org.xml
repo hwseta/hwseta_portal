@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === SDF Registration Page === -->
+		<template id="website.organisation" name="SDF Organisation Registration" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+					<form action="/hwseta/add_organisation" method="post" style="z-index:1 !important; position:relative !important">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						  <tbody><tr>
+						    <td width="11%"></td>
+						    <td width="39%" colspan="2"></td>
+						    <td width="50%"></td>
+						  </tr>
+						  <tr>
+						    <td width="100%" colspan="4">
+						    <b>Instructions:</b>
+						      <font color="#800000"><br/>
+						      <br/>
+						      1. Add an organisation to the list by entering the
+						      organisations SDL Number and select the ADD button.<br/>
+						      <br/>
+						      2. You may remove any organisation from the list by selecting the REMOVE
+						      icon.<br/>
+						      <br/>
+						      3. Once you have finished adding all the organisations to your SDF
+						      profile, click the FINISHED button.<br/>
+						      <br/>
+						      
+						    </font>
+						    </td>
+						  </tr>
+						  
+						  <tr>
+						    <td width="50%" colspan="2">
+						      <table border="1" cellpadding="2" cellspacing="0" width="300" bordercolorlight="#C0C0C0" bordercolordark="#FFFFFF">
+						        <tbody><tr>
+						          <td bgcolor="#DDD9CD"><b>Register one or more organisations</b></td>
+						        </tr>
+						        <tr>
+						          <td bgcolor="#FFFEF9">
+						            <table border="0" cellpadding="4" cellspacing="0" width="100%">
+						              <tbody><tr>
+						                <td width="31%">SDL Number:</td>
+						                <td width="69%"><input name="" type="text" style="width: 80%; margin-bottom: 10px; margin-top: 10px;" size="15"
+												placeholder="Add an Organisation" /></td>
+						                 
+						              </tr>
+						              <tr>
+						                <td width="31%"></td>
+						                <td width="69%">
+						               <div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+					                        <button type="submit" class="btn btn-primary">Add</button>
+					                    </div></td>
+						              </tr>
+						            </tbody></table>
+						          </td>
+						        </tr>
+						      </tbody></table>
+						    </td>
+						    <td width="25%" valign="top" align="left">
+						    </td>
+						    <td width="25%" valign="top" align="left">
+						    </td>
+						  </tr>
+						  <tr>
+						    <td width="11%"><br/>
+						      <br/>
+						    </td>
+						    <td width="39%" colspan="2"></td>
+						    <td width="50%"></td>
+						  </tr>
+						</tbody></table>
+						</form>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

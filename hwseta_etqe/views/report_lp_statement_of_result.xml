@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="quotation_external_layout_lp">
+			<!-- Multicompany -->
+			<t t-if="o and 'company_id' in o">
+				<t t-set="company" t-value="o.company_id"></t>
+			</t>
+			<t t-if="not o or not 'company_id' in o">
+				<t t-set="company" t-value="res_company"></t>
+			</t>
+
+			<t t-call="hwseta_etqe.quotation_external_layout_header_lp" />
+			<t t-raw="0" />
+			<t t-call="hwseta_etqe.quotation_external_layout_footer_lp" />
+		</template>
+
+
+		<template id="quotation_external_layout_header_lp">
+			<div class="header">
+				<div class="row">
+					<div class="headimage">
+						<center>
+							<img src="/hwseta_etqe/static/src/img/hwseta_logo.jpg" width="350px"
+								height="120px" />
+						</center>
+					</div>
+				</div>
+			</div>
+		</template>
+
+		<template id="quotation_external_layout_footer_lp">
+			<div class="footer">
+				<div class="row">
+					<div class="col-xs-12" style="text-align:center;padding-top:0px">
+						<ul class="list-inline">
+							<strong>Page</strong>
+							<li>
+								<span class="page" />
+							</li>
+							<li>/</li>
+							<li>
+								<span class="topage" />
+							</li>
+						</ul>
+						<span>
+							17 Bradford Road, Bedfordview 2047. Private Bag X15,
+							Gardenview
+							2047
+							<br />
+							Tel: +2711 607 6900, Fax: +2711 616 8939, email:
+							etqa@hwseta.org.za website: www.hwseta.co.za
+						</span>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template id="report_learning_programme_statement_of_result">
+			<t t-call="report.html_container">
+				<div class="oe_structure" />
+				<t t-as="o_assessment" t-foreach="docs">
+					<t t-as="o" t-foreach="o_assessment.learner_achieved_ids_for_lp">
+						<t t-call="hwseta_etqe.quotation_external_layout_lp">
+							<t t-if="not get_status(o)['achieve'] or get_status(o)['achieve']">
+								<div class="page">
+									<h3 style="text-align:center;font-size:small;"> This is to certify that </h3>
+									<center style="font-weight:bold;font-size:large;">
+										<t t-if="o.learner_id.name">
+											<span t-field="o.learner_id.name" />
+										</t>
+										<t t-if="o.learner_id.person_middle_name">
+											<span t-field="o.learner_id.person_middle_name" />
+										</t>
+										<t t-if="o.learner_id.person_last_name">
+											<span t-field="o.learner_id.person_last_name" />
+										</t>
+									</center>
+									<br />
+									<div>
+										<table style="page-break-inside:auto;">
+											<tr>
+												<td>
+													<strong>
+														<span>Identity Number</span>
+													</strong>
+												</td>
+												<td> <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;]]></td>
+												<td align="left">
+													<t t-if="not o.learner_id.learner_identification_id">
+														<t t-if="o.learner_id.national_id">
+																<span t-field="o.learner_id.national_id" />
+														</t>
+													</t>
+													<t t-if="o.learner_id.learner_identification_id">
+															<span t-field="o.learner_id.learner_identification_id" />
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>
+														<span>Registration Number</span>
+													</strong>
+												</td>
+												<td> <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;]]></td>
+												<td align="left">
+													<span t-field="o.learner_id.learner_reg_no" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>
+														<span>Date of Issue</span>
+													</strong>
+												</td>
+												<td> <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;]]></td>
+												<td align="left">
+													<span
+														t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+												</td>
+											</tr>
+										</table>
+										<br />
+										<p style="text-align:center;font-style:italic;font-size:medium;">has successfully achieved the
+											following Learning Programme:
+										</p>
+										<br />
+										<table class="learner_tables1 table table-condensed"
+											style="page-break-inside:avoid;">
+											<tr>
+												<th
+													style="border:solid;border-width: 1px;width:100px;font-size:90%;text-align:center;padding: 2px;">LP ID
+												</th>
+												<th
+													style="border:solid;border-width: 1px;width:100px;font-size:90%;text-align:center;padding: 2px;">LEARNING PROGRAMME TITLE
+												</th>
+												<th
+													style="border:solid;border-width: 1px;width:100px;font-size:90%;text-align:center;padding: 2px;">NQF LEVEL
+												</th>
+												<th
+													style="border:solid;border-width: 1px;width:100px;font-size:90%;text-align:center;padding: 2px;">MINIMUM CREDITS
+												</th>
+											</tr>
+											<tr>
+												<td
+													style="border:solid;border-width: 1px;text-align:center;width:100px;font-size:80%;padding: 1px;">
+													<span t-esc="get_saqa_qual_id(o) or ''" />
+												</td>
+												<td
+													style="border:solid;border-width: 1px;text-align:left;width:650px;font-size:80%;padding: 1px;">
+													<span t-esc="get_lp(o) or ''" />
+												</td>
+												<td
+													style="border:solid;border-width: 1px;text-align:center;width:90px;font-size:80%;padding: 1px;">
+													<span t-esc="get_lp_nqf_level(o) or ''" />
+												</td>
+												<td
+													style="border:solid;border-width: 1px;text-align:center;width:150px;font-size:80%;padding: 1px;">
+													<span t-esc="get_lp_credits_value(o) or ''" />
+												</td>
+											</tr>
+										</table>
+										<p style="text-align:left;font-size:medium;">The Learning Programmes is comprised of the following unit standards:
+										</p>
+										<t t-foreach="get_unit_standard(o)" t-as="l">
+											<table class="learner_tables1 table table-condensed" >
+												<tbody>
+													<tr>
+														<p
+															style="border-style:none;font-weight:bold;font-size:100%;padding:5px;">
+															<t t-esc="l['type']" />
+															:
+														</p>
+													</tr>
+													<tr style="page-break-inside:avoid;">
+														<th
+															style="border:solid;border-width: 1px;text-align:center;font-size:90%;padding: 2px;">SAQA US ID
+														</th>
+														<th
+															style="border:solid;border-width: 1px;text-align:center;font-size:90%;padding: 2px;">UNIT STANDARD TITLE
+														</th>
+														<th
+															style="border:solid;border-width: 1px;text-align:center;font-size:90%;padding: 2px;">NQF LEVEL
+														</th>
+														<th
+															style="border:solid;border-width: 1px;text-align:center;font-size:90%;padding: 2px;">CREDITS
+														</th>
+													</tr>
+													<tr t-foreach="l['value']" t-as="s">
+														<td
+															style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 
+													2px;font-size:80%;">
+															<t t-esc="s['saqa_us_id']" />
+														</td>
+														<td
+															style="border:solid;border-width: 1px;width:650px;text-align:left;padding: 
+													2px;font-size:80%;">
+															<t t-esc="s['name']" />
+														</td>
+														<td
+															style="border:solid;border-width: 1px;width:100px;text-align:center;padding: 
+													2px;font-size:80%;">
+															<t t-esc="s['nqf_level']" />
+														</td>
+														<td
+															style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+													2px;font-size:80%;">
+															<t t-esc="s['credit']" />
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</t>
+										<br />
+										<br />
+										<p style="font-style:italic;">
+											<b>NB:</b>
+											The Learning Programme is derived from the qualification
+											[
+											<t t-foreach="get_lp_saqa_qual_id(o)" t-as="l">
+												<t t-foreach="l['value']" t-as="s">
+													<span>
+														<b>Qualification ID:</b>
+													</span>
+													<t t-esc="s['saqa_qual_id']" />
+														<t t-if="s['lp_id']">
+														    (<span>
+																<b>LP ID:</b>
+															 </span>
+															 <t t-esc="s['lp_id']" />
+														    )
+														</t>
+														<span>
+															<b>Qualification Title:</b>
+														</span>
+														<t t-esc="s['name']" />
+														<span>
+															<b>Level:</b>
+														</span>
+														<t t-esc="s['n_level']" />
+														<span>
+															<b>Minimum Credits:</b>
+														</span>
+														<t t-esc="s['m_credits']" />
+													]
+												</t>
+											</t>
+										</p>
+										<br/>
+										<table width="100%">
+											<tr>
+												<td style="text-align:center;" width="40%">
+													<t t-if="get_status(o)['achieve']">
+														<h5
+															style="text-align:center;font-family: 'Arial';font-size:100%"
+															t-esc="get_certificate_no(o)['certificate_no']" />
+													</t>
+													<img
+														t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', o.learner_id.learner_identification_id, 600, 100)"
+														style="width:250px;height:20px" />
+												</td>
+												<td width="20%" />
+												<td width="40%">
+													<div style="text-align:center;width:100%;">
+														<img src="/hwseta_etqe/static/src/img/Jane_signature.jpg" width="100px"
+															height="100px" />
+													</div>
+													<div style="text-align:center;font-style:italic;width:100%;">
+														<strong style="text-decoration: overline;">
+															Baakedi Jane Motubatse
+														</strong>
+														<br />
+														<strong>
+															ETQA Executive Manager
+														</strong>
+													</div>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</t>
+						</t>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

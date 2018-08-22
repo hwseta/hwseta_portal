@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="form_view_monitor_evaluate" model="ir.ui.view">
+            <field name="name">form.view.monitor.evaluate</field>
+            <field name="model">monitor.and.evaluate</field>
+            <field name="arch" type="xml">
+            	<form string="Monitoring and Evaluation">
+            		<header>
+            			<button name="action_submit_mae" type="object" string="Submit" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','overall_assess'), ('submit', '=', True)]}" groups="hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_provincial_officer"/>
+            			<button name="action_recommend_mae" type="object" string="Recommend" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','submitted'), ('recommend', '=', True)]}" groups="hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_wsp_officer,hwseta_projects.group_project_officer,hwseta_projects.group_learning_programmes_officer"/>
+            			<button name="action_approve_mae" type="object" string="Approve" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','recommended'), ('approve', '=', True)]}" groups="hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager"/>
+            			<field name="state" widget="statusbar" clickable="True" statusbar_visible="org_and_proj,quality,administer,finance,learner_report,project_evaluation,overall_assess,submitted,recommended,approved"/>
+            			<field name="submit" invisible="1"/>
+            			<field name="recommend" invisible="1"/>
+            			<field name="approve" invisible="1"/>
+            			
+            		</header>
+            		<group string="Organisational Details" attrs="{'invisible':[('state','!=','org_and_proj')]}">
+            			<group>
+            				<field name="employer_id" required="1" domain="[('employer','=',True)]" on_change="onchange_employer_id(employer_id)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		        			<field name="sdl_number"/>
+		        			<field name="funding_year" required="1" on_change="onchange_funding_year(funding_year)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		        			<field name="project_type_id" on_change="onchange_project_type(project_type_id)" options="{'no_create': True,'no_quick_create':True,'no_open':True}" required="1"/> 
+		        			<field name="project_id" options="{'no_create': True,'no_quick_create':True,'no_open':True}" required="1"/>
+		        			<field name="date_visit"/>
+		        			<field name="me_conducted_by"/>
+            			</group>
+            			<group>
+            				<field name="amount_approved"/>
+		        			<field name="amount_disbursed"/>
+		        			<field name="amount_outstanding"/>
+		        			<field name="no_of_employed"/>
+		        			<field name="no_of_unemployed"/>
+		        			<field name="total_employed_unemployed"/>
+            			</group>
+            		</group>
+            		<group>
+            			<field name="attach_transche" invisible="1"/>
+            			<field name="attach_document" invisible="1"/>
+            			<button name="action_get_transche" type="object" string="Get Transche" class="oe_inline oe_stat_button" icon="fa-arrow-down" attrs="{'invisible':[('attach_transche','=',True)]}"/>
+            			<button name="action_get_document" type="object" string="Get Document" class="oe_inline oe_stat_button" icon="fa-arrow-down" attrs="{'invisible':[('attach_document','=',True)]}"/>
+            		</group>
+            		<notebook>
+            			<page string="Discretionary Grant Project Information" invisible="1">
+		            		<group>
+		            			<field name="project_info_ids" nolabel="1">
+		            				<tree string="Project Info" editable="bottom">
+		            					<field name="type_of_projects" required="1"/>
+		            					<field name="project_id" string="Project Details" domain="[('project_types','=',type_of_projects)]" required="1"/>
+		            					<field name="mark_x"/>
+		            					<field name="funding_year"/>
+		            					<field name="employed"/>
+		            					<field name="unemployed"/>
+		            					<field name="total"/>
+		            				</tree>
+		            			</field>
+		            		</group>            			
+            			</page>
+            			<page string="Monitoring Transche">
+            				<group>
+						       <field name="monitor_and_evaluate_ids" nolabel="1">
+	        						<tree create="0" editable="bottom">
+	        							<field name="name"/>
+<!-- 	        							<field name="employed_unemployed"/> -->
+	        							<field name="number"/>
+	        							<field name="status"/>
+	        							<field name="recommend_transche" invisible="1"/>
+	        							<field name="approve_transche" invisible="1"/>
+	        							<field name="reject_transche" invisible="1"/>
+									<button name="action_recommend_transche" string="Recommend"
+										type="object" icon="gtk-go-forward" attrs="{'invisible':[('recommend_transche','=',True)]}"
+										groups="hwseta_sdp.group_sdp_manager" />
+									<button name="action_approve_transche" string="Approve"
+										type="object" icon="gtk-go-forward"
+										attrs="{'invisible':['|','|',('approve_transche','=',True),('recommend_transche','=',False),('reject_transche','=',True)]}"
+										groups="hwseta_sdp.group_sdp_manager" />
+									<button name="action_reject_transche" string="Reject"
+										type="object" icon="gtk-close"
+										attrs="{'invisible':['|','|',('reject_transche','=',True),('recommend_transche','=',False),('approve_transche','=',True)]}"
+										groups="hwseta_sdp.group_sdp_manager" />	        							
+	        						</tree>
+	        					</field>
+            				</group>
+            			</page>
+            			<page string="Document">
+            				<group>
+						       <field name="monitor_and_evaluate_document_ids" nolabel="1">
+	        						<tree create="0" editable="bottom">
+										<field name="name"/>
+	       								<field name="attach_doc" domain="[('id','=',None)]" />
+	        						</tree>
+	        					</field>
+            				</group>
+            			</page>            			
+            		</notebook>
+            		<group attrs="{'invisible':[('state','!=','org_and_proj')]}">
+            			<group string="Learnership Commencement and Completion Date">
+            				<field name="commencement_date"/>
+            				<field name="completion_date"/>
+            			</group>
+            			<group string="Dropouts">
+            				<field name="dropouts_emplyed"/>
+            				<field name="dropouts_unemplyed"/>
+            			</group>
+            		</group>
+        			<br/>
+        			<group attrs="{'invisible':[('state','!=','quality')]}">
+        				<!-- <label string="This section evaluates the implementation and monitoring of the training."/>
+        				<br/>
+        				<label string="The following tasks need to be performed or indicated as having been performed by the employer:"/> -->
+        				<br/>
+	        			<table style="width:1100px" cellpadding="60" cellspacing="20"> 
+	        				<tr>
+	        					<td></td>
+	        					<td></td>
+	        					<td></td>
+	        					<td></td>
+	        				</tr>
+	        				<tr>
+	        					<th style="width:280px;height:100px;text-align:center;font-size:14px"><label string="TASKS"/></th>
+	        					<th style="width:270px;height:100px;text-align:center;font-size:14px"><label string="INDICATORS"/></th>
+	        					<th style="height:100px;font-size:14px"><center><label string="ACHIEVED"/></center></th>
+	        					<th style="height:100px;font-size:14px"><center><label string="COMMENTS/SUGGESTED ACTION"/></center></th>
+	        				</tr>
+	        				<tr>
+	        					<td></td>
+	        					<td></td>
+	        					<td></td>
+	        					<td></td>
+	        				</tr>
+	        				<tr>
+	        					<td style="width:280px"><label string="Employer's Report has been prepared and submitted to the HWSETA"/></td>
+	        					<td style="width:270px">
+	        						<div>
+			            				<label string="Progress in relation to"/>
+			            				<div>
+				            				<label string="* Expenditure"/>
+				            			</div>
+				            			<div>
+				            				<label string="* Dropouts"/>
+				            			</div>
+				            			<div>
+				            				<label string="* Learner Achievement (assessments)"/>
+				            			</div>
+			            			</div>
+	        					</td>
+	        					<td style="vertical-align:middle"><center><field name="report_prepared" nolabel="1"/></center></td>
+	        					<td><field name="comment_report_prepared" nolabel="1"/></td>
+	        				</tr>
+	        				<tr>
+	        					<td style="width:280px;vertical-align:middle"><label string="The employer hold regular meetings"/></td>
+	        					<td style="width:270px">
+	        						<div>
+			            				<label string="Meetings with the following:"/>
+			            				<div>
+			            					<label string="* Assessors"/>
+			            				</div>
+			            				<div>
+			            					<label string="* Workplace mentors"/>
+			            				</div>
+			            				<div>
+			            					<label string="* Learners (if applicable)"/>
+			            				</div>
+			            				<div>
+			            					<label string="* Training committee (if required)"/>
+			            				</div>
+			            			</div>
+	        					</td>
+	        					<td style="vertical-align:middle"><center><field name="regular_meeting" nolabel="1"/></center></td>
+	        					<td><field name="comment_regular_meeting" nolabel="1"/></td>
+	        				</tr>
+	        				<tr>
+	        					<td style="width:280px;vertical-align:middle">
+	        						<div>
+			            				<label string="Use learner dispute resolution procedure"/>
+			            				<div>
+			            					<label string="when problems arise."/>
+			            				</div>
+			            			</div>
+	        					</td>
+	        					<td style="width:270px;vertical-align:middle"><label string="Disputes are resolved and recorded"/></td>
+	        					<td style="vertical-align:middle"><center><field name="learner_dispute" nolabel="1"/></center></td>
+	        					<td><field name="comment_learner_dispute" nolabel="1"/></td>
+	        				</tr>
+	        				
+	        				<tr>
+	        					<td style="width:280px;vertical-align:middle"><label string="Review the project plan"/></td>
+	        					<td style="width:270px;vertical-align:middle"><label string="Revised project plan is recorded"/></td>
+	        					<td style="vertical-align:middle"><center><field name="project_reviewed" nolabel="1"/></center></td>
+	        					<td><field name="comment_project_reviewed" nolabel="1"/></td>
+	        				</tr>
+	        				<tr style="height:100px">
+	        					<td style="width:280px;vertical-align:middle"><label string="Review outcome of learner feedback"/></td>
+	        					<td style="width:270px;vertical-align:middle"><label string="Learner feedback meets expectations"/></td>
+	        					<td style="vertical-align:middle"><center><field name="outcome_reviewed" nolabel="1"/></center></td>
+	        					<td><field name="comment_outcome_reviewed" nolabel="1"/></td>
+	        				</tr>
+        				</table>
+            		</group>
+            		
+            		<group col="4" attrs="{'invisible':[('state','!=','administer')]}">
+            			<table style="width:1100px" cellpadding="40">
+            				<tr>
+            					<th style="width:450px;text-align:center;font-size:14px;height:100px;"><label string="CRITERIA"/></th>
+	        					<th style="width:100px;text-align:center;font-size:14px;height:100px;"><label string="MET"/></th>
+	        					<th style="width:100px;text-align:center;font-size:14px;height:100px;"><label string="NOT MET"/></th>
+	        					<th style="width:450px;text-align:center;font-size:14px;height:100px;"><label string="COMMENTS"/></th>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Learner record keeping requirements and maintenance"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="req_main_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="req_main_not_met" nolabel="1"/></td>
+            					<td><field name="comment_learner" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Database maintenance"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="data_main_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="data_main_not_met" nolabel="1"/></td>
+            					<td><field name="comment_database" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Access and confidentiality of records and reports"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="confi_rec_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="confi_rec_not_met" nolabel="1"/></td>
+            					<td><field name="comment_access" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Reporting and administrative capacity"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="rep_adm_capmet" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="rep_adm_not_capmet" nolabel="1"/></td>
+            					<td><field name="comment_reporting" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Assessor availability"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="assessor_avail_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="assessor_avail_not_met" nolabel="1"/></td>
+            					<td><field name="comment_assessor" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Moderator availability"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="moderator_avail_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="moderator_avail_not_met" nolabel="1"/></td>
+            					<td><field name="comment_moderator" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Coaches / mentors /facilitators"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="coach_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="coach_not_met" nolabel="1"/></td>
+            					<td><field name="comment_coaches" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Role players and partnerships:Other NGOs where learners are placed"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="role_player_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="role_player_not_met" nolabel="1"/></td>
+            					<td><field name="comment_role" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Access to resources for research for learners (e.g. media, books,internet - if applicable):"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="access_resource_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="access_resource_not_met" nolabel="1"/></td>
+            					<td><field name="comment_resource" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Training and assessment schedules available"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="train_met" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="train_not_met" nolabel="1"/></td>
+            					<td><field name="comment_training" nolabel="1"/></td>
+            				</tr>
+            			</table>
+            		</group>
+            		
+            		<group attrs="{'invisible':[('state','!=','finance')]}">
+            			<table style="width:1100px" cellpadding="40">
+            				<tr>
+								<th style="width:450px;text-align:center;font-size:14px;height:100px;"><label string="TASK"/></th>
+	        					<th style="width:200px;text-align:center;font-size:14px;height:100px;"><label string="WORKING PAPER REFERENCE"/></th>
+	        					<th style="width:450px;text-align:center;font-size:14px;height:100px;"><label string="COMMENTS"/></th>            				
+            				</tr>
+            				<tr>
+            					<td style="text-align:center" bgcolor="#BDBDBD"><label string="MEMORANDUM OF AGREEMENT" nolabel="1"/></td>
+            					<td></td>
+            					<td></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="1.1. Does the institution have a copy of the MOA in their possession?" nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="insti_have_moa" nolabel="1"/></td>
+            					<td><field name="comment_insti_have_moa" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="1.2. Confirm the signature appearing on the agreement." nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="signature_appear" nolabel="1"/></td>
+            					<td><field name="comment_signature_appear" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="1.3. Confirm that the signatory has authority to sign on behalf of the institution." nolabel="1"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="signatory_authority" nolabel="1"/></td>
+            					<td><field name="comment_signatory_authority" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td>
+            						<div>
+			            				<label string="1.4. Ensure that the institution representative has read and" nolabel="1"/>
+			            				<div>
+			            					<label string="understood the contents of MOA with reference to:" nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.1. Adherence to budget - Par.4.3. and 5.1.1." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.2. Seperate bank account - Par. 5.1.2." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.3. Withdrawal of funds requiring 2 signatories - Par.5.1.3." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.4. Cash withdrawals only permissible with HWSETA written authorization - Par.5.1.3." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.5. Refund funds spent on activities that are not reasonably connected to the project - Par.5.1.6." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.6. Must not incur expenditure which is not comtemplated in the budget - Par.5.1.9." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.7. Permit inspections - Par.5.2.1. and 5.2.2." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.8. Keep originals of all documents at the head office - Par.5.3.3" nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.9. Funds will be used for the sole purpose for which they have been approved and provided - Par. 8.2.2." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.10. There will be no corruption nor mismanagement of the funds provided in the term of agreement - Par. 8.2.4." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.11. Proof of agreement concluded with accredited training provider - Par. 11.1.2." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.12. Prrovide written assurance that funding is used solely for purposes for which it was granted (viz. learner allowance, provider fees and uniform allowance)" nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.13. In the event that the institution has not compiled with a material obligation contained in the MOA, the HWSETA may withhold payment (Par. 15 3.1.) and request in the institution to comply in writing." nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.14. In the event the institution refuses to comply with its obligations, the HWSETA has the right to withhold any further payments (Par. 15.3.1.), cancel the agreement(Par. 15.3.2.) and recover all amounts paid (Par. 15.3.3.)" nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.15. The HWSETA may terminate this agreement in the event that the institution does not allow the HWSETA or it appointed financial officer, accountant, auditor, etc, to inspect the institutions financial records (Par. 15.5.1.3.)" nolabel="1"/>
+			            				</div>
+			            				<div>
+			            					<label string="1.4.16. The contents disclosed in Annexure : Budget" nolabel="1"/>
+			            				</div>
+			            			</div>
+            					</td>
+            					<td style="vertical-align:middle;text-align:center"><field name="read_content_moa" nolabel="1"/></td>
+            					<td><field name="comment_read_content_moa" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="text-align:center" bgcolor="#BDBDBD"><label string="BANK ACCOUNT"/></td>
+            					<td></td>
+            					<td></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="2.1. Has the institution opened a seperate bank account for the sole purpose of managing funds received from the HWSETA?"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="bank_sole_purpose" nolabel="1"/></td>
+            					<td><field name="comment_bank_sole_purpose" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="2.2. Secure the Bank statements ensuring that these statements cover the entire period of agreement"/></td>
+            					<td style="vertical-align:middle;text-align:center"><field name="bank_secure_stmt" nolabel="1"/></td>
+            					<td><field name="comment_bank_secure_stmt" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td>
+            						<div>
+			            				<label string="2.3. List receipts reflected on the bank statements"/>
+			            				<div>
+			            					<label string="2.3.1 Received from HWSETA"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.3.2 Received from other sources"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.3.3 Interest"/>
+			            				</div>
+			            			</div>
+            					</td>
+            					<td style="vertical-align:middle;text-align:center"><field name="list_receipt_bank_stmt" nolabel="1"/></td>
+            					<td><field name="comment_list_receipt_bank_stmt" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td>
+            						<div>
+			            				<label string="2.4. List payments reflected on the bank statements"/>
+			            				<div>
+			            					<label string="2.4.1 Learner Allowance"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.4.2 Provider fees"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.4.3 Uniform purchase"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.4.4 All Other payments"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.4.5 Bank Charges"/>
+			            				</div>
+			            				<div>
+			            					<label string="2.4.6 Interest on overdraft"/>
+			            				</div>
+			            			</div>
+            					</td>
+            					<td style="vertical-align:middle;text-align:center"><field name="list_payment_bank_stmt" nolabel="1"/></td>
+            					<td><field name="comment_list_payment_bank_stmt" nolabel="1"/></td>
+            				</tr>
+            			</table>
+            		</group>
+            		
+            		<group attrs="{'invisible':[('state','!=','learner_report')]}" col="1">
+            			<div>
+            				<label string="These are questions to be asked when holding the meeting with the learners:"/>
+            			</div>
+            			<br/>
+            			<div>
+            				<label string="How did you all hear about this HWSETA programme?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_hwseta_prog" nolabel="1"/>
+            			</div>
+            			<br/>
+            			<div>
+            				<label string="At the begining of a programme. learners are meant to get information on issues such as the content of the training, how the programme is going to be delivered, how learners will be assessed and what support structures exists for learners. Thinking back on your own experience - how satisfied are you with the information that was given to you at the begining of the programme?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_satisfy_info" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="When you were informed that you had been accepted onto this programme, did you have to sign a contract or learnership agreement? Where you given a copy of these documents?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_sign_contract" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Did someone explain to you what the contract or agreement was all about and what was expected of you?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_contract_about" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="A new group of people will soon be recruited to join this programme. In your opinion, what main change or improvement should be made to the recruitment and selection process so that we can learn from what you went through?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_improve_recruit" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="This training is meant to consist of two main components - a theoretical training component and an on-the-job training component. Let us first talk about the theoretical component of your training. Where did the theoretical training take place?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_theoretical_comp" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Was the training presented in the language that you felt comfortable with?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_training_lang" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="What is your weekly / monthly allowance?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_week_month_allowance" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Were a supervisor / mentor / facilitator appointed at work to support you and give you advice during your Training?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_supervisor_advice" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Do you have any disputes or disagreements with your employer concerning issues such as overtime or working conditions during your training?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_overtime" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Have you received uniforms?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_received_uniforms" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Have you received your books?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_received_books" nolabel="1"/>
+            			</div>
+            			<div>
+            				<label string="Any other comments / remarks you would like to make?"/>
+            			</div>
+            			<div>
+            				<field name="comment_abt_remark" nolabel="1"/>
+            			</div>
+            		</group>
+            		
+            		<group attrs="{'invisible':[('state','!=','project_evaluation')]}">
+            			<!-- <label string="The evaluation phase is to measure the overall sucess the project has againts the objectives and indicators established in the project plan. These measures provide all role-players with valuable information, lessons learnt, experiences and/or impressions about the project. These lessons will inform the planning of the next programme, and thereby facilitate improvement of the quality of learning provision."/> -->
+            			<br/>
+            			<br/>
+            			<br/>
+            			<table style="width:1100px" cellpadding="40" col="3">
+            				<tr>
+            					<th style="width:300px;text-align:center;font-size:14px;height:100px;"><label string="TASKS"/></th>
+            					<th style="width:400px;text-align:center;font-size:14px;height:100px;"><label string="INDICATORS"/></th>
+            					<th style="width:400px;text-align:center;font-size:14px;height:100px;"><label string="SUGGESTED ACTION"/></th>
+            				</tr>
+            				<tr>
+            					<td><label string="Evaluate the success of the project in relation to the objectives and indicators established in the project plan:"/></td>
+            					<td style="text-align:center"><label string="Record the outcome of the evaluation"/></td>
+            					<td><field name="action_evaluate_success" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Number of learners that entered in relation to employer initial targets"/></td>
+            					<td><field name="indicator_no_of_learner" nolabel="1"/></td>
+            					<td><field name="action_no_of_learner" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Number of dropouts / incomplete training"/></td>
+            					<td><field name="indicator_no_of_dropouts" nolabel="1"/></td>
+            					<td><field name="action_no_of_dropouts" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Factors that contribute to success and / or failure"/></td>
+            					<td><field name="indicator_factors_success" nolabel="1"/></td>
+            					<td><field name="action_factors_success" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Financial performance in relation to budget"/></td>
+            					<td><field name="indicator_financial_performance" nolabel="1"/></td>
+            					<td><field name="action_financial_performance" nolabel="1"/></td>
+            				</tr>
+            				<tr>
+            					<td style="vertical-align:middle"><label string="Identify lessons learnt from the M and E visit by employer"/></td>
+            					<td style="vertical-align:middle"><label string="Record lessons learnt"/></td>
+            					<td></td>
+            				</tr>
+            				<tr>
+            					<td></td>
+            					<td></td>
+            					<td></td>
+            				</tr>
+            			</table>
+            		</group>
+            		
+            		<group attrs="{'invisible':[('state','!=','overall_assess')]}" col="1">
+						<div>
+							<label string="Based on your meeting with the learners, have you raised and discussed the areas of concern with the employer? What is their response?"/>
+						</div>
+						<div>
+							<field name="area_of_concern" nolabel="1"/>
+						</div>
+						<div>
+							<label string="What, in your professional opinion, are the risks and concerns of this project?"/>
+						</div>
+						<div>
+							<field name="professional_opinion" nolabel="1"/>
+						</div>
+						<div>
+							<label string="Are you recommending for the next payment to be processed and give reasons."/>
+						</div>
+						<div>
+							<field name="next_payment_process" nolabel="1"/>
+						</div>
+            		</group>
+            		<group col="3" invisible="1">
+            			<group col="4">
+            				<field name="compiled_by"/>
+            				<label string=""/>
+            				<label string=""/>
+            			</group>
+            		</group>
+            		<group col="4" invisible="1">
+            			<!-- <field name="signature"/> -->
+            			<field name="compiled_date"/>
+            			<field name="related_employee1"/>
+            		</group> 
+            		<br/>
+            		<br/>
+            		<group col="3" invisible="1">
+        			<h3><label string="Provincial manager"/></h3>
+        			<field name="provincial_manager_name"/>
+        			</group>
+            		<group col="4" invisible="1">
+            			<!-- <field name="prov_man_sign"/>-->
+            			<field name="prov_man_date"/>
+            			<field name="related_employee2"/>
+            		</group>
+            		<br/>
+            		<br/>
+            		<group string="Learning Programmes Manager/ Projects Manager" attrs="{'invisible':[('state','!=','overall_assess')]}">
+            		</group>
+        			<group col="4" attrs="{'invisible':[('state','!=','overall_assess')]}">
+            			<field name="approved_learn"/>
+            			<label string=""/>
+            			<label string=""/>
+        			</group>
+        			<group col="4" attrs="{'invisible':[('state','!=','overall_assess')]}">
+            			<field name="not_approved_learn"/>
+            			<label string=""/>
+            			<label string=""/>
+            		</group>
+            		<group col="4" attrs="{'invisible':[('state','!=','overall_assess')]}">
+            			<field name="project_man_sign"/>
+            			<!-- <field name="project_man_date"/> -->
+            		</group>
+            		<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+            	</form>
+            </field>
+       	</record>
+       	
+       	<record id="tree_view_monitor_evaluate" model="ir.ui.view">
+            <field name="name">tree.view.monitor.evaluate</field>
+            <field name="model">monitor.and.evaluate</field>
+            <field name="arch" type="xml">
+            	<tree string="Monitoring and Evaluation">
+            		<field name="employer_id"/>
+        			<field name="sdl_number"/>
+        			<field name="date_visit"/>
+        			<field name="me_conducted_by"/>
+        			<field name="amount_approved"/>
+        			<field name="amount_disbursed"/>
+        			<field name="amount_outstanding"/>
+       			</tree>
+       		</field>
+       	</record>
+       	
+       	<record id="action_monitor_and_evaluate" model="ir.actions.act_window">
+            <field name="name">Monitoring and Evaluation</field>
+            <field name="res_model">monitor.and.evaluate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="tree_view_monitor_evaluate"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to Enter Data for Monitoring and Evaluation.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_sdp_monitoring_evaluation" name="Monitoring and Evaluation" parent="menu_sdp_transactions" action="action_monitor_and_evaluate" sequence="11" groups="hwseta_sdp.group_sdp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_wsp_manager"/>
+        <!-- <menuitem name="Monitoring and Evaluation" id="monitoring_and_evaluation_portal_employer" action="action_monitor_and_evaluate" sequence="1" parent="hwseta_finance.portal_employer_transaction" groups="hwseta_finance.group_employer_user"/> -->
+	</data>
+</openerp>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+        
+        <record id="approve_learner_wizard_id" model="ir.ui.view">
+            <field name="name">Approve Learners</field>
+            <field name="model">approve.learner.wizard</field>
+            <field name="arch" type="xml">
+            	<form string="Multiple learner Approve">
+            		<field name="war_label" readonly="1"/>
+            		<footer>
+                        <button name="learner_error_log" string="Download Approved/Non-Approved Learners Log File" type="object" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+            	</form>
+            </field>
+        </record>
+        
+        <record id="action_approve_learnes" model="ir.actions.act_window">
+           <field name="name">Approve Learners</field>
+           <field name="res_model">approve.learner.wizard</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">form</field>
+           <field name="view_id" ref="approve_learner_wizard_id"/>
+           <field name="target">new</field>
+       </record>
+    
+  </data>
+  </openerp>
+  

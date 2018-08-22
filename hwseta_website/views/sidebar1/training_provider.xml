@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Training Provider? Page === -->
+		<template id="training_provider" name="Training Provider?" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-60"
+											class="oc-post oc-article  post-60 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Training Provider?</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Resources
+													for Skills
+													Development Providers
+												</h2>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/06/accreditation_policy_posted_june-2015.pdf">Accreditation Policy </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/06/assessment_moderation_and_verification_policy_posted_june_2015.pdf">Assessment Moderation and Verification Policy </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/accreditation-intent-form.pdf">Accreditation intent Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/02/training_implementation_intent_form.pdf">Training Implementation Intent Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/10/learning-programme-application-form.pdf">Learning Programme Application Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="http://www.hwseta.org.za//hwseta_website/static/src/wp-content/uploads/2015/06/monitoring_policy_posted_june_20151.pdf">Monitoring Policy </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/monitoring_template.pdf">Monitoring Tool </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/12/accreditation_application_form.pdf">Accreditation Application Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/extension_of_scope_application_pre_evaluation_checklist.pdf">Extension of Scope Application Pre-evaluation Checklist </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/extension_of_scope_process_flow.pdf">Extension of Scope Process Flow </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/programme_approval_and_extension_of_scope_approval_recommendation_checklist.pdf">Programme Approval and Extension of Scope Approval
+														Recommendation Checklist </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/programme_approval_application_preevaluation_checklist.pdf">Programme Approval Application Pre-evaluation Checklist </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/programme_approval_MOU_process_flow_chart.pdf">Programme Approval MOU Process Flow Chart </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/provider_accreditation_process_flow.pdf">Provider Accreditation Process Flow </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/verification_guidelines.pdf">Verification Guidelines </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/verification_process_flow.pdf">Verification Process Flow </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/verification_template.pdf">Verification Template </a>
+													(download pdf)
+												</div>
+												<div>
+													<div id="pdf_download_white">
+														<a
+															href="/hwseta_website/static/src/wp-content/uploads/2015/04/reaccreditation_application_form_-september-2014.pdf">Reaccreditation Application Form</a>
+														(download pdf)
+													</div>
+													<div id="pdf_download_red"></div>
+												</div>
+												<h2>Resources for Learner Achievement</h2>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/certification_guidelines.pdf">Certification Guidelines </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/Learner-Matrix-Template.xls">Learner Matrix Template </a>
+													(download excel file)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/monitoring_tool.pdf">Monitoring Tool </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/12/preverification_report.pdf">Pre-verification Report </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/12/application_learner_certificate_reprint.pdf">Application Learner Certificate Reprint </a>
+													(download pdf)
+												</div>
+												<h2>Resources for Assessors &amp; Moderators</h2>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/10/moderator-registration-procedure.pdf">Moderator Registration Procedure </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/assessor_registration_procedure.pdf">Assessor Registration Procedure </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/10/assessor-moderator-application-form.pdf">Assesssor/Moderator Application Form </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/assessor_registration_guidelines.pdf">Assessor Registration Guidelines </a>
+													(download pdf)
+												</div>
+												<h2>Accredited Skills Development Providers</h2>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/Ass_Qual-October_2014.xls">Registered Assessors </a>
+													(download excel file)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/04/accredited_training_providers_15-04-2015.xls">Accredited Training Providers (download excel file)</a>
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/Mod_Qual_October_2014.xls">Registered Moderators </a>
+													(download excel file)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/04/accredited_training_providers_per_qualification_15-04-2015.xls">Accredited Training Providers per Qualification (download
+														excel file)</a>
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/07/accredited_training_providers_for_skills_programmes_16_july_2015.xls">Accredited Training Providers for Skills Programmes (download
+														excel file)</a>
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/assessor_moderator_application_preevaluation_checklist.pdf">Assessor Moderator Application Pre-evaluation Checklist </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/assessor_registration_pre_evaluation_checklist.pdf">Assessor Registration Pre-evaluation Checklist </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/assessor_registration_process_flow.pdf">Assessor Registration Process Flow </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_red">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/certification_process_flow.pdf">Certification Process Flow </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/11/moderator_registration_guidelines.pdf">Moderator Registration Guidelines </a>
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/01/FA-board-stakeholder-session-CT.pdf"
+														target="_blank">(download pdf)</a>
+												</div>
+												<div></div>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

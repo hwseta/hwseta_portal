@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Expressions of Interest for 2015 – 2016 Now Open Page === -->
+		<template id="news1" name="Expressions of Interest for 2015 – 2016 Now Open" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article ">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<div class="navigation">
+													<div class="alignleft">
+														«
+														<a href="http://www.hwseta.org.za/?p=1130" title="There are currently no vacancies"
+															rel="prev">There are currently no vacancies</a>
+													</div>
+													<div class="alignright"></div>
+												</div>
+											</div>
+									
+									
+										</article>
+										<article id="post-1143"
+											class="oc-post oc-article  post-1143 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">Expressions of Interest for 2015 – 2016 Now Open</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="11:15 am">July 31, 2015</span>
+												</span>
+												|
+												<span class="oc-postauthoricon">
+													<span class="author">By</span>
+													<span class="author vcard">
+														<a class="url fn n" href="http://www.hwseta.org.za/?author=7"
+															title="View all posts by Elfrieda Tyrer">Elfrieda Tyrer</a>
+													</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													EOI Bursaries for Employed Persons 2015-2016
+													<br/>
+														EOI Internships 2015-2016
+														<br/>
+															EOI Work Experience for TVET Learners 2015-2016
+															<br/>
+																EOI Learnerships 2015-2016
+																<br/>
+																	EOI Sign Language for Department of health and Social
+																	Development Employees 2015-2016
+																	<br/>
+																		EOI Skills Programmes 2015-2016
+																		<br/>
+																			EOI Work Integrated Learning 2015-2016
+												</p>
+												<p>
+													<a href="http://www.hwseta.org.za/?page_id=48">click here</a>
+													to redirect to the Expression of Interest Information
+												</p>
+											</div>
+									
+									
+										</article>
+									
+									
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

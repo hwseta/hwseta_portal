@@ -1,0 +1,13 @@
+************Moving Approved Learners (By clicking Existing Learners) from Learner Registration back to Draft who's record doesn't exists in Learner Master******
+
+==================Qualifications Learners=========================
+1.	select learner_qualification_id from learner_registration_qualification where learner_id is null and learner_qualification_id in (select id from learner_registration where state = 'approved' and is_existing_learner = True);
+2.	update learner_registration set state = 'draft', approved = False, is_existing_learner = False where id in (select learner_qualification_id from learner_registration_qualification where learner_id is null and learner_qualification_id in (select id from learner_registration where state = 'approved' and is_existing_learner = True));
+
+==================Skills Programme Learners=======================
+1.	select skills_programme_learner_rel_id from skills_programme_learner_rel where skills_programme_learner_rel_ids is null and skills_programme_learner_rel_id in (select id from learner_registration where state = 'approved' and is_existing_learner = True);
+2.	update learner_registration set state = 'draft', approved = False, is_existing_learner = False where id in (select skills_programme_learner_rel_id from skills_programme_learner_rel where skills_programme_learner_rel_ids is null and skills_programme_learner_rel_id in (select id from learner_registration where state = 'approved' and is_existing_learner = True));
+
+==================Learning Programme Learners=====================
+1.	select learning_programme_learner_rel_id from learning_programme_learner_rel where learning_programme_learner_rel_ids is null and learning_programme_learner_rel_id in (select id from learner_registration where state = 'approved' and is_existing_learner = True);
+2.	update learner_registration set state = 'draft', approved = False, is_existing_learner = False where id in (select learning_programme_learner_rel_id from learning_programme_learner_rel where learning_programme_learner_rel_ids is null and learning_programme_learner_rel_id in (select id from learner_registration where state = 'approved' and is_existing_learner = True));

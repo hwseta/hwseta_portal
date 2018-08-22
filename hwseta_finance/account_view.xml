@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_account_form_inherit" model="ir.ui.view">
+            <field name="name">view.account.form.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form[@string='Account']/group" position="after">
+                    <group col="4">
+                        <!-- <field name='business_unit' attrs="{'readonly':[('state', '!=', 'executed')]}"/>
+                        <field name='account' attrs="{'readonly':[('state', '!=', 'executed')]}"/>
+                        <field name='subsidiary' attrs="{'readonly':[('state', '!=', 'executed')]}"/>
+                        <field name='company' attrs="{'readonly':[('state', '!=', 'executed')]}"/>
+                        <field name='l_d' attrs="{'readonly':[('state', '!=', 'executed')]}"/>
+                        <field name='p_e' attrs="{'readonly':[('state', '!=', 'executed')]}"/>
+                        <field name='currency_code' attrs="{'readonly':[('state', '!=', 'executed')]}"/> -->
+                        
+                        <field name='business_unit'/>
+                        <field name='account'/>
+                        <field name='subsidiary'/>
+                        <field name='company'/>
+                        <field name='l_d'/>
+                        <field name='p_e'/>
+                        <field name='currency_code'/>
+                        
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="leavy_grant_config_tree" model="ir.ui.view">
+	            <field name="name">grant.config.tree</field>
+	            <field name="model">grant.config</field>
+	            <field name="arch" type="xml">
+	                <tree string="Grant Config" editable ="top">
+	                	<field name="scheme_yr"/>
+	                	<field name="mendatory"/> 
+	                	<field name="admin_grant"/>
+	                	<field name="descritionary"/> 
+	                	<field name="hwseta_rec"/>
+	                </tree>
+	            </field>
+	        </record>
+        
+        <record id="action_grant_config" model="ir.actions.act_window">
+	            <field name="name">Grant Configuration Old</field>
+	            <field name="res_model">grant.config</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">tree,form</field>
+	            <field name="view_id" ref="leavy_grant_config_tree"/>
+       	</record>
+       	
+       	
+           <!--   menu moved from Income to account finance configuration  -->
+      <!--  	<menuitem name="Grant Configuration Old" id="menu_master_grant_config" parent="account.menu_finance_configuration" action="action_grant_config" sequence="1" /> -->
+        
+        
+        <record id="new_grant_config_tree" model="ir.ui.view">
+	            <field name="name">grant.config.tree</field>
+	            <field name="model">grant.config</field>
+	            <field name="arch" type="xml">
+	                <tree string="Grant Config" >
+	                	<field name="scheme_yr"/>
+	                	<field name="hwseta_rec"  />
+	                </tree>
+	            </field>
+	        </record>
+	        
+	    	    <record id="grant_config_new_form" model="ir.ui.view">
+	            <field name="name">grant.config.new.form</field>
+	            <field name="model">grant.config.new</field>
+	            <field name="arch" type="xml">
+	                <form string="Grant Configuration">
+	                <sheet string="Grant Configuration">
+	                        <group colspan ="4" col ="4">
+	                            <field name="scheme_yr"  />
+	                            <field name="hwseta_rec"  />
+	                        </group>
+	                        <field name="grant_assign_id" nolabel="1">
+	                        <!-- <tree>
+	                        <field name="grant_id"  editable ="top"/>
+	                        <field name="value"  />
+	                        <field name="hwseta_rec"  />
+	                        </tree>-->
+	                         </field> 
+	                </sheet>
+	                </form>
+	            </field>
+	        </record>
+		    
+         <record id="leavy_grant_config_assign_tree" model="ir.ui.view">
+	            <field name="name">grant.config.newtree</field>
+	            <field name="model">grant.config.assign</field>
+	            <field name="arch" type="xml">
+	                <tree string="Grant Config Assigned" editable ="top">
+	                	<field name="grant_id"  />
+	                        <field name="value"  />
+	                        
+	                </tree>
+	            </field>
+	        </record>
+        
+        
+        <record id="action_grant_config_new" model="ir.actions.act_window">
+	            <field name="name">Grant Configuration</field>
+	            <field name="res_model">grant.config.new</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">tree,form</field>
+	            <field name="view_id" ref="new_grant_config_tree"/>
+       	</record>
+       	
+       	
+           <!--   menu moved from Income to account finance configuration  -->
+       	<menuitem name="Grant Configuration" id="menu_master_grant_config_new" parent="account.menu_finance_configuration" action="action_grant_config_new" sequence="1" />
+        
+        
+        <record id="leavy_grantt_tree" model="ir.ui.view">
+	            <field name="name">grant.config.newtree</field>
+	            <field name="model">grant.new</field>
+	            <field name="arch" type="xml">
+	                <tree string="Grant Config Assigned" editable ="top">
+	                        <field name="name"  />
+	                        <field name="code"  />
+	                </tree>
+	            </field>
+	        </record>
+        
+        
+        <record id="action_grantt" model="ir.actions.act_window">
+	            <field name="name">Grants</field>
+	            <field name="res_model">grant.new</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">tree,form</field>
+	            <field name="view_id" ref="leavy_grantt_tree"/>
+       	</record>
+       	
+       	
+           <!--   menu moved from Income to account finance configuration  -->
+       	<menuitem name="Grants" id="menu_master_grantt" parent="account.menu_finance_configuration" action="action_grantt" sequence="1" />
+        
+         <record id="leavy_grant_config_account_tree" model="ir.ui.view">
+	            <field name="name">grant.config.account</field>
+	            <field name="model">grant.account</field>
+	            <field name="arch" type="xml">
+	                <tree string="Grant Config Assigned" editable ="top">
+	                	<field name="grant_id"  />
+	                        <field name="account_id"  />
+	                        
+	                </tree>
+	            </field>
+	     </record>
+	    <!-- Scheme Year  -->  
+        <record id="scheme_year_tree_view" model="ir.ui.view">
+            <field name="name">scheme.year.tree.view</field>
+            <field name="model">scheme.year</field>
+            <field name="arch" type="xml">
+                <tree string="Scheme Year" >
+                	<field name="name"/>
+                	<field name="code"/>
+                	<field name="state"/>
+                </tree>
+            </field>
+       	</record>
+        
+    	<record id="scheme_year_form_view" model="ir.ui.view">
+            <field name="name">scheme.year.form.view</field>
+            <field name="model">scheme.year</field>
+            <field name="arch" type="xml">
+            	<form string="Scheme Year Configuration">
+	                <header>
+	                	<button name="set_to_close" string="Set To Close" type="object" readoonly="True" attrs="{'invisible':[('state','=','closed')]}"
+						groups="hwseta_finance.group_employer_user,hwseta_finance.group_payment_administrator,hwseta_etqe.group_providers,hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_wsp_administrator" />
+	              		<field name="state" widget="statusbar" clickable="True" statusbar_visible="open,closed"/>
+	                </header>
+	                <sheet string="Scheme Year Configuration">
+	                        <group colspan ="4" col ="4">
+	                            <field name="name" required="1"/>
+	                            <field name="code"/>
+	                        </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+	    
+        <record id="action_scheme_year" model="ir.actions.act_window">
+	            <field name="name">Scheme Year</field>
+	            <field name="res_model">scheme.year</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">tree,form</field>
+	            <field name="view_id" ref="scheme_year_tree_view"/>
+       	</record>
+        
+       <menuitem name="Scheme Years" id="menu_scheme_years" parent="account.next_id_23" action="action_scheme_year" sequence="11"/>
+       
+       <record id="view_account_fiscalyear_form_inherit" model="ir.ui.view">
+            <field name="name">account.fiscalyear.form.inherit</field>
+            <field name="model">account.fiscalyear</field>
+            <field name="inherit_id" ref="account.view_account_fiscalyear_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group/group[2]/field[@name='date_stop']" position="after">
+               		<field name="scheme_year_id"/> 
+                </xpath>
+       		</field>
+       </record>
+    </data>
+ </openerp>

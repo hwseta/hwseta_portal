@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Actual Training - D1 Wizard Starts-->
+		<record id="form_view_actual_training_d1" model="ir.ui.view">
+            <field name="name">form.view.actual.training.d1</field>
+            <field name="model">actual.training.d1</field>
+            <field name="arch" type="xml">
+            	<form string="Actual Training - D1">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="actual_training_fields_ids" nolabel="1">
+           					<tree string="Actual Training D1" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="code" on_change="onchange_code(code)"/>
+           						<field name="major"/>
+           						<field name="sub_major_group"/>
+           						<field name="occupation"/>
+           						<field name="specialization" domain="[('ofo_code_id','=',code)]"/>
+           						<field name="municipality"/>
+           						<field name="urban"/>
+           						<field name="type_training"/>
+           						<field name="name_training"/>
+           						<field name="training_cost"/>
+           						<field name="non_aligned"/>
+           						<field name="nqf_level"/>
+           						<field name="gender"/>
+           						<!--<field name="african"/>
+           						<field name="coloured"/>
+           						<field name="indian"/>
+           						<field name="white"/>-->
+           						<field name="age_group"/>
+           						<field name="total_cost"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Actual Training - D1 Wizard Ends-->
+        
+        <!-- Actual Adult Education and Training - D2 Wizard Starts-->
+        <record id="form_view_actual_adult_education_training_d2" model="ir.ui.view">
+            <field name="name">form.view.actual.adult.education.training.d2</field>
+            <field name="model">actual.adult.education</field>
+            <field name="arch" type="xml">
+            	<form string="Actual Adult Education and Training - D2">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="actual_adult_education_fields_ids" nolabel="1">
+           					<tree string="Actual Adult Education and Training - D2" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="id_number"/>
+           						<field name="population_group"/>
+           						<field name="gender"/>
+           						<field name="dissability_status_and_type"/>
+           						<field name="learner_province"/>
+           						<field name="municipality"/>
+           						<field name="urban"/>
+           						<field name="aet_start_date"/>
+           						<field name="aet_end_date"/>
+           						<field name="provider"/>
+           						<field name="aet_level"/>
+           						<field name="aet_subject"/>
+           						<field name="free_text"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Actual Adult Education and Training - D2 Wizard Ends -->
+        
+        <!-- Actual Training Record Pivotal Training D3 Wizard Starts -->
+        <record id="form_view_actual_training_record_pivotal_d2" model="ir.ui.view">
+            <field name="name">form.view.actual.training.record.pivotal.d2</field>
+            <field name="model">actual.pivotal.training</field>
+            <field name="arch" type="xml">
+            	<form string="Actual Training Record Pivotal Training D3">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="actual_pivotal_training_fields_ids" nolabel="1">
+           					<tree string="Actual Training Record Pivotal Training - D3" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="ofo_code" on_change="onchange_code(ofo_code)"/>
+           						<field name="major"/>
+           						<field name="sub_major_group"/>
+           						<field name="occupation"/>
+           						<field name="specialization" domain="[('ofo_code_id','=',ofo_code)]"/>
+           						<field name="socio_economic_status"/>
+           						<field name="pivotal_programme_institution"/>
+           						<field name="pivotal_programme_qualification"/>
+           						<field name="pivotal_programme_type"/>
+           						<field name="cost"/>
+           						<field name="municipality"/>
+           						<field name="urban"/>
+           						<field name="province"/>
+           						<field name="start_date"/>
+           						<field name="end_date"/>
+           						<field name="gender"/>
+           						<!--<field name="african"/>
+           						<field name="coloured"/>
+           						<field name="indian"/>
+           						<field name="white"/>-->
+           						<field name="total_person"/>
+           						<!--<field name="total_male"/>
+           						<field name="total_female"/>
+           						<field name="total_disabbled"/>-->
+           						<field name="age_group"/>
+           						<field name="total_cost"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Actual Training Record Pivotal Training D3 Wizard Ends -->
+        
+        <!-- Total Employment Profile Starts -->
+        <record id="form_view_total_employment_profile" model="ir.ui.view">
+            <field name="name">form.view.total.employment.profile</field>
+            <field name="model">total.employment.profile</field>
+            <field name="arch" type="xml">
+            	<form string="Total Employment Profile">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="total_employment_profile_fields_ids" nolabel="1">
+           					<tree string="Total Employment Profile - A" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="ofo_code" on_change="onchange_code(ofo_code)"/>
+           						<field name="occupation"/>
+           						<field name="specialization" domain="[('ofo_code_id','=',ofo_code)]"/>
+           						<field name="municipality"/>
+           						<field name="province"/>
+           						<field name="urban"/>
+           						<field name="highest_education_level"/>
+           						<field name="scarce_skill"/>
+           						<field name="gender"/>
+           						<!--<field name="african"/>
+           						<field name="coloured"/>
+           						<field name="indian"/>
+           						<field name="white"/>-->
+           						<field name="age_group"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Total Employment Profile Ends -->
+        
+        <!-- Planned Training Non Pivotal Starts -->
+        <record id="form_view_planned_training_non_pivotal" model="ir.ui.view">
+            <field name="name">form.view.planned.training.non.pivotal</field>
+            <field name="model">planned.training.non.pivotal</field>
+            <field name="arch" type="xml">
+            	<form string="Planned Training Non Pivotal">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="planned_training_non_pivotal_fields_ids" nolabel="1">
+           					<tree string="Planned Training - Non Pivotal B" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="type_of_training"/>
+           						<field name="ofo_code" on_change="onchange_code(ofo_code)"/>
+           						<field name="occupation"/>
+           						<field name="specialization" domain="[('ofo_code_id','=',ofo_code)]"/>
+           						<field name="municipality"/>
+           						<field name="province"/>
+           						<field name="urban"/>
+           						<field name="socio_economic_status"/>
+           						<field name="type_of_training_inter"/>
+           						<field name="name_of_training_inter"/>
+           						<field name="training_cost_per_learner"/>
+           						<field name="nqf_aligned"/>
+           						<field name="nqf_level"/>
+           						<field name="gender"/>
+           						<!--<field name="african"/>
+           						<field name="coloured"/>
+           						<field name="indian"/>
+           						<field name="white"/>-->
+           						<field name="age_group"/>
+           						<field name="total_cost"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Planned Training Non Pivotal Ends -->
+        
+        <!-- Planned Training Pivotal Starts -->
+        <record id="form_view_planned_training_pivotal" model="ir.ui.view">
+            <field name="name">form.view.planned.training.pivotal</field>
+            <field name="model">planned.training.pivotal</field>
+            <field name="arch" type="xml">
+            	<form string="Planned Training Pivotal">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="planned_training_pivotal_fields_ids" nolabel="1">
+           					<tree string="Planned Training - Pivotal B" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="type_of_training"/>
+           						<field name="ofo_code" on_change="onchange_code(ofo_code)"/>
+           						<field name="occupation"/>
+           						<field name="specialization" domain="[('ofo_code_id','=',ofo_code)]"/>
+           						<field name="socio_economic_status"/>
+           						<field name="pivotal_programme_institute"/>
+           						<field name="pivotal_programme_qualification"/>
+           						<field name="pivotal_programme_type"/>
+           						<field name="cost_per_learner"/>
+           						<field name="municipality"/>
+           						<field name="urban"/>
+           						<field name="province"/>
+           						<field name="start_date"/>
+           						<field name="end_date"/>
+           						<field name="nqf_aligned"/>
+           						<field name="nqf_level"/>
+           						<field name="gender"/>
+           						<!--<field name="african"/>
+           						<field name="coloured"/>
+           						<field name="indian"/>
+           						<field name="white"/>-->
+           						<field name="age_group"/>
+           						<field name="total_cost"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Planned Training Pivotal Ends -->
+        
+        <!-- Planned Adult Education Training Starts -->
+        <record id="form_view_planned_adult_education_training" model="ir.ui.view">
+            <field name="name">form.view.planned.adult.education.training</field>
+            <field name="model">planned.adult.education.training</field>
+            <field name="arch" type="xml">
+            	<form string="Planned Adult Education Training">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="planned_adult_education_fields_ids" nolabel="1">
+           					<tree string="Planned Adult Education Training - B2" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="id_number"/>
+           						<field name="population_group"/>
+           						<field name="gender"/>
+           						<field name="dissability_status_and_type"/>
+           						<field name="province"/>
+           						<field name="municipality"/>
+           						<field name="urban"/>
+           						<field name="start_date"/>
+           						<field name="end_date"/>
+           						<field name="provider"/>
+           						<field name="aet_level"/>
+           						<field name="aet_subject"/>
+           						<field name="reason"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Planned Adult Education Training Ends -->
+        
+        <!-- Scarce and Critical Skills Starts -->
+        <record id="form_view_scarce_and_critical_skills" model="ir.ui.view">
+            <field name="name">form.view.scarce.and.critical.skills</field>
+            <field name="model">scarce.and.critical.skills</field>
+            <field name="arch" type="xml">
+            	<form string="Scarce and Critical Skills">
+            		<header>
+            			<button name="save_btn" string="Save" type="object" class="oe_highlight"/>
+            		</header>
+           			<group>
+           				<field name="scarce_and_critical_skills_fields_ids" nolabel="1">
+           					<tree string="Scarce and Critical Skills" editable="bottom">
+           						<field name="name"/>
+           						<field name="surname"/>
+           						<field name="ofo_code" on_change="onchange_code(ofo_code)"/>
+           						<field name="occupation"/>
+           						<field name="specialization" domain="[('ofo_code_id','=',ofo_code)]"/>
+           						<field name="scarce_skill"/>
+           						<field name="critical_skill"/>
+           						<field name="number_of_vacancies"/>
+           						<field name="number_of_potential_vacancies"/>
+           						<field name="nqf_level"/>
+           						<field name="degree_of_scarcity"/>
+           						<field name="reason_for_scarcity"/>
+           						<field name="gender"/>
+           						<!--<field name="african"/>
+           						<field name="coloured"/>
+           						<field name="indian"/>
+           						<field name="white"/>-->
+           						<field name="planned_strategy_address"/>
+           						<field name="province"/>
+           						<field name="is_reflected"/>
+           						<field name="comments"/>
+           					</tree>
+           				</field>
+           			</group>
+            	</form>
+            </field>
+        </record>
+        <!-- Scarce and Critical Skills Ends -->
+	</data>
+</openerp>

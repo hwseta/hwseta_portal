@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === KZN and Free State Page === -->
+		<template id="kzn_free_state" name="KZN and Free State" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+									<div class="oc-layout-cell oc-content">
+										<article id="post-309"
+											class="oc-post oc-article  post-309 page type-page status-publish hentry">
+											<h1 class="oc-postheader">KZN and Free State</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>The Team</h2>
+												<p>Click on a name below to send an e-mail</p>
+												<table class="contacttable" style="height: 261px;" border="0"
+													width="454" cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Position</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:lungilen@hwseta.org.za">Ms. Lungile Ncikazi</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Manager</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:samukelisiwek@hwseta.org.za">Ms. Samukelisiwe Khumalo </a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Office
+																Administrator</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:claudelled@hwseta.org.za">Ms. Claudelle Dunn</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:carmineeg@hwseta.org.za">Ms. Carminee Govender</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:barbaral@hwseta.org.za">Ms. Barbara Lawler</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:bongiwemb@hwseta.org.za">Ms. Bongiwe Mbambo</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:senzon@hwseta.org.za">Mr. Senzo Nyawose</a>
+															</td>
+															<td class="contactsnoline" width="30%"> Provincial
+																Intern
+															</td>
+															<td class="contactsnoline" width="30%">(031) 202 5972/3</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%"></td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+													</tbody>
+												</table>
+												<h2>Postal Address</h2>
+												<p>Private Bag X15 Bradford Corner Gardenview, 2047</p>
+												<h2>Physical Address</h2>
+												<p>19 Hurst Grove Clifton Place, Musgrave Durban, 4001</p>
+											</div>
+									
+									
+										</article>
+									
+									
+									
+									</div>
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

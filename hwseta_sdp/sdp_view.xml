@@ -1,0 +1,2002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record id="skill_plan_tree" model="ir.ui.view">
+			<field name="name">skill.plan.tree</field>
+			<field name="model">skill.plan</field>
+			<field name="arch" type="xml">
+				<tree string="Skill Development Management">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="skill_plan_form" model="ir.ui.view">
+			<field name="name">skill.plan.form</field>
+			<field name="model">skill.plan</field>
+			<field name="arch" type="xml">
+				<form string="Skill Development Management">
+					<sheet>
+						<group>
+							<field name="name" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_sdp_form" model="ir.actions.act_window">
+			<field name="name">Skill Development Planning</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">skill.plan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="skill_plan_tree" />
+		</record>
+
+		<record id="view_users_form_inherit_sdf" model="ir.ui.view">
+			<field name="name">res.users.form.inherit.sdf</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_form" />
+			<field name="arch" type="xml">
+				<xpath
+					expr="/form[@string='Users']/sheet/div[2]/group/field[@name='active']"
+					position="after">
+					<field name="sdf_id" readonly="1" />
+					<!-- <field name="sdf_ids" widget="many2many_tags"/> -->
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_employee_form_inherit_for_user" model="ir.ui.view">
+			<field name="name">hr.employee.form.inherit.for.user</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<xpath
+					expr="//form/sheet/notebook/page[@string='Personal Information']/group/group[@string='Citizenship &amp; Other Info']/field[@name='otherid']"
+					position="after">
+					<field name="signature" />
+				</xpath>
+				<xpath expr="//form/sheet/div/field[@name='work_email']"
+					position="attributes">
+					<attribute name="required">True</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<!-- SDf Views Starts -->
+		<record id="view_sdf_form" model="ir.ui.view">
+			<field name="name">hr.sdf.form</field>
+			<field name="model">hr.employee</field>
+			<field eval="1" name="priority" />
+			<field name="arch" type="xml">
+				<!-- <form string="SDF" attrs="{'invisible':[('is_learner_from_assessment','=',True)]}"> -->
+				<form string="SDF">
+					<sheet>
+						<field name="image_medium" widget='image' class="oe_left oe_avatar" />
+						<div>
+							<group>
+								<group>
+									<field name="is_learner_from_assessment" invisible="1" />
+									<field name="person_title" />
+									<label for="name" />
+									<h1>
+										<field name="name" />
+										<field name="rsa_identity_no" attrs="{'invisible':[('is_learner','=',False)]}"
+											readonly="1" />
+									</h1>
+									<field name="person_middle_name"
+										attrs="{'invisible':[('provider_learner','=',False)]}" />
+									<field name="maiden_name" />
+									<field name="person_last_name" string="Surname" />
+								</group>
+								<group>
+									<field name="sdf_type" attrs="{'invisible':[('is_sdf','=',False)]}" />
+									<field name="primary_secondary" attrs="{'invisible':[('is_sdf','=',False)]}" />
+									<!--<label for="category_ids" class="oe_edit_only" groups="base.group_hr_user"/> -->
+									<!--<field name="category_ids" widget="many2many_tags" placeholder="e.g. 
+										Part Time" groups="base.group_hr_user"/> -->
+									<field name="work_email" widget="email" required="1" readonly="1"/>
+									<field name="work_phone" placeholder="0116076900" />
+									<field name="learner_status" attrs="{'invisible':[('is_learner','=',False)]}" />
+									<field name="learner_reg_no" string="Learner Registration No."
+										attrs="{'invisible':[('is_learner','=',False)]}" />
+									<field name="latest_employer" domain="[('employer','=',True)]"
+										invisible="1" />
+								</group>
+							</group>
+						</div>
+						<div class="oe_right oe_button_box" name="button_box">
+							<!-- Put here related buttons -->
+						</div>
+						<notebook>
+							<page string="Public Information">
+								<group>
+									<group string="Contact Information">
+										<label for="street" string="Work Address" />
+										<div>
+											<field name="work_address" placeholder="Work Address 1" />
+											<field name="work_address2" placeholder="Work Address 2" />
+											<field name="work_address3" placeholder="Work Address 3" />
+											<div class="address_format">
+												<field name="person_suburb" placeholder="Suburb"
+													style="width: 52%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_person_suburb(person_suburb)" />
+												<field name="work_municipality" placeholder="Municipality"
+													style="width: 48%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											</div>
+											<div class="address_format">
+												<field name="work_city" class="oe_no_button"
+													placeholder="City" style="width: 39%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="work_province" class="oe_no_button"
+													placeholder="Province Code" style="width: 37%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_work_province(work_province)" />
+												<field name="work_zip" class="oe_no_button"
+													placeholder="ZIP" style="width: 20%%" />
+											</div>
+											<field name="work_country" placeholder="Country" class="oe_no_button"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											<!-- <field name="mobile_phone" placeholder="Mobile"/> -->
+											<button name="work_addr_map" string="Map" type="object"
+												icon="gtk-zoom-in" />
+										</div>
+										<field name="status_reason" attrs="{'invisible':[('is_learner','=',False)]}" />
+									</group>
+									<group string="Position">
+										<field name="department" />
+										<field name="job_title" />
+										<field name="manager" />
+										<!--<field name="department_id" on_change="onchange_department_id(department_id)"/> 
+											<field name="job_id"/> <field name="parent_id"/> -->
+										<!--<field name="coach_id"/> -->
+									</group>
+									<group>
+										<!-- <field name="company_id" groups="base.group_multi_company" 
+											on_change="onchange_company(company_id)"/> -->
+										<field name="user_id" on_change="onchange_user(user_id)"
+											string="Related User" readonly="1" invisible="1" />
+									</group>
+								</group>
+								<field name="notes" placeholder="About You ..." colspan="4" />
+							</page>
+							<page string="Personal Information">
+								<group>
+									<group string="Status">
+										<field name="gender" />
+										<field name="gender_saqa_code"
+											attrs="{'invisible':[('provider_learner','=',False)]}" />
+										<field name="marital" />
+										<field name="dissability" />
+										<field name="disability_status" />
+										<field name="socio_economic_saqa_code" invisible="1" />
+										<field name="socio_economic_status" />
+										<field name="current_occupation"
+											attrs="{'readonly':[('socio_economic_status','=','unemployed')]}" />
+										<field name="years_in_occupation"
+											attrs="{'readonly':[('socio_economic_status','=','unemployed')]}" />
+										<field name="is_sdf" readonly="1" invisible="1" />
+										<field name="is_learner" readonly="1" invisible="1" />
+										<field name="seta_elements" invisible="1" />
+									</group>
+									<group string="Citizenship &amp; Other Info">
+										<!-- <field name="african" invisible="1"/> -->
+										<field name="citizen_resident_status_code" required="1"
+											attrs="{'readonly':[('provider_learner','=',True)]}"
+											on_change="onchange_crc(citizen_resident_status_code)" />
+										<field name="country_id" string="Country of Nationality"
+											attrs="{'readonly':[('provider_learner','=',True)]}"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+										<!-- <field name="nationality_saqa_code"/> -->
+										<field name="identification_id" string="R.S.A.Identification No" readonly="1"
+											attrs="{'invisible':[('provider_learner','=',True)],'required':[('citizen_resident_status_code','=','sa'),('provider_learner','=',False),('is_assessors','=',False),('is_moderators','=',False)],'readonly':['|',('citizen_resident_status_code','=','other'),('provider_learner','=',True)]}"
+											on_change="onchange_id_no(identification_id,citizen_resident_status_code)" />
+										<field name="alternate_id_type"
+											attrs="{'readonly':[('provider_learner','=',True)]}" />
+										<field name="national_id"
+											attrs="{'readonly':[('citizen_resident_status_code','=','sa')]}" />
+										<field name="person_birth_date" />
+										<field name="passport_id" groups="base.group_hr_user"
+											attrs="{'readonly':[('citizen_resident_status_code','=','sa')]}" />
+										<field name="id_document" string="ID Document/Passport Upload"
+											domain="[('id','=',None)]"
+											attrs="{'required':[('citizen_resident_status_code','=','sa')],'readonly':[('citizen_resident_status_code','=','other')]}" />
+										<!-- <field name="sdf_letter_from_employer" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<field name="home_language_code" string="Language"
+											options="{'no_create': True,'no_open': True}" />
+										<field name="equity" />
+										<field name="equity_saqa_code" invisible="1" />
+										<field name="disability_status_saqa" invisible="1" />
+										<!-- <field name="home_lang_saqa_code"/> -->
+										<!--<field name="bank_account_id"/> -->
+										<!-- <field name="otherid" groups="base.group_hr_user" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<!-- <field name="filler02" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<!-- <field name="rsa_identity_no" attrs="{'invisible':[('is_learner','=',False)]}"/> -->
+										<field name="record_last_update" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="wsp_year" attrs="{'invisible':[('is_learner','=',False)]}" />
+									</group>
+									<group string="Contact Information">
+										<!-- <field name="person_alternate_id" string='Alternate Id'/> 
+											<field name="alternate_id_type_id" attrs="{'invisible':[('is_sdf','=',False)]}"/> 
+											<field name="equity_code"/> <field name="filler01" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<!-- <field name="detail_surname" string="Name"/> -->
+										<!-- <field name="person_name"/> -->
+										<field name="initials" />
+										<field name="cont_number_home" attrs="{'invisible':[('is_sdf','=',False)]}" />
+										<field name="cont_number_office" attrs="{'invisible':[('is_sdf','=',False)]}" />
+										<field name="person_cell_phone_number" placeholder="0824513619"
+											attrs="{'invisible':[('is_sdf','=',False)]}" />
+										<field name="cell" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="person_fax_number" />
+										<!-- <field name="learner_reg_no" attrs="{'invisible':[('is_learner','=',False)]}"/> -->
+										<field name="method_of_communication" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="status_effective_date"
+											attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)]}" />
+										<field name="last_updated_operator"
+											attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)]}" />
+									</group>
+
+									<group string="Learner Data" attrs="{'invisible':[('is_sdf','=',True)]}">
+										<field name="highest_education" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="status_comments" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="certificate_no"
+											attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)]}" />
+										<!-- <field name="citizen_resident_status_code"/> <field name="citizen_status_saqa_code"/> -->
+									</group>
+									<group string="Ratings" attrs="{'invisible': [('is_sdf','=',True)]}">
+										<field name="seeing_rating_id" />
+										<field name="hearing_rating_id" />
+										<field name="walking_rating_id" />
+										<field name="statssa_area_code"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="popi_act_status_date"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="remembering_rating_id" />
+										<field name="communicating_rating_id" />
+										<field name="self_care_rating_id" />
+										<field name="last_school_emis_no"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="last_school_year"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="popi_act_status_id"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="date_stamp"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+									</group>
+									<group string="Banking Details" invisible="1">
+										<field name="bank_name" />
+										<field name="branch_code" />
+										<field name="bank_account_number" />
+									</group>
+								</group>
+							</page>
+							<page string="Address" attrs="{'invisible': [('seta_elements','=',False)]}">
+								<group>
+									<group>
+										<label for="street" string="Home Address" />
+										<div>
+											<field name="person_home_address_1" placeholder="Home Address 1"
+												required="1" attrs="{'readonly':[('provider_learner','=',True)]}" />
+											<field name="person_home_address_2" placeholder="Home Address 2"
+												attrs="{'readonly':[('provider_learner','=',True)]}" />
+											<field name="person_home_address_3" placeholder="Home Address 3" />
+											<div class="address_format">
+												<field name="person_home_suburb" placeholder="Suburb"
+													style="width: 52%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_person_home_suburb(person_home_suburb)" />
+												<field name="physical_municipality" placeholder="Municipality"
+													style="width: 48%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											</div>
+											<div class="address_format">
+												<field name="person_home_city" placeholder="City"
+													style="width: 39%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="person_home_province_code" class="oe_no_button"
+													placeholder="Province Code" style="width: 37%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_home_province(person_home_province_code)" />
+												<field name="person_home_zip" placeholder="ZIP"
+													style="width: 20%%" />
+											</div>
+											<field name="country_home" placeholder="Country" class="oe_no_button"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											<!--<field name="person_home_country_id" placeholder="Country" 
+												class="oe_no_button" options='{"no_open": True}'/> -->
+											<!-- <field name="person_cell_phone_number" placeholder="Cell 
+												Phone Number"/> <field name="person_fax_number" placeholder="Fax Number"/> -->
+											<button name="home_addr_map" string="Map" type="object"
+												icon="gtk-zoom-in" />
+										</div>
+									</group>
+									<group>
+										<label for="same_as_home" />
+										<field name="same_as_home" nolabel="1" />
+										<label for="street" string="Postal Address"
+											attrs="{'invisible':[('same_as_home','=',True)]}" />
+										<div>
+											<field name="person_postal_address_1" placeholder="Postal Address 1"
+												attrs="{'invisible':[('same_as_home','=',True)],'required':[('same_as_home','=',False)]}" />
+											<field name="person_postal_address_2" placeholder="Postal Address 2"
+												attrs="{'invisible':[('same_as_home','=',True)]}" />
+											<field name="person_postal_address_3" placeholder="Postal Address 3"
+												attrs="{'invisible':[('same_as_home','=',True)]}" />
+											<div class="address_format">
+												<field name="person_postal_suburb" placeholder="Suburb"
+													attrs="{'invisible':[('same_as_home','=',True)]}" style="width: 52%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_person_postal_suburb(person_postal_suburb)" />
+												<field name="postal_municipality" placeholder="Municipality"
+													attrs="{'invisible':[('same_as_home','=',True)]}" style="width: 48%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											</div>
+											<div class="address_format">
+												<field name="person_postal_city" placeholder="City"
+													style="width: 37%%" attrs="{'invisible':[('same_as_home','=',True)]}"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="person_postal_province_code" class="oe_no_button"
+													placeholder="Province Code" style="width: 37%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_postal_province(person_postal_province_code)"
+													attrs="{'invisible':[('same_as_home','=',True)]}" />
+												<field name="person_postal_zip" placeholder="ZIP"
+													style="width: 20%%" attrs="{'invisible':[('same_as_home','=',True)]}" />
+											</div>
+											<field name="country_postal" placeholder="Country"
+												class="oe_no_button" options='{"no_open": True}'
+												attrs="{'invisible':[('same_as_home','=',True)]}" />
+											<!-- <field name="provider_code" class="oe_no_button" placeholder="Provider 
+												Code"/> <field name="person_home_addr_postal_code" placeholder="Home Address 
+												Postal Code"/> -->
+											<button name="postal_addr_map" string="Map" type="object"
+												icon="gtk-zoom-in" attrs="{'invisible':[('same_as_home','=',True)]}" />
+										</div>
+									</group>
+								</group>
+							</page>
+							<page string="History"
+								attrs="{'invisible': ['|',('is_sdf','=',True),('is_learner_from_assessment','=',True)]}">
+								<group>
+									<group>
+										<field name="provider_etqe_id" />
+										<field name="person_previous_lastname" />
+										<field name="person_previous_alternate_id" />
+									</group>
+									<group>
+										<field name="person_previous_alternate_id_type_id" />
+										<field name="person_previous_provider_code" />
+										<field name="person_previous_provider_etqe_id" />
+									</group>
+								</group>
+							</page>
+							<!-- <page string="Ratings" attrs="{'invisible': [('is_sdf','=',True)]}"> 
+								<group> <group> <field name="seeing_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}" 
+								/> <field name="hearing_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}" 
+								/> <field name="walking_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}" 
+								/> <field name="statssa_area_code" attrs="{'invisible':[('provider_learner','=',True)]}" 
+								/> <field name="popi_act_status_date" attrs="{'invisible':[('provider_learner','=',True)]}" 
+								/> </group> <group> <field name="remembering_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}" 
+								/> <field name="communicating_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}" 
+								/> <field name="self_care_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}" 
+								/> <field name="last_school_emis_no" attrs="{'invisible':[('provider_learner','=',True)]}" 
+								/> <field name="last_school_year" attrs="{'invisible':[('provider_learner','=',True)]}" 
+								/> <field name="popi_act_status_id" attrs="{'invisible':[('provider_learner','=',True)]}" 
+								/> <field name="date_stamp" attrs="{'invisible':[('provider_learner','=',True)]}" 
+								/> </group> </group> </page> -->
+							<!-- Add Emp directly -->
+							<page string="Employers"
+								attrs="{'invisible': ['|',('seta_elements','=',False),('is_learner','=',True)]}">
+								<group>
+									<field name="employer_ids" nolabel="1">
+										<tree string="Employers" editable="bottom" delete="false">
+											<field name="sdl_no" required="1"
+												on_change="onchange_sdl_number(sdl_no)" />
+											<field name="emp_add" invisible="1" />
+											<field name="request_send" invisible="1" />
+											<!-- <field name="employer_id" required="1" on_change="onchange_employer_id(employer_id)" 
+												widget='selection'/> -->
+											<field name="employer_id" domain="[('id','=',None)]"
+												options="{'no_create':True,'no_open':True}" required="1" />
+											<field name="employer_trading_name" />
+											<field name="seta_id" invisible="1" />
+											<field name="registration_number" />
+											<field name="state" readonly="1" invisible="1" />
+											<field name="confirm_sdf_appointment_letter_from_employer"
+												domain="[('id','=',None)]" required="1"/>
+											<field name="status" readonly="1" />
+											<button name="action_send_request" string="Send request"
+												type="object" icon="gtk-go-forward"
+												attrs="{'invisible':['|',('emp_add','=',False),('request_send','=',True)]}" />
+										</tree>
+									</field>
+								</group>
+							</page>
+							<page string="Agreements"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+								<field name="agreement_ids">
+									<tree string="Agreement" editable="bottom" create="0">
+										<field name="seq_no" invisible="1" />
+										<field name="learner_reg_no" />
+										<field name="attached_report" filename="seq_no" />
+										<field name="identity_number" />
+										<field name="state" />
+									</tree>
+								</field>
+							</page>
+							<page string="Projects"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+								<field name="project_ids">
+									<tree string="Projects" editable="bottom" create="0">
+										<field name="project_id" />
+										<field name="project_type_id" />
+										<field name="qualification_ids" widget="many2many_tags" />
+										<field name="project_budget" invisible="1" />
+									</tree>
+								</field>
+							</page>
+							<page string="Achievements"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page>
+							<page string="Providers"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page>
+							<page string="Unit Standards" invisible="1">
+							</page>
+							<!-- Commented because no more needed -->
+							<!-- <page string="Unit Standards" 
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page> -->
+							<page string="Assessments"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_sdf_tree" model="ir.ui.view">
+			<field name="name">hr.sdf.tree</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<tree string="SDF">
+					<field name="identification_id"/>
+					<field name="name" />
+					<field name="person_last_name" string="Surname" />
+					<field name="work_phone" placeholder="0116076900" />
+					<field name="work_email" />
+					<!-- <field name="company_id" groups="base.group_multi_company" /> -->
+					<!--<field name="department_id"/> <field name="job_id"/> <field name="parent_id"/> -->
+					<field name="coach_id" invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_sdf_filter" model="ir.ui.view">
+			<field name="name">SDF</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<search string="SDF">
+					<!--  <field name="name" string="Employees"
+						filter_domain="['|',('work_email','ilike',self),('name','ilike',self)]" /> -->
+					<field name="department_id" />
+					<field name="name" />
+					<field name="identification_id" />
+					<field name="work_email" />
+					<!--<field name="category_ids" groups="base.group_hr_user"/> -->
+					<group expand="0" string="Group By">
+						<filter string="Manager" icon="terp-personal" domain="[]"
+							context="{'group_by':'parent_id'}" />
+						<filter string="Coach" icon="terp-personal" domain="[]"
+							context="{'group_by':'coach_id'}" />
+						<filter string="Department" icon="terp-personal+" domain="[]"
+							context="{'group_by':'department_id'}" />
+						<filter string="Job" icon="terp-gtk-select-all" domain="[]"
+							context="{'group_by':'job_id'}" />
+						<filter string="Company" icon="terp-go-home" domain="[]"
+							context="{'group_by':'company_id'}" groups="base.group_multi_company" />
+					</group>
+				</search>
+			</field>
+		</record>
+		<!-- HR Kanban View -->
+
+		<record model="ir.ui.view" id="hr_kanban_view_sdf">
+			<field name="name">SDF Kanban</field>
+			<field name="model">hr.employee</field>
+			<field name="priority">10</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<field name="last_login" />
+					<field name="message_is_follower" />
+					<field name="message_follower_ids" />
+					<field name="message_ids" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_employee_vignette">
+								<div class="oe_employee_image">
+									<a type="open">
+										<img t-att-src="kanban_image('
+e', 'image_medium', record.id.value)"
+											class="oe_employee_picture" />
+									</a>
+								</div>
+								<div class="oe_employee_details">
+									<h4>
+										<a type="open">
+											<field name="name" />
+											<t t-if="record.login.raw_value">
+												(
+												<field name="login" />
+												)
+											</t>
+										</a>
+									</h4>
+									<ul>
+										<li id="last_login">
+											<span
+												t-if="record.last_login.raw_value &amp;&amp; record.last_login.raw_value.is().today()"
+												class="oe_kanban_button" style="font-size: 100%%">
+												<t t-esc="record.last_login.raw_value.toString('HH:mm')" />
+											</span>
+										</li>
+										<li t-if="record.job_id.raw_value">
+											<field name="job_id" />
+										</li>
+										<li t-if="record.work_location.raw_value">
+											<field name="work_location" />
+										</li>
+										<li t-if="record.work_email.raw_value">
+											<a t-attf-href="mailto:#{record.work_email.value}">
+												<field name="work_email" />
+											</a>
+										</li>
+									</ul>
+									<div class="oe_kanban_footer_left">
+										<span title='Messages'>
+											<span class='oe_e'>9</span>
+											<t t-esc="record.message_ids.raw_value.length" />
+										</span>
+										<span title='Followers'>
+											<span class='oe_e'>+</span>
+											<t t-esc="record.message_follower_ids.raw_value.length" />
+										</span>
+									</div>
+									<div class="oe_followers" groups="base.group_user">
+										<button t-if="record.message_is_follower.raw_value"
+											name="action_unfollow" type="object" class="oe_follower oe_following">
+											<span class="oe_unfollow">Unfollow</span>
+											<span class="oe_following">Following</span>
+										</button>
+										<button t-if="! record.message_is_follower.raw_value"
+											name="action_follow" type="object" class="oe_follower oe_notfollow">Follow</button>
+									</div>
+								</div>
+							</div>
+							<script>
+								$('.oe_employee_picture').load(function() {
+								if($(this).width() > $(this).height()) {
+								$(this).addClass('oe_employee_picture_wide') } });
+							</script>
+						</t>
+					</templates>
+				</kanban>
+
+			</field>
+		</record>
+
+		<!-- Action for SDF view -->
+		<record id="open_view_sdf_list_my" model="ir.actions.act_window">
+			<field name="name">Skill Development Facilitator</field>
+			<field name="res_model">hr.employee</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,kanban,tree</field>
+			<field name="domain">[('is_sdf','=',True)]</field>
+			<field name="context">{'default_is_sdf':1,'default_seta_elements':1}
+			</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="view_sdf_filter" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add a new SDF.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_sdf_tree" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_sdf_tree" />
+			<field name="act_window_id" ref="open_view_sdf_list_my" />
+		</record>
+
+		<record id="action_sdf_form" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_sdf_form" />
+			<field name="act_window_id" ref="open_view_sdf_list_my" />
+		</record>
+		<!-- SDf Views Ends -->
+
+		<!-- Action for Learner view -->
+		<record id="action_learner_view" model="ir.actions.act_window">
+			<field name="name">Learner Profile</field>
+			<field name="res_model">hr.employee</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form</field>
+			<field name="domain">[('is_learner','=',True),('provider_learner','=',False)]
+			</field>
+			<field name="context">{'default_is_learner':1,'default_seta_elements':1}
+			</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="view_sdf_filter" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add a new Learner Profile.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_learner_tree" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_sdf_tree" />
+			<field name="act_window_id" ref="action_learner_view" />
+		</record>
+
+		<record id="action_learner_form" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_sdf_form" />
+			<field name="act_window_id" ref="action_learner_view" />
+		</record>
+		<!-- Action for Learner view Ends -->
+
+		<!-- SDF Registration form -->
+		<record id="view_sdf_registration_form" model="ir.ui.view">
+			<field name="name">view.sdf.registration.form</field>
+			<field name="model">sdf.register</field>
+			<field name="arch" type="xml">
+				<form string="SDF">
+					<header>
+						<field name="submitted" invisible="1" />
+						<field name="approved" invisible="1" />
+						<field name="denied" invisible="1" />
+						<field name="waiting_approval" invisible="1" />
+						<button name="action_submit_button" string="Submit" type="object"
+							class="oe_highlight"
+							attrs="{'invisible':['|',('submitted','=',True),('state','!=','employer_info')]}" />
+						<!-- <button name="action_approve_button" string="Approve" type="object" 
+							class="oe_highlight" attrs="{'invisible':['|',('approved','=',True),('state','!=','pending')]}"/> -->
+						<button name="action_approve_button" string="Approve" type="object"
+							class="oe_highlight"
+							attrs="{'invisible':['|',('waiting_approval','=',False),('state','!=','pending')]}"
+							groups="hwseta_sdp.group_wsp_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_sdp_manager,hwseta_sdp.group_provincial_manager" />
+						<button name="action_deny_button" string="Reject" type="object"
+							class="oe_highlight"
+							attrs="{'invisible':['|',('approved','=',True),('state','!=','pending')]}"
+							groups="hwseta_sdp.group_wsp_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_sdp_manager,hwseta_sdp.group_provincial_manager" />
+						<field name="state" widget="statusbar" clickable="True"
+							statusbar_visible="general_info,public_info,personal_info,address_info,employer_info,pending,approved,denied"
+							statusbar_colors='{"pending":"blue","approved":"green","denied":"red"}'
+							attrs="{'readonly':[('submitted','=',True)]}" />
+					</header>
+					<sheet>
+						<field name="image_medium" widget='image' class="oe_left oe_avatar"
+							attrs="{'invisible':[('state','!=','general_info')]}" />
+						<div class="oe_title" attrs="{'invisible':[('state','!=','general_info')]}">
+							<label for="name" class="oe_edit_only" />
+							<h1>
+								<field name="name" attrs="{'readonly':[('submitted','=',True)]}" />
+							</h1>
+						</div>
+						<group attrs="{'invisible':[('state','!=','general_info')]}">
+							<group>
+								<field name="work_email" string="Email" widget="email"
+									required="1" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="work_phone" string="Phone" placeholder="0116076900"
+									attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="sdf_register_date" readonly="1" />
+							</group>
+							<group>
+								<field name="check_sdf_type" invisible="1" />
+								<field name="sdf_reference_no" string="Ref. No" readonly="1" />
+								<field name="sdf_type" string="Type"
+									on_change="onchange_sdf_type(sdf_type)" required="1" />
+								<field name="primary_secondary" string="Internal Type"
+									attrs="{'invisible':[('check_sdf_type','=',False)],'required':[('check_sdf_type','=',True)]}" />
+								<field name="sdf_approval_date" readonly="1" />
+							</group>
+						</group>
+						<group>
+							<group string="Contact Information"
+								attrs="{'invisible':[('state','!=','public_info')]}">
+								<label for="street" string="Working Address" />
+								<div>
+									<field name="work_address" placeholder='Work Address1'
+										attrs="{'readonly':[('submitted','=',True)], 'required':[('state','=','public_info')]}" />
+									<field name="work_address2" placeholder='Work Address1'
+										attrs="{'readonly':[('submitted','=',True)]}" />
+									<field name="work_address3" placeholder='Work Address1'
+										attrs="{'readonly':[('submitted','=',True)]}" />
+									<field name="person_suburb" placeholder='Suburb'
+										attrs="{'readonly':[('submitted','=',True)]}"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										on_change="onchange_person_suburb(person_suburb)" />
+									<div class="address_format">
+										<field name="work_city" placeholder="City" style="width: 38%%"
+											attrs="{'readonly':[('submitted','=',True)]}"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+										<field name="work_province" class="oe_no_button"
+											placeholder="State" style="width: 37%%"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											on_change="onchange_work_province(work_province)" attrs="{'readonly':[('submitted','=',True)]}" />
+										<field name="work_zip" placeholder="ZIP" style="width: 20%%"
+											attrs="{'readonly':[('submitted','=',True)]}" />
+									</div>
+									<field name="work_country" placeholder="Country" class="oe_no_button"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'readonly':[('submitted','=',True)]}" />
+								</div>
+							</group>
+							<group string="Position"
+								attrs="{'invisible':[('state','!=','public_info')]}">
+								<field name="department" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="job_title" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="manager" attrs="{'readonly':[('submitted','=',True)]}" />
+							</group>
+						</group>
+						<group>
+							<group attrs="{'invisible':[('state','!=','public_info')]}">
+								<field name="company_id" groups="base.group_multi_company" />
+								<!-- <field name="user_id" string="Related User" context="{'default_groups_ref': 
+									['base.group_user']}" invisible="1"/> -->
+							</group>
+						</group>
+						<group attrs="{'invisible':[('state','!=','public_info')]}">
+							<field name="notes" placeholder="About You ..." colspan="4"
+								attrs="{'readonly':[('submitted','=',True)]}" />
+						</group>
+						<group>
+							<group string="Contact Information"
+								attrs="{'invisible':[('state','!=','personal_info')]}">
+								<!-- <field name="person_alternate_id" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="alternate_id_type_id" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="equity_code" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="filler01" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<field name="person_title" string="Title"
+									attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="person_name" attrs="{'readonly':[('submitted','=',True)]}" />
+								<!-- <field name="person_middle_name" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<field name="person_last_name" string="Surname"
+									attrs="{'readonly':[('submitted','=',True)]}" />
+								<!-- <field name="initials" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<field name="cont_number_home" attrs="{'readonly':[('submitted','=',True)]}"
+									placeholder="0117827460" />
+								<field name="cont_number_office" attrs="{'readonly':[('submitted','=',True)]}"
+									placeholder="0117827460" />
+								<field name="cell_phone_number" attrs="{'readonly':[('submitted','=',True)]}"
+									placeholder="0824513619" />
+								<!-- <field name="telephone_number" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<!-- <field name="fax_number" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<!-- <field name="username" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="password" attrs="{'readonly':[('submitted','=',True)]}"/> <field 
+									name="confirm_password" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+							</group>
+							<group string="Citizenship &amp; Other Info"
+								attrs="{'invisible':[('state','!=','personal_info')]}">
+								<!-- <field name="african" invisible="1"/> -->
+								<field name="citizen_resident_status_code" attrs="{'readonly':[('submitted','=',True)],'required':[('state','=','personal_info')]}"
+									on_change="onchange_crc(citizen_resident_status_code)" />
+								<field name="country_id" string="Country of Nationality"
+									options='{"no_open": True, "no_create": True}' attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="identification_id" string="R.S.A.Identification No"
+									attrs="{'invisible':[('citizen_resident_status_code','in',('other','unknown'))], 'required':[('citizen_resident_status_code','in',('sa','dual'))],'readonly':['|',('citizen_resident_status_code','=','other'),('submitted','=',True)]}"
+									on_change="onchange_id_no(identification_id)" />
+								<field name="person_birth_date" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="passport_id" groups="base.group_hr_user"
+									attrs="{'invisible':[(('citizen_resident_status_code','=','sa'))], 'readonly':[('submitted','=',True)],'required':[('citizen_resident_status_code','=','other')]}" />
+								<!--<field name="bank_account_id" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<!-- <field name="otherid" groups="base.group_hr_user" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+								<field name="national_id"
+									attrs="{'invisible':[(('citizen_resident_status_code','=','sa'))],'readonly':[('submitted','=',True)], 'required':[('citizen_resident_status_code','in',('other','unknown'))]}" />
+								<field name="id_document" string="ID Document/Passport Upload"
+									domain="[('id','=',None)]"
+									attrs="{'required':[('state','=','personal_info')],'readonly':[('submitted','=',True)]}"
+									context="{'model' : 'sdf.register'}" />
+								<!-- <field name="sdf_letter_from_employer"/> -->
+								<field name="home_language_code" string="Home Language"
+									attrs="{'readonly':[('submitted','=',True)]}" />
+								<!-- <field name="filler02" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="population_group" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="highest_level_of_education" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="current_occupation" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="citizen_status" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="experiance" attrs="{'readonly':[('submitted','=',True)]}"/> 
+									<field name="experiance_dur" attrs="{'readonly':[('submitted','=',True)]}"/> -->
+							</group>
+							<group string="Status"
+								attrs="{'invisible':[('state','!=','personal_info')]}">
+								<field name="gender" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="marital" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="dissability" attrs="{'readonly':[('submitted','=',True)]}" />
+								<field name="related_sdf" invisible="1" />
+							</group>
+							<group string="Banking Details" invisible="1">
+								<field name="bank_name" />
+								<field name="branch_code" />
+								<field name="bank_account_number" />
+							</group>
+						</group>
+						<group>
+							<group string="Personal Address"
+								attrs="{'invisible':[('state','!=','address_info')]}">
+								<label for="street" string="Home Address" />
+								<div>
+									<field name="person_home_address_1" attrs="{'readonly':[('submitted','=',True)],'required':[('state','=','address_info')]}"
+										placeholder="Home Address 1" />
+									<field name="person_home_address_2" attrs="{'readonly':[('submitted','=',True)]}"
+										placeholder="Home Address 2" />
+									<field name="person_home_address_3" attrs="{'readonly':[('submitted','=',True)]}"
+										placeholder="Home Address 3" />
+									<field name="person_home_suburb" attrs="{'readonly':[('submitted','=',True)]}"
+										placeholder="Suburb" on_change="onchange_person_home_suburb(person_home_suburb)"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<div class="address_format">
+										<field name="person_home_city" placeholder="City" style="width: 38%%"
+											attrs="{'readonly':[('submitted','=',True)]}"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+										<field name="person_home_province_code" class="oe_no_button"
+											placeholder="Province" style="width: 37%%"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											on_change="onchange_home_province(person_home_province_code)"
+											attrs="{'readonly':[('submitted','=',True)]}" />
+										<field name="person_home_zip" placeholder="ZIP" style="width: 20%%"
+											attrs="{'readonly':[('submitted','=',True)]}" />
+									</div>
+									<field name="country_home" placeholder="Country" class="oe_no_button"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'readonly':[('submitted','=',True)]}" />
+									<!-- <field name="person_cell_phone_number" attrs="{'readonly':[('submitted','=',True)]}" 
+										placeholder="Cell Phone Number"/> <field name="person_fax_number" attrs="{'readonly':[('submitted','=',True)]}" 
+										placeholder="Fax Number"/> -->
+								</div>
+							</group>
+							<group string="Postal Address"
+								attrs="{'invisible':[('state','!=','address_info')]}">
+								<label for="same_as_home" />
+								<field name="same_as_home" nolabel="1" />
+								<label for="street" string="Postal Address"
+									attrs="{'invisible':[('same_as_home','=',True)]}" />
+								<div>
+									<field name="person_postal_address_1"
+										attrs="{'required':[('state','=','address_info')], 'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}"
+										placeholder="Postal Address 1" />
+									<field name="person_postal_address_2"
+										attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}"
+										placeholder="Postal Address 2" />
+									<field name="person_postal_address_3"
+										attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}"
+										placeholder="Postal Address 3" />
+									<field name="person_postal_suburb"
+										on_change="onchange_person_postal_suburb(person_postal_suburb)"
+										attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}"
+										placeholder="Suburb"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<div class="address_format">
+										<field name="person_postal_city" placeholder="City"
+											style="width: 38%%"
+											attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+										<field name="person_postal_province_code" class="oe_no_button"
+											placeholder="Province" style="width: 37%%"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											on_change="onchange_postal_province(person_postal_province_code)"
+											attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}" />
+										<field name="person_postal_zip" placeholder="ZIP"
+											style="width: 20%%"
+											attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}" />
+									</div>
+									<field name="country_postal" placeholder="Country" class="oe_no_button"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'readonly':[('submitted','=',True)],'invisible':[('same_as_home','=',True)]}" />
+									<!-- <field name="provider_code" attrs="{'readonly':[('submitted','=',True)]}" 
+										placeholder="Provider Code"/> -->
+								</div>
+							</group>
+						</group>
+						<group
+							attrs="{'invisible':[('state','not in',['employer_info','pending','approved','denied'])]}">
+							<field name="employer_ids" nolabel="1"
+								attrs="{'readonly':[('submitted','=',True)]}">
+								<tree string="Employers" editable="bottom" delete="false">
+									<field name="sdl_no" required="1"
+										on_change="onchange_sdl_number(sdl_no)" />
+									<field name="employer_id" domain="[('id','=',None)]"
+										options="{'no_create':True,'no_open':True}" required="1" />
+									<field name="registration_number" />
+									<field name="confirm_sdf_appointment_letter_from_employer"
+										domain="[('id','=',None)]" required="1" />
+									<field name="status" invisible="1" />
+									<field name="employer_status" />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+		<!-- SDF Registration Form Ends -->
+
+		<!-- SDF Registration Tree Starts -->
+		<record id="view_sdf_register_tree" model="ir.ui.view">
+			<field name="name">view.sdf.register.tree</field>
+			<field name="model">sdf.register</field>
+			<field name="arch" type="xml">
+				<tree string="SDF">
+					<field name="sdf_reference_no" />
+					<field name="name" />
+					<field name="work_phone" string="Phone" placeholder="0116076900" />
+					<field name="work_email" string="Email" />
+					<field name="company_id" groups="base.group_multi_company" />
+					<field name="department" />
+					<field name="job_title" />
+					<field name="manager" />
+					<field name="sdf_register_date" />
+					<field name="sdf_approval_date" />
+					<!--<field name="department_id"/> <field name="job_id"/> <field name="parent_id"/> -->
+					<field name="coach_id" invisible="1" />
+					<field name="final_state" />
+				</tree>
+			</field>
+		</record>
+		<!-- SDF Registration Tree Ends -->
+
+		<record id="view_sdf_register_filter" model="ir.ui.view">
+			<field name="name">SDF Register</field>
+			<field name="model">sdf.register</field>
+			<field name="arch" type="xml">
+				<search string="SDF Registration">
+					<field name="sdf_reference_no" />
+					<field name="name" />
+					<field name="work_email" />
+					<group expand="0" string="Group By">
+						<filter string="Status" icon="terp-personal" domain="[]"
+							context="{'group_by':'final_state'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- SDF Registration Action. -->
+		<record id="action_sdf_register" model="ir.actions.act_window">
+			<field name="name">SDF Registration</field>
+			<field name="res_model">sdf.register</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<!-- <field name="view_id" eval="view_sdf_register_tree"/> -->
+			<field name="view_id" eval="view_sdf_register_filter" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Register SDF.
+				</p>
+			</field>
+		</record>
+		<!-- -->
+
+		<!-- Adding SDF Information inside Employer -->
+		<record id="view_partner_form_inherit_sdf" model="ir.ui.view">
+			<field name="name">view.partner.form.inherit.employer</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/notebook/page[@string='Internal Notes']"
+					position="after">
+
+					<page string="SDF" attrs="{'invisible':[('employer','=',False)]}">
+						<field name="sdf_tracking_ids" nolabel="1" attrs="{'readonly':[('employer','=',True)]}">
+							<tree string="SDF Approval" editable="bottom">
+								<field name="sdf_id" string="SDF" options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+								<field name="sdf_register_id" string="SDF Registering" options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+								<field name="status" />
+								<field name="sdf_type" />
+								<field name="sdf_approved_denied" invisible="1" />
+								<field name="sdf_dormant" invisible="1" />
+								<button name="action_approve_sdf" string="Approve" type="object"
+									icon="gtk-go-forward" attrs="{'invisible':[('sdf_approved_denied','=',True)]}"
+									groups="hwseta_sdp.group_sdp_manager" />
+								<button name="action_deny_sdf" string="Deny" type="object"
+									icon="gtk-close" attrs="{'invisible':[('sdf_approved_denied','=',True)]}"
+									groups="hwseta_sdp.group_sdp_manager" />
+								<button name="action_dormant_sdf" string="Dormant" type="object"
+									icon="gtk-cancel" attrs="{'invisible':[('sdf_dormant','=',True)]}"
+									groups="hwseta_sdp.group_sdp_manager" />
+							</tree>
+						</field>
+					</page>
+
+				</xpath>
+			</field>
+		</record>
+		<!-- -->
+		<record id="employer_tree_view" model="ir.ui.view">
+			<field name="name">employer.tree.view</field>
+			<field name="model">res.partner</field>
+			<field eval="8" name="priority" />
+			<field name="arch" type="xml">
+				<tree string="Contacts">
+					<field name='employer_sdl_no' />
+					<field name="display_name" />
+					<field name="phone" placeholder="0116076900" />
+					<field name="email" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_hwseta_account_project_type_form" model="ir.ui.view">
+			<field name="name">account.account.project.type</field>
+			<field name="model">account.account</field>
+			<field name="inherit_id" ref="account.view_account_form" />
+			<field name="arch" type="xml">
+				<field name="active" position="after">
+					<field name="is_project_type" />
+				</field>
+			</field>
+		</record>
+
+		<record id="view_hwseta_project_type_form" model="ir.ui.view">
+			<field name="name">view.hwseta.project.type.form</field>
+			<field name="model">hwseta.project.types</field>
+			<field name="arch" type="xml">
+				<form string="Project Types">
+					<sheet>
+						<group col="4">
+							<field name="name" string="Project Type"
+								on_change="onchange_default_project_type(name)" required="1"
+								options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+							<field name="code" />
+							<field name="project_type_terms_condition" domain="[('id','=',None)]" />
+						</group>
+						<group col="4">
+							<field name="budget" readonly="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+							<field name="applied_budget" />
+							<field name="rem_budget" readonly="1" />
+							<field name="seta_funding_year" required="1"
+								options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+						</group>
+						<group col="4">
+							<field name="app_target_employed" required="1" />
+							<field name="app_target_achieved_employed" />
+							<field name="app_target_unemployed" required="1" />
+							<field name="app_target_achieved_unemployed" />
+							<field name="app_target_employed_unemployed" />
+							<field name="app_target_achieved_employed_unemployed" />
+							<field name="project_indicator_id"
+								options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+							<field name="variance" />
+							<field name="fees_employed" widget="many2many_tags"
+								options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+								invisible="1" />
+							<field name="fees_unemployed" widget="many2many_tags"
+								options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+								invisible="1" />
+						</group>
+						<notebook>
+							<page string="Projects">
+								<group>
+									<field name="project_ids" nolabel="1">
+										<tree string="Project" editable="bottom">
+											<field name="name"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											<field name="budget_applied" />
+											<field name="target_employed" />
+											<field name="target_unemployed" />
+											<field name="project_approval" domain="[('id','=',None)]" />
+										</tree>
+										<form string="Project">
+											<sheet>
+												<group>
+													<field name="name" />
+													<field name="budget_applied" />
+												</group>
+											</sheet>
+										</form>
+									</field>
+								</group>
+							</page>
+							<page string="Project Type Description">
+								<group>
+									<field name="project_type_description" nolabel="1"
+										widget="html" />
+								</group>
+							</page>
+							<page string="Documents Required">
+								<group>
+									<field name="project_document_ids" nolabel="1">
+										<tree string="Project Document" editable="bottom">
+											<field name="name" required="1" />
+											<field name="required" />
+										</tree>
+									</field>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_hwseta_project_type_tree" model="ir.ui.view">
+			<field name="name">view.hwseta.project.type.tree</field>
+			<field name="model">hwseta.project.types</field>
+			<field name="arch" type="xml">
+				<tree string="Project Types">
+					<field name="code" />
+					<field name="name" string="Project Type" />
+					<field name="applied_budget" />
+					<!-- <field name="applied_budget"/> -->
+					<!-- <field name="rem_budget"/> -->
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_hwseta_project_type" model="ir.actions.act_window">
+			<field name="name">Project Types</field>
+			<field name="res_model">hwseta.project.types</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_hwseta_project_type_tree" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Project Types
+				</p>
+			</field>
+		</record>
+
+		<!-- View for hwseta project form view -->
+		<record id="view_hwseta_project_form" model="ir.ui.view">
+			<field name="name">view.hwseta.project.form</field>
+			<field name="model">hwseta.project</field>
+			<field name="arch" type="xml">
+				<form string="Projects">
+					<sheet>
+						<group>
+							<field name="name"
+								options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Views for Address -->
+		<!-- Districts -->
+		<record id="view_address_district_info_tree" model="ir.ui.view">
+			<field name="name">view.address.district.info.tree</field>
+			<field name="model">res.district</field>
+			<field name="arch" type="xml">
+				<tree string="Districts">
+					<field name="name" />
+					<field name="code" />
+					<field name="province_id" />
+					<field name="country_id" />
+					<field name="urban_rural" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_address_district_info_form" model="ir.ui.view">
+			<field name="name">view.address.district.info.form</field>
+			<field name="model">res.district</field>
+			<field name="arch" type="xml">
+				<form string="Districts">
+					<sheet>
+						<group string="District Info" col="2">
+							<group>
+								<field name="name" />
+								<field name="code" />
+								<field name="urban_rural" />
+							</group>
+							<group>
+								<field name="province_id" />
+								<field name="country_id" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_address_district" model="ir.actions.act_window">
+			<field name="name">Districts</field>
+			<field name="res_model">res.district</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_address_district_info_tree" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Districts.
+				</p>
+			</field>
+		</record>
+		<!-- Districts Ends -->
+
+		<!-- City -->
+		<record id="view_address_city_info_filter" model="ir.ui.view">
+			<field name="name">city</field>
+			<field name="model">res.city</field>
+			<field name="arch" type="xml">
+				<search string="Cities">
+					<field name="name" />
+					<field name="district_id" />
+					<field name="province_id" />
+					<field name="country_id" />
+					<field name="urban_rural" />
+				</search>
+
+			</field>
+		</record>
+
+		<record id="view_address_city_info_tree" model="ir.ui.view">
+			<field name="name">view.address.city.info.tree</field>
+			<field name="model">res.city</field>
+			<field name="arch" type="xml">
+				<tree string="Cities">
+					<field name="name" string="City" />
+					<field name="district_id" string="Municipality" />
+					<field name="province_id" />
+					<field name="country_id" />
+					<field name="urban_rural" />
+					<field name="latitude" />
+					<field name="longitude" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_address_city_info_form" model="ir.ui.view">
+			<field name="name">view.address.city.info.form</field>
+			<field name="model">res.city</field>
+			<field name="arch" type="xml">
+				<form string="Cities">
+					<sheet>
+						<group string="City Info" col="2">
+							<group>
+								<field name="name" />
+								<field name="district_id" />
+								<field name="urban_rural" />
+								<field name="latitude" />
+							</group>
+							<group>
+								<field name="province_id" />
+								<field name="country_id" />
+								<field name="longitude" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_address_city" model="ir.actions.act_window">
+			<field name="name">Cities</field>
+			<field name="res_model">res.city</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_address_city_info_filter" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Cities.
+				</p>
+			</field>
+		</record>
+		<!-- City Ends -->
+
+		<!-- Municipality -->
+
+		<record id="view_address_municipality_info_filter" model="ir.ui.view">
+			<field name="name">municipality</field>
+			<field name="model">res.municipality</field>
+			<field name="arch" type="xml">
+				<search string="municipality">
+					<field name="name" />
+					<field name="city_id" />
+					<field name="province_id" />
+					<field name="country_id" />
+					<field name="urban_rural" />
+				</search>
+
+			</field>
+		</record>
+
+		<record id="view_address_municipality_info_tree" model="ir.ui.view">
+			<field name="name">view.address.municipality.info.tree</field>
+			<field name="model">res.municipality</field>
+			<field name="arch" type="xml">
+				<tree string="Municipalities">
+					<field name="name" string="Municipality" />
+					<!-- <field name="code"/> -->
+					<field name="city_id" />
+					<field name="province_id" />
+					<field name="country_id" />
+					<field name="urban_rural" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_address_municipality_info_form" model="ir.ui.view">
+			<field name="name">view.address.municipality.info.form</field>
+			<field name="model">res.municipality</field>
+			<field name="arch" type="xml">
+				<form string="Municipality">
+					<sheet>
+						<group string="Municipality Info" col="2">
+							<group>
+								<field name="name" string="Municipality" />
+								<field name="district_id" />
+								<field name="country_id" />
+								<!-- <field name="code"/> -->
+							</group>
+							<group>
+								<field name="city_id" />
+								<field name="province_id" />
+								<field name="urban_rural" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_address_municipality" model="ir.actions.act_window">
+			<field name="name">Municipalities</field>
+			<field name="res_model">res.municipality</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_address_municipality_info_tree" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Municipalities.
+				</p>
+			</field>
+		</record>
+		<!-- Municipality Ends -->
+
+		<!-- Suburb -->
+		<record id="view_address_suburb_info_tree" model="ir.ui.view">
+			<field name="name">view.address.suburb.info.tree</field>
+			<field name="model">res.suburb</field>
+			<field name="arch" type="xml">
+				<tree string="Suburbs">
+					<field name="name" />
+					<field name="city_id" />
+					<field name="municipality_id" />
+					<field name="district_id" />
+					<field name="province_id" />
+					<field name="country_id" />
+					<field name="postal_code" />
+					<!-- <field name="urban_rural" /> -->
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_address_suburb_info_form" model="ir.ui.view">
+			<field name="name">view.address.suburb.info.form</field>
+			<field name="model">res.suburb</field>
+			<field name="arch" type="xml">
+				<form string="Suburb">
+					<sheet>
+						<group string="Suburb Info" col="2">
+							<group>
+								<field name="name" />
+								<field name="city_id" />
+								<field name="municipality_id" />
+								<field name="urban_rural" />
+								<field name="statssa_area_code" />
+							</group>
+							<group>
+								<field name="district_id" />
+								<field name="province_id" />
+								<field name="country_id" />
+								<field name="postal_code" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_address_suburb_info_search" model="ir.ui.view">
+			<field name="name">view.address.suburb.info.search</field>
+			<field name="model">res.suburb</field>
+			<field name="arch" type="xml">
+				<search string="Suburb">
+					<field name="name" />
+					<field name="district_id" />
+					<field name="city_id" />
+					<field name="province_id" />
+					<group string="Group By">
+						<filter string="Province" icon="terp-personal" domain="[]"
+							context="{'group_by':'province_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="action_address_suburb" model="ir.actions.act_window">
+			<field name="name">Suburb</field>
+			<field name="res_model">res.suburb</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_address_suburb_info_tree" />
+			<field name="search_view_id" ref="view_address_suburb_info_search" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Suburbs.
+				</p>
+			</field>
+		</record>
+		<!-- Suburb Ends -->
+
+		<!-- Inherited province form view -->
+		<record id="view_province_form_inherit_sdp" model="ir.ui.view">
+			<field name="name">res.country.state.form.inherit.sdp</field>
+			<field name="model">res.country.state</field>
+			<field name="inherit_id" ref="base.view_country_state_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='country_id']" position="after">
+					<field name="province_code_id" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Fees Structure Tree View -->
+		<record id="view_fees_structure_tree" model="ir.ui.view">
+			<field name="name">view.fees.structure.tree</field>
+			<field name="model">fees.structure</field>
+			<field name="arch" type="xml">
+				<tree string="Fees Structure">
+					<field name="name" />
+					<field name="related_product" />
+				</tree>
+			</field>
+		</record>
+		<!-- -->
+
+		<!-- Fees Structure Form View -->
+		<record id="view_fees_structure_form" model="ir.ui.view">
+			<field name="name">view.fees.structure.form</field>
+			<field name="model">fees.structure</field>
+			<field name="arch" type="xml">
+				<form string="Fees Structure">
+					<group>
+						<field name="name" />
+						<field name="related_product" />
+					</group>
+				</form>
+			</field>
+		</record>
+		<!-- -->
+
+		<record id="action_fees_structure" model="ir.actions.act_window">
+			<field name="name">Fees Structure</field>
+			<field name="res_model">fees.structure</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_fees_structure_tree" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Fees Structure.
+				</p>
+			</field>
+		</record>
+
+		<!-- Document Library Tree View -->
+		<record id="view_document_library_tree" model="ir.ui.view">
+			<field name="name">view.document.library.tree</field>
+			<field name="model">document.library</field>
+			<field name="arch" type="xml">
+				<tree string="Document Library">
+					<field name="auth_page_less_fifty" />
+					<field name="auth_page_more_fifty" />
+					<field name="training_guide" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Document Library Form View -->
+		<record id="view_document_library_form" model="ir.ui.view">
+			<field name="name">view.document.library.form</field>
+			<field name="model">document.library</field>
+			<field name="arch" type="xml">
+				<form string="Document Library">
+					<sheet>
+						<group>
+							<group string="OFO Codes" col="2">
+								<field name="ofo_file" filename="ofo_file_name" />
+								<field name="ofo_file_name" invisible="1" class="oe_inline oe_right" />
+							</group>
+							<group string="Training Manual" col="2">
+								<field name="training_guide" filename="training_guide_name" />
+								<field name="training_guide_name" invisible="1"
+									class="oe_inline oe_right" />
+							</group>
+						</group>
+						<group>
+							<group string="WSP Templates" col="2">
+								<field name="wsp_template" filename="wsp_template_name" />
+								<field name="wsp_template_name" invisible="1"
+									class="oe_inline oe_right" />
+							</group>
+							<group string="ATR Templates" col="2">
+								<field name="atr_template" filename="atr_template_name" />
+								<field name="atr_template_name" invisible="1"
+									class="oe_inline oe_right" />
+							</group>
+						</group>
+						<group string="Authorisation Forms" col="2">
+							<group>
+								<field name="auth_page_less_fifty" filename="auth_page_name1" />
+								<field name="auth_page_name1" invisible="1"
+									class="oe_inline oe_right" />
+							</group>
+							<group>
+								<field name="auth_page_more_fifty" filename="auth_page_name2" />
+								<field name="auth_page_name2" invisible="1"
+									class="oe_inline oe_right" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!-- -->
+
+		<record id="action_document_library" model="ir.actions.act_window">
+			<field name="name">Document Library</field>
+			<field name="res_model">document.library</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_document_library_tree" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click To Create Document Library.
+				</p>
+			</field>
+		</record>
+
+		<!-- Project Indicator Views -->
+		<record id="form_view_project_indicator" model="ir.ui.view">
+			<field name="name">form.view.project.indicator</field>
+			<field name="model">project.indicator</field>
+			<field name="arch" type="xml">
+				<form string="Project Indicator">
+					<sheet>
+						<group>
+							<field name="name" required="1" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_project_indicator" model="ir.ui.view">
+			<field name="name">tree.view.project.indicator</field>
+			<field name="model">project.indicator</field>
+			<field name="arch" type="xml">
+				<tree string="Project Indicator">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="action_project_indicator" model="ir.actions.act_window">
+			<field name="name">Project Indicator</field>
+			<field name="res_model">project.indicator</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_project_indicator" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create Project Indicator.
+				</p>
+			</field>
+		</record>
+
+		<!-- Project Category Views -->
+		<record id="form_view_project_category" model="ir.ui.view">
+			<field name="name">form.view.hwseta.project.category</field>
+			<field name="model">hwseta.project.category</field>
+			<field name="arch" type="xml">
+				<form string="Project Category">
+					<sheet>
+						<group>
+							<group>
+								<field name="category_type" required="1" />
+							</group>
+							<group>
+								<field name="category_name" required="1" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_project_category" model="ir.ui.view">
+			<field name="name">tree.view.hwseta.project.category</field>
+			<field name="model">hwseta.project.category</field>
+			<field name="arch" type="xml">
+				<tree string="Project Category">
+					<field name="category_type" />
+					<field name="category_name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_project_category" model="ir.actions.act_window">
+			<field name="name">Project Category</field>
+			<field name="res_model">hwseta.project.category</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_project_category" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create Project Category.
+				</p>
+			</field>
+		</record>
+
+		<record id="mail.action_mail_inbox_feeds" model="ir.actions.client">
+			<field name="name">Inbox</field>
+			<field name="tag">mail.wall</field>
+			<field name="res_model">mail.message</field>
+			<field name="context">{
+				'default_model': 'res.users',
+				'default_res_id':
+				uid,
+				'thread_model': 'res.partner',
+				'needaction_menu_ref':
+				['mail.mail_tomefeeds', 'mail.mail_starfeeds']
+				}
+			</field>
+			<field name="params"
+				eval="&quot;{
+                'domain': [
+                  ('to_read', '=', True),
+                  ('starred', '=', False),
+                ],
+                'view_mailbox': True,
+                'view_inbox': True,
+                'read_action': 'read',
+                'show_compose_message': False
+            }&quot;" />
+			<field name="limit">10</field>
+			<field name="help" type="html">
+				<p>
+					<b>Good Job!</b>
+					Your inbox is empty.
+				</p>
+				<p>
+					Your inbox contains private messages or emails sent to you
+					as well
+					as information related to documents or people you
+					follow.
+				</p>
+			</field>
+		</record>
+
+		<record id="mail.action_mail_to_me_feeds" model="ir.actions.client">
+			<field name="name">To: me</field>
+			<field name="tag">mail.wall</field>
+			<field name="res_model">mail.message</field>
+			<field name="context">{
+				'default_model': 'res.users',
+				'default_res_id':
+				uid,
+				'thread_model': 'res.partner',
+				'search_default_message_unread':
+				True,
+				'needaction_menu_ref': ['mail.mail_starfeeds',
+				'mail.mail_inboxfeeds']
+				}
+			</field>
+			<field name="params"
+				eval="&quot;{
+                'domain': [
+                    ('partner_ids.user_ids', 'in', [uid])
+                ],
+                'view_mailbox': True,
+                'read_action': 'read',
+                'show_compose_message': False
+            }&quot;" />
+			<field name="limit">10</field>
+			<field name="help" type="html">
+				<p>
+					<b>No private message.</b>
+				</p>
+				<p>
+					This list contains messages sent to you.
+				</p>
+			</field>
+		</record>
+
+		<record id="mail.action_mail_star_feeds" model="ir.actions.client">
+			<field name="name">To-do</field>
+			<field name="tag">mail.wall</field>
+			<field name="res_model">mail.message</field>
+			<field name="context">{
+				'default_model': 'res.users',
+				'default_res_id':
+				uid,
+				'thread_model': 'res.partner',
+				'search_default_message_unread':
+				True
+				}
+			</field>
+			<field name="params"
+				eval="&quot;{
+                'domain': [
+                    ('starred', '=', True),
+                ],
+                'view_mailbox': True,
+                'read_action': 'read',
+                'compose_as_todo': True,
+                'show_compose_message': False
+            }&quot;" />
+			<field name="limit">10</field>
+			<field name="help" type="html">
+				<p>
+					<b>No todo.</b>
+				</p>
+				<p>
+					When you process messages in your inbox, you can mark some
+					as
+					<i>todo</i>
+					. From this menu, you can process all your todo.
+				</p>
+			</field>
+		</record>
+
+		<record id="mail.action_mail_archives_feeds" model="ir.actions.client">
+			<field name="name">Archives</field>
+			<field name="tag">mail.wall</field>
+			<field name="context">{
+				'default_model': 'res.users',
+				'default_res_id':
+				uid,
+				'thread_model': 'res.partner',
+				'needaction_menu_ref':
+				['mail.mail_tomefeeds', 'mail.mail_starfeeds',
+				'mail.mail_inboxfeeds']
+				}
+			</field>
+			<field name="params"
+				eval="&quot;{
+                'domain': [
+                    '|',
+                    ('notification_ids.partner_id.user_ids', 'in', [uid]),
+                    ('author_id.user_ids', 'in', [uid]),
+                ],
+                'view_mailbox': True,
+                'show_compose_message': False
+            }&quot;" />
+			<field name="limit">10</field>
+			<field name="help" type="html">
+				<p>
+					No message found and no message sent yet.
+				</p>
+				<p>
+					Click on the top-right icon to compose a message. This
+					message
+					will be sent by email if it's an internal contact.
+				</p>
+			</field>
+		</record>
+		        <!-- EOI ID Configuration Form, Tree, Action -->
+
+        <record id="form_view_EOI_ID_configuration" model="ir.ui.view">
+			<field name="name">form.view.eoi_id.configuration</field>
+			<field name="model">eoi_id.configuration</field>
+			<field name="arch" type="xml">
+				<form string="EOI-ID">
+					<sheet>
+						<group>
+							<field name="eoi_id" readonly="1"/>
+						</group>
+						<group>
+							<field name="eoi_description" />
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_EOI_ID_configuration" model="ir.ui.view">
+			<field name="name">tree.view.eoi_id.configuration</field>
+			<field name="model">eoi_id.configuration</field>
+			<field name="arch" type="xml">
+				<tree string="EOI-ID">
+					<field name="eoi_id" />
+					<field name="eoi_description" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_EOI_ID_configuration" model="ir.actions.act_window">
+			<field name="name">EOI-ID</field>
+			<field name="res_model">eoi_id.configuration</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_EOI_ID_configuration" />
+			<!-- <field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create Project Indicator.
+				</p>
+			</field> -->
+		</record>
+		
+		<menuitem id="menu_sdp_master" name="SDP"
+			groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_general_access,hwseta_sdp.group_auditor_access,hwseta_sdp.group_wsp_manager,project.group_project_manager,account.group_account_manager,hwseta_projects.group_learning_programme_manager,hwseta_projects.group_project_officer,hwseta_projects.group_learning_programmes_officer,hwseta_projects.group_learning_programmes_administrator,hwseta_projects.group_projects_administrators,hwseta_finance.group_cfo,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_sdf_user,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_administrator" />
+		<!-- Indent/Requisiton Menus -->
+		<menuitem name="Requisition" parent="menu_sdp_master" id="menu_sdp_requisition"
+			sequence="1" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem action="stock_indent.action_indent_indent" name="Purchase Requisition"
+			parent="menu_sdp_requisition" id="menu_purchase_requisition_sdp"
+			sequence="1" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem action="hwseta_finance.action_petty_cash_request"
+			name="Petty Cash Requisition" parent="menu_sdp_requisition"
+			id="menu_petty_cash_requisition_sdp" sequence="2"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<!-- -->
+		<menuitem id="menu_sdp_transactions" name="Transactions"
+			parent="menu_sdp_master" sequence="6"
+			groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_general_access,hwseta_sdp.group_wsp_manager,project.group_project_manager,account.group_account_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_sdf_user" />
+		<menuitem id="menu_learning_programme" name="Learners"
+			parent="menu_sdp_master" sequence="3" groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager,hwseta_projects.group_project_officer,hwseta_projects.group_learning_programmes_officer,hwseta_projects.group_learning_programmes_administrator,hwseta_projects.group_projects_administrators,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_sdf_user,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_administrator" />
+		<menuitem id="menu_learning_programme_submenu" name="Learners"
+			parent="menu_learning_programme" action="action_learner_view" />
+		<!-- SDF Menus -->
+		<menuitem id="menu_open_view_sdf_list_my" name="SDF"
+			sequence="1" parent="menu_sdp_master"
+			groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_provincial_officer,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_general_access,hwseta_sdp.group_wsp_manager" />
+		<menuitem action="open_view_sdf_list_my" id="menu_open_view_sdf_submenu"
+			name="SDF" sequence="1" parent="menu_open_view_sdf_list_my" />
+		<menuitem action="action_sdf_register" id="menu_sdf_register"
+			name="SDF Registration" sequence="14" parent="menu_sdp_transactions" />
+		<menuitem name="Project Configuration" id="menu_sdp_project"
+			parent="menu_sdp_master" sequence="7" groups="hwseta_sdp.group_sdp_manager,hwseta_finance.group_cfo,hwseta_projects.group_learning_programme_manager,account.group_account_manager,project.group_project_manager,hwseta_sdp.group_wsp_manager,hwseta_finance.group_cfo" />
+		<menuitem action="project.open_view_project_all" id="menu_projects_sdp"
+			name="Projects" parent="menu_sdp_transactions" groups="hwseta_sdp.group_sdp_manager,hwseta_projects.group_learning_programme_manager,project.group_project_manager,hwseta_sdp.group_wsp_manager"
+			sequence="1" />
+		<menuitem action="action_hwseta_project_type" id="menu_project_type"
+			name="Project Types" parent="menu_sdp_project" groups="hwseta_sdp.group_sdp_manager,hwseta_finance.group_cfo,hwseta_projects.group_learning_programme_manager,account.group_account_manager,project.group_project_manager,hwseta_sdp.group_wsp_manager"
+			sequence="3" />
+		<menuitem name="Document Library" id="menu_doc_library_sdp"
+			parent="menu_sdp_master" groups="hwseta_sdp.group_sdp_manager"
+			sequence="8" />
+		<menuitem action="action_document_library" id="menu_doc_library_submenu"
+			name="Document Library" parent="menu_doc_library_sdp" groups="hwseta_sdp.group_sdp_manager" />
+		<!-- SIC Code Menus -->
+		<menuitem id="menu_sic_code" name="SIC Code" parent="menu_sdp_master"
+			sequence="9" />
+		<menuitem action="hwseta_person.action_sic_code" id="menu_sic_code_submenu"
+			name="SIC Codes" parent="menu_sic_code" sequence="1" />
+		<!-- SETA Branches Menus -->
+		<menuitem id="menu_seta_branch" name="SETA Branch" parent="menu_sdp_master"
+			sequence="10" />
+		<menuitem action="hwseta_person.action_seta_branch" id="menu_seta_branch_submenu"
+			name="SETA Branch" parent="menu_seta_branch" sequence="1" />
+
+		<!-- SDP Reporting Menus -->
+		<menuitem id="menu_sdp_reporting" name="Reporting"
+			parent="hwseta_sdp.menu_sdp_master" sequence="11"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem id="submenu_sdp_skills_planning" groups="hwseta_sdp.group_sdp_manager"
+			name="SDP Skills Planning Report" parent="hwseta_sdp.menu_sdp_reporting"
+			sequence="1" action="hwseta_sdp.action_wsp_submission1" />
+
+		<!-- Portal Menus regarding SDF and WSP -->
+		<menuitem name="SDF" id="menu_sdf_portal" parent="portal.portal_menu"
+			groups="hwseta_sdp.group_sdf_user" sequence="2" />
+		<menuitem action="open_view_sdf_list_my" id="menu_sdf_submenu_portal"
+			name="SDF" parent="menu_sdf_portal" sequence="1"
+			groups="hwseta_sdp.group_sdf_user" />
+		<!-- <menuitem action="action_sdf_register" id="menu_sdf_register_portal" 
+			name="SDF Registration" parent="menu_sdf_portal" sequence="2" groups="hwseta_sdp.group_sdf_user"/> -->
+		<menuitem name="Document Library" id="menu_doc_library"
+			parent="portal.portal_menu" groups="hwseta_sdp.group_sdf_user"
+			sequence="3" />
+		<menuitem action="action_document_library" id="menu_doc_library_portal"
+			name="Document Library" parent="menu_doc_library" groups="hwseta_sdp.group_sdf_user" />
+
+		<!-- SDF Menu for Employer portal -->
+		<menuitem id="menu_sdf_employer_user" name="SDF"
+			parent="hwseta_finance.menu_business_employer" groups="hwseta_finance.group_employer_user"
+			sequence="2" />
+		<menuitem action="open_view_sdf_list_my" id="menu_sdf_employer_submenu"
+			name="SDF" parent="menu_sdf_employer_user" sequence="1" />
+		<menuitem name="Projects" id="portal.portal_projects" parent="portal.portal_menu"
+			sequence="40" groups="hwseta_finance.group_employer_user" />
+
+		<!-- Merging SDF and Employer Portal -->
+		<menuitem name="Employer" id="menu_sdf_employer" parent="portal.portal_menu"
+			sequence="3" />
+		<menuitem name="Employer" id="menu_sdf_employer_form_portal"
+			parent="menu_sdf_employer" action="hwseta_finance.action_employer_form"
+			groups="hwseta_sdp.group_sdf_user" sequence="1" />
+
+		<!-- <menuitem name="EOI" id="menu_sdf_eoi_portal" parent="portal.portal_menu" 
+			sequence="4" /> <menuitem name="EOI" id="menu_sdf_eoi_submit_portal" parent="menu_sdf_eoi_portal" 
+			action="hwseta_action_learning_programme" groups="hwseta_sdp.group_sdf_user" 
+			sequence="1" / -->
+		>
+
+		<!-- Address -->
+		<menuitem name="Address" id="menu_sdp_address" parent="base.menu_administration"
+			sequence="8" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="City" id="menu_sdp_address_city" parent="menu_sdp_address"
+			action="action_address_city" sequence="1" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="District" id="menu_sdp_address_district"
+			parent="menu_sdp_address" action="action_address_district" sequence="2"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="Municipality" id="menu_sdp_address_municipality"
+			parent="menu_sdp_address" action="action_address_municipality"
+			sequence="3" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="Suburb" id="menu_sdp_address_suburb" parent="menu_sdp_address"
+			action="action_address_suburb" sequence="4"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="Province" id="menu_sdp_address_province"
+			parent="menu_sdp_address" action="base.action_country_state"
+			sequence="5" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="Country" id="menu_sdp_address_country"
+			parent="menu_sdp_address" action="base.action_country" sequence="6"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<!-- Fees Structure -->
+		<menuitem name="Fees Structure" id="menu_fees_structure"
+			parent="menu_sdp_master" sequence="9" groups="hwseta_sdp.group_sdp_manager" />
+		<menuitem name="Fees Structure" id="menu_fees_structure_submenu"
+			parent="menu_fees_structure" action="action_fees_structure" groups="hwseta_sdp.group_sdp_manager" />
+
+		<menuitem action="hwseta_person.action_partner_project_rel"
+			id="menu_request_for_eoi_submit" name="Apply For EOI" parent="menu_sdp_transactions"
+			sequence="2"  groups="hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_sdf_user"/>
+		<!-- Project Indicator Menu -->
+		<menuitem action="action_project_indicator" id="menu_project_indicator"
+			name="Project Indicator" parent="menu_sdp_project" sequence="7"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<!-- Project Category Menu -->
+		<menuitem action="action_project_category" id="menu_project_category_configuration"
+			name="Project Category" parent="menu_sdp_project" sequence="8"
+			groups="hwseta_sdp.group_sdp_manager" />
+		<!-- Project Document -->
+		<menuitem action="hwseta_person.action_project_document" id="menu_project_document"
+			name="Project Document" parent="menu_sdp_project" sequence="6" />
+		
+					<!-- EOI Configuration Menu -->
+		<menuitem action="hwseta_sdp.action_EOI_ID_configuration"
+			id="menu_request_for_eoi_id_configuration" name="EOI-ID Library" parent="menu_sdp_transactions"
+			sequence="2" />
+	</data>
+</openerp>

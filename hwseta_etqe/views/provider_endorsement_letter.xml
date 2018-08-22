@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_provider_endorsement">
+			<t t-call="report.html_container">
+				<t t-call="hwseta_etqe.pro_ass_mod_header_footer_layout">
+					<t t-foreach="docs" t-as="o">
+						<div class="page">
+							<div class="col-xs-4 pull-right">
+								<p>
+									Enq : Mrs. Hlamalani Ngcobo
+									<br />
+									Ref :
+									<span t-field="o.name" />
+								</p>
+							</div>
+							<br />
+							<br />
+							<div class="row">
+								<div class="col-xs-4 pull-left">
+									<br />
+									<strong>
+										<span
+											t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+									</strong>
+								</div>
+							</div>
+							<table class="col-xs-4 pull-right">
+								<tr>
+									<t t-if="o.provider_id.phone">
+										<td>
+											<strong>
+												<span>Tel. No.</span>
+											</strong>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.provider_id.phone" />
+										</td>
+									</t>
+								</tr>
+								<tr>
+									<t t-if="o.provider_id.fax">
+										<td>
+											<strong>
+												<span class="text-right">Fax</span>
+											</strong>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.provider_id.fax" />
+										</td>
+									</t>
+								</tr>
+								<tr>
+									<t t-if="o.provider_id.email">
+										<td>
+											<strong>
+												<span class="text-right">Email</span>
+											</strong>
+										</td>
+										<td>
+										<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.provider_id.email" />
+										</td>
+									</t>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<br />
+							<b>
+								<t t-if="o.provider_id.name">
+									<span t-field="o.provider_id.name" />
+								</t>
+							</b>
+							<br />
+							<t t-if="o.provider_id.street">
+								<span t-field="o.provider_id.street" />
+							</t>
+							<t t-if="o.provider_id.street2">
+								<span t-field="o.provider_id.street2" />
+							</t>
+							<t t-if="o.provider_id.street3">
+								<span t-field="o.provider_id.street3" />
+							</t>
+							<br />
+							<t t-if="o.provider_id.suburb">
+								<span t-field="o.provider_id.suburb" />
+							</t>
+							<br />
+							<t t-if="o.provider_id.city">
+								<span t-field="o.provider_id.city" />
+							</t>
+							<br />
+							<t t-if="o.provider_id.state_id">
+								<span t-field="o.provider_id.state_id" />
+							</t>
+							<br />
+							<t t-if="o.provider_id.zip">
+								<span t-field="o.provider_id.zip" />
+							</t>
+							<br />
+							<t t-if="o.provider_id.country_id">
+								<span t-field="o.provider_id.country_id" />
+							</t>
+							<br />
+							<br />
+							<strong>ENDORSEMENT OF LEARNER ACHIEVEMENTS</strong>
+							<br />
+							<br />
+							<strong>
+								<span>Dear</span>
+								<span t-field="o.provider_id.provider_master_contact_ids.name" />
+								<span t-field="o.provider_id.provider_master_contact_ids.sur_name" />
+							</strong>
+							<br />
+							<br />
+							<p>
+								This serves as notification that the Skills Development
+								Provider,
+								<span t-field="o.provider_id.name" />
+								has completed the training of learners
+								and the
+								HWSETA has
+								verified
+								the learner achievements on the
+								<span
+									t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+							</p>
+							<br />
+							<p>
+								The HWSETA has endorsed the learner achievements. Below are
+								the
+								particulars of the learner achievements that have been
+								endorsed:
+							</p>
+							<br />
+							<table class="learner_tables1 table table-condensed" style="page-break-inside:avoid;">
+								<thead>
+									<tr>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>QUALIFICATION ID/UNIT STANDARD</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>QUALIFICATION TITLE/UNIT STANDARD</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>NQF Level</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Minimum Credits</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Number of Learners</b>
+										</td>
+									</tr>
+								</thead>
+							</table>
+							<table class="learner_tables1 table table-condensed" style="page-break-inside:avoid;">
+								<thead>
+									<tr>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>UNIT STANDARD</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:left;">
+											<b>Skill Program Code:</b>
+											<br />
+											<b>Skill Program Title:</b>
+											<br />
+											<b>UNIT STANDARD/QUALIFICATION TITLE</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>NQF Level</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Minimum Credits</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Number of Learners</b>
+										</td>
+									</tr>
+								</thead>
+							</table>
+							<br />
+							<br />
+							Please note that the HWSETA has introduced, from now onwards,
+							that
+							all providers that have been verified and endorsed for Skills
+							Programmes, will be able to print the Statement of Results of
+							learners from the ERP system. For further enquiries in respect
+							of
+							printing the statement of results or for any other query, you may
+							contact ERP@hwseta.org.za .
+							<br />
+							<br />
+							Your co-operation in respect of the above will be appreciated.
+							<br />
+							<br />
+							<br />
+							Sincerely,
+							<br />
+							<br />
+							<br />
+							<b>Mrs. Hlamalani Ngcobo</b>
+							<br />
+							<b>
+								Learner Achievement Manager: ETQA
+							</b>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

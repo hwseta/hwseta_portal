@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === HWSETA Funds Animal Health Studies in Eastern Cape Page === -->
+		<template id="news3" name="HWSETA Funds Animal Health Studies in Eastern Cape" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article ">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<div class="navigation">
+													<div class="alignleft">
+														«
+														<a href="/page/hwseta_website.news4"
+															title="Qualification Development and Maintenance a Key Focus for the HWSETA"
+															rel="prev">Qualification Development and Maintenance a Key Focus for the
+															HWSETA</a>
+													</div>
+													<div class="alignright">
+														<a href="/page/hwseta_website.news2" title="SkillsTalk@HWSETA Newsletter June 2015 edition out now"
+															rel="next">SkillsTalk@HWSETA Newsletter June 2015 edition out now</a>
+														»
+													</div>
+												</div>
+											</div>
+										
+										
+										</article>
+												<article id="post-1018" class="oc-post oc-article  post-1018 post type-post status-publish format-standard hentry category-latest-news">
+										                                <h1 class="oc-postheader">HWSETA Funds Animal Health Studies in Eastern Cape</h1>                                                <div class="oc-postheadericons oc-metadata-icons"><span class="oc-postdateicon"><span class="date">Published</span> <span class="entry-date" title="10:18 am">May 28, 2015</span></span> | <span class="oc-postauthoricon"><span class="author">By</span> <span class="author vcard"><a class="url fn n" href="http://www.hwseta.org.za/?author=7" title="View all posts by Elfrieda Tyrer">Elfrieda Tyrer</a></span></span></div>                <div class="oc-postcontent oc-postcontent-0 clearfix"><p>At a function held in Tsolo, Eastern Cape, on 25 May 2015 the Health and Welfare Sector Education Training Authority (HWSETA) awarded 50 learners with full bursaries to obtain a Diploma in Animal Health from the Tsolo Agricultural and Rural Development Institute (TARDI).</p>
+										<p>The event was attended by the Deputy Minister of Higher Education and Training, Honourable Mduduzi Manana, the MEC for Eastern Cape Rural Development and Agrarian Reform, Mr Mlibo Qoboshiyane, the Mayor of Mhlontlo Local Municipality, Counsellor M Giyose, Chariman of the HWSETA Board, Dr Confidence Moloko, Ms Yvonne Mbane, CEO for the HWSETA, numerous other dignitaries, the learners and their parents.</p>
+										<p>“The partnership that the HWSETA has entered into with the Eastern Cape Department of Rural Development and Agrarian Reform is a significant milestone in pushing back the frontiers of poverty,” comments Ms Mbane.</p>
+										<p>Ms Mbane describes the partnership as ‘business unusual’, but is quick to add that this is a strategic intervention specifically aimed at addressing the shortage of skills in the animal health sector, which contributes towards food security.</p>
+										<p>19-year-old Wandile Sitandatu trekked more than a 100km from Kei Mouth to Tsolo earlier this year with one goal in mind, to become an animal health technician. He successfully registered for the three-year diploma at TARDI but he held out little hope that his unemployed mother would be able to afford the tuition fees of R20 000 per year.</p>
+										<p>“Immediately after I received the fee structure for my studies, my knees just went weak and I thought this is it for me, this is the end of my dream,” Sitandatu explained to the audience with tears in his eyes. “When I got home I showed my grandmother the fee structure and she also agreed we wouldn’t be able to pay.”</p>
+										<p>This all changed for the better when he was one of the 50 students who would receive funding from the HWSETA for his studies. Sitandatu believes that the bursary he has received from the HWSETA will open many doors for him.</p>
+										<p>Mr Qoboshiyane urged the learners to grab the opportunity with both hands. He described how his Department is intent on turning the Eastern Cape into a hub of activity and a food basket.</p>
+										<p>Learners and their parents alike were overwhelmed and expressed their joy and gratitude. One learner was given the opportunity to thank the HWSETA saying that ‘I do not know where I would have gone to or what I would’ve become if it was not for the bursary. My grandmother does not work, and with this I will be giving her hope too that the suffering will one day end’.</p>
+										</div>
+										
+										
+										</article>
+														
+										
+										                        </div>
+																			
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

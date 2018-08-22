@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="import_wsp_xls_form_view" model="ir.ui.view">
+            <field name="name">import.wsp.xls.form.view</field>
+            <field name="model">import.wsp.xls</field>
+            <field name="arch" type="xml">
+            	<form string="Import WSP">
+            		<group>
+            			<field name="actual_atr_file"/>
+            			<field name="planned_wsp_file"/>
+            			<!-- <field name="planned_current_file"/> -->
+            		</group>
+            		<footer>
+            			<button string="Import WSP" name="import_wsp" type="object" default_focus="1" class="oe_highlight" confirm="Are you sure you want to import ?"/>
+            		</footer>
+            	</form>
+            </field>
+        </record>
+        
+        <!-- <act_window id="action_import_wsp_xls"
+            multi="True"
+            key2="client_action_multi" name="Import WSP"
+            res_model="import.wsp.xls" src_model="wsp.plan"
+            view_mode="form" target="new" view_type="form" /> -->
+         
+         <!-- <record id="action_import_wsp_xls" model="ir.actions.act_window">
+	        <field name="name">Print Contract</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">import.wsp.xls</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="import_wsp_xls_form_view"/>
+	        <field name="target">new</field>
+	        field name="multi">True</field
+	    </record> -->
+         
+        <!-- <act_window id="action_import_wsp_xls"
+            key2="client_action_multi" name="Import WSP"
+            res_model="import.wsp.xls" src_model="wsp.plan"
+            view_mode="form" target="new" view_type="form"/> -->
+        <act_window
+        name="Import WSP"
+        res_model="import.wsp.xls"
+        src_model="wsp.plan"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+        id="action_import_wsp_xls"
+        />
+	</data>
+</openerp>

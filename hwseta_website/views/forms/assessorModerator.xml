@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Assessor Moderator Registration Form === -->
+		<template id="website.assessorModerator" name="Assessor Moderator Registration"
+			page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<t t-set="state1" t-value="state" />
+						<t t-set="count" t-value="countries" />
+						<form id="frmAssessorModerator" action="/hwseta/confirmAssessorModerator"
+							method="post" name="frmAssessorModerator" role="form"
+							style="z-index:1 !important; position:relative !important"
+							enctype="multipart/form-data">
+							<fieldset id="fs_1">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td bgcolor="FFFFFF" colspan="4">
+													<b style="background-color:#FFFFFF;">Code Of Conduct</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+
+											<tr>
+												<td class="button" colspan="4">Please ensure that you are
+													familiar with the
+													Terms &amp; Conditions before continuing
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4">
+													<a target="_blank"
+														href="/hwseta_website/static/src/ProviderAccreditation/Templates/Code_of_Conduct_for_Registered_Assessors_and_Moderators.docx">Code Of Conduct</a>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													I Agree
+												</td>
+												<td colspan="4">
+													<input type="radio" id="ass_mod_agree" name="ass_mod_radio_terms"
+														value="ass_mod_agree" checked="true" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Not Agree
+												</td>
+												<td colspan="4">
+													<input type="radio" id="ass_mod_not_agree" name="ass_mod_radio_terms"
+														value="ass_mod_not_agree" />
+												</td>
+											</tr>
+											<tr class="gen_info">
+												<td colspan="4"></td>
+											</tr>
+											<tr class="gen_info">
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b>General Information</b>
+												</td>
+											</tr>
+											<tr class="gen_info">
+												<td colspan="4"></td>
+											</tr>
+											<tr class="gen_info">
+												<td>
+													<label>Assessor/Moderator</label>
+												</td>
+												<td colspan="4">
+													<font style="color:#F7F7EF;">*</font>
+													Assessor
+													<input type="radio" id="radioAss" name="radioAssMod"
+														value="assessor" checked="true" style="width:5%;" />
+													Moderator
+													<input type="radio" id="radioMod" name="radioAssMod"
+														value="moderator" style="width:5%;" />
+													<!-- Already Registered <input type="radio" id="radioAReg" name="radioAssMod" 
+														value="already_registered" style="width:5%;" /> -->
+												</td>
+											</tr>
+											<tr id="assessor_no">
+												<td>
+													<label>Assessor No</label>
+												</td>
+												<td colspan="3">
+													<font style="color:#FF0000;">*</font>
+													<input type="text" id="assesor_number" name="assesor_number"
+														style="width:50%"></input>
+													<input name="assessor_no" id="check_assessor_no"
+														type="hidden" value="Validate"
+														style="width:40% !important; height:29px; border-radius:3px;" />
+												</td>
+											</tr>
+											<!-- <tr id="existing_assessor_moderator" > <td> <label>Existing 
+												Assessor/Moderator</label> </td> <td> <font style="color:#FF0000;">*</font> 
+												<select name="ex_ass_mod" style="width:96%;" id="ex_ass_mod"> <option value="ex_ass">Assessor</option> 
+												<option value="ex_mod">Moderator</option> </select> </td> <td> <label>Search 
+												By</label> </td> <td> <font style="color:#FF0000;">*</font> <select name="search_by" 
+												style="width:96%;" id="search_by"> <option value="number">Assessor/Moderator 
+												No.</option> </select> </td> </tr> <tr id="id_number" > <td> <label>Assessor 
+												Identification No.</label> </td> <td> <font style="color:#FF0000;">*</font> 
+												<input type="text" id="txtAssIdNo" name="txtAssIdNo" style="width:95.6%"></input> 
+												</td> <td id="td_m_id"> <label id="m_id">Moderator Identification No.</label> 
+												</td> <td> <font id="f_m_id" style="color:#FF0000;">* </font> <input type="text" 
+												id="txtModIdNo" name="txtModIdNo" style="width:95.6%"></input> </td> </tr> 
+												<tr id="ass_mod_number"> <td> <label>Assessor Number</label> </td> <td> <font 
+												id="f_m_num" style="color:#FF0000;">*</font> <input type="text" id="txtAssNumber" 
+												name="txtAssNumber" style="width:95.6%"></input> </td> <td> <label id="m_num">Moderator 
+												Number </label> </td> <td> <font style="color:#FF0000;"> </font> <input type="text" 
+												id="txtModNumber" name="txtModNumber" style="width:95.6%"></input> </td> 
+												</tr> -->
+											<tr id="tr_1" class="gen_info">
+												<td>
+													<label>Title</label>
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<select name="title" style="width:96%;" id="title">
+														<option value="">-- select --</option>
+														<option value="adv">Adv.</option>
+														<option value="dr">Dr.</option>
+														<option value="mr">Mr.</option>
+														<option value="mrs">Mrs.</option>
+														<option value="ms">Ms.</option>
+														<option value="prof">Prof.</option>
+													</select>
+												</td>
+												<td>
+													<label>Name</label>
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input type="text" id="name" name="name" style="width:95.6%"></input>
+												</td>
+											</tr>
+											<tr id="tr_2" class="gen_info">
+												<td>
+													<label>Surname</label>
+												</td>
+												<td>
+													<font style="color:#FF0000;">*</font>
+													<input type="text" id="txtSurname" name="txtSurname"
+														style="width:95.6%"></input>
+												</td>
+												<td>
+													<label>Work Email &#x20;&#x20;&#x20;&#x20;&#x20;</label>
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input type="email" id="email" name="email" style="width:95.6%"></input>
+												</td>
+											</tr>
+
+											<tr id="tr_3" class="gen_info">
+												<td>
+													<label>Mobile Number</label>
+												</td>
+												<td>
+													<font style="color:#FF0000;">*</font>
+													<input type="text" id="phone_number" name="phone_number"
+														style="width:95.6%" placeholder="e.g. 0824513677"
+														maxlength="10"></input>
+												</td>
+												<td style="width: 20%;">
+													<label>Permanent</label>
+													<input type="radio" id="radiopermanent" name="radioPC"
+														value="Permanent" checked="true" style="width:50%;" />
+												</td>
+												<td>
+													<label>Consultant</label>
+													<input type="radio" id="radioconsultant" name="radioPC"
+														value="Consultant" style="width:50%;" />
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<!-- <button type="submit" class="btn btn-primary">Next</button> -->
+									<input type="button" name="next" id="aNext1"
+										class="next btn btn-primary" style="max-width: 8%; !important"
+										value="Next" />
+								</div>
+
+							</fieldset>
+
+							<fieldset id="fs_2" style="display:none">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="3"></td>
+											</tr>
+											<tr>
+												<td colspan="3" width="102.5%" bgcolor="#FFFFFF">
+													<b>Public Information</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3"></td>
+											</tr>
+											<tr>
+												<td rowspan="7">
+													<label>Work Address</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<font id="font_ad1" style="color:#FF0000;">*</font>
+													<input type="text" name="add_line1" id="ad1"
+														placeholder="Street Number" style="width: 98%;"></input>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<font id="font_ad2" style="color:#FF0000;">*</font>
+													<input type="text" name="add_line2" id="ad2"
+														placeholder="Street Name" style="width: 98%;"></input>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<font id="font_ad3" color="#F7F7EF">* </font>
+													<input type="text" name="add_line3" id="ad3"
+														placeholder="Building\Office Park " style="width: 98%;"></input>
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="" colspan="2">
+													<font id="font_country" style="color:#FF0000;">*</font>
+													<select name="country" id="country" placeholder="Country"
+														style="width:26%">
+														<option value="">-- Select Country--</option>
+														<t t-foreach="countries" t-as="countries">
+															<option t-att-value="countries[0]">
+																<t t-esc="countries[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="">
+													<font id="font_p_country" style="color:#FF0000;">*</font>
+													<select name="p_country" id="p_country" style="width: 53%;">
+														<option value="">-- Select Province --</option>
+														<!-- <t t-foreach="state" t-as="state"> <option t-att-value="state.id"> 
+															<t t-esc="state.name"/> </option> </t> -->
+													</select>
+												</td>
+												<td nowrap="">
+													<select name="city" style="width:171px" id="city">
+														<option value="">-- Select City--</option>
+														<!-- <t t-foreach="city" t-as="city"> <option t-att-value="city.id"> 
+															<t t-esc="city.name"/> </option> </t> -->
+													</select>
+												</td>
+
+											</tr>
+											<tr>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<select name="txtWorkSuburb" style="width:171px" id="txtWorkSuburb">
+														<option value="">-- Select Suburb--</option>
+														<!-- <t t-foreach="suburb" t-as="suburb"> <option t-att-value="suburb.id"> 
+															<t t-esc="suburb.name"/> </option> </t> -->
+													</select>
+												</td>
+												<td colspan="">
+
+													<input class="input" style="width: 171px" name="zip"
+														id="zip" onkeypress="javascript:keyNumerics();" maxlength="6"
+														value="" type="text" placeholder="Zip" />
+												</td>
+											</tr>
+
+											<tr>
+												<td rowspan="4">
+													<label>Position</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<input type="text" name="department" id="dept"
+														placeholder="Department" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<input type="text" name="job_title" id="job"
+														placeholder="Job Title" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<input type="text" name="manager" id="mngr"
+														placeholder="Manager" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<label>Organisation SDL Number</label>
+												</td>
+												<td colspan="">
+													<input type="text" name="organisation_sdl_no" id="organisation_sdl_no"
+														placeholder="L0211564654" />
+												</td>
+												<td>
+													<input type="text" name="organisation" id="organisation" />
+													<input type="hidden" name="organisation_id" id="organisation_id" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<label>Note</label>
+												</td>
+												<td colspan="2">
+													<textarea style="width:100%;" name="note" id="note"
+														placeholder="About You..." />
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<input type="button" name="next" id="aNext2"
+										class="next btn btn-primary" style="max-width: 8%; !important"
+										value="Next" />
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+
+							</fieldset>
+							<fieldset id="fs_3" style="display:none">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b>Personal Information</b>
+												</td>
+											</tr>
+
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">Contact
+													Information
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>Contact Number Home</label>
+												</td>
+												<td>
+													<input name="txtCntNoHome" id="txtCntNoHome" type="text"
+														size="10" placeholder="e.g. 0824513677" maxlength="10" />
+												</td>
+												<td width="25%">
+													<label>Contact Number Office</label>
+												</td>
+												<td>
+													<input name="txtCntNoOffice" id="txtCntNoOffice"
+														type="text" size="10" placeholder="e.g. 0824513677"
+														maxlength="10" />
+												</td>
+
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">Citizenship &amp;
+													Other Info
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>Citizen Resident Status</label>
+												</td>
+												<td width="25%">
+													<label>Country Of Nationality</label>
+												</td>
+
+												<td width="25%">
+													<label>R.S.A.Identification No</label>
+												</td>
+												<td width="25%">
+													<label>Birth Date</label>
+												</td>
+
+											</tr>
+											<tr>
+												<td>
+													<font style="color:#FF0000;">*</font>
+													<select name="cit_res" id="cit_res" style="width: 91%;">
+														<option value=""></option>
+														<option value="dual">D - Dual (SA plus other)</option>
+														<option value="other">O - Other</option>
+														<option value="sa">SA - South Africa</option>
+														<option value="unknown">U - Unknown</option>
+														<option value="PR">PR - Permanent Resident</option>
+													</select>
+												</td>
+												<td>
+													<select id="nat" name="nationality" style="width:100%">
+														<option value="">-- Select Country--</option>
+														<t t-foreach="countries1" t-as="countries">
+															<option t-att-value="countries[0]">
+																<t t-esc="countries[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+												<td>
+													<div id="identification">
+														<font style="color:#F7F7EF;" id="font_id_number">*</font>
+														<input type="text" name="id_no" id="id_no" style="width:95%" size="13"></input>
+													</div>
+												</td>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<input type="text" name="birth_date" placeholder="MM/DD/YYYY"
+														style="width:52%" id="datepicker1" value="" tabIndex="1" />
+													<input type="hidden" name="birth_date_value" id="birth_date_text"
+														value="" />
+												</td>
+
+
+											</tr>
+
+											<tr>
+												<td width="25%">
+													<label>Nationality Id</label>
+												</td>
+												<td width="25%">
+													<label>Passport No.</label>
+												</td>
+
+												<td width="25%">
+													<label>ID Document/Passport Upload</label>
+												</td>
+												<td width="25%">
+													<label>Home Language</label>
+												</td>
+
+											</tr>
+											<tr>
+
+												<td>
+													<div id="national">
+														<font style="color:#F7F7EF;" id="font_nat_id">*</font>
+														<input type="text" name="nat_id" id="nat_id" style="width:95%"></input>
+													</div>
+												</td>
+												<td>
+													<div id="passport">
+														<font style="color:#F7F7EF;" id="font_passport_no">*</font>
+														<input type="text" name="pass_no" id="pass_no"
+															style="width:95%"></input>
+													</div>
+												</td>
+												<td>
+													<div id="id_document">
+														<font id="font_id_document" style="color:#F7F7EF;">*</font>
+														<input style="width:171px" name="txtIdDocument" id="txtIdDocument"
+															type="file" size="15" value="" placeholder="Nationality Id"
+															multiple="multiple" />
+														<input style="width:171px" name="txtIdDocument_mod"
+															type="hidden" size="15" id="txtIdDocument_mod" />
+													</div>
+												</td>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<select name="home_lang" style="width:171px" id="home_lang">
+														<option value="">Select</option>
+														<t t-foreach="language" t-as="language">
+															<option t-att-value="language[0]">
+																<t t-esc="language[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+											</tr>
+											<tr id="unkonwn">
+												<td>
+													<label>Type</label>
+												</td>
+												<td>
+													<select name="unknown_type" id="unknown_type">
+														<option value=""></option>
+														<option value="political_asylum">Political Asylum</option>
+														<option value="refugee">Refugee</option>
+													</select>
+												</td>
+												<td>
+													<label>Type Document</label>
+												</td>
+												<td>
+													<input type="file" name="type_document" id="type_document" />
+													<input name="type_document_mod" type="hidden"
+														id="type_document_mod" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" bgcolor="FFFFFF">
+													<label>Additional Document Upload</label>
+												</td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>Qualification Documents</label>
+												</td>
+												<td width="25%">
+													<label> Professional Body</label>
+												</td>
+												<td width="25%">
+													<label>Statement Of Results For Assesors/Moderators</label>
+												</td>
+												<td width="25%">
+													<label>CV Document</label>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<font id="q_d" color="#FF0000">* </font>
+													<input style="width:171px" name="registrationDoc"
+														type="file" size="15" id="registrationDoc" />
+													<input style="width:171px" name="registrationDoc_mod"
+														type="hidden" size="15" id="registrationDoc_mod" />
+												</td>
+												<td>
+													<font id="p_d" color="#F7F7EF">* </font>
+													<input style="width:171px" name="professionalbodyDoc"
+														type="file" size="15" id="professionalbodyDoc" />
+													<input style="width:171px" name="professionalbodyDoc_mod"
+														type="hidden" size="15" id="professionalbodyDoc_mod" />
+												</td>
+												<td>
+													<font id="s_r" color="#FF0000">* </font>
+													<input style="width:171px" name="SRAM_Doc" type="file"
+														size="15" id="SRAM_Doc" />
+													<input style="width:171px" name="SRAM_Doc_mod" type="hidden"
+														size="15" id="SRAM_Doc_mod" />
+												</td>
+												<td>
+													<font id="c_v" color="#FF0000">* </font>
+													<input style="width:171px" name="cv_document" type="file"
+														size="15" id="cv_document" />
+													<input style="width:171px" name="cv_document_mod"
+														type="hidden" size="15" id="cv_document_mod" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">Status</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+
+											<tr>
+												<td width="25%">
+													<label>Gender</label>
+												</td>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<select name="gender" id="gender" style="width:100%">
+														<option value="">-- Select --</option>
+														<option value="male">Male</option>
+														<option value="female">Female</option>
+													</select>
+												</td>
+												<td width="25%">
+													<label>Marital Status</label>
+												</td>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<select name="marital" id="marital" style="width:100%">
+														<option value="">-- Select --</option>
+														<option value="single">Single</option>
+														<option value="married">Married</option>
+														<option value="widower">Widower</option>
+														<option value="divorced">Divorced</option>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<label>Disability</label>
+												</td>
+												<td>
+													<font style="color:#F7F7EF">*</font>
+													<select name="disability" id="disability" style="width:100%;">
+														<option value="no">No</option>
+														<option value="yes">Yes</option>
+													</select>
+												</td>
+												<td colspan="2">
+												</td>
+											</tr>
+
+
+
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<input type="button" name="next" id="aNext3"
+										class="next btn btn-primary" style="max-width: 8%; !important"
+										value="Next" />
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+
+							</fieldset>
+
+							<fieldset id="fs_4" style="display:none">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="3"></td>
+											</tr>
+											<tr>
+												<td colspan="3" width="102.5%" bgcolor="#FFFFFF">
+													<b>Address Information</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3"></td>
+											</tr>
+											<tr>
+												<td rowspan="7">
+													<label>Home Address</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<font color="#FF0000">* </font>
+													<input type="text" id="home_line1" name="home_line1"
+														placeholder="Street Number" style="width: 95%;"></input>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<font color="#F7F7EF">* </font>
+													<input type="text" id="home_line2" name="home_line2"
+														placeholder="Street Name" style="width: 95%;"></input>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<font color="#F7F7EF">* </font>
+													<input type="text" id="home_line3" name="home_line3"
+														placeholder="Building\Office Park " style="width: 95%;"></input>
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="" colspan="2">
+													<select name="home_country" id="home_country"
+														placeholder="Country" style="width:33%">
+														<option value="">-- Select Country--</option>
+														<t t-foreach="countries2" t-as="countries">
+															<option t-att-value="countries[0]">
+																<t t-esc="countries[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="">
+													<select name="home_p_country" id="home_p_country"
+														style="width:71%">
+														<option value="">-- Select Province --</option>
+														<!-- <t t-foreach="state1" t-as="state"> <option t-att-value="state.id"> 
+															<t t-esc="state.name"/> </option> </t> -->
+													</select>
+												</td>
+												<td nowrap="">
+													<select name="home_city" style="width:171px;" id="home_city">
+														<option value="">-- Select City--</option>
+														<!-- <t t-foreach="city1" t-as="city1"> <option t-att-value="city1.id"> 
+															<t t-esc="city1.name"/> </option> </t> -->
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<select name="txtHomeSuburb" style="width:155px" id="txtHomeSuburb">
+														<option value="">-- Select Suburb--</option>
+														<!-- <t t-foreach="suburb1" t-as="suburb1"> <option t-att-value="suburb1.id"> 
+															<t t-esc="suburb1.name"/> </option> </t> -->
+													</select>
+												</td>
+												<td nowrap="">
+													<input class="input" style="width:171px" name="home_zip"
+														id="home_zip" onkeypress="javascript:keyNumerics();"
+														maxlength="6" value="" type="text" placeholder="Zip" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<label>Postal Address Same as Home Address</label>
+												</td>
+												<td colspan="2">
+													<input id="postal_address" type="checkbox" name="address"
+														value="" />
+												</td>
+											</tr>
+											<tr id="postal_label">
+												<td rowspan="7">
+													<label>Postal Address</label>
+												</td>
+											</tr>
+
+											<tr id="tr_postal_line1">
+												<td colspan="2">
+													<font id="font_postal_line12" color="#FF0000">* </font>
+													<input type="text" id="postal_line1" name="postal_line1"
+														placeholder="Street Number" style="width: 95%;" />
+												</td>
+											</tr>
+											<tr id="tr_postal_line2">
+												<td colspan="2">
+													<font id="font_postal_line13" color="#F7F7EF">* </font>
+													<input type="text" id="postal_line2" name="postal_line2"
+														placeholder="Street Name" style="width: 95%;" />
+												</td>
+											</tr>
+											<tr id="tr_postal_line3">
+												<td colspan="2">
+													<font id="font_postal_line14" color="#F7F7EF">* </font>
+													<input type="text" id="postal_line3" name="postal_line3"
+														placeholder="Building\Office Park " style="width: 95%;" />
+												</td>
+											</tr>
+											<tr id="tr_postal_country">
+												<td nowrap="" colspan="2">
+													<select name="postal_country" id="postal_country"
+														placeholder="Country" style="width:33%">
+														<option value="">-- Select Country--</option>
+														<t t-foreach="countries3" t-as="countries">
+															<option t-att-value="countries[0]">
+																<t t-esc="countries[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+											</tr>
+											<tr id="tr_postal_city">
+												<td nowrap="">
+													<select name="postal_p_country" id="postal_p_country"
+														style="width:71%">
+														<option value="">-- Select Province --</option>
+														<!-- <t t-foreach="state2" t-as="state"> <option t-att-value="state.id"> 
+															<t t-esc="state.name"/> </option> </t> -->
+													</select>
+												</td>
+												<td nowrap="">
+													<select name="postal_city" style="width:171px;" id="postal_city">
+														<option value="">-- Select City--</option>
+														<!-- <t t-foreach="city2" t-as="city2"> <option t-att-value="city2.id"> 
+															<t t-esc="city2.name"/> </option> </t> -->
+													</select>
+												</td>
+
+											</tr>
+
+											<tr id="tr_txtPostalSuburb">
+												<td>
+													<select name="txtPostalSuburb" style="width:155px"
+														id="txtPostalSuburb">
+														<option value="">-- Select Suburb--</option>
+														<!-- <t t-foreach="suburb2" t-as="suburb2"> <option t-att-value="suburb2.id"> 
+															<t t-esc="suburb2.name"/> </option> </t> -->
+													</select>
+												</td>
+												<td nowrap="">
+													<input class="input" style="width: 171px" name="postal_zip"
+														id="postal_zip" onkeypress="javascript:keyNumerics();"
+														maxlength="6" value="" type="text" placeholder="Zip" />
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<input type="button" name="next" id="aNext4"
+										class="next btn btn-primary" style="max-width: 8%; !important"
+										value="Next" />
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+
+							</fieldset>
+							<fieldset id="fs_5" style="display:none">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											class="education">
+											<tr>
+												<td colspan="3">
+													<input type="hidden" name="assessors_moderators_ref"
+														id="assessors_moderators_ref" t-att-value="assessors_moderators_ref" />
+													<input type="hidden" name="qualification_idss" id="qualification_idss"
+														value="" />
+
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3" width="102.5%" bgcolor="#FFFFFF">
+													<b>Qualification</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3"></td>
+											</tr>
+											<tr style="min-height: 120px;" class="assessor_qualification">
+												<td class="menubar" style="font-weight: normal" nowrap="">Qualification
+												</td>
+												<td colspan="2" nowrap="">
+													<!-- <font color="#FF0000">* </font> -->
+													<select name="cboQualification" id="qualification"
+														class="demo" multiple="multiple">
+														<t t-foreach="qualification" t-as="qualification1">
+															<option t-att-value="qualification1[0]">
+																(
+																<t t-esc="qualification1[2]" />
+																&#160;)
+																<t t-esc="qualification1[1]" />
+																<!-- <div style="display:none;" t-foreach="qualification.qualification_line" 
+																	t-as="lines"> <t t-esc="lines.id_no"/> </div> -->
+															</option>
+														</t>
+													</select>
+
+												</td>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											id="show_qualification"
+											style="height: 350px !important;overflow-y: scroll !important;display: block;">
+											<tr class="heading">
+												<th width="10%">
+													<label>Type</label>
+												</th>
+												<th width="10%">
+													<label>ID No</label>
+												</th>
+												<th width="50%">
+													<label>Unit Standard Title</label>
+												</th>
+												<th width="10%">
+													<label>Pre-2009 NQF Level</label>
+												</th>
+												<th width="10%">
+													<label>NQF Level</label>
+												</th>
+												<th width="5%">
+													<label>Credits</label>
+												</th>
+												<th width="5%">
+													<input type="checkbox" id="selectAllQualifications" />
+												</th>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- Added by Ganesh For unit standards -->
+								<div class="form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											class="uniteducation">
+											<tr>
+												<td colspan="3">
+													<input type="hidden" name="qualification_unit_idss" id="qualification_unit_idss"
+														value="" />
+												</td>
+											</tr>
+											<tr style="min-height: 120px;" class="assessor_unit_qualification">
+												<td class="menubar" style="font-weight: normal" nowrap="">Unit
+													Standards
+												</td>
+												<td colspan="2" nowrap="">
+													<!-- <font color="#FF0000">* </font> -->
+													<select name="cboQualification" id="unit_qualification"
+														class="demo" multiple="multiple">
+														<t t-foreach="qualification" t-as="unit_qualification">
+															<option t-att-value="unit_qualification[0]">
+																(
+																<t t-esc="unit_qualification[2]" />
+																&#160;)
+																<t t-esc="unit_qualification[1]" />
+															</option>
+														</t>
+													</select>
+
+												</td>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											id="show_unit_qualification"
+											style="height: 350px !important;overflow-y: scroll !important;display: block;">
+											<tr class="unitheading">
+												<th width="10%">
+													<label>Type</label>
+												</th>
+												<th width="10%">
+													<label>ID No</label>
+												</th>
+												<th width="50%">
+													<label>Unit Standard Title</label>
+												</th>
+												<th width="10%">
+													<label>Pre-2009 NQF Level</label>
+												</th>
+												<th width="10%">
+													<label>NQF Level</label>
+												</th>
+												<th width="5%">
+													<label>Credits</label>
+												</th>
+												<th width="5%">
+													<input type="checkbox" id="selectAllUnitQualifications" />
+												</th>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- End -->
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<button name="cmdNext" id="submit_assessors_moderators"
+										class="btn btn-primary">Submit
+									</button>
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+							</fieldset>
+							<!-- <div id="dialog-message-assessors_moderators" title="Thank you 
+								for Applying"> </div> -->
+						</form>
+					</div>
+				</div>
+			</t>
+		</template>
+		<template id="website.RegistrationConfirmationMessage" name="Registration Confirmation Message"
+			page="True">
+			<t t-call="website.layout">
+				<div id="wrap1" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<form id="frmRestrationConfirmationMsg" method="post"
+							name="frmRestrationConfirmationMsg" role="form"
+							style="z-index:1 !important; position:relative !important"
+							enctype="multipart/form-data">
+							<t t-if="assessors_moderators_ref">
+								<fieldset
+									style="
+								    width: 400px;
+								    text-align: center;
+								    margin-left: 30%;
+								    background-color: rgba(255, 255, 255, 0.86);
+								    float: left;
+								    /* margin: 0px; */
+								    
+								    z-index: 99999999;
+								   
+								    /* height: 500px; */
+								    display: block;
+								    padding: 25px; border:solid #000 2px;">
+
+
+
+									<h3 align="center">Registration Successful</h3>
+									<br />
+									<t t-if="assessor">
+										<p>
+											Thank you for your Assessor application.
+											<br />
+											Your application will be evaluated.
+											<br />
+											Your Reference Number is :
+											<b>
+												<span t-esc="assessors_moderators_ref" />
+											</b>
+										</p>
+									</t>
+									<t t-if="moderator">
+										<p>
+											Thank you for your Moderator application.
+											<br />
+											Your application will be evaluated.
+											<br />
+											Your Reference Number is :
+											<b>
+												<span t-esc="assessors_moderators_ref" />
+											</b>
+										</p>
+									</t>
+								</fieldset>
+							</t>
+							<t t-if="provider_accreditation_ref">
+								<fieldset
+									style="
+								    width: 400px;
+								    text-align: center;
+								    margin-left: 30%;
+								    background-color: rgba(255, 255, 255, 0.86);
+								    float: left;
+								    /* margin: 0px; */
+								    
+								    z-index: 99999999;
+								   
+								    /* height: 500px; */
+								    display: block;
+								    padding: 25px; border:solid #000 2px;">
+									<h3 align="center">Registration Successful</h3>
+									<br />
+									<p>
+										Thank you for your Provider application.
+										<br />
+										Your application will be evaluated.
+										<br />
+										Your Reference Number is :
+										<b>
+											<span t-esc="provider_accreditation_ref" />
+										</b>
+									</p>
+								</fieldset>
+							</t>
+							<t t-if="sdf_reference_no">
+								<fieldset
+									style="
+								    width: 400px;
+								    text-align: center;
+								    margin-left: 30%;
+								    background-color: rgba(255, 255, 255, 0.86);
+								    float: left;
+								    /* margin: 0px; */
+								    
+								    z-index: 99999999;
+								   
+								    /* height: 500px; */
+								    display: block;
+								    padding: 25px; border:solid #000 2px;">
+									<h3 align="center">Registration Successful</h3>
+									<br />
+									<p>
+										Thank you for your SDF application.
+										<br />
+										Your application will be evaluated.
+										<br />
+										Your Reference Number is :
+										<b>
+											<span t-esc="sdf_reference_no" />
+										</b>
+									</p>
+								</fieldset>
+							</t>
+						</form>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

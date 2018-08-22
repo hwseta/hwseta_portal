@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record id="transche_payment_form_view" model="ir.ui.view">
+            <field name="name">transche.payment.form.view</field>
+            <field name="model">transche.payment</field>
+            <field name="arch" type="xml">
+            	<form string='Tranche Payment Configuration'>
+            		<sheet>
+            			<group string="Tranche Payment Configuration">
+            				<group>
+            				    <field name='funding_year' required="1" on_change="onchange_funding_year(funding_year)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+            					<field name="project_type" required="1" on_change="onchange_project_type(project_type)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+            					<field name='project_id' required="1" on_change="onchange_project(project_id)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+			            		<field name="category_type" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+			            		<field name="category" attrs="{'required': [('category_type', 'in',['18.1','18.2'])],'readonly': [('category_type', 'not in',['18.1','18.2'])]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+            				</group>
+            				<group>
+            				    <field name='name' readonly="1"/>
+            					<field name='trigger_jv' on_change="onchange_trigger(trigger_jv)" required="1" domain="[('model','in',['learning.programme','monitor.and.evaluate','provider.assessment'])]" widget="selection"/>
+            					<field name='object_state_id' domain="[('model_id','=',trigger_jv)]" invisible="1"/>
+            					<field name='employed_unemployed' invisible="1"/>
+            					<field name="no_of_tranche" attrs="{'required':[('category_type', '=', '18.1')],'invisible':[('category_type','=','18.2')]}"/>
+            					<field name="no_of_tranche_18_2" attrs="{'required':[('category_type', '=', '18.2')],'invisible':[('category_type','=','18.1')]}"/>
+            					<field name='disc_expense_acc' required="1" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+            				</group>
+            			</group>
+            			<notebook>
+	            			<page string="Fees Structure">
+			            		<group>
+		            				<field name="get_fees" invisible="1"/>
+		            				<button name="action_tranche_fees_structure" string="Get Fees" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-down" groups="project.group_project_manager,hwseta_finance.group_cfo,account.group_account_manager"/>
+		            			</group>
+		            			<group>
+		           					<field name="tranche_fees_ids" nolabel="1">
+		           						<tree string="Fees Structure" editable="bottom" no_create="True">
+		           							<field name="fees_id" required="1" readonly="1"/>
+		           							<field name="employee_type" required="1" readonly="1"/>
+		           							<field name="tranche_type" required="1"/>
+											<field name="percentage"/>
+											<field name="tranche_payment_id" invisible="1"/>
+		           						</tree>
+		           					</field>
+		            			</group>
+	            			</page>
+	            			<page string="Tranche Document">
+	            				<group>
+	            					<field name="tranche_document_ids" nolabel="1" > 
+	            						<tree string ="Tranche Document" editable="bottom" create="0">
+	            							<field name="name" required="1"/>
+	            							<field name="required"/>
+	            						</tree>
+	            					</field>
+	            				</group>
+	            			</page>
+            			</notebook>
+
+            		</sheet>
+            		<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+            	</form>
+            </field>
+        </record>
+        
+        <record id="transche_payment_tree_view" model="ir.ui.view">
+            <field name="name">transche.payment.tree.view</field>
+            <field name="model">transche.payment</field>
+            <field name="arch" type="xml">
+            	<tree string='Tranche Payment Configuration'>
+            		<field name='name'/>
+            		<field name='trigger_jv'/>
+<!--             		<field name='object_state_id'/> -->
+					<field name="project_type"/>
+					<field name="project_id"/>
+<!--             	<field name="employed_unemployed"/> -->
+            		<!-- <field name='course_fee'/>
+					<field name='allowance'/>
+					<field name='uniform'/> -->
+					<!-- <field name='journal_id'/>
+					<field name='emp_sdlno_cr_account_id'/>
+					<field name='disc_grant_dr_account_id'/> -->
+            	</tree>
+            </field>
+        </record>
+        
+        <record id="transche_payment_search_view" model="ir.ui.view">
+            <field name="name">transche.payment.search.view</field>
+            <field name="model">transche.payment</field>
+            <field name="arch" type="xml">
+            	<search string='Tranche Payment Configuration'>
+            		<field name='name'/>
+            		<field name='trigger_jv'/>
+					<field name="project_type"/>
+					<field name="project_id"/>
+            		<field name="employed_unemployed"/>
+            	</search>
+            </field>
+        </record>        
+        
+        <!-- Transche Payment Action -->
+        <record id="action_transche_payment" model="ir.actions.act_window">
+            <field name="name">Tranche Payment Configuration</field>
+            <field name="res_model">transche.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="transche_payment_tree_view"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to configure Tranche Payment.
+              </p>
+            </field>
+        </record>
+        
+        <!-- <menuitem id="menu_transche_payment" name="Tranche Payment" parent="menu_sdp_master" sequence="4" groups="hwseta_sdp.group_sdp_manager"/> -->
+        <menuitem id="child_menu_transche_payment" name="Tranche Payment Configuration" parent="menu_sdp_project" action="action_transche_payment" sequence="5"/>
+        
+        
+        <!-- Inheriting Learner Programme View to adding 1st transche payment paid status  -->
+        <record id="form_view_learner_programme_inherit_transche" model="ir.ui.view">
+            <field name="name">form.view.learner.programme.inherit.transche</field>
+            <field name="model">learning.programme</field>
+            <field name="inherit_id" ref="form_view_learner_programme"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form/sheet/group[@string='Employer Details']/group[3]/field[@name='learner_loaded']" position="after">
+            		<field name="transche_paid" invisible="1"/>
+            	</xpath>
+            </field>
+        </record>
+        
+        <!-- Inheriting Learner Programme View to adding 2nd transche payment paid status  -->
+       <record id="form_view_monitor_evaluate_inherit_monitored" model="ir.ui.view">
+            <field name="name">form.view.monitor.evaluate.inherit.monitored</field>
+            <field name="model">monitor.and.evaluate</field>
+            <field name="inherit_id" ref="form_view_monitor_evaluate"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form[@string='Monitoring and Evaluation']/group[@string='Organisational Details']/group[2]/field[@name='amount_outstanding']" position="after">
+            		<field name="monitored" invisible="1"/>
+            	</xpath>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Skill Development Page === -->
+		<template id="skill_development" name="Skill Development"
+			page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-271"
+											class="oc-post oc-article  post-271 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Skills Development (SDP)</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Overview and Functions of SDP Division</h2>
+												<p>The Skills Development Planning (SDP) Division is divided
+													into three sub-divisions, namely:</p>
+												<ul>
+													<li>Learning Programmes</li>
+													<li>Workplace Skills Planning</li>
+													<li>Projects</li>
+												</ul>
+												<p>The
+													SDP Division’s core mandate is to co-ordinate support by
+													encouraging constituent registered employers to submit
+													mandatory grant reports (workplace skills plans and
+													implementation reports) as per the Skills
+													Development Act and Skills
+													Development Levies act.
+												</p>
+												<p>Targets set out for the division in addressing skills
+													needs within the Health and Social development sector:</p>
+												<ul>
+													<li>To register and implement learning programmes
+														(Learnerships, Skills Programmes, Internships and
+														Bursaries)</li>
+													<li>To administer the submission of Workplace Skills Plans
+														and Implementation Reports (WSPIRs)</li>
+													<li>To support / facilitate the implementation of the
+														National Skills Development Strategy</li>
+													<li>To capacitate Skills Development Facilitators (SDFs) in
+														driving the NSDS.</li>
+													<li>Assist stakeholders with any skills development/ HWSETA
+														related processes.</li>
+												</ul>
+												<p> Functions:</p>
+												<ul>
+													<li>Receiving, capturing and approving Workplace Skills
+														Plans and Implementation Reports </li>
+													<li>Implement training of sector specialists / SDFs on the
+														Sector Guide</li>
+													<li>Administering Change of SETA Jurisdiction applications
+													</li>
+													<li>Funding the training of learners on the New Venture
+														Creation qualification, and exploring opportunities to
+														support the establishment of enterprises for them</li>
+													<li>Funding the placement of learners to gain Work
+														Experience. This could be through directly approaching
+														employers or by formalising agreements with Further and
+														Higher Education Institutions for the purposes of learner
+														placement</li>
+													<li>Receiving and approving Expression of Interest
+														applications</li>
+													<li>Issuing of proof of registration and completion of
+														learners (necessary for those employers who qualify to
+														receive the Tax Rebate)</li>
+												</ul>
+												<h2>Contacts</h2>
+												<p>Click on the name below to send an e-mail</p>
+												<table width="100%" class="contacttable" border="0"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Title</td>
+															<td class="contactshead" width="30%">Tel </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:patricks@hwseta.org.za">Mr. Patrick Samuels</a>
+															</td>
+															<td class="contacts" width="30%">Executive Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:molokom@hwseta.org.za">Ms. Moloko Magolele</a>
+															</td>
+															<td class="contacts" width="30%">Divisional Secretary</td>
+															<td class="contacts" width="30%">(011) 607 6975</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Learning Programmes Sub-Division</h3>
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:nhlanhlam@hwseta.org.za">Mr. Nhlanhla Motsa</a>
+															</td>
+															<td class="contacts" width="30%">Learning Programme Manager
+															</td>
+															<td class="contacts" width="30%">(011) 607 6966 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:maureens@hwseta.org.za">Ms. Maureen Sigamla</a>
+															</td>
+															<td class="contacts" width="30%">Learning Programme Officer
+															</td>
+															<td class="contacts" width="30%">(011) 607 6954 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:glorym@hwseta.org.za">Ms. Glory Msomi</a>
+															</td>
+															<td class="contacts" width="30%">Learning Programme
+																Administrator</td>
+															<td class="contacts" width="30%">Communicate by e-mail</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:lindiwem@hwseta.org.za">Ms. Lindiwe Malambe</a>
+															</td>
+															<td class="contacts" width="30%">Learning Programme
+																Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6922 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:nozimbalia@hwseta.org.za">Ms. Nozimbali Alidi</a>
+															</td>
+															<td class="contacts" width="30%">Learning Programme
+																Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6935</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:preciousm@hwseta.org.za">Ms. Precious Molosiwa</a>
+															</td>
+															<td class="contacts" width="30%">Learning Programme
+																Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6939 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:innocentiam@hwseta.org.za">Ms Innocentia Mokone</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 6934 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:enkeyl@hwseta.org.za">Mr Enkey Lechaba</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 6921</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>WSP Sub-division</h3>
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:bronwend@hwseta.org.za">Ms. Bronwen Du Plessis</a>
+															</td>
+															<td class="contacts" width="30%">WSP Manager</td>
+															<td class="contacts" width="30%">(011) 607 7022</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:christol@hwseta.org.za">Mr. Christo Lebatie</a>
+															</td>
+															<td class="contacts" width="30%">WSP Administrator</td>
+															<td class="contacts" width="30%">Communicate by e-mail</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:samuelt@hwseta.org.za">Mr. Samuel Teffo</a>
+															</td>
+															<td class="contacts" width="30%">WSP Evaluator</td>
+															<td class="contacts" width="30%">(011) 607 6951 </td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:tisetsos@hwseta.org.za">Ms Tiisetso Shidi</a>
+															</td>
+															<td class="contacts" width="30%">WSP Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6962</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:matevhur@hwseta.org.za">Ms Matevhu Ramapala</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 6962</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Projects Sub-division</h3>
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+															<td class="contactsnoline" width="30%"> 
+															</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:luyandal@hwseta.org.za">Mrs. Luyanda Lokwe</a>
+															</td>
+															<td class="contacts" width="30%">Projects Manager</td>
+															<td class="contacts" width="30%">(011) 607 6920</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:meisiel@hwseta.org.za">Ms. Meisie Lekhotla</a>
+															</td>
+															<td class="contacts" width="30%">Projects Officer</td>
+															<td class="contacts" width="30%">(011) 607 6946</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:nkelem@hwseta.org.za">Ms Nkele Mphela</a>
+															</td>
+															<td class="contacts" width="30%">Projects Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6963</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>
+
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<openerp>
+		<data>
+		
+			<record id="corporate_services_tree" model="ir.ui.view">
+	            <field name="name">corporate.services.tree</field>
+	            <field name="model">corporate.services</field>
+	            <field name="arch" type="xml">
+	            	<tree string="Corporate_Services Management">
+	            		<field name="name"/>
+	            	</tree>
+	            </field>
+	         </record>
+	         
+			<record id="corporate_services_form" model="ir.ui.view">
+	            <field name="name">corporate.services.form</field>
+	            <field name="model">corporate.services</field>
+	            <field name="arch" type="xml">
+	            	<form string="Corporate_Services Management">
+	            		<sheet>
+		            		<group>
+		            			<field name="name"/>
+		            		</group>
+	            		</sheet>
+	            	</form>
+	            </field>
+	         </record>
+	         
+	         <record id="action_corporate_services_form" model="ir.actions.act_window">
+	            <field name="name">Corporate Services</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">corporate.services</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">tree,form</field>
+	            <field name="view_id" ref="corporate_services_tree"/>
+	        </record>
+	        
+	        <menuitem id="menu_corporate_services" name="Corporate Services"/>
+	        
+<!--
+	        <menuitem name="Purchase Requisition" parent="menu_corporate_services" id="stock_indent.menu_indent_indent_main" sequence="1" />
+-->
+	        
+	        <menuitem id="menu_corporate_services_transactions" name="Transactions" parent="menu_corporate_services" sequence="2"/>
+	        
+	        <menuitem id="menu_inventory_control" name="Inventory Control" parent="menu_corporate_services_transactions" action="action_corporate_services_form" sequence="1"/>
+	        
+	      	<menuitem id="menu_post_office" name="Post Office" parent="menu_corporate_services" sequence="3"/>
+
+	        
+	        <menuitem id="menu_mail_collection" name="Mail Collection" parent="menu_post_office" action="action_corporate_services_form" sequence="2"/>
+	        <menuitem id="menu_delivery_of_mail" name="Delivery of Mail" parent="menu_post_office" action="action_corporate_services_form" sequence="3"/>
+	        
+	        
+	        
+	        <menuitem id="menu_retrieval_of_file" name="Retrieval of file" parent="menu_corporate_services_transactions" action="action_corporate_services_form" sequence="4"/>
+	        <menuitem id="menu_sourcing_of_office" name="Sourcing Of Office Space" parent="menu_corporate_services_transactions" action="action_corporate_services_form" sequence="5"/>
+	        <menuitem id="menu_ofice_maintenance" name="Office Maintenance" parent="menu_corporate_services_transactions" action="action_corporate_services_form" sequence="6"/>
+	        <menuitem id="menu_driver_and_messenger" name="Driver services" parent="menu_corporate_services_transactions" action="action_corporate_services_form" sequence="7"/>
+	     	<menuitem id="menu_driver_and_messenger" name="Messenger services" parent="menu_corporate_services_transactions" action="action_corporate_services_form" sequence="7"/>
+
+
+
+			<!-- Indent/Requisiton Menus -->
+
+
+			<menuitem name="Requisition" parent="menu_corporate_services" id="menu_requisition" sequence="1" />
+			<menuitem action="stock_indent.action_indent_indent" name="Purchase Requisition" parent="menu_requisition" id="menu_purchase_requisition_cs" sequence="1" />
+			<menuitem action="stock_indent.action_indent_indent" name="Petty Cash Requisition" parent="menu_requisition" id="menu_petty_cash_requisition" sequence="2" />
+			<menuitem action="stock_indent.action_indent_indent" name="Travel Requisition" parent="menu_requisition" id="menu_travel_requisition" sequence="3" />
+
+
+
+	     </data>
+	</openerp>

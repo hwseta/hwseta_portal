@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<template id="petty_cash_layout">
+		    <t t-if="o and 'company_id' in o">
+		        <t t-set="company" t-value="o.company_id"></t>
+		    </t>
+		    <t t-if="not o or not 'company_id' in o">
+		        <t t-set="company" t-value="res_company"></t>
+		    </t>
+		    <t t-raw="0" />
+		    <t t-call="hwseta_finance.petty_cash_layout_header" />
+		</template>
+		
+		<template id="petty_cash_layout_header">
+			 <div class="header">
+			 	<div>
+			 		<img style="width:200px" class="img img-responsive" src="/hwseta_finance/static/src/img/hwseta.jpg"/>
+      				<div class="row mt16 mb64"></div>
+      				<div><center><h3>Petty Cash Report</h3></center></div>
+      				<div class="row mt16 mb64"></div>
+      			</div>
+			 </div>
+			 <div class="footer">
+		 		<div>
+		            <ul class="list-inline text-center">
+		                <li>Page:</li>
+		                <li><span class="page"/></li>
+		                <li>/</li>
+		                <li><span class="topage"/></li>
+		            </ul>
+    			</div>
+			 </div>
+		</template>
+		
+		<template id="leavy_unpaid_layout">
+		    <t t-if="o and 'company_id' in o">
+		        <t t-set="company" t-value="o.company_id"></t>
+		    </t>
+		    <t t-if="not o or not 'company_id' in o">
+		        <t t-set="company" t-value="res_company"></t>
+		    </t>
+		    <t t-raw="0" />
+		    <t t-call="hwseta_finance.leavy_unpaid_layout_header_footer" />
+		</template>
+		
+		<template id="leavy_unpaid_layout_header_footer">
+			 <div class="header">
+			 	<div>
+			 		<img style="width:200px" class="img img-responsive" src="/hwseta_finance/static/src/img/hwseta.jpg"/>
+      				<div><center><h3>Leavy Unpaid Employers</h3></center></div>
+      			</div>
+			 </div>
+			 <div class="footer">
+		 		<div>
+		            <ul class="list-inline text-center">
+		                <li>Page:</li>
+		                <li><span class="page"/></li>
+		                <li>/</li>
+		                <li><span class="topage"/></li>
+		            </ul>
+    			</div>
+			 </div>
+		</template>
+		
+	</data>
+</openerp>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Recruitment Page === -->
+		<template id="recruitment" name="Recruitment" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+									
+									<div class="oc-layout-cell oc-content">
+										<article id="post-15"
+											class="oc-post oc-article  post-15 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Recruitment</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Together, bridging the skills gap in health and social
+													development for the future</h2>
+												<p>At the HWSETA, people matter and are at the heart of service
+													delivery. We strive to make a difference to people’s lives by
+													contributing to skills development throughout South Africa in the
+													sectors and communities that we serve.</p>
+												<p>In all that we do, we are guided by our common goal – to bridge
+													the skills gap and make HWSETA a great SETA that delivers services
+													and training to our stakeholders ; a Seta that has a positive
+													impact on our people . Our shared values of integrity,
+													transparency, transformation and service excellence direct our
+													behaviour.</p>
+												<p>People and learners are testimony to the work we do – a spectrum
+													of training courses; disciplines, sectors and locations. A career
+													at the HWSETA provides opportunities to experience the positive
+													impact that our training and development initiatives make.</p>
+												<p>
+													<strong>Committed , skilled and inspired people of integrity are at
+														the centre of our delivery model.</strong>
+												</p>
+												<p>
+													<code></code>
+												</p>
+												<code>
+													<div id="pdf_download_red">
+														<a href="http://www.hwseta.org.za/?cat=9">Click here </a>
+														to see a list of positions available within the HWSETA
+													</div>
+												</code>
+												<p>
+													<code></code>
+												</p>
+											</div>
+										</article>
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

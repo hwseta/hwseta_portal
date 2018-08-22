@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Added Project Type in Project form to state whether it is Learnership, Internship or Bursary -->
+		<record id="edit_project_inherit_for_project_type" model="ir.ui.view">
+            <field name="name">edit.project.inherit.for.project.type</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@string='Re-open project']" position="before">
+	                <button name="set_publish" string="Publish" type="object" states="open" groups="base.group_user,hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager"/>
+                </xpath>
+                <xpath expr="//header/button[@string='Close Project']" position="replace">
+                    <button name="set_done" string="Close Project" type="object" states="open,pending,publish" groups="base.group_user,hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager"/>
+                </xpath>
+            	<xpath expr="//header/field[@name='state']" position="replace">
+                	<field name="state" widget="statusbar" statusbar_visible="open,publish,close" statusbar_colors='{"pending":"blue"}' readonly="1"/>
+            	</xpath>
+            	<xpath expr="//div[@class='oe_title']/label[@for='name']" position="before">
+            		<group>
+            			<group>
+		            		<label for="eoi_id" class="oe_edit_only" string="EOI ID"/>
+		            		<h1>
+		            			<field name="eoi_id" required="1" string="Funding Year" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		            		</h1>  
+		            		
+		            		<label for="seta_funding_year" class="oe_edit_only" string="Funding Year"/>
+		            		<h1>
+		            			<field name="seta_funding_year" required="1" on_change="onchange_funding_year(seta_funding_year)" string="Funding Year" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		            		</h1>            		
+		            		<label for="project_types" class="oe_edit_only" string="Project Type"/>
+		            		<h1>
+		            			<field name="project_types" required="1" on_change="onchange_project_type(project_types)" string="Project Type" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		            		</h1>
+		   	            		<field name="project_id" on_change="onchange_project(project_id)" required="1" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+			            		<field name="category_type" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+			            		<field name="category" attrs="{'required': [('category_type', 'in',['18.1','18.2'])],'readonly': [('category_type', 'not in',['18.1','18.2'])]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+            			</group>
+            			<group>
+            				<field name="project_description" string="Description" widget="html"/>
+            			</group>
+            		</group>
+            	</xpath>
+	            <xpath expr="//div[@class='oe_title']/div[@name='options_active']" position="after">
+<!-- 		            <label for="project_description" class="oe_edit_only" string="Description"/>
+		            	<field name="project_description" string="Description" widget="html"/>
+ -->		        </xpath>   
+            	<xpath expr="//field[@name='name']" position="attributes">
+	            		<attribute name='invisible'>1</attribute>
+	            </xpath>
+	            <xpath expr="//label[@for='name']" position="attributes">
+	            		<attribute name='invisible'>1</attribute>
+	            </xpath>	
+              	<xpath expr="//field[@name='name']" position="after">
+<!-- 	            		<field name="project_id" on_change="onchange_project(project_id)" required="1" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+ -->	            </xpath> 
+            	<xpath expr="//form[@string='Project']/sheet[@string='Project']/group/group[1]/field[@name='partner_id']" position="after">
+<!--             		<field name='project_types' required="1" on_change="onchange_project_type(project_types)"/> -->
+<!--             		<field name="project_id" on_change="onchange_project(project_id)"/> -->
+
+            	</xpath>
+            	<xpath expr="//form[@string='Project']/sheet[@string='Project']/notebook" position="inside">
+            		<page string="Employer's Learner Approval">
+            			<field name="employer_request_ids">
+            				<tree string="Employer's Learner Approval" editable="bottom" create="0">
+            					<field name="employer_id" readonly="1"/>
+            					<field name="req_employed" readonly="1" sum="Requested Employed"/>
+            					<field name="req_unemployed" readonly="1" sum="Requested Unemployed"/>
+            					<field name="ratio_req_employed" readonly="1" sum="Ratio Requested Employed"/>
+            					<field name="ratio_req_unemployed" readonly="1" sum="Ratio Requested Unemployed"/>
+            					<field name="app_employed" readonly="1" sum="Approved Employed"/>
+            					<field name="app_unemployed" readonly="1" sum="Approved Unemployed"/>
+            					<field name="cost_required" sum="Total Cost"/>
+            					<field name="enroll_project_id" invisible="1"/>
+            					<field name="project_id" invisible="1"/>
+            					<field name="eoi_id" readonly="1"/>
+            				</tree>
+            			</field>
+            			<field name="update_toeoi" invisible="1"/>
+            			<field name="eoi_id_reference_invisible" invisible="0"/>
+            			<button name="compute_allocation" string="Compute" type="object" class="oe_inline oe_stat_button" icon="fa-calculator"/>
+            			<button name="update_to_eoi" string="Update to EOI" type="object" class="oe_inline oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('update_toeoi', '=', False)]}" confirm="Are you sure you want to update to EOI?"/>
+            		</page>
+            	</xpath>
+           		<xpath expr="//form[@string='Project']/sheet[@string='Project']/notebook/page[2]" position="before">
+            		<page string="Fees Structure">
+	            		<group>
+	            			<group>
+	            				<field name="fees_defined" invisible="1"/>
+	            				<!-- <button name="action_fees_structure" string="Get Fees" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-down" attrs="{'invisible': [('fees_defined', '=', True)]}"/> -->
+	            				<button name="action_fees_structure" string="Get Fees" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-down" invisible= "1"/>
+	            			</group>
+	            		</group>
+	            		<group>
+						<field name="fees_employed" attrs="{'required':[('category_type', '=', '18.1')],'invisible':[('category_type','=','18.2')]}">
+							<tree string="Fees Employed" editable="bottom" create="1">
+								<field name="course_id"/>
+								<field name="course_amount" sum="Course Amount" />							
+							</tree>
+						</field>
+            			<field name="fees_unemployed" attrs="{'required':[('category_type', '=', '18.2')],'invisible':[('category_type','=','18.1')]}">
+            				<tree string="Fees Unemployed" editable="bottom" create="1">
+								<field name="course_id" />
+								<field name="course_amount" sum="Course Amount"/>            				
+            				</tree>
+            			</field> 	            		
+	            		</group>
+           			</page>              		
+           		</xpath>            	
+            </field>
+        </record>
+		
+		<record id="view_project_inherit_for_budget" model="ir.ui.view">
+            <field name="name">project.project.tree.inherit.for.budget</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project"/>
+        	<field name="arch" type="xml">
+        		<xpath expr="//tree[@string='Projects']/field[@name='partner_id']" position="before">
+        			<field name="budget_applied"/>
+        		</xpath>
+        		<field name="name" position="after">
+        			<field name="project_types" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+        			<field name="seta_funding_year" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+        		</field>
+            	<field name="partner_id" position="replace">
+            		<field name="partner_id" invisible="1"/>
+            	</field>
+            	<field name="planned_hours" position="replace">
+            		<field name="planned_hours" invisible="1"/>
+            	</field>
+            	<field name="total_hours" position="replace">
+            		<field name="total_hours" invisible="1"/>
+            	</field>
+            	<field name="effective_hours" position="replace">
+            		<field name="effective_hours" invisible="1"/>
+            	</field>   
+        	</field>
+        </record>
+	        
+         <record id="view_project_search_view" model="ir.ui.view">
+            <field name="name">view.project.project.search.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+            	<field name="name" position="after">
+            		<field name="project_id"/>
+            		<field name="project_types"/>
+            		<field name="eoi_id"/>
+            	</field>
+            	<xpath expr="/search/group[1]" position="inside">
+            		  <filter string="Project" name="Project" context="{'group_by':'name'}"/>
+            		  <filter string="Project Type" name="Project Type" context="{'group_by':'project_types'}"/>
+            		  <filter string="Financial Year" name="Financial Year" context="{'group_by':'seta_funding_year'}"/>
+            		   <filter string="EOI ID" name="EOI ID" context="{'group_by':'eoi_id'}"/>
+            	</xpath>
+            </field>
+        </record>		        
+	                 
+        <record id="project.open_view_project_all" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form,gantt,kanban</field>
+            <field name="view_id" ref="project.view_project"/>
+            <field name="search_view_id" ref="view_project_search_view"/>
+            <field name="context">{'search_default_Current': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                  Click to start a new project.
+                </p><p>
+                  Projects are used to organize your activities; plan
+                  tasks, track issues, invoice timesheets. You can define
+                  internal projects (R&amp;D, Improve Sales Process),
+                  private projects (My Todos) or customer ones.
+                </p><p>
+                  You will be able collaborate with internal users on
+                  projects or invite customers to share your activities.
+                </p>
+            </field>
+        </record>	        
+	
+		
+	
+		<!-- Learnership/Enrollment Form View -->
+		<record id="form_view_learner_programme" model="ir.ui.view">
+            <field name="name">form.view.learner.programme</field>
+            <field name="model">learning.programme</field>
+            <field name="arch" type="xml">
+            	<form string="Expression of Interest">
+            		<header>
+            			<button name="action_submit_learnership" type="object" string="Submit" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','pending'), ('submitted', '=', True)]}" />
+            			<button name="action_approve_learnership" type="object" string="Approve" class="oe_highlight" attrs="{'invisible':['|','|','|',('state','&lt;&gt;','conditional_approval'),('approved','=',True),('accept_moa','=',False)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_projects.group_learning_programme_manager,project.group_project_manager"/>
+            			<button name="action_deny_learnership" type="object" string="Reject" class="oe_highlight" attrs="{'invisible':['|','|','|', ('state','&lt;&gt;','conditional_approval'), ('approved', '=', True), ('rejected1', '=', True),('accept_moa','=',False)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_projects.group_learning_programme_manager,project.group_project_manager"/>
+            			<button name="action_load_learners" type="object" string="Load Learners" class="oe_highlight" attrs="{'invisible':['|',('state','&lt;&gt;','approved'),('learner_loaded','=',True)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_finance.group_employer_user"/>
+            			<button name="action_recommend" type="object" string="Recommend" class="oe_highlight" attrs="{'invisible':[('state','&lt;&gt;','evaluation')]}"  groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_wsp_officer,hwseta_projects.group_project_officer,hwseta_projects.group_learning_programmes_officer"/>
+            			<button name="action_conditional_approval" type="object"  string="Request Conditional Approval" class="oe_highlight" attrs="{'invisible':['|',('conditional_approval','=',True),('state','&lt;&gt;','recommended')]}" groups="hwseta_sdp.group_sdp_manager,hwseta_finance.group_employer_user,hwseta_sdp.group_sdf_user,project.group_project_manager,hwseta_projects.group_learning_programme_manager,hwseta_sdp.group_wsp_officer,hwseta_projects.group_project_officer,hwseta_projects.group_learning_programmes_officer"/>
+            			<button name="action_cond_approve" type="object" string="Conditional Approve" class="oe_highlight" attrs="{'invisible':['|',('state','&lt;&gt;','recommended'),('conditional_approval','=',False)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<button name="action_evaluate" type="object" string="Evaluate" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','submitted'),('evaluate', '=', True)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_projects.group_learning_programme_manager,project.group_project_manager,hwseta_sdp.group_wsp_officer,hwseta_projects.group_project_officer,hwseta_projects.group_learning_programmes_officer,hwseta_sdp.group_wsp_administrator,hwseta_projects.group_learning_programmes_administrator,hwseta_projects.group_projects_administrators"/>
+            			<button name="action_calculate_moa" type="object" string="Attach MOA" class="oe_highlight" attrs="{'invisible':['|','|',('state','&lt;&gt;','conditional_approval'),('is_moa_attached','=',True),('conditional_approval','=',False)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_finance.group_employer_user,hwseta_sdp.group_sdf_user"/>
+            			<button name="action_accept_moa" type="object" string="MOA Accept" class="oe_highlight" attrs="{'invisible':['|','|',('state','in',['pending','submitted','evaluation','recommended','final_approval','approved','rejected']),('is_moa_attached','=',False),('accept_moa', '=', True)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<!-- <button name="action_submit_learnership" type="object" string="Submit" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','draft'), ('submitted', '=', True)]}"/>
+            			<button name="action_approve_learnership" type="object" string="Approve" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','submit'), ('approved', '=', True)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<button name="action_deny_learnership" type="object" string="Reject" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','submit'), ('approved', '=', True)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<button name="action_send_moa" type="object" string="Send MOA" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','approved'), ('moa_sent', '=', True)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<button name="action_accept_moa" type="object" string="Accept MOA" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','moa_sent'), ('accept_moa', '=', True)]}"/>
+            			<button name="action_final_approval" type="object" string="Final Approval" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','accept_moa'), ('final_approved', '=', True)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<button name="action_deny_learnership2" type="object" string="Reject" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','accept_moa'), ('final_approved', '=', True)]}" groups="hwseta_sdp.group_sdp_manager"/>
+            			<button name="action_load_learners" type="object" string="Load Learners" class="oe_highlight" attrs="{'invisible':['|', ('state','&lt;&gt;','load_learner'), ('learner_loaded', '=', True)]}"/> -->
+            			<!-- <field name="state" widget="statusbar" clickable="True" statusbar_visible="draft,submit,approved,moa_sent,accept_moa,final_approval,load_learner,done,denied"/> -->
+            			<field name="state" widget="statusbar"  statusbar_visible="pending,submitted,evaluation,recommended,conditional_approval,final_approval,approved,rejected" />
+            		</header>
+            		<sheet>
+            			<group>
+	            			<field name="requested_empl" invisible="1"/>
+	            			<field name="requested_non_empl" invisible="1"/>
+	            			<field name="approved_empl" invisible="1"/>
+	            			<field name="approved_non_empl" invisible="1"/>
+	            			<!-- <field name="accepted_empl" invisible="1"/>
+	            			<field name="accepted_non_empl" invisible="1"/>
+	            			<field name="granted_total_req" invisible="1"/>
+	            			<field name="granted_total_app" invisible="1"/>
+	            			<field name="granted_total_acc" invisible="1"/> -->
+	            			<field name="final_empl" invisible="1"/>
+	            			<field name="final_non_empl" invisible="1"/>
+	            			<field name="attach_moa" invisible="1"/>
+	            			<field name="conditional_approval" invisible="1"/>
+	            			<!-- <field name="granted_total_final" invisible="1"/> -->
+	            		</group>
+	            		<h1>
+	            			<field name="name" class="oe_inline" readonly="1" nolabel="1"/>
+	            		</h1>
+            			<!-- <group string="Employer Details" attrs="{'invisible':[('state','!=','draft')]}"> -->
+            			<group string="Employer Details">
+        					<group>
+        						<field name="eoi_id_reference" readonly="1"/>
+        						<field name="employer_id" required="1" on_change="onchange_employer_id(employer_id)" attrs="{'readonly':[('state', '!=', 'pending')]}" />
+        						<field name="learning_project_type_id" on_change="onchange_default_project_type(learning_project_type_id)" options="{'no_create': True,'no_quick_create':True,'no_open':True}" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+        						<field name="learning_project_id" options="{'no_create': True,'no_quick_create':True,'no_open':True}" attrs="{'readonly':[('state', '!=', 'pending')]}"/>	        					
+        						<field name="category_type" readonly="1"/>
+								<field name="category" readonly="1"/>
+        					</group>
+        					<group>
+        						<!-- <field name="employer_sic_code" attrs="{'readonly':[('final_approved', '=', True)]}"/> -->
+        						<field name="employer_sdl_no" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+        						<field name="empl_sic_code" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+        						<field name="employer_site_no" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+	        					<field name="employer_seta_id" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+	        					<field name="employer_registration_number" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+	        					<field name="employer_trading_name" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+	        					<field name="date_of_enroll" attrs="{'readonly':[('state', '!=', 'pending')]}" />
+        					</group>
+        					<group>
+        						<field name="submitted" invisible="1"/>
+		            			<field name="approved" invisible="1"/>
+		            			<field name="evaluate" invisible="1"/>
+		            			<field name="recommend" invisible="1"/>
+		            			<field name="cond_approved" invisible="1"/>
+		            			<field name="rejected1" invisible="1"/>
+		            			<field name="learner_loaded" invisible="1"/>
+		            			<field name="rejected2" invisible="1"/>
+		            			<field name="is_moa_attached" invisible="1"/>
+		            			<field name="accept_moa" invisible="1"/>
+        					</group>
+
+        				</group>
+        				<notebook>
+	        				<page string="Project Details">
+		        				<group>
+		        					<field name="enroll_project_ids" nolabel="1" attrs="{'readonly':[('state', '!=', 'pending')]}" context="{'employer':employer_id,'project_id':learning_project_id}">
+		        						<tree string="Projects" editable="bottom" create="false">
+		        							<field name="qualifications" widget="many2many_tags" domain="[('seta_branch_id','=',1),('is_sdp','=',True)]" 
+		        							options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		        							<field name="status" invisible="1"/>
+		        							<field name="employer_id" invisible="1"/>
+		        							<field name="project_types" required="1" on_change="onchange_employer(employer_id,project_types)" invisible="1"/>
+		        							<field name="project_id" string="Project Details" domain="[('project_types','=',project_types)]" required="1" on_change="onchange_project_id(project_id)" options="{'no_create_edit':True,'no_open':True}" invisible="1" />
+		        							<!-- <field name="employed" string="Employed (18.1)" attrs="{'readonly':[('state','=','approve')]}"/>
+		        							<field name="non_employed" string="Non Employed (18.2)" attrs="{'readonly':[('state','=','approve')]}"/> -->
+		        							<field name="req_employed" />
+		        							<field name="req_unemployed"/>
+		        							<field name="employed" string="Approved Employed (18.1)" readonly="1"/>
+		        							<field name="non_employed" string="Approved  Unemployed (18.2)" readonly="1"/>
+		        							<field name="no_of_persons"/>
+		        							<field name="provider_id" string="HWSETA Training Provider" 
+			                                options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+			                                <field name="provider"/>
+		        							<field name="provider_campus_id" domain="[('parent_id','=',provider_id)]" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+		        							<!-- <field name="persons_approved" attrs="{'readonly':[('state','in',['draft','approve','accept_moa'])]}"/> -->
+		        							<!-- <button name="calculate_noof_learners" string="Calculate No. of Learners" type="object" icon="gtk-go-forward" groups="hwseta_sdp.group_sdp_manager"/> -->
+		        							<!-- <field name="no_of_learners" groups="hwseta_sdp.group_sdp_manager"/> -->
+		        							<field name="state" readonly="1"/>
+		        						</tree>
+		        					</field>
+		        				</group>        				
+	        				</page>
+	        				<page string ="Load Learner" attrs="{'invisible':[('state','not in',['final_approval','approved'])],'readonly':[('learner_loaded','=',True)]}">
+        						<group >
+									<field name="learner_ids" nolabel="1" attrs="{'readonly':[('learner_loaded', '=', True)]}">
+										<tree colors="blue:loaded==False;grey:loaded==True;">
+											<field name="seq_no" />
+											<field name="employee_type"/>
+											<field name="name" />
+											<field name="surname" />
+											<field name="attached_report" filename="seq_no" />
+											<field name="learner_reg_no" />
+											<field name="identity_number" />
+											<field name="loaded" invisible="1" />
+											<field name="current_status" />
+											<field name="req_for_approve" invisible="1" />
+											<button name="action_request_for_approve" type="object"
+												string="Apply" icon="gtk-go-forward"
+												attrs="{'invisible':[('req_for_approve','=',True)]}" />
+										</tree>
+														<form string="Learner">
+											<header>
+											    <field name="state" widget="statusbar"
+													statusbar_visible="pending,active,dropout,replacement,suspended,inactive"
+													statusbar_colors='{"learners":"blue"}' />
+											    
+												<button name="action_active_button" type="object"
+													string="Active" class="oe_highlight"
+													attrs="{'invisible':[('state','in',['active'])]}" 
+													groups="hwseta_finance.group_employer_user"/>
+												<button name="action_dropout_button" type="object"
+													string="Drop Out" class="oe_highlight"
+													attrs="{'invisible':[('state','in',['dropout'])]}"
+													groups="hwseta_finance.group_employer_user" />
+												<button name="action_replacement_button" type="object"
+													string="Replacement" class="oe_highlight"
+													attrs="{'invisible':[('state','in',['replacement'])]}" 
+													groups="hwseta_finance.group_employer_user"/>
+												<button name="action_suspend_button" type="object"
+													string="Suspend" class="oe_highlight"
+													attrs="{'invisible':[('state','in',['suspended'])]}" 
+													groups="hwseta_finance.group_employer_user"/>
+												<button name="action_inactive_button" type="object"
+													string="In Active" class="oe_highlight"
+													attrs="{'invisible':[('state','in',['inactive'])]}" 
+													groups="hwseta_finance.group_employer_user"/>
+												<button name="action_approve_button" type="object"
+												    string="Approve" class="oe_highlight" 
+												    attrs="{'invisible':[('req_for_approve','=',False)]}"
+												    groups="hwseta_sdp.group_sdp_manager"/>
+												<button name="action_reject_button" type="object"
+												    string="Reject" class="oe_highlight"
+												    attrs="{'invisible':[('req_for_approve','=',False)]}"
+												    groups="hwseta_sdp.group_sdp_manager" />
+												
+											</header>
+											<sheet>
+												<group>
+												<!--  changing code   ############### -->
+													<group>
+														<field name="person_title" />
+														<field name="name" attrs="{'required':[('created','=',True)]}" />
+														<field name="middle_name" attrs="{'required':[('created','=',True)]}" />
+														<field name="maiden_name" />
+														<field name="surname" attrs="{'required':[('created','=',True)]}" />
+														<field name="work_email" attrs="{'required':[('created','=',True)]}" />
+														
+													</group>
+													<group>
+													    <!-- <field name="name" attrs="{'required':[('created','=',True)]}" />  -->
+														<field name="employee_type"/>
+														<field name="identity_number" attrs="{'required':[('created','=',True)]}" />
+														<field name="work_phone" attrs="{'required':[('created','=',True)]}" />
+														<field name="financial_year"/>  
+														<field name="certificate_no" />
+													    <!--<field name="alternate_identity_no" /> -->
+														<field name="req_for_approve" readonly="1" />
+														<field name="created" invisible="1" />
+														<field name="loaded" invisible="1" />
+													</group>
+												</group>
+												<group>
+													<field name="select_learner_info" />
+												</group>
+												<notebook>
+													<page string="Details">
+														<group>
+															<group string="Contact Information">
+																<!-- <field name="title"/> -->
+																<field name="initials" />
+																<field name="user_id" invisible="1" />
+																<field name="african" invisible="1" />
+																<field name="cell" />
+																<field name="business_tel_no" />
+																<!--  <field name="email" required="1" /> -->
+																<field name="fax_no" />
+																<field name="method_of_communication" />
+																
+															   <!--  <field name="wsp_year" /> -->
+																<!-- <field name="detials_surname"/> <field name="learner_reg_no" 
+																	invisible="1"/> <field name="equity"/> <field name="nationality"/> -->
+															</group>
+															<group string="Citizenship &amp; Other Info">
+																<field name="citizen_residential_status" attrs="{'required':[('african','=',False)]}"
+																	on_change="onchange_crc(citizen_residential_status)" />
+																<field name="nationality_id" on_change="onchange_country_id(nationality_id)" />
+																<field name="rsa_identity_no"
+																	attrs="{'required':[('citizen_residential_status','=','sa')],'readonly':[('citizen_residential_status','=','other')]}"
+																	on_change="onchange_id_no(rsa_identity_no)" />
+																<field name="date_of_birth" />
+																<field name="passport_id" />
+																<field name="id_document" string="ID Document/Passport Upload"  required="1" />
+																<!--  <field name="sponsorship" /> -->
+																<field name="home_language" />
+																<field name="equity"  />
+																<!--  <field name="highest_education" />  -->
+																<!--  <field name="record_last_updated" /> -->
+																<!-- <field name="last_updated_operator" /> -->
+															</group>
+															<group string="Status">
+															    <field name="gender" />
+															    <field name="marital" 	required="1" />
+															    <field name="dissability" />
+																<field name="disability_status" required="1" />
+																<field name="socio_economic_saqa_code" invisible="1" />
+																<field name="current_status" readonly="1"/>
+																<field name="learner_status" invisible="1"/>
+																<field name="status_reason" invisible="1"/>
+																<field name="status_comments" />
+																<field name="status_effective_date" />
+															</group>
+															<!--  Added -->
+															
+															<group string="Learner Data">
+																<field name="highest_education" />
+																<field name="wsp_year" />
+																<field name="record_last_updated" />
+																<field name="last_updated_operator" />
+																<field name="sponsorship" />
+									                        </group>
+									                        
+									                        <group>
+																<group string="Ratings">
+																	<field name="seeing_rating_id"  />
+																	<field name="hearing_rating_id" />
+																	<field name="walking_rating_id"  />
+																	<field name="statssa_area_code"  />
+																	<field name="popi_act_status_date" />
+																	<field name="remembering_rating_id"  />
+																	<field name="communicating_rating_id" />
+																	<field name="self_care_rating_id" />
+																	<field name="last_school_emis_no" />
+																	<field name="last_school_year" />
+																	<field name="popi_act_status_id" />
+																	<field name="date_stamp" />
+																</group>
+																</group>
+																 
+									           
+														</group>
+													</page>
+													<page string="Address">
+														<group>
+															<group>
+																<label for="learner_home_address_1" string="Home Address" />
+																<div>
+																	<field name="learner_home_address_1" placeholder="Home Address 1" />
+																	<field name="learner_home_address_2" placeholder="Home Address 2" />
+																	<field name="learner_home_address_3" placeholder="Home Address 3" />
+																	<div class="address_format">
+																		<field name="learner_home_suburb" placeholder="Suburb" on_change="onchange_learner_suburb(learner_home_suburb)" options="{'no_create': True,'no_quick_create':True,'no_open':True}" style="width: 52%%"/>
+																		<field name="learner_home_municipality" placeholder="Municipality" style="width: 48%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+																	</div>															
+																	<div class="address_format">
+																		<field name="learner_home_city" placeholder="City"
+																			style="width: 39%%" />
+																		<field name="learner_home_province_code" class="oe_no_button"
+																			placeholder="Province Code" style="width: 37%%"
+																			options='{"no_open": True}'
+																			on_change="onchange_home_province(learner_home_province_code)" />
+																		<field name="learner_home_zip" placeholder="ZIP"
+																			style="width: 20%%" />
+																	</div>
+																	<field name="learner_country_home" placeholder="Country"
+																		class="oe_no_button" options='{"no_open": True}' />
+																</div>
+															</group>
+															<group>
+																<label for="same_as_home" />
+																<field name="same_as_home" nolabel="1" />
+																<label for="learner_postal_address_1" string="Postal Address"
+																	attrs="{'invisible':[('same_as_home','=',True)]}" />
+																<div>
+																	<field name="learner_postal_address_1" placeholder="Postal Address 1"
+																		attrs="{'invisible':[('same_as_home','=',True)]}" />
+																	<field name="learner_postal_address_2" placeholder="Postal Address 2"
+																		attrs="{'invisible':[('same_as_home','=',True)]}" />
+																	<field name="learner_postal_address_3" placeholder="Postal Address 3"
+																		attrs="{'invisible':[('same_as_home','=',True)]}" />
+																	<div class="address_format">
+																		<field name="learner_postal_suburb" placeholder="Suburb"
+																			attrs="{'invisible':[('same_as_home','=',True)]}" on_change="onchange_learner_postal_suburb(learner_postal_suburb)" options="{'no_create': True,'no_quick_create':True,'no_open':True}" style="width: 52%%"/>
+																		<field name="learner_postal_municipality" placeholder="Municipality" style="width: 48%%" attrs="{'invisible':[('same_as_home','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+																	</div>																
+																	<div class="address_format">
+																		<field name="learner_postal_city" placeholder="City"
+																			style="width: 37%%" attrs="{'invisible':[('same_as_home','=',True)]}" />
+																		<field name="learner_postal_province_code" class="oe_no_button"
+																			placeholder="Province Code" style="width: 37%%"
+																			options='{"no_open": True}'
+																			on_change="onchange_postal_province(learner_postal_province_code)"
+																			attrs="{'invisible':[('same_as_home','=',True)]}" />
+																		<field name="learner_postal_zip" placeholder="ZIP"
+																			style="width: 20%%" attrs="{'invisible':[('same_as_home','=',True)]}" />
+																	</div>
+																	<field name="learner_country_postal" placeholder="Country"
+																		class="oe_no_button" options='{"no_open": True}'
+																		attrs="{'invisible':[('same_as_home','=',True)]}" />
+																</div>
+															</group>
+														</group>
+													</page>
+													<page string="EOI Project">
+														<group string="EOI Projects">
+															<!-- <field name="project_id" widget="many2many_tags"/> -->
+															<field name="proj_enrolled_ids" nolabel="1">
+																<tree string="EOI Projects" editable="bottom" create="0">
+																	<field name="project_id" />
+																	<field name="project_type" />
+																	<field name="provider_id" />
+																</tree>
+															</field>
+														</group>
+													
+													</page>
+													<page string="Document Attachment">
+															<field name="learner_attachment_ids" nolabel="1">
+																<tree string="Attachments" editable="bottom">
+																	<field name="name" />
+																	<field name="data" />
+																</tree>
+															</field>
+													</page>
+												</notebook>
+											</sheet>
+										</form>
+										</field>
+	            					</group>	        				
+	        				</page>
+	        				<page string="Transche Generation">
+	        					<field name="learning_program_tranche_ids" nolabel="1" readonly="1">
+	        						<tree create="0" delete="0" editable="bottom">
+	        							<field name="name"/>
+<!-- 	        							<field name="employed_unemployed"/> -->
+	        							<field name="number"/>
+	        							<field name="status"/>
+	        							<field name="recommend_transche" invisible="1"/>
+	        							<field name="approve_transche" invisible="1"/>
+	        							<field name="reject_transche" invisible="1"/>
+									<button name="action_recommend_transche" string="Recommend"
+										type="object" icon="gtk-go-forward" attrs="{'invisible':[('recommend_transche','=',True)]}"
+										groups="hwseta_sdp.group_sdp_manager" />
+									<button name="action_approve_transche" string="Approve"
+										type="object" icon="gtk-go-forward"
+										attrs="{'invisible':['|','|',('approve_transche','=',True),('recommend_transche','=',False),('reject_transche','=',True)]}"
+										groups="hwseta_sdp.group_sdp_manager" />
+									<button name="action_reject_transche" string="Reject"
+										type="object" icon="gtk-close"
+										attrs="{'invisible':['|','|',('reject_transche','=',True),('recommend_transche','=',False),('approve_transche','=',True)]}"
+										groups="hwseta_sdp.group_sdp_manager" />	        							
+	        						</tree>
+	        					</field>
+	        				</page>
+	        				<page string ="Documents">
+			            		<group>
+		        					<field name="document_ids" nolabel="1">
+		        						<tree string="Doc Upload" editable="bottom" create="0">
+											<field name="name"/>
+		       								<field name="attach_doc" domain="[('id','=',None)]" />
+		        						</tree>
+		        					</field>
+		        				</group> 	        				
+	        				</page>
+	        				<page string ="EOI Status">
+			            		<group>
+		        					<field name="eoi_status_ids" nolabel="1">
+		        					</field>
+		        				</group> 	        				
+	        				</page>
+        				</notebook>
+
+        				<group string="Reason for change in number of Learners applied" attrs="{'invisible':[('state','in',['pending','rejected'])],'readonly':[('state','in',['approved','final_approval'])]}">
+        					<field name="comment" nolabel="1" attrs="{'readonly':[('state', '!=', 'pending')]}"/>
+        				</group>
+        				<!-- <group string="Load Learner" attrs="{'invisible':[('state','not in',['load_learner','done'])]}"> -->
+<!--         				<group string="MOA Doc Upload" attrs="{'invisible':[('state','not in',['conditional_approval','approved','final_approval'])]}">
+	            			<button name="action_calculate_moa" type="object" string="Attach MOA" class="oe_inline oe_stat_button" icon="fa-arrow-down" groups="hwseta_finance.group_employer_user"/>
+	            		</group> -->
+	            		<group attrs="{'invisible':[('state','not in',['conditional_approval','approved','final_approval'])]}">
+        					<field name="moa_ids" nolabel="1">
+        						<tree string="MOA Doc Upload" editable="bottom" create="0">
+									<field name="name"/>
+       								<field name="attach_moa" context="{'moa':True}" domain="[('id','=',None)]" required="1"/>
+       								<!-- <button name="action_accept_moa" string="Accept MOA" type="object" icon="gtk-go-forward" groups="hwseta_finance.group_employer_user"/> -->        							
+        							<field name="status"/>
+        						</tree>
+        					</field>
+        				</group>
+<!--        				<group attrs="{'invisible':['|',('state','&lt;&gt;','approved'),('learner_loaded','=',True)]}"> -->
+						<group attrs="{'invisible':['|',('state','&lt;&gt;','approved'),('learner_loaded','=',True)]}">
+        					<button name="compute_total_learners" type="object" string="Compute Learners" class="oe_highlight" groups="hwseta_sdp.group_sdp_manager,hwseta_finance.group_employer_user,hwseta_sdp.group_sdf_user"/>
+        				</group>
+
+            		</sheet>
+            		<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+            	</form>
+            </field>
+        </record>
+        <record id="eoi_status_tree" model="ir.ui.view">
+			<field name="name">eoi.status.tree</field>
+			<field name="model">eoi.status</field>
+			<field eval="20" name="priority" />
+			<field name="arch" type="xml">
+				<tree string="Status" editable="bottom">
+					<field name="user_id" />
+					<field name="s_date" />
+					<field name="state" />
+					<field name="status" />
+					<field name="comment" />
+					<field name="update_date" />
+				</tree>
+			</field>
+		</record>
+        <!-- Learnership/Enrollment Tree View -->
+        <record id="tree_view_learner_programme" model="ir.ui.view">
+            <field name="name">tree.view.learner.programme</field>
+            <field name="model">learning.programme</field>
+            <field name="arch" type="xml">
+            	<tree string="Expression of Interest">
+            		<field name="name" string="EOI No."/>
+            		<field name="employer_id"/>
+            		<field name="employer_trading_name"/>
+            		<field name="employer_registration_number"/>
+            		<field name="enroll_status"/>
+            		<!-- <field name="employer_sdl_no"/>
+            		<field name="employer_site_no"/>
+            		<field name="employer_seta_id"/>
+            		<field name="employer_sic_code"/> -->
+            	</tree>
+            </field>
+        </record>
+        
+        <record id="view_learner_programme_filter" model="ir.ui.view">
+            <field name="name">learner.programme.filter</field>
+            <field name="model">learning.programme</field>
+            <field name="arch" type="xml">
+            	<search string="Search Partner">
+            		<field name="eoi_id_reference" />
+            		<group expand="1" string="Group By">
+            			<filter string="Status" context="{'group_by': 'enroll_status'}"/>
+            			<filter name="group_by_eoi_id_reference" string="EOI ID" context="{'group_by': 'eoi_id_reference'}"/>
+            		</group>
+            	</search>
+            </field>
+        </record>
+        
+        
+        <!-- Learnership/Enrollment Action -->
+        <record id="action_learning_programme" model="ir.actions.act_window">
+            <field name="name">Expression of Interest</field>
+            <field name="res_model">learning.programme</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="tree_view_learner_programme"/>
+            <field name="context">{'search_default_group_by_eoi_id_reference':1}</field> 
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click for Learnership.
+              </p>
+            </field>
+        </record>
+		
+		<!-- EOI Approval Criteria -->        
+        <record id="form_view_eoi_configuration" model="ir.ui.view">
+           <field name="name">form.view.eoi.configuration</field>
+           <field name="model">eoi.approval.criteria</field>
+           <field name="arch" type="xml">
+           		<form string="EOI Approval Criteria">
+           			<sheet>
+       					<group>
+       						<group>
+       							<field name="funding_year" required="1" on_change="onchange_funding_year(funding_year)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+								<field name="project_type" required="1" on_change="onchange_project_type(project_type)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+       							<field name="project_id" required="1" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+       						</group>
+       						<group>
+       							<field name="category_type" required="1" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+	            				<field name="category" attrs="{'required': [('category_type', 'in',['18.1','18.2'])],'readonly': [('category_type', 'not in',['18.1','18.2'])]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+       						</group>
+       					</group>
+       					<group string="Allocation">
+       						<field name="allocation_ids" nolabel="1">
+								<tree string="Allocation" editable="bottom">
+									<field name="learner_status" required="1"/>
+									<field name="emp_type_id" widget="many2many_tags"/>
+									<field name="min_learner" required="1"/>
+									<field name="max_learner" required="1"/>
+									<field name="percentage_allocate" required="1"/>
+								</tree>           						
+       						</field>
+       					</group>
+           			</sheet>
+           		</form>
+           </field>
+        </record>
+        
+        <record id="tree_view_eoi_configuration" model="ir.ui.view">
+           <field name="name">tree.view.eoi.configuration</field>
+           <field name="model">eoi.approval.criteria</field>
+           <field name="arch" type="xml">
+           		<tree string="EOI Approval Criteria">
+					  <field name="project_id"/>
+					  <field name="funding_year"/>
+           		</tree>
+           </field>
+        </record>
+        
+        <record id="action_eoi_approval_criteria" model="ir.actions.act_window">
+            <field name="name">EOI Approval Criteria</field>
+            <field name="res_model">eoi.approval.criteria</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="tree_view_eoi_configuration"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create EOI Approval Criteria.
+              </p>
+            </field>
+        </record>
+        <record id="view_request_for_eoi_submit_form_view1_inherited" model="ir.ui.view">
+            <field name="name">Employer Enrolled Projects Form123</field>
+            <field name="model">partner.project.rel</field>
+            <field name="inherit_id" ref="hwseta_person.view_request_for_eoi_submit_form_view1"/>
+            <field name="arch" type="xml">
+            	<field name="employer_id" position="before">
+            		<field name="eoi_id_reference_new"/>
+            	</field>
+            </field>
+         </record>
+
+        <record id="view_request_for_eoi_submit_search_view1" model="ir.ui.view">
+			<field name="name">Employer Search1</field>
+			<field name="model">partner.project.rel</field>
+			<field name="inherit_id" ref="hwseta_person.view_request_for_eoi_submit_search_view"/>
+			<field name="arch" type="xml">
+				<field name="emp_project_id" position="after">
+					<field name="eoi_id_reference_new"/> 
+					<group expand="1" string="Group By">
+           				<filter name="group_by_eoi_id_reference_new" string="EOI ID" context="{'group_by': 'eoi_id_reference_new'}"/>
+           			</group>  
+           		</field>
+			</field>
+		</record>
+		<record id="hwseta_person.action_partner_project_rel" model="ir.actions.act_window">
+			<field name="name">Request for EOI Submit</field>
+			<field name="res_model">partner.project.rel</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('select_emp','=',True)]</field>
+			<field name="context">{'search_default_group_by_eoi_id_reference_new':1}</field> 
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+				</p>
+			</field>
+		</record>
+        
+        <menuitem id="menu_learnership" name="EOI" parent="menu_sdp_transactions" action="action_learning_programme" sequence="3" groups="hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager"/>
+        <menuitem id="menu_eoi_approval_criteria" name="EOI Approval Criteria" parent="menu_sdp_project" action="action_eoi_approval_criteria" sequence="4" groups="hwseta_sdp.group_wsp_manager,project.group_project_manager,hwseta_projects.group_learning_programme_manager"/>
+        <!-- Portal Access for Employer User -->
+        <menuitem id="menu_learner_programme_portal" name="EOI" parent="portal.portal_projects" action="action_learning_programme" groups="hwseta_finance.group_enable_enrollment" sequence="2"/>
+        <menuitem action="hwseta_person.action_partner_project_rel" id="menu_request_for_eoi_submit_employer"
+			name="Apply For EOI" parent="portal.portal_projects" sequence="6"  />
+			
+		<!-- EOI SDF portal -->	
+        <menuitem id="menu_eoi_sdf_portal" name="EOI" parent="portal.portal_menu" sequence="4"/>
+        <menuitem id="menu_learner_programme_sdf_portal" name="EOI" parent="menu_eoi_sdf_portal" action="action_learning_programme" groups="hwseta_sdp.group_sdf_user" sequence="2"/>
+        <menuitem action="hwseta_person.action_partner_project_rel" id="menu_request_for_eoi_submit_sdf"
+			name="Apply For EOI" parent="menu_eoi_sdf_portal" sequence="1" groups="hwseta_sdp.group_sdf_user" />				
+			
+	</data>
+</openerp>

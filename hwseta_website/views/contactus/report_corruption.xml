@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Report Corruption Page === -->
+		<template id="report_corruption" name="Report Corruption" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+								<t t-call="hwseta_website.sidebar1" />
+								
+								<div class="oc-layout-cell oc-content">
+									<article id="post-315"
+										class="oc-post oc-article  post-315 page type-page status-publish hentry">
+										<h1 class="oc-postheader">Report Corruption</h1>
+										<div class="oc-postcontent oc-postcontent-0 clearfix">
+											<h2>Don’t Support it… Report it</h2>
+											<h3>Tip-offs Anonymous</h3>
+											<p>
+												Call: 0800 204 967
+												<br/>
+													Email: hwseta@tip-offs.com
+													<br/>
+														FreeFax: 0800 00 77 88
+														<br/>
+															FreePost: KZN 138, Umhlanga Rocks, 4320
+															<br/>
+																Website: www.tip-offs.com
+											</p>
+											<h2>Checklist before you call</h2>
+											<ul>
+												<li>Names of people involved</li>
+												<li>
+													How many people are involved?
+												</li>
+												<li>
+													Date and time of incident or theft
+												</li>
+												<li>
+													Do you have any proof?
+												</li>
+												<li>
+													Does this happen regularly?
+												</li>
+												<li>
+													Where did the incident take place?
+												</li>
+												<li>
+													Is there money involved?
+												</li>
+												<li>
+													Are there any witnesses?
+												</li>
+											</ul>
+											<p>
+												<strong>You can contact us 24 hours per day, 365 days per year
+												</strong>
+											</p>
+										</div>
+								
+									</article>
+								</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

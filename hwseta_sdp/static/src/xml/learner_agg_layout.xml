@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<template id="learner_agreement_layout">
+		    <t t-if="o and 'company_id' in o">
+		        <t t-set="company" t-value="o.company_id"></t>
+		    </t>
+		    <t t-if="not o or not 'company_id' in o">
+		        <t t-set="company" t-value="res_company"></t>
+		    </t>
+		    <t t-raw="0" />
+		    <t t-call="hwseta_sdp.learner_agreement_layout_header" />
+		</template>
+		
+		<template id="learner_agreement_layout_header">
+			 <div class="header">
+			 	<div>
+		            <div style="text-align:right;"> Learnership Agreement 2014/15</div>
+			            <ul class="list-inline" style="text-align:right;">
+			                <li>Page:</li>
+			                <li><span class="page"/></li>
+			            </ul>
+      				</div>
+			 </div>
+		</template>
+		
+	</data>
+</openerp>

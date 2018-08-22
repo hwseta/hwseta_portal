@@ -1,0 +1,17 @@
+*****************SQL Queries To update Person Title In Learner Registration and Learner master*****************
+
+=================Male Learners in Learner Registration==================
+1.	select id from learner_registration where gender = 'male' and person_title in ('mrs', 'ms');
+2.	update learner_registration set person_title = 'mr' where id in (select id from learner_registration where gender = 'male' and person_title in ('mrs', 'ms'));
+
+================Female Learners in Learner Registration=================
+1.	select id from learner_registration where gender = 'female' and person_title = 'mr';
+2.	update learner_registration set person_title = 'ms' where id in (select id from learner_registration where gender = 'female' and person_title = 'mr');
+
+=================Male Learners in Learner Master========================
+1.	select id from hr_employee where gender = 'male' and person_title in ('mrs', 'ms') and provider_learner = True;
+2.	update hr_employee set person_title = 'mr' where id in (select id from hr_employee where gender = 'male' and person_title in ('mrs', 'ms') and provider_learner = True);
+
+================Female Learners in Learner Master=======================
+1.	select id from hr_employee where gender = 'female' and person_title = 'mr' and provider_learner = True;
+2.	update hr_employee set person_title = 'ms' where id in (select id from hr_employee where gender = 'female' and person_title = 'mr' and provider_learner = True);

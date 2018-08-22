@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="report_petty_cash_document">
+			<t t-call="hwseta_finance.petty_cash_layout">
+				<div class="row mt16 mb64"></div>
+				<div class="page">
+					<div class="oe_structure"/>
+					<div class="row">
+						<table>
+							<tbody>
+								<tr>
+									<td class="petty_cash_subhead"></td>
+									<td class="petty_cash_subhead_val"></td>
+								</tr>
+								<tr>
+									<td class="petty_cash_subhead"></td>
+									<td class="petty_cash_subhead_val"></td>
+								</tr>
+							</tbody>
+						</table>
+						<table>
+							<tbody>
+								<tr>
+									<td class="petty_cash_subhead"></td>
+									<td class="petty_cash_subhead_val"></td>
+								</tr>
+								<tr>
+									<td class="petty_cash_subhead"></td>
+									<td class="petty_cash_subhead_val"></td>
+								</tr>
+							</tbody>
+						</table>
+						<table>
+							<tbody>
+								<tr>
+									<td class="petty_cash_subhead">Requested By :</td>
+									<td class="petty_cash_subhead_val"><span t-field="o.requested_by"/></td>
+								</tr>
+								<tr>
+									<td class="petty_cash_subhead">Date :</td>
+									<td class="petty_cash_subhead_val"><span t-field="o.date"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row mt8 mb32"></div>
+						<table class="petty_border_table">
+							<tbody>
+								<tr>
+									<td class="petty_header_td">Branch :</td>
+									<td class="petty_header_td_val"><span t-field="o.branch_id"/></td>
+								</tr>
+								<tr>
+									<td class="petty_header_td">Amount :</td>
+									<td class="petty_header_td_val"><span t-field="o.amount_requested"/></td>
+								</tr>
+								<tr>
+									<td class="petty_header_td">Account Number :</td>
+									<td class="petty_header_td_val"><span t-field="o.acc_number"/></td>
+								</tr>
+								<tr>
+									<td class="petty_header_td">Department :</td>
+									<td class="petty_header_td_val"><span t-field="o.department_id"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row mt16 mb64"></div>
+						<table class="petty_desc">
+							<tbody>
+								<tr>
+									<td class="petty_header_bottom_td" style="width:1100px;" colspan="4">Description :</td>
+								</tr>
+								<tr>
+									<td class="petty_header_bottom_td_val" colspan="4" style="border:1px solid;width:1100px;"><span t-field="o.description_need"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row mt16 mb64"></div>
+						<table class="petty_approve_receive">
+							<tbody>
+								<tr>
+									<td class="petty_header_bottom_td">Approver :</td>
+									<td class="petty_header_bottom_td_val"><span t-field="o.approve_by"/></td>
+									<td class="petty_header_bottom_td_val"></td>
+									<td class="petty_header_bottom_td">Receiver :</td>
+									<td class="petty_header_bottom_td_val"><span t-field="o.receive_by"/></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align:center"><img t-att-src="'data:image/png;base64,%s' % o.signature_approved_by" style="max-height: 75px;"/></td>
+									<td class="petty_header_bottom_td"></td>
+									<td colspan="2" style="text-align:center"><img t-att-src="'data:image/png;base64,%s' % o.signature_received_by" style="max-height: 75px;"/></td>
+								</tr>
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+			</t>
+		</template>
+		
+		<template id="report_petty_cash">
+		    <t t-call="report.html_container">
+		        <t t-foreach="doc_ids" t-as="doc_id">
+		            <t t-raw="translate_doc(doc_id, doc_model, 'user_id.partner_id.lang', 'hwseta_finance.report_petty_cash_document')"/>
+		        </t>
+		    </t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- <record id="view_seta_project_tree" model="ir.ui.view"> <field name="name">view.project.project.tree.inheri</field> 
+			<field name="model">project.project</field> <field name="inherit_id" ref="project.view_project"/> 
+			<field name="arch" type="xml"> </field> </record> -->
+		<record id="view_seta_project_form" model="ir.ui.view">
+			<field name="name">view.project.project.form.inherit</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project.edit_project" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/div[@name='buttons']" position="after">
+					<div class="oe_amounts" name="amounts">
+						<group col="8">
+							<group string="Accounting">
+								<field name="budget" />
+								<field name="budget_committed" />
+								<field name="invoice_to_date" />
+								<field name="decommitted_fund" />
+								<field name="budget_applied" />
+								<field name="project_balance" />
+								<field name="balance_due" />
+							</group>
+							<group string="RIME">
+								<field name="target_employed_learner" attrs="{'required':[('category_type', '=', '18.1')],'invisible':[('category_type','=','18.2')]}" />
+								<field name="target_unemployed_learner" attrs="{'required':[('category_type', '=', '18.2')],'invisible':[('category_type','=','18.1')]}" />
+								<field name="total_targeted_learner" />
+							</group>
+						</group>
+						<group cols="8">
+							<group string="Tranche">
+								<field name="no_of_tranche" attrs="{'required':[('category_type', '=', '18.1')],'invisible':[('category_type','=','18.2')]}" />
+								<field name="no_of_tranche_18_2" attrs="{'required':[('category_type', '=', '18.2')],'invisible':[('category_type','=','18.1')]}" />
+							</group>
+							<group string="Others">
+								<field name="funding" invisible="1" />
+								<field name="project_terms_and_condition" domain="[('id','=',None)]"
+									required="1" />
+								<field name="start_date" required="1" />
+								<field name="end_date" required="1" />
+								<field name="milestones" invisible="1" />
+								<field name="number" invisible="1" />
+								<field name="user_id"
+									options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+								<!-- <field name="course_fee"/> <field name="allowance"/> <field 
+									name="uniform"/> -->
+							</group>
+						</group>
+					</div>
+				</xpath>
+				<xpath expr="/form/sheet/group[1]" position="after">
+					<group cols="8">
+						<group string="EOI">
+							<field name="eoi_start_date" required="1" />
+							<field name="eoi_end_date" required="1" />
+						</group>
+						<group string="Load Learner">
+							<field name="load_learner_start_date" required="1" />
+							<field name="load_learner_end_date" required="1" />
+						</group>
+					</group>
+				</xpath>
+				 <xpath expr="/form/sheet/notebook/page[@string='Team']" position="replace">   
+				<!-- <xpath expr="//form[@string='Project']/sheet[@string='Project']/notebook" position="inside"> -->
+		            <page name='project_doc' string="Project Document">
+		            	<group colspan="4">
+		                 	<field name="moa_template" domain="[('id','=',None)]" required="1"/>
+		                 	<field name="conditional_approval_details" domain="[('id','=',None)]" required="1"/>
+		            	</group>
+	                </page>
+                </xpath>
+
+				<!-- <xpath expr="/form/sheet/notebook/page[@string='Sub Projects']" 
+					position="after"> <page name='executive_summary' string="executive_summary"> 
+					<field name="comment" placeholder="Executive Summary..."/> </page> </xpath> -->
+			</field>
+		</record>
+	</data>
+</openerp>

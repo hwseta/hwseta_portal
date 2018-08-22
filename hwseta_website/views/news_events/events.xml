@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Events Page === -->
+		<template id="events" name="Events" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+									
+									<div class="oc-layout-cell oc-content">
+										<article id="post-285"
+											class="oc-post oc-article  post-285 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Events</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<style>.cat1,.cat1 .fc-event-skin,.fc-agenda
+													.cat1,a.cat1,a.cat1:active,a.cat1:visited{color:#FFFFFF
+													!important;background-color:#c63b39 !important;border-color:#c63b39
+													!important}
+													a.cat1:hover{-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px
+													#000;color:#FFFFFF !important;background-color:#c63b39
+													!important;border-color:#FFFFFF !important}
+													.cat4,.cat4 .fc-event-skin,.fc-agenda
+													.cat4,a.cat4,a.cat4:active,a.cat4:visited{color:#FFFFFF
+													!important;background-color:#555555 !important;border-color:#555555
+													!important}
+													a.cat4:hover{-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px
+													#000;color:#FFFFFF !important;background-color:#555555
+													!important;border-color:#FFFFFF !important}
+												</style>
+												<ul class="aec-eventlist">
+													<li class="fc-event round5 cat1"
+														onclick="jQuery.aecDialog({'id':5,'start':'2015-04-30 00:00:00','end':'2015-04-30 00:00:00'});">
+														<span class="fc-event-time">April 30, 2015</span>
+														<span class="fc-event-title">Deadline for submission of WSP and ATR</span>
+													</li>
+												</ul>
+												<span class="aec-credit">AEC v1.0.4</span>
+											</div>
+										</article>
+									</div>
+																		
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

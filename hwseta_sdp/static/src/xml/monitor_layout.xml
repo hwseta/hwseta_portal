@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<openerp>
+		<data>
+			<template id="monitor_evaluate_layout">
+			    <!-- Multicompany -->
+			    <t t-if="o and 'company_id' in o">
+			        <t t-set="company" t-value="o.company_id"></t>
+			    </t>
+			    <t t-if="not o or not 'company_id' in o">
+			        <t t-set="company" t-value="res_company"></t>
+			    </t>
+			    <t t-raw="0" />
+			    <t t-call="hwseta_sdp.monitor_layout_footer" />
+			</template>
+			
+			<template id="monitor_layout_footer">
+				 <div class="footer">
+				 	<div style="border-top: 1px solid black;">
+			            <div> SDP-MONITORING AND EVALUATION TOOL FOR DISCRETIONARY GRANTS</div>
+						<div> APPROVED BY:</div>
+			            <ul class="list-inline text-center">
+			                <li>Page:</li>
+			                <li><span class="page"/></li>
+			                <li>/</li>
+			                <li><span class="topage"/></li>
+			            </ul>
+       				 </div>
+				 </div>
+			</template>
+		</data>
+	</openerp>

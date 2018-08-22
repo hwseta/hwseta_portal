@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Qualification Development and Maintenance a Key Focus for the HWSETA Page === -->
+		<template id="news4" name="Qualification Development and Maintenance a Key Focus for the HWSETA" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article ">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<div class="navigation">
+													<div class="alignleft">
+														«
+														<a href="/page/hwseta_website.news5"
+															title="HWSETA Urges Caution When Enrolling at Private Training Institutions"
+															rel="prev">HWSETA Urges Caution When Enrolling at Private Training
+															Institutions</a>
+													</div>
+													<div class="alignright">
+														<a href="/page/hwseta_website.news3" title="HWSETA Funds Animal Health Studies in Eastern Cape"
+															rel="next">HWSETA Funds Animal Health Studies in Eastern Cape</a>
+														»
+													</div>
+												</div>
+											</div>
+								
+								
+										</article>
+										<article id="post-991"
+											class="oc-post oc-article  post-991 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">Qualification Development and Maintenance a Key Focus
+												for the HWSETA</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="1:23 pm">April 23, 2015</span>
+												</span>
+												|
+												<span class="oc-postauthoricon">
+													<span class="author">By</span>
+													<span class="author vcard">
+														<a class="url fn n" href="http://www.hwseta.org.za/?author=7"
+															title="View all posts by Elfrieda Tyrer">Elfrieda Tyrer</a>
+													</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>The skills development landscape in South Africa is one that
+													requires constant change and innovative thinking on the part of
+													Sector Education Training Authorities (SETAs) to meet the needs of
+													the sectors they serve. The HWSETA is no exception and it is this
+													mindset that resulted in the establishment of the Qualification
+													Development and Maintenance (QDM) sub-division in October 2013 to
+													focus on this key area of responsibility for the HWSETA.</p>
+												<p>“The delivery of quality training in South Africa requires a
+													combination of accredited training providers that are able to
+													deliver excellent quality training content and material,” comments
+													Champa Gopal, Qualification Development and Maintenance Manager for
+													the HWSETA. “By assessing and maintaining quality in these two
+													critical areas, learners in South Africa are assured that the
+													training they receive will enable them to make a positive
+													contribution to the skills pool in the health and social
+													development sectors.”</p>
+												<p>Since its establishment, the QDM sub-division has approached the
+													task at hand with zest and the hard work is paying off.</p>
+												<p>The QDM sub-division, in partnership with the National Department
+													of Health (NDOH) and International Training Education Centre for
+													Health (I-TECH), has been successful at registering the
+													Occupational Qualification: Health Promotion Officer (Community
+													Health Worker) SAQA ID 94597 in November 2014. This qualification
+													replaces three community health work (CHW) legacy qualifications in
+													the form of CHW levels 2, 3 and 4.</p>
+												<p>The HWSETA will not accredit private skills development providers
+													(SDPs) for this newly registered occupational qualification and
+													this is a function that will reside with the Quality Council for
+													Trades Occupation (QCTO). Accreditation of providers by the QCTO
+													will be dependent on the signing of a Memorandum of Understanding
+													with the National Department of Health (NDOH) ensuring the learner
+													has a designated workplace with a mentor during the time of study
+													to obtain the required workplace experience.</p>
+												<p>Ms Gopal adds that the accreditation processes for legacy
+													qualifications will remain with the HWSETA and this should not be
+													confused with the accreditation processes outlined by QCTO for
+													registered occupational qualifications.</p>
+												<p>The HWSETA conducted workshops nationally to inform its
+													stakeholder base of this shift in accreditation and implementation
+													processes for this new occupational qualification, as well as
+													qualifications that will be developed in future.</p>
+												<p>To date the QCTO has successfully accredited twelve regional
+													training centers attached to the NDOH. A partnership pilot training
+													project for 900 learners in twelve regional training centres
+													commenced in March 2015.</p>
+												<p>Whilst the HWSETA will not be responsible for the accreditation
+													Skills Development Providers for this occupational qualification,
+													it has received approval from the QCTO to be the Assessment Quality
+													Partner (AQP). As an AQP, the HWSETA is responsible for setting up
+													final external summative examinations, co-ordination of national
+													examinations through approved assessment centers, as well as
+													assessment and recommendation of learner certification to QCTO.</p>
+												<p>The examination process and logistical arrangements will be
+													conducted through partnerships with Community of Experts (CEP’s) to
+													ensure seamless quality processes are applied. The ETQA will
+													timeously announce all examination logistics.</p>
+												<p>“This is an important milestone for the HWSETA and we believe
+													that what we have learnt during this process will pave the way for
+													the development of occupational qualifications that will replace
+													the thirty three legacy qualifications that the HWSETA is mandated
+													to quality assure,” adds Ms Gopal.</p>
+												<p>The HWSETA has submitted the occupational qualification, Social
+													Auxiliary Work to QCTO for registration with SAQA and is currently
+													awaiting the outcome of this occupational qualification.</p>
+												<p>Within the next five years the HWSETA intends having all legacy
+													qualifications re-curriculated into qualifications that will
+													translate into occupations and ultimately provide the youth of the
+													country an opportunity to follow a career within the Health or
+													Social Services Sector .</p>
+												<p>“The development of occupational qualifications that are relevant
+													to the labour market underpins the activities of the QDM
+													sub-division and it is this thinking that drives us to achieve
+													targets that will positively impact the health and social
+													development sectors in the country,” concludes Ms Gopal.</p>
+												<p> 
+												</p>
+											</div>
+								
+								
+										</article>
+								
+								
+									</div>
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

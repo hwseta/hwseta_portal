@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="wsp_error_log_form_view" model="ir.ui.view">
+			<field name="name">wsp.error.log.form.view</field>
+			<field name="model">wsp.error.log</field>
+			<field name="arch" type="xml">
+				<form string="WSP Error Log">
+					<group>
+						<field name="show_wsp_error_log" nolabel="1" readonly="1" />
+					</group>
+					<footer>
+						<group col="3" colspan="4">
+							<button name="action_download_incorrect_wsp_file" string="Download Incorrect Data File"
+								type="object" class="oe_highlight" />
+							<button name="action_download_error_log" string="Download WSP Error Log"
+								type="object" class="oe_highlight" />
+							<button name="action_delete_incorrect_records" string="Clear Incorrect Records"
+								type="object" class="oe_highlight" confirm="Are you sure you want clear all incorrect records?"/>
+							<group>
+							</group>
+						</group>
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

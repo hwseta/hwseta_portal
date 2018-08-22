@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+
+		<record model="ir.module.category" id="project_module_category_hidden">
+            <field name="name">PROJECTS</field>
+            <field name="sequence">105</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+		<record id="group_learning_programme_manager" model="res.groups">
+		    <field name="name">Learning Programme Manager</field>
+		    <field name="category_id" ref="hwseta_projects.project_module_category_hidden"/>
+		</record>
+		
+		<record id="group_learning_programmes_officer" model="res.groups">
+		    <field name="name">Learning Programme Officer</field>
+		    <field name="category_id" ref="hwseta_projects.project_module_category_hidden"/>
+		</record>
+		
+		<record id="group_learning_programmes_administrator" model="res.groups">
+		    <field name="name">Learning Programme Administrators</field>
+		    <field name="category_id" ref="hwseta_projects.project_module_category_hidden"/>
+		</record>
+		
+		<record id="group_projects_administrators" model="res.groups">
+		    <field name="name">Project Administrators</field>
+		    <field name="category_id" ref="hwseta_projects.project_module_category_hidden"/>
+		</record>
+		
+		<record id="group_project_officer" model="res.groups">
+		    <field name="name">Project Officer</field>
+		    <field name="category_id" ref="hwseta_projects.project_module_category_hidden"/>
+		</record>		
+
+			
+				
+	</data>
+</openerp>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<template id="assessor_moderator" name="Assesor and Moderator" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="assessor_moderator_details" class="oc-post oc-article  post-58 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Assesor and Moderator</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix form-bg">
+												<table width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF" border-collapse="collapse" align="center" class="search-table">
+												<thead>
+												<tr>
+												<th><label>Name</label></th>
+												<th><label>Identification No</label></th>
+												<th><label>Assessor/Moderator</label></th>
+												</tr>
+												</thead>
+												<tbody>
+													<t t-if="assessors">
+														<tr t-foreach="assessors" t-as="assessors">
+															<td><span t-esc="assessors.name"></span></td>
+															<td><span t-esc="assessors.identification_id"></span></td>
+															<td><span>Assessor</span></td>
+														</tr>													
+													</t>
+													<t t-if="moderators">
+														<tr t-foreach="moderators" t-as="moderators">
+															<td><span t-esc="moderators.name"></span></td>
+															<td><span t-esc="moderators.identification_id"></span></td>
+															<td><span>Moderator</span></td>
+														</tr>													
+													</t>												
+												</tbody>
+												</table>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

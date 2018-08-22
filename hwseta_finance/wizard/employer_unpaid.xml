@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record id="leavy_unpaid_employer_form" model="ir.ui.view">
+            <field name="name">leavy.unpaid.employer.form</field>
+            <field name="model">employer.unpaid</field>
+            <field name="arch" type="xml">
+            	<form string="Levy Not Paid By Employer">
+            		<group string="Select Period" col="4">
+            			<field name="from_date"/>
+            			<field name="to_date"/>
+            		</group>
+            		<footer>
+            			<button name="action_leavy_unpaid" type="object" string="Print"  class="oe_inline oe_stat_button" icon="fa-print"/>
+            		</footer>
+            	</form>
+            </field>
+        </record>
+        
+        <record id="action_leavy_unpaid_employer" model="ir.actions.act_window">
+            <field name="name">Levy Not Paid</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employer.unpaid</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="leavy_unpaid_employer_form"/>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+            name="Levy Unpaid Employers"
+            parent="account.menu_finance_reports"
+            action="action_leavy_unpaid_employer"
+            groups="account.group_account_user,account.group_account_manager"
+            id="menu_unpaid_employer"
+           />
+           
+	</data>
+</openerp>

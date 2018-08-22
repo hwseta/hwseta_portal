@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Expressions of Interest Page === -->
+		<template id="expr_interest" name="Expressions of Interest" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+								<t t-call="hwseta_website.sidebar1" />
+							
+								<div class="oc-layout-cell oc-content">
+									<article id="post-48"
+										class="oc-post oc-article  post-48 page type-page status-publish hentry">
+										<h1 class="oc-postheader">Expressions of Interest</h1>
+										<div class="oc-postcontent oc-postcontent-0 clearfix">
+											<h2>HWSETA Call for Expressions of Interest</h2>
+											<p>
+												EOI Bursaries for Employed Persons 2015-2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI-_Bursaries_for_Employed_persons_2015_2016.pdf">download application form here</a>
+											</p>
+											<p>
+												EOI Internships for Unemployed Persons 2015 – 2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI-_Internships_2015_2016.pdf">download application form here</a>
+											</p>
+											<p>
+												EOI Work Experience for TVET Learners 2015 – 2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI-_Work_Experience_for_TVET_learners_2015_2016.pdf">download application form here</a>
+											</p>
+											<p>
+												EOI Learnerships 2015 – 2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI_Learnerships_2015-2016.pdf">download application form here</a>
+											</p>
+											<p>
+												EOI Sign Language for Department of health and Social Development
+												Employees 2015 – 2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI_Sign_Language_for_Department_of_Health_and_Social_Development_employees-_2015_2016.pdf">download application form here</a>
+											</p>
+											<p>
+												EOI Skills Programmes 2015 – 2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI_Skills_Programmes-_2015-2016.pdf">download application form here</a>
+											</p>
+											<p>
+												EOI Work Integrated Learning 2015 – 2016
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/07/EOI_Work_Integrated_Learning_2015_2016.pdf">download application form here</a>
+											</p>
+											<p> 
+											</p>
+											<p>For further information on any of the Expressions of Interest
+												please contact the relevant person as detailed on the EOI</p>
+										</div>
+								
+								
+									</article>
+								
+								
+								
+								</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

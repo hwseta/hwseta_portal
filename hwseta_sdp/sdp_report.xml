@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Monitoring and Evaluation Report -->
+        <report 
+            id="report_monitor_evaluate"
+            string="Monitoring and Evaluation Report"
+            model="monitor.and.evaluate" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.report_monitorevaluate" 
+            name="hwseta_sdp.report_monitorevaluate" 
+        />
+        <!-- Learnership Agreement Report -->
+        <report 
+            id="report_learner_agmt"
+            string="Learnership Agreement Report"
+            model="hr.employee" 
+            report_type="qweb-pdf"
+			file="hwseta_sdp.report_learner_agreement" 
+            name="hwseta_sdp.report_learner_agreement" 
+        />
+        <!-- <report 
+            id="report_learner_agmt"
+            string="Learnership Agreement Report"
+            model="sdp.learner" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.report_learner_agreement_document" 
+            name="hwseta_sdp.report_learner_agreement_document" 
+        /> -->
+        <report 
+            id="report_atr_pdf"
+            string="ATR PDF report"
+            model="export.wsp.xls" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.atr_report" 
+            name="hwseta_sdp.atr_report" 
+        />    
+       <report 
+            id="report_wsp_pdf"
+            string="WSP PDF report"
+            model="export.wsp.xls" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.wsp_report" 
+            name="hwseta_sdp.wsp_report" 
+        />                    
+        
+       <report 
+            id="report_error_log_pdf"
+            string="WSP Import E report"
+            model="xls.error.validation" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.error_log_report" 
+            name="hwseta_sdp.error_log_report" 
+        />
+        
+        <report 
+            id="report_wsp_error_log_pdf"
+            string="WSP Error report"
+            model="wsp.error.log" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.wsp_error_log_report" 
+            name="hwseta_sdp.wsp_error_log_report" 
+        />
+        
+        <report 
+            id="report_atr_error_log_pdf"
+            string="ATR Error report"
+            model="atr.error.log" 
+            report_type="qweb-pdf"
+            file="hwseta_sdp.atr_error_log_report" 
+            name="hwseta_sdp.atr_error_log_report" 
+        />      
+                
+        <record id="paperformat_landscape" model="report.paperformat">
+           <field name="name">Landscape</field>
+           <field name="default" eval="True"/>
+           <field name="format">A4</field>
+           <field name="page_height">0</field>
+           <field name="page_width">0</field>
+           <field name="orientation">Landscape</field>
+           <field name="margin_top">18</field>
+           <field name="margin_bottom">20</field>
+           <field name="margin_left">7</field>
+           <field name="margin_right">7</field>
+           <field name="header_line" eval="False" />
+           <field name="header_spacing">6</field>
+           <field name="dpi">100</field>
+       </record>
+        
+    </data>
+</openerp>

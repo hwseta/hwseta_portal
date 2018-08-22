@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Inheriting openerp css in order to add own css. -->
+		<template id="minimal_layout_inherit_finance" inherit_id="report.minimal_layout" name="hwseta_finance layout">
+		    <xpath expr='//link[@href="/report/static/src/css/reset.min.css"]' position="before">
+		        <link rel="stylesheet" href="/hwseta_finance/static/src/css/petty_style.css"/>
+		    </xpath>
+		</template>
+	</data>
+</openerp>

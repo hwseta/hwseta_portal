@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	<data>
+		<record id="report_wsp_error_log_pdf" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="hwseta_sdp.paperformat_landscape" />
+		</record>
+
+		<template id="wsp_error_log_report">
+			<t t-foreach="docs" t-as="o">
+				<div align="center">
+					<h2>
+						<strong>WSP Error Log</strong>
+					</h2>
+				</div>
+				<div class="page" style="font-size:13px !important;">
+					<div class="row mt32 mb32" style="font-size:13px !important;">
+						<span t-field="o.wsp_error_log_download" />
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

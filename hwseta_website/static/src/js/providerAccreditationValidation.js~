@@ -1,0 +1,1799 @@
+function GotoStep2Part2() {
+    if (frmProviderAccreditation.txtRegName.value == "" && frmProviderAccreditation.txtRegName.readOnly == false) {
+        msg = "Please specify the organisation's Provider name";
+        alert(msg);
+        frmProviderAccreditation.txtRegName.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtTradeName.value == "" && frmProviderAccreditation.txtTradeName.readOnly == false) {
+        msg = "Please specify the organisation's trading as name";
+        alert(msg);
+        frmProviderAccreditation.txtTradeName.focus();
+        return false;
+/*    } else if (frmProviderAccreditation.cboOrgLegalStatus.value == "0" && frmProviderAccreditation.cboOrgLegalStatus.disabled == false) {
+        msg = "Please select a legal status";
+        alert(msg);
+        frmProviderAccreditation.cboOrgLegalStatus.focus();
+        return false;*/
+    } else if (frmProviderAccreditation.txtCompanyRegNo.value == "" && frmProviderAccreditation.txtCompanyRegNo.readOnly == false) {
+        msg = "Please specify a company registration number";
+        alert(msg);
+        frmProviderAccreditation.txtCompanyRegNo.focus();
+        return false;
+    
+        
+/* make it non mandatory
+}
+    else if (frmProviderAccreditation.txtSDLNo.value == "" && frmProviderAccreditation.txtSDLNo.readOnly == false) {
+        msg = "Please specify a SARS / SD levy number";
+        alert(msg);
+        frmProviderAccreditation.txtSDLNo.focus();
+        return false;*/
+    }
+/*    else if (frmProviderAccreditation.txtSDLNo.value == "") {
+        msg = "Please specify the SDL Number";
+        alert(msg);
+        frmProviderAccreditation.txtSDLNo.focus();
+        return false;
+    }  */   
+    else if (frmProviderAccreditation.txtVATRegNo.value == "") {
+        msg = "Please specify the VAT registration Number";
+        alert(msg);
+        frmProviderAccreditation.txtVATRegNo.focus();
+        return false;
+    }    
+    else if (frmProviderAccreditation.txtNumStaffMembers.value == "" && frmProviderAccreditation.txtNumStaffMembers.readOnly == false) {
+        msg = "Please specify the number of full time staff members";
+        alert(msg);
+        frmProviderAccreditation.txtNumStaffMembers.focus();
+        return false;
+    }
+   
+    else if (frmProviderAccreditation.optYesNo.value == "yes"){
+    	 if (frmProviderAccreditation.SETA.value == "" ) {
+    	        msg = "Please specify the Accreditation Number";
+    	        alert(msg);
+    	        frmProviderAccreditation.SETA.focus();
+    	        return false;
+    	    }
+    }
+    // else
+    // {
+    //  for (var i = 0; i < frmProviderAccreditation.cboTHETAChamber.length; i++)
+    //  {
+    //   frmProviderAccreditation.THETAChambers.value = frmProviderAccreditation.THETAChambers.value + frmProviderAccreditation.cboTHETAChamber.options(i).value + ","
+    //  }
+    //  
+    //  
+    //
+    //			frmProviderAccreditation.action = "GeneralBusinessInfo_Part2.asp?PageType=SaveStep2Part1";
+    //			frmProviderAccreditation.submit();
+    //	 
+    //	 
+    // } 
+    return true;
+}
+
+function GetSDLNo() {
+    var returnValue = window.showModalDialog("../../ETQA/Achievements/Certificates/Provider_Opening.asp?sType=Org", document, "dialogWidth:780px; status:no;  help:no; scroll:No; center:yes; resizable:Yes;")
+    if (returnValue == null) {
+        frmProviderAccreditation.txtSDLNo.value = "";
+    } else {
+        var sString = returnValue
+        sString = sString.split("|||")
+
+        frmProviderAccreditation.txtRegName.value = sString[0];
+        frmProviderAccreditation.txtRegName.readOnly = true;
+        frmProviderAccreditation.txtTradeName.value = sString[1];
+        frmProviderAccreditation.txtTradeName.readOnly = true;
+        frmProviderAccreditation.txtSDLNo.value = sString[2];
+        frmProviderAccreditation.txtSDLNo.readOnly = true;
+
+        if (sString[3] == "0") {
+            frmProviderAccreditation.txtCompanyRegNo.value = "";
+            frmProviderAccreditation.txtCompanyRegNo.readOnly = true;
+        } else {
+            frmProviderAccreditation.txtCompanyRegNo.value = sString[3];
+            frmProviderAccreditation.txtCompanyRegNo.readOnly = true;
+        }
+
+        frmProviderAccreditation.cboOrgLegalStatus.selectedIndex = sString[4];
+        frmProviderAccreditation.cboOrgLegalStatus.disabled = true;
+        frmProviderAccreditation.OrgLegalStatus.value = sString[4];
+
+
+        frmProviderAccreditation.cboOrgSICCode.selectedIndex = sString[5];
+        frmProviderAccreditation.cboOrgSICCode.disabled = true;
+        frmProviderAccreditation.SICCode.value = sString[5];
+
+        if (sString[6] == "0") {
+            frmProviderAccreditation.txtNumYearsCurrentBusiness.value = "";
+            frmProviderAccreditation.txtNumYearsCurrentBusiness.readOnly = true;
+        } else {
+            frmProviderAccreditation.txtNumYearsCurrentBusiness.value = sString[6];
+            frmProviderAccreditation.txtNumYearsCurrentBusiness.readOnly = true;
+        }
+
+        if (sString[7] == "0") {
+            frmProviderAccreditation.txtNumStaffMembers.value = "";
+            frmProviderAccreditation.txtNumStaffMembers.readOnly = true;
+        } else {
+            frmProviderAccreditation.txtNumStaffMembers.value = sString[7];
+            frmProviderAccreditation.txtNumStaffMembers.readOnly = true;
+        }
+
+        frmProviderAccreditation.IsExistingSearch.value = 1;
+
+    }
+}
+
+function CheckSDLNumber() {
+    var xDocMenu;
+    var XSLMenu;
+
+    xDocMenu = new ActiveXObject('Microsoft.XMLDOM');
+    xDocMenu.async = false;
+    xDocMenu.load('../GenericXML.asp?PageType=GetNextProviderAccSDLNo');
+    var SDLNumber = xDocMenu.getElementsByTagName("NUMBER/LEVYNUMBER");
+
+    if (frmProviderAccreditation.chkSDLNo.checked == true) {
+        frmProviderAccreditation.txtSDLNo.value = SDLNumber(0).text;
+        frmProviderAccreditation.txtSDLNo.readOnly = true;
+    } else {
+        frmProviderAccreditation.txtSDLNo.value = "";
+        frmProviderAccreditation.txtSDLNo.readOnly = false;
+    }
+    frmProviderAccreditation.txtRegName.value = "";
+    frmProviderAccreditation.txtRegName.readOnly = false;
+    frmProviderAccreditation.txtTradeName.value = "";
+    frmProviderAccreditation.txtTradeName.readOnly = false;
+    frmProviderAccreditation.cboOrgLegalStatus.selectedIndex = "";
+    frmProviderAccreditation.cboOrgLegalStatus.disabled = false;
+    frmProviderAccreditation.txtCompanyRegNo.value = "";
+    frmProviderAccreditation.txtCompanyRegNo.readOnly = false;
+    frmProviderAccreditation.cboOrgSICCode.selectedIndex = "";
+    frmProviderAccreditation.cboOrgSICCode.disabled = false;
+    frmProviderAccreditation.txtNumYearsCurrentBusiness.value = "";
+    frmProviderAccreditation.txtNumYearsCurrentBusiness.readOnly = false;
+    frmProviderAccreditation.txtNumStaffMembers.value = "";
+    frmProviderAccreditation.txtNumStaffMembers.readOnly = false;
+}
+
+function AddOption() {
+    if (frmProviderAccreditation.cboTHETAChamberSelect.value != "0") {
+
+        for (var i = 0; i < frmProviderAccreditation.cboTHETAChamber.length; i++) {
+            if (frmProviderAccreditation.cboTHETAChamber.options[i].value == frmProviderAccreditation.cboTHETAChamberSelect.value) {
+                return false;
+            }
+        }
+        var oOption = document.createElement("OPTION");
+        oOption.text = frmProviderAccreditation.cboTHETAChamberSelect.item(frmProviderAccreditation.cboTHETAChamberSelect.selectedIndex).text;
+        oOption.value = frmProviderAccreditation.cboTHETAChamberSelect.value;
+        frmProviderAccreditation.cboTHETAChamber.add(oOption);
+    }
+}
+
+function RemoveOption() {
+    if (frmProviderAccreditation.cboTHETAChamber.selectedIndex != -1) {
+        frmProviderAccreditation.cboTHETAChamber.remove(frmProviderAccreditation.cboTHETAChamber.selectedIndex);
+    }
+}
+
+function keyNumerics() {
+    if (event.keyCode < 48 || event.keyCode > 57)
+        event.returnValue = false;
+}
+
+function CheckSDLNo(SDLNo) {
+    console.log("In Check SDLNo sdlno ", SDLNo);
+    if (SDLNo !== "") {
+        var xDocMenu;
+        var XSLMenu;
+
+        xDocMenu = new ActiveXObject("Microsoft.XMLDOM");
+        xDocMenu.async = false;
+        xDocMenu.load('../GenericXML.asp?SDLNo=' + SDLNo);
+        var Exists = xDocMenu.getElementsByTagName("NUMBER/EXISTS");
+
+        if (Exists(0).text == "1") {
+            msg = "Please note that the specified SARS/SD Levy number already exists in the system as a provider \n or as a finalized application in the provider accreditation process";
+            alert(msg);
+            frmProviderAccreditation.txtSDLNo.focus();
+            return false;
+        }
+    }
+}
+
+function GotoStep3() {
+    if (frmProviderAccreditation.txtContactNameSurname.value == "") {
+        msg = "Please specify a name and surname";
+        alert(msg);
+        frmProviderAccreditation.txtContactNameSurname.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtContactDesignation.value == "") {
+        msg = "Please specify a designation";
+        alert(msg);
+        frmProviderAccreditation.txtContactDesignation.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtContactTel.value == "") {
+        msg = "Please specify a telephone / cell phone number";
+        alert(msg);
+        frmProviderAccreditation.txtContactTel.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtContactFax.value == "") {
+        msg = "Please specify a fax number";
+        alert(msg);
+        frmProviderAccreditation.txtContactFax.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtContactEmail.value == "") {
+        msg = "Please specify an email address";
+        alert(msg);
+        frmProviderAccreditation.txtContactEmail.focus();
+        return false;
+    } else if (frmProviderAccreditation.cboContactStatus.value == "0") {
+        msg = "Please select a status in relation to the provider";
+        alert(msg);
+        frmProviderAccreditation.cboContactStatus.focus();
+        return false;
+    }
+    // else
+    // {
+    //
+    //  
+    // 
+    //			frmProviderAccreditation.action = "GeneralSiteInfo.asp?PageType=SaveStep2Part2";
+    //			frmProviderAccreditation.submit();
+    //			
+    //			
+    // }
+    return true;
+}
+
+function GotoStep4() {
+
+    if (frmProviderAccreditation.txtCmpName.value == "") {
+        msg = "Please specify a Campus Name";
+        alert(msg);
+        frmProviderAccreditation.txtCmpName.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtCmpEmail.value == "") {
+        msg = "Please specify a campus email";
+        alert(msg);
+        frmProviderAccreditation.txtCmpEmail.focus();
+        return false;
+    }else if (frmProviderAccreditation.txtCmpStreet1.value == "") {
+        msg = "Please specify a street 1 ";
+        alert(msg);
+        frmProviderAccreditation.txtCmpStreet1.focus();
+        return false;
+    }else if (frmProviderAccreditation.txtCmpStreet2.value == "") {
+        msg = "Please specify a street 2 ";
+        alert(msg);
+        frmProviderAccreditation.txtCmpStreet2.focus();
+        return false;
+    }else if (frmProviderAccreditation.txtCmpStreet3.value == "") {
+        msg = "Please specify a street 3 ";
+        alert(msg);
+        frmProviderAccreditation.txtCmpStreet3.focus();
+        return false;
+    }else if (frmProviderAccreditation.txtCmpProvince.value == "") {
+        msg = "Please select a Province ";
+        alert(msg);
+        frmProviderAccreditation.txtCmpProvince.focus();
+        return false;
+    }else if (frmProviderAccreditation.txtContactNameSurname.value == "") {
+        msg = "Please specify a contact person name ";
+        alert(msg);
+        frmProviderAccreditation.txtContactNameSurname.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtContactEmail.value == "") {
+        msg = "Please specify an contact person email address";
+        alert(msg);
+        frmProviderAccreditation.txtContactEmail.focus();
+        return false;
+    }/* else if (frmProviderAccreditation.txtContactTel.value == "") {
+        msg = "Please specify a telephone number";
+        alert(msg);
+        frmProviderAccreditation.txtContactTel.focus();
+        return false;
+    }else if (frmProviderAccreditation.txtContactCell.value == "") {
+        msg = "Please specify a Cell no";
+        alert(msg);
+        frmProviderAccreditation.txtContactCell.focus();
+        return false;
+    } 
+    else if (frmProviderAccreditation.cboQualification.value == "") {
+        msg = "Please select a Qualification";
+        alert(msg);
+        frmProviderAccreditation.cboQualification.focus();
+        return false;
+    }else if (frmProviderAccreditation.cboSkill.value == "") {
+        msg = "Please select a Skill Program";
+        alert(msg);
+        frmProviderAccreditation.cboSkill.focus();
+        return false;
+    }
+*/
+    else if (frmProviderAccreditation.ciproDocument.value == "") {
+        msg = "Please Upload CIPC/DSD Document";
+        alert(msg);
+        frmProviderAccreditation.ciproDocument.focus();
+        return false;
+    }else if (frmProviderAccreditation.taxDocument.value == "") {
+        msg = "Please Upload Tax Clearance Document";
+        alert(msg);
+        frmProviderAccreditation.taxDocument.focus();
+        return false;
+    }else if (frmProviderAccreditation.cvDocument.value == "") {
+        msg = "Please Upload Director C.V";
+        alert(msg);
+        frmProviderAccreditation.cvDocument.focus();
+        return false;
+    }else if (frmProviderAccreditation.qualificationDocument.value == "") {
+        msg = "Please Upload Certified Copies Of Qualifications";
+        alert(msg);
+        frmProviderAccreditation.qualificationDocument.focus();
+        return false;
+    }    
+    return true;
+}
+
+function keyNumerics() {
+    if (event.keyCode < 48 || event.keyCode > 57)
+        event.returnValue = false;
+}
+
+function AddSite() {
+    var returnValue = window.showModalDialog('IFrame.asp?PageType=AddSite&ReadOnly=&Style=', '', 'dialogWidth:650px; dialogHeight:370px; status:no; help:no; scroll:Yes; center:Yes; resizable:No;');
+    if (returnValue != "undefined") {
+        frmProviderAccreditation.action = "GeneralSiteInfo.asp?ReadOnly=";
+        frmProviderAccreditation.submit();
+    }
+}
+
+function EditSite(ProviderSiteID) {
+    var returnValue = window.showModalDialog('IFrame.asp?PageType=UpdateSite&ReadOnly=&Style=&ProviderSiteID=' + ProviderSiteID, '', 'dialogWidth:650px; dialogHeight:370px; status:no; help:no; scroll:Yes; center:Yes; resizable:No;');
+    if (returnValue != "undefined") {
+        frmProviderAccreditation.action = "GeneralSiteInfo.asp?ReadOnly=";
+        frmProviderAccreditation.submit();
+    }
+}
+
+function DeleteSite(ProviderSiteID) {
+    frmProviderAccreditation.action = "GeneralSiteInfo.asp?PageType=DeleteProviderSite&ProviderSiteID=" + ProviderSiteID;
+    frmProviderAccreditation.submit()
+}
+
+function GotoStep5() {
+/*    if (frmProviderAccreditation.cboSETA.value == "0") {
+        msg = "Please select a SETA";
+        alert(msg);
+        frmProviderAccreditation.cboSETA.focus();
+        return false;
+    } else if (frmProviderAccreditation.optAccStatus[0].checked == false && frmProviderAccreditation.optAccStatus[1].checked == false && frmProviderAccreditation.optAccStatus[2].checked == false && frmProviderAccreditation.optAccStatus[3].checked == false) {
+        msg = "Please select an accrediation status";
+        alert(msg);
+        return false;
+    } else if (frmProviderAccreditation.optAccStatus[0].checked == true && (frmProviderAccreditation.txtAccStartDate.value == "dd/mm/ccyy" || frmProviderAccreditation.txtAccStartDate.value == "") && (frmProviderAccreditation.txtAccEndDate.value == "dd/mm/ccyy" || frmProviderAccreditation.txtAccEndDate.value == "")) {
+        msg = "Please specIfy an accreditation period";
+        alert(msg);
+        frmProviderAccreditation.txtAccStartDate.focus();
+        return false;
+    } else if (frmProviderAccreditation.optAccStatus[2].checked == true && frmProviderAccreditation.optStatusReason[0].checked == false && frmProviderAccreditation.optStatusReason[1].checked == false && frmProviderAccreditation.optStatusReason[2].checked == false && frmProviderAccreditation.optStatusReason[3].checked == false) {
+        msg = "Please specIfy a status reason";
+        alert(msg);
+        return false;
+    }
+*/    
+	return true;
+}
+
+function GotoStep6() {
+/*    if (frmProviderAccreditation.txtPhysicalAddressLine1.value == "") {
+        msg = "Please specify a physical address";
+        alert(msg);
+        frmProviderAccreditation.txtPhysicalAddressLine1.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtPhysicalAddressLine2.value == "") {
+        msg = "Please specify a physical address";
+        alert(msg);
+        frmProviderAccreditation.txtPhysicalAddressLine2.focus();
+        return false;
+    }  else if (frmProviderAccreditation.txtPostalAddressLine1.value == "") {
+        msg = "Please specify a postal address";
+        alert(msg);
+        frmProviderAccreditation.txtPostalAddressLine1.focus();
+        return false;
+    } else if (frmProviderAccreditation.txtPostalAddressLine2.value == "") {
+        msg = "Please specify a fax number";
+        alert(msg);
+        frmProviderAccreditation.txtPostalAddressLine2.focus();
+        return false;
+    } */
+    return true;
+}
+
+function GotoStep7() {
+    if (frmProviderAccreditation.campus.value == "") {
+        msg = "Please specify campus";
+        alert(msg);
+        frmProviderAccreditation.campus.focus();
+        return false;
+    } 
+    return true;
+}
+
+function EnableControls() {
+    frmProviderAccreditation.cboSETA.disabled = false;
+    frmProviderAccreditation.optAccStatus[0].disabled = false;
+    frmProviderAccreditation.optAccStatus[1].disabled = false;
+    frmProviderAccreditation.optAccStatus[2].disabled = false;
+    frmProviderAccreditation.optAccStatus[3].disabled = false;
+    frmProviderAccreditation.AppliedToAnotherSETA.value = 1;
+}
+
+function DisableControls() {
+    frmProviderAccreditation.cboSETA.disabled = true;
+    frmProviderAccreditation.optAccStatus[0].disabled = true;
+    frmProviderAccreditation.optAccStatus[1].disabled = true;
+    frmProviderAccreditation.optAccStatus[2].disabled = true;
+    frmProviderAccreditation.optAccStatus[3].disabled = true;
+    frmProviderAccreditation.optStatusReason[0].disabled = true;
+    frmProviderAccreditation.optStatusReason[1].disabled = true;
+    frmProviderAccreditation.optStatusReason[2].disabled = true;
+    frmProviderAccreditation.optStatusReason[3].disabled = true;
+    frmProviderAccreditation.txtAccStartDate.disabled = true;
+    frmProviderAccreditation.txtAccEndDate.disabled = true;
+    frmProviderAccreditation.AppliedToAnotherSETA.value = 0;
+}
+
+function EnableStatusReason() {
+    frmProviderAccreditation.optStatusReason[0].disabled = false;
+    frmProviderAccreditation.optStatusReason[1].disabled = false;
+    frmProviderAccreditation.optStatusReason[2].disabled = false;
+    frmProviderAccreditation.optStatusReason[3].disabled = false;
+    frmProviderAccreditation.txtAccStartDate.disabled = true;
+    frmProviderAccreditation.txtAccEndDate.disabled = true;
+}
+
+function DisableStatusReason() {
+    frmProviderAccreditation.optStatusReason[0].disabled = true;
+    frmProviderAccreditation.optStatusReason[1].disabled = true;
+    frmProviderAccreditation.optStatusReason[2].disabled = true;
+    frmProviderAccreditation.optStatusReason[3].disabled = true;
+    frmProviderAccreditation.txtAccStartDate.disabled = true;
+    frmProviderAccreditation.txtAccEndDate.disabled = true;
+}
+
+function EnableAccDates() {
+    frmProviderAccreditation.txtAccStartDate.disabled = false;
+    frmProviderAccreditation.txtAccEndDate.disabled = false;
+}
+
+
+$(function() {
+     $( "#dialog-message-accreditation" ).dialog({
+     autoOpen: false,
+     modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+          $('#frmProviderAccreditation').unbind('submit').submit();
+        }
+      }
+    });
+ 
+
+    
+      
+    
+  });
+
+function GotoStep2Part1() {
+	var terms=$('input[name=radio_terms]:checked', '#frmProviderAccreditation').val()
+	 if (terms == 'notagree')
+		 {
+			alert( "Please Check Terms and Conditions" );
+			$("#agree").focus();
+			return false;
+		 }
+	 else if(terms == 'agree')
+	 	{
+			 return true; 
+		 }
+		  
+}
+$(function() {
+	$( "#accordian" ).accordion({
+	collapsible: true,
+	heightStyle:"content"
+	});
+//$('#addAccordion').click( function() {
+//    campus_cnt = $('.clonedInput h2').length;
+//    var newDiv = "<h3 class='test'>Campus"+(campus_cnt+1)+"</h3><div class='test-div'><p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p></div>";
+//    $('#accordion').append(newDiv).accordion("refresh").accordion({ active: campus_cnt });        
+//});
+
+});
+
+$(document).ready(function(){
+	$("#SETA").hide();
+	$("#SETA_label").hide();
+	// readonly check box
+	function readOnlyCheckBox() {
+		   return false;
+		}
+	$('input:radio[name="optYesNo"]').change(
+		    function(){
+		        if ($(this).is(':checked') && $(this).val() == 'yes') {
+		        	$("#SETA").show();
+		        	$("#SETA_label").show();
+
+		        }
+		        else if ($(this).is(':checked') && $(this).val() == 'no') {
+		        	$("#SETA").hide();
+		        	$("#SETA_label").hide();
+		        }
+		    });	
+	
+	// load province on the basis of country
+	$('#txtCmpCountry').on('change', function() {
+	var country=$("#txtCmpCountry option:selected" ).attr('value');
+	$.ajax({ url: "/page/get_province",
+        type:"post", 
+        dataType:"json",
+        async : false,
+        data:{'country':country},
+        success: function(result){
+        	$('#txtCmpProvince').find('option').remove().end().append('<option value="">-- Select Province --</option>');
+        	$('#frmProviderAccreditation #city').find('option').remove().end().append('<option value="">-- Select City--</option>');
+        	$('#frmProviderAccreditation #txtSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+        	$("#txtCmpZip").val('');        	
+        	if (result.length>0)
+			{
+        		var workprovince=$("#txtCmpProvince");
+        		$.each(result, function(key,value) {
+        				workprovince.append('<option value=' + value['id'] + '>' + value['name'] + '</option>');
+        		}); 
+			}
+        },
+	});
+	});
+	
+	$("#txtSDLNo").change(function(){
+    	var sdl_number=$("#txtSDLNo").val();
+    	$.ajax({ url:"/page/check_sdlnumber",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'sdl_number':sdl_number},
+            success: function(result){
+            	if (result.length>0){
+            		if(result[0].result==1){
+                           $('#txtSDLNo').val('');
+                           alert("Provider Already Register for this SDL Number");
+                           $('#txtSDLNo').focus();		                    			
+            		}
+    			}
+            },
+    	});		
+	}); 	
+	
+	$("#txtVATRegNo").change(function(){
+    	var vat_registration_no=$("#txtVATRegNo").val();
+    	$.ajax({ url:"/page/check_vat_registartion_no",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'vat_registration_no':vat_registration_no},
+            success: function(result){
+            	if (result.length>0){
+            		if(result[0].result==1){
+                           $('#txtVATRegNo').val('');
+                           alert("Provider Already Register for this VAT Registration Number");
+                           $('#txtVATRegNo').focus();		                    			
+            		}
+    			}
+            },
+    	});		
+	}); 		
+	
+	$("#cboOrgSICCode").change(function(){
+    	var cboOrgSICCode=$("#cboOrgSICCode").val();
+    	$.ajax({ url:"/load_sic_code_description",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'sic_code':cboOrgSICCode},
+            success: function(result){
+            	if (result.length>0){
+            		$("#empl_sic_code_id").val(result[0].sic_description)
+            		}
+            },
+    	});		
+	}); 	
+	$("#txtCmpEmail").change(function(){
+		
+    	var email=$("#txtCmpEmail").val()
+    	$.ajax({ url: "/page/check_email_id",
+            type:"post", 
+            dataType:"json",
+            async : true,
+            data:{'email':email},
+            success: function(result){
+            	if (result.length>0){
+            		if(result[0].result==1){
+                           $('#txtCmpEmail').val('');
+                           alert("Provider Already Register for this Email Id ");
+                           $('#txtCmpEmail').focus();		                    			
+            		}
+    			}
+            },
+    	});		
+	})   
+// load city on the basis of province
+$('#txtCmpProvince').on('change', function() {
+	var province=$("#txtCmpProvince option:selected" ).attr('value');
+	$.ajax({ url: "/page/get_city",
+        type:"post", 
+        dataType:"json",
+        async : false,
+        data:{'province':province},
+        success: function(result){
+        	$('#frmProviderAccreditation #city').find('option').remove().end().append('<option value="">-- Select City--</option>');
+        	$('#frmProviderAccreditation #txtSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+        	$("#txtCmpZip").val('');
+        	if (result.length>0)
+			{
+        		var workcity=$("#city");
+        		$.each(result, function(key,value) {
+        			workcity.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+'</option>');
+        		});         		
+			}
+        },
+	});
+	
+	});	
+
+//load suburb on the basis of city
+$('#frmProviderAccreditation #city').on('change', function() {
+	var city=$("#city option:selected" ).attr('value');
+	
+	$.ajax({ url: "/page/get_suburb",
+        type:"post", 
+        dataType:"json",
+        async : false,
+        data:{'city':city},
+        success: function(result){
+        	$('#frmProviderAccreditation #txtSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+        	$("#txtCmpZip").val('');
+        	if (result.length>0)
+			{
+        		var worksuburb=$("#txtSuburb");
+        		$.each(result, function(key,value) {
+        			worksuburb.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+ '</option>');
+        		}); 
+			}
+        },
+	});
+});		
+$('#frmProviderAccreditation #txtSuburb').on('change', function() {
+	var suburb=$("#txtSuburb option:selected" ).attr('value');
+	
+	$.ajax({ url: "/page/get_locality",
+        type:"post", 
+        dataType:"json",
+        async : false,
+        data:{'suburb':suburb},
+        success: function(result){
+        	if (result.length>0)
+			{
+        		 $('#txtCmpZip').val(result[0].postal_code);
+			}
+        },
+	});
+});	
+	
+// Physical load province on the basis of country
+$('#txtPhysicalCountry').on('change', function() {
+var country=$("#txtPhysicalCountry option:selected" ).attr('value');
+$.ajax({ url: "/page/get_province",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'country':country},
+    success: function(result){
+    	$('#txtPhysicalProvince').find('option').remove().end().append('<option value="">-- Select Province --</option>');
+    	$('#txtPhysicalCity').find('option').remove().end().append('<option value="">-- Select City--</option>');
+    	$('#txtPhysicalSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+    	$("#txtPhysicalZip").val('');    	
+    	if (result.length>0)
+		{
+    		var physicalprovince=$("#txtPhysicalProvince");
+    		$.each(result, function(key,value) {
+    			physicalprovince.append('<option value=' + value['id'] + '>' + value['name'] + '</option>');
+    		}); 
+		}
+    },
+});
+});
+
+// Physical load city on the basis of province
+$('#txtPhysicalProvince').on('change', function() {
+var province=$("#txtPhysicalProvince option:selected" ).attr('value');
+$.ajax({ url: "/page/get_city",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'province':province},
+    success: function(result){
+    	$('#txtPhysicalCity').find('option').remove().end().append('<option value="">-- Select City--</option>');
+    	$('#txtPhysicalSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+    	$("#txtPhysicalZip").val('');
+    	if (result.length>0)
+		{
+    		var physicalcity=$("#txtPhysicalCity");
+    		$.each(result, function(key,value) {
+    			physicalcity.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+'</option>');
+    		});         		
+		}
+    },
+});
+
+});	
+
+//Physical load suburb on the basis of city
+$('#txtPhysicalCity').on('change', function() {
+var city=$("#txtPhysicalCity option:selected" ).attr('value');
+
+$.ajax({ url: "/page/get_suburb",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'city':city},
+    success: function(result){
+    	$('#txtPhysicalSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+    	$("#txtPhysicalZip").val('');
+    	if (result.length>0)
+		{
+    		var physicalsuburb=$("#txtPhysicalSuburb");
+    		$.each(result, function(key,value) {
+    			physicalsuburb.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+ '</option>');
+    		}); 
+		}
+    },
+});
+});	
+//Physical load Zip on the basis of city
+$('#txtPhysicalSuburb').on('change', function() {
+var suburb=$("#txtPhysicalSuburb option:selected" ).attr('value');
+
+$.ajax({ url: "/page/get_locality",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'suburb':suburb},
+    success: function(result){
+    	if (result.length>0)
+		{
+    		 $('#txtPhysicalZip').val(result[0].postal_code);
+		}
+    },
+});
+});	
+
+//Postal load province on the basis of country
+$('#txtPostalAddressCountry').on('change', function() {
+var country=$("#txtPostalAddressCountry option:selected" ).attr('value');
+$.ajax({ url: "/page/get_province",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'country':country},
+    success: function(result){
+    	$('#txtPostalAddressProvince').find('option').remove().end().append('<option value="">-- Select Province --</option>');
+    	$('#txtPostalAddressCity').find('option').remove().end().append('<option value="">-- Select City--</option>');
+    	$('#frmProviderAccreditation #txtPostalSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+    	$("#txtPostalAddressZip").val('');    	
+    	if (result.length>0)
+		{
+    		var postprovince=$("#txtPostalAddressProvince");
+    		$.each(result, function(key,value) {
+    			postprovince.append('<option value=' + value['id'] + '>' + value['name'] + '</option>');
+    		}); 
+		}
+    },
+});
+});
+
+// Postal load city on the basis of province
+$('#txtPostalAddressProvince').on('change', function() {
+var province=$("#txtPostalAddressProvince option:selected" ).attr('value');
+$.ajax({ url: "/page/get_city",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'province':province},
+    success: function(result){
+    	$('#txtPostalAddressCity').find('option').remove().end().append('<option value="">-- Select City--</option>');
+    	$('#frmProviderAccreditation #txtPostalSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+    	$("#txtPostalAddressZip").val('');
+    	if (result.length>0)
+		{
+    		var postcity=$("#txtPostalAddressCity");
+    		$.each(result, function(key,value) {
+    			postcity.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+'</option>');
+    		});         		
+		}
+    },
+});
+
+});	
+
+//Postal load suburb on the basis of city
+$('#txtPostalAddressCity').on('change', function() {
+var city=$("#txtPostalAddressCity option:selected" ).attr('value');
+
+$.ajax({ url: "/page/get_suburb",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'city':city},
+    success: function(result){
+    	$('#frmProviderAccreditation #txtPostalSuburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+    	$("#txtPostalAddressZip").val('');
+    	if (result.length>0)
+		{
+    		var postsuburb=$("#frmProviderAccreditation #txtPostalSuburb");
+    		$.each(result, function(key,value) {
+    			postsuburb.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+ '</option>');
+    		}); 
+		}
+    },
+});
+});	
+//Postal load Zip on the basis of city
+$('#frmProviderAccreditation #txtPostalSuburb').on('change', function() {
+var suburb=$("#frmProviderAccreditation #txtPostalSuburb option:selected" ).attr('value');
+
+$.ajax({ url: "/page/get_locality",
+    type:"post", 
+    dataType:"json",
+    async : false,
+    data:{'suburb':suburb},
+    success: function(result){
+    	if (result.length>0)
+		{
+    		 $('#txtPostalAddressZip').val(result[0].postal_code);
+		}
+    },
+});
+});	
+
+//set default country as South Africa 
+$('#txtCmpCountry option:contains("South Africa")').prop('selected',true).trigger('change');
+$('#txtPhysicalCountry option:contains("South Africa")').prop('selected',true).trigger('change');
+$('#txtPostalAddressCountry option:contains("South Africa")').prop('selected',true).trigger('change');
+
+/*// changes in locality	
+	$('#frmProviderAccreditation #txtSuburb').on('change', function() {
+		var suburb=$("#frmProviderAccreditation #txtSuburb option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'suburb':suburb},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		 $('#txtCmpCountry option[value=' + result[0].country + ']').attr('selected',true);
+            		 $('#txtCmpProvince option[value=' + result[0].province + ']').attr('selected',true);
+            		 $('#frmProviderAccreditation #city option[value=' + result[0].city + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});
+	
+	$('#txtCmpProvince').on('change', function() {
+		var province=$("#txtCmpProvince option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'province':province},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		 $('#txtCmpCountry option[value=' + result[0].country + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});	
+	
+	$('#frmProviderAccreditation #city').on('change', function() {
+		var city=$("#frmProviderAccreditation #city option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'city':city},
+            success: function(result){
+            	if (result.length>0)
+    			{
+           		 $('#txtCmpCountry option[value=' + result[0].country + ']').attr('selected',true);
+        		 $('#txtCmpProvince option[value=' + result[0].province + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});		
+
+	//for home address
+	
+	$('#txtPhysicalSuburb').on('change', function() {
+		var suburb=$("#txtPhysicalSuburb option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'suburb':suburb},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		 $('#txtPhysicalCountry option[value=' + result[0].country + ']').attr('selected',true);
+            		 $('#txtPhysicalProvince option[value=' + result[0].province + ']').attr('selected',true);
+            		 $('#txtPhysicalCity option[value=' + result[0].city + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});
+	
+	$('#txtPhysicalProvince').on('change', function() {
+		var province=$("#txtPhysicalProvince option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'province':province},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		$('#txtPhysicalCountry option[value=' + result[0].country + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});	
+	
+	$('#txtPhysicalCity').on('change', function() {
+		var city=$("#txtPhysicalCity option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'city':city},
+            success: function(result){
+            	if (result.length>0)
+    			{
+           		 $('#txtPhysicalCountry option[value=' + result[0].country + ']').attr('selected',true);
+        		 $('#txtPhysicalProvince option[value=' + result[0].province + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});			
+	
+	//for postal address
+	
+	$('#frmProviderAccreditation #txtPostalSuburb').on('change', function() {
+		var suburb=$("#frmProviderAccreditation #txtPostalSuburb option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'suburb':suburb},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		 $('#txtPostalAddressCountry option[value=' + result[0].country + ']').attr('selected',true);
+            		 $('#txtPostalAddressProvince option[value=' + result[0].province + ']').attr('selected',true);
+            		 $('#txtPostalAddressCity option[value=' + result[0].city + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});
+	
+	$('#txtPostalAddressProvince').on('change', function() {
+		var province=$("#txtPostalAddressProvince option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'province':province},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		$('#txtPostalAddressCountry option[value=' + result[0].country + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});	
+	
+	$('#txtPostalAddressCity').on('change', function() {
+		var city=$("#txtPostalAddressCity option:selected" ).attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'city':city},
+            success: function(result){
+            	if (result.length>0)
+    			{
+           		 $('#txtPostalAddressCountry option[value=' + result[0].country + ']').attr('selected',true);
+        		 $('#txtPostalAddressProvince option[value=' + result[0].province + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});	*/	
+	
+	//for satellite campus address
+	
+/*	$('.suburb').live('change', function() {
+		var id = $(this).attr("id");
+		var key=id.split('_');
+		var suburb=$('#'+ key[0]+ '_suburb option:selected').attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'suburb':suburb},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		 $('#'+ key[0] + '_country option[value=' + result[0].country + ']').attr('selected',true);
+            		 $('#'+ key[0] + '_province option[value=' + result[0].province + ']').attr('selected',true);
+            		 $('#'+ key[0] + '_city option[value=' + result[0].city + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});
+	
+	$('.province').live('change', function() {
+		var id = $(this).attr("id");
+		var key=id.split('_');		
+		var province=$('#'+ key[0]+ '_province option:selected').attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'province':province},
+            success: function(result){
+            	if (result.length>0)
+    			{
+            		$('#'+ key[0] + '_country option[value=' + result[0].country + ']').attr('selected',true);
+    			}
+            },
+    	});
+    	
+		});	
+	
+	$('.city').live('change', function() {
+		var id = $(this).attr("id");
+		var key=id.split('_');				
+		var city=$('#'+ key[0]+ '_city option:selected').attr('value');
+		
+    	$.ajax({ url: "/page/get_locality",
+            type:"post", 
+            dataType:"json",
+            async : false,
+            data:{'city':city},
+            success: function(result){
+            	if (result.length>0)
+    			{
+           		 $('#'+ key[0] + '_country option[value=' + result[0].country + ']').attr('selected',true);
+        		 $('#'+ key[0] + '_province option[value=' + result[0].province + ']').attr('selected',true);
+    			}
+            },
+    	});
+		});*/
+	
+	
+	//Sattelite load province on the basis of country
+	$('.country').live('change', function() {
+	var id = $(this).attr("id");
+	var key=id.split('_');			
+	var country=$('#'+key[0]+'_country option:selected' ).attr('value');
+	
+	$.ajax({ url: "/page/get_province",
+	    type:"post", 
+	    dataType:"json",
+	    async : false,
+	    data:{'country':country},
+	    success: function(result){
+	    	$('#'+key[0]+'_province').find('option').remove().end().append('<option value="">-- Select Province --</option>');
+	    	$('#'+key[0]+'_city').find('option').remove().end().append('<option value="">-- Select City--</option>');
+	    	$('#'+key[0]+'_suburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+	    	$('#'+key[0]+'_zip').val('');    	
+	    	if (result.length>0)
+			{
+	    		var satteliteprovince=$('#'+key[0]+'_province');
+	    		$.each(result, function(key,value) {
+	    			satteliteprovince.append('<option value=' + value['id'] + '>' + value['name'] + '</option>');
+	    		}); 
+			}
+	    },
+	});
+	});
+
+	// Sattelite load city on the basis of province
+	$('.province').live('change', function() {
+	var id = $(this).attr("id");
+	var key=id.split('_');		
+	var province=$('#'+key[0]+'_province option:selected' ).attr('value');
+	$.ajax({ url: "/page/get_city",
+	    type:"post", 
+	    dataType:"json",
+	    async : false,
+	    data:{'province':province},
+	    success: function(result){
+	    	$('#'+key[0]+'_city').find('option').remove().end().append('<option value="">-- Select City--</option>');
+	    	$('#'+key[0]+'_suburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+	    	$('#'+key[0]+'_zip').val('');
+	    	if (result.length>0)
+			{
+	    		var sattelitecity=$('#'+key[0]+'_city');
+	    		$.each(result, function(key,value) {
+	    			sattelitecity.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+'</option>');
+	    		});         		
+			}
+	    },
+	});
+
+	});	
+
+	//Sattelite load suburb on the basis of city
+	$('.city').live('change', function() {
+	var id = $(this).attr("id");
+	var key=id.split('_');		
+	var city=$('#'+key[0]+'_city option:selected' ).attr('value');
+
+	$.ajax({ url: "/page/get_suburb",
+	    type:"post", 
+	    dataType:"json",
+	    async : false,
+	    data:{'city':city},
+	    success: function(result){
+	    	$('#'+key[0]+'_suburb').find('option').remove().end().append('<option value="">-- Select Suburb--</option>');
+	    	$('#'+key[0]+'_zip').val('');
+	    	if (result.length>0)
+			{
+	    		var sattelitesuburb=$('#'+key[0]+'_suburb');
+	    		$.each(result, function(key,value) {
+	    			sattelitesuburb.append('<option value=' + value['id'] + '>' + value['name'] +'('+value['region']+')'+ '</option>');
+	    		}); 
+			}
+	    },
+	});
+	});	
+	//Sattelite load Zip on the basis of city
+	$('.suburb').live('change', function() {
+	var id = $(this).attr("id");
+	var key=id.split('_');		
+	var suburb=$('#'+key[0]+'_suburb option:selected' ).attr('value');
+
+	$.ajax({ url: "/page/get_locality",
+	    type:"post", 
+	    dataType:"json",
+	    async : false,
+	    data:{'suburb':suburb},
+	    success: function(result){
+	    	if (result.length>0)
+			{
+	    		 $('#'+key[0]+'_zip').val(result[0].postal_code);
+			}
+	    },
+	});
+	});	
+	
+	$('.country option:contains("South Africa")').prop('selected',true).trigger('change');	
+	
+//  added by vishwas for getting home address and postal address same
+    $('#provider_postal_address').change(function() {
+    	 if($(this).prop("checked") == true){
+    		$('#provider_postal_address').val(1);
+            $("#txtPostalAddressLine1").val($("#txtPhysicalAddressLine1").val());
+            $("#txtPostalAddressLine2").val($("#txtPhysicalAddressLine2").val());
+            $("#txtPostalAddressLine3").val($("#txtPhysicalAddressLine3").val());
+            $("#txtPostalAddressCity option").remove();
+            $("#txtPostalAddressCity").append($("#txtPhysicalCity option").clone());
+            $("#txtPostalSuburb option").remove();
+            $("#txtPostalSuburb").append($("#txtPhysicalSuburb option").clone());
+            $("#txtPostalSuburb").val($("#txtPhysicalSuburb").val());
+            $("#txtPostalAddressCity").val($("#txtPhysicalCity").val());
+            $("#txtPostalAddressZip").val($("#txtPhysicalZip").val());
+            $("#txtPostalAddressProvince").val($("#txtPhysicalProvince").val());
+            $("#txtPostalAddressCountry").val($("#txtPhysicalCountry").val());
+            $("#tr_txtPostalAddressLine1").hide();
+            $("#tr_txtPostalAddressLine2").hide();
+            $("#tr_txtPostalAddressLine3").hide();
+            $("#tr_txtPostalAddressSuburb").hide();
+            $("#tr_txtPostalAddressCity").hide();
+            $("#tr_txtPostalAddressCountry").hide();
+            $("#tr_postal_label").hide();
+            
+            
+        }
+    	 else if($(this).prop("checked") == false){
+    		$("#txtPostalAddressCity option").remove();
+    		$("#txtPostalAddressCity").append('<option value="">-- Select City--</option>');
+    		$("#txtPostalSuburb option").remove();
+    		$("#txtPostalSuburb").append('<option value="">-- Select Suburb--</option>');
+     		$('#sdf_postal_address').val(0);
+            $("#txtPostalAddressLine1").val('');
+            $("#txtPostalAddressLine2").val('');
+            $("#txtPostalAddressLine3").val('');
+            $("#txtPostalSuburb").val('');
+            $("#txtPostalAddressCity").val('');
+            $("#txtPostalAddressZip").val('');
+            $("#txtPostalAddressProvince").val('');
+            $("#txtPostalAddressCountry").val('');
+            $("#tr_txtPostalAddressLine1").show();
+            $("#tr_txtPostalAddressLine2").show();
+            $("#tr_txtPostalAddressLine3").show();
+            $("#tr_txtPostalAddressSuburb").show();
+            $("#tr_txtPostalAddressCity").show();
+            $("#tr_txtPostalAddressCountry").show();
+            $("#tr_postal_label").show();
+    		}
+    }); 	
+	
+$( "#frmProviderAccreditation #next4" ).click(function() {
+	var qualification_ids={};
+	var q_ids=[];
+	var flag=true;
+	$(".provider_qualification .fs-options .fs-option.selected").each(function(){
+		console.log('----=---',$(this).attr('data-value'));
+		q_ids.push(parseInt($(this).attr('data-value')))
+	});
+ 	 $.each(q_ids, function( index, value ) {
+ 		var line_ids=[];
+    	$("#check_qualification_line:checked").each(function(){
+    		if(parseInt($(this).attr('data-value'))===q_ids[index]){
+    			line_ids.push(parseInt(this.value));	
+    		}
+    	});
+//    	if (line_ids.length === 0) {
+//    		var qualification_name=''
+//    		$(".provider_qualification .fs-options .fs-option.selected").each(function(){
+//        		if (parseInt($(this).attr('data-value'))==q_ids[index]){
+//        			qualification_name=$(this)
+//        			console.log("qualification_name================",qualification_name)
+//        		}
+//        	});
+//    		flag=false
+//    		alert("Please select at least one Unit standard for "+qualification_name+"");
+//    		return false;
+//    	}
+//    	else{
+    		qualification_ids[q_ids[index]]=line_ids;	
+//    	}
+ });
+ 	 
+ 	var skill_ids={};
+	var s_ids=[];
+	$(".provider_skill .fs-options .fs-option.selected").each(function(){
+		console.log('----=---',$(this).attr('data-value'));
+		s_ids.push(parseInt($(this).attr('data-value')))
+	});
+ 	 $.each(s_ids, function( index, value ) {
+ 		var line_ids=[];
+    	$("#check_skill_line:checked").each(function(){
+    		if(parseInt($(this).attr('data-value'))===s_ids[index]){
+    			line_ids.push(parseInt(this.value));	
+    		}
+    	});
+//    	if (line_ids.length === 0) {
+//    		var skill_name=''
+//    		$(".provider_skill .fs-options .fs-option.selected").each(function(){
+//        		if (parseInt($(this).attr('data-value'))==s_ids[index]){
+//        			skill_name=$(this)
+//        			console.log("skill================",skill_name)
+//        		}
+//        	});
+//    		alert("Please select at least one Unit standard for "+skill_name+"");
+//    		flag=false
+//    		return false;
+//    	}
+//    	else{
+    		skill_ids[s_ids[index]]=line_ids;
+//    	}
+ }); 	
+ 	if (flag=true){
+ 		$.ajax({ url: "/hwseta/qualification_assessor_moderator",
+ 	        type:"post", 
+ 	        async: false,
+ 	        data:JSON.stringify(qualification_ids),
+ 	        success: function(result){
+ 	        	$("#qualification_idss").val(result.toString());
+ 	       },
+ 		});
+ 		$.ajax({ url: "/hwseta/providerAccreditation/skills",
+ 	        type:"post", 
+ 	        async: false,
+ 	        data:JSON.stringify(skill_ids),
+ 	        success: function(result){
+ 	        	$("#skill_idss").val(result.toString());
+ 	       },
+ 		});	 
+ 		var selected_qualification_ids=[];
+ 		var selected_skill_ids=[];
+// 		copied main campus Qualification into sattelite campus
+ 		$(".campus_qualification .fs-options").children().remove();
+ 		$(".campus_qualification .fs-options").append($(".provider_qualification .fs-option.selected").clone())
+ 		$(".campus_qualification .fs-options .fs-option.selected").each(function(){
+ 			console.log('----=---',$(this).attr('data-value'));
+ 			selected_qualification_ids.push(parseInt($(this).attr('data-value')))
+
+ 		});
+ 		$.each(selected_qualification_ids,function(i,o){  $('.campus_qualification .fs-option[data-value='+o+']').trigger('click');})
+ 		$.each(selected_qualification_ids,function(i,o){  $('.campus_qualification .fs-option[data-value='+o+']').trigger('click');})
+ 		
+// 		copied main campus skill programme into sattelite campus
+ 		$(".campus_skills .fs-options").children().remove();
+ 		$(".campus_skills .fs-options").append($(".provider_skill .fs-option.selected").clone());
+ 		$(".campus_skills .fs-options .fs-option.selected").each(function(){
+ 			console.log('----=---',$(this).attr('data-value'));
+ 			selected_skill_ids.push(parseInt($(this).attr('data-value')))
+ 		});
+ 		$.each(selected_skill_ids,function(i,o){  $('.campus_skills .fs-option[data-value='+o+']').trigger('click');})
+ 		$.each(selected_skill_ids,function(i,o){  $('.campus_skills .fs-option[data-value='+o+']').trigger('click');})
+ 		
+// 		copied main campus Assessor into sattelite campus
+ 		$(".campus_assessor .fs-options").children().remove();
+// 		$(".campus_assessor .fs-options").append($(".assessor .fs-option.selected").clone());
+ 		$(".campus_assessor .fs-options").append($(".assessor .fs-option").clone());
+ 		
+ 		//copied main campus Moderator into sattelite campus
+ 		$(".campus_moderator .fs-options").children().remove();
+// 		$(".campus_moderator .fs-options").append($(".moderator .fs-option.selected").clone());
+ 		$(".campus_moderator .fs-options").append($(".moderator .fs-option").clone()); 		
+ 	}
+});
+
+$('input[type=radio][name=radiosattelite]').change(function() {
+    if (this.value == 'yes') {
+		$("#next4").show();
+		$("#submit_accreditation").hide();
+    }
+    else if (this.value == 'no') {
+    	$("#next4").hide();
+    	$("#submit_accreditation").show();
+    }
+});
+
+/*$( "#frmProviderAccreditation #next4" ).click(function() {
+	var selected_qualification_ids=[];
+	var selected_skill_ids=[];
+//	copied main campus Qualification into sattelite campus
+	$(".campus_qualification .fs-options").children().remove();
+	$(".campus_qualification .fs-options").append($(".provider_qualification .fs-option.selected").clone())
+	$(".campus_qualification .fs-options .fs-option.selected").each(function(){
+		console.log('----=---',$(this).attr('data-value'));
+		selected_qualification_ids.push(parseInt($(this).attr('data-value')))
+
+	});
+	$.each(selected_qualification_ids,function(i,o){  $('.campus_qualification .fs-option[data-value='+o+']').trigger('click');})
+	$.each(selected_qualification_ids,function(i,o){  $('.campus_qualification .fs-option[data-value='+o+']').trigger('click');})
+	
+//	copied main campus skill programme into sattelite campus
+	$(".campus_skills .fs-options").children().remove();
+	$(".campus_skills .fs-options").append($(".provider_skill .fs-option.selected").clone());
+	$(".campus_skills .fs-options .fs-option.selected").each(function(){
+		console.log('----=---',$(this).attr('data-value'));
+		selected_skill_ids.push(parseInt($(this).attr('data-value')))
+	});
+	$.each(selected_skill_ids,function(i,o){  $('.campus_skills .fs-option[data-value='+o+']').trigger('click');})
+	$.each(selected_skill_ids,function(i,o){  $('.campus_skills .fs-option[data-value='+o+']').trigger('click');})
+	
+//	copied main campus Assessor into sattelite campus
+	$(".campus_assessor .fs-options").children().remove();
+//	$(".campus_assessor .fs-options").append($(".assessor .fs-option.selected").clone());
+	$(".campus_assessor .fs-options").append($(".assessor .fs-option").clone());
+	
+	//copied main campus Moderator into sattelite campus
+	$(".campus_moderator .fs-options").children().remove();
+//	$(".campus_moderator .fs-options").append($(".moderator .fs-option.selected").clone());
+	$(".campus_moderator .fs-options").append($(".moderator .fs-option").clone());
+});
+*/
+$(document).on('click', '.assessor .fs-option', function() {
+	var assessor_ids=""
+	$(".assessor .fs-options .fs-option.selected").each(function(){
+    		console.log('----=---',$(this).attr('data-value'));
+    		assessor_ids+=parseInt($(this).attr('data-value'))+' '
+	});
+	$('#assesor_set').val(assessor_ids);
+});  
+
+$(document).on('click', '.moderator .fs-option', function() {
+	var moderator_ids=""
+	$(".moderator .fs-options .fs-option.selected").each(function(){
+    		console.log('----=---',$(this).attr('data-value'));
+    		moderator_ids+=parseInt($(this).attr('data-value'))+' '
+	});
+	$('#moderator_set').val(moderator_ids);
+});  
+
+//Added by vishwas for Provider Main qualification
+
+$(document).on('click', '.provider_qualification .fs-option', function() {
+	var qualification_ids=""
+	$(".provider_qualification .fs-options .fs-option.selected").each(function(){
+    		console.log('----=---',$(this).attr('data-value'));
+    		qualification_ids+=parseInt($(this).attr('data-value'))+' '
+	});
+	ids=JSON.stringify(qualification_ids)
+    $('#show_qualification').show();
+	$.ajax({ url: "/page/assessorModerator/get_qualification",
+        type:"post", 
+        dataType:"json",
+        data:{'qualification_ids':qualification_ids},
+        success: function(result){
+			var checked_list = []
+			$('[name=quali]:checked').each(function () {
+				checked_list.push(parseInt($(this).val()))
+		    });
+        	if (result.length>0)
+			{
+        		$("#show_qualification #lines").nextUntil('#lines').andSelf().remove();
+    			$.each(result,function(index,value){
+    				if($.inArray(parseInt(result[index]['line_id']), checked_list ) != -1){
+    					$(".heading").parent("tbody").append("<tr id='lines' class='lines'><td>"+result[index]['name']+"</td><td>"+result[index]['id_no']+"</td><td>"+result[index]['title']+"</td><td>"+result[index]['level1']+"</td><td>"+result[index]['level2']+"</td><td>"+result[index]['level3']+"</td><td><input style='height: 15px;width: 15px;' id='check_qualification_line' type='checkbox' name='quali' value='"+result[index]['line_id']+"' data-value='"+result[index]['id']+"' checked/><input id='check_qualification_id' type='hidden' name='quali' value='"+result[index]['id']+"'/></td></tr>")
+    				}else{
+    					$(".heading").parent("tbody").append("<tr id='lines' class='lines'><td>"+result[index]['name']+"</td><td>"+result[index]['id_no']+"</td><td>"+result[index]['title']+"</td><td>"+result[index]['level1']+"</td><td>"+result[index]['level2']+"</td><td>"+result[index]['level3']+"</td><td><input style='height: 15px;width: 15px;' id='check_qualification_line' type='checkbox' name='quali' value='"+result[index]['line_id']+"' data-value='"+result[index]['id']+"' /><input id='check_qualification_id' type='hidden' name='quali' value='"+result[index]['id']+"'/></td></tr>")
+    				}
+    			});
+			}    	
+        	else if (result.length==0)
+        		{
+        		$("#show_qualification").hide();
+        		}
+        },
+	});
+	
+});   
+
+//	Added by vishwas for Provider Campus qualification
+
+$(document).on('click', '.campus_qualification .fs-option', function() {
+	var qualification_ids=""
+	$(".campus_qualification .fs-options .fs-option.selected").each(function(){
+    		console.log('--campus--=---',$(this).attr('data-value'));
+    		qualification_ids+=parseInt($(this).attr('data-value'))+' '
+	});
+	ids=JSON.stringify(qualification_ids)
+	main_campus_qualification=$('#qualification_idss').val();
+    $('#show_campus_qualification').show();
+	$.ajax({ url: "/page/providerAccreditation/get_campus_qualification",
+        type:"post", 
+        dataType:"json",
+        data:{'qualification_ids':qualification_ids,'sub_ids':main_campus_qualification},
+        success: function(result){
+        	if (result.length>0)
+			{	
+        		$("#show_campus_qualification #lines").nextUntil('#lines').andSelf().remove();
+    			$.each(result,function(index,value){
+    			$("#show_campus_qualification .heading").parent("tbody").append("<tr id='lines' class='lines'><td>"+result[index]['name']+"</td><td>"+result[index]['id_no']+"</td><td>"+result[index]['title']+"</td><td>"+result[index]['level1']+"</td><td>"+result[index]['level2']+"</td><td>"+result[index]['level3']+"</td><td><input checked style='height: 15px;width: 15px;' id='check_qualification_line' type='checkbox' name='quali' onClick='return false;' value='"+result[index]['line_id']+"' data-value='"+result[index]['id']+"'/><input id='check_qualification_id' type='hidden' name='quali' value='"+result[index]['id']+"'/></td></tr>")
+    			
+    			});
+    			$("#show_campus_qualification").show();
+			}
+        	else if (result.length==0)
+        		{
+        		$("#show_campus_qualification").hide();
+        		}
+        },
+	});
+	
+});  
+
+// Added by vishwas for Skill program
+
+$(document).on('click', '.provider_skill .fs-option', function() {
+	var skill_ids=""
+	$(".provider_skill .fs-options .fs-option.selected").each(function(){
+    		console.log('----=---',$(this).attr('data-value'));
+    		skill_ids+=parseInt($(this).attr('data-value'))+' '
+	});
+	ids=JSON.stringify(skill_ids)
+    $('#show_skills').show();
+	$.ajax({ url: "/page/providerAccreditation/get_skill",
+        type:"post", 
+        dataType:"json",
+        data:{'skill_ids':skill_ids},
+        success: function(result){
+			var checked_list = []
+			$('[name=skill]:checked').each(function () {
+				checked_list.push(parseInt($(this).val()))
+		    });
+        	if (result.length>0)
+			{
+        		$("#show_skills #lines").nextUntil('#lines').andSelf().remove();
+    			$.each(result,function(index,value){
+    				if($.inArray(parseInt(result[index]['line_id']), checked_list ) != -1){
+    					$("#show_skills .heading").parent("tbody").append("<tr id='lines' class='lines'><td>"+result[index]['name']+"</td><td>"+result[index]['id_no']+"</td><td>"+result[index]['title']+"</td><td>"+result[index]['level1']+"</td><td>"+result[index]['level2']+"</td><td>"+result[index]['level3']+"</td><td><input style='height: 15px;width: 15px;' id='check_skill_line' type='checkbox' name='skill' value='"+result[index]['line_id']+"' data-value='"+result[index]['id']+"' checked /><input id='check_skill_id' type='hidden' name='skill' value='"+result[index]['id']+"'/></td></tr>")
+    				}else{
+    					$("#show_skills .heading").parent("tbody").append("<tr id='lines' class='lines'><td>"+result[index]['name']+"</td><td>"+result[index]['id_no']+"</td><td>"+result[index]['title']+"</td><td>"+result[index]['level1']+"</td><td>"+result[index]['level2']+"</td><td>"+result[index]['level3']+"</td><td><input style='height: 15px;width: 15px;' id='check_skill_line' type='checkbox' name='skill' value='"+result[index]['line_id']+"' data-value='"+result[index]['id']+"'/><input id='check_skill_id' type='hidden' name='skill' value='"+result[index]['id']+"'/></td></tr>")
+    				}
+    			});
+			}        	
+        	else if (result.length==0)
+        		{
+        		$("#show_skills").hide();
+        		}
+        },
+	});
+	
+});   
+
+$(document).on('click', '.campus_skills .fs-option', function() {
+	var skill_ids=""
+	$(".campus_skills .fs-options .fs-option.selected").each(function(){
+    		console.log('--campus skill--=---',$(this).attr('data-value'));
+    		skill_ids+=parseInt($(this).attr('data-value'))+' '
+	});
+	ids=JSON.stringify(skill_ids)
+	main_campus_skill=$('#skill_idss').val();
+    $('#show_campus_qualification').show();
+	$.ajax({ url: "/page/providerAccreditation/get_campus_skill",
+        type:"post", 
+        dataType:"json",
+        data:{'skill_ids':skill_ids,'sub_ids':main_campus_skill},
+        success: function(result){
+        	if (result.length>0)
+			{	$("#show_campus_skill").show();
+        		$("#show_campus_skill #lines").nextUntil('#lines').andSelf().remove();
+    			$.each(result,function(index,value){
+    			$("#show_campus_skill .heading").parent("tbody").append("<tr id='lines' class='lines'><td>"+result[index]['name']+"</td><td>"+result[index]['id_no']+"</td><td>"+result[index]['title']+"</td><td>"+result[index]['level1']+"</td><td>"+result[index]['level2']+"</td><td>"+result[index]['level3']+"</td><td><input checked style='height: 15px;width: 15px;' id='check_skill_line' type='checkbox'  name='campus_skill' onClick='return false;' value='"+result[index]['line_id']+"' data-value='"+result[index]['id']+"'/><input id='check_qualification_id' type='hidden' name='skill' value='"+result[index]['id']+"'/></td></tr>")
+    			$("#show_campus_skill").show();
+    			});
+			}
+        	else if (result.length==0)
+        		{
+        		$("#show_campus_skill").hide();
+        		}
+        },
+	});
+	
+});  
+
+$( "#frmProviderAccreditation #submit_accreditation" ).click(function() {
+	
+	var flag=false;
+	if ($('input[type=radio][name=radiosattelite]:checked').val() == 'yes') {
+		
+	$("#fs8 .form-bg .tableclass .clonedInput").each(function(key,val){	
+        if ($('#ID' + (key+1) + '_campusname').val() ==''){
+        	$('#ID' + (key+1) + '_campusname').focus();
+        	alert("Please specify campus name");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_email').val() ==''){
+        	$('#ID' + (key+1) + '_email').focus();
+        	alert("Please specify campus email address");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_street').val() ==''){
+        	$('#ID' + (key+1) + '_street').focus();
+        	alert("Please specify an street address");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_street2').val() ==''){
+        	$('#ID' + (key+1) + '_street2').focus();
+        	alert("Please specify an street2 address");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_street3').val() ==''){
+        	$('#ID' + (key+1) + '_street3').focus();
+        	alert("Please specify an street3 address");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_country').val() ==''){
+        	$('#ID' + (key+1) + '_country').focus();
+        	alert("Please Select country");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_province').val() ==''){
+        	$('#ID' + (key+1) + '_province').focus();
+        	alert("Please Select Province");
+        	flag=false;
+        	return false;
+        } else if ($('#ID' + (key+1) + '_txtContactNameSurname').val() ==''){
+        	$('#ID' + (key+1) + '_txtContactNameSurname').focus();
+        	alert("Please specify an contact person name");
+        	flag=false;
+        	return false;
+        }else if ($('#ID' + (key+1) + '_txtContactEmail').val() ==''){
+        	$('#ID' + (key+1) + '_txtContactEmail').focus();
+        	alert("Please specify an contact person email address");
+        	flag=false;
+        	return false;
+        }    
+        
+        else{
+        	flag=true;
+        }
+		var assessor_ids=""
+			$("#fs8 .form-bg .tableclass #entry"+(key+1)+" .campus_assessor .fs-options .fs-option.selected").each(function(){
+		    		console.log('----=---',$(this).attr('data-value'));
+		    		assessor_ids+=parseInt($(this).attr('data-value'))+' '
+			});
+			$("#ID"+(key+1)+"_campusassesorset").val(assessor_ids);		
+		
+		var moderator_ids=""
+			$("#fs8 .form-bg .tableclass #entry"+(key+1)+" .campus_moderator .fs-options .fs-option.selected").each(function(){
+		    		console.log('----=---',$(this).attr('data-value'));
+		    		moderator_ids+=parseInt($(this).attr('data-value'))+' '
+			});
+			$("#ID"+(key+1)+"_campusmoderatorset").val(moderator_ids);
+			
+		var qualification_ids={};
+		var q_ids=[];
+		$("#fs8 .form-bg .tableclass #entry"+(key+1)+" .campus_qualification .fs-options .fs-option.selected").each(function(){
+			console.log('----=---',$(this).attr('data-value'));
+			q_ids.push(parseInt($(this).attr('data-value')))
+	
+		});
+	 	 $.each(q_ids, function( index, value ) {
+	 		var line_ids=[];
+	    	$("#fs8 .form-bg .tableclass #entry"+(key+1)+" #check_qualification_line:checked").each(function(){
+	    		if(parseInt($(this).attr('data-value'))===q_ids[index]){
+	    			line_ids.push(parseInt(this.value));	
+	    		}
+	    	});
+	    	qualification_ids[q_ids[index]]=line_ids;
+	 });
+		$.ajax({ url: "/hwseta/qualification_assessor_moderator",
+	        type:"post", 
+	        async: false,
+	        data:JSON.stringify(qualification_ids),
+	        success: function(result){
+	        	$("#ID"+(key+1)+"_campusqualificationids").val(result.toString());
+	       },
+		});
+		
+		var skill_ids={};
+		var s_ids=[];
+		$("#fs8 .form-bg .tableclass #entry"+(key+1)+" .campus_skills .fs-options .fs-option.selected").each(function(){
+			console.log('----=---',$(this).attr('data-value'));
+			s_ids.push(parseInt($(this).attr('data-value')))
+	
+		});
+	 	 $.each(s_ids, function( index, value ) {
+	 		var line_ids=[];
+	    	$("#fs8 .form-bg .tableclass #entry"+(key+1)+" #check_skill_line:checked").each(function(){
+	    		if(parseInt($(this).attr('data-value'))===s_ids[index]){
+	    			line_ids.push(parseInt(this.value));	
+	    		}
+	
+	    	});
+	    	skill_ids[s_ids[index]]=line_ids;
+	 });
+		$.ajax({ url: "/hwseta/providerAccreditation/skills",
+	        type:"post", 
+	        async: false,
+	        data:JSON.stringify(skill_ids),
+	        success: function(result){
+	        	$("#ID"+(key+1)+"_campusskillsids").val(result.toString());
+	
+	       },
+		});		
+});
+	}else 	if ($('input[type=radio][name=radiosattelite]:checked').val() == 'no') {
+		
+	    if (frmProviderAccreditation.ciproDocument.value == "") {
+	        msg = "Please Upload CIPC/DSD Document";
+	        alert(msg);
+	        frmProviderAccreditation.ciproDocument.focus();
+	        return false;
+	    }else if (frmProviderAccreditation.taxDocument.value == "") {
+	        msg = "Please Upload Tax Clearance Document";
+	        alert(msg);
+	        frmProviderAccreditation.taxDocument.focus();
+	        return false;
+	    }else if (frmProviderAccreditation.cvDocument.value == "") {
+	        msg = "Please Upload Director C.V";
+	        alert(msg);
+	        frmProviderAccreditation.cvDocument.focus();
+	        return false;
+	    }else if (frmProviderAccreditation.qualificationDocument.value == "") {
+	        msg = "Please Upload Certified Copies Of Qualifications";
+	        alert(msg);
+	        frmProviderAccreditation.qualificationDocument.focus();
+	        return false;
+	    }  		
+		var qualification_ids={};
+		var q_ids=[];
+		$(".provider_qualification .fs-options .fs-option.selected").each(function(){
+			console.log('----=---',$(this).attr('data-value'));
+			q_ids.push(parseInt($(this).attr('data-value')))
+
+		});
+	 	 $.each(q_ids, function( index, value ) {
+	 		var line_ids=[];
+	    	$("#check_qualification_line:checked").each(function(){
+	    		if(parseInt($(this).attr('data-value'))===q_ids[index]){
+	    			line_ids.push(parseInt(this.value));	
+	    		}
+
+	    	});
+	    	qualification_ids[q_ids[index]]=line_ids;
+	 });
+		$.ajax({ url: "/hwseta/qualification_assessor_moderator",
+	        type:"post", 
+	        async: false,
+	        data:JSON.stringify(qualification_ids),
+	        success: function(result){
+	        	$("#qualification_idss").val(result.toString());
+
+	       },
+		});
+		
+		var skill_ids={};
+		var s_ids=[];
+		$(".provider_skill .fs-options .fs-option.selected").each(function(){
+			console.log('----=---',$(this).attr('data-value'));
+			s_ids.push(parseInt($(this).attr('data-value')))
+		});
+	 	 $.each(s_ids, function( index, value ) {
+	 		var line_ids=[];
+	    	$("#check_skill_line:checked").each(function(){
+	    		if(parseInt($(this).attr('data-value'))===s_ids[index]){
+	    			line_ids.push(parseInt(this.value));	
+	    		}
+	    	});
+	    	skill_ids[s_ids[index]]=line_ids;
+	 });
+		$.ajax({ url: "/hwseta/providerAccreditation/skills",
+	        type:"post", 
+	        async: false,
+	        data:JSON.stringify(skill_ids),
+	        success: function(result){
+	        	$("#skill_idss").val(result.toString());
+	       },
+		});		
+		
+		flag=true;
+	}
+	
+		$('#frmProviderAccreditation').submit(function(e){
+		    return false;
+		}); 
+		if(flag==true){
+	        var provider_accreditation_ref = document.getElementById("provider_accreditation_ref").value;
+	        $( "#dialog-message-accreditation" ).append( "<p> Thank you for Applying with HWSETA, your application will be evaluated, your Reference Number is : "+provider_accreditation_ref+"</p>" );
+	        $( "#dialog-message-accreditation" ).dialog( "open" );
+	          return false;
+	      				
+		}
+
+});
+});

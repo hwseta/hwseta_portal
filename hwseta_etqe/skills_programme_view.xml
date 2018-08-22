@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+   
+        <record id="skills_programme_tree" model="ir.ui.view">
+            <field name="name">skills.programme.tree</field>
+            <field name="model">skills.programme</field>
+            <field name="arch" type="xml">
+                <tree string="Skills Programme">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="saqa_qual_id"/>
+                    <field name="qualification_id"/>
+                    <field name="is_archive"/>
+                </tree>
+            </field>
+         </record>
+        <record id="skills_programme_search" model="ir.ui.view">
+			<field name="name">skills.programme.search</field>
+			<field name="model">skills.programme</field>
+			<field name="arch" type="xml">
+				<search string="Skills Programme Search">
+					<field name="code"/>
+					<field name="name" />
+					<field name="saqa_qual_id"/>
+					<field name="qualification_id"/>
+					<field name="seta_branch_id"/>
+					<group expand="1" string="Group By">
+						<filter name="group_by_seta_branch_id" string="SETA Branch ID" icon="terp-personal" domain="[('seta_branch_id','=',1)]"
+							context="{'group_by':'seta_branch_id'}" />
+						<filter string="Archive" icon="terp-personal" domain="[('is_archive','=',True)]"
+							context="{'group_by':'is_archive'}" />
+					</group>
+				</search>
+			</field>
+		</record> 
+        <record id="skills_programme_form" model="ir.ui.view">
+            <field name="name">skills.programme.form</field>
+            <field name="model">skills.programme</field>
+            <field name="arch" type="xml">
+                <form string="Skills Programme">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="qualification_id" on_change="onchange_qualification(qualification_id)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+                                <field name="applicant"/>
+                                <field name="total_credit"/>
+	                            <field name="seta_branch_id" on_change="onchange_seta_branch_id(seta_branch_id)" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>                            	
+								<field name="is_archive" on_change="onchange_archive(is_archive)"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                                <field name="saqa_qual_id"/>
+                                <field name="notes"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <field name="unit_standards_line" editable="bottom" nolabel="1" >
+                                <tree string="Lines" delete="false">
+                                    <field name="type"/>
+                                    <field name="id_no"/>
+                                    <field name="title"/>
+                                    <field name="level1"/>
+                                    <field name="level2"/>
+                                    <field name="level3"/>
+                                    <field name="selection"/>
+                                </tree>
+
+                                <form string="Unit Standards">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="id_no"/>
+                                                <field name="level1"/>
+                                                <field name="level3"/>
+                                            </group>
+                                            <group>
+                                                <field name="type"/>
+                                                <field name="title"/>
+                                                <field name="level2"/>
+                                                <field name="selection"/>
+                                                 <field name="type_key" invisible="1"/>
+                                            </group>
+                                        </group>
+                                        
+                                    </sheet>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+         </record>
+             
+        <record id="action_skills_programme_form" model="ir.actions.act_window">
+            <field name="name">Skills Programme</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">skills.programme</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_seta_branch_id':1}</field> 
+            <field name="view_id" ref="skills_programme_tree"/>
+        </record>
+    
+        <menuitem id="menu_main_skills_programme" name="Skills Program" sequence="6" parent="etqe_main_menu" groups="hwseta_etqe.group_seta_administrator"/>
+        <menuitem action="action_skills_programme_form" id="menu_skills_programme" name="Skills Program" sequence="1" parent="menu_main_skills_programme"/>
+    </data>
+</openerp>

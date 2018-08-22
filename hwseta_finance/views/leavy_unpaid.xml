@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="leavy_unpaid">
+				<t t-call="hwseta_finance.leavy_unpaid_layout">
+					<div class="page">
+						<div class="oe_structure"/>
+						<div class="row">
+							<div class="row mt16 mb64"></div>
+							<table>
+								<tr>
+									<td colspan="2" style="font-weight:bold;font-size:20px;padding:15px;">Levy not paid by the following Employers</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="font-weight:bold;font-size:20px;padding:15px;">for the period of <span t-esc="data['form']['from_date']"/> to <span t-esc="data['form']['to_date']"/>. </td>
+								</tr>
+							</table>
+							<div class="row mt8 mb32"></div>
+							<table style="width:900px;border-spacing:100px;border:1px solid;">
+								<tbody>
+									<tr style="border-bottom:1px solid;">
+										<th style="padding:15px;font-size:20px">Employer</th>
+										<th style="padding:15px;font-size:20px">SDL Number</th>
+									</tr>
+									<tr t-foreach="data['form']['employers']" t-as="employer" style="border-bottom:1px solid;border-color:#BDBDBD;">
+										<td style="padding:15px;font-size:17px"><span t-esc="employer['name']"/></td>
+										<td style="padding:15px;font-size:17px"><span t-esc="employer['sdl']"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</t>
+		</template>
+		
+		<template id="report_unpaid">
+		    <t t-call="report.html_container">
+		        <t t-foreach="doc_ids" t-as="doc_id">
+		            <t t-raw="translate_doc(doc_id, doc_model, 'lang', 'hwseta_finance.leavy_unpaid')"/>
+		        </t>
+		    </t>
+		</template>
+	</data>
+</openerp>

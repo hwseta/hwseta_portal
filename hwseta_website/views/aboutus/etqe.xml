@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === ETQE(Quality Assurance) Page === -->
+		<template id="etqe" name="ETQE (Quality Assurance)" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-273"
+											class="oc-post oc-article  post-273 page type-page status-publish hentry">
+											<h1 class="oc-postheader">ETQA (Quality Assurance)</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Overview and Functions of the ETQA Division</h2>
+												<p>A core function of the SETAs is that they act as
+													Education and Training Quality Assurance bodies (ETQAs)
+													within various economic sectors to ensure quality education
+													and training. The HWSETA ETQA is accredited by SAQA to
+													monitor and audit achievements in terms of national
+													standards and qualifications.</p>
+												<p>The HWSETA ETQA:</p>
+												<ul>
+													<li>accredits constituent providers for specific standards
+														or qualifications registered on the National
+														Qualifications Framework;</li>
+													<li>promotes quality amongst constituent providers;</li>
+													<li>monitors provision by constituent providers;</li>
+													<li>evaluates assessment and facilitation of moderation
+														among constituent providers;</li>
+													<li>registers constituent assessors for specified
+														registered standards or qualifications in terms of the
+														criteria established for this purpose;</li>
+													<li>takes responsibility for the certification of
+														constituent learners;</li>
+													<li>co-operates with the relevant body or bodies appointed
+														to moderate across ETQA bodies including but not limited
+														to, moderating the quality assurance on specified
+														standards or qualifications for which one or more ETQA
+														bodies are accredited;</li>
+													<li>recommends new standards or qualifications to National
+														Standards Bodies for consideration, or modifications to
+														existing standards or qualifications to National Standards
+														Bodies for consideration;</li>
+													<li>maintains a data-base acceptable to the Authority;</li>
+													<li>submits reports to the Authority in accordance with the
+														requirements of the Authority, and</li>
+													<li>performs such other functions that may arise from
+														time-to-time.</li>
+												</ul>
+												<p>In performing its functions, an ETQA Body:</p>
+												<ul>
+													<li>shall abide by regulations 2 to 12 of the National
+														Standards Bodies Regulations (R452 of 28 March 1998,
+														Government Gazette No 18787);</li>
+													<li>may delegate selected functions contemplated in
+														subregulation (1) to a constituent provider or other body
+														with the prior approval of the Authority, but may not
+														delegate its accountability to the Authority; and</li>
+													<li>if established under another Act of Parliament to
+														govern a single coordinated system of multi-qualification
+														providers, shall delegate the function of registering
+														constituent assessors, contemplated in subregulation
+														(1)(e), to its providers if their quality management
+														system includes the monitoring of this function and the
+														South African Qualifications Authority is notified.</li>
+												</ul>
+												<h2>Contacts</h2>
+												<p>Click on the name below to send an e-mail</p>
+												<table class="contacttable" border="0" width="100%"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Title</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:baakedim@hwseta.org.za">Ms. Jane Motubatse</a>
+															</td>
+															<td class="contacts" width="30%">Executive Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:tebogos@hwseta.org.za">Ms. Tebogo Senne</a>
+															</td>
+															<td class="contacts" width="30%">Secretary</td>
+															<td class="contacts" width="30%">(011) 607 6965</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Qualifications Development and Maintenance (QDM)
+																</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="40%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:champag@hwseta.org.za">Ms. Champa Gopal</a>
+															</td>
+															<td class="contacts" width="30%">Quality Development and
+																Maintenance Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:kanyisaw@hwseta.org.za">Ms. Kanyisa Wopula</a>
+															</td>
+															<td class="contacts" width="30%">Quality Development Officer
+															</td>
+															<td class="contacts" width="30%">(011) 607 6979</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:annam@hwseta.org.za">Ms. Anna Morobe</a>
+															</td>
+															<td class="contacts" width="30%">Quality Development Officer
+															</td>
+															<td class="contacts" width="30%">(011) 607 692</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Learner Achievement (LA)</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="40%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:hlamalanin@hwseta.org.za">Ms. Hlamalani Ngcobo</a>
+															</td>
+															<td class="contacts" width="30%">LA Manager</td>
+															<td class="contacts" width="30%">(011) 607 6956</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:dorothyr@hwseta.org.za">Ms. Dorothy Radzilani</a>
+															</td>
+															<td class="contacts" width="30%">LA Officer</td>
+															<td class="contacts" width="30%">(011) 607 6927</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailt:tokok@hwseta.org.za">Mr. Toko Kete</a>
+															</td>
+															<td class="contacts" width="30%">LA Officer</td>
+															<td class="contacts" width="30%">(011) 607 7005</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:padmaniv@hwseta.org.za">Ms. Padmani Venugopaul</a>
+															</td>
+															<td class="contacts" width="30%">LA Administrator</td>
+															<td class="contacts" width="30%">NA</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:duduzilem@hwseta.org.za">Ms. Dudu Maqhashalala</a>
+															</td>
+															<td class="contacts" width="30%">LA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 7003</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:edmondp@hwseta.org.za">Mr. Edmond Palmer</a>
+															</td>
+															<td class="contacts" width="30%">LA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6977</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:heleneh@hwseta.org.za">Ms. Helene Hurst</a>
+															</td>
+															<td class="contacts" width="30%">LA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6937</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Provider Accreditation (PA)</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="40%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:thabom@hwseta.org.za">Mr Thabo Matjabe</a>
+															</td>
+															<td class="contacts" width="30%">PA Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:busisiwer@hwseta.org.za">Ms. Busisiwe Radebe</a>
+															</td>
+															<td class="contacts" width="30%">PA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6950</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:khayalethug@hwseta.org.za">Mr. Khayalethu Goloda</a>
+															</td>
+															<td class="contacts" width="30%">PA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6938</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:katem@hwseta.org.za">Ms. Kate Matlala</a>
+															</td>
+															<td class="contacts" width="30%">PA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6994</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:dineop@hwseta.org.za">Ms. Dineo Phoyana</a>
+															</td>
+															<td class="contacts" width="30%">PA Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6930</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:nontokozom@hwseta.org.za">Ms. Nontokozo Madonsela</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 7005</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:thabison@hwseta.org.za">Ms. Thabiso Ndubela</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 6987</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:thobilen@hwseta.org.za">Ms. Thobile Nkosi</a>
+															</td>
+															<td class="contacts" width="30%">Temp</td>
+															<td class="contacts" width="30%">(011) 607 6941</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

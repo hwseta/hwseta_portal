@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Corporate services Page === -->
+		<template id="corp_services" name="Corporate Services" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-279"
+											class="oc-post oc-article  post-279 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Corporate Services</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Overview and Functions of Corporate Services Division
+												</h2>
+												<p>A work environment that is conducive to staff performance
+													and ultimately service delivery is key to the success of
+													any organisation. The HWSETA’s Corporate Services Division
+													is responsible for this important activity within the
+													organisation and provides support services to all
+													divisions. Whilst the Corporate Services Division’s overall
+													responsibility is the development and implementation of the
+													HWSETA’s corporate strategy, policies and procedures, as
+													well as the development and maintenance of systems, more
+													specifically, the division seeks to:</p>
+												<ul>
+													<li>Ensure that all corporate policies and practices are
+														aligned to the objectives and mandate of the HWSETA</li>
+													<li>Facilitate and expedite delivery of all HR activities
+													</li>
+													<li>Ensure the provision of suitable office space at both
+														national and provincial levels</li>
+													<li>Promote effective communication with all relevant
+														stakeholders</li>
+													<li>Provide information technology to enable the HWSETA to
+														deliver on its mandate</li>
+													<li>Facilitate the development of a record management
+														system</li>
+												</ul>
+												<p>Ensuring adequate capacity in the form of skills and
+													human assets, as well as capability in the form of systems,
+													procedures and policies underpins all the activities of the
+													Corporate Services Division.</p>
+												<h2>Contacts</h2>
+												<p>Click on the name below to send an e-mail</p>
+												<table class="contacttable" border="0" width="100%"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Title</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:bobp@hwseta.org.za">Mr Bob Pardesi </a>
+															</td>
+															<td class="contacts" width="30%">Executive Manager:
+																Corporate Services</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%"> Vacant
+															</td>
+															<td class="contacts" width="30%">Executive Secretary:
+																Corporate Services</td>
+															<td class="contacts" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Human Resources</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:odwac@hwseta.org.za">Mr. Odwa Chabula</a>
+															</td>
+															<td class="contacts" width="30%">HR Manager</td>
+															<td class="contacts" width="30%">(011) 607 6961</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:hemishan@hwseta.org.za">Ms. Hemisha Naik</a>
+															</td>
+															<td class="contacts" width="30%">HR Officer</td>
+															<td class="contacts" width="30%">(011) 607 7012</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:lybonm@hwseta.org.za">Mr Lybon Mnisi</a>
+															</td>
+															<td class="contacts" width="30%">HR Officer</td>
+															<td class="contacts" width="30%">(011) 607 7014</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:barbarap@hwseta.org.za">Ms Barbara Phama</a>
+															</td>
+															<td class="contacts" width="30%">HR Administrator</td>
+															<td class="contacts" width="30%">(011) 607 7016</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:traceyl@hwseta.org.za">Ms. Tracey Lippert</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 7012</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Marketing and Communications</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:elfriedat@hwseta.org.za">Ms. Elfrieda Tyrer</a>
+															</td>
+															<td class="contacts" width="30%">Marketing Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:dhesang@hwseta.org.za">Mr. Dhesan Govender</a>
+															</td>
+															<td class="contacts" width="30%">Marketing Officer</td>
+															<td class="contacts" width="30%">(011) 607 7017</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:mosimam@hwseta.org.za">Ms. Mosima Mehlape</a>
+															</td>
+															<td class="contacts" width="30%">Marketing Administrator
+															</td>
+															<td class="contacts" width="30%">(011) 607 6924</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">Vacant</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Corporate Support</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:shalendrab@hwseta.org.za">Mr. Shalendra Ballasu</a>
+																r
+															</td>
+															<td class="contacts" width="30%">Corporate
+																Support Manager
+															</td>
+															<td class="contacts" width="30%">(011) 607 7009</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:luckym@hwseta.org.za">Mr. Lucky Masango</a>
+															</td>
+															<td class="contacts" width="30%">Registry Administrator</td>
+															<td class="contacts" width="30%">(011) 607 7018</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:velim@hwseta.org.za">Mr. Veli
+																	Mthembu
+																</a>
+															</td>
+															<td class="contacts" width="30%">Driver</td>
+															<td class="contacts" width="30%"> (011)
+																607 7027
+															</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Stakeholder Relations
+																</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:wendyt@hwseta.org.za">Ms Wendy Tembe</a>
+															</td>
+															<td class="contacts" width="30%">Stakeholder Relations
+																Officer</td>
+															<td class="contacts" width="30%">(011) 607 6910</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:daphneym@hwseta.org.za">Ms Daphney Maswanganye</a>
+															</td>
+															<td class="contacts" width="30%">Receptionist</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:trevorm@hwseta.org.za">Mr. Trevor Matsane</a>
+															</td>
+															<td class="contacts" width="30%">Receptionist</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Information Technology</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:gouss@hwseta.org.za">Mr. Schalk Gous</a>
+															</td>
+															<td class="contacts" width="30%">IT Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:varunr@hwseta.org.za">Mr. Varun
+																	Rao
+																</a>
+															</td>
+															<td class="contacts" width="30%">IT Co-ordinator</td>
+															<td class="contacts" width="30%">(011) 607 7043</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:pelagiom@hwseta.org.za">Mr. Pelagio Matsinhle</a>
+															</td>
+															<td class="contacts" width="30%">Network Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6980</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailt:innocentm@hwseta.org.za">Mr. Innocent Masango</a>
+															</td>
+															<td class="contacts" width="30%">IT Application
+																Administrator</td>
+															<td class="contacts" width="30%">(011) 607 7011</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailt:mpolokengn@hwseta.org.za">Ms. Mpolokeng Nodwele</a>
+															</td>
+															<td class="contacts" width="30%">Intern</td>
+															<td class="contacts" width="30%">(011) 607 7024</td>
+														</tr>
+													</tbody>
+												</table>
+												<h2>Employment Opportunities</h2>
+												<p> 
+												</p>
+												<div id="pdf_download_red">
+													<a href="?page_id=15">Click here to view Employment Opportunities at
+														the HWSETA </a>
+												</div>
+												<p> 
+												</p>
+											</div>
+										</article>
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

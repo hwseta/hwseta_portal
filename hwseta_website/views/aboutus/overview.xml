@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Overview Page === -->
+		<template id="overview" name="Overview of the HWSETA" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-268"
+											class="oc-post oc-article  post-268 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Overview of the HWSETA</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>The HWSETA exists to achieve the following within the
+													health, social development and veterinary sectors:</p>
+												<ul>
+													<li>Develop and implement the Sector Skills Plan</li>
+													<li>Skills development planning, programmes and initiatives
+													</li>
+													<li>Monitoring of education and training</li>
+													<li>Identification of workplaces for practical work
+														experience</li>
+													<li>Support and facilitate the development of the National
+														Skills Development Strategy</li>
+													<li>Disbursement of levies collected </li>
+													<li>Forge links with all stakeholders and relevant bodies
+													</li>
+													<li>Account for the effective and efficient use of public
+														monies in line with the provisions of the Public Finance
+														Management Act</li>
+													<li>Promotion of the employment of disabled persons</li>
+												</ul>
+												<h2>Vision</h2>
+												<p>The creation of a skilled workforce for the health and
+													social development needs of all South Africans</p>
+												<h2>Mission</h2>
+												<p>The Health and Welfare Sector Education and Training
+													Authority (HWSETA) endeavours to create an integrated
+													approach to the development and provision of appropriately
+													skilled health and social development workers, to render
+													quality services comparable to world class standards.</p>
+												<h2>Philosophy</h2>
+												<p>The HWSETA espouses the philosophy of a better life for
+													all through people development</p>
+												<h2>Values</h2>
+												<p>The HWSETA holds dear the following core values:</p>
+												<ul>
+													<li>Integrity</li>
+													<li>
+														Transparency
+													</li>
+													<li>
+														Transformation
+													</li>
+													<li>
+														Service Excellence
+													</li>
+												</ul>
+												<h2>Document Downloads</h2>
+												<p>
+													<code></code>
+												</p>
+												<code>
+													<div id="pdf_download_red">
+														<a
+															href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_Service_Delivery_Charter.pdf">The HWSETA’s Service Delivery Charter </a>
+														(download pdf)
+													</div>
+												</code>
+												<p>
+													<code></code>
+												</p>
+											</div>
+										</article>
+									</div>
+
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

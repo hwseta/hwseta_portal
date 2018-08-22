@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record id="form_view_import_csv_file" model="ir.ui.view">
+            <field name="name">form.view.import.csv.file</field>
+            <field name="model">import.csv</field>
+            <field name="arch" type="xml">
+            	<form string="Import CSV">
+		           	<group>
+		           		<field name="name"/>
+		           		<field name="import_csv_file" filename="name"/>
+		           		<button class="oe_inline oe_stat_button" type="object" name="csv_file_import" string="Upload"  icon="fa-upload"/>
+		           	</group>
+            	</form>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

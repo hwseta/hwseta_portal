@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    	<!-- Sequence for Learning Programme -->
+        <record id="seq_type_learnership" model="ir.sequence.type">
+            <field name="name">Learnership</field>
+            <field name="code">learning.programme</field>
+        </record>
+
+        <record id="seq_learnership" model="ir.sequence">
+            <field name="name">Learning Programme</field>
+            <field name="code">learning.programme</field>
+            <field name="prefix">LP</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for Transche Payment -->
+        <record id="seq_type_transche_payment" model="ir.sequence.type">
+            <field name="name">Transche Payment</field>
+            <field name="code">transche.payment</field>
+        </record>
+        
+        <record id="seq_transche_payment" model="ir.sequence">
+            <field name="name">Transche Payment</field>
+            <field name="code">transche.payment</field>
+            <field name="prefix">TP</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for Petty Cash -->
+        <record id="seq_type_petty_cash" model="ir.sequence.type">
+            <field name="name">Petty Cash</field>
+            <field name="code">petty.cash</field>
+        </record>
+        
+        <record id="seq_petty_cash" model="ir.sequence">
+            <field name="name">Petty Cash</field>
+            <field name="code">petty.cash</field>
+            <field name="prefix">PT</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for Learner Agreement -->
+        <record id="seq_type_learner_agreement" model="ir.sequence.type">
+            <field name="name">Learner Agreement</field>
+            <field name="code">sdp.learner</field>
+        </record>
+        
+        <record id="seq_learner_agreement" model="ir.sequence">
+            <field name="name">Learner Agreement</field>
+            <field name="code">sdp.learner</field>
+            <field name="prefix">LN-AG</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+    </data>
+</openerp>

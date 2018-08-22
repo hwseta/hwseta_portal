@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="paperformat_etqe_new" model="report.paperformat">
+			<field name="name">ETQE</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">70</field>
+			<field name="margin_bottom">15</field>
+			<field name="margin_left">7</field>
+			<field name="margin_right">7</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">40</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<report id="achievement_certificate_id" string="Certificate of Achievement"
+			model="provider.assessment" report_type="qweb-pdf"
+			file="hwseta_etqe.report_achievement_certificate" name="hwseta_etqe.report_achievement_certificate" />
+			
+		<report id="qualification_stmt_of_result_id" string="Statement of Result"
+			model="provider.assessment" report_type="qweb-pdf"
+			file="hwseta_etqe.qualification_stmt_of_result_report" name="hwseta_etqe.qualification_stmt_of_result_report" />
+
+		<record id="hwseta_etqe.achievement_certificate_id" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="hwseta_etqe.paperformat_etqe_new" />
+		</record>
+
+		<report id="qdm_achievement_certificate_id" string="Certificate of Achievement"
+			model="provider.assessment" report_type="qweb-pdf"
+			file="hwseta_etqe.report_qdm_achievement_certificate" name="hwseta_etqe.report_qdm_achievement_certificate" />
+
+		<!-- <record id="hwseta_etqe.qdm_achievement_certificate_id" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="hwseta_etqe.paperformat_etqe_new" />
+		</record> -->
+
+		<report id="skills_statement_of_results_id" string="Skills Programme Statement of Results"
+			model="provider.assessment" report_type="qweb-pdf"
+			file="hwseta_etqe.report_skills_programme_statement_of_results" name="hwseta_etqe.report_skills_programme_statement_of_results" />
+		
+		<report id="lp_achievement_certificate_id" string="Learning Programme Certificate of Achievement"
+			model="provider.assessment" report_type="qweb-pdf"
+			file="hwseta_etqe.report_learning_programme_achievement_certificate" name="hwseta_etqe.report_learning_programme_achievement_certificate" />
+		
+		<record id="hwseta_etqe.lp_achievement_certificate_id" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="hwseta_etqe.paperformat_etqe_new" />
+		</record>
+		
+		<report id="lp_statement_of_results_id" string="Learning Programme Statement of Results"
+			model="provider.assessment" report_type="qweb-pdf"
+			file="hwseta_etqe.report_learning_programme_statement_of_result" name="hwseta_etqe.report_learning_programme_statement_of_result" />
+	
+	</data>
+</openerp>

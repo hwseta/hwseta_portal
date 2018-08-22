@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Councils and Associations Page === -->
+		<template id="councils_associations" name="Councils and Associations" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-299"
+											class="oc-post oc-article  post-299 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Councils and Associations</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Councils and Association the HWSETA deals with</h2>
+												<table width="100%" border="0" cellpadding="0" cellspacing="0"
+													class="contacttable">
+													<tbody>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.sanc.co.za" target="_new">SANC</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> South African Nursing
+																Council </td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.sanc.co.za" target="_new">www.sanc.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.hpcsa.co.za" target="_new">HPCSA</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top"> Health
+																Professions Council of South Africa </td>
+															<td width="30%" class="contactsnoline" valign="top">
+																<a href="http://www.hpcsa.co.za" target="_new">www.hpcsa.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.hasa.co.za" target="_new">HASA</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> Hospital Association of
+																South Africa </td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.hasa.co.za">www.hasa.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.pharmcouncil.co.za" target="_new">SAPC</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top"> South African
+																Pharmacy Council </td>
+															<td width="30%" class="contactsnoline" valign="top">
+																<a href="http://www.pharmcouncil.co.za">www.pharmcouncil.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.sacssp.co.za" target="_new">SACSSP</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> South African Council for
+																Social Service Professions </td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.sacssp.co.za" target="_new">www.sacssp.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.sama.co.za" target="_new">SAMA</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top"> South African
+																Medical Association </td>
+															<td width="30%" class="contactsnoline" valign="top">
+																<a href="http://www.sama.co.za" target="_new">www.sama.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.sada.co.za" target="_new">SADA</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> South African Dental
+																Association </td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.sada.co.za">www.sada.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.savc.co.za" target="_new">SAVC</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> South African Veterinary
+																Council </td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.savc.co.za" target="_new">www.savc.co.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.che.ac.za" target="_new">CHE</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top"> Council of
+																Higher Education </td>
+															<td width="30%" class="contactsnoline" valign="top">
+																<a href="http://www.che.ac.za" target="_new">www.che.ac.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.ncppdsa.org.za" target="_new">NCPPDSA</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> National Council for
+																Persons with Physical Disabilities in South Africa </td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.ncppdsa.org.za">www.ncppdsa.org.za</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>								
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

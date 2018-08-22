@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Provider Verification Report -->
+        <report 
+            id="report_provider_verification_id"
+            string="Verification Report"
+            model="provider.assessment" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_provider_verification" 
+            name="hwseta_etqe.report_provider_verification" 
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+    </data>
+</openerp>

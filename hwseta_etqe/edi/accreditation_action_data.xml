@@ -1,0 +1,721 @@
+<?xml version="1.0" ?>
+<openerp>
+<data noupdate="0">
+
+	<!-- Email template for Provider Re-registration alert -->
+    	<record id="email_template_provider_re_registration_alert" model="email.template">
+        <field name="name">Provider Re-registration</field>
+        <field name="subject">Provider re-registration alert</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_res_partner"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+	        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+	        <p>Mr. ${user.name} your provider end date will get exipered after 42 days. please, complete provider re-registration process early.</p>
+	        </div>
+            ]]></field>
+    </record>
+
+	<!-- Email template for Provider Assessment -->
+    	<record id="email_template_provider_assessment_submit" model="email.template">
+        <field name="name">Provider Assessment Registration Submitted</field>
+        <field name="subject">Provider Assessment Registration Submitted</field>
+        <field name="email_to">${object.provider_id.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_assessment"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+	        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+	        <p>Mr. ${user.name} your application for Provider Assessment registration have been submitted successfully.</p>
+	        </div>
+            ]]></field>
+    </record>
+    
+    
+    
+   	<!--Email template -->
+	<record id="email_template_edi_etq11" model="email.template">
+	    <field name="name">Assessors Moderators Register Details</field>
+	    <field name="subject">Assessors Moderators Register Details</field>
+	    <field name="email_to">${object.work_email}</field>
+	    <field name="email_from">no-reply@hwseta.org.za</field>
+	    <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+	    <field name="auto_delete" eval="False"/>
+	     <field name="lang">en_US</field> 
+	    <field name="body_html"><![CDATA[
+		<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+	    <p>${object.name} is applied for registration</p>
+	    
+		</div>
+	        ]]></field>
+	</record>
+	
+	
+	<record id="email_template_assessors_moderator_submit" model="email.template">
+        <field name="name">Assessors Moderators Registration Application Submitted</field>
+        <field name="subject">Assessors Moderators Registration Application Submitted</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+	        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+	        <p>Mr. ${user.name} your application for Assessor/Moderator registration have been submitted successfully.</p>
+	        </div>
+            ]]></field>
+    </record>
+    
+    <record id="email_template_assessors_moderator_verify" model="email.template">
+        <field name="name">Assessors Moderators Registration Application Verified</field>
+        <field name="subject">Assessors Moderators Registration Application Verified</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${user.name} has verifed your registration</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    <record id="email_template_assessors_moderator_evaluated" model="email.template">
+        <field name="name">Assessors Moderators Registration Application Evaluated</field>
+        <field name="subject">Assessors Moderators Registration Application Evaluated</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${user.name} has evaluated your registration</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    <record id="email_template_assessors_moderator_denied" model="email.template">
+        <field name="name">Assessors Moderators Registration Application Denied</field>
+        <field name="subject">Assessors Moderators Registration Application Denied</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${user.name} has denied your registration</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    
+    <record id="email_template_assessor_approved" model="email.template">
+        <field name="name">NOTIFICATION OF REGISTRATION AS AN ASSESSOR</field>
+        <field name="subject">NOTIFICATION OF REGISTRATION AS AN ASSESSOR</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+        <field name="report_template" ref="hwseta_etqe.letter_of_approval_assessor"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+        	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+        	<br>
+        	<br>
+			<p>Please use your login and password indicated below to access the HWSETA system:</p>
+			<br>
+			<p>Login    :  <b> ${object.work_email} </b></p>
+			<p>Password :  <b> ${object.password}</b></p>        	
+        	<br>
+        	<br>
+	        Sincerely,<br>
+	        Provincial Manager: ${object.work_province.name or ''}                 
+        </div>
+       <!--  <center>
+					<img src="data:image/png;base64,${user.company_id.logo}" style="width: 150px;height: 80px;" />
+        </center>
+        <p align = "right">Enq: Mr. PS Zondo<br>
+        Ref : 2015/KZN/ASS</p>
+        <br><br>
+        <div>
+        <br/>
+        <br/>
+        <b> ${object.email_todays_date}</b>
+        <br/>
+        <br/>
+        <b> ${object.name}</b><br>
+        ${object.work_address or ''}<br>
+        ${object.work_address2 or ''}<br>
+        ${object.work_address3 or ''}<br>
+        <br>
+        <br>
+        <b> Tel.No. :</b> ${object.work_phone or ''}<br>
+        <b> Cell    :</b> ${object.cont_number_home or ''}<br>
+        <b> Email   :</b> ${object.work_email or ''}<br>
+        <br>
+        <br>
+        <b> RE: NOTIFICATION OF REGISTRATION AS AN ASSESSOR</b> <br>
+        <br>
+        <b> Dear</b> <b>${object.name or ''}</b><br>
+        <br>
+        We are pleased to inform you that you have been registered as an assessor with the Health and Welfare Sector
+        Education and Training Authority (HWSETA) to fulfill the functions of an assessor as contemplated in regulation 9(1)(e) of the ETQA Regulations, 1998.  
+        <br>
+        <br>
+        <table border = "1">
+        <thead>
+        <tr>
+	            <td><b>UNIT STANDARD/ QUALIFICATION ID</b></td>
+	            <td><b>UNIT STANDARD/ QUALIFICATION TITLE</b></td>
+	            <td><b>NQF Level</b></td>
+	            <td><b>Minimum Credits</b></td>
+        </tr>  
+        </thead>
+        <tbody>
+        % for data in object.qualification_ids:
+        <tr>
+            <td><b>${data.saqa_qual_id or ''}</b></td>
+            <td><b>${data.qualification_id.name or ''}</b></td>
+            <td></td>
+            <td><b>${data.minimum_credits or ''}</b></td>
+        </tr> 
+        % for line in data.qualification_line:
+         <tr>
+            <td>${line.id_no or ''}</td>
+            <td>${line.title or ''}</td>
+            <td>${line.level2 or ''}</td>
+            <td>${line.level3 or ''}</td>
+        </tr>
+        % endfor 
+        % endfor  
+        </tbody>
+        </table>
+        <br>
+        <br>
+        Your Registration Perticulars are as follows:<br>
+        <br>
+        Assessor: <b style:"text-transform: capitalize"> ${object.person_title or ''} ${object.person_name or ''} ${object.person_last_name or ''} </b><br>
+        <br>
+        Assessor Registration Number: <b> ${object.temp_assessor_seq_no or ''}</b><br>
+        <br>
+        Registration Period: <b>${object.reg_start or ''} to ${object.reg_end or ''}</b><br>
+        <br>
+        In the execution of your functions you are obliged to abide by the HWSETA code of conduct for Registered Assessors and Moderators.<br>
+        <br>
+        We wish to congratulate you on this achievement.<br>
+        <br>
+        Your's Sincerely,<br>
+        Provincial Manager: ${object.work_province.name or ''}   -->
+       
+            ]]></field>
+    </record>
+    
+    
+    <record id="email_template_moderator_approved" model="email.template">
+        <field name="name">NOTIFICATION OF REGISTRATION AS AN MODERATOR</field>
+        <field name="subject">NOTIFICATION OF REGISTRATION AS AN MODERATOR</field>
+        <field name="email_to">${object.work_email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+		<field name="report_template" ref="hwseta_etqe.letter_of_approval_moderator"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+         <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+        	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+        	<br>
+        	<br>
+        	<br>
+        	<br>
+        	<br>
+	        Sincerely,<br>
+	        Provincial Manager: ${object.work_province.name or ''}                 
+        </div>
+        <!-- <center>
+					<img src="data:image/png;base64,${user.company_id.logo}" style="width: 150px;height: 80px;" />
+        </center>
+        <p align = "right">Enq: Mr. PS Zondo<br>
+        Ref : 2015/KZN/ASS</p>
+        <br><br>
+        <div>
+        <br/>
+        <br/>
+        <b> Date: ${object.email_todays_date}</b>
+        <br/>
+        <br/>
+        <b> ${object.name}</b><br>
+        ${object.work_address or ''}<br>
+        ${object.work_address2 or ''}<br>
+        ${object.work_address3 or ''}<br>
+        <br>
+        <br>
+        <b> Tel.No.: </b>${object.work_phone or ''}<br>
+        <b> Cell: </b>${object.cont_number_home or ''}<br>
+        <b> Email: </b>${object.work_email or ''}<br>
+        <br>
+        <br>
+        <b> RE: NOTIFICATION OF REGISTRATION AS AN MODERATOR</b> <br>
+        <br>
+        <b>Dear </b><b>${object.name or ''}</b><br>
+        <br>
+        We are pleased to inform you that you have been registered as an Moderator with the Health and Welfare Sector
+        Education and Training Authority (HWSETA) to fulfill the functions of an Moderator as contemplated in regulation 9(1)(e) of the ETQA Regulations, 1998.  
+        <br>
+        <br>
+        <table border = "1">
+        <thead>
+        <tr>
+	            <td><b>UNIT STANDARD/ QUALIFICATION ID</b></td>
+	            <td><b>UNIT STANDARD/ QUALIFICATION TITLE</b></td>
+	            <td><b>NQF Level</b></td>
+	            <td><b>Minimum Credits</b></td>
+        </tr>  
+        </thead>
+        <tbody>
+        % for data in object.qualification_ids:
+        <tr>
+            <td><b>${data.saqa_qual_id or ''}</b></td>
+            <td><b>${data.qualification_id.name or ''}</b></td>
+            <td></td>
+            <td><b>${data.minimum_credits or ''}</b></td>
+        </tr> 
+        % for line in data.qualification_line:
+         <tr>
+            <td>${line.id_no or ''}</td>
+            <td>${line.title or ''}</td>
+            <td>${line.level2 or ''}</td>
+            <td>${line.level3 or ''}</td>
+        </tr>
+        % endfor 
+        % endfor  
+        </tbody>
+        </table>
+        <br>
+        <br>
+        Your Registration Perticulars are as follows:<br>
+        <br>
+        Assessor: <b> ${object.person_title or ''} ${object.person_name or ''} ${object.person_last_name or ''} </b><br>
+        <br>
+        Moderator Registration Number: <b> ${object.temp_moderator_seq_no or ''}</b><br>
+        <br>
+        Registration Period: ${object.reg_start or ''} to ${object.reg_end or ''}<br>
+        <br>
+        In the execution of your functions you are obliged to abide by the HWSETA code of conduct for Registered Assessors and Moderators.<br>
+        <br>
+        We wish to congratulate you on this achievement.<br>
+        <br>
+        Your's Sincerely,<br>
+        Provincial Manager: ${object.work_province.name or ''}   -->
+       
+            ]]></field>
+    </record>
+    
+    <!-- Assessor/Moderator Extensionn of scope Approval -->
+    <record id="email_template_assessor_eos" model="email.template">
+      <field name="name">NOTIFICATION OF EXTENSION OF SCOPE AS AN ASSESSOR</field>
+      <field name="subject">NOTIFICATION OF EXTENSION OF SCOPE AS AN ASSESSOR</field>
+      <field name="email_to">${object.work_email}</field>
+      <field name="email_from">no-reply@hwseta.org.za</field>
+      <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+	  <field name="report_template" ref="hwseta_etqe.assessor_extension_of_scope_id"/>
+      <field name="auto_delete" eval="False"/>
+      <field name="lang">en_US</field> 
+      <field name="body_html"><![CDATA[
+       <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+      	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+       Sincerely,<br>
+       Provincial Manager: ${object.work_province.name or ''}                 
+      </div>
+          ]]></field>
+    </record>
+    
+    <record id="email_template_moderator_eos" model="email.template">
+      <field name="name">NOTIFICATION OF EXTENSION OF SCOPE AS AN MODERATOR</field>
+      <field name="subject">NOTIFICATION OF EXTENSION OF SCOPE AS AN MODERATOR</field>
+      <field name="email_to">${object.work_email}</field>
+      <field name="email_from">no-reply@hwseta.org.za</field>
+      <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+	  <field name="report_template" ref="hwseta_etqe.moderator_extension_of_scope_id"/>
+      <field name="auto_delete" eval="False"/>
+      <field name="lang">en_US</field> 
+      <field name="body_html"><![CDATA[
+       <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+      	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+       Sincerely,<br>
+       Provincial Manager: ${object.work_province.name or ''}                 
+      </div>
+          ]]></field>
+    </record>
+    
+    <!-- Assessor/Moderator Re-registration Approval -->
+    <record id="email_template_assessor_reregistration" model="email.template">
+      <field name="name">NOTIFICATION OF RE-REGISTRATION AS A ASSESSOR</field>
+      <field name="subject">NOTIFICATION OF RE-REGISTRATION AS A ASSESSOR</field>
+      <field name="email_to">${object.work_email}</field>
+      <field name="email_from">no-reply@hwseta.org.za</field>
+      <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+	  <field name="report_template" ref="hwseta_etqe.assessor_reregistration_id"/>
+      <field name="auto_delete" eval="False"/>
+      <field name="lang">en_US</field> 
+      <field name="body_html"><![CDATA[
+       <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+      	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+       Sincerely,<br>
+       Provincial Manager: ${object.work_province.name or ''}                 
+      </div>
+          ]]></field>
+    </record>
+    
+    <record id="email_template_moderator_reregistration" model="email.template">
+      <field name="name">NOTIFICATION OF EXTENSION OF SCOPE AS AN MODERATOR</field>
+      <field name="subject">NOTIFICATION OF EXTENSION OF SCOPE AS AN MODERATOR</field>
+      <field name="email_to">${object.work_email}</field>
+      <field name="email_from">no-reply@hwseta.org.za</field>
+      <field name="model_id" ref="hwseta_etqe.model_assessors_moderators_register"/>
+	  <field name="report_template" ref="hwseta_etqe.moderator_reregistration_id"/>
+      <field name="auto_delete" eval="False"/>
+      <field name="lang">en_US</field> 
+      <field name="body_html"><![CDATA[
+       <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+      	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+       Sincerely,<br>
+       Provincial Manager: ${object.work_province.name or ''}                 
+      </div>
+          ]]></field>
+    </record>
+    
+    <!--Email template for Accreditation-->
+    <record id="email_template_accreditation_create" model="email.template">
+        <field name="name">Provider Accreditation</field>
+        <field name="subject">Provider Accreditation Details</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${object.name} is applied for registration</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    
+    <record id="email_template_accreditation_submit" model="email.template">
+        <field name="name">Provider Accreditation Submitted</field>
+        <field name="subject">Provider Accreditation Submitted</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${object.name} has submited your Application</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+   <!--  Assessor linking to Provider Profile -->
+    <record id="email_template_accreditation_submit_ass_linking" model="email.template">
+        <field name="name">Assessor linking to Provider Profile</field>
+        <field name="subject">Assessor Linked To Provider Profile</field>
+        <field name="partner_to">${object.get_partner_ids(object.assessors_ids)}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>Your Registration details have been submitted by ${object.name} Provider, to be associated to their Provider profile. If you are unaware of the association please contact HWSETA immediately.</p>
+        </div>
+            ]]></field>
+    </record>
+    
+    <!-- Moderator linking to Provider Profile -->
+    <record id="email_template_accreditation_submit_mod_linking" model="email.template">
+        <field name="name">Moderator linking to Provider Profile</field>
+        <field name="subject">Moderator Linked To Provider Profile</field>
+        <field name="partner_to">${object.get_mod_partner_ids(object.moderators_ids)}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>Your Registration details have been submitted by ${object.name} Provider, to be associated to their Provider profile. If you are unaware of the association please contact HWSETA immediately.</p>
+        </div>
+            ]]></field>
+    </record>
+    
+    <record id="email_template_accreditation_verify" model="email.template">
+        <field name="name">Provider Accreditation Verified</field>
+        <field name="subject">Provider Accreditation Verified</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${object.name} has verifed your Application</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    
+    <record id="email_template_accreditation_evaluated" model="email.template">
+        <field name="name">Provider Accreditation Evaluated</field>
+        <field name="subject">Provider Accreditation Evaluated</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${object.name} has evaluated your Application</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    <record id="email_template_accreditation_denied" model="email.template">
+        <field name="name">Provider Accreditation Denied</field>
+        <field name="subject">Provider Accreditation Denied</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+        <p>${object.name} has denied your Application</p>
+        
+        </div>
+            ]]></field>
+    </record>
+    
+    
+    <record id="email_template_accreditation_approved" model="email.template">
+        <field name="name">ACCREDITATION AS A SKILLS DEVELOPMENT PROVIDER</field>
+        <field name="subject">Provider Programme Approval</field>
+        <field name="email_to">${object.email}</field>
+        <field name="email_from">no-reply@hwseta.org.za</field>
+        <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+        <field name="report_template" ref="hwseta_etqe.letter_of_approval_id"/>
+        <field name="auto_delete" eval="False"/>
+         <field name="lang">en_US</field> 
+        <field name="body_html"><![CDATA[
+        <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+		<p>Provider Name: <b>${object.name}</b> </p>
+		<br>
+		<p>Application Unique Number: <b>${object.provider_accreditation_ref}</b></p>
+		<br>
+		<p>Date:<b> ${object.provider_approval_date}</b></p>
+		<br>
+		<p>Acceptance of Provider Accreditation Registration</p>
+		<br>
+		<p>This email is to confirm that you have been accepted as the Provider</p>
+		<br>
+		<p>Please use your login and password indicated below to access the HWSETA system:</p>
+		<br>
+		<p>Login    :  <b> ${object.email} </b></p>
+		<p>Password :  <b> admin</b></p>
+		<br>
+		<p>If you should have any queries please contact</p>
+		<br>
+		<p>Regards</p>
+		<p>ETQA</p>
+        </div>
+            ]]></field>
+    </record>
+    
+    <record id="email_template_provider_extension_of_scope" model="email.template">
+      <field name="name">ACCREDITATION EXTENSION OF SCOPE AS A SKILLS DEVELOPMENT PROVIDER</field>
+      <field name="subject">Provider Exension of Scope Approval</field>
+      <field name="email_to">${object.email}</field>
+      <field name="email_from">no-reply@hwseta.org.za</field>
+      <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+	  <field name="report_template" ref="hwseta_etqe.provider_extension_of_scope_id"/>
+      <field name="auto_delete" eval="False"/>
+      <field name="lang">en_US</field> 
+      <field name="body_html"><![CDATA[
+       <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+      	<p>${user.name} has approved application. Please find the attached copy of Approval Letter.</p>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+      	<br>
+       Sincerely,<br>
+       Provincial Manager: ${object.work_province.name or ''}                 
+      </div>
+          ]]></field>
+    </record>
+    
+<!--     <record id="email_template_provider_re_accreditation" model="email.template">
+		      <field name="name">Provider Accreditation</field>
+		      <field name="subject">'Provider Accreditation Details'</field>
+		      <field name="email_to">${object.email}</field>
+		      <field name="email_from">${user.partner_id.email}</field>
+		      <field name="model_id" ref="hwseta_etqe.model_provider_accreditation"/>
+		      <field name="auto_delete" eval="False"/>
+		       <field name="lang">en_US</field> 
+		      <field name="body_html"><![CDATA[
+		      <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+		      <center>
+					<img src="data:image/png;base64,${user.company_id.logo}" style="width: 150px;height: 80px;" />
+		      </center>
+		      <p align = "right">Enquiries: PA Official Details</p>
+		      <br><br>
+		      <div>
+		      <br/>
+		      <br/>
+		      <b> Date: ${object.email_todays_date}</b>
+		      <br/>
+		      <br/>
+		      ${object.provider_accreditation_contact_ids.name or ''} ${object.provider_accreditation_contact_ids.sur_name or ''}<br>
+		      <b> ${object.name or ''}</b><br>
+		      ${object.txtPostalAddressLine1 or ''}<br>
+		      ${object.txtPostalAddressLine2 or ''}<br>
+		      ${object.txtPostalAddressLine3 or ''}<br>
+		      <br>
+		      <br>
+		      <b> Tel.No.:</b> ${object.phone or ''}<br>
+		      <b> Fax:</b> ${object.fax or ''}<br>
+		      <b> Email:</b> ${object.email or ''}<br>
+		      <br>
+		      <br>
+		      <b> Dear Mr/Ms/Mrs</b><br/>
+		      <br/>
+		      <b> RE-ACCREDITATION AS AN EDUCATION AND TRAINING PROVIDER </b> <br>
+		      <br>
+		      The Health and Welfare SETA (HWSETA) is pleased to inform you that it has approved the
+		accreditation of ${object.name} for the following learning programme, which are aligned to
+		NQF registered qualification:
+		      <br>
+		      <br>
+		      <table border = "1">
+		       <thead>
+		        <tr>
+		        	<th colspan=6><b>NAME OF THE QUALIFICATION</b></th>
+		        </tr>
+		        <tr>
+		            <td rowspan = 2><b>QUALIFICATION TITLE</b></td>
+					<td rowspan = 2><b>SAQA ID NO.</b></td>
+		            <td rowspan = 2><b>NQF Level</b></td>
+		            <td colspan = 3 align="center"><b>Approval Period</b></td>
+		            <tr>
+			            <td><b>Start Date</b></td>
+			            <td><b>Last Date For Enrollment</b></td>
+			            <td><b>Last Date For Achievement</b></td>
+			        </tr>
+		        </tr>  
+		       </thead>
+		       <tbody>
+		         % for data in object.qualification_ids:
+			        <tr>
+			            <td>${data.qualification_id.name or ''}</td>
+			            <td>${data.saqa_qual_id or ''}</td>
+			            <td>${data.n_level or ''}</td>
+			            <td>20/09/2017</td>
+			            <td>20/09/2019</td>
+			            <td>20/09/2020</td>
+			        </tr>
+		        % endfor 
+		       </tbody>
+		      </table>
+		      <br>
+		      <br>
+		      <b> 
+		      You should be mindful of the last date of enrolment for the above qualification. You are
+		cautioned not to enrol any learner after the stipulated last date of enrolment. Your
+		accreditation duration is dependent on the SAQA registration period of the above listed
+		qualification(s).
+		</b>
+		      <br>
+		      <br>
+		      Your <b>Accreditation Number</b> is: <b>(${object.sequence_num})<b/>. <b>(${object.name})</b> accreditation is valid
+		until <b>(${object.provider_expiry_date})</b>. This re-accreditation in only applicable to the site
+		indicated in your application form and is subject to the HWSETA/ETQA approved Accreditation
+		Policy.
+		      <br/>
+		      <br/>
+		      Your accreditation does not attest to the quality of qualification offered beyond those specified
+		above.
+		<br/>
+		<br/>
+		Your accreditation number must be utilized by <b>(${object.name})</b> only and cannot be used by
+		any other training provider.
+		      <br/>
+		      <br/>
+		      As re-accredited provider you are required to:<br/>
+		1. Complete and submit the “Training Implementation Intent Form” to HWSETA. <br/>
+		2. Upload (register) learners you intend to train before the commencement of the training.<br/>
+		3. Conduct training, 100 %assessments and 50% moderations aligning to maximum
+		   Learner/ Assessor ratio of 1:30 per class.<br/>
+		4. Invite the HWSETA for verification immediately after training has been completed.
+		<br/>
+		<br/>
+		Should you need further information regarding the approval status of the above-mentioned learning
+		programme, please do not hesitate to contact Mr Thabo Matjabe by telephone on 011 607 6987 or
+		e-mail at thabom@hwseta.org.za
+		      <br/>
+		      <br/>
+		      I congratulate you on this achievement and hope that you will find these accreditation
+		conditions in order.
+		<br/>
+		<br/>
+		<br/>
+		      Your's Sincerely,<br>
+		      Executive Manager: ETQA  
+		      </div>
+		          ]]></field>
+	</record> -->
+</data>
+</openerp>

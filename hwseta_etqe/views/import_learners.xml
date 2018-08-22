@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		
+		<record id="action_import_learners_in_system" model="ir.actions.act_window">
+			<field name="name">Import Learners In System</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">import.learners.template</field>
+			<field name="view_type">form</field>
+			<field name="target">new</field>
+			<field name="view_mode">form</field>
+		</record>
+		
+		<record id="import_learner_form" model="ir.ui.view">
+			<field name="name">import.learner.form</field>
+			<field name="model">import.learners.template</field>
+			<field name="arch" type="xml">
+				<form string="Import Learners">
+						<group>
+							<field name="learner_file" />
+						</group>
+						<footer>
+							<button name="import_learners" string="Import Learners"
+								type="object" class="oe_highlight" />
+						</footer>
+				</form>
+			</field>
+		</record>
+		<menuitem name="Import Learners" id="provider_portal_learner_import_menu"
+			action="action_import_learners_in_system" sequence="11" parent="portal_provider_transaction" groups="hwseta_etqe.group_providers"/>
+	</data>
+</openerp>

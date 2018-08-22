@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Annual Reports Page === -->
+		<template id="annual_reports" name="Annual Reports" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-289"
+											class="oc-post oc-article  post-289 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Annual Reports</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													Select the document you wish to download below:
+													<br/>
+														<code></code>
+												</p>
+												<code>
+													<div id="pdf_download_red">
+														<a href="/hwseta_website/static/src/wp-content/uploads/2014/11/HWSETA_Annual_Report_2013_14.pdf">Annual Report for the year 2013-2014   </a>
+														(download pdf)
+													</div>
+													<div id="pdf_download_white">
+														<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/annual-report-2012-13.pdf">Annual Report for the year 2012-2013   </a>
+														(download pdf)
+													</div>
+												</code>
+												<p>
+													<code></code>
+												</p>
+											</div>
+										</article>
+									</div>
+																	
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

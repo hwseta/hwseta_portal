@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Gallery Page === -->
+		<template id="gallery" name="Gallery" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-19"
+											class="oc-post oc-article  post-19 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Gallery</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													<span class="Apple-style-span" style="font-family: monospace;">
+														<style> /* Style for masonry view.*/ #bwg_container1_0
+															#bwg_container2_0 .bwg_masonry_thumbnails_0 * { -moz-box-sizing:
+															border-box; -webkit-box-sizing: border-box; box-sizing:
+															border-box; } #bwg_container1_0 #bwg_container2_0
+															.bwg_masonry_thumb_0 { visibility: hidden; text-align: center;
+															display: inline-block; vertical-align: middle; width: 150px
+															!important; border-radius: 2px; border: 1px none #CCCCCC;
+															background-color: #FFFFFF; margin: 0; padding: 4px !important;
+															opacity: 0.80; filter: Alpha(opacity=80); z-index: 100; }
+															#bwg_container1_0 #bwg_container2_0 .bwg_masonry_thumb_0:hover {
+															opacity: 1; filter: Alpha(opacity=100); transform: rotate(2deg);
+															-ms-transform: rotate(2deg); -webkit-transform: rotate(2deg);
+															backface-visibility: hidden; -webkit-backface-visibility: hidden;
+															-moz-backface-visibility: hidden; -ms-backface-visibility:
+															hidden; z-index: 102; position: absolute; } #bwg_container1_0
+															#bwg_container2_0 .bwg_masonry_thumbnails_0 { -moz-box-sizing:
+															border-box; background-color: rgba(255, 255, 255, 0.00);
+															box-sizing: border-box; display: inline-block; font-size: 0;
+															/*width: 800px;*/ width: 100%; position: relative; text-align:
+															center; } #bwg_container1_0 #bwg_container2_0
+															.bwg_masonry_thumbnails_0 a { cursor: pointer; text-decoration:
+															none; } @media only screen and (max-width : 800px) {
+															#bwg_container1_0 #bwg_container2_0 .bwg_masonry_thumbnails_0 {
+															width: inherit; } } #bwg_container1_0 #bwg_container2_0
+															#spider_popup_overlay_0 { background-color: #CC0000; opacity:
+															0.30; filter: Alpha(opacity=30); } #bwg_container1_0
+															#bwg_container2_0 .bwg_masonry_thumb_spun_0 { position: absolute;
+															} /* Style for thumbnail view.*/ #bwg_container1_0
+															#bwg_container2_0 .bwg_album_thumb_0 { display: inline-block;
+															text-align: center; } #bwg_container1_0 #bwg_container2_0
+															.bwg_album_thumbnails_0 * { -moz-box-sizing: content-box;
+															box-sizing: content-box; } #bwg_container1_0 #bwg_container2_0
+															.bwg_album_thumb_spun1_0 { background-color: #E8E8E8; display:
+															inline-block; height: 120px; margin: 4px; opacity: 1.00; filter:
+															Alpha(opacity=100); transition: all 0.3s ease
+															0s;-webkit-transition: all 0.3s ease 0s; padding: 4px;
+															text-align: center; vertical-align: middle; width: 120px;
+															z-index: 100; -webkit-backface-visibility: visible;
+															-ms-backface-visibility: visible; } #bwg_container1_0
+															#bwg_container2_0 .bwg_album_thumb_spun1_0:hover { opacity: 1;
+															filter: Alpha(opacity=100); transform: none(2deg); -ms-transform:
+															none(2deg); -webkit-transform: none(2deg); backface-visibility:
+															hidden; -webkit-backface-visibility: hidden;
+															-moz-backface-visibility: hidden; -ms-backface-visibility:
+															hidden; z-index: 102; } #bwg_container1_0 #bwg_container2_0
+															.bwg_album_thumb_spun2_0 { border-radius: 0; border: 1px none
+															#000000; box-shadow: ; display: inline-block; height: 120px;
+															overflow: hidden; width: 120px; } #bwg_container1_0
+															#bwg_container2_0 .bwg_album_thumbnails_0 { display:
+															inline-block; -moz-box-sizing: border-box; box-sizing:
+															border-box; background-color: rgba(255, 255, 255, 1.00);
+															font-size: 0; text-align: center; max-width: 710px; }
+															#bwg_container1_0 #bwg_container2_0 .bwg_album_thumbnails_0 a {
+															cursor: pointer; text-decoration: none; } #bwg_container1_0
+															#bwg_container2_0 .bwg_title_spun1_0 { display: table; height:
+															inherit; left: -3000px; opacity: 0; filter: Alpha(opacity=0);
+															position: absolute; top: 0px; width: inherit; } #bwg_container1_0
+															#bwg_container2_0 .bwg_album_thumb_spun1_0:hover
+															.bwg_title_spun1_0 { left: 4px; top: 4px; opacity: 1; filter:
+															Alpha(opacity=100); } #bwg_container1_0 #bwg_container2_0
+															.bwg_title_spun2_0 { color: #CCCCCC; display: table-cell;
+															font-family: segoe ui; font-size: 16px; font-weight: bold;
+															height: inherit; padding: 5px; text-shadow: ; vertical-align:
+															middle; width: inherit; } #bwg_container1_0 #bwg_container2_0
+															.bwg_album_thumbnails_0 { display: inline-block; -moz-box-sizing:
+															border-box; box-sizing: border-box; background-color: rgba(255,
+															255, 255, 1.00); font-size: 0; text-align: center; max-width:
+															710px; } #bwg_container1_0 #bwg_container2_0
+															.bwg_album_thumbnails_0 a { cursor: pointer; text-decoration:
+															none; } /*Image thumbs styles.*/ #bwg_container1_0
+															#bwg_container2_0 .bwg_standart_thumb_spun1_0 { background-color:
+															#FFFFFF; display: inline-block; height: 150px; margin: 2px;
+															opacity: 1.00; filter: Alpha(opacity=100); transition: all 0.3s
+															ease 0s;-webkit-transition: all 0.3s ease 0s; padding: 4px;
+															text-align: center; vertical-align: middle; width: 150px;
+															z-index: 100; } #bwg_container1_0 #bwg_container2_0
+															.bwg_standart_thumb_spun1_0:hover { -ms-transform: none(2deg);
+															-webkit-transform: none(2deg); backface-visibility: hidden;
+															-webkit-backface-visibility: hidden; -moz-backface-visibility:
+															hidden; -ms-backface-visibility: hidden; opacity: 1; filter:
+															Alpha(opacity=100); transform: none(2deg); z-index: 102;
+															position: relative; } #bwg_container1_0 #bwg_container2_0
+															.bwg_standart_thumb_spun2_0 { border-radius: 0; border: 1px
+															dashed #CC0000; box-shadow: 0px 0px 0px #888888; display:
+															inline-block; height: 150px; overflow: hidden; width: 150px; }
+															#bwg_container1_0 #bwg_container2_0 .bwg_standart_thumbnails_0 {
+															-moz-box-sizing: border-box; display: inline-block;
+															background-color: rgba(255, 255, 255, 0.00); box-sizing:
+															border-box; font-size: 0; max-width: 840px; text-align: center; }
+															#bwg_container1_0 #bwg_container2_0 .bwg_standart_thumbnails_0 a
+															{ cursor: pointer; text-decoration: none; } #bwg_container1_0
+															#bwg_container2_0 .bwg_standart_thumb_0 { display: inline-block;
+															text-align: center; } #bwg_container1_0 #bwg_container2_0
+															.bwg_standart_thumb_spun1_0:hover .bwg_image_title_spun1_0 {
+															left: 4px; top: 4px; opacity: 1; filter: Alpha(opacity=100); }
+															#bwg_container1_0 #bwg_container2_0 .bwg_image_title_spun2_0 {
+															color: #FFFFFF; display: table-cell; font-family: arial;
+															font-size: 16px; font-weight: bold; height: inherit; margin: 5px;
+															text-shadow: ; vertical-align: middle; width: inherit; word-wrap:
+															break-word; } /*Pagination styles.*/ #bwg_container1_0
+															#bwg_container2_0 .tablenav-pages_0 { text-align: center;
+															font-size: 12px; font-family: arial; font-weight: bold; color:
+															#666666; margin: 6px 0 4px; display: block; height: 30px;
+															line-height: 30px; } @media only screen and (max-width : 320px) {
+															#bwg_container1_0 #bwg_container2_0 .displaying-num_0 { display:
+															none; } } #bwg_container1_0 #bwg_container2_0 .displaying-num_0 {
+															font-size: 12px; font-family: arial; font-weight: bold; color:
+															#666666; margin-right: 10px; vertical-align: middle; }
+															#bwg_container1_0 #bwg_container2_0 .paging-input_0 { font-size:
+															12px; font-family: arial; font-weight: bold; color: #666666;
+															vertical-align: middle; } #bwg_container1_0 #bwg_container2_0
+															.tablenav-pages_0 a.disabled, #bwg_container1_0 #bwg_container2_0
+															.tablenav-pages_0 a.disabled:hover, #bwg_container1_0
+															#bwg_container2_0 .tablenav-pages_0 a.disabled:focus { cursor:
+															default; color: rgba(102, 102, 102, 0.5); } #bwg_container1_0
+															#bwg_container2_0 .tablenav-pages_0 a { cursor: pointer;
+															font-size: 12px; font-family: arial; font-weight: bold; color:
+															#666666; text-decoration: none; padding: 3px 6px; margin: 0;
+															border-radius: 0; border-style: none; border-width: 1px;
+															border-color: #E3E3E3; background-color: #FCFCFC; opacity: 1.00;
+															filter: Alpha(opacity=100); box-shadow: 0; transition: all 0.3s
+															ease 0s;-webkit-transition: all 0.3s ease 0s; } #bwg_container1_0
+															#bwg_container2_0 .bwg_back_0 { background-color: rgba(0, 0, 0,
+															0); color: #000000 !important; cursor: pointer; display: block;
+															font-family: segoe ui; font-size: 14px; font-weight: normal;
+															text-decoration: none; padding: 0; } #bwg_container1_0
+															#bwg_container2_0 #spider_popup_overlay_0 { background-color:
+															#CC0000; opacity: 0.30; filter: Alpha(opacity=30); }
+															.bwg_play_icon_spun_0 { width: inherit; height: inherit; display:
+															table; position: absolute; } .bwg_play_icon_0 { color: #FFFFFF;
+															font-size: 32px; vertical-align: middle; display: table-cell
+															!important; z-index: 1; text-align: center; margin: 0 auto; }
+														</style>
+													</span>
+												</p>
+												<div id="bwg_container1_0">
+													<div id="bwg_container2_0">
+														<form id="gal_front_form_0" method="post" action="#">
+															<div id=""
+																style="background-color:rgba(0, 0, 0, 0); position:relative; text-align:center; width:100%;">
+																<div id="ajax_loading_0"
+																	style="position:absolute;width: 100%; z-index: 115; text-align: center; height: 100%; vertical-align: middle; display: none;">
+																	<div
+																		style="display: table; vertical-align: middle; width: 100%; height: 100%; background-color: #FFFFFF; opacity: 0.7; filter: Alpha(opacity=70);">
+																		<div
+																			style="display: table-cell; text-align: center; position: relative; vertical-align: middle;">
+																			<div id="loading_div_0"
+																				style="display: inline-block; text-align:center; position:relative; vertical-align:middle;">
+																				<img
+																					src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/images/ajax_loader.png"
+																					class="spider_ajax_loading" style="float: none; width:50px;"/>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div id="bwg_album_compact_0" class="bwg_album_thumbnails_0">
+																	<input type="hidden" id="bwg_previous_album_id_0" name="bwg_previous_album_id_0"
+																		value="0"/>
+																		<input type="hidden" id="bwg_previous_album_page_number_0"
+																			name="bwg_previous_album_page_number_0" value="0"/>
+																			<a style="font-size: 0;"
+																				onclick="spider_frontend_ajax('gal_front_form_0', '0', 'bwg_album_compact_0', '1', '3', 'gallery', '', 'Career Day')">
+																				<span class="bwg_album_thumb_0">
+																					<span class="bwg_album_thumb_spun1_0">
+																						<span class="bwg_album_thumb_spun2_0">
+																							<img
+																								style="padding: 0 !important; max-height: none !important; max-width: none !important; width: 160px; height:120px; margin-left: -20px; margin-top: 0px;"
+																								src="/hwseta_website/static/src/wp-content/gallery/photo-gallery/thumb/4.jpg"
+																								alt="Career Day"/>
+																								<span class="bwg_title_spun1_0">
+																									<span class="bwg_title_spun2_0"> Career Day                                </span>
+																								</span>
+																						</span>
+																					</span>
+																				</span>
+																			</a>
+																</div>
+																<script type="text/javascript"> function spider_page_0(cur, x, y) { if
+																	(jQuery(cur).hasClass('disabled')) { return false; } var
+																	items_county_0 = 1; switch (y) { case 1: if (x >=
+																	items_county_0) {
+																	document.getElementById('page_number_0').value =
+																	items_county_0; } else {
+																	document.getElementById('page_number_0').value = x + 1; }
+																	break; case 2: document.getElementById('page_number_0').value =
+																	items_county_0; break; case -1: if (x == 1) {
+																	document.getElementById('page_number_0').value = 1; } else {
+																	document.getElementById('page_number_0').value = x - 1; }
+																	break; case -2: document.getElementById('page_number_0').value
+																	= 1; break; default:
+																	document.getElementById('page_number_0').value = 1; }
+																	spider_frontend_ajax('gal_front_form_0', '0',
+																	'bwg_album_compact_0', '3', '', 'album', 0); }    </script>
+																<div class="tablenav-pages_0">
+																	<input type="hidden" id="page_number_0" name="page_number_0"
+																		value="1"/>
+																</div>
+															</div>
+														</form>
+														<div id="spider_popup_loading_0" class="spider_popup_loading"></div>
+														<div id="spider_popup_overlay_0" class="spider_popup_overlay"
+															onclick="spider_destroypopup(1000)"></div>
+													</div>
+												</div>
+												<script type="text/javascript">
+												var bwg_current_url = '/page/hwseta_website.gallery';
+												var bwg_hash = window.location.hash.substring(1);
+												if (bwg_hash) {        
+													if (bwg_hash.indexOf("bwg") != "-1") {
+														bwg_hash_array = bwg_hash.replace("bwg", "").split("/");
+														spider_createpopup('http://www.hwseta.org.za/wp-admin/admin-ajax.php?action=GalleryBox&amp;current_view=0&amp;theme_id=2&amp;thumb_width=150&amp;thumb_height=150&amp;open_with_fullscreen=1&amp;open_with_autoplay=0&amp;image_width=800&amp;image_height=500&amp;image_effect=fade&amp;sort_by=order&amp;enable_image_filmstrip=1&amp;image_filmstrip_height=50&amp;enable_image_ctrl_btn=1&amp;enable_image_fullscreen=1&amp;popup_enable_info=1&amp;popup_info_always_show=0&amp;popup_hit_counter=0&amp;popup_enable_rate=0&amp;slideshow_interval=5&amp;enable_comment_social=0&amp;enable_image_facebook=0&amp;enable_image_twitter=0&amp;enable_image_google=0&amp;enable_image_pinterest=0&amp;enable_image_tumblr=0&amp;watermark_type=none&amp;current_url=/page/hwseta_website.gallery&amp;gallery_id=' + bwg_hash_array[0] + '&amp;image_id=' + bwg_hash_array[1], '0', '800', '500', 1, 'testpopup', 5);
+														}
+													}          
+												</script>
+												<p></p>
+												<p></p>
+												<p> 
+												</p>
+												<p> 
+												</p>
+												<p> 
+												</p>
+												<p> 
+												</p>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_move_line_make_invoice123" model="ir.ui.view">
+            <field name="name">Account move Line Wizard</field>
+            <field name="model">account.move.line.wiz</field>
+            <field name="arch" type="xml">
+             <form string="Create invoices">
+                
+                <group string="Select Period" col="4">
+            			<field name="from_date" required = "True"/>
+            			<field name="to_date" required = "True"/>
+            			<field name="account"/>
+            		</group>
+                
+                <footer>
+                    <button name="print_report" string="Print Report" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+		<record id="action_view_move_linee_invoice" model="ir.actions.act_window">
+			<field name="name">Account Ledger Report</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.move.line.wiz</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_move_line_make_invoice123" />
+			<field name="target">new</field>
+		</record>
+
+		
+		<menuitem name="Account Ledger Report" parent="account.menu_finance_reports"
+			action="action_view_move_linee_invoice" id="menu_move_line_employer123" />
+		
+		<!-- Inherit core module reports to change access rights -->
+		<menuitem icon="STOCK_PRINT" name="Profit And Loss" action="account.action_account_report_pl"
+		     id="account.menu_account_report_pl" parent="account.final_accounting_reports"
+            groups= "hwseta_finance.group_ceo,hwseta_finance.group_cfo,account.group_account_manager,account.group_account_user,hwseta_finance.group_reveniue_administrator,hwseta_finance.group_cashbook_administrator,hwseta_finance.group_payment_administrator,account.group_account_invoice,hwseta_finance.group_financial_admin1,hwseta_finance.group_payment_cycle_officer"/>
+	
+		<menuitem icon="STOCK_PRINT" name="Financial Report" action="account.action_account_report" id="account.menu_account_report" parent="account.final_accounting_reports" sequence="100"
+            groups= "hwseta_finance.group_ceo,hwseta_finance.group_cfo,account.group_account_manager,account.group_account_user,hwseta_finance.group_reveniue_administrator,hwseta_finance.group_cashbook_administrator,hwseta_finance.group_payment_administrator,account.group_account_invoice,hwseta_finance.group_financial_admin1,hwseta_finance.group_payment_cycle_officer"/>
+		
+		<menuitem icon="STOCK_PRINT" name="Trial Balance" parent="account.final_accounting_reports" 
+		    action="account.action_account_balance_menu" id="account.menu_general_Balance_report" 
+		    groups= "hwseta_finance.group_ceo,hwseta_finance.group_cfo,account.group_account_manager,account.group_account_user,hwseta_finance.group_reveniue_administrator,hwseta_finance.group_cashbook_administrator,hwseta_finance.group_payment_administrator,account.group_account_invoice,hwseta_finance.group_financial_admin1,hwseta_finance.group_payment_cycle_officer" />
+		
+		<menuitem icon="STOCK_PRINT" name="Balance Sheet" action="account.action_account_report_bs" id="account.menu_account_report_bs" parent="account.final_accounting_reports"
+            groups= "hwseta_finance.group_ceo,hwseta_finance.group_cfo,account.group_account_manager,account.group_account_user,hwseta_finance.group_reveniue_administrator,hwseta_finance.group_cashbook_administrator,hwseta_finance.group_payment_administrator,account.group_account_invoice,hwseta_finance.group_financial_admin1,hwseta_finance.group_payment_cycle_officer"/>
+		
+		<menuitem id="account.menu_finance_generic_reporting" name="Generic Reporting" parent="account.menu_finance_reports" sequence="100"
+            groups= "hwseta_finance.group_ceo,hwseta_finance.group_cfo,account.group_account_manager,account.group_account_user,hwseta_finance.group_reveniue_administrator,hwseta_finance.group_cashbook_administrator,hwseta_finance.group_payment_administrator,account.group_account_invoice"/>
+
+		<menuitem
+            icon="STOCK_PRINT" name="General Ledger" parent="account.final_accounting_reports"
+            action="account.action_account_general_ledger_menu" id="account.menu_general_ledger"
+            groups= "hwseta_finance.group_ceo,hwseta_finance.group_cfo,account.group_account_manager,account.group_account_user,hwseta_finance.group_reveniue_administrator,hwseta_finance.group_cashbook_administrator,hwseta_finance.group_payment_administrator,account.group_account_invoice,hwseta_finance.group_financial_admin1,hwseta_finance.group_payment_cycle_officer"/>
+		
+				
+		<menuitem id="account.menu_finance_configuration" name="Configuration" parent="account.menu_finance" sequence="15" groups="account.group_account_manager,hwseta_sdp.group_sdp_manager,group_cfo,group_ceo"/>
+	</data>
+</openerp>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+    	<!-- Products for Transche Payment -->
+		<record id="product_product_info_course_fee" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Course Fee</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="product_product_info_allowance" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Allowance</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="product_product_info_uniform" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Uniform</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        
+        
+        <!-- Type of Training Intervention and Pivotal Programme Type Values -->
+        <record id="training_intervention_1" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Continuous Development Programmes</field>
+        </record>
+        <record id="training_intervention_2" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Standard Operating Procedures</field>
+        </record>
+        <record id="training_intervention_3" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Refresher Courses</field>
+        </record>
+        <record id="training_intervention_4" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Short Courses</field>
+        </record>
+        <record id="training_intervention_5" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Product Specific Courses</field>
+        </record>
+        <record id="training_intervention_6" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Life Skills</field>
+        </record>
+        <record id="training_intervention_7" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Other</field>
+        </record>
+        <record id="pivotal_programme_type_1" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Internship</field>
+            <field name="pivotal">True</field>
+        </record>
+        <record id="pivotal_programme_type_2" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Workplace Experience</field>
+            <field name="pivotal">True</field>
+        </record>
+        <record id="pivotal_programme_type_3" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Nation Certificate Vocational</field>
+            <field name="pivotal">True</field>
+        </record>
+        <record id="pivotal_programme_type_4" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Learnership</field>
+            <field name="pivotal">True</field>
+        </record>
+        <record id="pivotal_programme_type_5" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Apprenticeship</field>
+            <field name="pivotal">True</field>
+        </record>
+        <record id="pivotal_programme_type_6" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Academic Qualification</field>
+            <field name="pivotal">True</field>
+        </record>
+        <record id="pivotal_programme_type_7" model="training.intervention">
+            <field eval="1" name="active"/>
+            <field name="name">Skills Programme</field>
+            <field name="pivotal">True</field>
+        </record>
+        
+        <!-- Loading Project Types  -->
+        <!-- <record id="project_type_learnership" model="hwseta.project.types">
+            <field name="code">LN</field>
+            <field name="name">Learnerships</field>
+        </record>
+        <record id="project_type_internship" model="hwseta.project.types">
+            <field name="code">INT</field>
+            <field name="name">Internships</field>
+        </record>
+        <record id="project_type_bursury" model="hwseta.project.types">
+            <field name="code">BUR</field>
+            <field name="name">Bursuries</field>
+        </record>
+        <record id="project_type_skills" model="hwseta.project.types">
+            <field name="code">SKP</field>
+            <field name="name">Skill Programmes</field>
+        </record>
+        <record id="project_type_artisans" model="hwseta.project.types">
+            <field name="code">ART</field>
+            <field name="name">Artisans</field>
+        </record>
+        <record id="project_type_levy_exempts" model="hwseta.project.types">
+            <field name="code">LEV</field>
+            <field name="name">Levy Exempts</field>
+        </record> -->
+        
+        <!-- Scheduled Action for Making Employer dormant if he didnt submitted WSP from last 3 year -->
+        <record forcecreate="True" id="ir_cron_make_dormant_action" model="ir.cron">
+            <field name="name">Make Employer Dormant</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'res.partner'" name="model"/>
+            <field eval="'make_dormant'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+        
+        <record forcecreate="True" id="ir_cron_request_extension" model="ir.cron">
+            <field name="name">Request Extension for Existing Draft WSP</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'wsp.plan'" name="model"/>
+            <field eval="'request_for_extension'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+        
+        <!-- South African States  -->
+        <!-- <record id="state_gauteng" model="res.country.state">
+            <field name="name">Gauteng</field>
+            <field name="code">GP</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_limpopo" model="res.country.state">
+            <field name="name">Limpopo</field>
+            <field name="code">LP</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_mpumalanga" model="res.country.state">
+            <field name="name">Mpumalanga</field>
+            <field name="code">MP</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_kwazulu-natal" model="res.country.state">
+            <field name="name">KwaZulu-Natal</field>
+            <field name="code">KZN</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_freestate" model="res.country.state">
+            <field name="name">Freestate</field>
+            <field name="code">FS</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_northern_cape" model="res.country.state">
+            <field name="name">Northern Cape</field>
+            <field name="code">NC</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_north_west" model="res.country.state">
+            <field name="name">North West</field>
+            <field name="code">NW</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_eastern_cape" model="res.country.state">
+            <field name="name">Eastern Cape</field>
+            <field name="code">EC</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_western_cape" model="res.country.state">
+            <field name="name">Western Cape</field>
+            <field name="code">WC</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record>
+        <record id="state_outside_sa" model="res.country.state">
+            <field name="name">Outside SA</field>
+            <field name="code">OSA</field>
+            <field model="res.country" name="country_id" search="[('code','ilike','ZA')]"/>
+        </record> -->
+	</data>
+</openerp>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <report 
+            id="letter_of_approval_id"
+            string="Provider Letter Of Approval"
+            model="provider.accreditation" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_provider_letter_of_approval" 
+            name="hwseta_etqe.report_provider_letter_of_approval"
+          	groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+
+        <report 
+            id="provider_extension_of_scope_id"
+            string="Provider Extension of Scope"
+            model="provider.accreditation" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_provider_extension_of_scope" 
+            name="hwseta_etqe.report_provider_extension_of_scope"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+        
+        <report 
+            id="letter_of_approval_assessor"
+            string="Assessor Letter Of Approval"
+            model="assessors.moderators.register" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_assessor_letter_of_approval" 
+            name="hwseta_etqe.report_assessor_letter_of_approval"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+
+        <report 
+            id="letter_of_approval_moderator"
+            string="Moderator Letter Of Approval"
+            model="assessors.moderators.register" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_moderator_letter_of_approval" 
+            name="hwseta_etqe.report_moderator_letter_of_approval"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+        
+        <report 
+            id="assessor_extension_of_scope_id"
+            string="Assessor Extension Of Scope"
+            model="assessors.moderators.register" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_assessor_extension_of_scope" 
+            name="hwseta_etqe.report_assessor_extension_of_scope"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+        
+        <report 
+            id="moderator_extension_of_scope_id"
+            string="Moderator Extension Of Scope"
+            model="assessors.moderators.register" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_moderator_extension_of_scope" 
+            name="hwseta_etqe.report_moderator_extension_of_scope"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+        
+         <report 
+            id="assessor_reregistration_id"
+            string="Assessor Re-registration"
+            model="assessors.moderators.register" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_assessor_reregistration" 
+            name="hwseta_etqe.report_assessor_reregistration"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+        
+        <report 
+            id="moderator_reregistration_id"
+            string="Moderator Re-registration"
+            model="assessors.moderators.register" 
+            report_type="qweb-pdf"
+            file="hwseta_etqe.report_moderator_reregistration" 
+            name="hwseta_etqe.report_moderator_reregistration"
+            groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+     </data>
+</openerp>

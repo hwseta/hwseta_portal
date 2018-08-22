@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for batch master. Learning Programme -->
+        <record id="seq_type_batch_id_for_lp" model="ir.sequence.type">
+            <field name="name">Batch Id For LP</field>
+            <field name="code">batch.master.lp</field>
+        </record>
+        
+        <record id="seq_batch_id_for_lp" model="ir.sequence">
+            <field name="name">Batch Id For LP</field>
+            <field name="code">batch.master.lp</field>
+            <field name="prefix">BATCH-LP</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for batch master. SKills Program -->
+        <record id="seq_type_batch_id_for_skills" model="ir.sequence.type">
+            <field name="name">Batch Id For Skills</field>
+            <field name="code">batch.master.skills</field>
+        </record>
+        
+        <record id="seq_batch_id_for_skills" model="ir.sequence">
+            <field name="name">Batch Id For Skills</field>
+            <field name="code">batch.master.skills</field>
+            <field name="prefix">BATCH-SKILLS</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+        <!-- Sequences for batch master.  -->
+        <record id="seq_type_batch_id" model="ir.sequence.type">
+            <field name="name">Batch Id</field>
+            <field name="code">batch.master</field>
+        </record>
+        
+        <record id="seq_batch_id" model="ir.sequence">
+            <field name="name">Batch Id</field>
+            <field name="code">batch.master</field>
+            <field name="prefix">BATCH-QUAL</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for Learner's qualification wise certificate no.  -->
+        <record id="seq_type_learner_certificate_no" model="ir.sequence.type">
+            <field name="name">Learner Certificate No</field>
+            <field name="code">learner.certificate.no</field>
+        </record>
+
+        <record id="seq_learner_certificate_no" model="ir.sequence">
+            <field name="name">Learner Certificate No</field>
+            <field name="code">learner.certificate.no</field>
+            <field name="prefix">LCN</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+        <!-- Sequences for sale.order -->
+        <record id="seq_type_accreditation" model="ir.sequence.type">
+            <field name="name">Provider Accreditation</field>
+            <field name="code">provider.accreditation</field>
+        </record>
+
+        <record id="seq_provider_accreditation" model="ir.sequence">
+            <field name="name">Provider Accreditation</field>
+            <field name="code">provider.accreditation</field>
+            <field name="prefix">HW592PAA</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for Assessors -->
+        <record id="seq_type_assessors_register" model="ir.sequence.type">
+            <field name="name">Assessors Register</field>
+            <field name="code">assessors.register</field>
+        </record>
+
+        <record id="seq_assessors_register" model="ir.sequence">
+            <field name="name">Assessors Register</field>
+            <field name="code">assessors.register</field>
+            <field name="prefix">R-ASS</field>
+            <field name="padding">3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+         <!-- Sequences for Moderators -->
+        <record id="seq_type_moderators_register" model="ir.sequence.type">
+            <field name="name">Moderators Register</field>
+            <field name="code">moderators.register</field>
+        </record>
+
+        <record id="seq_moderators_register" model="ir.sequence">
+            <field name="name">Moderators Register</field>
+            <field name="code">moderators.register</field>
+            <field name="prefix">R-MOD</field>
+            <field name="padding">3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for Assessors master -->
+        <record id="seq_type_assessors_master_register" model="ir.sequence.type">
+            <field name="name">Assessors Register master</field>
+            <field name="code">assessors.master.register</field>
+        </record>
+
+        <record id="seq_assessors_master_register" model="ir.sequence">
+            <field name="name">Assessors Register master</field>
+            <field name="code">assessors.master.register</field>
+            <field name="prefix">HW591ARA</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+         <!-- Sequences for Moderators -->
+        <record id="seq_type_moderators_master_register" model="ir.sequence.type">
+            <field name="name">Moderators Register master</field>
+            <field name="code">moderators.master.register</field>
+        </record>
+
+        <record id="seq_moderators_master_register" model="ir.sequence">
+            <field name="name">Moderators Register master</field>
+            <field name="code">moderators.master.register</field>
+            <field name="prefix">HW591MRA</field>
+            <field name="padding">7</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>        
+        <!-- Sequences for Provider Assessment -->
+        <record id="seq_type_provider_assessment" model="ir.sequence.type">
+            <field name="name">Provider Assessment</field>
+            <field name="code">provider.assessment</field>
+        </record>
+        
+        <record id="seq_provider_assessment" model="ir.sequence">
+            <field name="name">Provider Assessment</field>
+            <field name="code">provider.assessment</field>
+            <field name="prefix">PR-AS</field>
+            <field name="padding">3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <!-- Sequences for provider accreditation reference -->
+        <record id="seq_type_provider_accreditation_reference_no" model="ir.sequence.type">
+            <field name="name">Provider Accreditation Reference Number</field>
+            <field name="code">provider.accreditation.reference</field>
+        </record>
+
+        <record id="seq_provider_accreditation_reference_no" model="ir.sequence">
+            <field name="name">Provider Accreditation Reference Number</field>
+            <field name="code">provider.accreditation.reference</field>
+            <field name="prefix">AR</field>
+            <field name="padding">3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+        <!-- Sequences for assessor/moderator registration reference -->
+        <record id="seq_type_assessors_moderators_reference_no" model="ir.sequence.type">
+            <field name="name">Assessors Moderators Reference Number</field>
+            <field name="code">assessors.moderators.reference</field>
+        </record>
+
+        <record id="seq_assessors_moderators_reference_no" model="ir.sequence">
+            <field name="name">Assessors Moderators Reference Number</field>
+            <field name="code">assessors.moderators.reference</field>
+            <field name="prefix">R-ASS-MOD</field>
+            <field name="padding">3</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+    
+    </data>
+</openerp>

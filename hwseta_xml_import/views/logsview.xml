@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<openerp>
+    <data>
+        <record id="formview_xml_import_logs" model="ir.ui.view">
+            <field name="name">XML IMPORT LOGS FORM</field>
+            <field name="model">xml.import.logs</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <group>
+                        <field name="import_datetime"/>
+                        <field name="import_qualification_ids"/>
+                        <field name="import_qualification_lines" string="Imported Unit Standards"/>
+                        <field name="import_exec_by"/>
+                    </group>
+                </form> 
+            </field>
+        </record>
+        
+        <record id="treeview_xml_import_logs" model="ir.ui.view">
+            <field name="name">XML IMPORT LOGS</field>
+            <field name="model">xml.import.logs</field>
+            <field name="arch" type="xml">
+                <tree>
+                        <field name="import_datetime"/>
+                        <field name="import_qualification_ids"/>
+                        <field name="import_qualification_lines" string="Imported Unit Standards"/>
+                        <field name="import_exec_by"/>
+                </tree> 
+            </field>
+        </record>
+        
+        <record id="action_xmlimport_logs" model="ir.actions.act_window">
+            <field name="name">XML FILE IMPORT LOGS</field>
+            <field name="res_model">xml.import.logs</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="mnu_xml_import_logs" name="XML Import Logs" parent="hwseta_etqe.menu_librarie" action="action_xmlimport_logs"/>
+    </data>
+</openerp>

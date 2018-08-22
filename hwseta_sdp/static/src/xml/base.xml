@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-extend="ListView.pager">
+   	<t t-jquery=".oe_list_pager" t-operation="replace">
+	    <div class="oe_list_pager" t-att-colspan="widget.columns_count">
+	        <t t-if="!widget.no_leaf and widget.options.pager !== false" t-call="ViewPager">
+	        	No of Records
+	            <span class="oe_list_pager_state">
+	            </span>
+	        </t>
+	    </div>
+ 	  </t>
+</t>
+</templates>

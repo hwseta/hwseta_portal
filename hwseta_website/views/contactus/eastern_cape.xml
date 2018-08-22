@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Eastern Cape Page === -->
+		<template id="eastern_cape" name="Eastern Cape" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-307"
+											class="oc-post oc-article  post-307 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Eastern Cape</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>The Team</h2>
+												<p>Click on a name below to send an e-mail</p>
+												<table class="contacttable" border="0" width="100%"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Position</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:welekazim@hwseta.org.za">Ms. Welekazi Mangaliso </a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Manager</td>
+															<td class="contactsnoline" width="30%">(043) 726 9405/6/7</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:claudinem@hwseta.org.za">Ms. Claudine Miles</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Office
+																Administrator</td>
+															<td class="contactsnoline" width="30%">(043) 726 9405/6/7</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:nolubabalog@hwseta.org.za">Ms. Nolubabalo Gawe</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(043) 726 9405/6/7</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:pelekad@hwseta.org.za">Ms. Peleka Dziwge</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">(043) 726 9405/6/7</td>
+														</tr>
+													</tbody>
+												</table>
+												<h2>Postal Address</h2>
+												<p>
+													Private Bag X15
+													<br/>
+														Bradford Corner
+														<br/>
+															Gardenview, 2047
+												</p>
+												<h2>Physical Address</h2>
+												<p>
+													No 3-33 Phillip Frame Road
+													<br/>
+														Chiselhurst
+														<br/>
+															East London, 5247
+												</p>
+												<h2>Satellite Office: Eastern Cape</h2>
+												<p>
+													King Hintsa TVET College
+													<br/>
+														Admin Centre, 218 Mthatha Road
+														<br/>
+															Butterworth
+															<br/>
+																Tel: 047 401 6400
+												</p>
+												<p> 
+												</p>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+                        						
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

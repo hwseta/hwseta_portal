@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Sector Skill Plan Page === -->
+		<template id="sector_skill_plan" name="Sector Skill Plan" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-79"
+											class="oc-post oc-article  post-79 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Sector Skills Plan</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>The Sector Skills Plan (SSP) Update is an annual report approved
+													by the HWSETA board which is constituted by representatives from
+													labour, employers and government (Department of Social Development,
+													Department of Health). The annual update is aimed at providing
+													current sector skills development needs initially set out in the
+													Five Year Sector Skills Plan. Furthermore, it is aimed at aligning
+													sector-based skills needs and programmes with government’s economic
+													and social development priorities enshrined in the New Growth Path
+													(hereafter NGP) and Medium Term Strategic Framework (hereafter
+													MTSF).</p>
+												<p>It also grapples with requirements set out by the Department of
+													Higher Education and Training in the National Skills Development
+													Strategy III (hereafter NSDS III). That said, it is assuring that
+													this journal will provide a useful source of information for the
+													HWSETA, stakeholders and wider audience, moving forward.</p>
+												<p> 
+												</p>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/06/SSP_2014-2015_01.pdf">HWSETA Sector Skills Plan Update 2014-2015 Part 1 </a>
+													(download pdf)
+												</div>
+												<div>
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/06/SSP_2014-2015_02.pdf">HWSETA Sector Skills Plan Update 2014-2015 Part 2 </a>
+													(download pdf)
+												</div>
+												<p> 
+												</p>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

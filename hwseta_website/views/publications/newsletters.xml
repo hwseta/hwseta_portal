@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Newsletters Page === -->
+		<template id="newsletters" name="Newsletters" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-291"
+											class="oc-post oc-article  post-291 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Newsletters</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													Select the document you wish to download below:
+													<br/>
+														<code></code>
+												</p>
+												<div id="pdf_download_red">
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2014/10/skillstalk_hwseta-sept-2014-final.pdf">Skillstalk@HWSETA September 2014 </a>
+													(download pdf)
+												</div>
+												<div id="pdf_download_white">
+													<a href="/hwseta_website/static/src/wp-content/uploads/2014/12/newsletter_Dec2014.pdf">Skillstalk@HWSETA December 2014 </a>
+													(download pdf)
+												</div>
+												<div>
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/06/skillstalk_hwseta-june-2015-final.pdf">Skillstalk@HWSETA June 2015 </a>
+													(download pdf)
+												</div>
+												<p> 
+												</p>
+											</div>
+									
+									
+										</article>
+									
+									
+									
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

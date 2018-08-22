@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Limpopo and Mpumalanga Page === -->
+		<template id="limpopo" name="Limpopo and Mpumalanga" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+								<t t-call="hwseta_website.sidebar1" />
+								
+								<div class="oc-layout-cell oc-content">
+									<article id="post-311"
+										class="oc-post oc-article  post-311 page type-page status-publish hentry">
+										<h1 class="oc-postheader">Limpopo and Mpumalanga</h1>
+										<div class="oc-postcontent oc-postcontent-0 clearfix">
+											<h2>The Team</h2>
+											<p>Click on a name below to send an e-mail</p>
+											<table class="contacttable" border="0" width="100%"
+												cellspacing="0" cellpadding="0">
+												<tbody>
+													<tr>
+														<td class="contactshead" width="40%">Name</td>
+														<td class="contactshead" width="30%">Position</td>
+														<td class="contactshead" width="30%">Tel</td>
+													</tr>
+													<tr>
+														<td class="contactsnoline" width="40%">
+															<a href="mailto:nomvuzor@hwseta.org.za">Ms. Nomvuzo Reve</a>
+														</td>
+														<td class="contactsnoline" width="30%">Provincial Manager</td>
+														<td class="contactsnoline" width="30%">(015) 295 4302</td>
+													</tr>
+													<tr>
+														<td class="contactsnoline" width="40%">
+															<a href="mailto:raesetjam@hwseta.org.za">Ms. Raesetja Mokhopha </a>
+														</td>
+														<td class="contactsnoline" width="30%">Provincial Office
+															Administrator</td>
+														<td class="contactsnoline" width="30%">(015) 295 4302</td>
+													</tr>
+													<tr>
+														<td class="contactsnoline" width="40%">
+															<a href="mailto:matomem@hwseta.org.za">Mr. Matome Maloba </a>
+														</td>
+														<td class="contactsnoline" width="30%">Provincial Officer</td>
+														<td class="contactsnoline" width="30%">(015) 295 4302</td>
+													</tr>
+													<tr>
+														<td class="contactsnoline" width="40%">
+															<a href="mailto:mandlas@hwseta.org.za">Mr. Mandla Sibeko</a>
+														</td>
+														<td class="contactsnoline" width="30%">Provincial Officer</td>
+														<td class="contactsnoline" width="30%">(015) 295 4302</td>
+													</tr>
+													<tr>
+														<td class="contactsnoline" width="40%">
+															<a href="mailto:mduduzim@hwseta.org.za">Mr. Mduduzi Mango </a>
+														</td>
+														<td class="contactsnoline" width="30%">Provincial Intern</td>
+														<td class="contactsnoline" width="30%">(015) 295 4302</td>
+													</tr>
+												</tbody>
+											</table>
+											<h2>Postal Address</h2>
+											<p>
+												Private Bag X15
+												<br/>
+													Bradford Corner
+													<br/>
+														Gardenview, 2047
+											</p>
+											<h2>Physical Address</h2>
+											<p>
+												4A Landros Mare Street
+												<br/>
+													Polokwane, 0700
+											</p>
+											<h2>Satellite Office: Mpumalanga</h2>
+											<p>
+												Ehlanzeni TVET College
+												<br/>
+													29 Bell Street
+													<br/>
+														Nelspruit
+														<br/>
+															Tel: 013 762 3027
+											</p>
+										</div>
+							
+							
+									</article>
+							
+							
+							
+								</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

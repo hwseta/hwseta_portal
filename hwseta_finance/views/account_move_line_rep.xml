@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_move_line">
+			<t t-call="report.external_layout">
+				<div class="page">
+					<div class="oe_structure" />
+					<div class="row">
+
+					</div>
+
+					<center>
+						<h3>
+							Account Ledger Report
+						</h3>
+					</center>
+					<div class="text-right">
+						<strong>
+							<t t-foreach="get_date(data)" t-as="d">
+								From Date:
+								<t t-esc="d['from_date']" />
+								To Date:
+								<t t-esc="d['to_date']" />
+							</t>
+						</strong>
+					</div>
+					<table class="table table-condensed" style="border: 1px solid black">
+
+						<tr style="border: 1px solid black">
+							<th style="border: 1px solid black">Account</th>
+							<th style="border: 1px solid black">Analytic Account</th>
+							<th style="border: 1px solid black">Entry Number</th>
+							<th style="border: 1px solid black">Journal</th>
+							<th style="border: 1px solid black">Period</th>
+							<th style="border: 1px solid black">Effective Date</th>
+							<th style="border: 1px solid black">Name</th>
+							<th style="border: 1px solid black">reference</th>
+							<th style="border: 1px solid black">Partner</th>
+							<th style="border: 1px solid black">tax</th>
+							<th style="border: 1px solid black">Debit</th>
+							<th style="border: 1px solid black">Credit</th>
+							<th style="border: 1px solid black">Balance</th>
+							<!-- <th >Reconcile reference</th> -->
+						</tr>
+						<t t-foreach="get_account(data)" t-as="k7">
+							<!-- <tr> <table class="table table-condensed" border="1" style="border: 
+								1px solid black" > -->
+							<tr style="border: 1px solid black">
+								<td style="border: 1px solid black">
+									<span t-esc="k7.name" />
+								</td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<!-- <td></td> -->
+							</tr>
+							<t t-foreach="get_ana_account(k7.id,data)" t-as="an">
+								<tr>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black">
+										<span t-esc="an.name" />
+									</td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<!-- <td></td> -->
+								</tr>
+								<tr t-foreach="get_lines(k7.id,an.id,data)" t-as="l">
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.move_id.name or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.journal_id.name or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.period_id.name or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.date or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.name or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.ref or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.partner_id.name or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.account_tax_id.name or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.debit or 0.0" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="l.credit or 0.0" />
+									</td>
+									<td style="border: 1px solid black"></td>
+									<!-- <td><span t-esc="l.reconcile_ref or 0.0"/></td> -->
+								</tr>
+
+
+								<tr t-foreach="get_total(k7.id,an.id,data)" t-as="tot">
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black">
+										<strong>
+											<span t-esc="tot['tot_dr'] or 0.0" />
+										</strong>
+									</td>
+									<td style="border: 1px solid black">
+										<strong>
+											<span t-esc="tot['tot_cr'] or 0.0" />
+										</strong>
+									</td>
+									<td style="border: 1px solid black">
+										<strong>
+											<span t-esc="tot['tot_bal'] or 0.0" />
+										</strong>
+									</td>
+									<!-- <td></td> -->
+								</tr>
+							</t>
+
+							<tr t-foreach="get_grand_total(k7.id,data)" t-as="tot1">
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black">
+									<strong>
+										<span t-esc="tot1['tot_dr'] or 0.0" />
+									</strong>
+								</td>
+								<td style="border: 1px solid black">
+									<strong>
+										<span t-esc="tot1['tot_cr'] or 0.0" />
+									</strong>
+								</td>
+								<td style="border: 1px solid black">
+									<strong>
+										<span t-esc="tot1['tot_bal'] or 0.0" />
+									</strong>
+								</td>
+								<!-- <td></td> -->
+							</tr>
+						</t>
+					</table>
+					<div class="oe_structure" />
+				</div>
+			</t>
+		</template>
+
+		<!-- <template id="report_move_line"> <t t-call="report.html_container"> 
+			<t t-foreach="doc_ids" t-as="doc_id"> <t t-raw="translate_doc(doc_id, doc_model, 
+			'partner_id.lang', 'hwseta_finance.report_move_line_document')"/> </t> </t> 
+			</template> -->
+	</data>
+</openerp>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<openerp>
+		<data>
+			
+			<record model="ir.module.category" id="sdp_module_category_hidden">
+	            <field name="name">SDP</field>
+	            <field name="sequence">104</field>
+	            <field name="visible" eval="0" />
+        	</record>
+        	
+			<record id="group_sdf_user" model="res.groups">
+		        <field name="name">SDF</field>
+		        <field name="comment">The sdf user will have the rights regarding SDF Registration and WSP Submission.</field>
+		    	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+		    </record>
+		    
+		    <record id="group_sdp_manager" model="res.groups">
+		        <field name="name">SDP Manager</field>
+		        <field name="comment">SDP Manager having all the rights for SDP Menus and Functinality.</field>
+		    	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+		    </record>
+		    
+		    <record id="group_wsp_manager" model="res.groups">
+                <field name="name">WSP Manager</field>
+                <field name="comment">WSP Manager having the rights for SDP Menus and Functinality.</field>
+                <field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+		    
+            <record id="group_provincial_manager" model="res.groups">
+                <field name="name">Provincial Manager</field>
+                <field name="comment">Provincial Manager having the rights for SDP Menus and Functinality.</field>
+            	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+            
+            <record id="group_wsp_officer" model="res.groups">
+                <field name="name">WSP Officer</field>
+                <field name="comment">WSP Officer having the rights for SDP Menus and Functinality.</field>
+            	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+            
+            <record id="group_provincial_officer" model="res.groups">
+                <field name="name">Provincial Officer</field>
+                <field name="comment">Provincial Officers having the rights for SDP Menus and Functinality.</field>
+            	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+            
+            <record id="group_wsp_administrator" model="res.groups">
+                <field name="name">WSP Administrator</field>
+                <field name="comment">WSP Administrators having the rights for SDP Menus and Functinality.</field>
+            	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+            
+            <record id="group_general_access" model="res.groups">
+                <field name="name">General Access</field>
+                <field name="comment">General Access having the rights for SDP Menus and Functinality.</field>
+            	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+            
+            <record id="group_auditor_access" model="res.groups">
+                <field name="name">Auditor Access</field>
+                <field name="comment">Auditor Access having the rights for SDP Menus and Functinality.</field>
+            	<field name="category_id" ref="hwseta_sdp.sdp_module_category_hidden"/>
+            </record>
+            
+		    <record id="res_sdf_rule_partner" model="ir.rule">
+	            <field name="name">SDF Rule Partner</field>
+	            <field name="model_id" ref="base.model_res_partner"/>
+	            <field name="global" eval="True"/>
+	            <field name="domain_force">[(1,'=',1)]</field>
+	            <field name="groups" eval="[(4,ref('hwseta_sdp.group_sdf_user'))]"/>
+        	</record>
+		    
+		    <record id="res_project_rule" model="ir.rule">
+	            <field name="name">Project Rule</field>
+	            <field name="model_id" ref="project.model_project_project"/>
+	            <field name="global" eval="True"/>
+	            <field name="domain_force">[(1,'=',1)]</field>
+	            <field name="groups" eval="[(4,ref('hwseta_finance.group_employer_user'))]"/>
+        	</record>
+		    
+<!-- 		    <record model="ir.rule" id="learning_programme_rule">
+		        <field name="name">Learning Programme Rule</field>
+		        <field name="model_id" ref="hwseta_sdp.model_learning_programme"/>        
+		        <field name="global" eval="True"/>
+		        <field name="domain_force">[('employer_id','=',user.partner_id.id)]</field>
+		        <field name="groups" eval="[(4,ref('hwseta_finance.group_employer_user'))]"/>
+		    </record>
+		    
+		    <record model="ir.rule" id="apply_for_eoi_rule">
+		        <field name="name">Apply for EOI Rule</field>
+		        <field name="model_id" ref="hwseta_person.model_partner_project_rel"/>        
+		        <field name="global" eval="True"/>
+		        <field name="domain_force">[('employer_id','=',user.partner_id.id)]</field>
+		        <field name="groups" eval="[(4,ref('hwseta_finance.group_employer_user'))]"/>
+		    </record> -->		    
+		    
+		    <!-- <record id="sdf_rule_employee" model="ir.rule">
+		        <field name="name">SDF Rule Employee</field>
+		        <field name="model_id" ref="hwseta_sdp.model_hr_employee"/>        
+		        <field name="global" eval="True"/>
+		        <field name="domain_force">[('user_id','=',user.id)]</field>
+		        <field name="groups" eval="[(4,ref('hwseta_sdp.group_sdf_user'))]"/>
+		    </record> -->
+		    <!-- Restricting SDF for Editing WSP after Submission -->
+		    <!-- <record model="ir.rule" id="wsp_editing_rule_deny">
+		        <field name="name">Restrict Editing WSP</field>
+		        <field name="model_id" ref="hwseta_sdp.model_wsp_plan"/> 
+		        <field name="domain_force">[('state','!=','draft')]</field>
+		        <field name="groups" eval="[(4,ref('hwseta_sdp.group_sdf_user'))]"/>
+		        <field name="perm_read" eval="True"/>
+		        <field name="perm_create" eval="False"/>
+        		<field name="perm_write" eval="False"/>
+        		<field name="perm_unlink" eval="False"/>
+		    </record>
+		    
+		    <record model="ir.rule" id="wsp_editing_rule_allow">
+		        <field name="name">Edit WSP</field>
+		        <field name="model_id" ref="hwseta_sdp.model_wsp_plan"/> 
+		        <field name="domain_force">[('state','=','draft')]</field>
+		        <field name="groups" eval="[(4,ref('hwseta_sdp.group_sdf_user'))]"/>
+		        <field name="perm_read" eval="True"/>
+		        <field name="perm_create" eval="True"/>
+        		<field name="perm_write" eval="True"/>
+        		<field name="perm_unlink" eval="True"/>
+		    </record> -->
+		</data>
+	</openerp>

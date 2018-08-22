@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_petty_cash_requisition_form" model="ir.ui.view">
+            <field name="name">view.petty.cash.requisition.form</field>
+            <field name="model">petty.cash</field>
+            <field name="arch" type="xml">
+				<form string="Petty Cash Request">
+					<header>
+						<button name="action_request_petty_cash" string="Request" type="object"  class="oe_highlight" states="draft" groups="account.group_account_manager,hwseta_sdp.group_sdp_manager,hwseta_etqe.group_etqe_manager,hwseta_sdp.group_provincial_manager,hwseta_sdp.group_provincial_officer,hwseta_finance.group_financial_admin1"/>
+						<button name="action_recommend_petty_cash" string="Recommend" type="object"  class="oe_highlight" states="requested" groups="account.group_account_manager,hwseta_sdp.group_provincial_manager,account.group_account_user"/>
+						<button name="action_approve_petty_cash" string="Approve" type="object"  class="oe_highlight" states="recommend" groups="hwseta_finance.group_cfo,account.group_account_manager,hwseta_sdp.group_provincial_manager"/>
+						<button name="action_deny_petty_cash" string="Deny" type="object"  class="oe_highlight" states="recommend" groups="hwseta_finance.group_cfo,account.group_account_manager,hwseta_sdp.group_provincial_manager"/>
+						<button name="action_receive_petty_cash" string="Receive" type="object"  class="oe_highlight" states="approved"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,requested,recommend,approved,received,denied" statusbar_colors='{"denied":"red"}'/>
+					</header>
+					<sheet>
+						<h1>
+	            			<field name="name" class="oe_inline" readonly="1" nolabel="1"/>
+	            		</h1>
+						<group>
+							<group>
+								<field name="branch_chk" attrs="{'invisible':[('province_chk','=',True)]}" on_change="onchange_branch_id(province_id)"/>
+	            				<field name="province_chk" attrs="{'invisible':[('branch_chk','=',True)]}"  on_change="onchange_province_id(branch_id)"/>
+								<field name="branch_id" widget="selection"  attrs="{'required':[('branch_chk','=',True)],'invisible':[('province_chk','=',True)]}"/>
+								<field name="department_id" domain="[('dept_branch','=',branch_id)]"/>
+								<field name="amount_requested" required="1"/>
+								<field name="requested_by" required="1" on_change="onchange_requested_by(requested_by)" domain="[('is_assessors','=',False),('is_moderators','=',False),('is_sdf','=',False)]"/>
+							</group>
+							<group>
+								<field name="date"/>
+								<field name="acc_number"/>
+								<field name="user_id" domain="[('id','=',uid)]" invisible="1"/>
+								<field name="province_id" widget="selection"  attrs="{'required':[('province_chk','=',True)],'invisible':[('branch_chk','=',True)]}"/>
+							</group>
+						</group>
+						<group>
+							<field name="description_need"/>
+						</group>
+						<group>
+							<group>
+								<field name="approve_by" invisible="1"/>
+								<field name="receive_by" invisible="1"/>
+							</group>
+							<group>
+								<field name="signature_approved_by" invisible="1"/>
+								<field name="signature_received_by" invisible="1"/>
+							</group>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+				</form>
+            </field>
+	    </record> 
+	    
+	    <record id="view_petty_cash_requisition_tree" model="ir.ui.view">
+            <field name="name">view.petty.cash.requisition.tree</field>
+            <field name="model">petty.cash</field>
+            <field name="arch" type="xml">
+            	<tree string="Petty Cash Request">
+            		<field name="name"/>
+            		<field name="requested_by"/>
+            		<field name="department_id"/>
+            		<field name="amount_requested"/>
+            		<field name="date"/>
+            		<!-- <field name="approve_by"/>
+					<field name="receive_by"/> -->
+					<field name="approve_by"/>
+					<field name="receive_by"/>
+					<field name="state"/>
+            	</tree>
+            </field>
+        </record>
+        
+        
+        <record id='action_petty_cash_request' model='ir.actions.act_window'>
+			<field name="name">Petty Cash Requisition</field>
+			<field name="res_model">petty.cash</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to create a new Petty Cash Requisition.
+				</p>
+			</field>
+		</record>
+		
+		<record id="view_bank_statement_form_inherit_for_branch_1" model="ir.ui.view">
+            <field name="name">account.bank.statement.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+                <button name="button_cancel" states="confirm" string="Cancel Statement" type="object" position ="after">
+             	<button name="approve_by_accountant" states="draft"  string="Approve by Accountant" type="object" groups="account.group_account_user"/>
+             	<button name="approve_by_manager" states="approve1" string="Approve by Manager" type="object" groups="account.group_account_manager"/>
+             	<button name="approve_by_cfo" states="approve2" string="Approve by CFO" type="object" groups="hwseta_finance.group_cfo"/>
+            </button>  
+            <button name="button_confirm_bank" states="draft" string="Close" type="object" class="oe_highlight" position = "replace">
+            <button name="button_confirm_bank" states="approve3" string="Close" type="object" class="oe_highlight"/>
+            </button>
+            <xpath expr="//form//header//field[@name='state']" position = "attributes">
+	            	<attribute name="statusbar_visible">draft,confirm,approve1,approve2,approve3,</attribute>
+	        </xpath>
+            </field>
+		</record>   
+		
+		<record id="view_bank_statement_form2_inherit_for_branch_new" model="ir.ui.view">
+            <field name="name">account.bank.statement.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form2"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//form[@string='Statement']/sheet[@string='Statement']/notebook/page[@string='Cash Transactions']/field[@name='line_ids']" position="replace">
+	            	<field name="line_ids" context="{'date':date}">
+                                <tree editable="bottom" string="Statement lines">
+                                    <field name="sequence" invisible="1"/>
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="ref"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount"/>
+                                    <field name="docs"/>
+                                </tree>
+                                <form string="Statement lines">
+                                    <group col="4">
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="ref"/>
+                                        <field name="partner_id"/>
+                                        <field name="amount"/>
+                                        <field name="sequence"/>
+                                    </group>
+                                    <separator string="Notes"/>
+                                    <field name="note"/>
+                                </form>
+                            </field>
+	            </xpath>
+	            <xpath expr="//form[@string='Statement']/sheet[@string='Statement']/group/group[1]/field[@name='user_id']" position="after">
+	            	<field name="branch_id" widget="selection"/>
+	            	<field name="province_id" widget="selection"/>
+	            </xpath>
+	             <field name="state" widget="statusbar" statusbar_visible="draft,confirm">
+               <field name="state" widget="statusbar" />
+               </field>
+            </field>
+		</record>       
+		
+		
+		<record id="view_crossovered_budget_lines_inherit1" model="ir.ui.view">
+            <field name="name">account.budget.post.form</field>
+            <field name="model">account.budget.post</field>
+            <field name="inherit_id" ref="account_budget.view_budget_post_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//form[@string='Budgetary Position']/notebook/page[@string='Budget Lines']/field[@name='crossovered_budget_line']" position="replace">
+	            	 <field name="crossovered_budget_line" widget="one2many_list" mode="tree">
+	            		<tree string="Budget Lines"  editable="top">
+                                    <field name="crossovered_budget_id"/>
+                                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="paid_date"/>
+                                    <field name="planned_amount" sum="Planned Amount"/>
+                                    <field name="approved_amount"  />
+                                    <field name="commited_amount" />
+                                    <field name="recomited_amount"/>
+                                </tree>
+                                <form string="Budget Lines">
+                                    <group col="4">
+                                        <field name="crossovered_budget_id"/>
+                                        <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                        <field name="paid_date"/>
+                                        <field name="planned_amount"/>
+                                        <field name="practical_amount"/>
+                                        <field name="theoritical_amount"/>
+                                        <field name="percentage"/>
+                                    </group>
+                                </form> 
+                        </field> 
+	            </xpath>
+            </field>
+		</record>           
+            
+		
+		<!--Inheriting Bank Statement Line to Add Employee which will be used for Petty Cash in Cash Register  -->
+		<!-- <record id="view_bank_statement_form2_inherit_toadd_employee" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.inherit.toadd.employee</field>
+            <field name="model">account.bank.statement</field>
+			<field name="inherit_id" ref="account.view_bank_statement_form2"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form/sheet/notebook/page[@string='Cash Transactions']/field[@name='line_ids']/tree[@string='Statement lines']/field[@name='partner_id']" position="after">
+            		<field name="employee_id"/>
+            	</xpath>
+            </field>
+        </record> -->
+        <menuitem id="menu_petty_cash_request_finance" name="Petty Cash Requisition" action="action_petty_cash_request" parent="menu_finance_requisition" sequence="2" groups="hwseta_sdp.group_provincial_manager,hwseta_sdp.group_sdp_manager,hwseta_etqe.group_etqe_manager,hwseta_sdp.group_provincial_officer,group_payment_administrator,group_cashbook_administrator,group_financial_admin1,group_grant_officer,group_payment_cycle_officer,group_divisional_secretaries,group_reveniue_administrator,account.group_account_user,account.group_account_manager,group_cfo"/>
+        
+	</data>
+</openerp>

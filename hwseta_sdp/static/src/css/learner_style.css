@@ -1,0 +1,385 @@
+.me_front_heading
+{
+	font-size : 500%;
+	font-weight : bold;
+}
+.me_front_subheading
+{
+	font-size : 300%;
+	font-weight : bold;
+}
+
+tr.avoid_page_break
+{
+	page-break-inside:avoid;
+}
+
+.padding_30 td
+{
+	padding:30px;
+}
+
+table.me_table_style
+{
+	width:1100px;
+	font-size:150%;
+	border-spacing: 100px
+}
+
+td.me_head_underline
+{
+	font-weight:bold;
+	text-decoration:underline;
+	padding:20px;
+}
+
+td.padding_20
+{
+	padding:20px;
+}
+
+table.me_section_table
+{
+	border:1px solid;
+	width:1100px;
+	font-size:150%;
+	border-spacing: 100px;
+}
+
+tr.me_questionaire
+{
+	width:1100px;
+	height:300px;
+	border:1px solid;
+	page-break-inside:avoid;
+}
+.me_section_style
+{
+	font-size:200%;
+	font-weight: bold;
+}
+tr.me_sec_border_row
+{
+	border:1px solid;
+	page-break-inside:avoid;
+}
+td.me_org_detail
+{
+	padding:15px;
+	background-color:#BDBDBD;
+	width:450px;
+	page-break-inside:avoid;
+}
+td.padding_15
+{
+	padding:15px;
+}
+th.me_header_row_section
+{
+	padding:15px;
+	width:550px;
+}
+td.me_commence_estimated
+{
+	padding:15px;
+	background-color:#BDBDBD;
+	width:350px;
+}
+
+td.me_commence_estimated_center
+{
+	text-align:center;
+}
+
+td.me_dropouts
+{
+	padding:15px;
+	text-align:center;
+}
+
+td.me_vertical_aligned_content
+{
+	text-align:center;
+	vertical-align:middle;
+}
+
+.me_width_100_padding_15
+{
+	padding:15px;
+	width:100px;
+}
+
+.me_width_200_padding_15
+{
+	padding:15px;
+	width:200px;
+}
+
+.me_width_300_padding_15
+{
+	padding:15px;
+	width:300px;
+}
+
+.me_width_350_padding_15
+{
+	padding:15px;
+	width:350px;
+}
+
+.me_width_400_padding_15
+{
+	width:400px;
+	padding:15px;
+}
+
+.me_width_500_padding_15
+{
+	padding:15px;
+	width:500px;
+}
+
+.me_width_600_padding_15
+{
+	padding:15px;
+	width:600px;
+}
+
+.me_approved_learner
+{
+	border:1px solid;
+	padding:15px;
+	width:100px;
+	
+}
+
+.me_bgcolor_grey
+{
+	background-color:#BDBDBD;
+}
+
+tr.me_border_with_color
+{
+	border-bottom:1px solid;
+	border-color:#BDBDBD;
+	page-break-inside:avoid;
+}
+
+.me_font_160
+{
+	font-size:160%;
+}
+
+table.me_signature_table
+{
+	width:1100px;font-size:150%;border-spacing: 100px
+}
+
+
+hr.line { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+
+}
+
+.learner_heading
+{
+	font-size : 400%;
+	font-weight : bold;
+	text-align : center;
+	
+}
+
+.learner_subheading
+{
+	font-size : 150%;
+	font-weight : bold;
+	text-align : center;
+}
+
+
+table.learner_tables1 {
+    display: table;
+/*     border-collapse: separate; */
+/*     border-color: black; */
+    width:100%;
+    border:1px solid;
+}
+
+
+.learner_reportheading
+{
+	font-size : 150%;
+	font-weight : bold;
+	text-align : left;
+}
+
+table.learner_tables {
+    border: 1px solid;
+    width:1100px;
+	font-size:150%;
+	border-spacing: 100px;
+	page-break-inside:avoid;
+}
+
+table.learner_tables_recommend {
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    width:1100px;
+	font-size:150%;
+	border-spacing: 100px;
+	page-break-inside:avoid;
+}
+
+tr.border_bottom_learner
+{
+	border-bottom:1px solid;
+}
+
+td.learner_td_internal
+{
+	padding:5px;
+	page-break-inside:avoid;
+	font-weight: bold;
+	font-size: 90%;
+	width:325px;
+}
+
+td.learner_td_yesno
+{
+	padding:5px;
+	page-break-inside:avoid;
+	font-weight: bold;
+	text-align:center;
+	width:225px;
+	
+}
+
+td.learner_td_internal_recommend
+{
+	padding:5px;
+	page-break-inside:avoid;
+	font-weight: bold;
+	font-size: 90%;
+	width:650px;
+}
+
+table.learner_tables_evaluated {
+    width:1100px;
+	font-size:150%;
+	border-spacing: 100px;
+	border-left:1px solid;
+	border-right:1px solid;
+	page-break-inside:avoid;
+}
+
+td.learner_td_internal_evaluated
+{
+	padding:5px;
+	page-break-inside:avoid;
+	font-weight: bold;
+	font-size: 90%;
+	width:775px;
+}
+
+td.learner_td_internal_signature
+{
+	padding:5px;
+	page-break-inside:avoid;
+	font-weight: bold;
+	font-size: 90%;
+	width:375px;
+	text-align:center;
+}
+
+td.learner_sign_gap
+{
+	width:25px;
+}
+
+.border_left_learners
+{
+	border-left: 1px solid;	
+}
+
+.border_left_bottom_learners
+{
+	border-bottom: 1px solid;
+	border-left: 1px solid;	
+}
+
+.border_bottom_learners
+{
+	border-bottom: 1px solid;
+}
+
+.border_all_learners
+{
+	border-bottom: 1px solid;
+	border-left: 1px solid;
+	border-top: 1px solid;
+	border-right: 1px solid;
+}
+
+.for_seta_use
+{
+	padding:40px; 
+	font-size:200%; 
+	font-weight:bold;
+}
+
+
+
+.learner_heading1
+{
+	border:1px solid black;
+	width:50px;
+	text-align:center;
+	padding: 15px;
+}
+
+.learner_heading2
+{
+	border:1px solid black;
+	width:300px;
+	text-align:center;
+	padding: 15px;
+}
+
+.learner_heading3
+{
+	text-align:left;
+	padding: 15px;
+
+}
+
+.learner_heading4
+{
+
+	border:1px solid black;
+	width:50px;
+	text-align:left;
+	padding: 15px;"
+	
+
+}
+
+.learner_heading5
+{
+	text-align:left;
+	padding: 15px;"	
+}
+
+.learner_heading6
+{
+	border:1px solid black;
+	width:300px;
+	text-align:left;
+	padding: 15px;"
+}

@@ -1,0 +1,9 @@
+***************Moving Learner's Back To Draft*****************
+
+Provider Name: Churchill Training (PTY) Ltd
+Assessment: PR-AS213
+
+Imp Note: Please execute these Queries as per the given sequence!!!
+
+1.	select learner_qualification_id from learner_registration_qualification where batch_id = 245 and provider_id = 77904;
+2.	update learner_registration set state = 'draft', approved = False, is_existing_learner = False where id != 27399 and id in (select learner_qualification_id from learner_registration_qualification where batch_id = 245 and provider_id = 77904);

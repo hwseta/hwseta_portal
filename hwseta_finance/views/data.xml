@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+		<record id="product_product_info_1" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Mandatory Grant</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="product_product_info_2" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Discretionary Grant</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="product_product_info_3" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Admin Grant</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="product_product_info_4" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Levy Penalty</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="product_product_info_5" model="product.product">
+            <field eval="1" name="active"/>
+            <field name="name">Levy Interest</field>
+            <field name="type">service</field>
+            <field name="categ_id">1</field>
+        </record>
+        <record id="customer_dhet" model="res.partner">
+            <field eval="1" name="active"/>
+            <field name="name">DHET</field>
+            <field name="email">callcentre@dhet.gov.za</field>
+            <field name="customer">True</field>
+        </record>
+        
+        <!-- Loading Type of Employer -->
+        <record id="employer_type_private" model="employer.type">
+            <field eval="1" name="active"/>
+            <field name="name">Private</field>
+        </record>
+        <record id="employer_type_gov" model="employer.type">
+            <field eval="1" name="active"/>
+            <field name="name">Government Department</field>
+        </record>
+        <record id="employer_type_npo" model="employer.type">
+            <field eval="1" name="active"/>
+            <field name="name">NPO</field>
+        </record>
+        <record id="employer_type_public" model="employer.type">
+            <field eval="1" name="active"/>
+            <field name="name">Public</field>
+        </record>	
+        <record id="employer_type_sme" model="employer.type">
+            <field eval="1" name="active"/>
+            <field name="name">SME</field>
+        </record>
+        
+        <!-- Creating analytic account for managing scheme year from 2000 to 2016  -->
+        <record id="scheme_year_2000" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2000</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2001" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2001</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2002" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2002</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2003" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2003</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2004" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2004</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2005" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2005</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2006" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2006</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2007" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2007</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2008" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2008</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2009" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2009</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2010" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2010</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2011" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2011</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2012" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2012</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2013" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2013</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2014" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2014</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2015" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2015</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2016" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2016</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2017" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2017</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2018" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2018</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2019" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2019</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_2020" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">2020</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="scheme_year_DHET" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">DHET</field>
+            <field name="type">normal</field>
+        </record>
+        
+        <!-- Adding Journal for lump sum amount -->
+        <record id="lump_sum_journal" model="account.journal">
+            <field eval="1" name="active"/>
+            <field name="name">DHET Journal</field>
+            <field name="code">DHETJ</field>
+            <field name="type">bank</field>
+        </record>
+        <record id="general_journal" model="account.journal">
+            <field eval="1" name="active"/>
+            <field name="name">General Journal</field>
+            <field name="code">GEN</field>
+            <field name="type">general</field>
+        </record>
+        
+        <!-- Analytical General Journal -->
+        <record id="analytic_general_journal" model="account.analytic.journal">
+            <field eval="1" name="active"/>
+            <field name="name">General</field>
+            <field name="code">GEN_AN</field>
+            <field name="type">general</field>
+            <field name="active">True</field>
+        </record>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- Creating analytic account for managing province  -->
+        <record id="province_province" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Province</field>
+            <field name="type">normal</field>
+            <field name="type">normal</field>
+        </record>
+        <record id="province_Eastern_Cape" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Eastern Cape</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_Free_State" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">	Free State</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_Gauteng" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Gauteng</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_Limpopo" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Limpopo</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="scheme_Mpumalanga" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Mpumalanga</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_Northern_Cape" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Northern Cape</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_North_West" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">North West</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_SA_National" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">SA National</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_Western_Cape" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">Western Cape</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+        <record id="province_KwaZulu-Natal" model="account.analytic.account">
+            <field eval="1" name="active"/>
+            <field name="name">KwaZulu-Natal</field>
+            <field name="type">normal</field>
+            <field name="parent_id"  ref="province_province"></field>
+        </record>
+	</data>
+</openerp>

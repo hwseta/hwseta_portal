@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="organisation_payment_report">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="page" style="table-layout:fixed;width: 100%;">
+						<div class="col-xs-4 pull-right">
+							<p>
+								<span
+									t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+								<br />
+								<strong>
+									Ref :
+								</strong>
+							</p>
+						</div>
+						<br />
+						<br />
+						<br />
+						<table>
+							<tr>
+								<td>
+									<span>Employer Name</span>
+								</td>
+								<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+								</td>
+								<td align="left">
+									<strong>
+										<t t-if="o.partner_id">
+											<span t-field="o.partner_id.name" />
+										</t>
+									</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>Total</span>
+								</td>
+								<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+								</td>
+								<td align="left">
+									<strong>
+										<t t-if="o.amount ">
+											<span t-field="o.amount" />
+										</t>
+									</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>Payment Method</span>
+								</td>
+								<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+								</td>
+								<td align="left">
+									<strong>
+										<t t-if="o.journal_id">
+											<span t-field="o.journal_id.name" />
+										</t>
+									</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>Date</span>
+								</td>
+								<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+								</td>
+								<td align="left">
+									<strong>
+										<t t-if="o.date">
+											<span t-field="o.date" t-field-options='{"format": "dd MMMM yyyy"}' />
+										</t>
+									</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>Payment Reference</span>
+								</td>
+								<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+								</td>
+								<td align="left">
+									<strong>
+										<t t-if="o.reference">
+											<span t-field="o.reference" />
+										</t>
+									</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>Memo</span>
+								</td>
+								<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+								</td>
+								<td align="left">
+									<strong>
+										<t t-if="o.name">
+											<span t-field="o.name" />
+										</t>
+									</strong>
+								</td>
+							</tr>
+						</table>
+						<br />
+						<br />
+						<br />
+						<strong>
+							<span align="center">Payment Information</span>
+						</strong>
+						<br />
+						<br />
+						<br />
+						<div class="row1" style="table-layout:fixed;width: 100%;">
+							<strong> Debits </strong>
+							<br />
+							<table class="Debits table table-condensed" style="page-break-inside:avoid;">
+								<thead>
+									<tr>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Journal Item</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Account</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Employer</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Date</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Due Date</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Original Amount</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Open Balance</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Open Amount</b>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<t t-foreach="o.line_dr_ids" t-as="data">
+										<t t-if="data.move_line_id">
+											<tr>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.move_line_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.account_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.employer_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.date_original" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.date_due" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.amount_original" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.amount_unreconciled" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.amount" />
+												</td>
+											</tr>
+										</t>
+									</t>
+									<tr>
+										<td colspan="5" style="border:none !important"></td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<span t-esc="compute_debit_original_amount(o)" />
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<span t-esc="compute_debit_open_balance(o)" />
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<span t-esc="compute_debit_amount_total(o)" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br />
+						<div class="row2" style="table-layout:fixed;width: 100%;">
+							<strong> Credits </strong>
+							<br />
+							<table class=" Credits table table-condensed" style="page-break-inside:avoid;"
+								table-layout="fixed">
+								<thead>
+									<tr>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Journal Item</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Account</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Employer</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Date</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Due Date</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Original Amount</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Open Balance</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Open Amount</b>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<t t-foreach="o.line_cr_ids" t-as="data">
+										<t t-if="data.move_line_id">
+											<tr>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.move_line_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.account_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.employer_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.date_original" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.date_due" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.amount_original" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.amount_unreconciled" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-field="data.amount" />
+												</td>
+											</tr>
+										</t>
+									</t>
+									<tr >
+									<td colspan="5" style="border:none !important"></td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<span t-esc="compute_credit_original_amount(o)" />
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<span t-esc="compute_credit_open_balance(o)" />
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<span t-esc="compute_credit_amount_total(o)" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</t>
+
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,11 @@
+.oe_formview {
+    position: relative;
+}
+.oe_dropdown_menu {
+    line-height: normal;
+    z-index: 1000!important;
+}
+
+.oe_list_field_cell{
+line-height: 12px!important;
+}

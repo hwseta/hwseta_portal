@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="email_template_sdf_individual_register_submit" model="email.template">
+            <field name="name">SDF Registration Submission 111</field>
+            <field name="subject">SDF Registration Submission</field>
+            <field name="email_to">${object.work_email}</field>
+            <field name="email_from">demo.pragmatic@gmail.com</field>
+            <field name="model_id" ref="hwseta_sdp.model_sdf_register"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+              <field name="body_html"><![CDATA[
+                <table>
+                <tbody><tr><td>SDF Name :&nbsp;</td><td><b> ${object.name}</b></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td><div>Name of Organisation :<b> 
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>,</span>
+                % endfor
+                </b>
+                </div></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td><div>SDL Number of Organisation :<b> 
+                % for data in object.employer_ids:
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor
+                </b>
+                </div></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Application Unique Number :&nbsp;</td><td><b>${object.sdf_reference_no}</b></td> </tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Dear </td><td><b>&nbsp;${object.name}</b>,</td> 
+                </tr>
+                </tbody></table>
+                
+                <p><u>Application for Skills Development Facilitator Registration</u></p>
+                
+                <p>This email is to confirm that you have made an application to be the Skills Development Facilitator for <b>
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>-</span>
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor
+                </b> Your application will be sent through to your Organisations Primary Contact for Verification and then to the HWSETA for finalisation. <br><br>
+                
+                If you should have any queries please contact Brian Mashishi on <a href="">Brianm@hwseta.org.za </a> or 011&nbsp;607 6952.</p>
+                
+                
+                <table>
+                <tbody><tr><td>Regards</td></tr>
+                <tr><td>Bronwen du Plessis</td> </tr>
+                <tr><td>WSP Manager</td></tr>
+                </tbody></table>
+                ]]></field>
+        </record>   
+
+        <record id="email_template_individual_sdf_register_approve" model="email.template">
+            <field name="name">SDF Registration Approval Individual</field>
+            <field name="subject">SDF Registration Approval</field>
+            <field name="email_to">${object.work_email}</field>
+            <field name="email_from">erp@hwseta.org.za</field>
+            <field name="model_id" ref="hwseta_sdp.model_sdf_register"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <table>
+                <tbody><tr><td>SDF Name :</td><td><b>${object.name}</b></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td><div>Name of Organisation : <b>
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>,</span>
+                % endfor
+                </b></div></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>SDL Number of Organisation :</td><td><b>
+                % for data in object.employer_ids:
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor
+                </b></td> </tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Application Unique Number :</td><td><b>${object.sdf_reference_no}</b></td> </tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Date :</td><td><b>2016-02-05</b></td> 
+                </tr>
+                </tbody></table>
+                <br>
+                
+                
+                <p>Acceptance of Skills Development Facilitator Registration</p><br>
+                
+                <p>This email is to confirm that you have been accepted as the Skills Development Facilitator for <b>
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>-</span>
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor                
+                </b>
+                .<br><br>
+                
+                Please use your login and password indicated below to access the HWSETA system:<br><br>
+                
+                </p><table>
+                <tbody><tr><td>Login :</td><td><b>${object.work_email}</b></td></tr>
+                <tr><td>Password :</td><td><b>admin</b></td></tr>
+                </tbody></table>
+                <br>
+                
+                If you should have any queries please contact Brian Mashishi on <a href="#">Brianm@hwseta.org.za</a> or 011&nbsp;607 6952.<br><br><br>
+                
+                <table>
+                <tbody><tr><td>Regards</td></tr>
+                <tr><td>Bronwen du Plessis</td> </tr>
+                <tr><td>WSP Manager</td></tr>
+                </tbody></table>
+                ]]>
+            </field>
+        </record>
+        <record id="email_template_sdf_register_approve" model="email.template">
+            <field name="name">SDF Registration Approval</field>
+            <field name="subject">SDF Registration Approval</field>
+            <field name="email_to">${object.work_email}</field>
+            <field name="email_from">erp@hwseta.org.za</field>
+            <field name="model_id" ref="hwseta_sdp.model_sdf_register"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <table>
+                <tbody><tr><td>SDF Name :</td><td><b>${object.name}</b></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td><div>Name of Organisation : <b>
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>,</span>
+                % endfor
+                </b></div></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>SDL Number of Organisation :</td><td><b>
+                % for data in object.employer_ids:
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor
+                </b></td> </tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Application Unique Number :</td><td><b>${object.sdf_reference_no}</b></td> </tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Date :</td><td><b>2016-02-05</b></td> 
+                </tr>
+                </tbody></table>
+                <br>
+                
+                
+                <p>Acceptance of Skills Development Facilitator Registration</p><br>
+                
+                <p>This email is to confirm that you have been accepted as the Skills Development Facilitator for <b>
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>-</span>
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor                
+                </b>
+                .<br><br>
+                
+                Please use your login and password indicated below to access the HWSETA system:<br><br>
+                
+                </p><table>
+                <tbody><tr><td>Login :</td><td><b>${object.work_email}</b></td></tr>
+                <tr><td>Password :</td><td><b>admin</b></td></tr>
+                </tbody></table>
+                <br>
+                
+                If you should have any queries please contact Brian Mashishi on <a href="#">Brianm@hwseta.org.za</a> or 011&nbsp;607 6952.<br><br><br>
+                
+                <table>
+                <tbody><tr><td>Regards</td></tr>
+                <tr><td>Bronwen du Plessis</td> </tr>
+                <tr><td>WSP Manager</td></tr>
+                </tbody></table>
+                ]]>
+            </field>
+        </record>       
+    
+    </data>
+    <data noupdate="1">
+        <!-- SDF Registration Notification  -->
+        <record id="email_template_sdf_register_submit" model="email.template">
+            <field name="name">SDF Registration Submission</field>
+            <field name="subject">SDF Registration Submission</field>
+            <field name="email_to">${object.work_email}</field>
+            <field name="email_from">erp@hwseta.org.za</field>
+            <field name="model_id" ref="hwseta_sdp.model_sdf_register"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <!-- <field name="body_html"><![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Mr. ${object.name} your application for SDF Registration have been submitted successfully.</p>
+                </div>
+                ]]></field> -->
+              <field name="body_html"><![CDATA[
+                <table>
+                <tbody><tr><td>SDF Name :&nbsp;</td><td><b> ${object.name}</b></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td><div>Name of Organisation :<b> 
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>,</span>
+                % endfor
+                </b>
+                </div></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td><div>SDL Number of Organisation :<b> 
+                % for data in object.employer_ids:
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor
+                </b>
+                </div></td></tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Application Unique Number :&nbsp;</td><td><b>${object.sdf_reference_no}</b></td> </tr>
+                </tbody></table>
+                <br>
+                
+                <table>
+                <tbody><tr><td>Dear </td><td><b>&nbsp;${object.name}</b>,</td> 
+                </tr>
+                </tbody></table>
+                
+                <p><u>Application for Skills Development Facilitator Registration</u></p>
+                
+                <p>This email is to confirm that you have made an application to be the Skills Development Facilitator for <b>
+                % for data in object.employer_ids:
+                    ${data.employer_id.name}
+                    <span>-</span>
+                    ${data.sdl_no}
+                    <span>,</span>
+                % endfor
+                </b> Your application will be sent through to your Organisations Primary Contact for Verification and then to the HWSETA for finalisation. <br><br>
+                
+                If you should have any queries please contact Brian Mashishi on <a href="">Brianm@hwseta.org.za </a> or 011&nbsp;607 6952.</p>
+                
+                
+                <table>
+                <tbody><tr><td>Regards</td></tr>
+                <tr><td>Bronwen du Plessis</td> </tr>
+                <tr><td>WSP Manager</td></tr>
+                </tbody></table>
+                ]]></field>
+        </record>
+        
+
+        
+        <!-- WSP Email Notification  -->
+        <record id="email_template_wsp_submitted" model="email.template">
+            <field name="name">WSP Submitted</field>
+            <field name="subject">WSP Submission</field>
+            <field name="email_to">${object.sdf_id.work_email}</field>
+            <field name="email_from"></field>
+            <field name="model_id" ref="hwseta_sdp.model_wsp_plan"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Mr. ${object.sdf_id.name} your application for WSP ${object.name} have been submitted successfully.</p>
+                </div>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="email_template_wsp_evaluated" model="email.template">
+            <field name="name">WSP Evaluated</field>
+            <field name="subject">WSP Evaluation</field>
+            <field name="email_to">${object.sdf_id.work_email}</field>
+            <field name="email_from"></field>
+            <field name="model_id" ref="hwseta_sdp.model_wsp_plan"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Mr. ${object.sdf_id.name} your application for WSP ${object.name} have been evaluated successfully.</p>
+                </div>
+                ]]>
+            </field>
+        </record>
+        
+        <!-- WSP Acceptance Email Notification  -->
+        
+        <record id="email_template_wsp_acceptance" model="email.template">
+            <field name="name">WSP Acceptance</field>
+            <field name="subject">WSPATR ${object.fiscal_year.name} Appeal ${object.employer_id.name} - ${object.employer_id.employer_sdl_no} Response</field>
+            <field name="email_to">${object.sdf_id.work_email}</field>
+            <field name="email_from">erp@hwseta.org.za</field>
+            <field name="model_id" ref="hwseta_sdp.model_wsp_plan"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <table>
+                <tr><td><div>Organisation SDL # :<b>&nbsp;${object.employer_id.employer_sdl_no}</b></div></td></tr>
+                </table>
+                </br>
+                
+                <table>
+                <tr><td><div>Organisation SDL # :<b>&nbsp;${object.employer_id.employer_sdl_no}</b></div></td></tr>
+                </table>
+                </br>
+                
+                <table>
+                <tbody><tr><td>Dear</td><td><b>&nbsp;${object.sdf_id.name}</b>,</td> 
+                </tr>
+                </tbody></table>
+                
+                
+                <p>The reasons provided in your appeal are valid reasons for your Organisation to have missed the regulated deadline.</br></br>
+                
+                Your Organisation will, however, be permitted to complete a submission electronically on our on line system. Access to the system will be granted from the 1st to the 14th of June 2015(2 weeks) in order for you to complete your submission. If the submission is completed in this timeframe and approved by the HSETA it will be granted an, “Accepted” status.</br></br>
+                
+                Completing this submission will enable your Organisation to participate in the Mandatory and Discretionary Funding for the 2016 Year. Please ensure that you are well prepared for next year’s submission and provide us with a new plan for 2016-2017 .That deadline is the 30th of April 2016</br></br>
+                
+                Please contact us for any further assistance or clarity you need. Bronwen du Plessis: Bronwend@hwseta.org.za / 011 607 7026</br></br>
+                
+                
+                
+                <table>
+                <tr><td>Warm Regards</td></tr>
+                <tr><td>Executive Manager</td> </tr>
+                <tr><td>HWSETA</td></tr>
+                </table>
+                ]]>
+            </field>
+        </record>
+        
+        <!-- WSP Rejection Email Notification  -->
+        
+        <record id="email_template_wsp_rejection" model="email.template">
+            <field name="name">WSP Rejection</field>
+            <field name="subject">WSPATR ${object.fiscal_year.name} Appeal ${object.employer_id.name} - ${object.employer_id.employer_sdl_no} Response</field>
+            <field name="email_to">${object.sdf_id.work_email}</field>
+            <field name="email_from">erp@hwseta.org.za</field>
+            <field name="model_id" ref="hwseta_sdp.model_wsp_plan"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <table>
+                <tr><td>Organisation Name :</td><td><b>&nbsp;${object.employer_id.name}</b></td></tr>
+                </table>
+                </br>
+                
+                <table>
+                <tr><td><div>Organisation SDL # :<b>&nbsp;${object.employer_id.employer_sdl_no}</b></div></td></tr>
+                </table>
+                </br>
+                
+                <table>
+                <tbody><tr><td>Dear</td><td><b>&nbsp;${object.sdf_id.name}</b>,</td> 
+                </tr>
+                </tbody></table>
+                
+                <p>The reasons provided in your appeal are not valid reasons for your Organisation to have missed the regulated deadline. You have also not complied with the requirements for an extension to be granted.</br></br>
+                
+                Your Organisation will, however, be permitted to complete a submission electronically on our on line system. Access to the system will be granted from the 1st to the 14th of June 2015(2 weeks) in order for you to complete your submission. If the submission is completed in this timeframe and approved by the HSETA it will be granted an, “Accepted Late” status.</br></br>
+                
+                Completing this submission will enable your Organisation to participate in the Discretionary Funding for the 2016 Year. Due to the Skills Development regulations it will unfortunately not enable your Organisation to receive Mandatory Funding in the 2015 year.</br></br>
+                
+                Please ensure that you are well prepared for next year’s submission and provide us with a new plan for 2016-2017 .That deadline is the 30th of April 2016</br></br>
+                
+                Please contact us for any further assistance or clarity you need. Bronwen du Plessis: Bronwend@hwseta.org.za / 011 607 7026</br></br>
+                
+                
+                
+                <table>
+                <tr><td>Warm Regards</td></tr>
+                <tr><td>Executive Manager</td> </tr>
+                <tr><td>HWSETA</td></tr>
+                </table>
+                ]]>
+            </field>
+        </record>
+        
+        <!-- Expression of Interest Email Notification  -->
+        
+        <record id="email_template_eoi_submit" model="email.template">
+            <field name="name">EOI Submitted</field>
+            <field name="subject">EOI Submission</field>
+            <field name="email_to">${object.employer_id.email}</field>
+            <field name="email_from"></field>
+            <field name="model_id" ref="hwseta_sdp.model_learning_programme"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Mr. ${object.employer_id.name} your application for EOI ${object.name} have been submitted successfully.</p>
+                </div>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="email_template_eoi_approve" model="email.template">
+            <field name="name">EOI Approved</field>
+            <field name="subject">EOI Approval</field>
+            <field name="email_to">${object.employer_id.email}</field>
+            <field name="email_from"></field>
+            <field name="model_id" ref="hwseta_sdp.model_learning_programme"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Mr. ${object.employer_id.name} your application for EOI ${object.name} have been approved successfully.</p>
+                </div>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="email_template_eoi_rejection" model="email.template">
+            <field name="name">EOI Rejected</field>
+            <field name="subject">EOI Rejection</field>
+            <field name="email_to">${object.employer_id.email}</field>
+            <field name="email_from"></field>
+            <field name="model_id" ref="hwseta_sdp.model_learning_programme"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Sorry Mr. ${object.employer_id.name} your application for EOI ${object.name} have been rejected.</p>
+                </div>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="email_template_eoi_moa_acceptance" model="email.template">
+            <field name="name">MOA Accepted</field>
+            <field name="subject">MOA Acceptance</field>
+            <field name="email_to">${object.employer_id.email}</field>
+            <field name="email_from"></field>
+            <field name="model_id" ref="hwseta_sdp.model_learning_programme"/>
+            <field name="auto_delete" eval="False"/>
+             <field name="lang">en_US</field> 
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                <p>Mr. ${object.employer_id.name} have successfully accepted MOA application for EOI ${object.name}.</p>
+                </div>
+                ]]>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

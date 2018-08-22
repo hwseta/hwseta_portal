@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Western Cape Page === -->
+		<template id="western_cape" name="Western Cape" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-305"
+											class="oc-post oc-article  post-305 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Western Cape</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>The Team</h2>
+												<p>Click on a name below to send an e-mail</p>
+												<table class="contacttable" border="0" width="100%"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Position</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:juanitam@hwseta.org.za">Ms. Juanita Moller</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Manager</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:nazleyp@hwseta.org.za">Ms. Nazley Kamfer</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Office
+																Administrator</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:rounellv@hwseta.org.za">Ms. Rounell Vermaak</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:%20zureenahs@hwseta.org.za">Ms. Zureenah Sulaiman</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:clivew@hwseta.org.za">Mr. Clive Wildshutt</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:nosisam@hwseta.org.za">Ms. Nosisa Mayosi</a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Officer</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<a href="mailto:amberh@hwseta.org.za">Ms. Amber Hendricks </a>
+															</td>
+															<td class="contactsnoline" width="30%">Provincial Intern</td>
+															<td class="contactsnoline" width="30%">021 914 1058</td>
+														</tr>
+													</tbody>
+												</table>
+												<h2>Postal Address</h2>
+												<p>
+													Tijgerpark Office Park,
+													<br/>
+														Entrance 1, Building 3,
+														<br/>
+															Ground Floor, Office No. 005
+															<br/>
+																Willie van Schoor Avenue
+																<br/>
+																	Bellville, Cape Town 7530
+												</p>
+												<h2>Physical Address</h2>
+												<p>
+													Tijgerpark Office Park,
+													<br/>
+														Entrance 1, Building 3,
+														<br/>
+															Ground Floor, Office No. 005
+															<br/>
+																Willie van Schoor Avenue
+																<br/>
+																	Bellville, Cape Town 7530
+												</p>
+												<p>
+													Download map and directions
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/08/cape-town-map.pdf">here</a>
+												</p>
+												<h2>Satellite Office: Northern Cape</h2>
+												<p>
+													Northern Cape Urban TVET College
+													<br/>
+														37 Long Street
+														<br/>
+															Kimberley
+															<br/>
+																Tel: 053 839 2083
+																<br/>
+																	Contact: Candice Jacobs
+												</p>
+											</div>
+								
+								
+										</article>
+								
+								
+								
+									</div>
+                        						
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

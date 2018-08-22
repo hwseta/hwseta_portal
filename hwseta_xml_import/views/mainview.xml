@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="xmlimport_formview" model="ir.ui.view">
+            <field name="name">xmlimport.form</field>
+            <field name="model">xml.import.seta</field>
+            <field name="arch" type="xml">
+                <form string="XML Import">
+                    <group>
+                        <field name="xml_file"/>
+                        <field name="status"/>
+                    </group>
+                    <button name="import_xml_file" type="object" string="Import"/>
+                </form>
+            </field>
+        </record>
+        <record id="action_xmlimport" model="ir.actions.act_window">
+            <field name="name">XML FILE IMPORT</field>
+            <field name="res_model">xml.import.seta</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="mnu_xml_import" name="Import Qualifications" parent="hwseta_etqe.menu_librarie" action="action_xmlimport"/>
+    </data>
+</openerp>

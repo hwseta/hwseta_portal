@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_mandatory_income">
+			<t t-call="report.external_layout">
+				<div class="page">
+					<div class="oe_structure" />
+					<div class="row">
+					</div>
+					<center>
+						<h3>
+							Surplus Mandatory Income Report
+						</h3>
+					</center>
+					<div class="text-right">
+						<strong>
+							<t t-foreach="get_date(data)" t-as="d">
+								From Date:
+								<t t-esc="d['from_date']" />
+								To Date:
+								<t t-esc="d['to_date']" />
+							</t>
+						</strong>
+					</div>
+					<table class="table table-condensed" style="font-size:15px">
+						<tr style="border: 1px solid black">
+							<th style="border: 1px solid black">Entry Number</th>
+							<th style="border: 1px solid black">Journal</th>
+							<th style="border: 1px solid black">Period</th>
+							<th style="border: 1px solid black">Effective Date</th>
+							<th style="border: 1px solid black">Name</th>
+							<th style="border: 1px solid black">reference</th>
+							<th style="border: 1px solid black">Partner</th>
+							<th style="border: 1px solid black">Account</th>
+							<th style="border: 1px solid black">Analytic Account</th>
+							<th style="border: 1px solid black">tax</th>
+							<th style="border: 1px solid black">Debit</th>
+							<th style="border: 1px solid black">Credit</th>
+						</tr>
+						<t t-foreach="get_partner(data)" t-as="k7">
+							<tr style="border: 1px solid black">
+								<td style="border: 1px solid black"><span t-esc="k7.move_id.name or 0.0"/></td> 
+			                    <td style="border: 1px solid black"><span t-esc="k7.journal_id.name or 0.0"/></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.period_id.name or 0.0" /></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.date or 0.0"/></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.name or 0.0"/></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.ref or 0.0" /></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.partner_id.name or 0.0" /> </td>
+								<td style="border: 1px solid black"><span t-esc="k7.account_id.name or 0.0" /></td>
+								<td style="border: 1px solid black"><span t-esc="k7.analytic_account_id.name or 0.0" /></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.account_tax_id.name or 0.0" /></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.debit or 0.0" /></td>
+			                    <td style="border: 1px solid black"><span t-esc="k7.credit or 0.0"/></td>
+
+							</tr>
+						</t>
+						<tr t-foreach="get_total(data)" t-as="t">
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"></td>
+						    <td style="border: 1px solid black"><strong><span t-esc="t['total_tax'] or 0.0" /></strong></td>
+						    <td style="border: 1px solid black"><strong><span t-esc="t['total_debit'] or 0.0" /></strong></td>
+						    <td style="border: 1px solid black"><strong><span t-esc="t['total_credit'] or 0.0" /></strong></td>
+						</tr>
+					</table>
+					<div class="oe_structure" />
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

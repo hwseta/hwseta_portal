@@ -1,0 +1,7 @@
+import learner_report
+import learner_report_qualification_stmt_of_result
+import learner_qdm_report
+import learners_status_report
+import learner_skills_programme_report
+import learner_lp_achievement_report
+import learner_lp_stmt_of_result_report

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Current News Page === -->
+		<template id="current_news" name="Current News" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article  breadcrumbs">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h4>Latest News</h4>
+											</div>
+								
+								
+										</article>
+										<article id="post-1143"
+											class="oc-post oc-article  post-1143 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=1143" rel="bookmark"
+													title="Expressions of Interest for 2015 – 2016 Now Open">Expressions of Interest for 2015 – 2016 Now Open</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="11:15 am">July 31, 2015</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													EOI Bursaries for Employed Persons 2015-2016
+													<br/>
+														EOI Internships 2015-2016
+														<br/>
+															EOI Work Experience for TVET Learners 2015-2016
+															<br/>
+																EOI Learnerships 2015-2016
+																<br/>
+																	EOI Sign Language for Department of health and Social
+																	Development Employees 2015-2016
+																	<br/>
+																		EOI Skills Programmes 2015-2016
+																		<br/>
+																			EOI Work Integrated Learning 2015-2016
+												</p>
+												<p>
+													<a href="http://www.hwseta.org.za/?page_id=48">click here</a>
+													to redirect to the Expression of Interest Information
+												</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-1094"
+											class="oc-post oc-article  post-1094 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=1094" rel="bookmark"
+													title="SkillsTalk@HWSETA Newsletter June 2015 edition out now">SkillsTalk@HWSETA Newsletter June 2015 edition out now</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="3:26 pm">June 29, 2015</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													<a
+														href="/hwseta_website/static/src/wp-content/uploads/2015/06/skillstalk_hwseta-june-2015-final.pdf">Click here </a>
+													to download newsletter
+												</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-1018"
+											class="oc-post oc-article  post-1018 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=1018" rel="bookmark"
+													title="HWSETA Funds Animal Health Studies in Eastern Cape">HWSETA Funds Animal Health Studies in Eastern Cape</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="10:18 am">May 28, 2015</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>At a function held in Tsolo, Eastern Cape, on 25 May 2015 the
+													Health and Welfare Sector Education Training Authority (HWSETA)
+													awarded 50 learners with full bursaries to obtain a Diploma in
+													Animal Health from the Tsolo Agricultural and Rural Development
+													Institute (TARDI).</p>
+												<p>The event was attended by the Deputy Minister of Higher Education
+													and Training, Honourable Mduduzi Manana, the MEC for Eastern Cape
+													Rural Development and Agrarian Reform, Mr Mlibo Qoboshiyane, the
+													Mayor of Mhlontlo Local Municipality, Counsellor M Giyose, Chariman
+													of the HWSETA Board, Dr Confidence Moloko, Ms Yvonne Mbane, CEO for
+													the HWSETA, numerous other dignitaries, the learners and their
+													parents.</p>
+												<p>“The partnership that the HWSETA has entered into with the
+													Eastern Cape Department of Rural Development and Agrarian Reform is
+													a significant milestone in pushing back the frontiers of poverty,”
+													comments Ms Mbane.</p>
+												<p>Ms Mbane describes the partnership as ‘business unusual’, but is
+													quick to add that this is a strategic intervention specifically
+													aimed at addressing the shortage of skills in the animal health
+													sector, which contributes towards food security.</p>
+												<p>19-year-old Wandile Sitandatu trekked more than a 100km from Kei
+													Mouth to Tsolo earlier this year with one goal in mind, to become
+													an animal health technician. He successfully registered for the
+													three-year diploma at TARDI but he held out little hope that his
+													unemployed mother would be able to afford the tuition fees of R20
+													000 per year.</p>
+												<p>“Immediately after I received the fee structure for my studies,
+													my knees just went weak and I thought this is it for me, this is
+													the end of my dream,” Sitandatu explained to the audience with
+													tears in his eyes. “When I got home I showed my grandmother the fee
+													structure and she also agreed we wouldn’t be able to pay.”</p>
+												<p>This all changed for the better when he was one of the 50
+													students who would receive funding from the HWSETA for his studies.
+													Sitandatu believes that the bursary he has received from the HWSETA
+													will open many doors for him.</p>
+												<p>Mr Qoboshiyane urged the learners to grab the opportunity with
+													both hands. He described how his Department is intent on turning
+													the Eastern Cape into a hub of activity and a food basket.</p>
+												<p>Learners and their parents alike were overwhelmed and expressed
+													their joy and gratitude. One learner was given the opportunity to
+													thank the HWSETA saying that ‘I do not know where I would have gone
+													to or what I would’ve become if it was not for the bursary. My
+													grandmother does not work, and with this I will be giving her hope
+													too that the suffering will one day end’.</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-991"
+											class="oc-post oc-article  post-991 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=991" rel="bookmark"
+													title="Qualification Development and Maintenance a Key Focus for the HWSETA">Qualification Development and Maintenance a Key Focus for the
+													HWSETA</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="1:23 pm">April 23, 2015</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>The skills development landscape in South Africa is one that
+													requires constant change and innovative thinking on the part of
+													Sector Education Training Authorities (SETAs) to meet the needs of
+													the sectors they serve. The HWSETA is no exception and it is this
+													mindset that resulted in the establishment of the Qualification
+													Development and Maintenance (QDM) sub-division in October 2013 to
+													focus on this key area of responsibility for the HWSETA.</p>
+												<p>“The delivery of quality training in South Africa requires a
+													combination of accredited training providers that are able to
+													deliver excellent quality training content and material,” comments
+													Champa Gopal, Qualification Development and Maintenance Manager for
+													the HWSETA. “By assessing and maintaining quality in these two
+													critical areas, learners in South Africa are assured that the
+													training they receive will enable them to make a positive
+													contribution to the skills pool in the health and social
+													development sectors.”</p>
+												<p>Since its establishment, the QDM sub-division has approached the
+													task at hand with zest and the hard work is paying off.</p>
+												<p>The QDM sub-division, in partnership with the National Department
+													of Health (NDOH) and International Training Education Centre for
+													Health (I-TECH), has been successful at registering the
+													Occupational Qualification: Health Promotion Officer (Community
+													Health Worker) SAQA ID 94597 in November 2014. This qualification
+													replaces three community health work (CHW) legacy qualifications in
+													the form of CHW levels 2, 3 and 4.</p>
+												<p>The HWSETA will not accredit private skills development providers
+													(SDPs) for this newly registered occupational qualification and
+													this is a function that will reside with the Quality Council for
+													Trades Occupation (QCTO). Accreditation of providers by the QCTO
+													will be dependent on the signing of a Memorandum of Understanding
+													with the National Department of Health (NDOH) ensuring the learner
+													has a designated workplace with a mentor during the time of study
+													to obtain the required workplace experience.</p>
+												<p>Ms Gopal adds that the accreditation processes for legacy
+													qualifications will remain with the HWSETA and this should not be
+													confused with the accreditation processes outlined by QCTO for
+													registered occupational qualifications.</p>
+												<p>The HWSETA conducted workshops nationally to inform its
+													stakeholder base of this shift in accreditation and implementation
+													processes for this new occupational qualification, as well as
+													qualifications that will be developed in future.</p>
+												<p>To date the QCTO has successfully accredited twelve regional
+													training centers attached to the NDOH. A partnership pilot training
+													project for 900 learners in twelve regional training centres
+													commenced in March 2015.</p>
+												<p>Whilst the HWSETA will not be responsible for the accreditation
+													Skills Development Providers for this occupational qualification,
+													it has received approval from the QCTO to be the Assessment Quality
+													Partner (AQP). As an AQP, the HWSETA is responsible for setting up
+													final external summative examinations, co-ordination of national
+													examinations through approved assessment centers, as well as
+													assessment and recommendation of learner certification to QCTO.</p>
+												<p>The examination process and logistical arrangements will be
+													conducted through partnerships with Community of Experts (CEP’s) to
+													ensure seamless quality processes are applied. The ETQA will
+													timeously announce all examination logistics.</p>
+												<p>“This is an important milestone for the HWSETA and we believe
+													that what we have learnt during this process will pave the way for
+													the development of occupational qualifications that will replace
+													the thirty three legacy qualifications that the HWSETA is mandated
+													to quality assure,” adds Ms Gopal.</p>
+												<p>The HWSETA has submitted the occupational qualification, Social
+													Auxiliary Work to QCTO for registration with SAQA and is currently
+													awaiting the outcome of this occupational qualification.</p>
+												<p>Within the next five years the HWSETA intends having all legacy
+													qualifications re-curriculated into qualifications that will
+													translate into occupations and ultimately provide the youth of the
+													country an opportunity to follow a career within the Health or
+													Social Services Sector .</p>
+												<p>“The development of occupational qualifications that are relevant
+													to the labour market underpins the activities of the QDM
+													sub-division and it is this thinking that drives us to achieve
+													targets that will positively impact the health and social
+													development sectors in the country,” concludes Ms Gopal.</p>
+												<p> 
+												</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-903"
+											class="oc-post oc-article  post-903 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=903" rel="bookmark"
+													title="HWSETA Urges Caution When Enrolling at Private Training Institutions">HWSETA Urges Caution When Enrolling at Private Training
+													Institutions</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="2:21 pm">February 4, 2015</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													The South African Sector Education and Training Authorities (SETAs)
+													on a daily basis receive reports of students that have been the
+													victims of unscrupulous training providers. Whilst this is a
+													national problem, the Health and Welfare Sector Education and
+													Training Authority (HWSETA) is currently very concerned about the
+													actions of several unscrupulous training or skills development
+													providers operating in Kwa-Zulu Natal that claim to have the
+													necessary accreditation from the HWSETA. These organisations have
+													been reported to the relevant law enforcement agencies.
+													<a href="http://www.hwseta.org.za/?p=903#more-903" class="more-link">
+														Continue reading
+														<span class="meta-nav">→</span>
+													</a>
+												</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-642"
+											class="oc-post oc-article  post-642 post type-post status-publish format-standard hentry category-frontpage category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=642" rel="bookmark"
+													title="HWSETA Achieves Clean Audit for 2013/14 Financial Year">HWSETA Achieves Clean Audit for 2013/14 Financial Year</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="7:36 am">November 4, 2014</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													When the South African Auditor-General awards a public entity a
+													clean audit it is an indication of exemplary achievement in terms
+													of corporate governance, risk management, consistent application of
+													internal control,
+													<a href="http://www.hwseta.org.za/?p=642#more-642" class="more-link">
+														Continue reading
+														<span class="meta-nav">→</span>
+													</a>
+												</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-202"
+											class="oc-post oc-article  post-202 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=202" rel="bookmark"
+													title="Skills Development for Persons with Disabilities a Focus for HWSETA">Skills Development for Persons with Disabilities a Focus for
+													HWSETA</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="12:52 pm">October 9, 2014</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													As part of its skills development mission, the HWSETA strives to
+													create an awareness of disability and how employing persons with
+													disability can enrich the working environment, as well as the lives
+													of those living with disability.
+													<a href="http://www.hwseta.org.za/?p=202#more-202" class="more-link">
+														Continue reading
+														<span class="meta-nav">→</span>
+													</a>
+												</p>
+											</div>
+								
+								
+										</article>
+										<article id="post-100"
+											class="oc-post oc-article  post-100 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">
+												<a href="http://www.hwseta.org.za/?p=100" rel="bookmark"
+													title="Stakeholder Interaction Remains a Key Driver for HWSETA">Stakeholder Interaction Remains a Key Driver for HWSETA</a>
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="1:52 pm">September 19, 2014</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													In striving to meet the needs of learners in the health, social
+													development and veterinary sectors, the HWSETA realises the
+													importance of maintaining effective stakeholder communication that
+													guides the direction skills development initiatives should be
+													taking.
+													<a href="http://www.hwseta.org.za/?p=100#more-100" class="more-link">
+														Continue reading
+														<span class="meta-nav">→</span>
+													</a>
+												</p>
+											</div>
+										</article>
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === HWSETA Urges Caution When Enrolling at Private Training Institutions Page === -->
+		<template id="news5" name="HWSETA Urges Caution When Enrolling at Private Training Institutions" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article ">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<div class="navigation">
+													<div class="alignleft">
+														«
+														<a href="http://www.hwseta.org.za/?p=642" title="HWSETA Achieves Clean Audit for 2013/14 Financial Year"
+															rel="prev">HWSETA Achieves Clean Audit for 2013/14 Financial Year</a>
+													</div>
+													<div class="alignright">
+														<a href="/page/hwseta_website.news4"
+															title="Qualification Development and Maintenance a Key Focus for the HWSETA"
+															rel="next">Qualification Development and Maintenance a Key Focus for the
+															HWSETA</a>
+														»
+													</div>
+												</div>
+											</div>
+									
+									
+										</article>
+										<article id="post-903"
+											class="oc-post oc-article  post-903 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">HWSETA Urges Caution When Enrolling at Private Training
+												Institutions</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="2:21 pm">February 4, 2015</span>
+												</span>
+												|
+												<span class="oc-postauthoricon">
+													<span class="author">By</span>
+													<span class="author vcard">
+														<a class="url fn n" href="http://www.hwseta.org.za/?author=7"
+															title="View all posts by Elfrieda Tyrer">Elfrieda Tyrer</a>
+													</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													The South African Sector Education and Training Authorities (SETAs)
+													on a daily basis receive reports of students that have been the
+													victims of unscrupulous training providers. Whilst this is a
+													national problem, the Health and Welfare Sector Education and
+													Training Authority (HWSETA) is currently very concerned about the
+													actions of several unscrupulous training or skills development
+													providers operating in Kwa-Zulu Natal that claim to have the
+													necessary accreditation from the HWSETA. These organisations have
+													been reported to the relevant law enforcement agencies.
+													<span id="more-903"></span>
+												</p>
+												<p>Investigations by the HWSETA following reports by stakeholders
+													have identified the following more common issues: false claims that
+													the training facility is accredited with the HWSETA; offering
+													courses for which the facility does not have accreditation;
+													exceeding enrolment capacity; as well as the issuing of fraudulent
+													certificates.</p>
+												<p>“Parents and learners are urged to contact the HWSETA before
+													enrolling with any private training institution that claims to be
+													accredited by the HWSETA,” comments Ms Yvonne Mbane, CEO for the
+													HWSETA, “even if the provider in question makes use of the HWSETA
+													logo in marketing materials.”</p>
+												<p>The accreditation status of a training provider and/or the courses
+													it offers can be confirmed by calling the HWSETA’s toll free
+													helpline on 0800 864 478. Alternatively, contact the HWSETA in KZN
+													on 031 202 5972/3.</p>
+												<p>It needs to be noted that the HWSETA has no jurisdiction over any
+													nursing qualifications as they fall within the ambit of the South
+													African Nursing Council (SANC) that can be contacted on 012 420
+													1075.</p>
+												<p>“As the HWSETA, we are mandated to protect the rights of learners
+													in this country and we encourage stakeholders to contact us on our
+													toll free helpline if they have any queries or concerns.” concludes
+													Ms Mbane.</p>
+											</div>
+									
+									
+										</article>
+									
+									
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

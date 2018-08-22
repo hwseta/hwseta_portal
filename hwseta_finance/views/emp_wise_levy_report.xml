@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_levy_report">
+<!-- 			<t t-call="report.external_layout"> -->
+				<div class="page" style="font-size:12px !important;">
+<!-- 					<div class="oe_structure" />
+					<div class="row">
+					</div> -->
+<!-- 					<xpath expr="//head">
+							<link rel="stylesheet" type="text/css" href="/hwseta_finance/static/src/css/petty_style.css"></link>
+					</xpath> -->
+					<center>
+						<h3>
+							Levy Report
+						</h3>
+					</center>
+					<div class="text-right">
+						<strong>
+							<t t-foreach="get_date(data)" t-as="d">
+								From Date:
+								<t t-esc="d['from_date']" />
+								To Date:
+								<t t-esc="d['to_date']" />
+							</t>
+						</strong>
+					</div>
+					<table class="table table-condensed" style="border: 1px solid black,page-break-inside: avoid;">
+						<tr style="border: 1px solid black">
+							<th style="border: 1px solid black">Partner</th>
+							<th style="border: 1px solid black">Analytic Account</th>
+							<th style="border: 1px solid black">Type</th>
+							<th style="border: 1px solid black">Entry Number</th>
+							<th style="border: 1px solid black">Journal</th>
+							<th style="border: 1px solid black">Period</th>
+							<th style="border: 1px solid black">Effective Date</th>
+							<th style="border: 1px solid black">Name</th>
+							<th style="border: 1px solid black">reference</th>
+							<th style="border: 1px solid black">tax</th>
+							<th style="border: 1px solid black">Debit</th>
+							<th style="border: 1px solid black">Credit</th>
+						</tr>
+						<t t-foreach="get_partner(data)" t-as="k7">
+							<tr style="border: 1px solid black">
+								<td style="border: 1px solid black">
+									<span t-esc="k7.name" />
+								</td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+								<td style="border: 1px solid black"></td>
+							</tr>
+							<t t-foreach="get_ana_account(k7.id,data)" t-as="an">
+								<tr>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black">
+										<span t-esc="an.name" />
+									</td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+									<td style="border: 1px solid black"></td>
+								</tr>
+								<t t-foreach="get_account_type(k7.id,an.id,data)" t-as="nm">
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											Mandatory
+										</td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+									</tr>
+									<tr t-foreach="nm['mandatory']" t-as="jv">
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+
+										<td style="border: 1px solid black">
+											<span t-esc="jv.move_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.journal_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.period_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.date or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.ref or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.account_tax_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.debit or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.credit or 0.0" />
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['m_tax_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['m_debit_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['m_credit_total'] or 0.0" />
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											Discretionary
+										</td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+									</tr>
+
+									<tr t-foreach="nm['discretionary']" t-as="jv">
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+
+										<td style="border: 1px solid black">
+											<span t-esc="jv.move_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.journal_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.period_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.date or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.ref or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.account_tax_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.debit or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.credit or 0.0" />
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['d_tax_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['d_debit_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['d_credit_total'] or 0.0" />
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											Admins
+										</td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+									</tr>
+
+
+									<tr t-foreach="nm['admins']" t-as="jv">
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+
+										<td style="border: 1px solid black">
+											<span t-esc="jv.move_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.journal_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.period_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.date or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.ref or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.account_tax_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.debit or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.credit or 0.0" />
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['a_tax_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['a_debit_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['a_credit_total'] or 0.0" />
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											Penalty
+										</td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+									</tr>
+
+									<tr t-foreach="nm['penalty']" t-as="jv">
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+
+										<td style="border: 1px solid black">
+											<span t-esc="jv.move_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.journal_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.period_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.date or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.ref or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.account_tax_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.debit or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.credit or 0.0" />
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['p_tax_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['p_debit_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['p_credit_total'] or 0.0" />
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											Interest
+										</td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+									</tr>
+
+
+									<tr t-foreach="nm['interest']" t-as="jv">
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+
+										<td style="border: 1px solid black">
+											<span t-esc="jv.move_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.journal_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.period_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.date or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.ref or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.account_tax_id.name or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.debit or 0.0" />
+										</td>
+										<td style="border: 1px solid black">
+											<span t-esc="jv.credit or 0.0" />
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['i_tax_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['i_debit_total'] or 0.0" />
+											</strong>
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['i_credit_total'] or 0.0" />
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black"></td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['grand_tax_total'] or 0.0" />
+											</strong>
+
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['grand_debit_total'] or 0.0" />
+											</strong>
+
+										</td>
+										<td style="border: 1px solid black">
+											<strong>
+												<span t-esc="nm['grand_credit_total'] or 0.0" />
+											</strong>
+										</td>
+									</tr>
+								</t>
+							</t>
+						</t>
+						<tr t-foreach="get_grand_total(data)" t-as="gt">
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black"></td>
+							<td style="border: 1px solid black">
+								<strong>
+									<span t-esc="gt['final_tax_total'] or 0.0" />
+								</strong>
+							</td>
+							<td style="border: 1px solid black">
+								<strong>
+									<span t-esc="gt['final_debit_total'] or 0.0" />
+								</strong>
+							</td>
+							<td style="border: 1px solid black">
+								<strong>
+									<span t-esc="gt['final_credit_total'] or 0.0" />
+								</strong>
+							</td>
+						</tr>
+					</table>
+					<!-- <div class="oe_structure" /> -->
+				</div>
+<!-- 			</t> -->
+		</template>
+		<!-- <template id="report_move_line"> <t t-call="report.html_container"> 
+			<t t-foreach="doc_ids" t-as="doc_id"> <t t-raw="translate_doc(doc_id, doc_model, 
+			'partner_id.lang', 'hwseta_finance.report_move_line_document')"/> </t> </t> 
+			</template> -->
+	</data>
+</openerp>

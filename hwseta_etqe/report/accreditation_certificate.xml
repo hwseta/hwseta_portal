@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+		<record id="paperformat_etqe_acc" model="report.paperformat">
+			<field name="name">Provider Accreditation</field>
+			<field name="default" eval="True" />
+			<field name="format">A3</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">40</field>
+			<field name="margin_bottom">20</field>
+			<field name="margin_left">7</field>
+			<field name="margin_right">7</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">30</field>
+			<field name="dpi">90</field>
+		</record>
+		
+		<!--Accreditation Certification Report -->
+		<report id="accreditation_certificate_id" string="Certificate Of Accreditation"
+			model="provider.accreditation" report_type="qweb-pdf"
+			file="hwseta_etqe.report_accreditation_certificate" 
+			name="hwseta_etqe.report_accreditation_certificate"
+			groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator"/>
+		
+		<record id="hwseta_etqe.accreditation_certificate_id" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="hwseta_etqe.paperformat_etqe_acc" />
+		</record>
+	</data>
+</openerp>

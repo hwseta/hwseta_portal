@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_levy_exempted">
+			<t t-call="report.external_layout">
+				<div class="page">
+					<div class="oe_structure" />
+					<div class="row">
+					</div>
+					<center>
+						<h3>
+							Levy Exempted Organisations Report
+						</h3>
+					</center>
+					<div class="text-right">
+						<strong>
+							<t t-foreach="get_date(data)" t-as="d">
+								From Date:
+								<t t-esc="d['from_date']" />
+								To Date:
+								<t t-esc="d['to_date']" />
+							</t>
+						</strong>
+					</div>
+					<table class="table table-condensed" style="border: 1px solid black">
+						<tr style="border: 1px solid black">
+							<th style="border: 1px solid black">SDL No.</th>
+							<th style="border: 1px solid black">Name</th>
+							<th style="border: 1px solid black">Registration Number</th>
+							<th style="border: 1px solid black">Total Anual Payroll</th>
+							<th style="border: 1px solid black">SETA ID</th>
+							<th style="border: 1px solid black">SIC Code</th>
+							<th style="border: 1px solid black">SIC Description</th>
+						</tr>
+						<t t-foreach="get_partner(data)" t-as="k7">
+
+							<t t-foreach="cal_date(data,k7.id)" t-as="c">
+								<tr >
+									<td style="border: 1px solid black">
+										<span t-esc="c.employer_sdl_no" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="c.name" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="c.employer_registration_number" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="c.total_annual_payroll" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="c.employer_seta_id.name" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="c.empl_sic_code.id" />
+									</td>
+									<td style="border: 1px solid black">
+										<span t-esc="c.empl_sic_code_id" />
+									</td>
+								</tr>
+							</t>
+						</t>
+					</table>
+					<div class="oe_structure" />
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

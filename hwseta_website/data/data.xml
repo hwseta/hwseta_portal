@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+	<!-- Top Menu -->
+        <record id="menu_aboutus" model="website.menu">
+            <field name="name">About Us</field>
+            <field name="url">/page/hwseta_website.aboutus</field>
+            <field name="target">self</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">20</field>
+        </record>
+        
+        <record id="submenu_overview" model="website.menu">
+            <field name="name">Overview of the HWSETA</field>
+            <field name="url">/page/hwseta_website.overview</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">2</field>
+        </record>
+        <record id="submenu_sdp" model="website.menu">
+            <field name="name">Skills Development (SDP)</field>
+            <field name="url">/page/hwseta_website.skill_development</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">3</field>
+        </record>
+        <record id="submenu_etqa" model="website.menu">
+            <field name="name">ETQE</field>
+            <field name="url">/page/hwseta_website.etqe</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">4</field>
+        </record>
+        <record id="submenu_rime" model="website.menu">
+            <field name="name">RIME (Research)</field>
+            <field name="url">/page/hwseta_website.rime</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">5</field>
+        </record>
+        <record id="submenu_finance" model="website.menu">
+            <field name="name">Finance</field>
+            <field name="url">/page/hwseta_website.finance</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">6</field>
+        </record>
+        <record id="submenu_corp_services" model="website.menu">
+            <field name="name">Corporate Services</field>
+            <field name="url">/page/hwseta_website.corp_services</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">7</field>
+        </record>
+        <record id="submenu_structure" model="website.menu">
+            <field name="name">Structure</field>
+            <field name="url">/page/hwseta_website.structure</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">8</field>
+        </record>
+        <record id="submenu_board_mambers" model="website.menu">
+            <field name="name">Board Members</field>
+            <field name="url">/page/hwseta_website.board_members</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">9</field>
+        </record>
+        <record id="submenu_executive_mngt" model="website.menu">
+            <field name="name">Executive Management</field>
+            <field name="url">/page/hwseta_website.executive_mgt</field>
+            <field name="parent_id" ref="hwseta_website.menu_aboutus"/>
+            <field name="sequence" type="int">10</field>
+        </record>
+        
+
+		<record id="menu_news_events" model="website.menu">
+            <field name="name">News&amp;Events</field>
+            <field name="url">/page/hwseta_website.current_news</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">21</field>
+        </record>
+        
+        <record id="submenu_current_news" model="website.menu">
+            <field name="name">Current News</field>
+            <field name="url">/page/hwseta_website.current_news</field>
+            <field name="parent_id" ref="hwseta_website.menu_news_events"/>
+            <field name="sequence" type="int">1</field>
+        </record>
+        <record id="submenu_events" model="website.menu">
+            <field name="name">Events</field>
+            <field name="url">/page/hwseta_website.events</field>
+            <field name="parent_id" ref="hwseta_website.menu_news_events"/>
+            <field name="sequence" type="int">2</field>
+        </record>
+        <record id="submenu_news_archive" model="website.menu">
+            <field name="name">News Archive</field>
+            <field name="url">/page/hwseta_website.news_archive</field>
+            <field name="parent_id" ref="hwseta_website.menu_news_events"/>
+            <field name="sequence" type="int">3</field>
+        </record>
+        
+        <record id="menu_publications" model="website.menu">
+            <field name="name">Publications</field>
+            <field name="url">/page/hwseta_website.annual_reports</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">22</field>
+        </record>
+        
+        <record id="submenu_annual_reports" model="website.menu">
+            <field name="name">Annual Reports</field>
+            <field name="url">/page/hwseta_website.annual_reports</field>
+            <field name="parent_id" ref="hwseta_website.menu_publications"/>
+            <field name="sequence" type="int">1</field>
+        </record>
+        <record id="submenu_newsletters" model="website.menu">
+            <field name="name">Newsletters</field>
+            <field name="url">/page/hwseta_website.newsletters</field>
+            <field name="parent_id" ref="hwseta_website.menu_publications"/>
+            <field name="sequence" type="int">2</field>
+        </record>
+        <record id="submenu_brochures" model="website.menu">
+            <field name="name">Brochures</field>
+            <field name="url">/page/hwseta_website.brochures</field>
+            <field name="parent_id" ref="hwseta_website.menu_publications"/>
+            <field name="sequence" type="int">3</field>
+        </record>
+        
+        
+        <record id="menu_recruitment" model="website.menu">
+            <field name="name">Recruitment</field>
+            <field name="url">/page/hwseta_website.recruitment</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">23</field>
+        </record>
+        
+        <record id="menu_faqs" model="website.menu">
+            <field name="name">FAQs</field>
+            <field name="url">/page/hwseta_website.faqs</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">24</field>
+        </record>
+        
+        <record id="menu_gallery" model="website.menu">
+            <field name="name">Gallery</field>
+            <field name="url">/page/hwseta_website.gallery</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">25</field>
+        </record>
+        
+        <record id="menu_links" model="website.menu">
+            <field name="name">Links</field>
+            <field name="url">/page/hwseta_website.seta_authorities</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">26</field>
+        </record>
+        
+        <record id="submenu_other_setasAndAuthorities" model="website.menu">
+            <field name="name">Other SETAs and Authorities</field>
+            <field name="url">/page/hwseta_website.seta_authorities</field>
+            <field name="parent_id" ref="hwseta_website.menu_links"/>
+            <field name="sequence" type="int">4</field>
+        </record>
+        <record id="submenu_government_dept" model="website.menu">
+            <field name="name">Government Departments</field>
+            <field name="url">/page/hwseta_website.gov_dept</field>
+            <field name="parent_id" ref="hwseta_website.menu_links"/>
+            <field name="sequence" type="int">4</field>
+        </record>
+        <record id="submenu_councilsAndAssociations" model="website.menu">
+            <field name="name">Councils and Associations</field>
+            <field name="url">/page/hwseta_website.councils_associations</field>
+            <field name="parent_id" ref="hwseta_website.menu_links"/>
+            <field name="sequence" type="int">4</field>
+        </record>
+        
+        <record id="submenu_headOffice" model="website.menu">
+            <field name="name">Head Office</field>
+            <field name="url">/page/hwseta_website.head_office</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">1</field>
+        </record>
+        <record id="submenu_gauteng" model="website.menu">
+            <field name="name">Gauteng</field>
+            <field name="url">/page/hwseta_website.gauteng</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">2</field>
+        </record>
+        <record id="submenu_westernCape" model="website.menu">
+            <field name="name">Western Cape</field>
+            <field name="url">/page/hwseta_website.western_cape</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">3</field>
+        </record>
+        <record id="submenu_easternCape" model="website.menu">
+            <field name="name">Eastern Cape</field>
+            <field name="url">/page/hwseta_website.eastern_cape</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">4</field>
+        </record>
+        <record id="submenu_kznAndFreeState" model="website.menu">
+            <field name="name">KZN and Free State</field>
+            <field name="url">/page/hwseta_website.kzn_free_state</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">5</field>
+        </record>
+        <record id="submenu_limpopoAndMpumalanga" model="website.menu">
+            <field name="name">Limpopo and Mpumalanga</field>
+            <field name="url">/page/hwseta_website.limpopo</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">6</field>
+        </record>
+        <record id="submenu_mailHWSETA" model="website.menu">
+            <field name="name">e-mail the HWSETA</field>
+            <field name="url">/page/hwseta_website.email</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">7</field>
+        </record>
+        <record id="menu_reportCorruption" model="website.menu">
+            <field name="name">Report Corruption</field>
+            <field name="url">/page/hwseta_website.report_corruption</field>
+            <field name="parent_id" ref="website.menu_contactus"/>
+            <field name="sequence" type="int">8</field>
+        </record>
+    </data>
+</openerp>

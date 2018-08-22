@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === e-mail the HWSETA Page === -->
+		<template id="email" name="e-mail the HWSETA" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+								<t t-call="hwseta_website.sidebar1" />
+							
+								<div class="oc-layout-cell oc-content">
+									<article id="post-313"
+										class="oc-post oc-article  post-313 page type-page status-publish hentry">
+										<h1 class="oc-postheader">e-mail the HWSETA</h1>
+										<div class="oc-postcontent oc-postcontent-0 clearfix">
+											<p>[contact_form]</p>
+										</div>
+							
+							
+									</article>
+							
+							
+							
+								</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

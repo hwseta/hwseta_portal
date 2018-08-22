@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Inheriting openerp css in order to add own css. -->
+		<template id="minimal_layout_inherit_sdp" inherit_id="report.minimal_layout" name="hwseta_sdp layout">
+		    <xpath expr='//link[@href="/report/static/src/css/reset.min.css"]' position="before">
+		        <link rel="stylesheet" href="/hwseta_sdp/static/src/css/learner_style.css"/>
+		    </xpath>
+		</template>
+		<template id="sdp_asset_backend" inherit_id="web.assets_backend" name="hwseta_sdp sheet">
+		    <xpath expr='.' position="inside">
+		        <link rel="stylesheet" href="/hwseta_sdp/static/src/css/one2many.css"/>
+		    </xpath>
+		</template>
+		
+		<template id="date_year_range" inherit_id="web.assets_backend" name="hwseta date range">
+		    <xpath expr='.' position="inside">
+	                <script type="text/javascript" src="/hwseta_sdp/static/src/js/change_year_range.js"></script>
+		    </xpath>
+		</template>		
+	</data>
+</openerp>

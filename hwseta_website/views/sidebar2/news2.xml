@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === SkillsTalk@HWSETA Newsletter June 2015 edition out now Page === -->
+		<template id="news2" name="SkillsTalk@HWSETA Newsletter June 2015 edition out now" page="True">
+			 <t t-call="website.layout">
+				<div id="wrap" class="oe_structure oe_empty">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+	
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article class="oc-post oc-article ">
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<div class="navigation">
+													<div class="alignleft">
+														«
+														<a href="/page/hwseta_website.news3" title="HWSETA Funds Animal Health Studies in Eastern Cape"
+															rel="prev">HWSETA Funds Animal Health Studies in Eastern Cape</a>
+													</div>
+													<div class="alignright">
+														<a href="http://www.hwseta.org.za/?p=1130" title="There are currently no vacancies"
+															rel="next">There are currently no vacancies</a>
+														»
+													</div>
+												</div>
+											</div>
+									
+									
+										</article>
+										<article id="post-1094"
+											class="oc-post oc-article  post-1094 post type-post status-publish format-standard hentry category-latest-news">
+											<h1 class="oc-postheader">SkillsTalk@HWSETA Newsletter June 2015 edition out now
+											</h1>
+											<div class="oc-postheadericons oc-metadata-icons">
+												<span class="oc-postdateicon">
+													<span class="date">Published</span>
+													<span class="entry-date" title="3:26 pm">June 29, 2015</span>
+												</span>
+												|
+												<span class="oc-postauthoricon">
+													<span class="author">By</span>
+													<span class="author vcard">
+														<a class="url fn n" href="http://www.hwseta.org.za/?author=7"
+															title="View all posts by Elfrieda Tyrer">Elfrieda Tyrer</a>
+													</span>
+												</span>
+											</div>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<p>
+													<a
+														href="http://www.hwseta.org.za/wp-content/uploads/2015/06/skillstalk_hwseta-june-2015-final.pdf">Click here </a>
+													to download newsletter
+												</p>
+											</div>
+									
+									
+										</article>
+									
+									
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

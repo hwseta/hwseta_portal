@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="report_achievement_certificate">
+			<t t-call="report.html_container">
+				<div class="oe_structure" />
+				<t t-as="o_assessment" t-foreach="docs">
+					<t t-as="o" t-foreach="o_assessment.learner_achieved_ids">
+						<t t-if="get_status(o)['achieve']">
+							<div class="page">
+								<style type="text/css">
+						            <![CDATA[
+								        @font-face {
+									    font-family: 'Edwardian Script ITC';
+									    src: url('fonts/Edwardian Script ITC V2.eot');
+									    src: local('☺'), url('/hwseta_etqe/static/src/fonts/Edwardian Script ITC V2.woff')
+									           format('woff'), url('/hwseta_etqe/static/src/fonts/Edwardian Script ITC V2.ttf')
+									           format('truetype'), url('/hwseta_etqe/static/src/fonts/Edwardian Script ITC V2.svg') format('svg');
+									    font-weight: normal;
+									    font-style: normal;
+			                            }
+						
+						       		 ]]>
+								</style>
+								<h1
+									style="font-family: Edwardian Script ITC;font-size:450%;text-align:center;font-weight:bold;">
+									Certificate
+									<br />
+									of
+									<br />
+									Achievement
+								</h1>
+								<h2
+									style="font-family: Edwardian Script ITC;font-weight:bold;font-size:250%;text-align:center;"> This is to certify that</h2>
+								<h2 style="font-size:150%;text-align:center;font-weight:bold">
+									<u>
+										<t t-if="o.learner_id.name">
+											<span t-field="o.learner_id.name" />
+										</t>
+										<t t-if="o.learner_id.person_middle_name">
+											<span t-field="o.learner_id.person_middle_name" />
+										</t>
+										<t t-if="o.learner_id.person_last_name">
+											<span t-field="o.learner_id.person_last_name" />
+										</t>
+									</u>
+								</h2>
+								<h2
+									style="font-family: Edwardian Script ITC;font-weight:bold;font-size:250%;text-align:center;"> Identity Number</h2>
+								<h3 style="font-size:150%;text-align:center;">
+									<t t-if="not o.learner_id.learner_identification_id">
+										<t t-if="o.learner_id.national_id">
+											<u>
+												<span t-field="o.learner_id.national_id" />
+											</u>
+										</t>
+									</t>
+									<t t-if="o.learner_id.learner_identification_id">
+										<u>
+											<span t-field="o.learner_id.learner_identification_id" />
+										</u>
+									</t>
+								</h3>
+								<h2
+									style="font-family: Edwardian Script ITC;font-weight:bold;font-size:200%;text-align:center;">
+									Has been declared competent against the following Qualification
+									registered on the
+									<br />
+									National Qualifications Framework
+								</h2>
+								<h4 style="font-size:125%;text-align:center;font-weight:bold;">
+									<u>
+										<span t-esc="get_qualification(o)" />
+									</u>
+									<br />
+									<u>
+										<span t-esc="get_saqa_qual_id(o) or ''" />
+									</u>
+								</h4>
+								<h3 style="font-size:100%;text-align:center;" />
+								<h3 style="font-size:100%;text-align:center;font-weight:bold">
+									<u />
+								</h3>
+								<h3 style="font-size:100%;text-align:center;font-weight:bold ">
+									<u />
+								</h3>
+								<table style="align:center;width:100%;">
+									<tr width="100%">
+										<td width="5%" />
+										<td width="25%" 
+											style="font-size:125%;width:300px;text-align:center;font-weight:bold;">
+											<t t-as="l" t-foreach="o.learner_id.learner_qualification_ids">
+												<t t-if="o.qual_learner_assessment_achieved_line_id.id == l.learner_qualification_parent_id.id">
+													<span t-field="l.certificate_date" t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"></span>
+												</t>
+											</t>
+										</td>
+										<td width="45%" />
+										<td width="25%"
+											style="font-size:125%;width:300px;text-align:center;font-weight:bold;">
+											<span
+												t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y ')" />
+										</td>
+									</tr>
+									<tr width="100%">
+										<td width="5%" />
+										<td width="30%"
+											style="font-family: Edwardian Script ITC;font-weight:bold;text-decoration: overline;font-size:200%;width:300px;text-align:center;">Date of Achievement</td>
+										<td width="35%" />
+										<td width="30%"
+											style="font-family: Edwardian Script ITC;font-weight:bold;text-decoration: overline;font-size:200%;width:300px;text-align:center;">Date of Issue</td>
+									</tr>
+								</table>
+								<br />
+								<h4
+									style="font-family: Edwardian Script ITC;font-weight:bold;text-decoration: overline;font-size:200%;text-align:center;">ETQA Executive Manager</h4>
+								<br />
+								<br />
+								<br />
+								<h4
+									style="font-family: Edwardian Script ITC;font-weight:bold;text-decoration: overline;font-size:200%;text-align:center;">Chief Executive Officer</h4>
+								<br/>
+								<br />
+								<h5 style="text-align:center;font-family: 'Arial';font-size:100%" t-esc="get_certificate_no(o)['certificate_no']" />
+								<p style="text-align:center;">
+									<img
+										t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', o.learner_id.learner_identification_id, 600, 100)"
+										style="width:250px;height:20px" />
+								</p>
+								<p style="page-break-after:always" />
+							</div>
+						</t>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

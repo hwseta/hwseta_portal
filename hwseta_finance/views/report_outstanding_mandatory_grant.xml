@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_outstanding_mandatory_grant">
+			<t t-call="report.external_layout">
+				<div class="page">
+					<div class="row mt16 mb16">
+						<h2>Outstanding Mandatory Grant Report</h2>
+					</div>
+					<div class="row mb16">
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Partner</th>
+									<th>Account</th>
+									<th>Name</th>
+									<th>Entry Number</th>
+									<th>Due Date</th>
+									<th>Debit</th>
+									<th>Credit</th>
+									<th>Analytic Account</th>
+									<th>Tax Account</th>
+									<th>Tax/Base Amount</th>
+									<th>Outstanding Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+							<t t-foreach="get_partner()" t-as="part"> 
+								<tr>
+									<td><t t-esc="part.name"/></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<t t-foreach="get_lines(part)" t-as="line">
+								<tr>
+									<td></td>
+									<td><t t-esc="line.account_id.name"/></td>
+									<td><t t-esc="line.name"/></td>
+									<td><t t-esc="line.move_id.name"/></td>
+									<td><t t-esc="line.date_maturity"/></td>
+									<td><t t-esc="line.debit or 0.00"/></td>
+									<td><t t-esc="get_amount(line)  or 0.00"/></td>
+									<td><t t-esc="line.analytic_account_id.name"/></td>
+									<td><t t-esc="line.tax_code_id.name"/></td>
+									<td><t t-esc="line.tax_amount  or 0.00"/></td>
+									<td><t t-esc="get_amount(line)  or 0.00"/></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><strong><t t-esc="line.debit or 0.00"/></strong></td>
+									<td><strong><t t-esc="get_amount(line)  or 0.00"/></strong></td>
+									<td></td>
+									<td><strong><t t-esc="line.tax_code_id.name"/></strong></td>
+									<td><strong><t t-esc="line.tax_amount  or 0.00"/></strong></td>
+									<td><strong><t t-esc="get_amount(line)  or 0.00"/></strong></td>
+								</tr>
+							</t>
+								</t>
+							</tbody> 
+						</table>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

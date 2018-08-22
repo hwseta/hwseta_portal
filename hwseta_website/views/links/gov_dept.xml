@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Government Department Page === -->
+		<template id="gov_dept" name="Government Department" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-297"
+											class="oc-post oc-article  post-297 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Government Departments</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Government Departments the HWSETA deals with</h2>
+												<table width="100%" border="0" cellpadding="0" cellspacing="0"
+													class="contacttable">
+													<tbody>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.dhet.gov.za" target="_new">DHET</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline">Department of Higher
+																Education and Training</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.dhet.gov.za" target="_new">www.dhet.gov.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.dsd.gov.za" target="_new">DSD</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top"> Department of
+																Social Development	</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																<a href="http://www.dsd.gov.za" target="_new">www.dsd.gov.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.doh.gov.za" target="_new">DoH</a>
+															</td>
+															<td width="50%" valign="top" class="contactsnoline"> Department of Health	</td>
+															<td width="30%" valign="top" class="contactsnoline">
+																<a href="http://www.doh.gov.za">www.doh.gov.za</a>
+															</td>
+														</tr>
+														<tr>
+															<td width="20%" valign="top" class="contactsnoline">
+																<a href="http://www.labour.gov.za" target="_new">DoL</a>
+															</td>
+															<td width="50%" class="contactsnoline" valign="top"> Department of
+																Labour	</td>
+															<td width="30%" class="contactsnoline" valign="top">
+																<a href="http://www.labour.gov.za">www.labour.gov.za</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>							
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

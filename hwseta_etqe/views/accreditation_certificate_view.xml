@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="report_accreditation_certificate">
+			<t t-call="report.html_container">
+				<!-- <t t-call="hwseta_etqe.pro_ass_mod_header_footer_layout"> -->
+					<div class="" />
+					<t t-as="o" t-foreach="docs">
+						<div class="page">
+							<style type="text/css">
+							            <![CDATA[
+									        @font-face {
+										    font-family: 'Edwardian Script ITC';
+										    src: url('fonts/Edwardian Script ITC V2.eot');
+										    src: local('☺'), url('/hwseta_etqe/static/src/fonts/Edwardian Script ITC V2.woff')
+										           format('woff'), url('/hwseta_etqe/static/src/fonts/Edwardian Script ITC V2.ttf')
+										           format('truetype'), url('/hwseta_etqe/static/src/fonts/Edwardian Script ITC V2.svg') format('svg');
+										    font-weight: normal;
+										    font-style: normal;
+				                            }
+							
+							       		 ]]>
+							</style>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<h1 style="font-family: Edwardian Script ITC;font-size:600%;text-align:center;">
+								Certificate
+								<br />
+								Of
+								<br />
+								Accreditation
+							</h1>
+							<h2 style="font-family: 'Edwardian Script ITC';font-size:250%;text-align:center;"> This is to certify that</h2>
+							<h2 style="font-size:150%;text-align:center;font-weight:bold">
+								<u>
+									<span t-field="o.related_provider.name" />
+								</u>
+							</h2>
+							<h2 style="font-family: 'Edwardian Script ITC';font-size:250%;text-align:center;"> Accreditation Number</h2>
+							<h2 style="font-size:150%;text-align:center;font-weight:bold;">
+								<u>
+									<span t-field="o.related_provider.provider_accreditation_num" />
+								</u>
+							</h2>
+							<h2 style="font-family: 'Edwardian Script ITC';font-size:250%;text-align:center;">
+								is accredited as an Education and Training Provider with the Health and Welfare
+								<br />
+								Sector Education and Training Authority to provide trainig aligned to the
+								<br />
+								Qualification(s) and/or Unit Standard(s) registered on the
+								National Qualifications 
+								<br/>
+								Framework that is/are specified in the
+								Provider Accredition Transcript
+								<br />
+								<br />
+							</h2>
+							<br />
+							<br />
+							<table style="align:center;width:100%">
+								<tr>
+									<th
+										style="font-size:150%;width:33%;text-align:center;font-weight:bold">
+										<u>
+											<span t-field="o.related_provider.provider_start_date" />
+										</u>
+									</th>
+									<th
+										style="font-size:150%;width:33%;text-align:center;font-weight:bold">
+										<u>
+											<!-- <span t-field="o.related_provider.provider_date_stamp" /> -->
+											<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y ')" />
+										</u>
+									</th>
+									<th
+										style="font-size:150%;width:33%;text-align:center;font-weight:bold">
+										<u>
+											<span t-field="o.related_provider.provider_end_date" />
+										</u>
+									</th>
+								</tr>
+								<tr>
+									<td style="font-family: 'Edwardian Script ITC';font-size:250%;width:300px;text-align:center;">Date of Accreditation</td>
+									<td style="font-family: 'Edwardian Script ITC';font-size:250%;width:300px;text-align:center;">Date of issue</td>
+									<td style="font-family: 'Edwardian Script ITC';font-size:250%;width:300px;text-align:center;">Date of Expiry</td>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<h3 style="font-size:150%;text-align:center;font-weight:bold">
+								<u />
+							</h3>
+							<h3 style="text-decoration: overline;font-family: 'Edwardian Script ITC';font-size:250%;text-align:center;">ETQA Executive Manager</h3>
+							<br />
+							<br />
+							<h3 style="font-size:150%;text-align:center;font-weight:bold;" />
+							<h3 style="text-decoration: overline;font-family: 'Edwardian Script ITC';font-size:250%;text-align:center;">Chief Executive Officer</h3>
+							<br />
+							<br />
+							<br />
+							<br />
+							<h5 style="text-align:center;">
+								<img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', o.related_provider.provider_accreditation_num, 600, 100)"
+											style="width:250px;height:25px" />
+							</h5>
+						</div>
+					</t>
+				<!-- </t> -->
+			</t>
+		</template>
+	</data>
+</openerp>

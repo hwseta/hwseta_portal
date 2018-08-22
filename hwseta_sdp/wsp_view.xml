@@ -1,0 +1,1628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Old WSP Form View without States -->
+		<record id="form_view_workplace_skill_plan" model="ir.ui.view">
+			<field name="name">workplace.skill.plan.form</field>
+			<field name="model">wsp.plan</field>
+			<field name="arch" type="xml">
+				<form string="Workplace Skill Plan" create="0">
+					<header>
+						<!-- <button class="oe_highlight" type="object" name="action_submit_wsp" 
+							string="Submit" attrs="{'invisible':[('state','!=','draft')]}" groups="base.group_user,hwseta_sdp.group_sdf_user"/> -->
+						<!-- <button class="oe_highlight" type="object" name="action_resend_mail"
+							string="Resend Mail"/> -->
+						<button class="oe_highlight" type="object" name="action_submit_wsp"
+							string="Submit"
+							attrs="{'invisible':['|','|',('request_extension','=',True),('allow_extension','=',True),('state','!=','draft')]}"
+							groups="base.group_user,hwseta_sdp.group_sdf_user,hwseta_etqe.group_seta_administrator" />
+						<button name="send_query_email" states="submitted" string="Query"
+							type="object" class="oe_highlight" groups="hwseta_sdp.group_wsp_administrator" />
+						<button name="send_query_email" states="evaluated" string="Query"
+							type="object" class="oe_highlight" groups="hwseta_sdp.group_wsp_officer" />
+						<button name="go_previous_stage" states="query" string="Go Previous Stage"
+							type="object" class="oe_highlight"
+							groups="hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_officer" />
+						<button name="go_previous_stage_for_every" states="evaluated,evaluated2,rejected"
+							string="Go Previous Stage" type="object" class="oe_highlight"
+							groups="hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_officer" />
+						<!-- <button name="go_previous_stage" states="query" string="Go Previous 
+							Stage" type="object" class="oe_highlight" groups="hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_officer"/> -->
+						<!-- <button class="oe_highlight" type="object" name="action_evaluate_wsp" 
+							string="Evaluate" states="submitted" groups="base.group_user,hwseta_sdp.group_sdp_manager"/> -->
+						<!-- <button class="oe_highlight" type="object" name="action_evaluate_wsp" 
+							string="Evaluate" states="submitted" groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_manager"/> -->
+						<button class="oe_highlight" type="object" name="action_evaluate_wsp"
+							string="Recommended" states="submitted"
+							groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_manager" />
+						<button class="oe_highlight" type="object"
+							name="action_evaluate_not_recommended_wsp" string="Not recommended"
+							states="submitted"
+							groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_manager" />
+
+						<button class="oe_highlight" type="object" name="action_evaluate2_wsp"
+							string="Recommended" states="evaluated"
+							groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
+						<button class="oe_highlight" type="object"
+							name="action_evaluate2_not_recommended_wsp" string="Not recommended"
+							states="evaluated"
+							groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
+
+						<button class="oe_highlight" type="object" name="action_wsp_approve"
+							string="Approve" states="evaluated2"
+							groups="base.group_user,hwseta_sdp.group_sdp_manager" />
+
+						<button class="oe_highlight" type="object" name="action_reject_wsp"
+							string="Reject" states="evaluated2"
+							groups="base.group_user,hwseta_sdp.group_sdp_manager" />
+						<!-- <button class="oe_highlight" type="object" name="action_set_draft" 
+							string="Set to Draft" states="evaluated2" groups="base.group_user,hwseta_sdp.group_sdp_manager"/> -->
+						<!-- <field name="state" widget="statusbar" statusbar_visible="draft,submitted,evaluated,rejected"/> -->
+
+						<field name="state" widget="statusbar"
+							statusbar_visible="draft,submitted,evaluated,evaluated2,approved,query,rejected" />
+
+						<!-- Request for Extension -->
+						<button class="oe_highlight" type="object"
+							name="action_request_extension" string="Request Extension"
+							attrs="{'invisible' : [('request_extension','=',False)]}" groups="hwseta_sdp.group_sdf_user,hwseta_etqe.group_seta_administrator" />
+						<button class="oe_highlight" type="object"
+							name="action_approve_extension" string="Approve Extension"
+							attrs="{'invisible' : [('allow_extension','=',False)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_etqe.group_seta_administrator" />
+						<!-- -->
+					</header>
+					<field name="is_tep_loaded" invisible="1" />
+					<field name="is_tep_to_planned_loaded" invisible="1" />
+					<field name="is_prev_wsp_loaded" invisible="1" />
+					<group string="Organisation Details">
+						<group>
+							<!-- <field name="sdf_id" on_change="onchange_sdf_id(sdf_id)" attrs="{'readonly':[('state','=','evaluated')],'invisible':[('user_id','!=',1)]}" 
+								required="1" widget="selection"/> -->
+							<field name="sdf_id" on_change="onchange_sdf_id(sdf_id)"
+								attrs="{'readonly':[('state','in',['submitted','evaluated'])],'invisible':[('user_id','!=',1)]}"
+								required="1" />
+						</group>
+						<group>
+							<field name="user_id" invisible="1" />
+							<field name="current_user_forbidden" invisible="1" />
+						</group>
+						<group>
+							<!-- <field name="employer_id" on_change="onchange_employer_id(employer_id)" 
+								attrs="{'readonly':[('state','=','evaluated')]}" required="1" options="{'no_create_edit':True}"/> -->
+							<field name="employer_id" on_change="onchange_employer_id(employer_id)"
+								attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"
+								required="1" options="{'no_create_edit':True}" />
+							<field name="fiscal_year" readonly="1" />
+							<field name="wsp_start_period" readonly="1" />
+							<field name="start_period" readonly="1" />
+							<field name="scheme_year_id"  readonly="1"/>
+							<field name="extension_date" readonly="1"
+								attrs="{'invisible' : [('show_extension_date','=',False)]}" />
+						</group>
+						<group>
+							<field name="id" invisible="1"/>
+							<field name="sdl_no"
+								attrs="{'readonly':['|',('state','in',['submitted','evaluated']),('id','!=',False)]}" />
+							<field name="wsp_submission_date" readonly="1" />
+							<field name="wsp_end_period" readonly="1" />
+							<field name="end_period" readonly="1" />
+							<!-- <field name="approved_by" readonly="1"/> -->
+							<field name="request_extension_date" invisible="1" />
+							<field name="approve_extension_date" invisible="1" />
+						</group>
+					</group>
+					<group>
+						<group string="WSP Details">
+							<field name="wsp_details_type" />
+						</group>
+						<group>
+							<field name="submitted" invisible="1" />
+							<field name="request_extension" invisible="1" />
+							<field name="allow_extension" invisible="1" />
+							<field name="show_extension_date" invisible="1" />
+							<field name="query_status" invisible="1" />
+							<field name="save_some_record" on_change="onchange_partial_save(save_some_record)" />
+						</group>
+					</group>
+					<group>
+						<group>
+							<button name="generate_atr_error_log" string="Show ATR Error Log" class="oe_highlight"
+									type="object" attrs="{'invisible':['|',('wsp_details_type','!=','actual'),('state','in',['submitted','evaluated','evaluated2','approved','query','rejected'])]}"
+							/>
+							<button name="import_previous" string="Load Prev.WSP"
+								type="object" class="oe_inline oe_stat_button" icon="fa-arrow-down"
+								attrs="{'invisible':['|','|',('is_prev_wsp_loaded','=',True),('wsp_details_type','=','planned'),('state','in',['submitted','evaluated','evaluated2','approved','query','rejected'])]}"
+								confirm="Are you sure you want to Load WSP?" 
+							/>
+						</group>
+						<group>
+							<group>
+								<button name="generate_wsp_error_log" string="Show WSP Error Log" class="oe_highlight"
+										type="object" attrs="{'invisible':['|',('wsp_details_type','!=','planned'),('state','in',['submitted','evaluated','evaluated2','approved','query','rejected'])]}"
+								/>
+								<button name="import_total_emp_profile" string="Load TEP"
+									type="object" class="oe_inline oe_stat_button" icon="fa-arrow-down"
+									attrs="{'invisible':['|','|',('is_tep_loaded','=',True),('wsp_details_type','=','actual'),('state','in',['submitted','evaluated','evaluated2','approved','query','rejected'])]}"
+									confirm="Are you sure you want to Load TEP?" />
+								<button name="import_selected_tep_to_plan" string="Load TEP to Planned"
+									type="object" class="oe_inline oe_stat_button" icon="fa-arrow-down"
+									style="width:168px!important;"
+									attrs="{'invisible':['|','|',('is_tep_to_planned_loaded','=',True),('wsp_details_type','=','actual'),('state','in',['submitted','evaluated','evaluated2','approved','query','rejected'])]}"
+									confirm="Are you sure you want to Load Selected TEP to Planned Training?" />
+							</group>
+						</group>
+					</group>
+					<notebook>
+						<page string="Actual Training"
+							attrs="{'invisible':[('wsp_details_type','=','planned')]}">
+							<button name="clear_all_atr" string="Clear All" type="object"
+								class="oe_highlight" confirm="Are you sure you want clear all?"
+								attrs="{'invisible':['|',('submitted','=',True),('state','&lt;&gt;','draft')]}" />
+							<!-- <page string="Actual Training" attrs="{'invisible':[('wsp_details_type','in',['planned','planned_current'])]}"> -->
+							<field name="training_actual_ids"
+								attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+								<!-- <field name="training_actual_ids" attrs="{'readonly':[('state','not 
+									in',['draft'])]}"> -->
+								<tree string="Actual Training" editable="bottom">
+									<field name="save_actual_planned_record" invisible="1" />
+									<field name="training_type" on_change="onchange_training_type(training_type)"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="name" />
+									<field name="surname" />
+									<field name="employee_id" options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'required':[('socio_economic_status','=','employed'),('save_actual_planned_record','=',False)]}" />
+									<field name="code" on_change="onchange_code(code)"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="occupation"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}"
+										domain="[('id','=',None)]" />
+									<field name="specialisation_exists" invisible="1" />
+									<field name="specialization"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'required':[('specialisation_exists','=',True),('save_actual_planned_record','=',False)],'readonly':[('specialisation_exists','!=',True)]}" />
+									<field name="learner_province"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}"
+										on_change="onchange_province_id(learner_province)" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" required="1" on_change="onchange_suburb_id(suburb_id)"/> -->
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)" 
+										options="{'no_create_edit': True, 'no_quick_create': True}"/> -->
+									<field name="city_id" on_change="onchange_city(city_id)"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="urban"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="socio_economic_status"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}"
+										string="Employed/Unemployed" />
+									<!-- <field name="type_training" attrs="{'readonly':[('training_type','=','pivotal')]}"/> -->
+									<field name="type_training"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="other_type_of_intervention"
+										attrs="{'readonly':[('training_type','=','pivotal')]}" />
+									<field name="name_training"
+									 attrs="{'readonly':[('training_type','=','pivotal')],'required':[('training_type','!=','pivotal'),('save_actual_planned_record','=',False)]}"/>
+									<field name="pivotal_programme_qualification"
+										attrs="{'readonly':[('training_type','=','non-pivotal')],'required':[('training_type','!=','non-pivotal'),('save_actual_planned_record','=',False)]}" />
+									<!-- <field name="pivotal_programme_type" attrs="{'readonly':[('training_type','=','non-pivotal')]}"/> -->
+									<field name="pivotal_programme_institution"
+										attrs="{'readonly':[('training_type','=','non-pivotal')],'required':[('training_type','!=','non-pivotal'),('save_actual_planned_record','=',False)]}" />
+									<!-- <field name="pivotal_programme_qualification" attrs="{'readonly':[('training_type','=','non-pivotal')]}"/> -->
+									<field name="training_cost" sum="Total Training Cost"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="start_date"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="end_date"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="nqf_aligned"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="nqf_level"
+										attrs="{'readonly':[('nqf_aligned','=','no')],'required':[('nqf_aligned','=','yes'),('save_actual_planned_record','=',False)]}" />
+									<field name="population_group"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}"
+										string="Race" />
+									<field name="gender"
+										attrs="{'required':[('save_actual_planned_record','=',False)]}" />
+									<field name="dissability" />
+									<field name="save_actual_planned_record" invisible="1" />
+									<!-- Commented for Loading previous WSP planted to actual of this 
+										years -->
+									<!-- start -->
+									<!-- <field name="african_male" sum="African Male" required="1"/> 
+										<field name="african_female" sum="African Female" required="1"/> <field name="african_dissabled" 
+										sum="African Disabled" required="1"/> <field name="coloured_male" sum="Coloured 
+										Male" required="1"/> <field name="coloured_female" sum="Coloured Female" 
+										required="1"/> <field name="coloured_dissabled" sum="Coloured Disabled" required="1"/> 
+										<field name="indian_male" sum="Indian Male" required="1"/> <field name="indian_female" 
+										sum="Indian Female" required="1"/> <field name="indian_dissabled" sum="Indian 
+										Disabled" string="ID" required="1"/> <field name="white_male" sum="White 
+										Male" required="1"/> <field name="white_female" sum="White Female" required="1"/> 
+										<field name="white_dissabled" sum="White Disabled" required="1"/> <field 
+										name="total_male" sum="Total Male" required="1"/> <field name="total_female" 
+										sum="Total Female" required="1"/> <field name="total_dissabled" sum="Total 
+										Dissabled" required="1"/> <field name="age_group_less" sum="Total Age Less 
+										than 35" required="1"/> <field name="age_group_upto" sum="Total Age betweeen 
+										35-55" required="1"/> <field name="age_group_greater" sum="Total Age greater 
+										than 55" required="1"/> -->
+									<!-- end -->
+
+									<!-- <field name="population_group"/> <field name="gender"/> <field 
+										name="age_group"/> -->
+									<!-- <field name="major"/> <field name="sub_major_group"/> -->
+									<!-- <field name="total_cost" sum="Total Cost" required="1"/> -->
+									<!-- <field name="dissability"/> -->
+								</tree>
+							</field>
+							<group string="Aggregated Counts">
+								<group>
+									<field name="total_am_at" />
+									<field name="total_af_at" />
+									<field name="total_wm_at" />
+									<field name="total_wf_at" />
+									<field name="total_male_at" />
+									<field name="total_pivotal_at" />
+									<field name="total_non_pivotal_at" />
+									<field name="total_mf_at" />
+								</group>
+								<group>
+									<field name="total_cm_at" />
+									<field name="total_cf_at" />
+									<field name="total_im_at" />
+									<field name="total_if_at" />
+									<field name="total_female_at" />
+									<field name="total_employed_at" />
+									<field name="total_unemployed_at" />
+								</group>
+							</group>
+						</page>
+						<page string="Adult Education and Training"
+							attrs="{'invisible':[('wsp_details_type','=','planned')]}">
+							<button name="clear_all_adult_education_training" string="Clear All"
+								type="object" class="oe_highlight" confirm="Are you sure you want clear all?"
+								attrs="{'invisible':['|',('submitted','=',True),('state','&lt;&gt;','draft')]}" />
+							<!-- <page string="Adult Education and Training" attrs="{'invisible':[('wsp_details_type','in',['planned','planned_current'])]}"> -->
+							<!-- <field name="actual_adult_education_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"> -->
+							<field name="actual_adult_education_ids"
+								attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+								<tree string="Actual Adult Education and Training"
+									editable="bottom">
+									<field name="save_actual_adult_record" invisible="1" />
+									<field name="name" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="surname" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<!-- <field name="ofo_code" on_change="onchange_code(ofo_code)" 
+										options="{'no_create_edit': True}"/> -->
+									<field name="id_number" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="population_group" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="gender" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<!-- <field name="african_male"/> <field name="african_female"/> 
+										<field name="african_dissabled"/> <field name="coloured_male"/> <field name="coloured_female"/> 
+										<field name="coloured_dissabled"/> <field name="indian_male"/> <field name="indian_female"/> 
+										<field name="indian_dissabled"/> <field name="white_male"/> <field name="white_female"/> 
+										<field name="white_dissabled"/> <field name="total_male"/> <field name="total_female"/> 
+										<field name="total_dissabled"/> -->
+									<field name="dissability_status_and_type" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="province" string="Learner Province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_actual_adult_record','=',False)]}" on_change="onchange_province_id(province)" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" on_change="onchange_suburb_id(suburb_id)" required="1"/> -->
+									<!-- <field name="municipality_id" options="{'no_create_edit': True, 
+										'no_quick_create': True}" on_change="onchange_municipality(municipality_id)" 
+										required="1"/> -->
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)" 
+										options="{'no_create_edit': True, 'no_quick_create': True}" required="1"/> -->
+									<field name="city_id" on_change="onchange_city(city_id)"
+										options="{'no_create_edit': True,'no_quick_create': True}" />
+									<field name="urban" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="start_date" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="end_date" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="provider" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="aet_level" attrs="{'required':[('save_actual_adult_record','=',False)]}" />
+									<field name="aet_subject" invisible="1" />
+									<field name="aet_subject1" attrs="{'required':[('save_actual_adult_record','=',False)]}" widget="many2many_tags" />
+									<!-- <field name="reason"/> -->
+								</tree>
+							</field>
+						</page>
+						<!-- Must be Enable for the next year. -->
+						<page string="Variance"
+							attrs="{'invisible':[('wsp_details_type','=','planned')]}">
+							<!-- <page string="Variance" attrs="{'invisible':[('wsp_details_type','in',['planned','planned_current'])]}"> -->
+							<group
+								string="The actual training must be minimum of 60% of the planned training.Reasons must be provided for any variances between planned and actual training.">
+								<field name="variance_pivotal_ids" string="Pivotal">
+									<tree string='Variance' editable="bottom" create="0"
+										delete="0">
+										<field name="type_training" readonly="1" />
+										<field name="wsp_planned" readonly="1" />
+										<field name="total_cost_planned" readonly="1" />
+										<field name="atr_actual" readonly="1" />
+										<field name="total_cost_actual" readonly="1" />
+										<field name="variance_percentage" readonly="1" sum="Percentage" />
+										<field name="comments" />
+									</tree>
+								</field>
+							</group>
+							<group>
+								<!-- <button name="check_variance" type="object" string="Check Variance" 
+									class="oe_inline oe_stat_button" icon="fa-download"/> -->
+								<field name="variance_ids" string="Non-pivotal">
+									<tree string='Variance' editable="bottom" create="0"
+										delete="0">
+										<field name="type_training" readonly="1" />
+										<field name="wsp_planned" readonly="1" />
+										<field name="total_cost_planned" readonly="1" />
+										<field name="atr_actual" readonly="1" />
+										<field name="total_cost_actual" readonly="1" />
+										<field name="variance_percentage" readonly="1" sum="Percentage" />
+										<field name="comments" />
+									</tree>
+								</field>
+							</group>
+						</page>
+						<!-- <page string="Total Employment Profile" attrs="{'invisible':[('wsp_details_type','in',['actual','planned_current'])]}"> -->
+						<page string="Total Employment Profile"
+							attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+							<button name="clear_all_tep" string="Clear All" type="object"
+								class="oe_highlight" confirm="Are you sure you want clear all?"
+								attrs="{'invisible':['|',('submitted','=',True),('state','&lt;&gt;','draft')]}" />
+							<field name="total_employment_profile_ids"
+								attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}"
+								context="{'employer':employer_id}">
+								<!-- <field name="total_employment_profile_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}" 
+									context="{'employer':employer_id}"> -->
+								<!-- Old Format -->
+								<!-- <tree string="Total Employment Profile" editable="bottom"> <field 
+									name="ofo_code" on_change="onchange_code(ofo_code)" options="{'no_create_edit': 
+									True}"/> <field name="sdl_number"/> <field name="citizen_resident_status_code"/> 
+									<field name="employee_id"/> <field name="id_type"/> <field name="dob"/> <field 
+									name="occupation" options="{'no_create_edit': True}"/> <field name="specialization" 
+									domain="[('ofo_code_id','=',ofo_code)]" options="{'no_create_edit': True}"/> 
+									<field name="municipality_id" on_change="onchange_municipality(municipality_id)" 
+									options="{'no_create_edit': True}"/> <field name="province" options="{'no_create_edit': 
+									True}"/> <field name="urban"/> <field name="highest_education_level"/> <field 
+									name="african_male"/> <field name="african_female"/> <field name="african_dissabled"/> 
+									<field name="coloured_male"/> <field name="coloured_female"/> <field name="coloured_dissabled"/> 
+									<field name="indian_male"/> <field name="indian_female"/> <field name="indian_dissabled"/> 
+									<field name="white_male"/> <field name="white_female"/> <field name="white_dissabled"/> 
+									<field name="total_male"/> <field name="total_female"/> <field name="total_dissabled"/> 
+									<field name="dissability"/> </tree> -->
+								<!-- New Format -->
+								<tree string="Total Employment Profile" editable="bottom">
+									<field name="save_total_employed_record" invisible="1" />
+									<field name="selection" />
+									<field name="employer_id" on_change="onchange_employer_id(employer_id)"
+										invisible="1" />
+									<field name="sdl_number" attrs="{'required':[('save_total_employed_record','=',False)]}"
+										options="{'no_create_edit': True, 'no_quick_create': True}" />
+									<field name="name" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="surname" string="Last Name" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="citizen_resident_status_code" attrs="{'required':[('save_total_employed_record','=',False)]}"
+										on_change="onchange_citizen_code(citizen_resident_status_code)" />
+									<field name="id_type" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="employee_id"
+										on_change="onchange_id_no(employee_id,citizen_resident_status_code, id_type)"
+										attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="dob" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="ofo_code" on_change="onchange_code(ofo_code)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="occupation"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_total_employed_record','=',False)]}" domain="[('id','=',None)]" />
+									<field name="specialisation_exists" invisible="1" />
+									<field name="specialization" domain="[('ofo_code_id','=',ofo_code)]"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('specialisation_exists','=',True),('save_total_employed_record','=',False)],'readonly':[('specialisation_exists','!=',True)]}" />
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)"/> -->
+									<field name="province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										on_change="onchange_province_id(province)" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" on_change="onchange_suburb_id(suburb_id)" required="1"/> -->
+									<field name="city_id" on_change="onchange_city(city_id)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<!-- <field name="city_id" on_change="onchange_city(city_id)" options="{'no_create_edit': 
+										True, 'no_quick_create': True}" required="1"/> -->
+									<field name="urban" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="highest_education_level" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="population_group" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="gender" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+									<field name="dissability" attrs="{'required':[('save_total_employed_record','=',False)]}" />
+								</tree>
+							</field>
+							<group string="Aggregated Counts">
+								<group>
+									<field name="total_am_tep" />
+									<field name="total_af_tep" />
+									<field name="total_wm_tep" />
+									<field name="total_wf_tep" />
+									<field name="total_male_tep" />
+									<field name="total_mf_tep" />
+								</group>
+								<group>
+									<field name="total_cm_tep" />
+									<field name="total_cf_tep" />
+									<field name="total_im_tep" />
+									<field name="total_if_tep" />
+									<field name="total_female_tep" />
+								</group>
+							</group>
+						</page>
+						<page string="Planned Training"
+							attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+							<button name="clear_all_planned_training" string="Clear All"
+								type="object" class="oe_highlight" confirm="Are you sure you want clear all?"
+								attrs="{'invisible':['|',('submitted','=',True),('state','&lt;&gt;','draft')]}" />
+							<!-- <page string="Planned Training" attrs="{'invisible':[('wsp_details_type','in',['actual','planned_current'])]}"> -->
+							<!-- <field name="training_planned_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"> -->
+							<field name="training_planned_ids"
+								attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+								<tree string="Planned Training" editable="bottom">
+									<field name="save_planned_record" invisible="1" />
+									<field name="training_type" on_change="onchange_training_type(training_type)"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="name" string="Name"
+										attrs="{'required':[('socio_economic_status','=','employed'),('save_planned_record','=',False)]}" />
+									<field name="surname"
+										attrs="{'required':[('socio_economic_status','=','employed'),('save_planned_record','=','False')]}" />
+									<!-- <field name="citizen_resident_status_code" required="1"/> <field 
+										name="id_type" required="1"/> -->
+									<field name="employee_id"
+										attrs="{'required':[('socio_economic_status','=','employed'),('save_planned_record','=',False)]}" />
+									<field name="code" on_change="onchange_code(code)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="occupation"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_planned_record','=',False)]}"
+										domain="[('id','=',None)]" />
+									<field name="specialisation_exists" invisible="1" />
+									<field name="specialization"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('specialisation_exists','=',True),('save_planned_record','=',False)],'readonly':[('specialisation_exists','!=',True)]}" />
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)"/> -->
+									<field name="learner_province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_planned_record','=',False)]}"
+										on_change="onchange_province_id(learner_province)" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" on_change="onchange_suburb_id(suburb_id)" required="1"/> -->
+									<!-- <field name="city_id" on_change="onchange_city(city_id)" options="{'no_create_edit': 
+										True, 'no_quick_create': True}" required="1"/> -->
+									<field name="city_id" on_change="onchange_city(city_id)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="urban"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="socio_economic_status" string="Employed/Unemployed"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="type_training"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<!-- <field name="type_training" attrs="{'readonly':[('training_type','=','pivotal')]}"/> -->
+									<field name="other_type_of_intervention"
+										attrs="{'readonly':[('training_type','=','pivotal')]}" />
+									<field name="name_training"
+										attrs="{'readonly':[('training_type','=','pivotal')],'required':[('training_type','!=','pivotal'),('save_planned_record','=',False)]}" />
+									<!-- <field name="pivotal_programme_type" attrs="{'readonly':[('training_type','=','non-pivotal')]}"/> -->
+									<field name="pivotal_programme_qualification"
+										attrs="{'readonly':[('training_type','=','non-pivotal')],'required':[('training_type','!=','non-pivotal'),('save_planned_record','=',False)]}" />
+									<field name="pivotal_programme_institution"
+										attrs="{'readonly':[('training_type','=','non-pivotal')],'required':[('training_type','!=','non-pivotal'),('save_planned_record','=',False)]}" />
+									<field name="training_cost" string="Cost per Learner"
+										sum="Total Training Cost" attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="start_date"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="end_date"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="nqf_aligned"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="nqf_level"
+										attrs="{'readonly':[('nqf_aligned','=','no')],'required':[('nqf_aligned','=','yes'),('save_planned_record','=',False)]}" />
+									<!-- <field name="african_male"/> <field name="african_female"/> 
+										<field name="african_dissabled"/> <field name="coloured_male"/> <field name="coloured_female"/> 
+										<field name="coloured_dissabled"/> <field name="indian_male"/> <field name="indian_female"/> 
+										<field name="indian_dissabled"/> <field name="white_male"/> <field name="white_female"/> 
+										<field name="white_dissabled"/> <field name="total_male"/> <field name="total_female"/> 
+										<field name="total_dissabled"/> <field name="age_group_less"/> <field name="age_group_upto"/> 
+										<field name="age_group_greater"/> -->
+									<field name="population_group" string="Race"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<field name="gender"
+										attrs="{'required':[('save_planned_record','=',False)]}" />
+									<!-- <field name="age_group"/> -->
+									<!-- <field name="major"/> <field name="sub_major_group"/> -->
+									<!-- <field name="total_cost"/> -->
+									<field name="dissability" />
+								</tree>
+							</field>
+							<group string="Aggregated Counts">
+								<group>
+									<field name="total_am_pt" />
+									<field name="total_af_pt" />
+									<field name="total_wm_pt" />
+									<field name="total_wf_pt" />
+									<field name="total_male_pt" />
+									<field name="total_count_employed_pt" />
+									<field name="total_male_female_pt" />
+								</group>
+								<group>
+									<field name="total_cm_pt" />
+									<field name="total_cf_pt" />
+									<field name="total_im_pt" />
+									<field name="total_if_pt" />
+									<field name="total_female_pt" />
+									<field name="total_count_unemployed_pt" />
+								</group>
+							</group>
+						</page>
+						<!-- <page string="Adult Education and Training" attrs="{'invisible':[('wsp_details_type','in',['actual','planned_current'])]}"> -->
+						<page string="Adult Education and Training"
+							attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+							<button name="clear_all_planned_adult_training" string="Clear All"
+								type="object" class="oe_highlight" confirm="Are you sure you want clear all?"
+								attrs="{'invisible':['|',('submitted','=',True),('state','&lt;&gt;','draft')]}" />
+							<!-- <field name="planned_adult_education_fields_ids"> -->
+							<!-- <field name="planned_adult_education_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"> -->
+							<field name="planned_adult_education_ids"
+								attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+								<tree string="Planned Adult Education and Training"
+									editable="bottom">
+									<field name="save_planned_adult_record" invisible="1" />
+									<field name="name" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="surname" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<!-- <field name="ofo_code" options="{'no_create_edit': True, 'no_quick_create': 
+										True}"/> -->
+									<!-- <field name="citizen_resident_status_code" required="1"/> <field 
+										name="id_type" required="1"/> -->
+									<field name="id_number" string="ID Number" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<!-- <field name="african_male"/> <field name="african_female"/> 
+										<field name="african_dissabled"/> <field name="coloured_male"/> <field name="coloured_female"/> 
+										<field name="coloured_dissabled"/> <field name="indian_male"/> <field name="indian_female"/> 
+										<field name="indian_dissabled"/> <field name="white_male"/> <field name="white_female"/> 
+										<field name="white_dissabled"/> <field name="total_male"/> <field name="total_female"/> 
+										<field name="total_dissabled"/> -->
+									<field name="population_group" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="gender" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="dissability_status_and_type" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)"/> -->
+									<field name="province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										on_change="onchange_province_id(province)" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" on_change="onchange_suburb_id(suburb_id)" required="1"/> -->
+									<field name="city_id" on_change="onchange_city(city_id)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<!-- <field name="city_id" on_change="onchange_city(city_id)" options="{'no_create_edit': 
+										True, 'no_quick_create': True}" required="1"/> -->
+									<field name="urban" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="start_date" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="end_date" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="provider" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="aet_level" attrs="{'required':[('save_planned_adult_record','=',False)]}" />
+									<field name="aet_subject" invisible="1" />
+									<field name="aet_subject1" attrs="{'required':[('save_planned_adult_record','=',False)]}" widget="many2many_tags" />
+									<!-- <field name="reason"/> -->
+								</tree>
+							</field>
+							<group string="Aggregated Counts">
+								<group>
+									<field name="total_am_apt" />
+									<field name="total_af_apt" />
+									<field name="total_wm_apt" />
+									<field name="total_wf_apt" />
+									<field name="total_male_apt" />
+								</group>
+								<group>
+									<field name="total_cm_apt" />
+									<field name="total_cf_apt" />
+									<field name="total_im_apt" />
+									<field name="total_if_apt" />
+									<field name="total_female_apt" />
+								</group>
+							</group>
+						</page>
+						<page string="Vacancies Hard to Fill"
+							attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+							<button name="clear_all_scarce_and_critical_skills"
+								string="Clear All" type="object" class="oe_highlight" confirm="Are you sure you want clear all?"
+								attrs="{'invisible':['|',('submitted','=',True),('state','&lt;&gt;','draft')]}" />
+							<!-- <page string="Vacancies Hard to Fill" attrs="{'invisible':[('wsp_details_type','in',['actual','planned_current'])]}"> -->
+							<!-- <field name="scarce_and_critical_skills_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"> -->
+							<field name="scarce_and_critical_skills_ids"
+								attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+								<tree string="Vacancies hard to Fill	" editable="bottom">
+									<field name="save_variance_record" invisible="1" />
+									<field name="ofo_code" on_change="onchange_code(ofo_code)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_variance_record','=',False)]}" />
+									<!-- <field name="name"/> -->
+									<!-- <field name="surname"/> -->
+									<field name="occupation"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_variance_record','=',False)]}" />
+									<field name="specialisation_exists" invisible="1" />
+									<field name="specialization" string="Specialisation/Alternative Title"
+										domain="[('ofo_code_id','=',ofo_code)]" options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('specialisation_exists','=',True),('save_variance_record','=',False)],'readonly':[('specialisation_exists','!=',True)]}" />
+									<field name="province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										attrs="{'required':[('save_variance_record','=',False)]}" />
+									<field name="number_of_vacancies" sum="Total Vacancies"
+										attrs="{'required':[('save_variance_record','=',False)]}" />
+									<field name="gender" attrs="{'required':[('save_variance_record','=',False)]}" />
+									<field name="population_group" string="Race" attrs="{'required':[('save_variance_record','=',False)]}" />
+									<field name="no_of_months" sum="Total number of months"
+										attrs="{'required':[('save_variance_record','=',False)]}" />
+									<field name="comments" />
+									<!-- <field name="scarce_skill"/> <field name="critical_skill"/> 
+										<field name="number_of_potential_vacancies"/> <field name="nqf_level"/> <field 
+										name="degree_of_scarcity"/> <field name="reason_for_scarcity"/> <field name="african_male"/> 
+										<field name="african_female"/> <field name="african_dissabled"/> <field name="coloured_male"/> 
+										<field name="coloured_female"/> <field name="coloured_dissabled"/> <field 
+										name="indian_male"/> <field name="indian_female"/> <field name="indian_dissabled"/> 
+										<field name="white_male"/> <field name="white_female"/> <field name="white_dissabled"/> 
+										<field name="total_male"/> <field name="total_female"/> <field name="total_dissabled"/> 
+										<field name="planned_strategy_address"/> <field name="is_reflected"/> -->
+								</tree>
+							</field>
+							<group string="Aggregated Counts">
+								<group>
+									<field name="total_am_vhf" />
+									<field name="total_af_vhf" />
+									<field name="total_wm_vhf" />
+									<field name="total_wf_vhf" />
+									<field name="total_male_vhf" />
+								</group>
+								<group>
+									<field name="total_cm_vhf" />
+									<field name="total_cf_vhf" />
+									<field name="total_im_vhf" />
+									<field name="total_if_vhf" />
+									<field name="total_female_vhf" />
+								</group>
+							</group>
+						</page>
+						<!-- Added for this year only -->
+						<!-- <page string="Planned Training 2015-2016" attrs="{'invisible':[('wsp_details_type','!=','planned_current')]}"> -->
+						<page string="Planned Training 2015-2016" attrs="{'invisible':1}">
+							<!-- <field name="training_actual_planned_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"> -->
+							<field name="training_actual_planned_ids"
+								attrs="{'readonly': [('current_user_forbidden', '=', True)]}">
+								<tree string="Actual Training" editable="bottom">
+									<field name="code" on_change="onchange_code(code)"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" />
+									<field name="training_type" on_change="onchange_training_type(training_type)"
+										required="1" />
+									<field name="occupation"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" />
+									<field name="specialization"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" />
+									<field name="learner_province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" on_change="onchange_province_id(learner_province)" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" on_change="onchange_suburb_id(suburb_id)" required="1"/> -->
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)" 
+										options="{'no_create_edit': True, 'no_quick_create': True}" required="1"/> -->
+									<field name="municipality_id"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" />
+									<field name="city_id" on_change="onchange_city(city_id)"
+										options="{'no_create_edit': True}" required="1" />
+									<!-- <field name="city_id" on_change="onchange_city(city_id)" options="{'no_create_edit': 
+										True}" required="1"/> -->
+									<field name="urban" required="1" />
+									<field name="socio_economic_status" required="1" />
+									<!-- <field name="type_training" attrs="{'readonly':[('training_type','=','pivotal')]}"/> -->
+									<field name="type_training"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" />
+									<field name="name_training" required="1" />
+									<!-- <field name="pivotal_programme_type" attrs="{'readonly':[('training_type','=','non-pivotal')]}"/> -->
+									<field name="pivotal_programme_institution"
+										attrs="{'readonly':[('training_type','=','non-pivotal')],'required':[('training_type','!=','non-pivotal')]}" />
+									<field name="nqf_aligned" required="1" />
+									<field name="nqf_level" attrs="{'readonly':[('nqf_aligned','=','no')]}" />
+									<field name="training_cost" sum="Total Training Cost"
+										required="1" />
+									<field name="start_date" required="1" />
+									<field name="end_date" required="1" />
+									<field name="african_male" sum="African Male" required="1" />
+									<field name="african_female" sum="African Female"
+										required="1" />
+									<field name="african_dissabled" sum="African Disabled"
+										required="1" />
+									<field name="coloured_male" sum="Coloured Male" required="1" />
+									<field name="coloured_female" sum="Coloured Female"
+										required="1" />
+									<field name="coloured_dissabled" sum="Coloured Disabled"
+										required="1" />
+									<field name="indian_male" sum="Indian Male" required="1" />
+									<field name="indian_female" sum="Indian Female" required="1" />
+									<field name="indian_dissabled" string="ID" sum="Indian Disabled"
+										required="1" />
+									<field name="white_male" sum="White Male" required="1" />
+									<field name="white_female" sum="White Female" required="1" />
+									<field name="white_dissabled" sum="White Disabled"
+										required="1" />
+									<field name="total_male" sum="Total Male" required="1" />
+									<field name="total_female" sum="Total Female" required="1" />
+									<field name="total_dissabled" sum="Total Dissabled"
+										required="1" />
+									<field name="age_group_less" sum="Total age less than 35"
+										required="1" />
+									<field name="age_group_upto" sum="Total age between 35-55"
+										required="1" />
+									<field name="age_group_greater" sum="Total age greater than 55"
+										required="1" />
+									<field name="total_cost" sum="Total Cost" required="1" />
+								</tree>
+							</field>
+						</page>
+						<!-- <page string="Adult Education and Training 2015-2016" attrs="{'invisible':[('wsp_details_type','!=','planned_current')]}"> -->
+						<page string="Adult Education and Training 2015-2016" attrs="{'invisible':1}">
+							<!-- <field name="actual_planned_adult_education_ids" attrs="{'readonly':[('state','in',['submitted','evaluated'])]}"> -->
+							<field name="actual_planned_adult_education_ids"
+								attrs="{'readonly': [('current_user_forbidden', '=', True)]}">
+								<tree string="Actual Adult Education and Training"
+									editable="bottom">
+									<field name="name" required="1" />
+									<field name="surname" required="1" />
+									<field name="id_number" required="1" />
+									<field name="population_group" required="1" />
+									<field name="gender" required="1" />
+									<field name="dissability_status_and_type" required="1" />
+									<field name="province" string="Learner Province"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" on_change="onchange_province_id(province)" />
+									<!-- <field name="suburb_id" options="{'no_create_edit': True, 'no_quick_create': 
+										True}" on_change="onchange_suburb_id(suburb_id)" required="1"/> -->
+									<field name="municipality_id"
+										options="{'no_create_edit': True, 'no_quick_create': True}"
+										required="1" />
+									<!-- <field name="municipality_id" on_change="onchange_municipality(municipality_id)" 
+										options="{'no_create_edit': True, 'no_quick_create': True}" required="1"/> -->
+									<!-- <field name="city_id" on_change="onchange_city(city_id)" required="1"/> -->
+									<field name="city_id" on_change="onchange_city(city_id)"
+										required="1" />
+									<field name="urban" required="1" />
+									<field name="start_date" required="1" />
+									<field name="end_date" required="1" />
+									<field name="provider" required="1" />
+									<field name="aet_level" required="1" />
+									<field name="aet_subject" required="1" />
+								</tree>
+							</field>
+						</page>
+						<!-- <page string="WSP Impact Assessment" attrs="{'invisible':[('wsp_details_type','in',['planned','planned_current'])]}"> -->
+						<page string="WSP Impact Assessment"
+							attrs="{'invisible':[('wsp_details_type','=','planned')]}">
+							<group>
+								<h3>
+									<font color="#5C5CD6">
+										<label
+											string="1. On a scale of 1 to 5, please indicate the overall impact of training your staff." />
+									</font>
+								</h3>
+							</group>
+							<group col="4">
+								<group colspan="3">
+									<label for="survey_productivity" colspan="3" />
+									<label for="staff_turnover" colspan="3" />
+									<label for="increased_efficiency" colspan="3" />
+								</group>
+								<group col="1">
+									<!-- <field name="survey_productivity" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="staff_turnover" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="increased_efficiency" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> -->
+									<field name="survey_productivity"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="staff_turnover"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="increased_efficiency"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+								</group>
+							</group>
+							<group>
+								<h3>
+									<font color="#5C5CD6">
+										<label string="2. Impact on the organisation." />
+									</font>
+								</h3>
+							</group>
+							<group col="4">
+								<group colspan="3">
+									<label for="trained_employee" colspan="3" />
+									<label for="solve_problems" colspan="3" />
+									<label for="training_helps_skills" colspan="3" />
+									<label for="supervision" colspan="3" />
+									<label for="training_helps_product" colspan="3" />
+									<label for="career_path" colspan="3" />
+									<label for="keep_motivated" colspan="3" />
+								</group>
+								<group col="1">
+									<!-- <field name="trained_employee" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="solve_problems" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="training_helps_skills" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="supervision" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="training_helps_product" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="career_path" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="keep_motivated" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> -->
+									<field name="trained_employee"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="solve_problems"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="training_helps_skills"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="supervision"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="training_helps_product"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="career_path"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="keep_motivated"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+								</group>
+							</group>
+							<group>
+								<h3>
+									<font color="#5C5CD6">
+										<label
+											string="3. To what extent are the following incentives available to staff who undergo training." />
+									</font>
+								</h3>
+							</group>
+							<group col="4">
+								<group colspan="3">
+									<label for="promotion" colspan="3" />
+									<label for="remuneration" colspan="3" />
+								</group>
+								<group col="1">
+									<!-- <field name="promotion" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> <field name="remuneration" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> -->
+									<field name="promotion"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+									<field name="remuneration"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+								</group>
+							</group>
+							<group col="4">
+								<label for="training_reported" />
+							</group>
+							<group col="4">
+								<!-- <field name="training_reported" attrs="{'readonly':[('submitted','=',True)]}" 
+									nolabel="1"/> -->
+								<field name="training_reported"
+									attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+									nolabel="1" />
+							</group>
+							<group col="4">
+								<group colspan="3">
+									<label for="percentage_payroll" colspan="3" />
+								</group>
+								<group col="1">
+									<!-- <field name="percentage_payroll" attrs="{'readonly':[('submitted','=',True)]}" 
+										nolabel="1"/> -->
+									<field name="percentage_payroll"
+										attrs="{'readonly': [('current_user_forbidden', '=', True)]}"
+										nolabel="1" />
+								</group>
+							</group>
+						</page>
+						<page string="Document Uploads">
+							<group string="Proof Of Training Documents"
+								attrs="{'invisible':[('wsp_details_type','=','planned')]}">
+								<!-- <group string="Proof Of Training Documents" attrs="{'invisible':[('wsp_details_type','in',['planned','planned_current'])]}"> -->
+								<group>
+									<field name="training_proof_invoice" domain="[('id','=',None)]"
+										context="{'training_proof_invoice':True}"
+										attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" />
+								</group>
+								<group>
+									<field name="training_proof_attendance" domain="[('id','=',None)]"
+										context="{'training_proof_attendance':True}"
+										attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" />
+								</group>
+							</group>
+							<group string="Proof Of Consultation Documents"
+								attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+								<label
+									string="( Proof of Consultation is only required for Organisations with 50 or more employees )" />
+							</group>
+							<group attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+								<group>
+									<!-- <field name="consultation_proof_meeting" domain="[('id','=',None)]"
+										context="{'consultation_proof_meeting':True}"
+										attrs="{'required':[('total_mf_tep','>',50)], 'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" /> -->
+									<field name="consultation_proof_meeting" domain="[('id','=',None)]"
+										context="{'consultation_proof_meeting':True}"
+										attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" />
+								</group>
+								<group>
+									<!-- <field name="consultation_proof_attendance" domain="[('id','=',None)]"
+										context="{'consultation_proof_attendance':True}"
+										attrs="{'required':[('total_mf_tep','>',50)], 'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" /> -->
+									<field name="consultation_proof_attendance" domain="[('id','=',None)]"
+										context="{'consultation_proof_attendance':True}"
+										attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" />
+								</group>
+
+								<!-- <field name="authorisation_page"/> -->
+								<!-- <field name="training_proof" attrs="{'invisible':[('wsp_details_type','=','planned')],'readonly':[('from_extension','=',True)]}"/> 
+									<field name="consulatation_proof" attrs="{'invisible':[('wsp_details_type','=','actual')],'readonly':[('from_extension','=',True)]}"/> -->
+								<!-- <field name="perm_employeee_proof"/> -->
+								<!-- <field name="levy_exempt_certificate"/> -->
+								<!-- <field name="man_grant_canc_cheque"/> -->
+								<!-- <field name="disc_grant_canc_cheque"/> -->
+								<!-- <field name="bbbee_certificate"/> -->
+							</group>
+							<group>
+								<group attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+									<field name="authorization_page" domain="[('id','=',None)]"
+										attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" />
+								</group>
+								<group attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+									<field name="tax_clearance" domain="[('id','=',None)]"
+										attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}" />
+								</group>
+							</group>
+							<!-- <group string="Other Documents" attrs="{'invisible':[('wsp_details_type','in',['planned','planned_current'])]}"> -->
+							<group string="Other Documents"
+								attrs="{'invisible':[('wsp_details_type','=','planned')]}">
+								<field name="actual_doc_upload_ids" nolabel="1"
+									attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+									<tree string="Other Documents" editable="bottom">
+										<field name="name" />
+										<field name="doc_file" on_change="onchange_file(doc_file)"
+											domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
+									</tree>
+								</field>
+							</group>
+
+							<group string="Other Documents"
+								attrs="{'invisible':[('wsp_details_type','=','actual')]}">
+								<field name="planned_doc_upload_ids" nolabel="1"
+									attrs="{'readonly': ['|',('current_user_forbidden', '=', True),('state','not in',['draft'])]}">
+									<tree string="Other Documents" editable="bottom">
+										<field name="name" />
+										<field name="doc_file" domain="[('id','=',None)]"
+											context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
+									</tree>
+								</field>
+							</group>
+						</page>
+						<page string="Status of WSP Submission"
+							groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_manager">
+							<group>
+								<field name="wsp_submission_status_ids" nolabel="1"
+									colspan="1">
+									<tree string="Status of WSP Submission" editable="bottom"
+										create="0" delete="0">
+										<field name="evaluator" readonly="1" />
+										<field name="date_evaluation" readonly="1" />
+										<field name="state" readonly="1" />
+										<field name="status" readonly="1" />
+										<field name="comments" readonly="1" />
+									</tree>
+								</field>
+							</group>
+							<!-- <group> <field name="wsp_submission_status_wspofficer_ids" nolabel="1" 
+								colspan="1"> <tree string="Status of WSP Submission" editable="bottom" create="0" 
+								delete="0"> <field name="evaluator" readonly="1"/> <field name="date_evaluation" 
+								readonly="1"/> <field name="status" readonly="1"/> <field name="comments" 
+								readonly="1"/> </tree> </field> </group> <group> <field name="wsp_submission_status_wspmanager_ids" 
+								nolabel="1" colspan="1"> <tree string="Status of WSP Submission" editable="bottom" 
+								create="0" delete="0"> <field name="evaluator" readonly="1"/> <field name="date_evaluation" 
+								readonly="1"/> <field name="status" readonly="1"/> <field name="comments" 
+								readonly="1"/> </tree> </field> </group> -->
+						</page>
+						<page string="WSP Evaluation"
+							groups="hwseta_sdp.group_wsp_administrator,hwseta_sdp.group_wsp_officer,hwseta_sdp.group_wsp_manager">
+							<group>
+								<h3>
+									<font color="#5C5CD6">
+										<label string="Variance Percentage" />
+									</font>
+								</h3>
+							</group>
+							<group>
+								<field name="pivotal_total_per"/>
+								<field name="non_pivotal_total_per"/>
+							</group>
+							<group>
+								<h3>
+									<font color="#5C5CD6">
+										<label string="1. Actual Training Report " />
+									</font>
+								</h3>
+							</group>
+							<group col="4">
+								<group colspan="2">
+									<label for="actual_training_selection" colspan="2" />
+									<label for="actual_education_and_training_selection"
+										colspan="2" />
+									<label for="wsp_impact_assessment_selection" colspan="2" />
+									<label for="variance_report_selection" colspan="2" />
+									<br />
+									<h4>
+										<font color="#5C5CD6"></font>
+									</h4>
+									<h4>
+										<font color="#5C5CD6">
+											<label string="Document Upload " />
+										</font>
+									</h4>
+									<label for="proof_of_training_invoice_selection" colspan="2" />
+									<label for="proof_of_training_attendance_selection"
+										colspan="2" />
+								</group>
+								<group col="1">
+									<field name="actual_training_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="actual_education_and_training_selection"
+										nolabel="1" attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="wsp_impact_assessment_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="variance_report_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<br />
+									<field name="proof_of_training_invoice_selection"
+										nolabel="1" attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="proof_of_training_attendance_selection"
+										nolabel="1" attrs="{'required':[('state','in', ('submitted'))]}" />
+								</group>
+								<group col="1">
+									<field name="actual_training_comment" nolabel="1" />
+									<field name="actual_education_and_training_comment"
+										nolabel="1" />
+									<field name="wsp_impact_assessment_comment" nolabel="1" />
+									<field name="variance_report_comment" nolabel="1" />
+									<br />
+									<field name="proof_of_training_invoice_comment" nolabel="1" />
+									<field name="proof_of_training_attendance_comment"
+										nolabel="1" />
+								</group>
+							</group>
+							<group>
+								<h3>
+									<font color="#5C5CD6">
+										<label string="2. Workplace Skills Plan " />
+									</font>
+								</h3>
+							</group>
+							<group col="4">
+								<group colspan="2">
+									<label for="tep_selection" colspan="2" />
+									<label for="planned_training_selection" colspan="2" />
+									<label for="actual_education_and_training_selection"
+										colspan="2" />
+									<label for="vacancies_selection" colspan="2" />
+									<br />
+									<h4>
+										<font color="#5C5CD6"></font>
+									</h4>
+									<h4>
+										<font color="#5C5CD6">
+											<label string="Document upload " />
+										</font>
+									</h4>
+									<label for="minute_of_training_selection" colspan="2" />
+									<label for="attendance_register_selection" colspan="2" />
+									<label for="authorisation_page_selection" colspan="2" />
+								</group>
+								<group col="1">
+									<field name="tep_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="planned_training_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="actual_education_and_training_selection"
+										nolabel="1" attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="vacancies_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<br />
+									<field name="minute_of_training_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="attendance_register_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+									<field name="authorisation_page_selection" nolabel="1"
+										attrs="{'required':[('state','in', ('submitted'))]}" />
+								</group>
+								<group col="1">
+									<field name="tep_comment" nolabel="1" />
+									<field name="planned_training_comment" nolabel="1" />
+									<field name="actual_education_and_training_comment"
+										nolabel="1" />
+									<field name="vacancies_comment" nolabel="1" />
+									<br />
+									<field name="minute_of_training_comment" nolabel="1" />
+									<field name="attendance_register_comment" nolabel="1" />
+									<field name="authorisation_page_comment" nolabel="1" />
+								</group>
+							</group>
+							<group string="WSP Comments"
+								attrs="{'readonly': [('current_user_forbidden', '=', True)]}">
+								<group>
+									<field name="comments" placeholder="Comments ..." />
+								</group>
+							</group>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_workplace_skill_plan" model="ir.ui.view">
+			<field name="name">workplace.skill.plan.tree</field>
+			<field name="model">wsp.plan</field>
+			<field name="arch" type="xml">
+				<tree string="WSP">
+					<field name="name" string="Code" />
+					<field name="fiscal_year" />
+					<field name="sdf_id" />
+					<field name="employer_id" />
+					<field name="sdl_no" />
+					<field name="wsp_submission_date" />
+					<field name="request_extension_date" />
+					<field name="approve_extension_date" />
+					<field name="state" string="Status" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="tree_view_workplace_skill_plan1" model="ir.ui.view">
+			<field name="name">workplace.skill.plan.tree</field>
+			<field name="model">wsp.plan</field>
+			<field name="arch" type="xml">
+				<tree string="WSP">
+					<field name="employer_id" />
+					<field name="org_size" />
+					<field name="sdl_no" />
+					<field name="wsp_submission_date" />
+					<field name="total_male_female_pt" />
+					<field name="total_count_employed_pt" />
+					<field name="total_count_unemployed_pt" />
+				</tree>
+			</field>
+		</record>
+		<record id="filter_view_wsp" model="ir.ui.view">
+			<field name="name">filter.view.wsp</field>
+			<field name="model">wsp.plan</field>
+			<field name="arch" type="xml">
+				<search string="WSP">
+					<field name="name" />
+					<field name="sdf_id" />
+					<field name="employer_id" />
+					<field name="sdl_no" />
+					<group expand="0" string="Group By">
+						<filter string="Financial Year" icon="terp-personal"
+							context="{'group_by':'fiscal_year'}" groups="hwseta_sdp.group_sdp_manager" />
+						<filter string="Submitted By" icon="terp-personal" context="{'group_by':'sdf_id'}"
+							groups="hwseta_sdp.group_sdp_manager" />
+						<filter string="Evaluated By" icon="terp-personal"
+							context="{'group_by':'approved_by'}" groups="hwseta_sdp.group_sdp_manager" />
+						<filter string="Organisations" icon="terp-personal"
+							context="{'group_by':'employer_id'}" groups="hwseta_sdp.group_sdp_manager" />
+						<filter string="Status" icon="terp-personal" context="{'group_by':'state'}"
+							groups="hwseta_sdp.group_sdp_manager" />
+						<filter string="Financial Year" icon="terp-personal"
+							domain="[('user_id','=',uid)]" context="{'group_by':'fiscal_year'}"
+							groups="hwseta_sdp.group_sdf_user" />
+						<filter string="Submitted By" icon="terp-personal" domain="[('user_id','=',uid)]"
+							context="{'group_by':'sdf_id'}" groups="hwseta_sdp.group_sdf_user" />
+						<filter string="Evaluated By" icon="terp-personal" domain="[('user_id','=',uid)]"
+							context="{'group_by':'approved_by'}" groups="hwseta_sdp.group_sdf_user" />
+						<filter string="Organisations" icon="terp-personal" domain="[('user_id','=',uid)]"
+							context="{'group_by':'employer_id'}" groups="hwseta_sdp.group_sdf_user" />
+						<filter string="Status" icon="terp-personal" domain="[('user_id','=',uid)]"
+							context="{'group_by':'state'}" groups="hwseta_sdp.group_sdf_user" />
+					</group>
+				</search>
+			</field>
+		</record>
+		<record id="filter_view_wsp1" model="ir.ui.view">
+			<field name="name">filter.view.wsp</field>
+			<field name="model">wsp.plan</field>
+			<field name="arch" type="xml">
+				<search string="WSP">
+					<field name="name" />
+					<field name="sdf_id" />
+					<field name="employer_id" />
+					<field name="sdl_no" />
+					<group expand="0" string="Group By">
+						<filter string="Organisation Size" icon="terp-personal"
+							context="{'group_by':'org_size'}" groups="hwseta_sdp.group_sdp_manager" />
+						<filter string="Financial Year" icon="terp-personal"
+							context="{'group_by':'fiscal_year'}" groups="hwseta_sdp.group_sdp_manager" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="action_wsp_submission" model="ir.actions.act_window">
+			<field name="name">WSP Submission</field>
+			<field name="res_model">wsp.plan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="filter_view_wsp" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to manage WSP Submissions.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_wsp_tree" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="tree_view_workplace_skill_plan" />
+			<field name="act_window_id" ref="action_wsp_submission" />
+		</record>
+
+		<record id="action_wsp_submission1" model="ir.actions.act_window">
+			<field name="name">SDP Skills Planning Report</field>
+			<field name="res_model">wsp.plan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="filter_view_wsp1" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to manage WSP Submissions.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_wsp_tree1" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="tree_view_workplace_skill_plan1" />
+			<field name="act_window_id" ref="action_wsp_submission1" />
+		</record>
+
+
+
+
+
+
+
+
+		<record id="action_wsp_form" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="form_view_workplace_skill_plan" />
+			<field name="act_window_id" ref="action_wsp_submission" />
+		</record>
+
+		<!-- Form View for Specialization -->
+		<!-- <record id="form_view_specialization" model="ir.ui.view"> <field name="name">form.view.specialization</field> 
+			<field name="model">specialize.subject</field> <field name="arch" type="xml"> 
+			<form string="Specialization"> <group> <field name="name" required="1"/> 
+			<field name="ofo_code_id"/> </group> </form> </field> </record> -->
+
+		<!-- OFO Code Views -->
+
+		<record id="view_view_ofo_code_filter" model="ir.ui.view">
+			<field name="name">Occupation</field>
+			<field name="model">ofo.code</field>
+			<field name="arch" type="xml">
+				<search string="Occupation">
+					<field name="name" />
+					<field name="occupation" />
+					<field name="ofo_year" />
+				</search>
+			</field>
+		</record>
+
+		<record id="form_view_ofo_code" model="ir.ui.view">
+			<field name="name">form.view.ofo.code</field>
+			<field name="model">ofo.code</field>
+			<field name="arch" type="xml">
+				<form string="OFO Code">
+					<group>
+						<field name="ofo_year" />
+						<field name="name" required="1" />
+						<field name="occupation" required="1" />
+						<!-- Old Field -->
+						<field name="specialize_ids" widget="many2many_tags"
+							invisible="1" />
+						<!-- -->
+						<field name="specialization_ids" widget="many2many_tags"
+							options="{'no_create':True}" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree View for OFO Code -->
+		<record id="tree_view_ofo_code" model="ir.ui.view">
+			<field name="name">tree.view.ofo.code</field>
+			<field name="model">ofo.code</field>
+			<field name="arch" type="xml">
+				<tree string="OFO Code">
+					<field name="ofo_year" />
+					<field name="name" />
+					<field name="occupation" />
+					<!-- <field name="specialize_ids"/> -->
+				</tree>
+			</field>
+		</record>
+
+		<!-- Action View for OFO Code -->
+		<record id="action_ofo_code" model="ir.actions.act_window">
+			<field name="name">OFO Master</field>
+			<field name="res_model">ofo.code</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_view_ofo_code_filter" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create OFO.
+				</p>
+			</field>
+		</record>
+
+
+		<!-- Specialisation Views -->
+		<record id="form_view_specialize_subject" model="ir.ui.view">
+			<field name="name">form.view.specialize.subject</field>
+			<field name="model">specialize.subject</field>
+			<field name="arch" type="xml">
+				<form string="Specialisation">
+					<group>
+						<field name="name" required="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_specialize_subject" model="ir.ui.view">
+			<field name="name">tree.view.specialize.subject</field>
+			<field name="model">specialize.subject</field>
+			<field name="arch" type="xml">
+				<tree string="Specialisation">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_specialize_subject" model="ir.actions.act_window">
+			<field name="name">Specialisation</field>
+			<field name="res_model">specialize.subject</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_specialize_subject" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create Specialize Subject.
+				</p>
+			</field>
+		</record>
+
+		<!-- AET Subject Views -->
+		<record id="form_view_aet_subject" model="ir.ui.view">
+			<field name="name">form.view.aet.subject</field>
+			<field name="model">aet.subject</field>
+			<field name="arch" type="xml">
+				<form string="AET Subject">
+					<sheet>
+						<group>
+							<field name="name" required="1" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_aet_subject" model="ir.ui.view">
+			<field name="name">tree.view.aet.subject</field>
+			<field name="model">aet.subject</field>
+			<field name="arch" type="xml">
+				<tree string="AET Subject">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_aet_subject" model="ir.actions.act_window">
+			<field name="name">AET Subject</field>
+			<field name="res_model">aet.subject</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_aet_subject" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create AET Subject.
+				</p>
+			</field>
+		</record>
+
+		<!-- Occupation Views -->
+		<record id="form_view_occupation_ofo" model="ir.ui.view">
+			<field name="name">form.view.occupation.ofo</field>
+			<field name="model">occupation.ofo</field>
+			<field name="arch" type="xml">
+				<form string="Occupation">
+					<group>
+						<field name="name" required="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_occupation_ofo" model="ir.ui.view">
+			<field name="name">tree.view.occupation.ofo</field>
+			<field name="model">occupation.ofo</field>
+			<field name="arch" type="xml">
+				<tree string="Occupation">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_occupation_ofo" model="ir.actions.act_window">
+			<field name="name">Occupation</field>
+			<field name="res_model">occupation.ofo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_occupation_ofo" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create Occupation.
+				</p>
+			</field>
+		</record>
+
+		<!-- type of Training Intervention and Pivotal Programme Type Views -->
+		<record id="form_view_train_inter" model="ir.ui.view">
+			<field name="name">form.view.train.inter</field>
+			<field name="model">training.intervention</field>
+			<field name="arch" type="xml">
+				<form string="Training Interevention / Pivotal Programme Type">
+					<group>
+						<field name="name" />
+						<field name="pivotal" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_train_inter" model="ir.ui.view">
+			<field name="name">tree.view.train.inter</field>
+			<field name="model">training.intervention</field>
+			<field name="arch" type="xml">
+				<tree string="Training Interevention / Pivotal Programme Type">
+					<field name="name" />
+					<field name="pivotal" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_training_intervention" model="ir.actions.act_window">
+			<field name="name">Type of Training Interevention / Pivotal Programme
+				Type
+			</field>
+			<field name="res_model">training.intervention</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="tree_view_train_inter" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click Here to create Type of Training Interevention /
+					Pivotal Programme
+					Type.
+				</p>
+			</field>
+		</record>
+
+		<!-- Hiding Unwanted fields and groups from ir.attachment class for HWSETA -->
+		<record id="view_attachment_form_inherit_view_change" model="ir.ui.view">
+			<field name="name">ir.attachment.form.inherit.view.change</field>
+			<field name="model">ir.attachment</field>
+			<field name="inherit_id" ref="base.view_attachment_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/group/group[@string='Data']"
+					position="replace">
+					<group>
+						<field name="type" invisible="1" />
+						<field name="datas" filename="datas_fname"
+							attrs="{'invisible':[('type','=','url')]}" />
+						<field name="datas_fname" invisible="1"
+							attrs="{'invisible':[('type','=','url')]}" class="oe_inline oe_right" />
+						<field name="url" widget="url"
+							attrs="{'invisible':[('type','=','binary')]}" invisible="1" />
+					</group>
+				</xpath>
+				<xpath expr="/form/sheet/group/group[@string='Attached To']"
+					position="replace">
+					<group>
+						<field name="res_model" invisible="1" />
+						<field name="res_id" invisible="1" />
+						<field name="res_name" invisible="1" />
+						<field name="company_id" groups="base.group_multi_company"
+							widget="selection" />
+					</group>
+				</xpath>
+				<xpath expr="/form/sheet/group/group[@string='History']"
+					position="replace">
+					<group groups="base.group_no_one">
+						<label for="create_uid" string="Creation" invisible="1" />
+						<div name="creation_div">
+							<field name="create_uid" readonly="1" class="oe_inline"
+								invisible="1" />
+							<field name="create_date" readonly="1" class="oe_inline"
+								invisible="1" />
+						</div>
+					</group>
+				</xpath>
+				<xpath expr="/form/sheet/group/group[@string='Description']"
+					position="replace">
+					<group name="description_group" colspan="4">
+						<field name="description" nolabel="1" invisible="1" />
+					</group>
+				</xpath>
+				<xpath expr="/form/sheet/group/group[@string='Indexed Content']"
+					position="replace">
+					<group colspan="4">
+						<field name="index_content" nolabel="1" invisible="1" />
+					</group>
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Menus -->
+		<menuitem id="menu_sdp_wsp" name="WSP" parent="menu_sdp_master"
+			sequence="2" />
+		<menuitem id="menu_sdp_wsp_submenu" name="WSP" parent="menu_sdp_wsp"
+			action="action_wsp_submission" sequence="12" />
+		<!-- WSP Menu for Portal View -->
+		<menuitem id="menu_sdp_wsp_portal" name="WSP" parent="menu_sdf_portal"
+			action="action_wsp_submission" sequence="3" />
+
+		<!-- WSP Menu for Employer Portal View -->
+		<menuitem id="menu_employer_user_wsp_portal" name="WSP"
+			action="action_wsp_submission" parent="hwseta_finance.menu_business_employer"
+			groups="hwseta_finance.group_employer_user" sequence="3" />
+
+		<!-- Other Menus -->
+		<menuitem id="menu_ofo_code" name="OFO Code" parent="menu_sdp_master"
+			sequence="5" />
+		<menuitem id="menu_occupation_submenu" name="Occupation"
+			parent="menu_ofo_code" action="action_occupation_ofo" sequence="1" />
+		<menuitem id="menu_specialize_subject_submenu" name="Specialisation"
+			parent="menu_ofo_code" action="action_specialize_subject" sequence="2" />
+		<menuitem id="menu_ofo_code_submenu" name="OFO" parent="menu_ofo_code"
+			action="action_ofo_code" sequence="3" />
+		<menuitem id="menu_train_intervention"
+			name="Type of Training Interevention / Pivotal Programme Type"
+			parent="menu_ofo_code" action="action_training_intervention"
+			sequence="4" />
+		<menuitem id="menu_aet_subject" name="AET Subject" parent="menu_ofo_code"
+			action="action_aet_subject" sequence="5" />
+	</data>
+</openerp>

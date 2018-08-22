@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="pro_ass_mod_header_footer_layout">
+			<t t-call="hwseta_etqe.ass_mod_layout_header" />
+			<t t-raw="0" />
+			<t t-call="hwseta_etqe.ass_mod_layout_footer" />
+		</template>
+		<template id="ass_mod_layout_header">
+			<div class="header">
+				<div class="row">
+					<div class="headimage">
+						<center>
+							<img src="/hwseta_etqe/static/src/img/hwseta_logo.jpg" width="350px"
+								height="120px" />
+						</center>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template id="ass_mod_layout_footer">
+			<div class="footer">
+				<div class="row">
+					<div class="col-xs-12" style="text-align:center;padding-top:0px">
+						<ul class="list-inline">
+							<strong>Page</strong>
+							<li>
+								<span class="page" />
+							</li>
+							<li>/</li>
+							<li>
+								<span class="topage" />
+							</li>
+						</ul>
+						<span>
+							17 Bradford Road, Bedfordview 2047. Private Bag X15,
+							Gardenview
+							2047
+							<br />
+							Tel: +2711 607 6900, Fax: +2711 616 8939, email:
+							etqa@hwseta.org.za website: www.hwseta.co.za
+						</span>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template id="report_assessor_letter_of_approval">
+			<t t-call="report.html_container">
+				<t t-call="hwseta_etqe.pro_ass_mod_header_footer_layout">
+					<t t-foreach="docs" t-as="o">
+						<div class="page">
+							<div class="col-xs-4 pull-right">
+								<p>
+									<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+									<br />
+									<strong>
+									Ref :
+									</strong>
+								</p>
+							</div>
+							<br/>
+							<br />
+							<br />
+							<b>
+								<t t-if="o.person_name">
+									<span t-field="o.person_name" />
+								</t>
+								<t t-if="o.person_last_name">
+									<span t-field="o.person_last_name" />
+								</t>
+							</b>
+							<br />
+							<t t-if="o.work_address">
+								<span t-field="o.work_address" />
+								,
+							</t>
+							<t t-if="o.work_address2">
+								<span t-field="o.work_address2" />
+								,
+							</t>
+							<t t-if="o.work_address3">
+								<span t-field="o.work_address3" />
+								,
+							</t>
+							<br />
+							<t t-if="o.person_suburb">
+								<span t-field="o.person_suburb" />
+								,
+							</t>
+							<t t-if="o.work_city">
+								<span t-field="o.work_city" />
+								,
+							</t>
+							<t t-if="o.work_province">
+								<span t-field="o.work_province" />
+								,
+							</t>
+							<br />
+							<t t-if="o.work_zip">
+								<span t-field="o.work_zip" />
+								,
+							</t>
+							<t t-if="o.work_country">
+								<span t-field="o.work_country" />
+							</t>
+							<br/>
+							<br/>
+							<table class="col-xs-4 pull-left">
+								<tr>
+									<t t-if="o.work_phone">
+										<td>
+												<span>Telephone No.</span>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.work_phone" />
+										</td>
+									</t>
+								</tr>
+								<tr>
+									<t t-if="o.person_cell_phone_number">
+										<td>
+												<span class="text-right">Cell No.</span>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.person_cell_phone_number" />
+										</td>
+									</t>
+								</tr>
+								<tr>
+									<t t-if="o.work_email">
+										<td>
+													<span class="text-right">Email</span>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.work_email" />
+										</td>
+									</t>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<br />
+							<br />
+							<table>
+								<tr>
+									<td>
+										<span>Assessor Name</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.person_title">
+												<span t-field="o.person_title" />
+											</t>
+											<t t-if="o.person_name">
+												<span t-field="o.person_name" />
+											</t>
+											<t t-if="o.person_last_name">
+												<span t-field="o.person_last_name" />
+											</t>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>Assessor Registration Number</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.temp_assessor_seq_no ">
+												<span t-field="o.temp_assessor_seq_no" />
+											</t>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>Registration Start Date</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.reg_start">
+												<span t-field="o.reg_start" t-field-options='{"format": "dd MMMM yyyy"}' />
+											</t>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>Registration End Date</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.reg_end">
+												<span t-field="o.reg_end" t-field-options='{"format": "dd MMMM yyyy"}' />
+											</t>
+										</strong>
+									</td>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<strong> RE: NOTIFICATION OF REGISTRATION AS AN ASSESSOR</strong>
+							<br />
+							<br />
+							<strong>
+								<span>Dear</span>
+								<span t-field="o.person_name" />
+								<span t-field="o.person_last_name" />
+							</strong>
+							<br />
+							<br />
+							<p>
+								The Health and Welfare Sector Education and Training Authority (HWSETA) has extended your scope as an assessor, to fulfill the functions as contemplated in regulation 9 (1)(e) of the ETQA Regulations of 1998, for the following NQF registered Programme(s):
+							</p>
+							<br />
+							<table class="learner_tables1 table table-condensed" style="page-break-inside:avoid;">
+								<thead>
+									<tr>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>QUALIFICATION ID</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>QUALIFICATION TITLE</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>NQF Level</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Minimum Credits</b>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<t t-foreach="o.qualification_evaluation_ids" t-as="data">
+										<t t-if="data.verify">
+											<tr>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.saqa_qual_id" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.qualification_evaluation_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.qualification_evaluation_id.n_level" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.minimum_credits" />
+												</td>
+											</tr>
+											<!-- Commented by Ganesh as unit standards not required on Approval Letter -->
+											<!-- <t t-foreach="data.qualification_line_evaluation" t-as="line">
+												<tr>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.id_no" />
+													</td>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.title" />
+													</td>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.level2" />
+													</td>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.level3" />
+													</td>
+												</tr>
+											</t> -->
+										</t>
+									</t>
+								</tbody>
+							</table>
+							<br />
+							In the execution of your functions, you are obliged to abide by the HWSETA Code of Conduct for Registered Assessors and Moderators.
+							<br />
+							<br />
+							We wish to congratulate you on this achievement.
+							<br />
+							<br />
+							<span style="color:red;">
+							“Qualification may have multiple SAQA approved learning programs, this approval letter is restricted to the learning programs that are aligned with HWSETA only”.
+							</span>
+							<br />
+							<br />
+							<br />
+							Yours sincerely,
+							<br />
+							<br />
+							<b> ___________________________</b><br/>
+							<br/>
+							<br/>
+							<b>Provincial Manager:
+								<span t-field="o.work_province.name" />
+							</b>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+		<template id="report_moderator_letter_of_approval">
+			<t t-call="report.html_container">
+				<t t-call="hwseta_etqe.pro_ass_mod_header_footer_layout">
+					<t t-foreach="docs" t-as="o">
+						<div class="page">
+							<div class="col-xs-4 pull-right">
+								<p>
+									<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+									<br />
+									<strong>
+									Ref :
+									</strong>
+								</p>
+							</div>
+							<br/>
+							<br />
+							<br />
+							<b>
+								<t t-if="o.person_name">
+									<span t-field="o.person_name" />
+								</t>
+								<t t-if="o.person_last_name">
+									<span t-field="o.person_last_name" />
+								</t>
+							</b>
+							<br />
+							<t t-if="o.work_address">
+								<span t-field="o.work_address" />
+								,
+							</t>
+							<t t-if="o.work_address2">
+								<span t-field="o.work_address2" />
+								,
+							</t>
+							<t t-if="o.work_address3">
+								<span t-field="o.work_address3" />
+								,
+							</t>
+							<br />
+							<t t-if="o.person_suburb">
+								<span t-field="o.person_suburb" />
+								,
+							</t>
+							<t t-if="o.work_city">
+								<span t-field="o.work_city" />
+								,
+							</t>
+							<t t-if="o.work_province">
+								<span t-field="o.work_province" />
+								,
+							</t>
+							<br />
+							<t t-if="o.work_zip">
+								<span t-field="o.work_zip" />
+								,
+							</t>
+							<t t-if="o.work_country">
+								<span t-field="o.work_country" />
+							</t>
+							<br/>
+							<br/>
+							<table class="col-xs-4 pull-left">
+								<tr>
+									<t t-if="o.work_phone">
+										<td>
+												<span>Telephone No.</span>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.work_phone" />
+										</td>
+									</t>
+								</tr>
+								<tr>
+									<t t-if="o.person_cell_phone_number">
+										<td>
+												<span class="text-right">Cell No.</span>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.person_cell_phone_number" />
+										</td>
+									</t>
+								</tr>
+								<tr>
+									<t t-if="o.work_email">
+										<td>
+													<span class="text-right">Email</span>
+										</td>
+										<td>
+											<![CDATA[&nbsp;]]><b>:</b><![CDATA[&nbsp;]]>
+										</td>
+										<td align="left">
+											<span t-field="o.work_email" />
+										</td>
+									</t>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<br />
+							<br />
+							<table>
+								<tr>
+									<td>
+										<span>Moderator Name</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.person_title">
+												<span t-field="o.person_title" />
+											</t>
+											<t t-if="o.person_name">
+												<span t-field="o.person_name" />
+											</t>
+											<t t-if="o.person_last_name">
+												<span t-field="o.person_last_name" />
+											</t>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>Moderator Registration Number</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.temp_moderator_seq_no ">
+												<span t-field="o.temp_moderator_seq_no" />
+											</t>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>Registration Start Date</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.reg_start">
+												<span t-field="o.reg_start" t-field-options='{"format": "dd MMMM yyyy"}' />
+											</t>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>Registration End Date</span>
+									</td>
+									<td>
+										<![CDATA[&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;&nbsp;]]>
+									</td>
+									<td align="left">
+										<strong>
+											<t t-if="o.reg_end">
+												<span t-field="o.reg_end" t-field-options='{"format": "dd MMMM yyyy"}' />
+											</t>
+										</strong>
+									</td>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<strong> RE: NOTIFICATION OF REGISTRATION AS A MODERATOR</strong>
+							<br />
+							<br />
+							<strong>
+								<span>Dear</span>
+								<span t-field="o.person_name" />
+								<span t-field="o.person_last_name" />
+							</strong>
+							<br />
+							<br />
+							<p>
+								The Health and Welfare Sector Education and Training Authority (HWSETA) has extended your scope as an assessor, to fulfill the functions as contemplated in regulation 9 (1)(e) of the ETQA Regulations of 1998, for the following NQF registered Programme(s):
+							</p>
+							<br />
+							<table class="learner_tables1 table table-condensed" style="page-break-inside:avoid;">
+								<thead>
+									<tr>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>QUALIFICATION ID</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>QUALIFICATION TITLE</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>NQF Level</b>
+										</td>
+										<td style="border:solid;border-width: 1px;text-align:center;">
+											<b>Minimum Credits</b>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<t t-foreach="o.qualification_evaluation_ids" t-as="data">
+										<t t-if="data.verify">
+											<tr>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.saqa_qual_id" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.qualification_evaluation_id.name" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.qualification_evaluation_id.n_level" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+														<span t-field="data.minimum_credits" />
+												</td>
+											</tr>
+											<!-- Commented by Ganesh as unit standards not required on Approval Letter -->
+											<!-- <t t-foreach="data.qualification_line_evaluation" t-as="line">
+												<tr>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.id_no" />
+													</td>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.title" />
+													</td>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.level2" />
+													</td>
+													<td style="border:solid;border-width: 1px;">
+														<span t-field="line.level3" />
+													</td>
+												</tr>
+											</t> -->
+										</t>
+									</t>
+								</tbody>
+							</table>
+							<br />
+							In the execution of your functions, you are obliged to abide by the HWSETA Code of Conduct for Registered Assessors and Moderators.
+							<br />
+							<br />
+							We wish to congratulate you on this achievement.
+							<br />
+							<br />
+							<span style="color:red;">
+							“Qualification may have multiple SAQA approved learning programs, this approval letter is restricted to the learning programs that are aligned with HWSETA only”.
+							</span>
+							<br />
+							<br />
+							<br />
+							Yours sincerely,
+							<br />
+							<br />
+							<b> ___________________________</b><br/>
+							<br/> 
+							<br/>
+							<b>Provincial Manager:
+								<span t-field="o.work_province.name" />
+							</b>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

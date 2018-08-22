@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Petty Cash Report  -->
+		 <report
+            id="action_report_partner_ledger_other123"
+            model="res.partner"
+            string="Partner Ledger New"
+            report_type="qweb-pdf"
+            name="hwseta_finance.report_partnerledger_latest"
+            file="hwseta_finance.report_partnerledger_latest"
+            menu="False"
+        />
+		
+		<report 
+            id="report_ptty_cash"
+            string="Petty Cash Report"
+            model="petty.cash" 
+            report_type="qweb-pdf"
+            file="hwseta_finance.report_petty_cash" 
+            name="hwseta_finance.report_petty_cash" 
+        />
+        
+        <report 
+            id="action_account_3rdparty_account_balance_hwseta" 
+            model="account.account" 
+            string="Partner Balance"
+            report_type="qweb-pdf" 
+            name="hwseta_finance.report_partnerbalance" 
+            file="hwseta_finance.report_partnerbalance" 
+            menu="False" 
+        />
+        
+        
+        <report
+            id="action_report_leavy_unpaid"
+            model="res.partner"
+            string="Levy Unpaid Employers"
+            report_type="qweb-pdf"
+            name="hwseta_finance.leavy_unpaid"
+            file="hwseta_finance.leavy_unpaid"
+            menu="False"
+        />
+        <!-- Levy Report -->
+         <report 
+            id="report_levy_report_2"
+            string="Levy Report"
+            model="account.move.line" 
+            report_type="qweb-pdf"
+            file="hwseta_finance.report_levy_report" 
+            name="hwseta_finance.report_levy_report" 
+        />
+        <report id="outstanding_mandatory_grant_report"
+                string="Outstanding Mandatory Grant Report"
+                model="account.move.line"
+                report_type = "qweb-pdf"
+                file="hwseta_finance.report_outstanding_mandatory_grant"
+                name="hwseta_finance.report_outstanding_mandatory_grant" />
+	   <report 
+            id="report_move_ne_rep1"
+            string="Account Ledger Report"
+            model="account.move.line" 
+            report_type="qweb-pdf"
+            file="hwseta_finance.report_move_line" 
+            name="hwseta_finance.report_move_line" 
+        />
+	   <!-- Mandatory Grant Report -->
+		<report 
+            id="report_mandgrant_1"
+            string="Mandatory Grant Report"
+            model="account.move.line" 
+            report_type="qweb-pdf"
+            file="hwseta_finance.report_mandgrant" 
+            name="hwseta_finance.report_mandgrant" 
+        />
+		<!-- Surplus Mandatory Income Report  -->
+		<report 
+            id="report_mandatory_income_1"
+            string="Surplus Mandatory Income Report"
+            model="account.move.line" 
+            report_type="qweb-pdf"
+            file="hwseta_finance.report_mandatory_income" 
+            name="hwseta_finance.report_mandatory_income" 
+        />
+		<!-- Levy Exempted Organisations Report  -->
+		<report 
+            id="report_levy_exempted_1"
+            string="Surplus Mandatory Income Report"
+            model="account.move.line" 
+            report_type="qweb-pdf"
+            file="hwseta_finance.report_levy_exempted" 
+            name="hwseta_finance.report_levy_exempted" 
+        /> 
+	</data>
+</openerp>

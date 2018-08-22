@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<openerp>
+		<data>
+			<template id="report_monitor_evaluate_document">
+				<t t-call="hwseta_sdp.monitor_evaluate_layout">
+					<div class="page">
+						<div class="oe_structure"/>
+						<div class="row">
+							<center><img style="width:600px" class="img img-responsive" src="/hwseta_sdp/static/src/img/hwseta.jpg"/></center>
+							<center><span class="me_front_heading"> DISCRETIONARY GRANT </span></center>
+							<!-- <center><span style="font-size:500%;font-weight: bold"> DISCRETIONARY GRANT </span></center> -->
+							<center><span class="me_front_heading"> MONITORING AND EVALUATION </span></center>
+							<center><span class="me_front_heading"> REPORT</span></center>
+							<div class="row mt16 mb64"></div>
+							<span class="me_front_subheading"> EMPLOYER : </span>
+							<span class="me_front_subheading" t-field="o.employer_id.name"/>
+							<div class="row mt16 mb64"></div>
+							<span class="me_front_subheading"> SDL NUMBER : </span>
+							<span class="me_front_subheading" t-field="o.sdl_number"/>
+							<div class="row mt16 mb64"></div>
+							<span class="me_front_subheading"> DISCRETIONARY GRANT : </span>
+							<div class="row mt16 mb64"></div>
+							<span class="me_front_subheading"> FUNDING YEAR : </span>
+						</div>
+						<p style="page-break-after:always;"></p>
+						<div class="row">
+							<center><span style="font-size:250%;font-weight: bold"> Table of Contents </span></center>
+							<div class="row mt8 mb32"></div>
+							<table class="me_table_style">
+								<tr class="padding_30 avoid_page_break">
+									<td></td>
+									<td></td>
+									<td style="font-weight:bold"><span>PAGE NO</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>Background</span></td>
+									<td></td>
+									<td><span>3</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>Purpose</span></td>
+									<td></td>
+									<td><span>3</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>M and E Requirements</span></td>
+									<td></td>
+									<td><span>3</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION A :</span></td>
+									<td><span>Organisational Details</span></td>
+									<td><span>4</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION B :</span></td>
+									<td><span>Discretionary Grant Project Information</span></td>
+									<td><span>5</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION C :</span></td>
+									<td><span>Quality Assurance</span></td>
+									<td><span>6</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION D :</span></td>
+									<td><span>Administration</span></td>
+									<td><span>7</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION E :</span></td>
+									<td><span>Finance Audit Programme</span></td>
+									<td><span>8</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION F :</span></td>
+									<td><span>Learner Report</span></td>
+									<td><span>11</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION G :</span></td>
+									<td><span>Overall Project Evaluation</span></td>
+									<td><span>16</span></td>
+								</tr>
+								<tr class="padding_30 avoid_page_break">
+									<td><span>SECTION H :</span></td>
+									<td><span>Overall Assessment of Monitoring and Evaluation Site Visit</span></td>
+									<td><span>17</span></td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<table class="me_table_style">
+								<tr class="avoid_page_break">
+									<td class="me_head_underline"><span>Background</span></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_20"><span>The HWSETA approves and allocate Discretionary grants to qualifying employers in the HW sector, TVET Colleges and other approved organisations within the HW sector as per SETA grant regulations and HWSETA Discretionary Grant policy. The funds are paid in tranches to the approved organisation. The HWSETA has the responsibility to monitor and evaluate the projects for which the funds have been approved for as well as the correct use of the disbursed funds.</span></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="me_head_underline">Purpose</td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_20">
+										<span>The objective of the Monitoring and Evaluation tool is to:</span>
+										<div><i class="fa fa-chevron-right"></i><span> Assist the HWSETA in monitoring and valuation of projects funded from discretionary grants</span></div>
+										<div><i class="fa fa-chevron-right"></i><span> Ascertain the progress of the project and whether HWSETA should continue releasing funds to the organisation mandated to deliver the project.</span></div>
+									</td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="me_head_underline">Requirements for M and E</td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_20">
+										<div><i class="fa fa-chevron-right"></i><span> An MOA / MOU between the organisation being funded and the HWSETA.</span></div>
+										<div><i class="fa fa-chevron-right"></i><span> The funded organisation must have submitted proof of commencement of the project.</span></div>
+										<div><span> e.g. Learnership agreements, learner list, proof of registration with a TVET or University.</span></div>
+										<div><i class="fa fa-chevron-right"></i><span> The HWSETA must have disbursed part of the total funding to the employer / organisation</span></div>
+										<div><i class="fa fa-chevron-right"></i><span> The employer must have submitted to the HWSETA an employer report</span></div>
+									</td>
+								</tr>
+							</table>
+							<div class="row mt8 mb32"></div>
+							<table class="me_table_style">
+								<tr class="avoid_page_break">
+									<td class="padding_20"><span>When preparing for M and E visit to an employer ensure, the following must be in the M and E pack and must be made available by the sub division responsible for the projects:</span></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_20">
+									<div><span> 1. Copy of the MOA</span></div>
+									<div><span> 2. Current Employer report from the employer (not older than 3 months)</span></div>
+									<div><span> 3. List of the learners (from SMS where applicable) and learners present during M and E must sign againts their names. This attendance register must be attache in the M and E report.</span></div>
+									<div><span> 4. M and E tool for discretionary grants.</span></div>
+									</td>
+								</tr>
+							</table>
+							<div class="row mt8 mb32"></div>
+							<span style="font-size:170%;font-weight:bold;page-break-inside:avoid;"> NB: Please submit M and E report within 7 working days after visit.</span>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION A : ORGANISATIONAL DETAILS</span>
+							<div class="row mt8 mb32"></div><!-- For new line -->
+							<table class="me_section_table">
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>NAME OF ORGANISATION:</span></td>
+									<td class="padding_15"><span t-field="o.employer_id.name"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>SDL NUMBER:</span></td>
+									<td class="padding_15"><span t-field="o.sdl_number"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>DATE OF VISIT:</span></td>
+									<td class="padding_15"><span t-field="o.date_visit"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>M and E CONDUCTED BY:</span></td>
+									<td class="padding_15"><span t-field="o.me_conducted_by"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>AMOUNT APPROVED:</span></td>
+									<td class="padding_15"><span t-field="o.amount_approved"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>AMOUNT DISBURSED:</span></td>
+									<td class="padding_15"><span t-field="o.amount_disbursed"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_org_detail"><span>AMOUNT OUTSTANDING:</span></td>
+									<td class="padding_15"><span t-field="o.amount_outstanding"/></td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION B : DISCRETIONARY GRANT PROJECT INFORMATION</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_section_table">
+								<tr class="me_bgcolor_grey me_sec_border_row">
+									<th class="me_header_row_section">Project Type</th>
+									<th class="me_header_row_section">Discretionary Grant Name</th>
+									<th class="me_header_row_section">Mark X</th>
+									<th class="me_header_row_section">Funding Year</th>
+									<th class="me_header_row_section">Employed 18.1</th>
+									<th class="me_header_row_section">Employed 18.2</th>
+									<th class="me_header_row_section">Total</th>
+								</tr>
+								<tr t-foreach="o.project_info_ids" t-as="proj_data" class="me_sec_border_row">
+									<td class="padding_15"><t t-if="proj_data.type_of_projects"><span t-field="proj_data.type_of_projects.name"/></t></td>
+									<td class="padding_15"><span t-field="proj_data.project_id.name"/></td>
+									<td class="padding_15">
+										<t t-if="proj_data.mark_x"><i class="fa fa-check"></i></t>
+										<t t-if="proj_data.mark_x == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="proj_data.funding_year"/></td>
+									<td class="padding_15"><span t-field="proj_data.employed"/></td>
+									<td class="padding_15"><span t-field="proj_data.unemployed"/></td>
+									<td class="padding_15"><span t-field="proj_data.total"/></td>
+								</tr>
+							</table>
+							<div class="row mt8 mb32"></div>
+							
+							<span style="font-size:180%">Learnership/Projects commencement and completion date</span>
+							<div class="row mt4 mb16"></div>
+							<table class="me_section_table">
+								<tr class="me_sec_border_row">
+									<td class="me_commence_estimated"><span>Commencement Date</span></td>
+									<td class="me_commence_estimated_center"><span t-field="o.commencement_date"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_commence_estimated"><span>Estimated Completion Date</span></td>
+									<td class="me_commence_estimated_center"><span t-field="o.completion_date"/></td>
+								</tr>
+							</table>
+							<div class="row mt8 mb32"></div>
+							
+							<span style="font-size:180%">Dropouts</span>
+							<div class="row mt4 mb16"></div>
+							<table class="me_section_table">
+								<tr class="me_bgcolor_grey me_sec_border_row">
+									<th class="me_header_row_section"><span>Employed 18.1</span></th>
+									<th class="me_header_row_section"><span>Unemployed 18.2</span></th>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="me_dropouts"><span t-field="o.dropouts_emplyed"/></td>
+									<td class="me_dropouts"><span t-field="o.dropouts_unemplyed"/></td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION C : QUALITY ASSURANCE</span>
+							<div class="row mt4 mb16"></div>
+							<span class="me_font_160">This section evaluates the implementation and monitoring of the training.</span>
+							<div class="row mt4 mb16"></div>
+							<span class="me_font_160">The following tasks need to be performed or indicated as having been performed by the employer:</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_section_table">
+								<tr class="me_bgcolor_grey me_sec_border_row">
+									<th class="me_width_350_padding_15">TASKS</th>
+									<th class="me_width_350_padding_15">INDICATORS</th>
+									<th class="me_width_100_padding_15">ACHIEVED</th>
+									<th class="me_width_300_padding_15">COMMENTS/SUGGESTED ACTION</th>								
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Employers Report has been prepared and submitted to the HWSETA.</span></td>
+									<td class="padding_15"><span>Progress in relation to:</span>
+										<div>* Expenditure</div>
+										<div>* Drop outs</div>	
+										<div>* Learner achievement (assessments)</div>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.report_prepared"><i class="fa fa-check"></i></t>
+										<t t-if="o.report_prepared == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_report_prepared"/></td>
+								</tr>
+								<tr style="border:1px solid;vertical-align:middle;page-break-inside:avoid;">
+									<td class="padding_15"><span>The employer hold regular meetings.</span></td>
+									<td class="padding_15"><span>Meetings with the following:</span>
+										<div>* Assessors</div>
+										<div>* Learners (if applicable)</div>	
+										<div>* Training committee (if required)</div>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.regular_meeting"><i class="fa fa-check"></i></t>
+										<t t-if="o.regular_meeting == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_regular_meeting"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Use learner dispute resolution procedure when problem arise.</span></td>
+									<td class="padding_15"><span>Disputes are resolved and recorded.</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.learner_dispute"><i class="fa fa-check"></i></t>
+										<t t-if="o.learner_dispute == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_learner_dispute"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Review the project plan.</span></td>
+									<td class="padding_15"><span>Revised project plan is recorded.</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.project_reviewed"><i class="fa fa-check"></i></t>
+										<t t-if="o.project_reviewed == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_project_reviewed"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Review outcome of learner feedback.</span></td>
+									<td class="padding_15"><span>Learner feedback meets expectations.</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.outcome_reviewed"><i class="fa fa-check"></i></t>
+										<t t-if="o.outcome_reviewed == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_outcome_reviewed"/></td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION D : ADMINISTRATION</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_section_table">
+								<tr class="me_bgcolor_grey me_sec_border_row">
+									<th class="me_width_500_padding_15">CRITERIA</th>
+									<th class="me_width_100_padding_15">MET</th>
+									<th class="me_width_100_padding_15">NOT MET</th>
+									<th style="padding:15px;width:400px">COMMENTS</th>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Learner record keeping requirements and maintenance</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.req_main_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.req_main_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.req_main_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.req_main_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_learner"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Database maintenance</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.data_main_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.data_main_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.data_main_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.data_main_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_database"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Access and Confidentiality of records and reports</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.confi_rec_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.confi_rec_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.confi_rec_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.confi_rec_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td>
+										<span t-field="o.comment_access"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Reporting and administrative capacity</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.rep_adm_capmet"><i class="fa fa-check"></i></t>
+										<t t-if="o.rep_adm_capmet == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.rep_adm_not_capmet"><i class="fa fa-check"></i></t>
+										<t t-if="o.rep_adm_not_capmet == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td>
+										<span t-field="o.comment_reporting"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Assessor availability:</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.assessor_avail_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.assessor_avail_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.assessor_avail_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.assessor_avail_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_assessor"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Moderator availability:</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.moderator_avail_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.moderator_avail_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.moderator_avail_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.moderator_avail_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_moderator"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Coaches / mentors/ facilitators:</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.coach_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.coach_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.coach_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.coach_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_coaches"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Role players and partnerships: Other NGOs where learners are placed</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.role_player_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.role_player_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.role_player_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.role_player_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_role"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Access to resources for research for learners (e.g. media, books, internet - if applicable)</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.access_resource_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.access_resource_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.access_resource_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.access_resource_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td style="padding:15px;page-break-inside:avoid;">
+										<span t-field="o.comment_resource"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>Training and assessment schedules available</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.train_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.train_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.train_not_met"><i class="fa fa-check"></i></t>
+										<t t-if="o.train_not_met == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.comment_training"/>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION E : FINANCE AUDIT PROGRAMME</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_section_table">
+								<tr style="background-color:#BDBDBD;" class="me_sec_border_row">
+									<th class="me_width_500_padding_15">TASK</th>
+									<th class="me_width_100_padding_15">WORKING PAPER REFERENCE</th>
+									<th class="me_width_500_padding_15">COMMENTS</th>
+								</tr>
+								<tr class="me_sec_border_row">
+									<th class="padding_15">MEMORANDUM OF AGREEMENT:</th>
+									<th class="padding_15"></th>
+									<th class="padding_15"></th>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td style="padding:15px;page-break-inside:avoid;"><span>1.1. Does the institution have a copy of the MOA in their possession?</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.insti_have_moa"><i class="fa fa-check"></i></t>
+										<t t-if="o.insti_have_moa == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_insti_have_moa"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>1.2. Confirm the signature appearing on the agreement.</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.signature_appear"><i class="fa fa-check"></i></t>
+										<t t-if="o.signature_appear == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_signature_appear"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>1.3. Confirm that the signatory has authority to sign on behalf of the institution.</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.signatory_authority"><i class="fa fa-check"></i></t>
+										<t t-if="o.signatory_authority == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_signatory_authority"/></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4. Ensure that the institution representative has read and understood the contents of MOA with reference to:</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.1. Adherence to budget - Par.4.3. and 5.1.1.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.2. Seperate bank account - Par. 5.1.2.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.3. Withdrawal of funds requiring 2 signatories - Par.5.1.3.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.4. Cash withdrawals only permissible with HWSETA written authorization - Par.5.1.3.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.5. Refund funds spent on activities that are not reasonably connected to the project - Par.5.1.6.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.6. Must not incur expenditure which is not comtemplated in the budget - Par.5.1.9.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.7. Permit inspections - Par.5.2.1. and 5.2.2.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.8. Keep originals of all documents at the head office - Par.5.3.3.</span></td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.read_content_moa"><i class="fa fa-check"></i></t>
+										<t t-if="o.read_content_moa == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td><span t-field="o.comment_read_content_moa"/></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.9. Funds will be used for the sole purpose for which they have been approved and provided - Par. 8.2.2.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.10. There will be no corruption nor mismanagement of the funds provided in the term of agreement - Par. 8.2.4.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.11. Proof of agreement concluded with accredited training provider - Par. 11.1.2.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.12. Prrovide written assurance that funding is used solely for purposes for which it was granted (viz. learner allowance, provider fees and uniform allowance)</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.13. In the event that the institution has not compiled with a material obligation contained in the MOA, the HWSETA may withhold payment (Par. 15 3.1.) and request in the institution to comply in writing.</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.14. In the event the institution refuses to comply with its obligations, the HWSETA has the right to withhold any further payments (Par. 15.3.1.), cancel the agreement(Par. 15.3.2.) and recover all amounts paid (Par. 15.3.3.)</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_border_with_color">
+									<td class="padding_15"><span>1.4.15. The HWSETA may terminate this agreement in the event that the institution does not allow the HWSETA or it appointed financial officer, accountant, auditor, etc, to inspect the institutions financial records (Par. 15.5.1.3.)</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15"><span>1.4.16. The contents disclosed in Annexure : Budget</span></td>
+									<td class="me_vertical_aligned_content"></td>
+									<td></td>
+								</tr>
+								<tr style="border-bottom:1px solid;page-break-inside:avoid;">
+									<th class="padding_15">BANK ACCOUNT</th>
+									<th class="padding_15"></th>
+									<th class="padding_15"></th>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>
+											2.1. Has the institution opened a seperate bank account for the sole purpose of managing funds received from the HWSETA?
+										</span>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.bank_sole_purpose"><i class="fa fa-check"></i></t>
+										<t t-if="o.bank_sole_purpose == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_bank_sole_purpose"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>
+											2.2. Secure the Bank statements ensuring that these statements cover the entire period of agreement.
+										</span>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.bank_secure_stmt"><i class="fa fa-check"></i></t>
+										<t t-if="o.bank_secure_stmt == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_bank_secure_stmt"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>
+											2.3. List receipts reflected on the bank statements
+											2.3.1 Received from HWSETA
+											2.3.2 Received from other sources
+											2.3.3 Interest
+										</span>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.list_receipt_bank_stmt"><i class="fa fa-check"></i></t>
+										<t t-if="o.list_receipt_bank_stmt == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_list_receipt_bank_stmt"/></td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>
+											2.4. List payments reflected on the bank statements
+											2.4.1 Learner Allowance
+											2.4.2 Provider fees
+											2.4.3 Uniform purchase
+											2.4.4 All Other payments
+											2.4.5 Bank Charges
+											2.4.6 Interest on overdraft
+										</span>
+									</td>
+									<td class="me_vertical_aligned_content">
+										<t t-if="o.list_payment_bank_stmt"><i class="fa fa-check"></i></t>
+										<t t-if="o.list_payment_bank_stmt == False"><i class="fa fa-times"></i></t>
+									</td>
+									<td class="padding_15"><span t-field="o.comment_list_payment_bank_stmt"/></td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION F : LEARNER REPORT</span>
+							<div class="row mt4 mb16"></div>
+							<span class="me_font_160">These are questions to be asked when holding the meeting with the learners:</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_signature_table">
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>How did you all hear about this HWSETA programme?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_hwseta_prog"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>At the begining of a programme. learners are meant to get information on issues such as the content of the training, how the programme is going to be delivered, how learners will be assessed and what support structures exists for learners. Thinking back on your own experience - how satisfied are you with the information that was given to you at the begining of the programme?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_satisfy_info"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>When you were informed that you had been accepted onto this programme, did you have to sign a contract or learnership agreement? Where you given a copy of these documents?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_sign_contract"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Did someone explain to you what the contract or agreement was all about and what was expected of you?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_contract_about"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>A new group of people will soon be recruited to join this programme. In your opinion, what main change or improvement should be made to the recruitment and selection process so that we can learn from what you went through?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_improve_recruit"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>This training is meant to consist of two main components - a theoretical training component and an on-the-job training component. Let us first talk about the theoretical component of your training. Where did the theoretical training take place?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_theoretical_comp"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Was the training presented in the language that you felt comfortable with?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_training_lang"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>What is your weekly / monthly allowance?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_week_month_allowance"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Were a supervisor / mentor / facilitator appointed at work to support you and give you advice during your Training?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_supervisor_advice"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Do you have any disputes or disagreements with your employer concerning issues such as overtime or working conditions during your training?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_overtime"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Have you received uniforms?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_received_uniforms"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Have you received your books?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_received_books"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Any other comments / remarks you would like to make?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.comment_abt_remark"/></td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION G : OVERALL PROJECT EVALUATION</span>
+							<div class="row mt4 mb16"></div>
+							<span class="me_font_160">The evaluation phase is to measure the overall sucess the project has againts the objectives and indicators established in the project plan. These measures provide all role-players with valuable information, lessons learnt, experiences and/or impressions about the project. These lessons will inform the planning of the next programme, and thereby facilitate improvement of the quality of learning provision.</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_section_table">
+								<tr style="border:1px solid;background-color:#BDBDBD;page-break-inside:avoid;">
+									<th class="me_width_300_padding_15">TASKS</th>
+									<th class="me_width_400_padding_15">INDICATORS</th>
+									<th class="me_width_400_padding_15">SUGGESTED ACTION</th>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span><b>Evaluate the success of the project in relation to the objectives and indicators established in the project plan:</b></span>
+									</td>
+									<td class="padding_15">
+										<span><b>Record the outcome of the evaluation</b></span>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.action_evaluate_success"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>Number of learners that entered in relation to employer initial targets</span>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.indicator_no_of_learner"/>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.action_no_of_learner"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>Number of dropouts / incomplete training</span>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.indicator_no_of_dropouts"/>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.action_no_of_dropouts"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>Factors that contribute to success and / or failure</span>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.indicator_factors_success"/>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.action_factors_success"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span>Financial performance in relation to budget</span>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.indicator_financial_performance"/>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.action_financial_performance"/>
+									</td>
+								</tr>
+								<tr class="me_sec_border_row">
+									<td class="padding_15">
+										<span><b>Identify lessons learnt from the M and E visit by employer</b></span>
+									</td>
+									<td class="padding_15">
+										<span><b>Record lessons learnt</b></span>
+									</td>
+									<td class="padding_15">
+										<span t-field="o.action_financial_performance"/>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<span class="me_section_style">SECTION H : OVERALL ASSESSMENT OF MONITORING AND EVALUATION SITE VISIT</span>
+							<div class="row mt8 mb32"></div>
+							<table class="me_signature_table">
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Based on your meeting with the learners, have you raised and discussed the areas of concern with the employer? What is their response?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.area_of_concern"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>What, in your professional opinion, are the risks and concerns of this project?</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.professional_opinion"/></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="padding_15"><span>Are you recommending for the next paymenr to be processed and give reasons.</span></td>
+								</tr>
+								<tr class="me_questionaire">
+									<td class="padding_15"><span t-field="o.next_payment_process"/></td>
+								</tr>
+							</table>
+							<div class="row mt16 mb64"></div>
+						</div>
+						<p style="page-break-after:always;">   </p>
+						<div class="row">
+							<table class="me_signature_table">
+								<tr class="avoid_page_break">
+									<td class="me_width_200_padding_15"><span>Compiled By</span></td>
+									<td class="me_width_300_padding_15"><span t-field="o.write_uid.name"/></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+							<table class="me_signature_table">
+								<tr style="border-bottom:1px solid;page-break-inside:avoid;">
+									<td class="me_width_100_padding_15"><span>Signature</span></td>
+									<td style="padding:15px;text-align:left;width:600px">
+										<img t-att-src="'data:image/png;base64,%s' % o.related_employee1.signature" style="max-height: 45px;"/>
+									</td>
+									<td class="me_width_100_padding_15"><span>Date</span></td>
+									<td class="me_width_300_padding_15"><span t-field="o.compiled_date"/></td>
+								</tr>
+							</table>
+							<div class="row mt4 mb16"></div>
+							<table class="me_signature_table">
+								<tr class="avoid_page_break">
+									<td class="me_width_500_padding_15"><span><b><i>Provincial Manager</i></b></span></td>
+									<td class="padding_15"></td>
+									<td class="me_width_300_padding_15"><span><b><i>Name:</i></b></span></td>
+									<td class="me_width_300_padding_15"><span t-field="o.provincial_manager_name"/></td>
+								</tr>
+							</table>
+							<div class="row mt4 mb16"></div>
+							<table class="me_signature_table">
+								<tr style="border-bottom:1px solid;page-break-inside:avoid;">
+									<td class="me_width_100_padding_15"><span>Signature</span></td>
+									<td style="padding:15px;text-align:left;width:600px">
+										<img t-att-src="'data:image/png;base64,%s' % o.related_employee2.signature" style="max-height: 45px;"/>
+									</td>
+									<td class="me_width_100_padding_15"><span>Date</span></td>
+									<td class="me_width_300_padding_15"><span t-field="o.prov_man_date"/></td>
+								</tr>
+							</table>
+							<div class="row mt4 mb16"></div>
+							<table class="me_signature_table">
+								<tr class="avoid_page_break">
+									<td style="padding:15px;width:1100px"><span><b>Learning Program Manager / Project Manager</b></span></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+							<div class="row mt4 mb16"></div>
+							<table class="me_signature_table">
+								<tr class="avoid_page_break">
+									<td class="me_approved_learner"><span t-field="o.approved_learn"/></td>
+									<td class="me_width_600_padding_15"><span>Approved</span></td>
+									<td class="me_width_100_padding_15"></td>
+									<td class="me_width_300_padding_15"></td>
+								</tr>
+								<tr style="height:15px;width:100px;page-break-inside:avoid;">
+									<td class="me_width_100_padding_15"></td>
+									<td class="me_width_600_padding_15"></td>
+									<td class="me_width_100_padding_15"></td>
+									<td class="me_width_300_padding_15"></td>
+								</tr>
+								<tr class="avoid_page_break">
+									<td class="me_approved_learner"><span t-field="o.not_approved_learn"/></td>
+									<td class="me_width_600_padding_15"><span>Not Approved</span></td>
+									<td class="me_width_100_padding_15"></td>
+									<td class="me_width_300_padding_15"></td>
+								</tr>
+								<tr style="border-bottom:1px solid;page-break-inside:avoid;">
+									<td class="me_width_100_padding_15"><span>Signature</span></td>
+									<td style="padding:15px;text-align:left;width:600px">
+										<img t-att-src="'data:image/png;base64,%s' % o.project_man_sign" style="max-height: 45px;"/>
+									</td>
+									<td class="me_width_100_padding_15"><span>Date</span></td>
+									<td class="me_width_300_padding_15"><span t-field="o.project_man_date"/></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</t>
+			</template>
+			
+			<template id="report_monitorevaluate">
+			    <t t-call="report.html_container">
+			        <t t-foreach="doc_ids" t-as="doc_id">
+			            <t t-raw="translate_doc(doc_id, doc_model, 'employer_id.lang', 'hwseta_sdp.report_monitor_evaluate_document')"/>
+			        </t>
+			    </t>
+			</template>
+		</data>
+	</openerp>

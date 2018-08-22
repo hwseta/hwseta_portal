@@ -1,0 +1,1836 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Provider Accreditation Form === -->
+		<template id="website.providerAccreditation" name="Provider Accreditation"
+			page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<form id="frmProviderAccreditation" action="/hwseta/confirmProviderAccreditation"
+							method="post" name="frmProviderAccreditation" role="form"
+							style="z-index:1 !important; position:relative !important"
+							enctype="multipart/form-data">
+							<fieldset id="fs1">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<caption>
+											<b>Apply for Accreditation</b>
+										</caption>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<!-- <tr> <td>Already Exist</td> <td colspan="2" width="70%"> 
+												<input type="checkbox" name="already_register" id="already_register" value="already_exist" 
+												/> <input type="text" name="accreditation_number" id="accreditation_number" 
+												placeholder="Enter Accreditation Number" style="width:50%;" /> </td> </tr> -->
+											<tr>
+												<td bgcolor="FFFFFF" colspan="3">
+													<b style="background-color:#FFFFFF;">Code of Conduct</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3"></td>
+											</tr>
+
+											<tr>
+												<td class="button" colspan="3">Please ensure that you are
+													familiar with the
+													Terms &amp; Conditions before continuing
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3">
+													<a target="_blank"
+														href="/hwseta_website/static/src/ProviderAccreditation/Templates/Code_of_Conduct_for_Skills_Development_Providers.docx">Code of Conduct</a>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													I Agree
+												</td>
+												<td colspan="2">
+													<input type="radio" id="agree" name="radio_terms"
+														value="agree" checked="true" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Not Agree
+												</td>
+												<td colspan="2">
+													<input type="radio" id="not_agree" name="radio_terms"
+														value="notagree" />
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="next" id="next1"
+										class="next btn btn-primary" style="max-width: 8%; !important"
+										value="Next" />
+								</div>
+							</fieldset>
+
+							<fieldset id="fs2" style="display:none">
+								<div class="form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" bgcolor="FFFFFF">
+													<strong>
+														<label>General Business Information
+														</label>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td width="33%" colspan="">
+													<label>Provider Name</label>
+												</td>
+												<td width="33%" colspan="3">
+													<label>Trading As Name</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="">
+													<font style="color:#FF0000">*</font>
+													<input name="txtRegName" id="txtRegName" type="text"
+														size="15" placeholder="Registered Name" style="width:95.8%;" />
+												</td>
+												<td colspan="3">
+													<font style="color:#FF0000">*</font>
+													<input name="txtTradeName" id="txtTradeName" type="text"
+														size="15" placeholder="Trading Name" style="width:95.8%;" />
+												</td>
+											</tr>
+											<input name="OrgLegalStatus" id="OrgLegalStatus" value="3"
+												type="hidden" />
+											<tr>
+												<td colspan="4">
+													<label>Proof of Legal status</label>
+												</td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>Company Registration Number</label>
+												</td>
+												<td width="25%">
+													<label>VAT Registration Number</label>
+												</td>
+												<td width="50%" colspan="2">
+													<label>SIC Code Description</label>
+												</td>
+												<!-- <td width="25%"> <label>SIC Code</label> </td> -->
+											</tr>
+											<tr>
+												<td width="25%">
+													<font style="color:#FF0000">*</font>
+													<input name="txtCompanyRegNo" id="txtCompanyRegNo"
+														type="text" size="15" placeholder="Company Registration Number"
+														style="width:96.9%;" />
+												</td>
+												<td width="25%">
+													<!-- <font style="color:#D7181F;">*</font> -->
+													<input name="txtVATRegNo" id="txtVATRegNo" type="text"
+														size="15" placeholder="VAT Registration Number" style="width:94.9%" />
+												</td>
+												<td width="50%" colspan="2">
+													<font style="color:#D7181F;">*</font>
+													<select name="cboOrgSICCode" id="cboOrgSICCode"
+														style="width:95.6%;">
+
+														<option value="" selected="true">-- Select --</option>
+														<t t-foreach="sic_data" t-as="sic_data">
+															<option t-att-value="sic_data[0]">
+																<t t-if="sic_data[1]">
+																	[
+																	<t t-esc="sic_data[1]" />
+																	]
+																</t>
+																<t t-esc="sic_data[2]" />
+																&#160;
+																&#160;
+															</option>
+														</t>
+													</select>
+												</td>
+												<!-- <td width="25%"> <input name="empl_sic_code_id" id="empl_sic_code_id" 
+													type="text" size="15" style="width:93%" /> </td> -->
+											</tr>
+											<tr>
+												<td colspan="">
+													<label>Years in Business</label>
+												</td>
+												<td colspan="">
+													<label>Number of Full Time Staff Members</label>
+												</td>
+												<td colspan="2">
+													<label>Training Material</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="">
+													<font style="color:#F7F7EF;">*</font>
+													<!-- <input name="txtNumYearsCurrentBusiness" id="txtNumYearsCurrentBusiness" 
+														type="text" size="15" placeholder="Years in Business" style="width:95.5%" 
+														onkeypress="javascript:keyNumerics();" /> -->
+													<select name="txtNumYearsCurrentBusiness" style="width:95.6%;"
+														id="txtNumYearsCurrentBusiness">
+														<option value="">-- select --</option>
+														<option value="0">0</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="10+">10+</option>
+													</select>
+												</td>
+												<td colspan="">
+													<font style="color:#FF0000">*</font>
+													<input name="txtNumStaffMembers" id="txtNumStaffMembers"
+														type="text" size="15" placeholder="Number of full time staff members"
+														style="width:95%" onkeypress="javascript:keyNumerics();" />
+												</td>
+												<td colspan="2">
+													<select name="material" style="width:95.6%;" id="material">
+														<option value="">-- select --</option>
+														<option value="own_material">Own Material</option>
+														<option value="hwseta_material">HWSETA Material</option>
+													</select>
+												</td>
+											</tr>
+											<tr colspan="4">
+												<td bgcolor="FFFFFF" colspan="4"> Program Approval</td>
+											</tr>
+											<tr>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Already Accredited with other SETA</label>
+												</td>
+												<td colspan="">
+													<font color="#FF0000">* </font>
+													Yes
+													<input name="optYesNo" id="optYesNo" type="radio"
+														value="yes" style="width: 12%;" />
+													No
+													<input checked="" name="optYesNo" id="optYesNo" type="radio"
+														value="no" style="width: 12%;" />
+												</td>
+												<td colspan="">
+													<label id="SETA_label">Primary Accreditation Number</label>
+												</td>
+												<td>
+													<input name="SETA" id="SETA" value="" type="text" />
+												</td>
+
+											</tr>
+											<tr id="doc_row">
+												<td width="25%">
+													<label>Letter of Referral</label>
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="Document1" type="file"
+														size="15" />
+												</td>
+												<td width="25%">
+													<label>Primary Accreditation Letter</label>
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="Document2" type="file"
+														size="15" />
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<input type="button" name="next" id="next2"
+										class="next btn btn-primary" style="max-width: 8%; !important"
+										value="Next" />
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+							</fieldset>
+
+							<fieldset id="fs4" style="display:none">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b>General Site Information</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<label> Main Campus/Address Information </label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Campus Name</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtCmpName"
+														id="txtCmpName" value="" type="text" />
+												</td>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Campus Email</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtCmpEmail"
+														id="txtCmpEmail" maxlength="50" value="" type="text" />
+												</td>
+											</tr>
+											<tr>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Campus Phone</label>
+												</td>
+												<td nowrap="">
+													<font style="color:#FF0000">*</font>
+													<input class="input" style="width: 180px" name="txtCmpPhone"
+														id="txtCmpPhone" maxlength="10" value="" type="text"
+														placeholder="e.g. 0824513677" onkeypress="javascript:keyNumerics();" />
+												</td>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Campus Fax</label>
+												</td>
+												<td nowrap="">
+													<font color="#F7F7EF">* </font>
+													<input class="input" style="width: 180px" name="txtFaxNo"
+														id="txtFaxNo" maxlength="10" value="" type="text" />
+												</td>
+											</tr>
+
+											<tr>
+												<td class="menubar" style="font-weight: normal" rowspan="7"
+													nowrap="">
+													<label>Campus Address</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3" nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 96.6%" name="txtCmpStreet1"
+														id="txtCmpStreet1" maxlength="50" value="" type="text"
+														placeholder="Street Number" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3" nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 96.6%" name="txtCmpStreet2"
+														id="txtCmpStreet2" maxlength="50" value="" type="text"
+														placeholder="Street Name" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3" nowrap="">
+													<font color="#F7F7EF">* </font>
+													<input class="input" style="width: 96.6%" name="txtCmpStreet3"
+														id="txtCmpStreet3" maxlength="50" value="" type="text"
+														placeholder="Building\Office Park " />
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="" colspan="3">
+													<font color="#FF0000">* </font>
+													<select name="txtCmpCountry" id="txtCmpCountry"
+														placeholder="Country" style="width:27%">
+														<option value="">-- Select Country--</option>
+														<t t-foreach="countries" t-as="countries">
+															<option t-att-value="countries[0]">
+																<t t-esc="countries[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+											</tr>
+
+											<tr>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<select name="txtCmpProvince" id="txtCmpProvince"
+														style="width:70%">
+														<option value="">-- Select Province --</option>
+														<!-- <t t-foreach="state" t-as="state"> <option t-att-value="state.id"> 
+															<t t-esc="state.name" /> </option> </t> -->
+													</select>
+												</td>
+												<td colspan="2">
+													<!-- <font color="#FF0000">* </font> -->
+													<select name="txtCmpCity" style="width:171px" id="city">
+														<option value="">-- Select City--</option>
+														<!-- <t t-foreach="city" t-as="city"> <option t-att-value="city.id"> 
+															<t t-esc="city.name" /> </option> </t> -->
+													</select>
+												</td>
+
+
+											</tr>
+											<tr>
+												<td>
+													<font color="#FFFFFF">* </font>
+													<select name="txtSuburb" style="width:171px" id="txtSuburb">
+														<option value="">-- Select Suburb--</option>
+														<!-- <t t-foreach="suburb" t-as="suburb"> <option t-att-value="suburb.id"> 
+															<t t-esc="suburb.name" /> </option> </t> -->
+													</select>
+												</td>
+												<td colspan="2">
+													<!-- <font color="#FF0000">* </font> -->
+													<input class="input" style="width: 166px" name="txtCmpZip"
+														id="txtCmpZip" onkeypress="javascript:keyNumerics();"
+														maxlength="6" value="" type="text" placeholder="Zip" />
+												</td>
+											</tr>
+
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" bgcolor="#FFFFFF">
+													<label>Contact Details</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Contact Person Name</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtContactNameSurname"
+														id="txtContactNameSurname" maxlength="50" value="" type="text" />
+												</td>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Contact Person Surname</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtContactSurname"
+														id="txtContactSurname" maxlength="50" value="" type="text" />
+												</td>
+											</tr>
+											<tr>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label> Telephone Number
+													</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtContactTel"
+														id="txtContactTel" maxlength="10" value="" type="text"
+														onkeypress="javascript:keyNumerics();" />
+												</td>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label> Cell Number
+													</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtContactCell"
+														id="txtContactCell" maxlength="10" value="" type="text"
+														placeholder="e.g. 0824513619" onkeypress="javascript:keyNumerics();" />
+												</td>
+											</tr>
+											<tr>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Email
+														Address
+													</label>
+												</td>
+												<td nowrap="">
+													<font color="#FF0000">* </font>
+													<input class="input" style="width: 180px" name="txtContactEmail"
+														id="txtContactEmail" maxlength="50" value="" type="text" />
+												</td>
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label> Job Title
+													</label>
+												</td>
+												<td nowrap="">
+													<font color="#F7F7EF">* </font>
+													<input class="input" style="width: 180px" name="txtJobTitle"
+														id="txtJobTitle" maxlength="50" value="" type="text" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b>Main Campus Qualification</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4">
+													<input type="hidden" name="qualification_idss" id="qualification_idss"
+														value="" />
+
+												</td>
+											</tr>
+											<tr style="min-height: 120px;" class="provider_qualification">
+												<td class="menubar" style="font-weight: normal" nowrap="">
+													<label>Qualification</label>
+												</td>
+												<td colspan="3" nowrap="">
+													<font style="color:#F7F7EF;">*</font>
+													<select name="cboQualification" id="qualification"
+														class="demo" multiple="multiple">
+														<t t-foreach="qualification" t-as="qualification">
+															<option t-att-value="qualification[0]">
+																(
+																<t t-esc="qualification[2]" />
+																&#160;)
+																<t t-esc="qualification[1]" />
+																( Minimum Credits-
+																<t t-esc="qualification[3]" />
+																)
+
+																<!-- , <div style="display:none;" t-foreach="qualification.qualification_line" 
+																	t-as="lines"> <t t-esc="lines.id_no" /> </div> -->
+															</option>
+														</t>
+													</select>
+
+												</td>
+											</tr>
+
+										</table>
+									</div>
+								</div>
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											id="show_qualification"
+											style="height: 350px !important;overflow-y: scroll !important;display: block;">
+											<tr class="heading">
+												<th width="10%">
+													<label>Type</label>
+												</th>
+												<th width="10%">
+													<label>ID No</label>
+												</th>
+												<th width="50%">
+													<label>Unit Standard Title</label>
+												</th>
+												<th width="10%">
+													<label>Pre-2009 NQF Level</label>
+												</th>
+												<th width="10%">
+													<label>NQF Level</label>
+												</th>
+												<th width="5%">
+													<label>Credits</label>
+												</th>
+												<th width="10%">
+													<label>SETA Learning Material</label>
+												</th>
+												<th width="10%">
+													<label>Provider Learning Material</label>
+												</th>
+												<th width="5%">
+													<input type="checkbox" id="selectAllQualifications" />
+												</th>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4">
+													<input type="hidden" name="skill_idss" id="skill_idss"
+														value="" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b>Main Campus Skills Programme</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr style="min-height: 120px;" class="provider_skill">
+												<td style="width:24% !important;">
+													<label>Skills Programme</label>
+												</td>
+												<td colspan="3" nowrap="">
+													<font style="color:#F7F7EF;">*</font>
+													<select name="cboSkill" id="skill" class="demo"
+														multiple="multiple">
+														<t t-foreach="skills" t-as="skills">
+															<option t-att-value="skills[0]">
+																(
+																<t t-esc="skills[2]" />
+																)
+																<t t-esc="skills[1]" />
+																<!-- , <div style="display:none;" t-foreach="skills.unit_standards_line" 
+																	t-as="lines"> <t t-esc="lines.id_no" /> </div> -->
+															</option>
+														</t>
+													</select>
+
+												</td>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											id="show_skills"
+											style="height: 350px !important;overflow-y: scroll !important;display: block;">
+											<tr class="heading">
+												<th width="10%">
+													<label>Type</label>
+												</th>
+												<th width="10%">
+													<label>ID No</label>
+												</th>
+												<th width="50%">
+													<label>Unit Standard Title</label>
+												</th>
+												<th width="10%">
+													<label>Pre-2009 NQF Level</label>
+												</th>
+												<th width="10%">
+													<label>NQF Level</label>
+												</th>
+												<th width="5%">
+													<label>Credits</label>
+												</th>
+												<th width="5%">
+													<input type="checkbox" id="selectAllSkills" disabled='disabled' />
+												</th>
+											</tr>
+										</table>
+
+									</div>
+
+								</div>
+								<!-- Vishnu Changes start -->
+								<div class="form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4">
+													<input type="hidden" name="learning_idss" id="learning_idss"
+														value="" />
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b>Main Campus Learning Programme</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr style="min-height: 120px;" class="learning_skill"
+												id="learning_skill_option">
+												<td style="width:24% !important;">
+													<label>Learning Programme</label>
+												</td>
+												<td colspan="3" nowrap="">
+													<font style="color:#F7F7EF;">*</font>
+													<select name="cboLearning" class="demo" multiple="multiple">
+														<t t-foreach="learnings" t-as="learning">
+															<option t-att-value="learning[0]">
+																(
+																<t t-esc="learning[2]" />
+																)
+																<t t-esc="learning[1]" />
+															</option>
+														</t>
+													</select>
+												</td>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+											id="show_learnings"
+											style="height: 350px !important;overflow-y: scroll !important;display: none">
+											<tr class="heading">
+												<th width="10%">
+													<label>Type</label>
+												</th>
+												<th width="10%">
+													<label>ID No</label>
+												</th>
+												<th width="50%">
+													<label>Unit Standard Title</label>
+												</th>
+												<th width="10%">
+													<label>Pre-2009 NQF Level</label>
+												</th>
+												<th width="10%">
+													<label>NQF Level</label>
+												</th>
+												<th width="5%">
+													<label>Credits</label>
+												</th>
+												<th width="10%">
+													<label>SETA Learning Material</label>
+												</th>
+												<th width="10%">
+													<label>Provider Learning Material</label>
+												</th>
+												<th width="5%">
+													<input type="checkbox" id="selectAllSkills" disabled='disabled' />
+												</th>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- End -->
+								
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<!-- <button name="cmdNext" id="submit_accreditation" class="btn 
+										btn-primary">Submit </button> -->
+									<input type="button" name="next10" id="next10"
+										class="next btn btn-primary" style="max-width: 8%; !important;"
+										value="Next" />
+									<!-- <input type="button" name="next" id="next4" class="next btn 
+										btn-primary" style="max-width: 8%; !important;display:none !important;" value="Next" 
+										/> -->
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+							</fieldset>
+							<fieldset id="fs5" style="display:none">
+								<div class=" form-bg">
+									<div class="tableclass">
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+													<b> Assessor / Moderator</b>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr class="assessor">
+												<td class="menubar" style="font-weight: normal;width:24% !important;"
+													nowrap="" rowspan="3">
+													<label>Assessor</label>
+													<input type="hidden" id="assesor_set" name="assesor"
+														value="" />
+												</td>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<input style="width:95.6%;" name="assessor_number"
+														id="add_assessor_number" type="text" size="15" value=""
+														placeholder="Enter Assessor Number" />
+												</td>
+												<td colspan="2">
+													<font style="color:#F7F7EF;">*</font>
+													<input name="add_assessor" id="add_assessor" type="button"
+														value="Add"
+														style="width:40% !important; height:29px; border-radius:3px;" />
+													<input name="remove_assessor" id="remove_assessor"
+														type="button" value="Remove"
+														style="width:40% !important; height:29px; border-radius:3px;" />
+												</td>
+											</tr>
+											<tr>
+												<td align="center">
+													<b>Assessors</b>
+													<font color="#FF0000">* </font>
+												</td>
+												<td align="center">
+													<b>Appointment Letter / SLA</b>
+													<font color="#FF0000">* </font>
+												</td>
+												<td align="center">
+													<b>Notification Letter</b>
+													<font color="#FF0000">* </font>
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="">
+													<select name="cboAssessor" id="assessor" style="width:100%;"
+														multiple="multiple" size="7">
+													</select>
+												</td>
+												<td>
+													<div class="field_wrapper_assessor">
+													</div>
+												</td>
+												<td>
+													<div class="field_wrapper_assessor_notification_letter">
+													</div>
+												</td>
+
+											</tr>
+
+											<tr>
+												<td colspan="4">
+													<input type="hidden" name="provider_accreditation_ref"
+														id="provider_accreditation_ref" t-att-value="provider_accreditation_ref" />
+												</td>
+											</tr>
+											<tr class="moderator">
+												<td class="menubar" style="font-weight: normal;width:24% !important;"
+													nowrap="" rowspan="3">
+													<label>Moderator</label>
+													<input type="hidden" id="moderator_set" name="moderator"
+														value="" />
+												</td>
+												<td>
+													<font style="color:#F7F7EF;">*</font>
+													<input style="width:95.6%;" name="moderator_number"
+														id="add_moderator_number" type="text" size="15" value=""
+														placeholder="Enter Moderator Number" />
+												</td>
+												<td colspan="2">
+													<font style="color:#F7F7EF;">*</font>
+													<input name="add_moderator" id="add_moderator" type="button"
+														value="Add"
+														style="width:40% !important; height:29px; border-radius:3px;" />
+													<input name="remove_moderator" id="remove_moderator"
+														type="button" value="Remove"
+														style="width:40% !important; height:29px; border-radius:3px;" />
+												</td>
+											</tr>
+											<tr>
+												<td align="center">
+													<b>Moderators</b>
+													<font color="#FF0000">* </font>
+												</td>
+												<td align="center">
+													<b>Appointment Letter / SLA</b>
+													<font color="#FF0000">* </font>
+												</td>
+												<td align="center">
+													<b>Notification Letter</b>
+													<font color="#FF0000">* </font>
+												</td>
+											</tr>
+											<tr>
+												<td nowrap="">
+													<select name="cboModerator" id="moderator" style="width:100%;"
+														multiple="multiple" size="7">
+													</select>
+												</td>
+												<td>
+													<div class="field_wrapper_moderator">
+													</div>
+												</td>
+												<td>
+													<div class="field_wrapper_moderator_notification_letter">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td colspan="4" bgcolor="FFFFFF">
+													<label>Document upload</label>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>CIPC/DSD Documents</label>
+												</td>
+												<td width="25%">
+													<label>Tax Clearance</label>
+												</td>
+												<td width="25%">
+													<label>Director C.V</label>
+												</td>
+												<td width="25%">
+													<label>Certified Copies Of Qualifications</label>
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													<font id="cipc_star_id" color="#FF0000">* </font>
+													<input style="width:171px" name="ciproDocument" type="file"
+														size="15" />
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="taxDocument" type="file"
+														size="15" />
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="cvDocument" type="file"
+														size="15" />
+												</td>
+												<td>
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="qualificationDocument"
+														multiple="true" type="file" size="15" />
+												</td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>Proof of Ownership (Utility Bill) or Lease Agreement
+													</label>
+												</td>
+												<td width="25%">
+													<label>Company Profile and organogram
+													</label>
+												</td>
+												<td width="25%">
+													<label>Quality Management System (QMS)
+													</label>
+												</td>
+												<td width="25%">
+													<label>Learning Programme Approval Report
+													</label>
+												</td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="lease_agreement"
+														multiple="true" type="file" size="15" />
+												</td>
+												<td width="25%">
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="company_profile_and_organogram"
+														multiple="true" type="file" size="15" />
+												</td>
+												<td width="25%">
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="quality_management_system"
+														multiple="true" type="file" size="15" />
+												</td>
+												<td width="25%">
+													<font id="learning_material_font" color="#F7F7EF">* </font>
+													<input style="width:171px" name="provider_learning_material"
+														multiple="true" type="file" size="15" />
+												</td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<label>Business Visa / Passport / Permanent residence
+													</label>
+												</td>
+												<td width="25%">
+													<label>Skills Programme Registration Letter
+													</label>
+												</td>
+												<td width="25%">
+													<label>Professional Body Registration
+													</label>
+												</td>
+												<td width="25%">
+													<label>Workplace Agreement
+													</label>
+												</td>
+											</tr>
+											<tr>
+												<td width="25%">
+													<!-- <font color="#FF0000">* </font> -->
+													<input style="width:171px" name="business_residence_proof"
+														multiple="true" type="file" size="15" />
+												</td>
+												<td width="25%">
+													<font id="skills_programme_registration_font" color="#FF0000">*
+													</font>
+													<input style="width:171px" name="skills_programme_registration_letter"
+														multiple="true" type="file" size="15" />
+												</td>
+												<td width="25%">
+													<!-- <font color="#FF0000">* </font> -->
+													<input style="width:171px" name="professional_body_registration"
+														multiple="true" type="file" size="15" />
+												</td>
+												<td width="25%">
+													<font color="#FF0000">* </font>
+													<input style="width:171px" name="workplace_agreement"
+														multiple="true" type="file" size="15" />
+												</td>
+											</tr>
+										</table>
+										<table width="100%" border="1" bordercolor="#999999"
+											bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+											<tr>
+												<td colspan="4"></td>
+											</tr>
+
+											<tr>
+												<td style="font-weight: normal;width:24% !important;">
+													<label>Add Satellite Campus</label>
+												</td>
+												<td>
+													<input type="radio" id="radiyes" name="radiosattelite"
+														value="yes" style="width:50%;" />
+													Yes
+												</td>
+												<td>
+													<input type="radio" id="radiono" name="radiosattelite"
+														value="no" checked="true" style="width:50%;" />
+													No
+												</td>
+
+											</tr>
+
+										</table>
+									</div>
+								</div>
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<button name="cmdNext" id="submit_accreditation" class="btn btn-primary">Submit
+									</button>
+									<input type="button" name="next" id="next4"
+										class="next btn btn-primary" style="max-width: 8%; !important;display:none !important;"
+										value="Next" />
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+							</fieldset>
+							<fieldset id="fs8" style="display:none">
+								<div class=" form-bg">
+									<div id="accordian" class="tableclass">
+										<h2 class="heading-reference">
+											<label>Satellite Campus #1</label>
+										</h2>
+										<div id="entry1" class="clonedInput">
+
+											<table width="100%" border="1" bordercolor="#999999"
+												bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+												<tr>
+													<td>
+														<label>Satellite Campus Name</label>
+													</td>
+													<td colspan="">
+														<font color="#FF0000">* </font>
+														<input type="text" id="ID1_campusname" name="ID1_campusname"
+															value="" class="campusname" style="width:96%;" />
+													</td>
+													<td>
+														<label>Email</label>
+													</td>
+													<td>
+														<font color="#FF0000">* </font>
+														<input type="text" class="email" id="ID1_email"
+															name="ID1_email" style="width:95%;" />
+													</td>
+												</tr>
+												<tr>
+
+													<td>
+														<label>Phone</label>
+													</td>
+													<td>
+														<font style="color:#F7F7EF;">*</font>
+														<input type="text" class="phone" id="ID1_phone"
+															maxlength="10" name="ID1_phone" style="width:96%;"
+															placeholder="e.g. 0824513677" />
+													</td>
+													<td>
+														<label>Fax</label>
+													</td>
+													<td>
+														<font style="color:#F7F7EF;">*</font>
+														<input type="text" class="fax" id="ID1_fax" name="ID1_fax"
+															style="width:95%;" maxlength="10" />
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4"></td>
+												</tr>
+												<tr>
+													<td class="menubar" style="font-weight: normal" rowspan="7"
+														nowrap="">
+														<label>Satellite Campus Address</label>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="3" nowrap="">
+														<font style="color:#FF0000;">*</font>
+														<input class="input street" style="width: 180px"
+															name="ID1_street" id="ID1_street" maxlength="50" value=""
+															type="text" placeholder="Street Number" />
+													</td>
+												</tr>
+												<tr>
+													<td colspan="3" nowrap="">
+														<font style="color:#FF0000;">*</font>
+														<input class="input street2" style="width: 180px"
+															name="ID1_street2" id="ID1_street2" maxlength="50" value=""
+															type="text" placeholder="Street Name" />
+													</td>
+												</tr>
+												<tr>
+													<td colspan="3" nowrap="">
+														<font style="color:#F7F7EF;">*</font>
+														<input class="input street3" style="width: 180px"
+															name="ID1_street3" id="ID1_street3" maxlength="50" value=""
+															type="text" placeholder="Building\Office Park " />
+													</td>
+												</tr>
+												<tr>
+													<td nowrap="" colspan="3">
+
+														<font style="color:#FF0000;">*</font>
+														<select name="ID1_country" id="ID1_country" class="country"
+															placeholder="Country" style="width:32%">
+															<option value="">-- Select Country--</option>
+															<t t-foreach="countries3" t-as="countries3">
+																<option t-att-value="countries3[0]">
+																	<t t-esc="countries3[1]" />
+																</option>
+															</t>
+														</select>
+													</td>
+												</tr>
+
+												<tr>
+													<td nowrap="">
+														<font style="color:#FF0000;">*</font>
+														<select name="ID1_province" id="ID1_province"
+															class="province" style="width:85%">
+															<option value="">-- Select Province --</option>
+															<!-- <t t-foreach="state3" t-as="state3"> <option t-att-value="state3.id"> 
+																<t t-esc="state3.name" /> </option> </t> -->
+														</select>
+													</td>
+													<td colspan="2">
+														<select class="input city" name="ID1_city" id="ID1_city"
+															style="height:29px;width:171px">
+															<option value="">-- Select City--</option>
+															<!-- <t t-foreach="city3" t-as="city3"> <option t-att-value="city3.id"> 
+																<t t-esc="city3.name" /> </option> </t> -->
+														</select>
+													</td>
+
+
+												</tr>
+												<tr>
+													<td nowrap="">
+														<font style="color:#F7F7EF;">*</font>
+														<select class="input suburb" name="ID1_suburb"
+															style="height:29px;width:171px" id="ID1_suburb">
+															<option value="">-- Select Suburb--</option>
+															<!-- <t t-foreach="suburb3" t-as="suburb3"> <option t-att-value="suburb3.id"> 
+																<t t-esc="suburb3.name" /> </option> </t> -->
+														</select>
+													</td>
+													<td colspan="2">
+														<input class="input zip" style="width: 171px" name="ID1_zip"
+															id="ID1_zip" onkeypress="javascript:keyNumerics();"
+															maxlength="6" value="" type="text" placeholder="Zip" />
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4" bgcolor="#FFFFFF">
+														<label>Satellite Contact Details</label>
+													</td>
+												</tr>
+												<tr>
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label>Contact Person Name</label>
+													</td>
+													<td nowrap="">
+														<font color="#FF0000">* </font>
+														<input class="input txtContactNameSurname" style="width: 180px"
+															name="ID1_txtContactNameSurname" id="ID1_txtContactNameSurname"
+															maxlength="50" value="" type="text" />
+													</td>
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label>Contact Person Surname</label>
+													</td>
+													<td nowrap="">
+														<font color="#FF0000">* </font>
+														<input class="input txtContactSurname" style="width: 180px"
+															name="ID1_txtContactSurname" id="ID1_txtContactSurname"
+															maxlength="50" value="" type="text" />
+													</td>
+												</tr>
+												<tr>
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label> Telephone Number
+														</label>
+													</td>
+													<td nowrap="">
+														<font color="#F7F7EF">* </font>
+														<input class="input txtContactTel" style="width: 180px"
+															name="ID1_txtContactTel" id="ID1_txtContactTel"
+															maxlength="10" value="" type="text" onkeypress="javascript:keyNumerics();" />
+													</td>
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label> Campus Person Contact
+														</label>
+													</td>
+													<td nowrap="">
+														<font color="#F7F7EF">* </font>
+														<input class="input txtContactCell" style="width: 180px"
+															name="ID1_txtContactCell" id="ID1_txtContactCell"
+															maxlength="10" value="" type="text" placeholder="e.g. 0824513677"
+															onkeypress="javascript:keyNumerics();" />
+													</td>
+												</tr>
+												<tr>
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label>Email Address
+														</label>
+													</td>
+													<td nowrap="">
+														<font color="#FF0000">* </font>
+														<input class="input txtContactEmail" style="width: 180px"
+															name="ID1_txtContactEmail" id="ID1_txtContactEmail"
+															maxlength="50" value="" type="text" />
+													</td>
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label> Job Title
+														</label>
+													</td>
+													<td nowrap="">
+														<font color="#F7F7EF">* </font>
+														<input class="input txtJobTitle" style="width: 180px"
+															name="ID1_txtJobTitle" id="ID1_txtJobTitle" maxlength="20"
+															value="" type="text" onkeypress="javascript:keyNumerics();" />
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4"></td>
+												</tr>
+
+												<tr>
+													<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+														<b>Satellite Campus Assessor</b>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4"></td>
+												</tr>
+												<tr class="campus_assessor">
+													<td class="menubar" style="font-weight: normal" nowrap=""
+														rowspan="3">
+														<label>Assessor</label>
+														<input type="hidden" id="ID1_campusassesorset" name="ID1_campusassesorset"
+															value="" class="campusassesorset" />
+													</td>
+													<td colspan="2">
+														<font style="color:#F7F7EF;">*</font>
+														<input style="width:95.6%;" name="ID1_campus_assessor_number"
+															id="ID1_campus_assessor_number" type="text" size="15"
+															value="" placeholder="Enter Assessor Number" class="campus_assessor_number" />
+													</td>
+													<td>
+														<font style="color:#F7F7EF;">*</font>
+														<input name="ID1_campus_add_assessor" id="ID1_campus_add_assessor"
+															type="button" value="Add"
+															style="width:40% !important; height:29px; border-radius:3px;"
+															class="campus_add_assessor" />
+														<input name="ID1_campus_remove_assessor" id="ID1_campus_remove_assessor"
+															type="button" value="Remove"
+															style="width:40% !important; height:29px; border-radius:3px;"
+															class="campus_remove_assessor" />
+													</td>
+												</tr>
+												<tr>
+													<td align="center">
+														<b>Assessors</b>
+													</td>
+													<td colspan="2" align="center">
+														<b>Appointment Letter / SLA</b>
+													</td>
+												</tr>
+												<tr>
+													<td nowrap="">
+														<select name="ID1_campusassessor" id="ID1_campusassessor"
+															style="width:100%;" class="campusassessor" multiple="multiple"
+															size="7">
+														</select>
+													</td>
+													<td colspan="2">
+														<div id="ID1_campus_wrapper_assessor" class="campus_wrapper_assessor">
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4"></td>
+												</tr>
+												<tr>
+													<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+														<b>Satellite Campus Moderator</b>
+													</td>
+												</tr>
+												<tr class="campus_moderator">
+													<td class="menubar" style="font-weight: normal" nowrap=""
+														rowspan="3">
+														<label>Moderator</label>
+														<input type="hidden" id="ID1_campusmoderatorset"
+															name="ID1_campusmoderatorset" value="" class="campusmoderatorset" />
+													</td>
+													<td colspan="2">
+														<font style="color:#F7F7EF;">*</font>
+														<input style="width:95.6%;" name="ID1_campus_moderator_number"
+															id="ID1_campus_moderator_number" type="text" size="15"
+															value="" placeholder="Enter Moderator Number" class="campus_moderator_number" />
+													</td>
+													<td>
+														<font style="color:#F7F7EF;">*</font>
+														<input name="ID1_campus_add_moderator" id="ID1_campus_add_moderator"
+															type="button" value="Add"
+															style="width:40% !important; height:29px; border-radius:3px;"
+															class="campus_add_moderator" />
+														<input name="ID1_campus_remove_moderator" id="ID1_campus_remove_moderator"
+															type="button" value="Remove"
+															style="width:40% !important; height:29px; border-radius:3px;"
+															class="campus_remove_moderator" />
+													</td>
+												</tr>
+												<tr>
+													<td align="center">
+														<b>Moderators</b>
+													</td>
+													<td colspan="2" align="center">
+														<b>Appointment Letter / SLA</b>
+													</td>
+												</tr>
+												<tr>
+													<td nowrap="">
+														<select name="ID1_campusmoderator" id="ID1_campusmoderator"
+															style="width:100%;" class="campusmoderator" multiple="multiple"
+															size="7">
+														</select>
+													</td>
+													<td colspan="2">
+														<div id="ID1_campus_wrapper_moderator" class="campus_wrapper_moderator">
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4">
+														<input type="hidden" name="ID1_campusqualificationids"
+															id="ID1_campusqualificationids" value=""
+															class="campusqualificationids" />
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+														<b>Satellite Campus Qualification</b>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4"></td>
+												</tr>
+												<tr style="min-height: 120px;" class="campus_qualification">
+													<td class="menubar" style="font-weight: normal" nowrap="">
+														<label>Qualification</label>
+													</td>
+													<td colspan="3" nowrap="">
+														<font color="#FF0000">* </font>
+														<select name="campusualification" id="campusualification"
+															class="demo campusualification" multiple="multiple">
+															<!-- <t t-foreach="campus_qualification" t-as="qualification"> -->
+															<!-- <option value="">Select Qualification</option> -->
+															<!-- <option t-att-value="qualification[0]"> <t t-esc="qualification[1]" 
+																/> ( <t t-esc="qualification[2]" /> ) </option> </t> -->
+
+														</select>
+
+													</td>
+												</tr>
+											</table>
+											<div class="tableclass">
+												<table width="100%" border="1" bordercolor="#999999"
+													bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+													id="show_campus_qualification" style="display:none;">
+													<tr class="heading">
+														<th width="10%">
+															<label>Type</label>
+														</th>
+														<th width="10%">
+															<label>ID No</label>
+														</th>
+														<th width="50%">
+															<label>Unit Standard Title</label>
+														</th>
+														<th width="10%">
+															<label>Pre-2009 NQF Level</label>
+														</th>
+														<th width="10%">
+															<label>NQF Level</label>
+														</th>
+														<th width="5%">
+															<label>Credits</label>
+														</th>
+														<th width="10%">
+															<label>SETA Learning Material</label>
+														</th>
+														<th width="10%">
+															<label>Provider Learning Material</label>
+														</th>
+														<th width="5%">
+															<label>Select </label>
+														</th>
+													</tr>
+												</table>
+											</div>
+											<div class="tableclass">
+												<table width="100%" border="1" bordercolor="#999999"
+													bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+													<tr>
+														<td colspan="4">
+															<input type="hidden" name="ID1_campusskillsids" id="ID1_campusskillsids"
+																value="" class="campusskillsids" />
+														</td>
+													</tr>
+													<tr>
+														<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+															<b>Satellite Campus Skills Programme</b>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="4"></td>
+													</tr>
+													<tr style="min-height: 120px;" class="campus_skills">
+														<td class="menubar" style="font-weight: normal;width:26% !important"
+															nowrap="">
+															<label>Skills Programme</label>
+														</td>
+														<td colspan="3" nowrap="">
+															<font color="#FF0000">* </font>
+															<select name="campusskill" id="campusskill" class="demo campusskill"
+																multiple="multiple">
+																<!-- <t t-foreach="campus_skills" t-as="campus_skills"> -->
+																<!-- <option value="">Select Skills</option> -->
+																<!-- <option t-att-value="campus_skills[0]"> <t t-esc="campus_skills[1]" 
+																	/> </option> </t> -->
+															</select>
+
+														</td>
+													</tr>
+												</table>
+												<table width="100%" border="1" bordercolor="#999999"
+													bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+													id="show_campus_skill" style="display:none;">
+													<tr class="heading">
+														<th width="10%">
+															<label>Type</label>
+														</th>
+														<th width="10%">
+															<label>ID No</label>
+														</th>
+														<th width="50%">
+															<label>Unit Standard Title</label>
+														</th>
+														<th width="10%">
+															<label>Pre-2009 NQF Level</label>
+														</th>
+														<th width="10%">
+															<label>NQF Level</label>
+														</th>
+														<th width="5%">
+															<label>Credits</label>
+														</th>
+														<th width="5%">
+															<label>Select </label>
+														</th>
+													</tr>
+												</table>
+											</div>
+
+											<!-- Vishnu Changes start -->
+
+											<div class="tableclass" style="margin-top:20px">
+												<table width="100%" border="1" bordercolor="#999999"
+													bgcolor="#F7F7EF" border-collapse="collapse" align="center">
+													<tr>
+														<td colspan="4">
+															<input type="hidden" name="ID1_campuslearningsids"
+																id="ID1_campuslearningsids" value="" class="campuslearningsids" />
+														</td>
+													</tr>
+													<tr>
+														<td colspan="4" width="102.5%" bgcolor="#FFFFFF">
+															<b>Satellite Campus Learning Programme</b>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="4"></td>
+													</tr>
+													<tr style="min-height: 120px;" class="campus_learning">
+														<td class="menubar" style="font-weight: normal;width:26% !important"
+															nowrap="">
+															<label>Learning Programme</label>
+														</td>
+														<td colspan="3" nowrap="">
+															<font color="#FF0000">* </font>
+															<select name="campuslearning" id="campuslearning"
+																class="demo campuslearning" multiple="multiple">
+																<!-- <t t-foreach="campus_skills" t-as="campus_skills"> -->
+																<!-- <option value="">Select Skills</option> -->
+																<!-- <option t-att-value="campus_skills[0]"> <t t-esc="campus_skills[1]" 
+																	/> </option> </t> -->
+															</select>
+
+														</td>
+													</tr>
+												</table>
+												<table width="100%" border="1" bordercolor="#999999"
+													bgcolor="#F7F7EF" border-collapse="collapse" align="center"
+													id="show_campus_learning" style="display:none;">
+													<tr class="heading">
+														<th width="10%">
+															<label>Type</label>
+														</th>
+														<th width="10%">
+															<label>ID No</label>
+														</th>
+														<th width="50%">
+															<label>Unit Standard Title</label>
+														</th>
+														<th width="10%">
+															<label>Pre-2009 NQF Level</label>
+														</th>
+														<th width="10%">
+															<label>NQF Level</label>
+														</th>
+														<th width="5%">
+															<label>Credits</label>
+														</th>
+														<th width="10%">
+															<label>SETA Learning Material</label>
+														</th>
+														<th width="10%">
+															<label>Provider Learning Material</label>
+														</th>
+														<th width="5%">
+															<label>Select </label>
+														</th>
+													</tr>
+												</table>
+											</div>
+
+
+											<!-- End -->
+										</div>
+
+									</div>
+
+									<div id="addDelButtons">
+										<div>
+											<table width="100%" border-collapse="collapse" align="center">
+												<tr>
+													<td colspan="4"></td>
+												</tr>
+												<tr>
+													<td width="25%"></td>
+													<td width="25%">
+														<input type="button" id="btnAdd" value="Add"
+															class="btn btn-primary" />
+													</td>
+													<td width="25%">
+														<input type="button" id="btnDel" value="Delete"
+															class="btn btn-primary" />
+													</td>
+													<td width="25%"></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+									<!-- <input name="cmdBack" type="button" value="Back" onclick="javascript: 
+										bckGotoStep4()" class="btn btn-primary" style="max-width: 8%;"/> -->
+									<input type="button" name="previous" class="previous btn btn-primary"
+										style="max-width: 8%; !important" value="Back" />
+									<button name="cmdNext" id="submit_accreditation" class="btn btn-primary">Submit
+									</button>
+
+									<span style="color:#FF0000">* Indicates mandatory fields</span>
+								</div>
+							</fieldset>
+						</form>
+						<!-- <div id="dialog-message-accreditation" title="Thank you for Applying"> 
+							</div> -->
+						<div id="dialog-warning-assessor" title="Assessor Warning">
+						</div>
+						<div id="dialog-warning-moderator" title="Moderator Warning">
+						</div>
+					</div>
+				</div>
+				<script language="vbscript">
+
+					Sub MaskDate(x)
+
+					If x="a" Then
+					If
+					window.event.keyCode &lt;&gt; 8 Then
+					ValidateNumeric(window.event.srcElement)
+					End If
+					end If
+
+					If x="b" Then
+					chk_Day_Year(window.event.srcElement)
+					End If
+
+					If x="c" Then
+					clear_mask(window.event.srcElement)
+					End If
+
+					'Use "d" with the onblur
+					event instead of "b" If date field is not
+					required but needs to be
+					validated If used
+					If x="d" Then
+					j =
+					len(window.event.srcElement.value)
+					If j = 0 Then
+					Exit Sub
+					Else
+					chk_Day_Year(window.event.srcElement)
+					End If
+					End If
+
+					End Sub
+
+					sub
+					ValidateNumeric(Obj)
+					ObjTxt = Obj.value
+					z = len(ObjTxt)
+					If
+					IsNumeric(right(ObjTxt,1)) or right(ObjTxt,1)="/" Then
+					vdate(Obj)
+					Else
+					If z > 0 Then
+					Obj.value = Left(ObjTxt,z-1)
+					Else
+					Obj.value = ""
+					End
+					If
+					End If
+
+					End sub
+
+					sub vdate(Obj)
+					ObjTxt = Obj.value
+					z = len(ObjTxt)
+
+					If z
+					> 0 Then
+					y = Mid(ObjTxt,z,1)
+
+					select Case z
+					Case 1
+					If IsNumeric(y) =
+					False And trim(y) = "/" Then
+					Obj.value = ""
+					End If
+
+					Case 2
+					If
+					IsNumeric(y) Then
+					'Msgbox Left(ObjTxt,2)
+					If Cint(Left(ObjTxt,2)) > 31
+					Then
+					Obj.value = 31 &amp; "/"
+					Else
+					Obj.value = Obj.value &amp; "/"
+					End
+					If
+					Else
+					Obj.value = Left(ObjTxt,1)
+					End If
+
+					Case 3
+					If y &lt;&gt; "/" Then
+					Obj.value = Left(ObjTxt,2) &amp; "/"
+					End If
+
+					Case 4
+					If IsNumeric(y) =
+					False Then
+					Obj.value = Left(ObjTxt,3)
+					End If
+
+					Case 5
+					If IsNumeric(y)
+					Then
+					If Cint(right(ObjTxt,2)) > 12 Then
+					Obj.value = Left(ObjTxt,3)
+					&amp; "12" &amp; "/"
+					Else
+					Obj.value = Obj.value &amp; "/"
+					End If
+					Else
+					Obj.value = Left(ObjTxt,4)
+					End If
+
+					Case 6
+					If trim(y) = "/" Then
+					Else
+					Obj.value = Left(ObjTxt,5) '&amp; "/"
+					End If
+
+					Case 7
+					If IsNumeric(y) =
+					False Then
+					Obj.value = Left(ObjTxt,6)
+					End If
+
+					Case 8
+					If IsNumeric(y) =
+					False Then
+					Obj.value = Left(ObjTxt,7)
+					End If
+
+					Case 9
+					If IsNumeric(y) =
+					False Then
+					Obj.value = Left(ObjTxt,8)
+					End If
+
+					Case 10
+					If IsNumeric(y) =
+					False Then
+					Obj.value = Left(ObjTxt,9)
+					End If
+
+					End select
+					End If
+
+					If
+					Mid(ObjTxt,3,1) &lt;&gt; "/" And len(ObjTxt) > 2 Then
+					If
+					isnumeric(ObjTxt) Then
+					If Cint(Left(ObjTxt,2)) > 31 Then
+					Obj.value =
+					31 &amp; "/"
+					Else
+					Obj.value = Left(ObjTxt,2) &amp; "/"
+					End If
+					Else
+					Obj.value = ""
+					End If
+					End If
+
+					If Mid(ObjTxt,6,1) &lt;&gt; "/" And
+					len(ObjTxt) > 5 Then
+					If isnumeric(ObjTxt) Then
+					If Mid(ObjTxt,4,2) >
+					12 Then
+					Obj.value = Left(ObjTxt,3) &amp; 12 &amp; "/"
+					Else
+					Obj.value =
+					Left(ObjTxt,5) &amp; "/"
+					End If
+					Else
+					Obj.value = ""
+					End If
+					End If
+
+					End sub
+
+					sub chk_Day_Year(Obj)
+
+					x=obj.value
+					Dim blnInvalidDate: blnInvalidDate
+					= False
+
+					If IsDate(x) And instr(1,x,"/")&lt;&gt;0 And len(x)=10 Then
+					If (Right(x, 4) >= 1753 And Right(x, 4) &lt;= 9999) Then
+					x = Day(x)
+					&amp; "/" &amp; Month(x) &amp; "/" &amp; Year(x)
+					Else
+					blnInvalidDate
+					= True
+					End If
+					Else
+					blnInvalidDate = True
+					End If
+
+					If (blnInvalidDate =
+					True) Then
+					msg = "Please Enter a Valid Date"
+					MsgBox(msg,0)
+					End If
+
+					End
+					sub
+
+					sub clear_mask(Obj)
+					x=obj.value
+					If x = "dd/mm/ccyy" then
+					Obj.value
+					= ""
+					end If
+					end sub
+
+					Function vdate2(obj1,obj2)
+
+					x = obj1.value
+					y =
+					obj2.value
+
+					If IsDate(y) = True And InStr(1,y,"/") > 0 Then
+					StartDate
+					= CDate(x)
+					EndDate = CDate(y)
+					If DateDiff("h",EndDate,StartDate) > 0
+					Then
+					msg = "Start Date can not be smaller than the End Date."
+					MsgBox(msg,0)
+					vdate2 = False
+					obj2.focus()
+					Exit Function
+					End if
+					Else
+					obj1.focus()
+					End If
+					vdate2 = True
+					End Function
+
+				</script>
+			</t>
+		</template>
+	</data>
+</openerp>

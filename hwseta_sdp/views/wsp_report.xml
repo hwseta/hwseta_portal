@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	<data>
+		<record id="report_wsp_pdf" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="hwseta_sdp.paperformat_landscape" />
+		</record>
+
+		<template id="wsp_report">
+			<!-- <div class="header" style="font-size:17px !important;"> <div class="row 
+				mt32 mb32"> <div class="col-xs-12"> <strong>WSP Number:</strong> <t t-esc="get_wsp_details(data['wsp_id'])['wsp_no']"/> 
+				</div> </div> </div> -->
+			<div class="page" style="font-size:12px !important;">
+				<div  align="center" style="font-size:17px !important;">
+					<div align="center" class="row mt32 mb32">
+						<div align="center" class="col-xs-12">
+							<h2><strong>WSP Number:
+							<t t-esc="get_wsp_details(data['wsp_id'])['wsp_no']" /></strong> </h2>
+						</div>
+					</div>
+				</div>
+				<t t-set="dic" t-value="get_total_employment_profile(data['wsp_id'])" />
+				<div class="row mt32 mb32" id="informations" style="font-size:18px !important;">
+					<div class="col-xs-12">
+						&#160;
+						<strong>SDF:</strong>
+						<t t-esc="get_wsp_details(data['wsp_id'])['sdf']" />
+					</div>
+					<div class="col-xs-12">
+						&#160;
+						<strong>Employer:</strong>
+						<t t-esc="get_wsp_details(data['wsp_id'])['employer']" />
+					</div>
+					<div class="col-xs-12">
+						&#160;
+						<strong>SDL Number:</strong>
+						<t t-esc="get_wsp_details(data['wsp_id'])['sdl_no']" />
+					</div>
+					<div class="col-xs-12">
+						&#160;
+						<strong>Fiscal Year:</strong>
+						<t t-esc="get_wsp_details(data['wsp_id'])['fiscal_year']" />
+					</div>
+					<div class="col-xs-12"
+						t-if="get_wsp_details(data['wsp_id'])['wsp_submission_date']">
+						&#160;
+						<strong>Submitted Date:</strong>
+						<t t-esc="get_wsp_details(data['wsp_id'])['wsp_submission_date']" />
+					</div>
+				</div>
+				<t t-if="dic">
+					<center>
+						<caption>
+							<h3>Total Employment Profile</h3>
+						</caption>
+					</center>
+					<table class="learner_tables1 table table-condensed"
+											style="page-break-inside:avoid;">
+						<tr>
+							<th style="border:solid;border-width: 1px;">SDL Number</th>
+							<th style="border:solid;border-width: 1px;">First Name</th>
+							<th style="border:solid;border-width: 1px;">Last Name</th>
+							<th style="border:solid;border-width: 1px;">Citizen Status</th>
+							<th style="border:solid;border-width: 1px;">Employee Id</th>
+							<th style="border:solid;border-width: 1px;">ID Type</th>
+							<th style="border:solid;border-width: 1px;">Date Of Birth</th>
+							<th style="border:solid;border-width: 1px;">OFO Code</th>
+							<th style="border:solid;border-width: 1px;">Occupation</th>
+							<th style="border:solid;border-width: 1px;">Specialisation</th>
+							<th style="border:solid;border-width: 1px;">City</th>
+							<th style="border:solid;border-width: 1px;">Province</th>
+							<th style="border:solid;border-width: 1px;">Urban/Rural</th>
+							<th style="border:solid;border-width: 1px;">Highest Education Level</th>
+							<th style="border:solid;border-width: 1px;">Race</th>
+							<th style="border:solid;border-width: 1px;">Gender</th>
+							<th style="border:solid;border-width: 1px;">Disability</th>
+						</tr>
+						<tr t-foreach="dic" t-as="rec">
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['sdl_number']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['name']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['surname']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['citizen_resident_status_code']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['employee_id']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['id_type']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['dob']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['ofo_code']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['occupation']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['specialization']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['city_id']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['province']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['urban']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['highest_education_level']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['population_group']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['gender']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['dissability']" />
+							</td>
+						</tr>
+					</table>
+				</t>
+				<p style="page-break-after:always !important;" />
+				<t t-set="dic1" t-value="get_planed_training(data['wsp_id'])" />
+				<t t-if="dic1">
+					<center>
+						<caption>
+							<h3>Planned Training</h3>
+						</caption>
+					</center>
+					<table class="learner_tables1 table table-condensed"
+											style="page-break-inside:avoid;">
+						<tr>
+							<th style="border:solid;border-width: 1px;">Type Of Training</th>
+							<th style="border:solid;border-width: 1px;">Name</th>
+							<th style="border:solid;border-width: 1px;">SurName</th>
+							<th style="border:solid;border-width: 1px;">Employee Id</th>
+							<th style="border:solid;border-width: 1px;">OFO Code</th>
+							<th style="border:solid;border-width: 1px;">Occupation</th>
+							<th style="border:solid;border-width: 1px;">Specialisation</th>
+							<th style="border:solid;border-width: 1px;">City</th>
+							<th style="border:solid;border-width: 1px;">Urban/Rural</th>
+							<th style="border:solid;border-width: 1px;">Province</th>
+							<th style="border:solid;border-width: 1px;">
+								Employed/
+								<br />
+								UnEmployed
+							</th>
+							<th style="border:solid;border-width: 1px;">Type of Training Intervention</th>
+							<th style="border:solid;border-width: 1px;">
+								Other Type Of Training Intervention/
+								<br />
+								Pivotal programme Type
+							</th>
+							<th style="border:solid;border-width: 1px;">
+								Name of training
+								<br />
+								Intervention
+							</th>
+							<th style="border:solid;border-width: 1px;">
+								Pivotal Programme
+								<br />
+								Qualification
+							</th>
+							<th style="border:solid;border-width: 1px;">
+								Pivotal Programme
+								<br />
+								institution
+							</th>
+							<th style="border:solid;border-width: 1px;">Cost Per Learner</th>
+							<th style="border:solid;border-width: 1px;">Start Date</th>
+							<th style="border:solid;border-width: 1px;">End Date</th>
+							<th style="border:solid;border-width: 1px;">
+								NQF
+								<br />
+								Aligned
+							</th>
+							<th style="border:solid;border-width: 1px;">NQF Level</th>
+							<th style="border:solid;border-width: 1px;">Race</th>
+							<th style="border:solid;border-width: 1px;">Gender</th>
+							<th style="border:solid;border-width: 1px;">Disability</th>
+						</tr>
+						<tr t-foreach="dic1" t-as="rec">
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['training_type']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['name']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['surname']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['employee_id']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['code']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['occupation']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['specialization']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['city_id']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['urban']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['learner_province']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['socio_economic_status']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['type_training']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['other_type_of_intervention']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['name_training']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['pivotal_programme_qualification']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['pivotal_programme_institution']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['training_cost']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['start_date']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['end_date']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['nqf_aligned']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['nqf_level']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['population_group']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['gender']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['dissability']" />
+							</td>
+						</tr>
+						<tr>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="get_total(data['wsp_id'])" />
+							</td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+							<td style="border:solid;border-width: 1px;"></td>
+						</tr>
+					</table>
+				</t>
+				<p style="page-break-after:always !important;" />
+				<t t-set="dic2" t-value="get_adult_education_and_training(data['wsp_id'])" />
+				<t t-if="dic2">
+					<center>
+						<caption>
+							<h3>Adult Education and Training</h3>
+						</caption>
+					</center>
+					<table class="learner_tables1 table table-condensed"
+											style="page-break-inside:avoid;">
+						<tr>
+							<th style="border:solid;border-width: 1px;">First Name</th>
+							<th style="border:solid;border-width: 1px;">Sur Name</th>
+							<th style="border:solid;border-width: 1px;">ID Number</th>
+							<th style="border:solid;border-width: 1px;">Population Group</th>
+							<th style="border:solid;border-width: 1px;">Gender</th>
+							<th style="border:solid;border-width: 1px;">Disability Status And Type</th>
+							<th style="border:solid;border-width: 1px;">City</th>
+							<th style="border:solid;border-width: 1px;">Province</th>
+							<th style="border:solid;border-width: 1px;">Urban/Rural</th>
+							<th style="border:solid;border-width: 1px;">AET Start Date</th>
+							<th style="border:solid;border-width: 1px;">AET End Date</th>
+							<th style="border:solid;border-width: 1px;">Provider</th>
+							<th style="border:solid;border-width: 1px;">AET Level</th>
+							<th style="border:solid;border-width: 1px;">AET Subject</th>
+						</tr>
+						<tr t-foreach="dic2" t-as="rec">
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['name']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['surname']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['id_number']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['population_group']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['gender']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['dissability_status_and_type']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['city_id']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['province']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['urban']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['start_date']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['end_date']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['provider']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['aet_level']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['aet_subject']" />
+							</td>
+						</tr>
+					</table>
+				</t>
+				<p style="page-break-after:always !important;" />
+				<t t-set="dic3" t-value="get_vacancies_hard_to_fill(data['wsp_id'])" />
+				<t t-if="dic3">
+					<center>
+						<caption>
+							<h3>Vacancies Hard to Fill</h3>
+						</caption>
+					</center>
+					<table class="learner_tables1 table table-condensed"
+											style="page-break-inside:avoid;">
+						<tr>
+							<th style="border:solid;border-width: 1px;">OFO Code</th>
+							<th style="border:solid;border-width: 1px;">Occupation</th>
+							<th style="border:solid;border-width: 1px;">Specialisation</th>
+							<th style="border:solid;border-width: 1px;">Province</th>
+							<th style="border:solid;border-width: 1px;">Number of Vacancies</th>
+							<th style="border:solid;border-width: 1px;">Gender</th>
+							<th style="border:solid;border-width: 1px;">Race</th>
+							<th style="border:solid;border-width: 1px;">Number of months\nposition has</th>
+							<th style="border:solid;border-width: 1px;">Comments</th>
+						</tr>
+						<tr t-foreach="dic3" t-as="rec">
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['ofo_code']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['occupation']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['specialization']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['province']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['number_of_vacancies']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['gender']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['population_group']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['no_of_months']" />
+							</td>
+							<td style="border:solid;border-width: 1px;">
+								<t t-esc="rec['comments']" />
+							</td>
+						</tr>
+					</table>
+				</t>
+			</div>
+			<!-- <div class="footer"> <div class="text-center" style="border-top: 
+				1px solid black;"> <ul class="list-inline"> <li>Page:</li> <li> <span class="page" 
+				/> </li> <li>/</li> <li> <span class="topage" /> </li> </ul> </div> </div> -->
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	<report id="organisation_payment_id" string="Organisation Payment Report"
+			model="account.voucher" report_type="qweb-pdf"
+			file="hwseta_finance.organisation_payment_report" name="hwseta_finance.organisation_payment_report" />
+	</data>
+</openerp>

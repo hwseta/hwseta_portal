@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Important HWSETA Notices Page === -->
+		<template id="notices" name="Important HWSETA Notices" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+								
+									<div class="oc-layout-cell oc-content">
+										<article id="post-45"
+											class="oc-post oc-article  post-45 page type-page status-publish hentry">
+<!-- Code comment 24/04/2017  -->
+<!-- 											<h1 class="oc-postheader">Important HWSETA Notices</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Expressions of Interest for 2015 – 2016 Now Open</h2>
+												<p>
+													EOI Bursaries for Employed Persons 2015-2016
+													<br/>
+														EOI Internships 2015-2016
+														<br/>
+															EOI Work Experience for TVET Learners 2015-2016
+															<br/>
+																EOI Learnerships 2015-2016
+																<br/>
+																	EOI Sign Language for Department of health and Social
+																	Development Employees 2015-2016
+																	<br/>
+																		EOI Skills Programmes 2015-2016
+																		<br/>
+																			EOI Work Integrated Learning 2015-2016
+												</p>
+												<p>
+													<a href="http://www.hwseta.org.za/?page_id=48">click here </a>
+													to redirect to the Expression of Interest Information
+												</p>
+												<h2>Qualification Development and Maintenance a Key Focus for the
+													HWSETA</h2>
+												<p>The skills development landscape in South Africa is one that
+													requires constant change and innovative thinking on the part of
+													Sector Education Training Authorities (SETAs) to meet the needs of
+													the sectors they serve. The HWSETA is no exception and it is this
+													mindset that resulted in the establishment of the Qualification
+													Development and Maintenance (QDM) sub-division in October 2013 to
+													focus on this key area of responsibility for the HWSETA.</p>
+												<p>
+													<span id="more-45"></span>
+												</p>
+												<p>“The delivery of quality training in South Africa requires a
+													combination of accredited training providers that are able to
+													deliver excellent quality training content and material,” comments
+													Champa Gopal, Qualification Development and Maintenance Manager for
+													the HWSETA. “By assessing and maintaining quality in these two
+													critical areas, learners in South Africa are assured that the
+													training they receive will enable them to make a positive
+													contribution to the skills pool in the health and social
+													development sectors.”</p>
+												<p>Since its establishment, the QDM sub-division has approached the
+													task at hand with zest and the hard work is paying off.</p>
+												<p>The QDM sub-division, in partnership with the National Department
+													of Health (NDOH) and International Training Education Centre for
+													Health (I-TECH), has been successful at registering the
+													Occupational Qualification: Health Promotion Officer (Community
+													Health Worker) SAQA ID 94597 in November 2014. This qualification
+													replaces three community health work (CHW) legacy qualifications in
+													the form of CHW levels 2, 3 and 4.</p>
+												<p>The HWSETA will not accredit private skills development providers
+													(SDPs) for this newly registered occupational qualification and
+													this is a function that will reside with the Quality Council for
+													Trades Occupation (QCTO). Accreditation of providers by the QCTO
+													will be dependent on the signing of a Memorandum of Understanding
+													with the National Department of Health (NDOH) ensuring the learner
+													has a designated workplace with a mentor during the time of study
+													to obtain the required workplace experience.</p>
+												<p>Ms. Gopal adds that the accreditation processes for legacy
+													qualifications will remain with the HWSETA and this should not be
+													confused with the accreditation processes outlined by QCTO for
+													registered occupational qualifications.</p>
+												<p>The HWSETA conducted workshops nationally to inform its
+													stakeholder base of this shift in accreditation and implementation
+													processes for this new occupational qualification, as well as
+													qualifications that will be developed in future.</p>
+												<p>To date the QCTO has successfully accredited twelve regional
+													training centers attached to the NDOH. A partnership pilot training
+													project for 900 learners in twelve regional training centres
+													commenced in March 2015.</p>
+												<p>Whilst the HWSETA will not be responsible for the accreditation
+													Skills Development Providers for this occupational qualification,
+													it has received approval from the QCTO to be the Assessment Quality
+													Partner (AQP). As an AQP, the HWSETA is responsible for setting up
+													final external summative examinations, co-ordination of national
+													examinations through approved assessment centers, as well as
+													assessment and recommendation of learner certification to QCTO.</p>
+												<p>The examination process and logistical arrangements will be
+													conducted through partnerships with Community of Experts (CEP’s) to
+													ensure seamless quality processes are applied. The ETQA will
+													timeously announce all examination logistics.</p>
+												<p>“This is an important milestone for the HWSETA and we believe
+													that what we have learnt during this process will pave the way for
+													the development of occupational qualifications that will replace
+													the thirty three legacy qualifications that the HWSETA is mandated
+													to quality assure,” adds Ms Gopal.</p>
+												<p>The HWSETA has submitted the occupational qualification, Social
+													Auxiliary Work to QCTO for registration with SAQA and is currently
+													awaiting the outcome of this occupational qualification.</p>
+												<p>Within the next five years the HWSETA intends having all legacy
+													qualifications re-curriculated into qualifications that will
+													translate into occupations and ultimately provide the youth of the
+													country an opportunity to follow a career within the Health or
+													Social Services Sector .</p>
+												<p>“The development of occupational qualifications that are relevant
+													to the labour market underpins the activities of the QDM
+													sub-division and it is this thinking that drives us to achieve
+													targets that will positively impact the health and social
+													development sectors in the country,” concludes Ms Gopal.</p>
+												<h2>HWSETA Urges Caution When Enrolling at Private Training
+													Institutions</h2>
+												<p>The South African Sector Education and Training Authorities
+													(SETAs) on a daily basis receive reports of students that have been
+													the victims of unscrupulous training providers. Whilst this is a
+													national problem, the Health and Welfare Sector Education and
+													Training Authority (HWSETA) is currently very concerned about the
+													actions of several unscrupulous training or skills development
+													providers operating in Kwa-Zulu Natal that claim to have the
+													necessary accreditation from the HWSETA. These organisations have
+													been reported to the relevant law enforcement agencies.</p>
+												<p>Investigations by the HWSETA following reports by stakeholders
+													have identified the following more common issues: false claims that
+													the training facility is accredited with the HWSETA; offering
+													courses for which the facility does not have accreditation;
+													exceeding enrolment capacity; as well as the issuing of fraudulent
+													certificates.</p>
+												<p>“Parents and learners are urged to contact the HWSETA before
+													enrolling with any private training institution that claims to be
+													accredited by the HWSETA,” comments Ms Yvonne Mbane, CEO for the
+													HWSETA, “even if the provider in question makes use of the HWSETA
+													logo in marketing materials.”</p>
+												<p>The accreditation status of a training provider and/or the
+													courses it offers can be confirmed by calling the HWSETA’s toll
+													free helpline on 0800 864 478. Alternatively, contact the HWSETA in
+													KZN on 031 202 5972/3.</p>
+												<p>It needs to be noted that the HWSETA has no jurisdiction over any
+													nursing qualifications as they fall within the ambit of the South
+													African Nursing Council (SANC) that can be contacted on 012 420
+													1075.</p>
+												<p>“As the HWSETA, we are mandated to protect the rights of learners
+													in this country and we encourage stakeholders to contact us on our
+													toll free helpline if they have any queries or concerns.” concludes
+													Ms Mbane.</p>
+												<h2></h2>
+												<h2>Statement by the Minister of Higher Education and Training on
+													fraudulent qualifications in South Africa</h2>
+												<p>
+													Recent events have occurred in which people have made claims about
+													the achievement of qualifications which they do not have. This has
+													resulted in a situation in which public credibility about the
+													National Qualifications Framework (NQF) has been harmed.
+													<a href="http://www.hwseta.org.za/?page_id=760">Read the full article here</a>
+												</p>
+												<p> 
+												</p>
+											</div> -->
+								
+								
+										</article>
+								
+								
+								
+									</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

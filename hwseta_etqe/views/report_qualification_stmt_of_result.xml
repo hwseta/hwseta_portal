@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="qualification_stmt_of_result_report">
+			<t t-call="report.html_container">
+				<div class="oe_structure" />
+				<t t-as="p_assessment" t-foreach="docs">
+					<t t-as="o" t-foreach="p_assessment.learner_achieved_ids">
+						<t t-call="hwseta_etqe.quotation_external_layout219">
+							<t t-if="not get_status(o)['achieve'] or get_status(o)['achieve']">
+								<div class="page">
+									<div style="font-size:10px">
+										<h3 style="text-align:center;font-size:14px"> This is to certify that </h3>
+										<center style="font-weight:bold;font-size:20px">
+											<t t-if="o.learner_id.name">
+												<span t-field="o.learner_id.name" />
+											</t>
+											<t t-if="o.learner_id.person_middle_name">
+												<span t-field="o.learner_id.person_middle_name" />
+											</t>
+											<t t-if="o.learner_id.person_last_name">
+												<span t-field="o.learner_id.person_last_name" />
+											</t>
+										</center>
+										<br />
+										<table style="page-break-inside:auto;">
+											<tr>
+												<td>
+													<strong>
+														<span>Identity Number</span>
+													</strong>
+												</td>
+												<td> <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;]]></td>
+												<td align="left">
+													<t t-if="not o.learner_id.learner_identification_id">
+														<t t-if="o.learner_id.national_id">
+															<span t-field="o.learner_id.national_id" />
+														</t>
+													</t>
+													<t t-if="o.learner_id.learner_identification_id">
+															<span t-field="o.learner_id.learner_identification_id" />
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>
+														<span>Registration Number</span>
+													</strong>
+												</td>
+												<td> <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;]]></td>
+												<td align="left">
+													<span t-field="o.learner_id.learner_reg_no" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<strong>
+														<span>Date of Issue</span>
+													</strong>
+												</td>
+												<td> <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]><b>:</b><![CDATA[&nbsp;]]></td>
+												<td align="left">
+													<span
+														t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" />
+												</td>
+											</tr>
+										</table>
+										<br />
+										<p style="text-align:center;font-style:italic;font-size:medium;">has successfully achieved the
+											following unit
+											standard(s):
+										</p>
+										<br />
+										<table class="learner_tables1 table table-condensed"
+											style="page-break-inside:avoid;">
+											<tr>
+												<th style="border:solid;border-width:1px;text-align:center;">NLRD NUMBER
+												</th>
+												<th style="border:solid;border-width:1px;text-align:center;">QUALIFICATION TITLE
+												</th>
+												<th style="border:solid;border-width:1px;text-align:center;">NQF LEVEL
+												</th>
+												<th style="border:solid;border-width:1px;text-align:center;">CREDIT VALUE
+												</th>
+											</tr>
+											<tr>
+												<td style="border:solid;border-width:1px;text-align:center;">
+													<span t-esc="get_saqa_qual_id(o) or ''" />
+												</td>
+												<td style="border:solid;border-width:1px;">
+													<span t-esc="get_qualification(o)" />
+												</td>
+												<td style="border:solid;border-width:1px;text-align:center;">
+													<span t-esc="get_qual_nqf_level(o) or ''" />
+												</td>
+												<td style="border:solid;border-width: 1px;text-align:center;">
+													<span t-esc="get_qual_credits_value(o) or ''" />
+												</td>
+											</tr>
+										</table>
+
+										<t t-foreach="get_unit_standard(o)" t-as="l">
+
+											<table class="learner_tables1 table table-condensed">
+												<tbody>
+													<tr>
+														<p style="border-style:none;font-weight:bold;font-size:100%;padding:5px;">
+															<t t-esc="l['type']" />
+															:
+														</p>
+													</tr>
+													<t t-if="'Exit Level Outcomes' == l['type']">
+														<tr style="page-break-inside:avoid;">
+															<th style="border:solid;border-width: 1px;width:150px;text-align:center;padding:3px;">ELO NUMBER</th>
+															<th style="border:solid;width:700px;border-width: 1px;text-align:center;padding:3px;">ELO DESCRIPTION</th>
+														</tr>
+														<tr t-foreach="l['value']" t-as="s" style="page-break-inside:avoid;">
+
+															<td style="border:solid;border-width: 1px;width:150px;text-align:center;padding:3px;">
+																<t t-esc="s['nlrd_number']" />
+															</td>
+															<td
+																style="border:solid;border-width: 1px;width:650px;text-align:left;padding: 
+															3px;">
+																<t t-esc="s['name']" />
+															</td>
+														</tr>
+													</t>
+													<t t-if="'Exit Level Outcomes' != l['type']">
+														<tr style="page-break-inside:avoid;">
+															<th style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 3px;">NLRD NUMBER</th>
+															<th style="border:solid;width:700px;border-width: 1px;text-align:center;padding:3px;">UNIT STANDARD NAME</th>
+															<th style="border:solid;width:100px;border-width: 1px;text-align:center;padding: 3px;">NQF LEVEL</th>
+															<th style="border:solid;width:40px;border-width: 1px;text-align:center;padding: 3px;">CREDIT VALUE</th>
+														</tr>
+														<tr t-foreach="l['value']" t-as="s" style="page-break-inside:avoid;">
+															<td style="border:solid;border-width: 1px;width:150px;text-align:center;padding:3px;">
+																<t t-esc="s['nlrd_number']" />
+															</td>
+															<td
+																style="border:solid;border-width: 1px;width:650px;text-align:left;padding: 
+															3px;">
+																<t t-esc="s['name']" />
+															</td>
+															<td
+																style="border:solid;border-width: 1px;width:100px;text-align:center;padding: 
+															3px;">
+																<t t-esc="s['nqf_level']" />
+															</td>
+															<td
+																style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+															3px;">
+																<t t-esc="s['credit']" />
+															</td>
+														</tr>
+													</t>
+												<!-- 	<tr style="page-break-inside:avoid;">
+														<td
+															style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 
+														3px;">
+
+														</td>
+														<td
+															style="border:solid;border-width: 1px;width:700px;text-align:left;padding: 
+														3px;">
+
+														</td>
+														<td
+															style="border:solid;border-width: 1px;width:70px;text-align:center;padding: 
+														3px;font-weight:bold;">
+															<t t-esc="l['percentage']" />
+															%
+														</td> 
+														<td
+															style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														3px;font-weight:bold;">
+															<t t-esc="l['t_credits']" />
+														</td>
+													</tr> -->
+												</tbody>
+											</table>
+										<!-- 	<t t-if="l_index+1 == l['counter']">
+												<div>
+													<center>
+														<strong>
+															<p>
+																Final Marks of the External Integrated Summative
+																Assessment
+																(EISA) (
+																<span t-field="o.learner_id.person_fax_number" />
+																%)
+															</p>
+														</strong>
+													</center>
+													<p>All candidates that have met the requirements of the
+														qualification; for Certification namely:
+													</p>
+													<p>a) Passed the final EISA-60% and above AND</p>
+													<p>b) Passed the FLC ( Both Mathematics and English -50%
+														and
+														above
+														OR
+													</p>
+													<p>Passed Mathematics and English at Grade 12 level ( or
+														equivalent, eg NCV )
+													</p>
+													<p>Note: this requirement can also be met by a combination
+														of the above.
+													</p>
+												</div>
+											</t> -->
+
+											<!-- <p style="page-break-after:always !important;" /> -->
+										</t>
+										<br/>
+										<br/>
+										<br/>
+										<br/>
+										<div
+											style="padding-top:100px;text-align:center;font-weight:bold;font-size:medium;">
+											<table width="100%">
+												<tr>
+													<td style="text-align:center;" width="40%">
+														<t t-if="get_status(o)['achieve']">
+															<h5 style="text-align:center;font-family: 'Arial';font-size:100%"
+																t-esc="get_certificate_no(o)['certificate_no']" />
+														</t>
+														<img
+															t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', o.learner_id.learner_identification_id, 600, 100)"
+															style="width:250px;height:20px" />
+													</td>
+													<td width="20%" />
+													<td width="40%">
+														<div style="text-align:center;width:100%;">
+															<img src="/hwseta_etqe/static/src/img/Jane_signature.jpg" width="100px"
+																height="100px" />
+														</div>
+														<div style="text-align:center;font-style:italic;width:100%;">
+															<strong style="text-decoration: overline;">
+																Baakedi Jane Motubatse
+															</strong>
+															<br />
+															<strong>
+																ETQA Executive Manager
+															</strong>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</t>
+						</t>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<template id="website.theme_hwseta" name="HWSETA Theme"
+			inherit_id="website.theme" active="True" customize_show="True">
+			<xpath expr="//link[@id='bootstrap_css']" position="after">
+			<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+				<link rel='stylesheet' href='/hwseta_website/static/src/css/style.css'
+					t-ignore="true" />
+				<link rel='stylesheet' href='/hwseta_website/static/src/css/style.responsive.css'
+					t-ignore="true" />
+				<link rel='stylesheet' href='/hwseta_website/static/src/css/selectize.css'
+                    t-ignore="true" />
+				<link rel='stylesheet' href='/hwseta_website/static/src/css/fSelect.css' t-ignore="true" />				
+<!-- 				<link rel='stylesheet' href='/hwseta_website/static/src/css/multipleform_styles.css' t-ignore="true" /> -->
+					
+			</xpath>
+		</template>
+		<template id="website.assets_frontend_inherit" name="frontend asset"
+			inherit_id="website.assets_frontend">
+			<xpath expr="." position="inside">
+<!--     			<script type="text/javascript" src="/hwseta_website/static/src/js/jquery.js"></script> -->
+<!--     			<script type="text/javascript" src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script> -->
+    			<script type="text/javascript" src="/hwseta_website/static/src/js/JSvalidations.js"></script>
+    			<script type="text/javascript" src="/hwseta_website/static/src/js/sdf_reg_validation.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/providerAccreditationValidation.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/assessorModeratorValidation.js"></script>
+				
+				<!-- Added by shoaib for adding select tag search feature using selectize library -->
+				<script type="text/javascript" src="/hwseta_website/static/src/js/selectize.js"></script>
+				
+				<script type="text/javascript" src="/hwseta_website/static/src/js/script.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/script.responsive.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/3DEngine/3DEngine.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/3DEngine/Sphere.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/bwg_frontend.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/bwg_gallery_box.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/jquery.fullscreen-0.4.1.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/jquery.mCustomScrollbar.concat.min.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/jquery.mobile.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/wp-content/plugins/photo-gallery/js/jquery.raty.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/html-table-search.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/search.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/fSelect.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/select_call.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/reset_password.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/clone-form-td-multiple.js"></script>
+				<script type="text/javascript" src="/hwseta_website/static/src/js/clone-form-td.js"></script>
+				
+			</xpath>
+		</template>
+		<template id="website.assets_common" name="HWSETA Asset Common" inherit_id="web.assets_common">
+			<xpath expr="." position="inside">
+					<script type="text/javascript" src="/hwseta_website/static/src/js/reset_password.js"></script>
+					<!--  Added for open jquery dialog Box without login user  
+					 -->
+					<script type="text/javascript" src="/web/static/lib/jquery.ui/js/jquery-ui-1.9.1.custom.js"></script>
+					
+			</xpath>		
+		</template>
+		<template id="website.themes_hwseta" name="HWSETA Theme"
+			inherit_id="website.themes">
+			<xpath expr="//div[@id='themes-list']" position="inside">
+				<div class="col-md-4">
+					<div class="well text-center">
+						<div class="image">
+							<img class="img-responsive" src="" />
+						</div>
+						<div class="options">
+							<h3>HWSETA theme</h3>
+							<a class="btn btn-info" href="/website/theme_change?theme_id=website.theme_hwseta">Apply</a>
+						</div>
+					</div>
+				</div>
+
+			</xpath>
+		</template>
+	</data>
+</openerp>

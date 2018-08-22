@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+<template id="quotation_external_layout21">
+    <!-- Multicompany -->
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+
+    <t t-call="hwseta_etqe.quotation_external_layout_header1" />
+    <t t-raw="0" />
+     <t t-call="hwseta_etqe.quotation_external_layout_footer1" />
+</template>
+
+
+<template id="quotation_external_layout_header1">
+    <div class="header">
+        <div class="row">
+        	<div class="headimage">
+         	 <center><img src="/hwseta_etqe/static/src/img/hwseta_logo.jpg" width="300px" height="100px"/></center>
+            </div>
+            <!-- <div class="col-xs-10 text-right" align="right">
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" width="300" height="120"/>
+            </div> -->
+           
+        </div>
+    </div>
+</template>
+
+
+	<template id="quotation_external_layout_footer1">
+			<div class="footer">
+				<div class="row">
+				<div class="col-xs-12" style ="text-align:center;padding-top:130px">
+	                                        
+                  <strong>Page</strong><br/>
+                  
+                  <span>
+                      <span class="page"/>/<span class="topage"/>
+                  </span>
+                  
+                  </div>
+				</div>
+			</div>
+		</template>
+
+		
+		<template id="report_qdm_achievement_certificate">
+			<t t-call="report.html_container">
+				<div class="oe_structure" />
+				<t t-as="o_assessment" t-foreach="docs">
+					<t t-as="o" t-foreach="o_assessment.learner_achieved_ids">
+					<t t-call="hwseta_etqe.quotation_external_layout21">
+						<div class="page">
+							<style type="text/css">
+					            <![CDATA[
+							        @font-face {
+								    font-family: 'Conv_bickhamscriptpro-bold-opentype';
+								    src: url('fonts/bickhamscriptpro-bold-opentype.eot');
+								    src: local('☺'), url('/hwseta_etqe/static/src/fonts/bickhamscriptpro-bold-opentype.woff')
+								           format('woff'), url('/hwseta_etqe/static/src/fonts/bickhamscriptpro-bold-opentype.ttf')
+								           format('truetype'), url('/hwseta_etqe/static/src/fonts/bickhamscriptpro-bold-opentype.svg') format('svg');
+								    font-weight: normal;
+								    font-style: normal;
+		                            }
+					
+					        ]]>
+							</style>
+							<t t-if="get_status(o)['achieve']">
+								<br />
+								<br />
+								<br />
+								<br />
+								<br />
+								<br />
+								<h1
+									style="font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:500%;text-align:center;">
+									Certificate
+									<br />
+									Of
+									<br />
+									Achievement
+									<br />
+								</h1>
+								<h2
+									style="font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;text-align:center;"> This is to Certify that</h2>
+								<h2 style="font-size:100%;text-align:center;font-weight:bold">
+									<t t-if="o.learner_id.name">
+										<span t-field="o.learner_id.name" />
+									</t>
+									<t t-if="o.learner_id.person_middle_name">
+										<span t-field="o.learner_id.person_middle_name" />
+									</t>
+									<t t-if="o.learner_id.person_last_name">
+										<span t-field="o.learner_id.person_last_name" />
+									</t>
+								</h2>
+								<h2
+									style="font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;text-align:center;"> Identity Number</h2>
+								<h2 style="font-size:100%;text-align:center;font-weight:bold;">
+									<u>
+										<span t-field="o.learner_id.identification_id" />
+									</u>
+								</h2>
+								<h2
+									style="font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;text-align:center;">
+									Has been declared competent against the following Qualification
+									registered on the
+									<br />
+									National Qualifications Framework
+								</h2>
+								<br />
+								<h3 style="font-size:100%;text-align:center;font-weight:bold;">
+									<u>
+										<span t-esc="get_qualification(o)" />
+									</u>
+								</h3>
+								<h3 style="font-size:100%;text-align:center;" />
+								<h3 style="font-size:100%;text-align:center;font-weight:bold">
+									<u />
+								</h3>
+								<h3 style="font-size:100%;text-align:center;font-weight:bold ">
+									<u />
+								</h3>
+								<br />
+								<br />
+								<table style="align:center;width:900px;">
+									<tr>
+										<td
+											style="text-decoration: overline;font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;width:300px;text-align:center;">Date of Achievement</td>
+										<td
+											style="text-decoration: overline;font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;width:300px;text-align:center;">Date of Issue</td>
+									</tr>
+								</table>
+								<br />
+								<h4
+									style="text-decoration: overline;font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;text-align:center;">ETQA Executive Manager</h4>
+								<br />
+								<h3 style="font-size:100%;text-align:center;font-weight:bold">
+									<u />
+								</h3>
+								<h4
+									style="text-decoration: overline;font-family: 'Conv_bickhamscriptpro-bold-opentype';font-size:240%;text-align:center;">Chief Executive Officer</h4>
+								<p style="page-break-after:always !important;" />
+							</t>
+							<!-- ==============Second Page============== -->
+							<t t-if="not get_status(o)['achieve']" >
+                                <h2 style="font-size:150%;text-align:center;font-weight:bold;"> STATEMENT OF ACHIEVEMENT </h2>
+								<div style ="font-size:10px">
+									<table style="align:center;width:550px;page-break-inside:auto;">
+										<tr>
+											<tr>
+												<td style="font-size:100%;text-align:left;"> Name</td>
+												<td class="text-left" style="font-size:100%;">
+													:
+													<span t-esc="get_name(o)" />
+												</td>
+											</tr>
+											<tr>
+												<td style="font-size:100%;text-align:left;"> Identity Number</td>
+												<td class="text-left" style="font-size:100%;">
+													:
+													<span t-field="o.learner_id.identification_id" />
+												</td>
+											</tr>
+											<tr>
+												<td style="font-size:100%;text-align:left;">Qualification</td>
+												<td class="text-left" style="font-size:100%;">
+													:
+													<span t-esc="get_qualification(o)" />
+												</td>
+											</tr>
+											<tr>
+												<td style="font-size:100%;text-align:left;">SAQA ID</td>
+												<td class="text-left" style="font-size:100%;">
+													:
+													<span t-esc="get_saqa_qual_id(o) or ''" />
+												</td>
+											</tr>
+											
+											<tr>
+												<td style="font-size:100%;text-align:left;"> Date of Issue</td>
+												<td class="text-left" style="font-size:100%;"> :
+													06 November 2017
+													<!-- <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y ')" /> -->
+												</td>
+											</tr>
+										</tr>
+									</table>
+									<br />
+
+									<t t-foreach="get_unit_standard(o)" t-as="l">
+
+										<table class="learner_tables1 table table-condensed" style="page-break-inside:auto;">
+											<thead>
+												<tr>
+													<p style="border-style:none;font-weight:bold;font-size:100%;padding:2px;">
+														<t t-esc="l['type']" />
+														:
+													</p>
+												</tr>
+												
+												<tr>
+													<th
+														style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 2px;">Number</th>
+													<th
+														style="border:solid;width:700px;border-width: 1px;text-align:left;padding:2px;">Title</th>
+													<th
+														style="border:solid;width:100px;border-width: 1px;text-align:center;padding: 2px;">NQF Level</th>
+													<th
+														style="border:solid;width:40px;border-width: 1px;text-align:center;padding: 2px;">Credits</th>
+													<th
+														style="border:solid;width:60px;border-width: 1px;text-align:center;padding: 2px;">%</th>
+												</tr>
+												</thead>
+												<tbody>
+												<tr t-foreach="l['value']" t-as="s" style="page-break-inside:avoid;">
+
+													<td
+														style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 
+														2px;">
+														<t t-esc="s['nlrd_number']" />
+													</td>
+													<td 
+														style="border:solid;border-width: 1px;width:700px;text-align:left;padding: 
+														2px;">
+														<t t-esc="s['name']" />
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:70px;text-align:center;padding: 
+														2px;">
+														<t t-esc="s['nqf_level']" />
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														2px;">
+														<t t-esc="s['credit']" />
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														2px;">
+													</td>													
+												</tr>
+												<tr style="page-break-inside:avoid;">
+													<td
+														style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 
+														2px;">
+
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:700px;text-align:left;padding: 
+														2px;text-transform:uppercase;font-weight:bold;">
+														TOTAL CREDITS FOR <t t-esc="l['type']" />
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:70px;text-align:center;padding: 
+														2px;font-weight:bold;">
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														2px;font-weight:bold;">
+														<t t-esc="l['t_credits']" />
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														2px;font-weight:bold;">
+														<t t-esc="l['percentage']" />
+														%
+													</td>
+												</tr>
+												<t t-if="l_index+1 == l['counter']">
+												<tr style="page-break-inside:avoid;">
+													<td
+														style="border:solid;border-width: 1px;width:150px;text-align:center;padding: 
+														2px;">
+
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:700px;text-align:left;padding: 
+														2px;font-weight:bold;">
+														TOTAL CREDITS FOR THE QUALIFCATION
+
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:70px;text-align:center;padding: 
+														2px;font-weight:bold;">
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														2px;font-weight:bold;">163
+													</td>
+													<td
+														style="border:solid;border-width: 1px;width:40px;text-align:center;padding: 
+														2px;font-weight:bold;">
+														100%
+													</td>
+												</tr>
+												</t>
+											</tbody>
+										</table>
+										<t t-if="l_index+1 == l['counter']">
+											<div style="font-weight:bold;">
+												<center><strong><p>Final Marks of the External Integrated Summative Assessment
+													(EISA) (<span t-field="o.learner_id.person_fax_number" />%)</p></strong></center>
+												<p>All candidates that have met the requirements of the
+													qualification; for Certification namely:<br/>
+												   a) Passed the final EISA-60% and above AND<br/>
+												   b) Passed the FLC ( Both Mathematics and English -50% and above
+													OR <br/>
+												   Passed Mathematics and English at Grade 12 level ( or
+												   equivalent, eg NCV )<br/>
+												   Note: this requirement can also be met by a combination
+													of the above.</p>
+											</div>
+										</t>
+									</t>
+									<br/>
+									<table width="100%">
+										<tr>
+											<td style="text-align:center;" width="40%">
+												<img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', o.learner_id.learner_identification_id, 600, 100)"
+													style="width:250px;height:20px" />
+											</td>
+											<td width="20%" />
+											<td width="40%">
+												<div style="text-align:center;width:100%;">
+													<img src="/hwseta_etqe/static/src/img/Jane_signature.jpg" width="75px"
+														height="50px" />
+												</div>
+												<div style="text-align:center;font-style:italic;width:100%;">
+													<strong style="text-decoration: overline;">
+														Baakedi Jane Motubatse
+													</strong>
+													<br />
+													<strong>
+														ETQA Executive Manager
+													</strong>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</t>
+						</div>
+					</t>
+				</t>
+			</t>
+			</t>
+		</template>
+	</data>
+</openerp>

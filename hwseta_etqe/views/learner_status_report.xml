@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<template id="report_learner_status_report">
+			<t t-call="report.html_container">
+				<div class="oe_structure" />
+				<t t-as="o_assessment" t-foreach="docs">
+					<div class="page">
+						<table>
+							<tr>
+								<td>
+									<img style="width:150px;height:70px;text-align:left;"
+										class="img img-responsive" src="/hwseta_etqe/static/src/img/hwseta.jpg" />
+								</td>
+								<td>
+									<h3 style="text-align:center;">Assessment Status Report</h3>
+								</td>
+							</tr>
+						</table>
+						<table style="border: 1px solid black;text-align:center; border-collapse: collapse;padding: 15px;border-spacing: 5px;">
+							<tr>
+								<th style="border: 1px solid black; border-collapse: collapse;">Provider</th>
+								<th style="border: 1px solid black; border-collapse: collapse;">Identification Id</th>
+								<th style="border: 1px solid black; border-collapse: collapse;">Learner Name</th>
+								<th style="border: 1px solid black; border-collapse: collapse;text-align:center;">Title</th>
+								<th style="border: 1px solid black; border-collapse: collapse;">Achieve</th>
+								<th style="border: 1px solid black; border-collapse: collapse;">Complete</th>
+							</tr>
+							<t t-foreach="get_learner_status(data)" t-as="d">
+								<tr>
+									<td style="border: 1px solid black; border-collapse: collapse;">
+										<span t-esc="d['provider_id']" />
+									</td>
+									<td style="border: 1px solid black; border-collapse: collapse;">
+										<span t-esc="d['id']" />
+									</td>
+									<td style="border: 1px solid black; border-collapse: collapse;">
+										<span t-esc="d['name']" />
+									</td>
+									<td style="border: 1px solid black; border-collapse: collapse;">
+										<span t-esc="d['title']" />
+									</td>
+									<td style="border: 1px solid black; border-collapse: collapse;">
+										<span t-esc="d['achieve']" />
+									</td>
+									<td style="border: 1px solid black; border-collapse: collapse;">
+										<span t-esc="d['complete']" />
+									</td>
+								</tr>
+							</t>
+						</table>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

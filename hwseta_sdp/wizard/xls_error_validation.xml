@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="import_xls_import_log_form_view" model="ir.ui.view">
+            <field name="name">import.xls.import.log.form.view</field>
+            <field name="model">xls.error.validation</field>
+            <field name="arch" type="xml">
+            	<form string="XLS Import Log">
+            		<group>
+            			<field name="xls_import_log" nolabel="1" readonly="1"/>
+            		</group>
+            		<group>
+            			<button name="action_download_incorrect_wsp_file" string="Download Incorrect Data File" type="object" class="oe_highlight" />
+            			<button name="action_download_error_log" string="Download WSP Import Error Log" type="object" class="oe_highlight" />
+            		</group>
+            	</form>
+            </field>
+        </record>
+	</data>
+</openerp>

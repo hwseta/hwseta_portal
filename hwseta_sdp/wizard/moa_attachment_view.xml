@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="moa_attachment_form_view" model="ir.ui.view">
+            <field name="name">moa.attachment.form.view</field>
+            <field name="model">moa.attachment</field>
+            <field name="arch" type="xml">
+            	<form string="Attach MOA">
+            		<group>
+            			<field name="moa_attachment_id" domain="[('id','=',None)]" required="1"/>
+            		</group>
+            		<group>
+            			<button name="action_attach_moa" string="Attach MOA" type="object" class="oe_highlight" />
+            			<button name="action_cancel" string="Cancel" type="object" class="oe_highlight" />
+            		</group>
+            	</form>
+            </field>
+        </record>
+	</data>
+</openerp>

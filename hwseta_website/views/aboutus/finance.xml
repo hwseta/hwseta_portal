@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Finance Page === -->
+		<template id="finance" name="Finance" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+									<t t-call="hwseta_website.sidebar1" />
+
+									<div class="oc-layout-cell oc-content">
+										<article id="post-277"
+											class="oc-post oc-article  post-277 page type-page status-publish hentry">
+											<h1 class="oc-postheader">Finance</h1>
+											<div class="oc-postcontent oc-postcontent-0 clearfix">
+												<h2>Overview and Functions of the Finance Division</h2>
+												<p>The Finance Division’s responsibility is to design and
+													implement financial controls that ensure good financial
+													governance and financial viability of the HWSETA as well as
+													ensuring that funding is optimally used to drive the
+													attainment of the strategic requirements.</p>
+												<p>All functioning of the Finance Division occurs within the
+													compliance requirements of the Public Finance Management
+													Act and Treasury Regulations. The key functions of the
+													Finance Division:</p>
+												<ul>
+													<li>Implement and strengthen internal control</li>
+													<li>Review, develop and implement finance policies</li>
+													<li>Monthly reporting on financial results</li>
+													<li>Procurement and recording of goods and services</li>
+													<li>Administration and guidance on tenders</li>
+													<li>Disbursement of mandatory and discretionary grant
+														funding</li>
+													<li>Preparation of the Annual Financial Statements</li>
+													<li>Quarterly reporting on financial results</li>
+													<li>Operations budget preparation and monitoring</li>
+													<li>Risk and fraud prevention management</li>
+													<li>Internal audit function and Auditor-General audit
+														co-ordination and support</li>
+													<li>Participate in Public Sector CFO forums</li>
+													<li>Strategic sessions to ensure strategic alignment to the
+														strategy of the HWSETA</li>
+													<li>Monitoring and evaluation of grant funding</li>
+													<li>Asset Management</li>
+													<li>Reporting to the Audit Committee, Finance Committee,
+														Governance Committee, Tender Standing Committee, ExCo and
+														Board</li>
+													<li>Monitor, review, develop and implement measures to
+														limit exposure to fraud and risk;</li>
+												</ul>
+												<h2>Contacts</h2>
+												<p>Click on the name below to send an e-mail</p>
+												<table class="contacttable" border="0" width="100%"
+													cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td class="contactshead" width="40%">Name</td>
+															<td class="contactshead" width="30%">Title</td>
+															<td class="contactshead" width="30%">Tel</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:elaineb@hwseta.org.za">Ms. Elaine Brass</a>
+															</td>
+															<td class="contacts" width="30%">Chief Financial Officer
+															</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:namhlat@hwseta.org.za">Ms. Namhla
+																	Tsawe
+																</a>
+															</td>
+															<td class="contacts" width="30%">Secretary: Finance</td>
+															<td class="contacts" width="30%"> (011)
+																607 6904
+															</td>
+														</tr>
+														<tr>
+															<td class="contactsnoline" width="40%">
+																<h3>Finance and Administration</h3>
+															</td>
+															<td class="contactsnoline" width="30%"></td>
+															<td class="contactsnoline" width="30%"></td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="daphnep@hwseta.org.za">Ms. Daphne Pillay</a>
+															</td>
+															<td class="contacts" width="30%">Financial Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:nishals@hwseta.org.za">Mr. Nishal
+																	Singh 
+																</a>
+															</td>
+															<td class="contacts" width="30%">Financial Accountant</td>
+															<td class="contacts" width="30%">(011) 607 6945</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:sanen@hwseta.org.za">Ms. Sanelisiwe Nyathi</a>
+															</td>
+															<td class="contacts" width="30%">Financial Administrator
+															</td>
+															<td class="contacts" width="30%">(011) 607 6964</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:rebeccav@hwseta.org.za">Ms. Rebecca van Rooyen</a>
+															</td>
+															<td class="contacts" width="30%">Grants Disbursement Officer
+															</td>
+															<td class="contacts" width="30%">(011) 607 6948</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:musan@hwseta.org.za">Ms Musa Ndlovu</a>
+															</td>
+															<td class="contacts" width="30%">Payment Cycle Officer</td>
+															<td class="contacts" width="30%">(011) 607 7020</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:marlonn@hwseta.org.za">Mr. Marlon Naidoo</a>
+															</td>
+															<td class="contacts" width="30%">Finance Payroll
+																Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6947</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:deborahs@hwseta.org.za">Ms. Deborah Smith</a>
+															</td>
+															<td class="contacts" width="30%">Revenue and Cash Book
+																Administrator</td>
+															<td class="contacts" width="30%">(011) 607 6914</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:ntombizodwam@hwseta.org.za">Ms. Ntombizodwa Motloung</a>
+															</td>
+															<td class="contacts" width="30%">Supply Chain Manager</td>
+															<td class="contacts" width="30%">(011) 607 6900</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:dikeledim@hwseta.org.za">Ms. Dikeledi Mathibe</a>
+															</td>
+															<td class="contacts" width="30%">Supplier Relations Officer
+															</td>
+															<td class="contacts" width="30%">(011) 607 7021</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:bongiwem@hwseta.org.za">Ms. Bongiwe Mncube</a>
+															</td>
+															<td class="contacts" width="30%">Procurement Officer</td>
+															<td class="contacts" width="30%">(011) 607 7019</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:grantr@hwseta.org.za">Mr. Grant Roberts</a>
+															</td>
+															<td class="contacts" width="30%">Procurement Administrator
+															</td>
+															<td class="contacts" width="30%">(011) 607 6936</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:louism@hwseta.org.za">Mr. Louis Mabandla</a>
+															</td>
+															<td class="contacts" width="30%">Procurement Administrator
+															</td>
+															<td class="contacts" width="30%">(011) 607 6944</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:boipelom@hwseta.org.za">Ms. Boipelo Moremi</a>
+															</td>
+															<td class="contacts" width="30%">Procurement Intern</td>
+															<td class="contacts" width="30%">(011) 607 6953</td>
+														</tr>
+														<tr>
+															<td class="contacts" width="40%">
+																<a href="mailto:selinan@hwseta.org.za">Ms. Selina 
+																	Nchabeleng
+																</a>
+															</td>
+															<td class="contacts" width="30%">Finance Intern</td>
+															<td class="contacts" width="30%">(011) 607 6953</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</article>
+									</div>
+									
+									<t t-call="hwseta_website.sidebar2" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

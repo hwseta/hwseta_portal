@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === SDF Registration Page === -->
+		<template id="website.sdf_registration" name="SDF Registration" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+			<!-- 		onsubmit="return runSubmit()" -->
+					<form action="/hwseta/confirm_sdf" id="sdf_submit_form" method="post" name="frmSDF" role="form" style="z-index:1 !important; position:relative !important" enctype="multipart/form-data">
+						<fieldset id="sdf_fs1">
+							<div class=" form-bg">
+								<div class="tableclass">
+								<div id="myselectedoptions">
+                            </div>
+									<table width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF"
+										border-collapse="collapse" align="center">
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+<!-- 										Employeer SDL Number -->
+										<tr>
+                                            <td>
+                                                <label>Employer SDL No.</label>
+                                            </td>
+                                            <td>
+                                                <font color="#FF0000">* </font>
+                                                <input style="width:95.6%;" name="txtEmployerSDL" type="text" size="15" value="" placeholder="Enter Employer SDL number"/>
+
+                                            </td>
+                                            <td colspan="2">
+                                                <font style="color:#F7F7EF;">*</font>
+                                                <input name="cmdAdd" id="cmdAdd" type="button" value="Add"
+                                                    style="width:40% !important; height:29px; border-radius:3px;"
+                                                    onclick="javascript: AddOption1();" />
+                                                <input name="cmdRemove" id="cmdRemove" type="button"
+                                                    value="Remove" style="width:40% !important; height:29px; border-radius:3px;"
+                                                    onclick="javascript: RemoveOption1();" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="2" align="center"><b>SDL Number</b></td>
+										<td colspan="2" align="center"><b>SDF Appointment Letter</b></td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                
+                                                <select class="input" name="cboTHETAChamber" id="cboTHETAChamber"
+                                                    multiple="" size="7" style="width: 100%; border:0">
+                                                </select>
+                                            </td>
+                                            <td colspan="2">
+            									<div class="field_wrapper_sdf_appointment_letter">
+												</div>
+                                            </td>                                            
+                                        </tr>
+                                        
+										<tr>
+											<td bgcolor="FFFFFF" colspan="4">
+												<b style="background-color:#FFFFFF;">General Information</b>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+										<tr>
+											<td width="25%">
+												<label>Title</label>
+											</td>
+											<td>
+												<font color="#FF0000">* </font>
+												<select name="cboTitle" style="width:95.6%;">
+												    <option value="">-- select --</option>
+													<option value="adv">Adv.</option>
+													<option value="dr">Dr.</option>
+													<option value="mr">Mr.</option>
+													<option value="mrs">Mrs.</option>
+													<option value="ms">Ms.</option>
+													<option value="prof">Prof.</option>
+												</select>
+											</td>
+											<td>
+												<label>Name</label>
+											</td>
+											<td>
+												<font color="#FF0000">* </font>
+												<input name="txtFirstName" type="text" size="15" value=""
+													placeholder="Enter Your Name" style="width:95.6%;"/>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%">
+												<label>Surname</label>
+											</td>
+											<td>
+												<font color="#FF0000">* </font>
+												<input style="width:95.6%;" name="txtSurname" type="text" size="15" value="" placeholder="Enter Your Surname" />
+											</td>
+											<td>
+												<label>Work Email</label>
+											</td>
+											<td style="width:35% !important;">
+												<font style="color:#FF0000;">* </font>
+												<input name="txtWorkEmail" id="txtWorkEmail" type="text" size="15" value=""
+													placeholder="Enter Your Work Email" style="width:95.6%; "/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Cell Phone</label>
+											</td>
+											<td>
+												<font style="color:#FF0000;">* </font>
+												<input name="txtWorkPhone" type="text" size="15" value=""
+													placeholder="e.g. 0824513619" maxlength = "10" style="width:95.6%;" id="txtWorkPhone" />
+											</td>
+											<td>
+												<label>Internal</label> <input type="radio" id="radiointernal"  name="radioIC" value="Internal" checked="true" style="width:50%;"/>
+											</td>
+											<td>
+												<label>Consultant</label> <input type="radio" id="radioconsultant" name="radioIC" value="Consultant" style="width:50%;"/>
+											</td>											
+										</tr>
+										<tr id="primary_secondary">
+											<td colspan="2">
+											</td>
+											<td>
+												<label>Primary</label> <input type="radio" id="radioprimary"  name="radioPS" value="primary" checked="true" style="width:50%;"/>
+											</td>
+											<td>
+												<label>Secondary</label> <input type="radio" id="radiosecondary" name="radioPS" value="secondary" style="width:50%;"/>
+											</td>											
+										</tr>										
+									</table>
+								</div>
+							</div>
+							
+							<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+								<input type="button" name="sdfNext" id="sdfNext1"
+									class="next btn btn-primary" style="max-width: 8%; !important"
+									value="Next" />
+							</div>
+						</fieldset>
+						<fieldset id="sdf_fs2">
+							<div class=" form-bg">
+								<div class="tableclass">
+									<table width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF"
+										border-collapse="collapse" align="center">
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+										<tr>
+											<td bgcolor="FFFFFF" colspan="4">
+												<b style="background-color:#FFFFFF;">Public Information</b>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+										<tr>
+											<td colspan="4" bgcolor="FFFFFF"><h5>Contact Information</h5></td>
+										</tr>
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+										<tr>
+											<td  rowspan="7">
+												<label>Working Address</label>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3">
+											    <font style="color:#FF0000;">*</font>
+												<input id ="txtAddress1" name="txtAddress1" type="text" size="15" style=" width:98%;" value=""
+													placeholder="Work Address1" required="1"/>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3">
+											    <font style="color:#F7F7EF;">*</font>
+												<input name="txtAddress2" type="text" size="15" value=""
+													placeholder="Work Address2" style="width:98%" />
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3">
+											    <font style="color:#F7F7EF;">*</font>
+												<input name="txtAddress3" type="text" size="15" value=""
+													placeholder="Work Address3" style="width:98%" />
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3">
+												<select name="cboCountry" style="width:171px" id="cboCountry">
+													<option value="">-- Select Country--</option>
+													<t t-foreach="nationality" t-as="nationality">
+								           
+								                           <option t-att-value="nationality[0]">
+								                            <t t-esc="nationality[1]"/>
+								                        </option>
+								                    </t>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td><select name="cboState" style=" width:53%;" id="cboState" >
+														<option value="">-- Select Province --</option>
+<!-- 														<t t-foreach="state" t-as="state">
+						                               	 <option t-att-value="state[0]">
+									                            <t t-esc="state[1]"/>
+									                        </option>
+									                    </t> -->
+												</select></td>										
+											<td>
+<!-- 											<input name="txtCity" type="text" size="15" value="" placeholder="City"/> -->
+												<select name="txtCity" style="width:171px" id="txtCity">
+													<option value="">-- Select City--</option>
+<!-- 													<t t-foreach="city" t-as="city">
+					
+								                        <option t-att-value="city[0]">
+								                            <t t-esc="city[1]"/>
+								                        </option>								                        
+								                    </t> -->
+												</select>
+											</td>
+
+
+										</tr>
+
+										<tr>
+											<td >
+												<select name="txtSuburb" style="height:29px;width:171px" id="txtSuburb">
+													<option value="">-- Select Suburb--</option>
+<!-- 													<t t-foreach="suburb" t-as="suburb">
+								                        <option t-att-value="suburb[0]">
+								                            <t t-esc="suburb[1]"/>
+								                        </option>
+								                    </t> -->
+												</select>													
+											</td>
+											<td colspan="2">
+												<input name="txtZip" type="text" size="15" value="" placeholder="Zip" id="txtZip" style="width: 53%;" readonly="readonly" />
+											</td>											
+										</tr>										
+
+										
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+										<tr>
+											<td colspan="4" bgcolor="FFFFFF"><h5>Position</h5></td>
+										</tr>
+										<tr>
+											<td colspan="4"></td>
+										</tr>
+										
+										<tr>
+											<td>
+												<label>Department</label>
+											</td>
+											<td colspan="3">
+												<input name="txtDept" type="text" size="15" value=""
+													placeholder="Enter Your Department"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Job Title</label>
+											</td>
+											<td colspan="3">
+												<input name="txtJobTitle" type="text" size="15" value=""
+													placeholder="Enter Your Job Title"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Manager</label>
+											</td>
+											<td colspan="3">
+												<input name="txtManager" type="text" size="15" value=""
+													placeholder="Manager"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Notes</label>
+											</td>
+											<td colspan="3">
+												<textarea style="width:100%;" name="txtNotes" cols="73" rows="3" maxlength="1000" value="" placeholder="Other Information"></textarea>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+								<input type="button" name="sdfPrevious" class="previous btn btn-primary"
+									style="max-width: 8%; !important" value="Back" />
+								<input type="button" name="sdfNext" id="sdfNext2"
+									class="next btn btn-primary" style="max-width: 8%; !important"
+									value="Next" />
+							</div>
+						</fieldset>
+					  	<fieldset id="sdf_fs3">
+						<div class=" form-bg">
+							<div class="tableclass">
+								<table width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF"
+									border-collapse="collapse" align="center">
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td bgcolor="FFFFFF" colspan="4">
+											<b style="background-color:#FFFFFF;">Personal Information</b>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td colspan="4" bgcolor="FFFFFF"><h5>Contact Information</h5></td>
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td width="25%">
+											<label>Contact Number Home</label>
+										</td>
+										<td>
+											<input name="txtCntNoHome" id="txtCntNoHome" type="text" size="10" placeholder="e.g. 0824513619" maxlength="10"/>
+										</td>
+										<td width="25%">
+											<label>Contact Number Office</label>
+										</td>
+										<td>
+											<input name="txtCntNoOffice" id="txtCntNoOffice" type="text" size="10" placeholder="e.g. 0824513619" maxlength="10"/>
+										</td>										
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td colspan="4" bgcolor="FFFFFF"><h5>Citizenship Information</h5></td>
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td width="25%">
+											<label>Citizen Resident Status</label>
+										</td>									
+										<td width="25%">
+											<label>Country Of Nationality</label>
+										</td>
+										
+										<td width="25%">
+											<label>R.S.A.Identification No</label>
+										</td>
+										<td width="25%">
+											<label>Birth Date</label>
+										</td>
+
+									</tr>
+									<tr>
+										<td>
+											<font style="color:#FF0000;">*</font>
+											<input name="txtCitizenResStatusCode" id="txtCitizenResStatusCode" type="hidden" size="15" value="" placeholder="Citizen Resident Status Code" />
+												<select name="txtCitizenResStatusCode_selection" id="txtCitizenResStatusCode_selection">
+													<option value=""></option> 
+													<option value="dual">D - Dual (SA plus other)</option>
+													<option value="other">O - Other</option>
+													<option value="sa">SA - South Africa</option>
+													<option value="unknown">U - Unknown</option>
+												</select>
+										</td>									
+									
+										<td>
+											<select name="cboNationality" style="width:96%;" id="nationality" >
+												<option value="">-- select --</option>
+												<t t-foreach="nationality1" t-as="nationality1">
+								                       <option t-att-value="nationality1[0]">
+								                           <t t-esc="nationality1[1]"/>
+								                       </option>
+								                   </t>
+											</select>
+										</td>
+										
+										<td>
+											<div id="identification">
+												<font style="color:#F7F7EF;" id="font_id_number">*</font>
+												<input name="txtID" type="text"  id="id_number" size="13" value="" placeholder="Enter Your Valid ID No." style="width:95%;" />
+											</div>
+										</td>
+										<td>
+											<input name="txtBirthDate" type="text" size="15" placeholder="DD/MM/YYYY" id="datepicker_sdf" tabIndex="1"/>
+											<input type="hidden" id="BirthDate" name="BirthDate" value=""/>
+										</td>
+
+
+									</tr>
+									<tr>
+										<td width="25%">
+											<label>National ID</label>
+										</td>
+										<td width="25%">
+											<label>Passport No</label>
+										</td>											
+										<td width="25%">
+											<label>ID Document/Passport Upload</label>
+										</td>
+										<td width="25%">
+											<label>Home Language</label>
+										</td>
+									
+									</tr>
+									<tr>
+										<td>
+										<div id="national_id">
+											<font style="color:#F7F7EF;" id="font_nat_id">*</font>
+											<input style="width:171px" id="nat_id" name="txtNationalId" type="text" size="15" value="" placeholder="Nationality Id"/>
+										</div>
+										</td>
+										<td>
+											<div id="passport">
+												<font style="color:#F7F7EF;" id="font_passport_no">*</font>
+												<input name="txtPassportNo" id="passport_no" type="text" size="15" value="" placeholder="Passport No." style="width:95%;"/>
+											</div>
+										</td>										
+										<td>
+										<div id="id_document">
+											<font style="color:#FF0000;" id="font_id_document">*</font>
+											<input style="width:95%;" name="txtIdDocument" id="txtIdDocument" type="file" size="15" value="" placeholder="Nationality Id"  />
+										</div>
+										
+										</td>
+										<td>
+												<select name="txtHomeLanguageCode" style="width:171px">
+													<option value="">-- Select--</option>
+													<t t-foreach="language" t-as="language">
+								                        <option t-att-value="language[0]">
+								                            <t t-esc="language[1]"/>
+								                        </option>
+								                    </t>
+												</select>
+										</td>
+
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td colspan="4" bgcolor="FFFFFF"><h5>Status</h5></td>
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td width="25%">
+											<label>Gender</label>
+										</td>
+										<td width="25%">
+											<select name="cboGender" id="cboGender" style="width:100%;">
+											    <option value="">-- select--</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+								
+											</select>
+										</td>
+										<td width="25%">
+											<label>Marital Status</label>
+										</td>
+										<td width="25%">
+											<select name="cboMaritalStatus" style="width:92%;">
+											    <option value="">-- select --</option>
+												<option value="single">Single</option>
+												<option value="married">Married</option>
+												<option value="widower">Widower</option>
+												<option value="divorced">Divorced</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td width="25%" >
+											<label>Disability</label>
+										</td>
+										<td >
+											<font style="color:#F7F7EF;">*</font>
+											<select name="disability" id="disability" style="width:100%">
+													<option value="no">No</option>
+													<option value="yes">Yes</option>
+											</select>
+										</td>										
+										<td colspan="2">
+
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+							<input type="button" name="sdfPrevious" class="previous btn btn-primary"
+								style="max-width: 8%; !important" value="Back" />
+							<input type="button" name="sdfNext" id="sdfNext3"
+								class="next btn btn-primary" style="max-width: 8%; !important"
+								value="Next" />
+						</div>
+					</fieldset>
+					
+					<fieldset id="sdf_fs4">
+						<div class=" form-bg">
+							<div class="tableclass">
+								<table width="100%" border="1" bordercolor="#999999" bgcolor="#F7F7EF"
+									border-collapse="collapse" style="margin-top:10px;" align="center">
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td bgcolor="FFFFFF" colspan="4">
+											<b style="background-color:#FFFFFF;">Address Information</b>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<td colspan="4"><h5>Personal Address</h5></td>
+									</tr>
+									<tr>
+										<td  rowspan="7">
+											<label>Home Address</label>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+										    <font style="color:#FF0000;">*</font>
+											<input name="txtHomeAddress1" id="txtHomeAddress1" type="text" size="15" value=""
+												style="width:98%" placeholder="Home Address1"/>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+										    <font style="color:#F7F7EF;">*</font>
+											<input name="txtHomeAddress2" id="txtHomeAddress2" type="text" size="15" value=""
+												placeholder="Home Address2" style="width:98%" />
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+										    <font style="color:#F7F7EF;">*</font>
+											<input name="txtHomeAddress3" id="txtHomeAddress3" type="text" size="15" value=""
+												placeholder="Home Address3" style="width:98%" />
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+											<select name="cboHomeCountry" style="width:171px" id="cboHomeCountry">
+												<option value="">-- Select Country --</option>
+												<t t-foreach="nationality2" t-as="nationality2">
+							                        <option t-att-value="nationality2[0]">
+							                            <t t-esc="nationality2[1]"/>
+							                        </option>
+							                    </t>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<select name="cboHomeState" style="width:75%;" id="cboHomeState">
+														<option value="">-- Select Province --</option>
+		<!-- 												<t t-foreach="state1" t-as="state1">
+									                         <option t-att-value="state1[0]">
+									                            <t t-esc="state1[1]"/>
+									                        </option>
+									                    </t> -->
+												</select>
+										</td>									
+										<td>
+												<select name="txtHomeCity" style="width:171px" id="txtHomeCity">
+													<option value="">-- Select City--</option>
+		<!-- 											<t t-foreach="city1" t-as="city1">
+								                        <option t-att-value="city1[0]">
+								                            <t t-esc="city1[1]"/>
+								                        </option>								                        
+								                    </t> -->
+												</select>	
+										</td>
+
+									</tr>
+
+									<tr>
+										<td>
+												<select name="txtHomeSuburb" style="width:171px" id="txtHomeSuburb">
+													<option value="">-- Select Suburb--</option>
+	<!-- 												<t t-foreach="suburb1" t-as="suburb1">
+								                        <option t-att-value="suburb1[0]">
+								                            <t t-esc="suburb1[1]"/>
+								                        </option>
+								                    </t> -->
+												</select>	
+										</td>
+
+										<td colspan="2">
+											<input name="txtHomeZip" id="txtHomeZip" type="text" size="15" value=""	placeholder="Zip" style="width:75%" readonly="readonly"/>
+										</td>										
+									</tr>									
+									<tr>
+										<td>
+											<label>Postal Address Same as Home Address</label>
+										</td>
+										<td colspan="3">
+											<input id="sdf_postal_address" type="checkbox" name="same_address" value=""/>
+										</td>
+									</tr>  									
+									<tr id="tr_postal_label">
+										<td  rowspan="8">
+											<label>Postal Address</label>
+										</td>
+									</tr>
+									<tr id="tr_txtPostalAddress1">
+										<td colspan="3">
+										    <font id="font_txtPostalAddress3" style="color:#FF0000;">*</font>
+											<input name="txtPostalAddress1" id="txtPostalAddress1" type="text" size="15" value=""
+												style="width:98%" placeholder="Postal Address1"/>
+										</td>
+									</tr>
+									<tr id="tr_txtPostalAddress2">
+										<td colspan="3">
+										    <font id="font_txtPostalAddress1" style="color:#F7F7EF;">*</font>
+											<input name="txtPostalAddress2" id="txtPostalAddress2" type="text" size="15" value=""
+												placeholder="Postal Address2" style="width:98%"/>
+										</td>
+									</tr>
+									<tr id="tr_txtPostalAddress3">
+										<td colspan="3">
+										    <font id="font_txtPostalAddress3" style="color:#F7F7EF;">*</font>
+											<input name="txtPostalAddress3"  id="txtPostalAddress3" type="text" size="15" value=""
+												placeholder="Postal Address3" style="width:98%"/>
+										</td>
+									</tr>
+									<tr id="tr_cboPostalCountry">
+										<td colspan="3">
+											<select name="cboPostalCountry" style="width:171px" id="cboPostalCountry">
+												<option value="">-- Select Country --</option>
+												<t t-foreach="nationality3" t-as="nationality3">
+							                        <option t-att-value="nationality3[0]">
+							                            <t t-esc="nationality3[1]"/>
+							                        </option>
+							                    </t>
+											</select>
+										</td>
+									</tr>									
+
+									<tr id="tr_txtPostalCity">
+										<td>
+											<select name="cboPostalState" style="width:75%;" id="cboPostalState" >
+													<option value="">-- Select Province --</option>
+<!-- 													<t t-foreach="state2" t-as="state2">
+								                        <option t-att-value="state2[0]">
+								                            <t t-esc="state2[1]"/>
+								                        </option>
+								                    </t> -->
+											</select>
+										</td>									
+										<td>
+												<select name="txtPostalCity" style="height:29px;width:171px" id="txtPostalCity">
+													<option value="">-- Select City--</option>
+	<!-- 												<t t-foreach="city2" t-as="city2">
+								                        <option t-att-value="city2[0]">
+								                            <t t-esc="city2[1]"/>
+								                        </option>
+								                    </t> -->
+												</select>	
+										</td>
+
+
+									</tr>
+
+									<tr id="tr_txtPostalSuburb">
+										<td>
+												<select name="txtPostalSuburb" style="width:171px" id="txtPostalSuburb">
+													<option value="">-- Select Suburb--</option>
+<!-- 													<t t-foreach="suburb2" t-as="suburb2">
+								                        <option t-att-value="suburb2[0]">
+								                            <t t-esc="suburb2[1]"/>
+								                        </option>
+								                    </t> -->
+												</select>	
+										</td>
+										<td colspan="2">
+											<input name="txtPostalZip" id="txtPostalZip" type="text" size="15" value="" placeholder="Zip" style="width:75%;" readonly="readonly"/>
+										</td>										
+									</tr>									
+									
+								</table>
+							</div>
+							<div style="display:none">
+							<table>
+							 <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="FFFFFF" colspan="2">
+                                            <b style="background-color:#FFFFFF;">Employer</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Employer</label>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Registration Number</label>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="sdf_reference_no" id="sdf_reference_no" t-att-value="sdfref"/>
+                                        </td>
+                                    </tr>
+                                    </table>
+							</div>
+						</div>
+						<div class="clearfix oe_login_buttons" style="margin-bottom:20px;">
+                            <input type="button" name="sdfPrevious" class="previous btn btn-primary"
+                                   style="max-width: 8%; !important" value="Back" />
+                            <button id="sdfSubmit" name="cmdEnteras" class="btn btn-primary">Submit</button>
+                        </div>
+					</fieldset>
+					             
+						</form>
+						<!-- <div id="dialog-message" title="Thank you for Applying">
+                        </div> -->
+                        <div id="dialog-warning" title="SDL Warning">
+                        </div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>

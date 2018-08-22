@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="export_wsp_xls_form_view" model="ir.ui.view">
+            <field name="name">export.wsp.xls.form.view</field>
+            <field name="model">export.wsp.xls</field>
+            <field name="arch" type="xml">
+            	<form string="Export port">
+            		<group string="Select Annual Training Report or Workplace Skills Plan to export in PDF format">
+            		</group>
+            		<footer>
+
+<!--                         <button name="export_previous" string="ATR" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-up"/> -->
+                        <button name="export_previous_pdf" string="ATR PDF" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-up"/>
+                        <button name="export_previous_wsp" string="WSP" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-up"/>
+                        <button name="export_previous_wsp_pdf" string="WSP PDF" type="object" class="oe_inline oe_stat_button" icon="fa-arrow-up"/>
+            		</footer>
+            	</form>
+            </field>
+        </record>
+        
+        <act_window
+        name="Export WSP"
+        res_model="export.wsp.xls"
+        src_model="wsp.plan"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+        id="action_export_wsp_xls"
+        />
+	</data>
+</openerp>

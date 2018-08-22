@@ -1,0 +1,616 @@
+function sdfGotoStep2(){
+	if (document.frmSDF.txtSurname.value == "")
+	{
+	document.frmSDF.txtSurname.focus();
+	alert("Please complete the Surname field.");
+	return false;
+	}
+	
+	if (document.frmSDF.cboTHETAChamber.value == "")
+    {
+    document.frmSDF.cboTHETAChamber.focus();
+    alert("Please complete the Employer SDL field.");
+    return false;
+    }
+	
+	
+	if (document.frmSDF.txtFirstName.value == "")
+		{
+		document.frmSDF.txtFirstName.focus();
+		alert("Please complete the First Name field.");
+		return false;
+		}	
+		
+	if (document.frmSDF.cboTitle.value == "")
+		{
+		alert("Please select a title.");
+		document.frmSDF.cboTitle.focus();
+		return false;
+		}
+		
+	if (document.frmSDF.txtWorkPhone.value == "")
+		{
+		alert("Please complete cell phone.");
+		document.frmSDF.txtWorkPhone.focus();
+		return false;
+		}
+		
+	//if (document.frmSDF.txtInitials.value == "")
+	//	{
+	//	document.frmSDF.txtInitials.focus();
+	//	alert("Please complete the Initials field.");
+	//	return false;
+	//	}
+	if (document.frmSDF.txtWorkEmail.value == "")
+		{
+		document.frmSDF.txtWorkEmail.focus();
+		alert("Please complete the E-Mail Address field.");
+		return false;
+		}
+		
+	if (document.frmSDF.txtWorkEmail.value != "")
+		{
+		//if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.frmSDF.txtEMail.value)))
+		//	{
+		//	alert("Invalid E-mail Address! Please re-enter.")
+		//	document.frmSDF.txtEMail.focus();
+		//	return false;
+		//	}
+			
+		//commented out the above code - #10801 (this is the validation straight from ETQA because i don't know how the above validation works)		
+		if (checkmail(document.frmSDF.txtWorkEmail.value) == false) 
+			{
+				alert("Invalid E-mail Address! Please re-enter.")
+				document.frmSDF.txtWorkEmail.focus();
+				return false;
+			}   																				
+	}
+	
+	return true;
+}
+function sdfGotoStep3(){
+	return true;
+}
+function sdfGotoStep4(){
+	var selectedValue = $('#nationality').val()
+	var selectedText = $('#nationality').find("option:selected").text();
+	console.log("Nationality value ",selectedValue,selectedText.trim())
+	if(selectedText.trim() == 'South Africa'){
+		document.frmSDF.txtPassportNo.value = ""
+		document.frmSDF.txtNationalId.value = ""
+			
+		if (document.frmSDF.txtID.value == "")
+		{
+			document.frmSDF.txtID.focus();
+			$('#id_number').css("border-color","red");
+			alert("Please complete the Identification field.");
+			return false;
+		}
+	}else{
+			document.frmSDF.txtID.value = ""
+			document.frmSDF.txtBirthDate.value = "";
+				
+			if (document.frmSDF.txtPassportNo.value == "")
+			{
+				document.frmSDF.txtPassportNo.focus();
+				$('#pass_no').css("border-color","red");
+				alert("Please complete the Passport field.");
+				return false;
+			}
+			if (document.frmSDF.txtNationalId.value == "")
+			{
+				document.frmSDF.txtNationalId.focus();
+				alert("Please complete the National Id field.");
+				return false;
+			}
+			if (document.frmSDF.txtCitizenResStatusCode.value == "")
+			{
+				document.frmSDF.txtCitizenResStatusCode.focus();
+				alert("Please complete Citizen Resident Status Code.");
+				return false;
+			}			
+		}
+	
+
+
+
+	return true;
+}
+function sdfGotoStep5(){
+	return true;
+}
+
+function runSubmit()
+{
+	document.frmSDF.submit();
+	return false;
+} 
+
+//This will validate SDF Registration form for invalid input from user
+function changePassword ()
+	{
+		document.frmSDF.txtPassword.value = ""; 
+		document.frmSDF.txtRePassword.value = "";
+		return false;
+	}
+
+//added this function from ETQA to check for valid email addresses - #10801
+function checkmail(what)
+{
+ var s = what;
+ var ss= /@/i;            
+ var r = s.search(ss);
+ if (r == -1)
+ {
+  return(false);
+ }
+ else
+ {
+  return(true);
+ }
+} 
+
+function validatePhone()
+{
+	
+	var stripped = document.frmSDF.txtWorkPhoneNo.value.replace(/[\(\)\.\-\ ]/g, '');
+	var illegalChars= /[\(\)\&lt;\&gt;\,\;\:\\\[\-\]]/ ;
+	
+	if (document.frmSDF.txtWorkPhoneNo.value == "") 
+	{
+		alert("You didn't enter a phone number");
+		return false;
+	} 
+	//alert(stripped);
+	if (document.frmSDF.txtWorkPhoneNo.value.match(illegalChars))  
+	{
+		alert("The phone number contains illegal characters");
+		return false;
+	}
+	else if (isNaN(stripped))
+	{
+		alert("The phone number is not numbers only.");
+		return false;
+	}  
+	else if (!(stripped.length == 10)) 
+	{
+		alert("The phone number is the wrong length. Make sure you included an area code");
+		return false;
+	} 
+	
+	
+}
+
+function validatefax() 
+{
+	var stripped = document.frmSDF.txtFaxNo.value.replace(/[\(\)\.\-\ ]/g, '');
+	var illegalChars = /[\(\)\&lt;\&gt;\,\;\:\\\[\-\]]/ ;
+	
+	if (document.frmSDF.txtFaxNo.value == "") 
+	{
+		alert("You didn't enter a fax number");
+		return false;
+	} 
+	//alert(stripped);
+	else if (document.frmSDF.txtFaxNo.value.match(illegalChars))  
+	{
+		alert("The fax number contains illegal characters");
+		return false;
+	}
+	else if (isNaN(stripped))
+	{
+		alert("The fax number is not numbers only.");
+		return false;
+	}  
+	else if (!(stripped.length == 10)) 
+	{
+		alert("The fax number is the wrong length. Make sure you included an area code");
+		return false;
+	} 	
+}
+
+function validateCell() 
+{
+	var stripped = document.frmSDF.txtCellNo.value.replace(/[\(\)\.\-\ ]/g, '');
+	var illegalChars = /[\(\)\&lt;\&gt;\,\;\:\\\[\-\]]/ ;
+	
+	if (document.frmSDF.txtCellNo.value == "") 
+	{
+		alert("You didn't enter a Cellphone number");
+		return false;
+	} 
+	//alert(stripped);
+	else if (document.frmSDF.txtCellNo.value.match(illegalChars))  
+	{
+		alert("The Cellphone number contains illegal characters");
+		return false;
+	}
+	else if (isNaN(stripped))
+	{
+		alert("The Cellphone number is not numbers only.");
+		return false;
+	}  
+	else if (!(stripped.length == 10)) 
+	{
+		alert("The Cellphone number is the wrong length.");
+		return false;
+	} 	
+}
+
+function CheckIDNumber ()  
+{
+    
+	var val1 = 0;
+	var val2 = 0;
+	var iLoop;
+	var cTmp;
+	var strAcc = new String(document.frmSDF.txtID.value);
+	if (strAcc.length == 13) {
+	  for (iLoop=0; iLoop<13; iLoop=iLoop+2) {
+	     cTmp = strAcc.charAt(iLoop);
+	     if (isNaN(cTmp)) {
+	       //window.alert("Please, enter a thirteen digit number.");
+//	       document.frmSDF.txtIDMsg.style.color = "RED"
+           document.frmSDF.txtIDMsg.setAttribute('style','font-family: Arial; font-size: 8pt; color: red !important; border: 0px; background-color: rgb(247, 247, 239);');
+	       document.frmSDF.txtIDMsg.value = "Invalid South African ID Number";
+	       return;
+	     }
+	     val1 = val1 + eval(cTmp);
+	  }
+	  for (iLoop=1; iLoop<12; iLoop=iLoop+2) {
+	     cTmp = strAcc.charAt(iLoop);
+	     if (isNaN(cTmp)) {
+	       //window.alert("Please, enter a thirteen digit number.");
+//	       document.frmSDF.txtIDMsg.style.color = "RED"
+	       document.frmSDF.txtIDMsg.setAttribute('style','font-family: Arial; font-size: 8pt; color: red !important; border: 0px; background-color: rgb(247, 247, 239);');
+	       document.frmSDF.txtIDMsg.value = "Invalid South African ID Number";
+	       return;
+	     }
+	     cTmp = eval(cTmp) * 2;
+	     if (cTmp >= 10) {
+	       cTmp = (cTmp - 10) + 1;
+	     }
+	     val2 = val2 + cTmp;
+	  }
+	  var iTotal = ((val1 + val2) / 10);
+	  cTmp = iTotal.toString(10);
+	  var sTmp = ".";
+	  var iValid = cTmp.indexOf(sTmp, 0);
+	  if (iValid == -1) {
+		//Cool
+		//alert("COOL");
+//		document.frmSDF.txtIDMsg.style.color = "GREEN"
+		document.frmSDF.txtIDMsg.setAttribute('style','font-family: Arial; font-size: 8pt; color: green !important; border: 0px; background-color: rgb(247, 247, 239);');
+		document.frmSDF.txtIDMsg.value = "Valid South African ID Number";
+
+     	
+	 
+            return true
+	  } else {
+		//Wrong
+		//alert("WRONG");
+//		document.frmSDF.txtIDMsg.style.color = "BLACK"
+		document.frmSDF.txtIDMsg.setAttribute('style','font-family: Arial; font-size: 8pt; color: red !important; border: 0px; background-color: rgb(247, 247, 239);');
+		document.frmSDF.txtIDMsg.value = "Invalid South African ID Number";
+            return false
+	  }
+	} else {
+	       //window.alert("Please, enter a thirteen digit number.");
+//	       document.frmSDF.txtIDMsg.style.color = "RED"
+		   document.frmSDF.txtIDMsg.setAttribute('style','font-family: Arial; font-size: 8pt; color: red !important; border: 0px; background-color: rgb(247, 247, 239);');
+	       document.frmSDF.txtIDMsg.value = "Invalid South African ID Number";
+        }
+        
+        
+}
+
+function IDdisable()
+{
+    //if (frmSDF.cbosdftype.value == 4)
+    //{
+    //    document.frmSDF.txtID.disabled=true;
+    //}
+    //else
+    //{
+    //    document.frmSDF.txtID.disabled=false;
+    //}
+}
+function CheckNumeric(txtbox)
+{
+if (isNumNoZero(txtbox,txtbox.name))
+		{
+			return false;
+		}
+		else
+		{
+			txtbox.value = "0"
+			txtbox.focus();
+			return false;
+		}	
+}
+function ClearSDFTraining()
+{
+    if (frmSDF.chkTraining.checked == false)
+    {
+        frmSDF.txtTrainProv.value = "";
+        frmSDF.txtTrainYear.value = "";
+        frmSDF.txtCert.value = "";
+    }
+}
+
+function SetPhysical()
+{
+        if (frmSDF.chbSameasPostal.checked == true)
+	    {      
+	        if (document.frmSDF.txtAddressPostalLine1.value != "") document.frmSDF.txtAddressPyhsicalLine1.value = document.frmSDF.txtAddressPostalLine1.value;
+	        if (document.frmSDF.txtAddressPostalLine2.value != "") document.frmSDF.txtAddressPyhsicalLine2.value = document.frmSDF.txtAddressPostalLine2.value;
+	        if (document.frmSDF.txtAddressPostalPostalCode.value != "") document.frmSDF.txtAddressPyhsicalPostalCode.value = document.frmSDF.txtAddressPostalPostalCode.value;
+	        if (document.frmSDF.txtAddressPostalCity.value != "") document.frmSDF.txtAddressPyhsicalCity.value = document.frmSDF.txtAddressPostalCity.value;
+	        if (document.frmSDF.cboProvince.selectedIndex != "") document.frmSDF.cboProvincePyhsical.selectedIndex = document.frmSDF.cboProvince.selectedIndex;
+        }
+ }
+ 
+
+function boxupdatePwAndUn()
+{
+    //Get first 6 digits of id number
+    var idstr=document.frmSDF.txtID.value;
+    var idpart=idstr.substring(0,6);
+
+    //Assgin the surname + 6 digits of idnumber as password eg Botes650602
+    var boxone = document.frmSDF.txtSurname.value
+    var boxtwo = document.frmSDF.txtPassword.value
+    document.frmSDF.txtPassword.value=boxone+idpart
+    document.frmSDF.txtRePassword.value=boxone+idpart
+    
+    //Assign the id number as username
+    var boxthree = document.frmSDF.txtID.value
+    var boxfour = document.frmSDF.txtLogon.value
+    document.frmSDF.txtLogon.value=boxthree
+}
+
+function passwordpreview()
+{
+    //show user a preview of the password
+    var boxone = document.frmSDF.txtPassword.value
+    alert("Your password is: " + boxone);
+}
+
+function SpecializationSearch()
+{
+	var returnValue = window.showModalDialog("SpecializationSearch_IFrame.asp?lYear=", "document", "center:yes; help:no; dialogWidth:600px; dialogHeight:400px; status:no; scroll:yes; resizable:yes");
+ if (returnValue != undefined)
+ {
+  var String = returnValue.split("|||");
+
+  frmSDF.txtofoCode.value = String[0];
+  frmSDF.txtofotitle.value = String[1];
+  frmSDF.cboOccupation.value = String[2];
+ } 
+}
+
+function GetMunicipality(controlName) {
+
+    var returnValue;
+    var municipalityName = "";
+    var municipalityId = "0";
+    returnValue = window.showModalDialog('/cdas/Geographic/Municipality_Opening.asp', document, 'dialogWidth:780px; status:no;  help:no; scroll:no; center:yes; resizable:yes;');
+
+    if ((returnValue != null) && (returnValue != undefined)) {
+        var CheckValues = returnValue;
+        CheckValues = CheckValues.split('|||')
+        
+        
+        document.getElementById(controlName + "Id").value = CheckValues[0];
+        document.getElementById("txt" + controlName).value = unescape(CheckValues[1]);
+
+        
+    }
+   
+}
+
+function ShowRelatedQuestion()
+{
+    if (frmSDF.optQualifiedSDF[0].checked == true)
+    {
+        div1.className = "show";
+    }
+    else
+    {
+        div1.className = "hide";
+    }
+}
+function selectAll()
+{
+selectBox = document.getElementById("cboTHETAChamber");
+
+for (var i = 0; i < selectBox.options.length; i++)
+{
+selectBox.options[i].selected = true;
+var $textbox = $('<input/>').attr({type:'text',name:'opt'+i,value:selectBox.options[i].value}).addClass('text');
+$("#myselectedoptions").append($textbox);
+}
+
+var $textboxcount = $('<input/>').attr({type:'text',name:'optionCount',value:selectBox.options.length}).addClass('text');
+$("#myselectedoptions").append($textboxcount);
+}
+
+
+$(function() {
+     $( "#dialog-message" ).dialog({
+     autoOpen: false,
+     modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+          $("#sdf_submit_form").submit();
+        }
+      }
+    });
+    
+    $( "#dialog-warning" ).dialog({
+     autoOpen: false,
+     modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+          document.frmSDF.txtEmployerSDL.focus();
+        }
+      }
+    });
+ 
+    $( "#sdfSubmit" ).click(function() {
+      var sdf_reference_no = document.getElementById("sdf_reference_no").value;
+      $( "#dialog-message" ).append( "<p>Thank you for submiting your application, Your reference number is "+sdf_reference_no+"</p>" );
+       selectAll();
+      $( "#dialog-message" ).dialog( "open" );
+        return false;
+    });
+  });
+  
+  function AddOption1() {
+    if (sdf_submit_form.txtEmployerSDL.value !== "") {
+        
+        var arr=[];
+        var values = $.map($('#cboEmployer option'), function(ele) {
+            arr.push(ele.text);
+        });
+        if ($.inArray(sdf_submit_form.txtEmployerSDL.value, arr) !== -1)
+        {
+              for (var i = 0; i < sdf_submit_form.cboTHETAChamber.length; i++) {
+                if (sdf_submit_form.cboTHETAChamber.options[i].value == sdf_submit_form.txtEmployerSDL.value) {
+                    sdf_submit_form.txtEmployerSDL.value="";
+                    return false;
+                }
+            }
+            var oOption = document.createElement("OPTION");
+            var employer_name=$("#cboEmployer option:contains("+sdf_submit_form.txtEmployerSDL.value+")").attr('data-name')
+            var employer_trading_name=$("#cboEmployer option:contains("+sdf_submit_form.txtEmployerSDL.value+")").attr('data-tradingname')
+            oOption.text = sdf_submit_form.txtEmployerSDL.value+"  -> "+employer_name+" -> "+employer_trading_name;
+            oOption.value = sdf_submit_form.txtEmployerSDL.value;
+            oOption.selected = true;
+            sdf_submit_form.cboTHETAChamber.add(oOption);
+            sdf_submit_form.txtEmployerSDL.value="";
+        }
+        else
+        {
+            $('#dialog-warning').empty();
+            $( "#dialog-warning" ).append( "<p>Check your employer SDL number.</p>" );
+            $( "#dialog-warning" ).dialog( "open" );
+//             sdf_submit_form.txtEmployerSDL.value="";
+            
+        }
+    }
+}
+
+function RemoveOption1() {
+    if (sdf_submit_form.cboTHETAChamber.selectedIndex != -1) {
+        sdf_submit_form.cboTHETAChamber.remove(sdf_submit_form.cboTHETAChamber.selectedIndex);
+    }
+}
+
+
+
+$(function () {
+	$("#datepicker").datepicker({ dateFormat: "mm/dd/yy" ,firstDay: 1, changeMonth: true,
+	      changeYear: true});
+});
+
+//Added by vishwas for birthdate picker
+$(function () {
+	   $('#datepicker_sdf').datepicker( {
+	        changeMonth: true,
+	        changeYear: true,
+	        showButtonPanel: true,
+	   });
+
+	$("#datepicker_sdf").datepicker().on("input change", function (e) {
+	    $("#BirthDate").val(e.target.value);
+	});
+});
+
+
+
+
+$("#nationality").change(function(){
+	var selectedValue = $(this).val()
+	var selectedText = $(this).find("option:selected").text();
+	console.log("Nationality value ",selectedValue,selectedText.trim())
+	if(selectedText.trim() == 'South Africa'){
+		$('#identification').show();
+
+		$('#passport_no').val('');
+		$('#passport').hide();
+		$('#nat_id').val('');
+		$('#national_id').hide();
+	}else{
+		$('#txtID').val('');
+		$('#identification').hide();
+		$('#passport').show();
+		$('#national_id').show();
+		$("#id_nunmber").val('')
+		
+	}
+});
+
+$(function(){
+	$("#id_number").change(function(){
+		$('#id_number').css("border-color","#cccccc");
+		var dateOfBirth = '';
+		var southAfricanId = $("#id_number").val().toString();
+		if (southAfricanId){
+			dateOfBirth = southAfricanId.substring(4,6)+'/'+southAfricanId.substring(2,4)+'/19'+southAfricanId.substring(0,2)
+			console.log("date of birth",dateOfBirth);
+			$('#datepicker_sdf').val(dateOfBirth);		
+			$("#BirthDate").val(dateOfBirth);
+		}
+		else if(!southAfricanId){
+			dateOfBirth=''
+				$('#datepicker_sdf').val(dateOfBirth);
+		}
+
+	
+	});
+	
+//  added by vishwas for getting home address and postal address same
+    $('#sdf_postal_address').change(function() {
+    	 if($(this).prop("checked") == true){
+    		$('#sdf_postal_address').val(1);
+            $("#txtPostalAddress1").val($("#txtHomeAddress1").val());
+            $("#txtPostalAddress2").val($("#txtHomeAddress2").val());
+            $("#txtPostalAddress3").val($("#txtHomeAddress3").val());
+            $("#txtPostalSuburb").val($("#txtHomeSuburb").val());
+            $("#txtPostalCity").val($("#txtHomeCity").val());
+            $("#txtPostalZip").val($("#txtHomeZip").val());
+            $("#cboPostalState").val($("#cboHomeState").val());
+            $("#cboPostalCountry").val($("#cboHomeCountry").val());
+            $("#tr_txtPostalAddress1").hide();
+            $("#tr_txtPostalAddress2").hide();
+            $("#tr_txtPostalAddress3").hide();
+            $("#tr_txtPostalSuburb").hide();
+            $("#tr_txtPostalCity").hide();
+            $("#tr_cboPostalCountry").hide();
+            $("#tr_postal_label").hide();
+            
+            
+        }
+    	 else if($(this).prop("checked") == false){
+     		$('#sdf_postal_address').val(0);
+            $("#txtPostalAddress1").val('');
+            $("#txtPostalAddress2").val('');
+            $("#txtPostalAddress3").val('');
+            $("#txtPostalSuburb").val('');
+            $("#txtPostalCity").val('');
+            $("#txtPostalZip").val('');
+            $("#cboPostalState").val('');
+            $("#cboPostalCountry").val('');
+            $("#tr_txtPostalAddress1").show();
+            $("#tr_txtPostalAddress2").show();
+            $("#tr_txtPostalAddress3").show();
+            $("#tr_txtPostalSuburb").show();
+            $("#tr_txtPostalCity").show();
+            $("#tr_cboPostalCountry").show();
+            $("#tr_postal_label").show();
+    		}
+    }); 	
+});

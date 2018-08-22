@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<openerp>
+		<data>
+        	<!-- Indent/Requisiton Menus -->
+        	<menuitem name="Requisition" parent="base.marketing_menu" id="menu_sales_marketing_requisition" sequence="1" />
+        	<menuitem action="stock_indent.action_indent_indent" name="Purchase Requisition" parent="menu_sales_marketing_requisition" id="menu_purchase_requisition_sales" sequence="1"/>
+        	<menuitem action="stock_indent.action_indent_indent" name="Petty Cash Requisition" parent="menu_sales_marketing_requisition" id="menu_petty_cash_requisition_sales" sequence="2"/>
+        	<menuitem action="stock_indent.action_indent_indent" name="Travel Requisition" parent="menu_sales_marketing_requisition" id="menu_travel_requisition_sales" sequence="3"/>
+			<!--  -->
+			<menuitem id="base.menu_sales" name="Sales" parent="base.marketing_menu" sequence="2"/>
+			<menuitem name="Phone Calls" id="crm.menu_crm_case_phone" groups="base.group_sale_salesman" parent="base.marketing_menu" sequence="4" />
+        	<menuitem id="base.menu_product" name="Products" parent="base.marketing_menu" sequence="9"/>
+        	<menuitem id='crm.root_menu' name='Tools' parent='base.marketing_menu' sequence="25"/>
+        	<menuitem id="base.menu_base_config" parent="base.marketing_menu" name="Configuration" sequence="30" groups="base.group_system"/>
+		</data>
+	</openerp>

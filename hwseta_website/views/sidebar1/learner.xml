@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<!-- === Learner? Page === -->
+		<template id="learner" name="Learner?" page="True">
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<div class="oc-sheet clearfix">
+						<div class="oc-layout-wrapper">
+							<div class="oc-content-layout">
+								<div class="oc-content-layout-row">
+
+								<t t-call="hwseta_website.sidebar1" />
+							
+								<div class="oc-layout-cell oc-content">
+									<article id="post-56"
+										class="oc-post oc-article  post-56 page type-page status-publish hentry">
+										<h1 class="oc-postheader">Learner?</h1>
+										<div class="oc-postcontent oc-postcontent-0 clearfix">
+											<p>Select the document you wish to download below:</p>
+											<p> 
+											</p>
+											<div id="pdf_download_red">
+												<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_Learnerships.pdf">HWSETA Learnerships </a>
+												(download pdf)
+											</div>
+											<div id="pdf_download_white">
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_Other_learner_opportunities.pdf">Other Learner Opportunities </a>
+												(download pdf)
+											</div>
+											<div id="pdf_download_red">
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_registered_qualifications.pdf">Registered Qualifications </a>
+												(download pdf)
+											</div>
+											<div id="pdf_download_white">
+												<a
+													href="/hwseta_website/static/src/wp-content/uploads/2015/04/accredited_training_providers_15-04-2015.xls">HWSETA Accredited Training Providers (download pdf)</a>
+											</div>
+											<div id="pdf_download_red">
+												<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_Career_information.pdf">Career Information </a>
+												(download pdf)
+											</div>
+											<div id="pdf_download_white">
+												<a href="/hwseta_website/static/src/wp-content/uploads/2014/10/HWSETA_interested_but_not_sure.pdf">Interested but not sure? </a>
+												(download pdf)
+											</div>
+											<p> 
+											</p>
+										</div>
+							
+							
+									</article>
+							
+							
+							
+								</div>
+								<t t-call="hwseta_website.sidebar2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+	</data>
+</openerp>
