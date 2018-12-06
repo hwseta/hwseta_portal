@@ -67,7 +67,7 @@ PyWebDAV==0.9.8
 PyYAML==3.10
 qrcode==5.2.2
 reportlab==3.3.0
-requests==2.2.1
+requests==2.20.1
 roman==2.0.0
 SecretStorage==2.0.0
 simplejson==3.3.1
