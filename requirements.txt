@@ -76,7 +76,7 @@ ssh-import-id==3.21
 Twisted-Core==13.2.0
 Unidecode==1.0.22
 unittest2==0.5.1
-urllib3==1.7.1
+urllib3==1.24.1
 vatnumber==1.1
 virtualenv==16.0.0
 vobject==0.8.1rc0
