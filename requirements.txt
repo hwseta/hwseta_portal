@@ -25,7 +25,7 @@ jdcal==1.2
 Jinja2==2.7.2
 keyring==3.5
 Landscape-Client==14.12
-launchpadlib==1.10.2
+launchpadlib==1.10.6
 lazr.restfulclient==0.13.3
 lazr.uri==1.0.3
 lxml==3.3.3
