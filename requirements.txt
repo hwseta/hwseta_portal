@@ -69,7 +69,7 @@ qrcode==5.2.2
 reportlab==3.3.0
 requests==2.2.1
 roman==2.0.0
-SecretStorage==2.0.0
+SecretStorage==3.1.0
 simplejson==3.3.1
 six==1.5.2
 ssh-import-id==3.21
