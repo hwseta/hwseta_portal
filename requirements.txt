@@ -38,7 +38,7 @@ numpy==1.8.2
 oauth==1.0.1
 openpyxl==2.3.3
 PAM==0.4.2
-paramiko==1.10.1
+paramiko==2.4.2
 passlib==1.5.3
 pdftools==0.37
 Pillow==5.2.0
