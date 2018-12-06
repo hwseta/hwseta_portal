@@ -74,7 +74,7 @@ simplejson==3.3.1
 six==1.5.2
 ssh-import-id==3.21
 Twisted-Core==13.2.0
-Unidecode==1.0.22
+Unidecode==1.0.23
 unittest2==0.5.1
 urllib3==1.7.1
 vatnumber==1.1
