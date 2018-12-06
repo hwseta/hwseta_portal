@@ -22,7 +22,7 @@ httplib2==0.8
 iotop==0.6
 jcconv==0.2.3
 jdcal==1.2
-Jinja2==2.7.2
+Jinja2==2.10
 keyring==3.5
 Landscape-Client==14.12
 launchpadlib==1.10.2
