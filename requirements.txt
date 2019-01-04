@@ -13,7 +13,7 @@ feedparser==5.1.3
 gdata==2.0.18
 Genshi==0.7
 GeoIP-Python==1.2.4
-gevent==1.0
+gevent==1.4.0
 gevent-psycopg2==0.0.3
 greenlet==0.4.2
 gyp==0.1
