@@ -61,7 +61,7 @@ python-dateutil==1.5
 python-debian===0.1.21-nmu2ubuntu2
 python-ldap==2.4.10
 python-openid==2.2.5
-pytz==2015.7
+pytz==2019.1
 pyusb==1.0.0b2
 PyWebDAV==0.9.8
 PyYAML==3.10
