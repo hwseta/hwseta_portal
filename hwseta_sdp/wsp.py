@@ -206,10 +206,10 @@ class wsp_plan(models.Model):
                 wsp_end_date = admin_config_data.wsp_end_date
             wsp_end_date = datetime.strptime(wsp_end_date, '%Y-%m-%d').date()
         current_date = datetime.now().date()
-    if wsp_end_date and (current_date > wsp_end_date) and not self.allow_extension and not self.extension_allowed:
-        self.request_extension = True
-    else:
-        self.request_extension = False
+        if wsp_end_date and (current_date > wsp_end_date) and not self.allow_extension and not self.extension_allowed:
+            self.request_extension = True
+        else:
+            self.request_extension = False
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
@@ -1630,18 +1630,17 @@ class wsp_plan(models.Model):
         admin_config_data = self.env['leavy.income.config'].search([])
         wsp_extension_date = datetime.strptime(
             admin_config_data.wsp_extension_date, '%Y-%m-%d').date()
-    ir_model_data_obj = self.env['ir.model.data']
-    bronwen_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_bronwen')
-    if bronwen_id:
-        self.pool['email.template'].send_mail(self.env.cr, self.env.uid, bronwen_id[1], self.id,force_send=True,context=self.env.context)
-   
-    luyanda_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_luyanda')
-    if luyanda_id:
-        self.pool['email.template'].send_mail(self.env.cr, self.env.uid, luyanda_id[1], self.id,force_send=True,context=self.env.context)
-    self.write({'allow_extension': False, 'show_extension_date': True, 'extension_date':
-                wsp_extension_date, 'approve_extension_date': datetime.now().date(),'extension_allowed':True})
-    return True
-
+        ir_model_data_obj = self.env['ir.model.data']
+        bronwen_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_bronwen')
+        if bronwen_id:
+            self.pool['email.template'].send_mail(self.env.cr, self.env.uid, bronwen_id[1], self.id,force_send=True,context=self.env.context)
+    
+        luyanda_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_luyanda')
+        if luyanda_id:
+            self.pool['email.template'].send_mail(self.env.cr, self.env.uid, luyanda_id[1], self.id,force_send=True,context=self.env.context)
+        self.write({'allow_extension': False, 'show_extension_date': True, 'extension_date':
+                    wsp_extension_date, 'approve_extension_date': datetime.now().date(),'extension_allowed':True})
+        return True
     
     @api.multi
     def action_submit_wsp(self):
