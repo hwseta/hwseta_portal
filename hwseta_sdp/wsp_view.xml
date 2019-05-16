@@ -12,10 +12,11 @@
 							string="Submit" attrs="{'invisible':[('state','!=','draft')]}" groups="base.group_user,hwseta_sdp.group_sdf_user"/> -->
 						<!-- <button class="oe_highlight" type="object" name="action_resend_mail"
 							string="Resend Mail"/> -->
-						<button class="oe_highlight" type="object" name="action_submit_wsp"
+						<!-- <button class="oe_highlight" type="object" name="action_submit_wsp"
 							string="Submit"
 							attrs="{'invisible':['|','|',('request_extension','=',True),('allow_extension','=',True),('state','!=','draft')]}"
-							groups="base.group_user,hwseta_sdp.group_sdf_user,hwseta_etqe.group_seta_administrator" />
+							groups="base.group_user,hwseta_sdp.group_sdf_user,hwseta_etqe.group_seta_administrator" /> -->
+						<button class="oe_highlight" type="object" name="action_submit_wsp" string="Submit" attrs="{'invisible':['|',('extension_allowed','!=',True),('state','!=','draft')]}" groups="base.group_user,hwseta_sdp.group_sdf_user,hwseta_etqe.group_seta_administrator"/>
 						<button name="send_query_email" states="submitted" string="Query"
 							type="object" class="oe_highlight" groups="hwseta_sdp.group_wsp_administrator" />
 						<button name="send_query_email" states="evaluated" string="Query"
@@ -71,6 +72,7 @@
 							attrs="{'invisible' : [('allow_extension','=',False)]}" groups="hwseta_sdp.group_sdp_manager,hwseta_etqe.group_seta_administrator" />
 						<!-- -->
 					</header>
+					<field name="extension_allowed" invisible="1"/>
 					<field name="is_tep_loaded" invisible="1" />
 					<field name="is_tep_to_planned_loaded" invisible="1" />
 					<field name="is_prev_wsp_loaded" invisible="1" />

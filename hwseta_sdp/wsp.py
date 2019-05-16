@@ -195,6 +195,22 @@ ir_attachment()
 class wsp_plan(models.Model):
     _name = 'wsp.plan'
 
+    @api.one
+    def _get_request_extension_state(self):
+        admin_config_data = self.env['leavy.income.config'].search([])
+        wsp_end_date = ''
+        if admin_config_data:
+            if len(admin_config_data) > 1:
+                wsp_end_date = admin_config_data[0].wsp_end_date
+            else:
+                wsp_end_date = admin_config_data.wsp_end_date
+            wsp_end_date = datetime.strptime(wsp_end_date, '%Y-%m-%d').date()
+        current_date = datetime.now().date()
+    if wsp_end_date and (current_date > wsp_end_date) and not self.allow_extension and not self.extension_allowed:
+        self.request_extension = True
+    else:
+        self.request_extension = False
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
         user_obj = self.env['res.users']
@@ -1294,9 +1310,11 @@ class wsp_plan(models.Model):
 
     extension_date = fields.Date(string='WSP Extension Date')
     # Fields for extension
-    request_extension = fields.Boolean(string='Request Extension')
+    request_extension = fields.Boolean(string='Request Extension', compute='_get_request_extension_state')
+    #request_extension = fields.Boolean(string='Request Extension')
     allow_extension = fields.Boolean(string='Allow Extension')
     show_extension_date = fields.Boolean(string='Show Extension')
+    extension_allowed = fields.Boolean(string='Extension Allowed')
     request_extension_date = fields.Date(string='Request Extension Date')
     approve_extension_date = fields.Date(string='Approve Extension Date')
 #     from_extension = fields.Boolean(string='From Extension')
@@ -1606,24 +1624,25 @@ class wsp_plan(models.Model):
         self.write({'allow_extension': True, 'request_extension':
                     False, 'request_extension_date': datetime.now().date()})
         return True
-
+    
     @api.multi
     def action_approve_extension(self):
         admin_config_data = self.env['leavy.income.config'].search([])
         wsp_extension_date = datetime.strptime(
             admin_config_data.wsp_extension_date, '%Y-%m-%d').date()
-        ir_model_data_obj = self.env['ir.model.data']
-        bronwen_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_bronwen')
-        if bronwen_id:
-            self.pool['email.template'].send_mail(self.env.cr, self.env.uid, bronwen_id[1], self.id,force_send=True,context=self.env.context)
-       
-        luyanda_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_luyanda')
-        if luyanda_id:
-            self.pool['email.template'].send_mail(self.env.cr, self.env.uid, luyanda_id[1], self.id,force_send=True,context=self.env.context)
-        self.write({'allow_extension': False, 'show_extension_date': True, 'extension_date':
-                    wsp_extension_date, 'approve_extension_date': datetime.now().date()})
-        return True
+    ir_model_data_obj = self.env['ir.model.data']
+    bronwen_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_bronwen')
+    if bronwen_id:
+        self.pool['email.template'].send_mail(self.env.cr, self.env.uid, bronwen_id[1], self.id,force_send=True,context=self.env.context)
+   
+    luyanda_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_wsp_approval_for_extension_luyanda')
+    if luyanda_id:
+        self.pool['email.template'].send_mail(self.env.cr, self.env.uid, luyanda_id[1], self.id,force_send=True,context=self.env.context)
+    self.write({'allow_extension': False, 'show_extension_date': True, 'extension_date':
+                wsp_extension_date, 'approve_extension_date': datetime.now().date(),'extension_allowed':True})
+    return True
 
+    
     @api.multi
     def action_submit_wsp(self):
         ''' Previously made only compulsion of ATR if organisation is old , if it is new then only WSP is compulsory.
