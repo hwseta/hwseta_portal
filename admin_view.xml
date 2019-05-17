@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_etqe_learner_master_form_admin" model="ir.ui.view">
+			<field name="name">etqe.learner.master.form.admin</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<form create="false">
+					<header>
+						<field name="is_active" invisible="1" />
+						<field name="is_drop_out" invisible="1" />
+						<field name="is_replacement" invisible="1" />
+						<field name="is_suspend" invisible="1" />
+						<field name="is_moderators" invisible="1" />
+						<field name="is_assessors" invisible="1" />
+						<field name="provider_learner" invisible="1" />
+						<button name="action_active_button" string="Enrolled" type="object"
+							class="oe_highlight"
+							attrs="{'invisible':['|','|','|','|',('provider_learner','=',False),('state','in',['active','achieved']),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+
+						<button name="%(hwseta_etqe.action_dropout_status_wiz)d"
+							string="Drop Out" type="action" class="oe_highlight"
+							attrs="{'invisible':['|','|','|','|',('provider_learner','=',False),('state','in',['dropout','inactive','achieved']),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+
+						<button name="action_replacement_button" string="Replacement"
+							type="object" class="oe_highlight"
+							attrs="{'invisible':['|','|','|','|',('provider_learner','=',False),('state','in',['replacement','inactive','achieved']),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+
+						<button name="action_suspend_button" string="Suspend" type="object"
+							class="oe_highlight"
+							attrs="{'invisible':['|','|','|','|',('provider_learner','=',False),('state','in',['suspended','inactive','achieved']),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+						<!-- name="action_inactive_button" -->
+						<button string="In Active" type="action" class="oe_highlight"
+							name="%(hwseta_etqe.action_inactive_status_wiz)d"
+							attrs="{'invisible':['|','|','|','|',('provider_learner','=',False),('state','in',['inactive','achieved']),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+
+<!-- 						<button name="action_achieved_button" string="Achieve"
+							type="object" class="oe_highlight"
+							attrs="{'invisible':['|','|','|','|',('provider_learner','=',False),('state','in',['achieved','inactive','achieved']),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+ -->
+						<field name="state" widget="statusbar"
+							statusbar_visible="active,re-enrolled,dropout,replacement,suspended,inactive,achieved,unknown"
+							statusbar_colors='{"learners":"blue"}'
+							attrs="{'invisible':['|','|','|',('provider_learner','=',False),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}" />
+					</header>
+					<field name="image_medium" widget='image' class="oe_left oe_avatar" />
+					<div>
+						<group>
+							<group>
+								<field name="person_title"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								<label for="name" />
+								<h1>
+									<field name="name"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								</h1>
+								<field name="person_middle_name"
+									attrs="{'invisible':[('provider_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								<field name="maiden_name"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								<field name="person_last_name" string="Surname"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+							</group>
+							<group>
+								<field name="work_email" widget="email" required="1" readonly="1"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								<field name="work_phone" placeholder="0116076900"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								<field name="learner_status"
+									attrs="{'invisible':[('is_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								<field name="learner_reg_no" string="Learner Registration No."
+									attrs="{'invisible':[('is_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+							</group>
+						</group>
+					</div>
+					<div class="oe_right oe_button_box" name="button_box">
+						<!-- Put here related buttons -->
+					</div>
+					<notebook>
+						<page string="Public Information">
+							<group>
+								<group string="Contact Information">
+									<label for="street" string="Work Address" />
+									<div>
+										<field name="work_address" placeholder="Work Address 1"
+											attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<field name="work_address2" placeholder="Work Address 2"
+											attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<field name="work_address3" placeholder="Work Address 3"
+											attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<div class="address_format">
+											<field name="person_suburb" placeholder="Suburb" style="width: 52%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												on_change="onchange_person_suburb(person_suburb)"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="work_municipality" placeholder="Municipality"
+												style="width: 48%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										</div>
+										<div class="address_format">
+											<field name="work_city" class="oe_no_button"
+												placeholder="City" style="width: 39%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="work_province" class="oe_no_button"
+												placeholder="Province Code" style="width: 37%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												on_change="onchange_work_province(work_province)"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="work_zip" class="oe_no_button"
+												placeholder="ZIP" style="width: 20%%"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										</div>
+										<field name="work_country" placeholder="Country" class="oe_no_button"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<!-- <field name="mobile_phone" placeholder="Mobile"/> -->
+										<button name="work_addr_map" string="Map" type="object"
+											icon="gtk-zoom-in" />
+									</div>
+									<field name="status_reason" readonly="1" />
+								</group>
+								<group string="Position">
+									<field name="department"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="job_title"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="manager"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<!--<field name="department_id" on_change="onchange_department_id(department_id)"/> 
+										<field name="job_id"/> <field name="parent_id"/> -->
+									<!--<field name="coach_id"/> -->
+								</group>
+								<group>
+									<!-- <field name="company_id" groups="base.group_multi_company" 
+										on_change="onchange_company(company_id)"/> -->
+									<field name="user_id" on_change="onchange_user(user_id)"
+										string="Related User" readonly="1" invisible="1" />
+								</group>
+							</group>
+							<field name="notes" placeholder="About You ..." colspan="4"
+								attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+						</page>
+						<page string="Personal Information">
+							<group>
+								<group string="Status">
+									<field name="gender"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="gender_saqa_code"
+										attrs="{'invisible':[('provider_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="marital"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="dissability"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="disability_status"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="socio_economic_saqa_code" invisible="1"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="socio_economic_status"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="current_occupation"
+										attrs="{'readonly':['|','|',('socio_economic_status','=','unemployed'),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="years_in_occupation"
+										attrs="{'readonly':['|','|',('socio_economic_status','=','unemployed'),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="is_sdf" readonly="1" invisible="1" />
+									<field name="learners_status" readonly="1"
+										attrs="{'invisible':[('provider_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="learner_status_reason" placeholder="Status Reason"
+										string="Comment" attrs="{'invisible':[('provider_learner','=',False)]}" />
+									<field name="is_learner" readonly="1" invisible="1" />
+									<field name="seta_elements" invisible="1"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								</group>
+								<group string="Citizenship &amp; Other Info">
+									<!-- <field name="african" invisible="1"/> -->
+									<field name="citizen_resident_status_code" required="1"
+										attrs="{'readonly':[('provider_learner','=',True),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}"
+										on_change="onchange_crc(citizen_resident_status_code)" />
+									<field name="country_id" string="Country of Nationality"
+										attrs="{'readonly':[('provider_learner','=',True),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<!-- <field name="nationality_saqa_code"/> -->
+									<field name="learner_identification_id" readonly="1"
+										attrs="{'invisible':[('provider_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="alternate_id_type"
+										attrs="{'readonly':[('provider_learner','=',True),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="national_id"
+										attrs="{'readonly':[('citizen_resident_status_code','=','sa'),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="person_birth_date"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="passport_id" groups="base.group_hr_user"
+										attrs="{'readonly':[('citizen_resident_status_code','=','sa')],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="id_document" string="ID Document/Passport Upload"
+										domain="[('id','=',None)]"
+										attrs="{'required':[('citizen_resident_status_code','=','sa')],'readonly':[('citizen_resident_status_code','=','other')],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<!-- <field name="sdf_letter_from_employer" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+									<field name="home_language_code" string="Language"
+										options="{'no_create': True,'no_open': True}"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="equity"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="equity_saqa_code" invisible="1"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="disability_status_saqa" invisible="1"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<!-- <field name="home_lang_saqa_code"/> -->
+									<!--<field name="bank_account_id"/> -->
+									<!-- <field name="otherid" groups="base.group_hr_user" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+									<!-- <field name="filler02" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+									<!-- <field name="rsa_identity_no" attrs="{'invisible':[('is_learner','=',False)]}"/> -->
+								</group>
+								<group string="Contact Information">
+									<!-- <field name="person_alternate_id" string='Alternate Id'/> <field 
+										name="alternate_id_type_id" attrs="{'invisible':[('is_sdf','=',False)]}"/> 
+										<field name="equity_code"/> <field name="filler01" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+									<!-- <field name="detail_surname" string="Name"/> -->
+									<!-- <field name="person_name"/> -->
+									<field name="initials"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="cont_number_home"
+										attrs="{'invisible':[('is_sdf','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="cont_number_office"
+										attrs="{'invisible':[('is_sdf','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="person_cell_phone_number" placeholder="0824513619"
+										attrs="{'invisible':[('is_sdf','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="cell"
+										attrs="{'invisible':[('is_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="person_fax_number"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<!-- <field name="learner_reg_no" attrs="{'invisible':[('is_learner','=',False)]}"/> -->
+									<field name="method_of_communication"
+										attrs="{'invisible':[('is_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="status_effective_date"
+										attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="last_updated_operator"
+										attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								</group>
+
+								<group string="Learner Data" attrs="{'invisible':[('is_sdf','=',True)]}">
+									<field name="highest_education"
+										attrs="{'invisible':[('is_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="enrollment_date" readonly="1"
+										attrs="{'invisible':[('provider_learner','=',False)]}" />
+									<field name="status_comments"
+										attrs="{'invisible':[('is_learner','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="certificate_no"
+										attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<!-- <field name="citizen_resident_status_code"/> <field name="citizen_status_saqa_code"/> -->
+								</group>
+								<group string="Ratings" attrs="{'invisible': [('is_sdf','=',True)]}">
+									<field name="seeing_rating_id"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="hearing_rating_id"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="walking_rating_id"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="statssa_area_code"
+										attrs="{'invisible':[('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="popi_act_status_date"
+										attrs="{'invisible':[('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="remembering_rating_id"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="communicating_rating_id"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="self_care_rating_id"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="last_school_emis_no"
+										attrs="{'invisible':[('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="last_school_year"
+										attrs="{'invisible':[('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="popi_act_status_id"
+										attrs="{'invisible':[('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="date_stamp"
+										attrs="{'invisible':[('provider_learner','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								</group>
+								<group string="Banking Details" invisible="1">
+									<field name="bank_name"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="branch_code"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<field name="bank_account_number"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+								</group>
+							</group>
+						</page>
+						<page string="Address" attrs="{'invisible': [('seta_elements','=',False)]}">
+							<group>
+								<group>
+									<label for="street" string="Home Address" />
+									<div>
+										<field name="person_home_address_1" placeholder="Home Address 1"
+											required="1"
+											attrs="{'readonly':[('provider_learner','=',True),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<field name="person_home_address_2" placeholder="Home Address 2"
+											attrs="{'readonly':[('provider_learner','=',True),('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<field name="person_home_address_3" placeholder="Home Address 3"
+											attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<div class="address_format">
+											<field name="person_home_suburb" placeholder="Suburb"
+												style="width: 52%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												on_change="onchange_person_home_suburb(person_home_suburb)"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="physical_municipality" placeholder="Municipality"
+												style="width: 48%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										</div>
+										<div class="address_format">
+											<field name="person_home_city" placeholder="City"
+												style="width: 39%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="person_home_province_code" class="oe_no_button"
+												placeholder="Province Code" style="width: 37%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												on_change="onchange_home_province(person_home_province_code)"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="person_home_zip" placeholder="ZIP" style="width: 20%%"
+												attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										</div>
+										<field name="country_home" placeholder="Country" class="oe_no_button"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<!--<field name="person_home_country_id" placeholder="Country" 
+											class="oe_no_button" options='{"no_open": True}'/> -->
+										<!-- <field name="person_cell_phone_number" placeholder="Cell Phone 
+											Number"/> <field name="person_fax_number" placeholder="Fax Number"/> -->
+										<button name="home_addr_map" string="Map" type="object"
+											icon="gtk-zoom-in" />
+									</div>
+								</group>
+								<group>
+									<label for="same_as_home" />
+									<field name="same_as_home" nolabel="1"
+										attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<label for="street" string="Postal Address"
+										attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+									<div>
+										<field name="person_postal_address_1" placeholder="Postal Address 1"
+											attrs="{'invisible':[('same_as_home','=',True)],'required':[('same_as_home','=',False)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<field name="person_postal_address_2" placeholder="Postal Address 2"
+											attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<field name="person_postal_address_3" placeholder="Postal Address 3"
+											attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<div class="address_format">
+											<field name="person_postal_suburb" placeholder="Suburb"
+												attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}"
+												style="width: 52%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												on_change="onchange_person_postal_suburb(person_postal_suburb)" />
+											<field name="postal_municipality" placeholder="Municipality"
+												attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}"
+												style="width: 48%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+										</div>
+										<div class="address_format">
+											<field name="person_postal_city" placeholder="City"
+												style="width: 37%%"
+												attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											<field name="person_postal_province_code" class="oe_no_button"
+												placeholder="Province Code" style="width: 37%%"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+												on_change="onchange_postal_province(person_postal_province_code)"
+												attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+											<field name="person_postal_zip" placeholder="ZIP"
+												style="width: 20%%"
+												attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										</div>
+										<field name="country_postal" placeholder="Country"
+											class="oe_no_button" options='{"no_open": True}'
+											attrs="{'invisible':[('same_as_home','=',True)],'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}" />
+										<!-- <field name="provider_code" class="oe_no_button" placeholder="Provider 
+											Code"/> <field name="person_home_addr_postal_code" placeholder="Home Address 
+											Postal Code"/> -->
+										<button name="postal_addr_map" string="Map" type="object"
+											icon="gtk-zoom-in" attrs="{'invisible':[('same_as_home','=',True)]}" />
+									</div>
+								</group>
+							</group>
+						</page>
+						<page string="Status"
+							attrs="{'invisible':['|','|',('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}">
+							<group>
+								<group colspan="2" col="8">
+									<field name="learner_master_status_ids" nolabel="1"
+										readonly="1">
+										<tree>
+											<field name="learner_master_uid" />
+											<field name="learner_master_status" />
+											<field name="learner_master_date" />
+											<field name="learner_master_comment" />
+										</tree>
+									</field>
+								</group>
+							</group>
+						</page>
+						<page string="Qualification"
+							attrs="{'invisible':['|','|','|',('provider_learner','=',False),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}">
+							<div>
+								<ul style="font-size: 12px;">
+		                        	<li style="color: green">Achieved</li>
+		                        	<li style="color: orange">Partially Achieved</li>
+	                        	</ul>
+							</div>
+							<group>
+								<field name="learner_qualification_ids" nolabel="1"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}">
+									<tree delete="false" colors="green:is_learner_achieved==True;red:is_learner_achieved==False">
+										<field name="learner_qualification_parent_id"
+											on_change="onchange_qualification(learner_qualification_parent_id)"
+											nolabel="1" />
+										<field name="start_date" />
+										<field name="end_date" />
+										<field name="provider_id" />
+										<field name="certificate_no" />
+										<field name="certificate_date" />
+										<field name="is_complete" readonly="1" />
+										<field name="is_learner_achieved" readonly="1" />
+										<field name="assessors_id" />
+										<field name="assessor_date" />
+										<field name="moderators_id" />
+										<field name="moderator_date" />
+										<field name="approval_date" />
+										<field name="batch_id" />
+										<field name="qual_status" />
+									</tree>
+									<form string="Qualifications">
+										<sheet>
+											<group>
+												<group>
+													<field name="learner_qualification_parent_id"
+														on_change="onchange_qualification(learner_qualification_parent_id)" />
+													<field name="start_date" />
+													<field name="assessors_id" />
+													<field name="moderators_id" />
+													<field name="batch_id" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+												</group>
+												<group>
+													<field name="provider_id" />
+													<field name="end_date" />
+													<field name="assessor_date" />
+													<field name="moderator_date" />
+												</group>
+											</group>
+											<group>
+												<field name="learner_registration_line_ids" nolabel="1"
+													context="{'model' : 'learner.registration.qualification', 'provider_id' : 
+									provider_id}">
+													<tree string="Qualifications Line" editable="bottom"
+														delete="false" create="false">
+														<field name="type" readonly="1"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="id_data" readonly="1"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="title" readonly="1"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="level1" readonly="1"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="level2" readonly="1"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="level3" readonly="1"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="selection"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="achieve"
+															attrs="{'invisible':[('selection','=',False)]}" />
+														<field name="is_rpl_learner"
+															attrs="{'invisible':[('selection','=',False)]}" />
+													</tree>
+												</field>
+											</group>
+										</sheet>
+									</form>
+								</field>
+							</group>
+						</page>
+						<page string="Skills Programme"
+							attrs="{'invisible': ['|','|','|',('provider_learner','=',False),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}">
+							<div>
+								<ul style="font-size: 12px;">
+		                        	<li style="color: green">Achieved</li>
+		                        	<li style="color: orange">Partially Achieved</li>
+	                        	</ul>
+							</div>
+							<group colspan="2" col="8">
+								<field name="skills_programme_ids" nolabel="1"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}">
+									<tree delete="false" colors="green:is_learner_achieved==True;red:is_learner_achieved==False">
+										<field name="saqa_skill_id" invisible="1"/>
+										<field name="skills_programme_id" widget="selection"
+											placeholder="Skills Programme" class="oe_no_button" />
+										<field name="select" invisible="1" />
+										<field name="start_date" />
+										<field name="end_date" />
+										<field name="provider_id" />
+										<field name="certificate_no" />
+										<field name="certificate_date" />
+										<field name="is_complete" readonly="1" />
+										<field name="is_learner_achieved" readonly="1" />
+										<field name="assessors_id" />
+										<field name="assessor_date" />
+										<field name="moderators_id" />
+										<field name="moderator_date" />
+										<field name="approval_date" />
+										<field name="batch_id" />
+										<field name="skill_status" />
+									</tree>
+									<form string="Skills Programme">
+										<sheet>
+											<group>
+												<group>
+													<field name="skills_programme_id"
+														on_change="onchange_skills_programme(skills_programme_id)"
+														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+													<field name="start_date" />
+													<field name="assessors_id" />
+													<field name="assessor_date" />
+													<field name="batch_id" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+												</group>
+												<group>
+													<field name="saqa_skill_id" />
+													<field name="end_date" />
+													<field name="moderators_id" />
+													<field name="moderator_date" />
+													<field name="provider_id" />
+													<field name="select" invisible="1"/>													
+												</group>
+											</group>
+											<group>
+												<field name="unit_standards_line" nolabel="1">
+													<tree string="Unit Standards Line" editable="bottom"
+														delete="false" create="false">
+														<field name="type" readonly="1" />
+														<field name="id_no" readonly="1" />
+														<field name="title" readonly="1" />
+														<field name="level1" readonly="1" />
+														<field name="level2" readonly="1" />
+														<field name="level3" readonly="1" />
+														<field name="selection" readonly="1" />
+														<field name="achieve" readonly="1"/>
+													</tree>
+
+												</field>
+											</group>
+
+										</sheet>
+									</form>
+								</field>
+							</group>
+						</page>
+						<!-- Learner Master Learning Programme Starts -->
+						<page string="Learning Programme"
+							attrs="{'invisible': ['|','|','|',('provider_learner','=',False),('is_sdf','=',True),('is_assessors','=',True),('is_moderators','=',True)]}">
+							<div>
+								<ul style="font-size: 12px;">
+		                        	<li style="color: green">Achieved</li>
+		                        	<li style="color: orange">Partially Achieved</li>
+	                        	</ul>
+							</div>
+							<group colspan="2" col="8">
+								<field name="learning_programme_ids" nolabel="1"
+									attrs="{'readonly':[('state','in',['active','re-enrolled','dropout','replacement','suspended','inactive','achieved'])]}">
+									<tree delete="false" colors="green:is_learner_achieved==True;red:is_learner_achieved==False">
+										<field name="lp_saqa_id" invisible="1"/>
+										<field name="learning_programme_id" widget="selection"
+											placeholder="Learning Programme" class="oe_no_button" />
+										<field name="select" invisible="1" />
+										<field name="start_date" />
+										<field name="end_date" />
+										<field name="provider_id" />
+										<field name="certificate_no" />
+										<field name="certificate_date" />
+										<field name="is_complete" readonly="1" />
+										<field name="is_learner_achieved" readonly="1" />
+										<field name="assessors_id" />
+										<field name="assessor_date" />
+										<field name="moderators_id" />
+										<field name="moderator_date" />
+										<field name="approval_date" />
+										<field name="batch_id" />
+										<field name="lp_status" />
+									</tree>
+									<form string="Learning Programme">
+										<sheet>
+											<group>
+												<group>
+													<field name="learning_programme_id"
+														on_change="onchange_learning_programme(learning_programme_id)"
+														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+													<field name="start_date" />
+													<field name="assessors_id" />
+													<field name="assessor_date" />
+													<field name="batch_id" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+												</group>
+												<group>
+													<field name="lp_saqa_id" />
+													<field name="end_date" />
+													<field name="moderators_id" />
+													<field name="moderator_date" />
+													<field name="provider_id" />
+													<field name="select" invisible="1"/>													
+												</group>
+											</group>
+											<!-- <field name="qualification_id" readonly="1"/> -->
+											<group>
+												<field name="unit_standards_line" nolabel="1">
+													<tree string="Unit Standards Line" editable="bottom"
+														delete="false" create="false">
+														<field name="type" readonly="1" />
+														<field name="id_no" readonly="1" />
+														<field name="title" readonly="1" />
+														<field name="level1" readonly="1" />
+														<field name="level2" readonly="1" />
+														<field name="level3" readonly="1" />
+														<field name="selection" readonly="1" />
+														<field name="achieve" readonly="1"/>
+														<field name="seta_approved_lp" readonly="1"/>
+														<field name="provider_approved_lp" readonly="1"/>
+													</tree>
+
+												</field>
+											</group>
+										</sheet>
+									</form>
+								</field>
+							</group>
+						</page>
+						<!-- Learner Master Learning Programme Ends -->
+						<page string="Other Documents">
+							<field name="learner_master_other_docs_ids" nolabel="1"
+								readonly="1">
+								<tree string="Other Documents" editable="bottom">
+									<field name="name" />
+									<field name="doc_file" on_change="onchange_file(doc_file)"
+										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
+								</tree>
+							</field>
+						</page>
+					</notebook>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="view_provider_learner_tree_admin" model="ir.ui.view">
+			<field name="name">hr.provider.learner.tree.admin</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<tree string="Provider Learner" create="false">
+					<field name="learner_identification_id" />
+					<field name="name" />
+					<field name="work_phone" placeholder="0116076900" />
+					<field name="work_email" />
+					<field name="learners_status" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_etqe_learner_search_admin" model="ir.ui.view">
+			<field name="name">hr.provider.learner.search.admin</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<search string="Learner Search">
+					<field name="name" />
+					<field name="learner_identification_id" />
+					<field name="learner_reg_no" />
+					<group string="Group By">
+						<filter string="Status" icon="terp-personal" domain="[]"
+							context="{'group_by':'state'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+		<!-- Action for Provider Learner view -->
+		<record id="action_provider_learner_view_admin" model="ir.actions.act_window">
+			<field name="name">Provider Learner Profile Admin</field>
+			<field name="res_model">hr.employee</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('is_learner','=',True),('provider_learner','=',True)]
+			</field>
+			<field name="context">{'default_is_learner':1,'default_seta_elements':1,'default_provider_learner':1}
+			</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="view_etqe_learner_search_admin" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add a new Learner Profile.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_learner_master_tree_admin" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_provider_learner_tree_admin" />
+			<field name="act_window_id" ref="action_provider_learner_view_admin" />
+		</record>
+
+		<record id="action_learner_master_form_admin" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_etqe_learner_master_form_admin" />
+			<field name="act_window_id" ref="action_provider_learner_view_admin" />
+		</record>
+
+	</data>
+	
+</openerp>
