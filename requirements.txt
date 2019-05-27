@@ -11,7 +11,7 @@ docutils==0.11
 et-xmlfile==1.0.1
 feedparser==5.1.3
 gdata==2.0.18
-Genshi==0.7
+Genshi==0.7.3
 GeoIP-Python==1.2.4
 gevent==1.0
 gevent-psycopg2==0.0.3
