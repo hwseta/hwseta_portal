@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_wss_draft_uploader,wss.draft,hwseta_upload.model_wss_draft,hwseta_upload.group_wss_user,1,1,1,0
+access_staff_database_uploader,staff.database,hwseta_upload.model_staff_database,hwseta_upload.group_wss_user,1,1,1,1
+access_training_needs_uploader,training.needs,hwseta_upload.model_training_needs,hwseta_upload.group_wss_user,1,1,1,1
+access_state_uploader,res.country.state,base.model_res_country_state,hwseta_upload.group_wss_user,1,0,0,0
+access_municipallity_uploader,res.municipality,hwseta_person.model_res_municipality,hwseta_upload.group_wss_user,1,0,0,0
+access_groups_uploader,res.groups,base.model_res_groups,hwseta_upload.group_wss_user,1,0,0,0
+
+access_wsp_plan_uploader,wsp.plan,hwseta_sdp.model_wsp_plan,hwseta_upload.group_wss_user,1,0,0,0

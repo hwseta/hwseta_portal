@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="form_view_wss_draft" model="ir.ui.view">
+			<field name="name">workplace.skill.plan.upload.draft.form</field>
+			<field name="model">wss.draft</field>
+			<field name="arch" type="xml">
+				<form string="Workplace Skill Plan" create="0">
+					<header>
+						<button type="object"
+								name="set_to_draft"
+								string="Set WSS To Draft"
+								attrs="{'invisible':[('status','=','draft')]}"
+								groups="hwseta_upload.group_wss_approval"
+						/>
+						<button type="object"
+								name="assessed"
+								string="Assessed WSS"
+								attrs="{'invisible':[('status','!=','submitted')]}"
+								groups="hwseta_upload.group_wss_approval"
+						/>
+						<button type="object"
+								name="evaluated"
+								string="Evaluated WSS"
+								attrs="{'invisible':[('status','!=','assessed')]}"
+								groups="hwseta_upload.group_wss_approval"
+						/>
+						<button type="object"
+								name="rejected"
+								string="Rejected WSS"
+								attrs="{'invisible':[('status','=','draft')]}"
+								groups="hwseta_upload.group_wss_approval"
+						/>
+						<button type="object"
+								name="approve_wss_and_commit"
+								string="approve_wss_and_commit"
+								attrs="{'invisible':[('status','!=','assessed')]}"
+								groups="hwseta_upload.group_wss_approval"
+									/>
+						<button type="object"
+								name="request_extension"
+								string="Request Submission Extension"
+								attrs="{'invisible':['|','|',('extension_status','in',['rejected','approved']),('status','=','submitted'),('extendable','!=',True)]}"
+						/>
+						<button type="object"
+								name="approve_extension"
+								string="Approve Extension"
+								attrs="{'invisible':[('extension_status','!=','requested')]}"
+								groups="hwseta_upload.group_wss_approval"
+						/>
+						<button type="object"
+								name="open_extension"
+								string="Open Extension"
+								attrs="{'invisible':[('extension_status','!=','approved')]}"
+								groups="hwseta_upload.group_wss_approval"
+						/>
+						<field name="status" widget="statusbar" statusbar_visible="draft,submitted,assessed,evaluated,approved,rejected" />
+					</header>
+					<sheet>
+						<div style="background-color:lightblue" attrs="{'invisible':['|',('status','!=','draft'),('page','!=','signatories')]}">
+							<table>
+								<tr>
+									<td style="width:20px;">
+
+									</td>
+									<td style="width:20px;">
+
+									</td>
+									<td>
+											I confirm that the data I have entered: is valid and has been checked for accuracy.
+									</td>
+								</tr>
+								<tr>
+									<td style="width:20px;">
+
+									</td>
+									<td style="width:20px;">
+										<field name="submitted_check" attrs="{'invisible':['|',('status','!=','draft'),('page','!=','signatories')]}"/>
+									</td>
+									<td>
+											I acknowledge that any corrections that may be required, may result in a delays in processing.
+									</td>
+								</tr>
+							</table>
+								<button type="object"
+									name="submit_wss"
+									string="Submit WSS"
+									attrs="{'invisible':[('status','!=','draft')]}"
+								/>
+						</div>
+
+					<group attrs="{'readonly':[('status','!=','draft')]}">
+						<group>
+							<field name="sdl_number" string="SDL/T number"
+								   attrs="{'readonly':['|',('page','!=','no_sdl'),('status','!=','draft')]}"/>
+						</group>
+						<group>
+
+<!--							<p attrs="{'invisible':[('status','!=','draft')]}">PLease note , your data as follows</p>-->
+<!--							<field name="text_full" attrs="{'invisible':[('status','!=','draft')]}"/>-->
+							<field name="page" invisible="1"/>
+							<field name="extension_status" invisible="1"/>
+<!--							field to determine whether the extension can be requested-->
+							<field name="extendable" invisible="1"/>
+
+							<field name="assessed_check"
+								   attrs="{'invisible':[('status','!=','submitted')]}"
+								    groups="hwseta_upload.group_wss_approval"
+							/>
+							<field name="evaluated_check"
+								   attrs="{'invisible':[('status','!=','assessed')]}"
+								    groups="hwseta_upload.group_wss_approval"
+							/>
+							<field name="approved_check"
+								   attrs="{'invisible':[('status','!=','evaluated')]}"
+								    groups="hwseta_upload.group_wss_approval"
+							/>
+							<field name="rejected_check" attrs="{'invisible':[('status','=','draft')]}" groups="hwseta_upload.group_wss_approval"/>
+							<field name="chatterbox" string="Reason" attrs="{'invisible':[('status','=','draft')]}" groups="hwseta_upload.group_wss_approval"/>
+							<field name="extension_reason"
+								   string="Reason"
+								   attrs="{'invisible':['|','|',('extension_status','in',['rejected','approved']),('status','=','submitted'),('extendable','!=',True)]}"
+							/>
+							<button type="object"
+									name="check_sdl"
+									string="Check my SDL"
+									attrs="{'invisible':['|',('page','!=','no_sdl'),('sdl_number','=','')]}"
+									/>
+							<span>
+								<button
+									name="back_page"
+									type="object"
+									string="back"
+									attrs="{'invisible':[('page','not in',['org','staff_db','training','signatories'])]}"/></span>
+							<span>
+								<button
+									name="next_page"
+									type="object"
+									string="Next"
+									attrs="{'invisible':[('page','not in',['contact','org','staff_db','training'])]}"/></span>
+
+
+
+						</group>
+
+
+					</group>
+<!--						<p attrs="{'invisible':[('page','!=','no_sdl')]}">In order to have a successful WSS submission, please take note of the following</p>-->
+<!--						<ul attrs="{'invisible':[('page','!=','no_sdl')]}">-->
+<!--						    <li><strong>SDL/T number - </strong>Valid SDL number</li>-->
+<!--						</ul>-->
+<!--						<ul attrs="{'invisible':[('page','!=','contact')]}">-->
+<!--						    <li><strong>First Name - </strong>Valid first name with the first letter capitalised</li>-->
+<!--						    <li><strong>Last Name - </strong>Valid last name with the first letter capitalised</li>-->
+<!--						</ul>-->
+<!--						<ul attrs="{'invisible':[('page','!=','org')]}">-->
+<!--						    <li><strong>Employer Name - </strong>Valid name of employer first letters capitalised</li>-->
+<!--						    <li><strong>Employer Type - </strong>Select the valid type of employer</li>-->
+<!--						</ul>-->
+<!--						<ul attrs="{'invisible':[('page','!=','staff_db')]}">-->
+<!--						    <p>-->
+<!--								<strong>TEP </strong>-->
+<!--								<ul>-->
+<!--									<li><strong>First Name - </strong>Valid first name with the first letter capitalised</li>-->
+<!--									<li><strong>Last Name - </strong>Valid last name with the first letter capitalised</li>-->
+<!--									<li><strong>ID Number - </strong>Valid ID number, either SA or foreign</li>-->
+<!--								</ul>-->
+
+<!--							</p>-->
+<!--						</ul>-->
+<!--						<ul attrs="{'invisible':[('page','!=','training')]}">-->
+<!--						    <li><strong>Employer Name - </strong>Valid name of employer first letters capitalised</li>-->
+<!--						    <li><strong>Employer Type - </strong>Select the valid type of employer</li>-->
+<!--						</ul>-->
+
+					<notebook>
+						<page string="Your Details"
+							attrs="{'invisible':[('page','!=','contact')],'readonly':[('status','!=','draft')]}">
+							<!--attrs="{'invisible':[('sdl_number','=',''),('page','!=','contact')]}">-->
+							<group>
+								<group string="Personal Details">
+									<field name="first_name" string="First Name" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="last_name" string="Last Name" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="job_title" string="Job Title" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="citizenship_status" string="Citizenship Status" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="facilitator_id_number" string="SA/Foreign ID Number" attrs="{'readonly':[('status','!=','draft')]}"/>
+								</group>
+								<group string="Contact Details">
+									<field name="facilitator_phone" string="Phone Number" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="facilitator_email" string="E-Mail" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="facilitator_cell" string="Cellphone Number" attrs="{'readonly':[('status','!=','draft')]}"/>
+								</group>
+							</group>
+
+						</page>
+						<page string="Employer Details"
+							attrs="{'invisible':[('page','!=','org')],'readonly':[('status','!=','draft')]}">
+							<!--attrs="{'invisible':[('sdl_number','=',''),('page','!=','org')]}">-->
+							<group>
+								<group>
+									<field name="org_name" string="Employer Name" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="org_type" string="Employer Type" attrs="{'readonly':[('status','!=','draft')]}"/>
+								</group>
+								<group>
+									<field name="main_bus_act" string="Main Business Activity" attrs="{'readonly':[('status','!=','draft')]}"/>
+								</group>
+							</group>
+							<group string="Address Details">
+								<group string="Physical">
+									<label for="street" string="Physical Address"/>
+									<div>
+										<field name="country_id"
+											   string="Country"
+											   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   placeholder="Country"
+										/>
+										<field name="state_id"
+											   domain="[('country_id','=',country_id)]"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											   placeholder="Province"
+										/>
+										<field name="municipality_id"
+											   string="Municipality"
+											   domain="[('province_id','=',state_id)]"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											   placeholder="Municipality"
+										/>
+										<field name="city_id"
+											   domain="[('province_id','=',state_id)]"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											   placeholder="City"/>
+										<field name="street" attrs="{'readonly':[('status','!=','draft')]}" placeholder="Physical Address 1"/>
+										<field name="street2" attrs="{'readonly':[('status','!=','draft')]}" placeholder="Physical Address 2"/>
+										<field name="zip_code" attrs="{'readonly':[('status','!=','draft')]}" placeholder="Postal Code"/>
+										<field name="urban_or_rural"
+											   string="Urban or Rural"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   placeholder="Urban Or Rural"
+										/>
+									</div>
+
+								</group>
+								<group string="Postal">
+									<label for="postal_street" string="Postal Address"/>
+									<div>
+										<field name="postal_country_id"
+											   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   placeholder="Country"
+										/>
+										<field name="postal_state_id"
+											   domain="[('country_id','=',postal_country_id)]"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											   placeholder="Province"
+										/>
+										<field name="postal_street"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   placeholder="Postal Address 1"
+										/>
+										<field name="postal_street2"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   placeholder="Postal Address 2"
+										/>
+
+										<field name="postal_zip_code"
+											   attrs="{'readonly':[('status','!=','draft')]}"
+											   placeholder="Postal Code"
+										/>
+									</div>
+								</group>
+							</group>
+							<group string="Organisation Contact">
+								<group>
+									<field name="org_contact_name" string="Organisation Contact Name" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="phone" string="Phone Number" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="email" string="E-Mail" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<field name="mobile" string="Cell Phone Number" attrs="{'readonly':[('status','!=','draft')]}"/>
+								</group>
+								<group>
+
+								</group>
+							</group>
+						</page>
+						<page string="TEP"
+							attrs="{'invisible':[('page','!=','staff_db')],'readonly':[('status','!=','draft')]}">
+							<!--attrs="{'invisible':[('sdl_number','=',''),('page','!=','staff_db')]}">-->
+							<group string="Total Employment Profile">
+								<group>
+									<field name="number_of_employees" string="Total Number Of Employees" readonly="1"/>
+									<field name="permanent" readonly="1"/>
+									<field name="temporary" readonly="1"/>
+									<field name="volunteer" readonly="1"/>
+								</group>
+								<group>
+
+								</group>
+
+							</group>
+							<field name="staff_database_ids" attrs="{'readonly':[('status','!=','draft')]}">
+								<tree editable="bottom">
+									<field name="number" string="Record Number" readonly="1"/>
+									<field name="first_name" string="First Name"/>
+									<field name="last_name" string="Last Name"/>
+									<field name="id_number" string="SA/Foreign ID Number"/>
+									<field name="country" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+									<field name="state" domain="[('country_id','=',country)]"
+										   options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+									<field name="race"/>
+									<field name="gender"/>
+									<field name="disabled" string="Disabled Y/N"/>
+									<field name="job_title" string="Job Title"/>
+									<field name="highest_qual"/>
+									<field name="employment_status" string="Employment Status"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Training Needs"
+							attrs="{'invisible':[('page','!=','training')],'readonly':[('status','!=','draft')]}">
+							<!--attrs="{'invisible':[('sdl_number','=',''),('page','!=','training')]}">-->
+							<group>
+								<group>
+									<field name="financial_year_id"
+										   string="Financial Year"
+										   options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											readonly="1"
+									/>
+								</group>
+								<group>
+
+								</group>
+
+							</group>
+							<field name="training_needs_ids" attrs="{'readonly':[('status','!=','draft')]}">
+								<tree editable="bottom">
+									<field name="number" string="Record Number" readonly="1"/>
+									<field name="first_name" string="First Name"/>
+									<field name="last_name" string="Last Name"/>
+									<field name="id_number" string="SA/Foreign ID Number"/>
+									<field name="country" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+									<field name="state" domain="[('country_id','=',country)]"
+										   options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+									<field name="name_of_training" string="Name Of Training"/>
+									<field name="training_type" string="Training Type"/>
+									<field name="start_date" string="Start Date"/>
+									<field name="end_date" string="End Date"/>
+									<field name="cost_of_training" string="Cost Of Training"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Signatories"
+							attrs="{'invisible':[('page','!=','signatories')],'readonly':[('status','!=','draft')]}">
+							<group>
+								<group>
+									<field name="designated_signatory" string="Submitted By" readonly="1"/>
+								</group>
+								<group>
+									<field name="proof_attachment" string="Proof Of Authorisation" attrs="{'readonly':[('status','!=','draft')]}"/>
+									<!--<field name="authorised_signatory"/>-->
+								</group>
+							</group>
+							<button
+									name="authorise_wss"
+									type="object"
+									string="Authorise"
+									attrs="{'invisible':[('page','!=','signatories')]}"
+									groups="hwseta_upload.group_wss_approval"
+							/>
+						</page>
+					</notebook>
+
+				</sheet>
+
+				<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"
+							groups="base.group_user" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="tree_view_wss_draft" model="ir.ui.view">
+			<field name="name">workplace.skill.plan.upload.draft.tree</field>
+			<field name="model">wss.draft</field>
+			<field name="arch" type="xml">
+				<tree string="WSS">
+					<field name="first_name"/>
+					<field name="last_name"/>
+					<field name="sdl_number" />
+					<field name="status" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="filter_view_wss_draft" model="ir.ui.view">
+			<field name="name">filter.view.wss.draft</field>
+			<field name="model">wss.draft</field>
+			<field name="arch" type="xml">
+				<search string="WSS">
+					<field name="first_name" />
+					<field name="last_name" />
+					<field name="org_type" />
+					<field name="sdl_number" />
+					<group expand="0" string="Group By">
+						<filter string="Status" icon="terp-personal"
+							context="{'group_by':'status'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+
+		<record id="action_wss_draft_submission" model="ir.actions.act_window">
+			<field name="name">WSS Submission</field>
+			<field name="res_model">wss.draft</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="filter_view_wss_draft" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to manage WSS Submissions.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_wss_tree" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="tree_view_wss_draft" />
+			<field name="act_window_id" ref="action_wss_draft_submission" />
+		</record>
+
+		<record id="action_wss_form" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="form_view_wss_draft" />
+			<field name="act_window_id" ref="action_wss_draft_submission" />
+		</record>
+
+		<!-- Menus -->
+		<menuitem id="menu_draft_wss" name="WSS" action="action_wss_draft_submission"
+			sequence="2" />
+	</data>
+</openerp>
