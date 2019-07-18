@@ -16,6 +16,7 @@ HWSETA ETQA module covers.
         'data/accreditation_sequence.xml',
         'wizard/approve_learner_wizard_view.xml',
         'provider.xml',
+        'admin_view.xml',
         'skills_programme_view.xml',
         'etqe_learning_programme.xml',
         'report/provider_verification.xml',
