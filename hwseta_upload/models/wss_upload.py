@@ -356,8 +356,8 @@ class wss_draft(models.Model):
                 self._cr.commit()
                 # raise except_orm(_('WSS already exists!'), _('There is already a WSS in the system with this organisation\'s SDL number.\n If the record was rejected please request for it to be set back to draft'))
                 raise except_orm(_('WSS already exists!'), _('There is already a WSS in the system with this organisation\'s SDL number.\n If you would like to re-submit the WSS for this organsation, please request for it to be set back to draft by logging a call on the helpdesk.\n \n Refresh your page to continue'))
-            elif self.sdl_number in [sdl.employer_sdl_no for sdl in self.env['res.partner'].search([('employer_sdl_no','=',self.sdl_number)])]:
-                self.page = 'exists_page'
+            # elif self.sdl_number in [sdl.employer_sdl_no for sdl in self.env['res.partner'].search([('employer_sdl_no','=',self.sdl_number)])]:
+            #     self.page = 'exists_page'
             else:
                 self.page = 'contact'
 
