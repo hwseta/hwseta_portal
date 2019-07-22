@@ -7,6 +7,19 @@ from openerp.exceptions import Warning
 from openerp.osv import fields as fields2, osv
 import random
 from lxml import etree
+DEBUG = True
+
+if DEBUG:
+	import logging
+
+	logger = logging.getLogger(__name__)
+
+
+	def dbg(msg):
+		logger.info(msg)
+else:
+	def dbg(msg):
+		pass
 
 class learner_inactive_status(models.Model):
     _name = 'learner.inactive.status'
