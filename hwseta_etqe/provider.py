@@ -65,7 +65,7 @@ class batch_master(models.Model):
         p_id = self.env.user.partner_id.id
         res.update(provider_id = p_id)
         return res
-    
+
     @api.multi
     @api.depends('batch_name', 'batch_id')
     def name_get(self):
@@ -98,7 +98,7 @@ class batch_master(models.Model):
             batch_list.extend(batch_uids)
             domain.append(('id', 'in', batch_list))
         return super(batch_master, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby, lazy=lazy)
-    
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
         user = self._uid
@@ -140,7 +140,7 @@ class batch_master(models.Model):
     learning_programme_id = fields.Many2one('etqe.learning.programme', 'Learning Programme')
     _sql_constraints = [('batch_uniq', 'unique(batch_name)',
             'Batch Name must be unique!'),]
-    
+
     @api.multi
     @api.onchange('is_learner_import')
     def onchange_is_learner_import(self):
@@ -165,9 +165,9 @@ class batch_master(models.Model):
                     if lp_obj.id not in lp_list:
                         lp_list.append(lp_obj.id)
         return {'domain': {'qualification_id': [('id', 'in', qual_list)], 'skills_programme_id': [('id', 'in', skill_list)], 'learning_programme_id': [('id', 'in', lp_list)]}}
-    
-    
-        
+
+
+
     @api.model
     def create(self, vals):
         if vals['qual_skill_batch'] == 'qual':
@@ -180,7 +180,7 @@ class batch_master(models.Model):
         partner_id = self.env.user.partner_id
         partner_id.write({'provider_batch_ids':[(0, 0, {'batch_master_id':rec.id, 'batch_status':rec.batch_status})]})
         return rec
-    
+
     @api.multi
     def write(self, vals):
         context = self._context
@@ -224,7 +224,7 @@ class moderators_qualification_line_hr(models.Model):
         ('Exit Level Outcomes', 'Exit Level Outcomes'),
         ], string='Type', track_visibility='onchange')
     id_no = fields.Char(string='ID NO')
-    title = fields.Char(string='UNIT STANDARD TITLE') 
+    title = fields.Char(string='UNIT STANDARD TITLE')
     level1 = fields.Char(string='PRE-2009 NQF LEVEL')
     level2 = fields.Char(string='NQF LEVEL')
     level3 = fields.Char(string='CREDITS')
@@ -235,12 +235,12 @@ class moderators_qualification_line_hr(models.Model):
                                ('denied', 'Denied')],
                               string='State', readonly=True, default='requested_approval')
     line_hr_id = fields.Many2one('moderators.qualification.hr', 'Qualification Hr Reference', required=True, ondelete='cascade')
-    
+
     @api.multi
     def action_approve_unit(self):
         self.write({'approved_denied':True, 'status':'approved'})
         return True
-    
+
     @api.multi
     def action_deny_unit(self):
         self.write({'approved_denied':False, 'status':'denied'})
@@ -249,7 +249,7 @@ moderators_qualification_line_hr()
 class moderators_qualification_hr(models.Model):
     _name = 'moderators.qualification.hr'
     _description = 'Moderators Qualification Hr'
-    
+
     qualification_hr_id = fields.Many2one("provider.qualification", 'Qualification', ondelete='restrict')
     qualification_line_hr = fields.One2many('moderators.qualification.line.hr', 'line_hr_id', 'Qualification hr Lines', domain=[('selection', '=', True)])
     moderators_qualification_hr_id = fields.Many2one('hr.employee', 'Hr Employee Reference', required=True, ondelete='cascade')
@@ -259,13 +259,13 @@ class moderators_qualification_hr(models.Model):
     request_send = fields.Boolean(string='Send Request', default=False)
     approval_request = fields.Boolean(string='Approval Request', default=False)
     reject_request = fields.Boolean(string="Reject Request", default=False)
-    qual_unit_type = fields.Selection([('qual','Qualification'),('unit','Unit Standards')], default='qual')    
-    
+    qual_unit_type = fields.Selection([('qual','Qualification'),('unit','Unit Standards')], default='qual')
+
     @api.multi
     def onchange_qualification(self, qualification_evaluation_id):
         accreditation_qualification_line = []
         current_hr_obj = self.env['hr.employee'].browse(self.current_hr_id)
-        same_id_no_list = [] 
+        same_id_no_list = []
         if current_hr_obj:
             for hr_qual_line in current_hr_obj.qualification_ids:
                 if hr_qual_line.qualification_hr_id.id == qualification_evaluation_id:
@@ -287,7 +287,7 @@ class moderators_qualification_hr(models.Model):
                     accreditation_qualification_line.append((0, 0, val))
             return {'value':{'saqa_qual_id':qualification_obj.saqa_qual_id, 'qualification_line_hr':accreditation_qualification_line, 'qualification_status':'draft'}}
         return {}
-    
+
     @api.multi
     def action_send_request(self):
         self.write({'qualification_status':'waiting_approval', 'request_send':True})
@@ -298,7 +298,7 @@ class moderators_qualification_hr(models.Model):
 
     @api.multi
     def action_rejected_request(self):
-        self.write({'qualification_status':'rejected', 'reject_request':True})      
+        self.write({'qualification_status':'rejected', 'reject_request':True})
 moderators_qualification_hr()
 
 class assessors_moderators_qualification_line_hr(models.Model):
@@ -335,7 +335,7 @@ class assessors_moderators_qualification_line_hr(models.Model):
     def action_approve_unit(self):
         self.write({'approved_denied':True, 'status':'approved'})
         return True
-    
+
     @api.multi
     def action_deny_unit(self):
         self.write({'approved_denied':False, 'status':'denied'})
@@ -353,14 +353,14 @@ class assessors_moderators_qualification_hr(models.Model):
     qualification_status = fields.Selection([('draft', 'Draft'), ('waiting_approval', 'Waiting Approval'), ('approved', 'Approved'), ('rejected', 'Rejected')], string="State", default='draft')
     request_send = fields.Boolean(string='Send Request', default=False)
     approval_request = fields.Boolean(string='Approval Request', default=False)
-    reject_request = fields.Boolean(string="Reject Request", default=False)    
+    reject_request = fields.Boolean(string="Reject Request", default=False)
     qual_unit_type = fields.Selection([('qual','Qualification'),('unit','Unit Standards')], default='qual')
-    
+
     @api.multi
     def onchange_qualification(self, qualification_evaluation_id):
         accreditation_qualification_line = []
         current_hr_obj = self.env['hr.employee'].browse(self.current_hr_id)
-        same_id_no_list = [] 
+        same_id_no_list = []
         if current_hr_obj:
             for hr_qual_line in current_hr_obj.qualification_ids:
                 if hr_qual_line.qualification_hr_id.id == qualification_evaluation_id:
@@ -382,7 +382,7 @@ class assessors_moderators_qualification_hr(models.Model):
                     accreditation_qualification_line.append((0, 0, val))
             return {'value':{'saqa_qual_id':qualification_obj.saqa_qual_id, 'qualification_line_hr':accreditation_qualification_line, 'qualification_status':'draft'}}
         return {}
-    
+
     @api.multi
     def action_send_request(self):
         self.write({'qualification_status':'waiting_approval', 'request_send':True})
@@ -393,14 +393,14 @@ class assessors_moderators_qualification_hr(models.Model):
 
     @api.multi
     def action_rejected_request(self):
-        self.write({'qualification_status':'rejected', 'reject_request':True})      
+        self.write({'qualification_status':'rejected', 'reject_request':True})
 assessors_moderators_qualification_hr()
 
 class assessors_moderators_qualification_line_evaluation(models.Model):
     _name = 'assessors.moderators.qualification.line.evaluation'
     _description = 'assessors_moderators_qualification_line_evaluation'
-    _rec_name = 'type' 
-    
+    _rec_name = 'type'
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -424,7 +424,7 @@ assessors_moderators_qualification_line_evaluation()
 class learner_registration_qualification(models.Model):
     _name = 'learner.registration.qualification'
     _description = 'Learner Registration Qualification'
-    
+
     @api.one
     @api.depends('learner_registration_line_ids.selection')
     def _cal_limit(self):
@@ -438,7 +438,7 @@ class learner_registration_qualification(models.Model):
                 except:
                     pass
         self.total_credits = total_credit_point
-    
+
     @api.model
     def default_get(self, fields):
         context = self._context
@@ -467,7 +467,7 @@ class learner_registration_qualification(models.Model):
     batch_id = fields.Many2one('batch.master',string = 'Batch')
     certificate_date = fields.Date("Certificate Date")
     qual_status = fields.Char("Status")
-    
+
     @api.multi
     @api.onchange('learner_qualification_parent_id')
     def onchange_qualification(self, learner_qualification_parent_id):
@@ -499,12 +499,12 @@ class learner_registration_qualification(models.Model):
                     batch_lst.append(obj.id)
         learner_qualification_line, core_lst, fundamental_lst, elective_lst, other_lst = [], [], [], [], []
         # Commented following code Giving problem when we fetch non-SA learners because context is passed based on identification id
-        '''Code to avoid those qualifications which are already exist in learner master in extension of scope learner process'''     
+        '''Code to avoid those qualifications which are already exist in learner master in extension of scope learner process'''
 #         if self._context.get('existing_learner') == True and not self._context.get('learner_master_id_number'):
 #             return {'warning':{'title':'Warning','message':'Please Enter Identification Number to fetch existing learner details!!'}}
         if self._context.get('existing_learner') == True and self._context.get('learner_master_id_number'):
             learner_master_object = self.env['hr.employee'].search([('learner_identification_id', '=', self._context.get('learner_master_id_number'))])
-            if learner_master_object: 
+            if learner_master_object:
                 learner_master_qualification_obj = self.env['learner.registration.qualification'].search([('learner_id', '=',learner_master_object.id)])
                 if learner_master_qualification_obj:
                     for master_qual in learner_master_qualification_obj:
@@ -598,15 +598,15 @@ class learner_registration_qualification(models.Model):
                                }
                         other_lst.append((0, 0, val))
                 learner_qualification_line = core_lst + fundamental_lst + elective_lst + other_lst
-            return {'value':{'learner_registration_line_ids':learner_qualification_line}, 
+            return {'value':{'learner_registration_line_ids':learner_qualification_line},
                     'domain':{'learner_qualification_parent_id': [('id', 'in', qual_id)],
-                              'assessors_id': [('id', 'in', assessors_lst)], 
+                              'assessors_id': [('id', 'in', assessors_lst)],
                               'moderators_id':[('id', 'in', moderators_lst)],
                               'batch_id':[('id','in',batch_lst)]}}
 #             return {'domain':{'learner_qualification_parent_id': [('id', 'in', qual_id)]}}    
         elif qual_id:
-            return {'domain': {'learner_qualification_parent_id': [('id', 'in', qual_id)], 
-                               'assessors_id': [('id', 'in', assessors_lst)], 
+            return {'domain': {'learner_qualification_parent_id': [('id', 'in', qual_id)],
+                               'assessors_id': [('id', 'in', assessors_lst)],
                                'moderators_id':[('id', 'in', moderators_lst)],
                                'batch_id':[('id','in',batch_lst)]}}
         elif not learner_qualification_parent_id and not user_data.partner_id.provider:
@@ -628,7 +628,7 @@ class learner_registration_qualification(models.Model):
             assessor_brw_id = self.env['hr.employee'].search([('id', '=', assessors_id)])
             res.update({'value':{'assessor_date':assessor_brw_id.end_date}})
         return res
-    
+
     @api.multi
     def onchange_moderators_id(self, moderators_id):
         res = {}
@@ -638,7 +638,7 @@ class learner_registration_qualification(models.Model):
             moderator_brw_id = self.env['hr.employee'].search([('id', '=', moderators_id)])
             res.update({'value':{'moderator_date':moderator_brw_id.end_date}})
         return res
-    
+
     @api.model
     def _search(self, args, offset=0, limit=80, order=None, count=False, access_rights_uid=None):
         user = self._uid
@@ -665,8 +665,8 @@ class learner_registration_qualification_line(models.Model):
     def _get_provider(self):
         context = self._context
         provider_id = context.get('provider_id')
-        return provider_id   
-    
+        return provider_id
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -708,7 +708,7 @@ class assessors_moderators_qualification_evaluation(models.Model):
     select = fields.Boolean("Selection", default=True)
     verify = fields.Boolean('Verify', default=False, track_visibility="onchange")
     qual_unit_type = fields.Selection([('qual','Qualification'),('unit','Unit Standards')])
-    
+
     @api.multi
     def onchange_qualification(self, qualification_evaluation_id):
         accreditation_qualification_line = []
@@ -732,8 +732,8 @@ assessors_moderators_qualification_evaluation()
 class assessors_moderators_qualification_line(models.Model):
     _name = 'assessors.moderators.qualification.line'
     _description = 'assessors_moderators_qualification_line'
-    _rec_name = 'type' 
-    
+    _rec_name = 'type'
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -758,7 +758,7 @@ assessors_moderators_qualification_line()
 class assessors_moderators_status(models.Model):
     _name = 'assessors.moderators.status'
     _description = 'Assessors Moderators Status'
-    
+
     assessors_moderators_status_mo_id = fields.Many2one('assessors.moderators.register', string='Assessors Moderators Status Reference')
     am_name = fields.Char(string="Name")
     am_status = fields.Char(string="Status")
@@ -771,7 +771,7 @@ assessors_moderators_status()
 class assessors_moderators_qualification(models.Model):
     _name = 'assessors.moderators.qualification'
     _description = 'Assessors Moderators Qualification'
-    
+
     qualification_id = fields.Many2one("provider.qualification", 'Qualification', ondelete='restrict')
     saqa_qual_id = fields.Char(string='ID')
     qualification_line = fields.One2many('assessors.moderators.qualification.line', 'line_id', 'Qualification Lines')
@@ -780,12 +780,12 @@ class assessors_moderators_qualification(models.Model):
     minimum_credits = fields.Integer(related="qualification_id.m_credits", string="Minimum Credits")
     total_credits = fields.Integer(compute="_cal_limit" , string="Total Credits", store=True)
     qual_unit_type = fields.Selection([('qual','Qualification'),('unit','Unit Standards')], default='qual')
-    
+
     @api.onchange('qual_unit_type')
     def onchange_qual_unit_type(self):
         if self.qual_unit_type:
             self.qualification_id = False
-            
+
     @api.one
     @api.depends('qualification_line.selection')
     def _cal_limit(self):
@@ -796,16 +796,16 @@ class assessors_moderators_qualification(models.Model):
                     if unit_line.level3:
                         total_credit_point += int(unit_line.level3)
         self.total_credits = total_credit_point
-    
+
     @api.multi
     def onchange_qualification(self, qual_unit_type, qualification_id):
         accreditation_qualification_line, core_lst, fundamental_lst, elective_lst, other_lst = [], [], [], [], []
         qual_list = []
         qualification_obj = self.env['provider.qualification'].search(['|',('seta_branch_id','=','11'),('is_ass_mod_linked','=',True)])
         if qualification_obj:
-            for q in qualification_obj:  
+            for q in qualification_obj:
                 qual_list.append(q.id)
-        '''Code to avoid those qualifications which are already exist in assessor/moderator master in extension of scope provider process'''     
+        '''Code to avoid those qualifications which are already exist in assessor/moderator master in extension of scope provider process'''
         if self._context.get('extension_of_scope') == True and self._context.get('ass_or_mod') == 'ex_assessor' and self._context.get('search_by') == 'id' and not self._context.get('ex_as_id'):
             return {'warning':{'title':'Warning','message':'Please Enter Assessor Identification No. in General Information to fetch existing Assessor details then only apply for Qualification!!'}}
         if self._context.get('extension_of_scope') == True and self._context.get('ass_or_mod') == 'ex_assessor' and self._context.get('search_by') == 'number' and not self._context.get('ex_as_num'):
@@ -814,7 +814,7 @@ class assessors_moderators_qualification(models.Model):
             return {'warning':{'title':'Warning','message':'Please Enter Moderator Identification No. in General Information to fetch existing Moderator details then only apply for Qualification!!'}}
         if self._context.get('extension_of_scope') == True and self._context.get('ass_or_mod') == 'ex_moderator' and self._context.get('search_by') == 'number' and not self._context.get('ex_mo_num'):
             return {'warning':{'title':'Warning','message':'Please Enter Moderator Number. in General Information to fetch existing Moderator details then only apply for Qualification!!'}}
-        
+
         '''For Assessor Extension of Scope'''
         assessor_master_objects = []
         if self._context.get('extension_of_scope') == True and self._context.get('ass_or_mod') == 'ex_assessor' and self._context.get('search_by') == 'id' and self._context.get('ex_as_id'):
@@ -825,7 +825,7 @@ class assessors_moderators_qualification(models.Model):
             pro_lst = []
             for pro_obj in assessor_master_objects:
                 pro_lst.append(pro_obj.id)
-            assessor_obj = self.env['hr.employee'].search([('id', '=', max(pro_lst))]) 
+            assessor_obj = self.env['hr.employee'].search([('id', '=', max(pro_lst))])
             if assessor_obj:
                 if assessor_obj.qualification_ids:
                     for master_qual in assessor_obj.qualification_ids:
@@ -841,7 +841,7 @@ class assessors_moderators_qualification(models.Model):
             pro_lst = []
             for pro_obj in moderator_master_objects:
                 pro_lst.append(pro_obj.id)
-            moderator_obj = self.env['hr.employee'].search([('id', '=', max(pro_lst))]) 
+            moderator_obj = self.env['hr.employee'].search([('id', '=', max(pro_lst))])
             if moderator_obj:
                 if moderator_obj.moderator_qualification_ids:
                     for master_qual in moderator_obj.moderator_qualification_ids:
@@ -893,7 +893,7 @@ class assessors_moderators_qualification(models.Model):
                              'level2':qualification_lines.level2,
                              'level3': qualification_lines.level3,
                              'selection':True
-                            } 
+                            }
                     if qual_unit_type == 'qual':
                         val.update({'is_unit':True})
                     else:
@@ -908,9 +908,9 @@ class assessors_moderators_qualification(models.Model):
                              'level1':qualification_lines.level1,
                              'level2':qualification_lines.level2,
                              'level3': qualification_lines.level3,
-                            } 
+                            }
                     other_lst.append((0, 0, val))
-            accreditation_qualification_line = core_lst + fundamental_lst + elective_lst + other_lst            
+            accreditation_qualification_line = core_lst + fundamental_lst + elective_lst + other_lst
             return {'value':{'qualification_line':accreditation_qualification_line, 'saqa_qual_id':qualification_obj.saqa_qual_id}}
         return {'domain': {'qualification_id': [('id', 'in',qual_list)]}}
 assessors_moderators_qualification()
@@ -928,7 +928,7 @@ etqe_config()
 class assessors_moderators_register(models.Model):
     _name = 'assessors.moderators.register'
     _inherit = 'mail.thread'
-    
+
     @api.v7
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = models.Model.fields_view_get(self, cr, uid, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=submenu)
@@ -943,16 +943,16 @@ class assessors_moderators_register(models.Model):
                 parent.remove(sheet)
             res['arch'] = etree.tostring(doc)
         return res
-    
+
     @api.depends('state')
     def _get_qulification_md(self):
         if self.state == 'qualification_info' and self.assessor_moderator == 'moderator' and not self.is_extension_of_scope and not self.already_registered:
             self.is_md = True
         else:
             self.is_md = False
-    
-    temp_assessor_seq_no = fields.Char("Assessor ID") 
-    temp_moderator_seq_no = fields.Char("Moderator ID") 
+
+    temp_assessor_seq_no = fields.Char("Assessor ID")
+    temp_moderator_seq_no = fields.Char("Moderator ID")
     already_registered = fields.Boolean("Re-registration", default=False)
     is_extension_of_scope = fields.Boolean("Extension of Scope", default=False)
     existing_assessor_moderator = fields.Selection([('ex_assessor', 'Assessor'), ('ex_moderator', 'Moderator')], string="Existing Assessor/Moderator")
@@ -979,7 +979,7 @@ class assessors_moderators_register(models.Model):
     work_city = fields.Many2one('res.city', string='Work City', track_visibility='onchange')
     work_province = fields.Many2one('res.country.state', string='Province')
     work_zip = fields.Char(string='Zip')
-    work_country = fields.Many2one('res.country', string='Country') 
+    work_country = fields.Many2one('res.country', string='Country')
     country_id = fields.Many2one('res.country', string='Nationality')
     identification_id = fields.Char(string='Identification No', size=13)
     passport_id = fields.Char(string='Passport No')
@@ -1096,7 +1096,7 @@ class assessors_moderators_register(models.Model):
     cv_document_bool = fields.Boolean(string='Verify')
     related_assessor_moderator = fields.Many2one('hr.employee', string='Related Assessor Moderator')
     is_md = fields.Boolean("Id MD", compute='_get_qulification_md', store=False)
-        
+
     @api.multi
     @api.onchange('work_phone','cont_number_home','cont_number_office','person_cell_phone_number')
     def onchange_validate_number(self):
@@ -1153,9 +1153,9 @@ class assessors_moderators_register(models.Model):
         if already_registered:
             res.update({'value':{'is_extension_of_scope':False}})
         return res
-    
+
     @api.multi
-    def onchange_is_extension_of_scope(self, is_extension_of_scope):    
+    def onchange_is_extension_of_scope(self, is_extension_of_scope):
         res = {}
         if is_extension_of_scope:
             res.update({'value':{'already_registered':False}})
@@ -1205,7 +1205,7 @@ class assessors_moderators_register(models.Model):
                                                              'selection':data.selection,
                                                             }
                                                         accreditation_qualification_line.append((0, 0, val))
-                                                
+
                                                 q_vals = {
                                                             'qual_unit_type': q_lines.qual_unit_type,
                                                             'qualification_id':qual_master_obj.id,
@@ -1398,7 +1398,7 @@ class assessors_moderators_register(models.Model):
                     if existing_assessor_moderator == 'ex_assessor':
                         res.update({'value':vals})
         return res
-    
+
     @api.multi
     def onchange_existing_assessor_number(self, existing_assessor_number, existing_assessor_moderator, already_registered, is_extension_of_scope):
         res = {}
@@ -1417,7 +1417,7 @@ class assessors_moderators_register(models.Model):
                         ase_lst = []
                         for ase_obj in assessor_objects:
                             ase_lst.append(ase_obj.id)
-                        assessor_obj = self.env['hr.employee'].search([('id', '=', max(ase_lst))]) 
+                        assessor_obj = self.env['hr.employee'].search([('id', '=', max(ase_lst))])
                         if already_registered and str(datetime.today().date()) < assessor_obj.end_date and existing_assessor_moderator == 'ex_assessor':
                             return {'value': {'existing_assessor_moderator':'', 'search_by':'', 'already_registered': False, 'existing_assessor_number':''}, 'warning': {'title': 'Already Registered', 'message': "You are already registered, Your end date is %s" % (assessor_obj.end_date)}}
                         q_vals_line = []
@@ -1449,7 +1449,7 @@ class assessors_moderators_register(models.Model):
                                                         'qualification_line':accreditation_qualification_line,
                                                         }
                                             q_vals_line.append((0, 0, q_vals))
-                        
+
                         vals = {
                                 'name':assessor_obj.name,
                                 'work_email':assessor_obj.work_email,
@@ -1531,7 +1531,7 @@ class assessors_moderators_register(models.Model):
                     ase_lst = []
                     for ase_obj in assessor_objects:
                         ase_lst.append(ase_obj.id)
-                    assessor_obj = self.env['hr.employee'].search([('id', '=', max(ase_lst))]) 
+                    assessor_obj = self.env['hr.employee'].search([('id', '=', max(ase_lst))])
                     if already_registered and str(datetime.today().date()) < assessor_obj.end_date and existing_assessor_moderator == 'ex_assessor':
                         return {'value': {'existing_assessor_moderator':'', 'search_by':'', 'already_registered': False, 'existing_assessor_number':''}, 'warning': {'title': 'Already Registered', 'message': "You are already registered, Your end date is %s" % (assessor_obj.end_date)}}
                     q_vals_line = []
@@ -1800,7 +1800,7 @@ class assessors_moderators_register(models.Model):
                                                         'qualification_line':accreditation_qualification_line,
                                                         }
                                             q_vals_line.append((0, 0, q_vals))
-    
+
                     vals = {
                             'name':moderator_obj.name,
                             'work_email':moderator_obj.work_email,
@@ -1875,7 +1875,7 @@ class assessors_moderators_register(models.Model):
 #                 else:
 #                     raise Warning(_("Please enter Assessor Identification number"))
         return res
-    
+
 
     @api.multi
     def onchange_existing_moderator_number(self, existing_moderator_number, existing_assessor_number, already_registered, is_extension_of_scope):
@@ -2132,16 +2132,16 @@ class assessors_moderators_register(models.Model):
                 if not existing_assessor_number:
                     return {'value': {'existing_moderator_number':''}, 'warning':{'title':'Invalid Assessor Number','message':'Please enter Assessor Number'}}
         return res
-    
+
     @api.multi
     def onchange_existing_assessor_moderator(self, existing_assessor_moderator):
         res = {}
         if existing_assessor_moderator == 'ex_assessor':
             res.update({'value':{'assessor_moderator':'assessor','search_by':'id', 'existing_assessor_id':self.env['res.users'].browse(self._uid).assessor_moderator_id.assessor_moderator_identification_id}})
         if existing_assessor_moderator == 'ex_moderator':
-            res.update({'value':{'assessor_moderator':'moderator', 'search_by':'id', 'existing_assessor_id':self.env['res.users'].browse(self._uid).assessor_moderator_id.assessor_moderator_identification_id, 'existing_moderator_id':self.env['res.users'].browse(self._uid).assessor_moderator_id.assessor_moderator_identification_id}}) 
+            res.update({'value':{'assessor_moderator':'moderator', 'search_by':'id', 'existing_assessor_id':self.env['res.users'].browse(self._uid).assessor_moderator_id.assessor_moderator_identification_id, 'existing_moderator_id':self.env['res.users'].browse(self._uid).assessor_moderator_id.assessor_moderator_identification_id}})
         return res
-    
+
     @api.multi
     def on_change_search_by(self, search_by, existing_assessor_moderator):
         res = {}
@@ -2152,7 +2152,7 @@ class assessors_moderators_register(models.Model):
         elif search_by == 'number' and existing_assessor_moderator=='ex_moderator':
             res.update({'value':{'existing_assessor_number':self.env['res.users'].browse(self._uid).assessor_moderator_id.assessor_seq_no,'existing_moderator_number':self.env['res.users'].browse(self._uid).assessor_moderator_id.moderator_seq_no}})
         return res
-    
+
     @api.multi
     def onchange_crc(self, citizen_resident_status_code):
         res = {}
@@ -2162,9 +2162,9 @@ class assessors_moderators_register(models.Model):
             country_data = self.env['res.country'].search(['|', ('code', '=', 'ZA'), ('name', '=', 'South Africa')], limit=1)
             res.update({'value':{'country_id':country_data and country_data.id}})
         else:
-            res.update({'value':{'country_id':None and None}})   
+            res.update({'value':{'country_id':None and None}})
         return res
-    
+
     @api.multi
     def onchange_person_postal_suburb(self, person_postal_suburb):
         res = {}
@@ -2174,7 +2174,7 @@ class assessors_moderators_register(models.Model):
             sub_res = self.env['res.suburb'].browse(person_postal_suburb)
             res.update({'value':{'person_postal_zip':sub_res.postal_code, 'person_postal_city':sub_res.city_id, 'person_postal_province_code':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def onchange_person_home_suburb(self, person_home_suburb):
         res = {}
@@ -2184,8 +2184,8 @@ class assessors_moderators_register(models.Model):
             sub_res = self.env['res.suburb'].browse(person_home_suburb)
             res.update({'value':{'person_home_zip':sub_res.postal_code, 'person_home_city':sub_res.city_id, 'physical_municipality':sub_res.municipality_id, 'person_home_province_code':sub_res.province_id}})
         return res
-    
-    
+
+
     @api.multi
     def onchange_person_suburb(self, person_suburb):
         res = {}
@@ -2195,7 +2195,7 @@ class assessors_moderators_register(models.Model):
             sub_res = self.env['res.suburb'].browse(person_suburb)
             res.update({'value':{'work_zip':sub_res.postal_code, 'work_city':sub_res.city_id, 'work_province':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def onchange_id_no(self, identification_id):
         res, val = {}, {}
@@ -2238,7 +2238,7 @@ class assessors_moderators_register(models.Model):
                 birth_date = datetime.strptime('20' + year + '-' + month + '-' + day, '%Y-%m-%d').date()
             else:
                 birth_date = datetime.strptime('19' + year + '-' + month + '-' + day, '%Y-%m-%d').date()
-            
+
             val.update({'person_birth_date':birth_date})
             res.update({'value':val})
             return res
@@ -2256,7 +2256,7 @@ class assessors_moderators_register(models.Model):
             res.update({'value':{'is_moderators':True}})
             res.update({'value':{'is_assessors':False}})
         return res
-    
+
     @api.multi
     def onchange_assessor_id(self, assessor_id):
         res = {}
@@ -2366,11 +2366,11 @@ class assessors_moderators_register(models.Model):
                      'seta_elements':True,
                      'same_as_home':assessor_data.same_as_home,
                      'qualification_ids':q_vals_line,
-                     
+
                      'unknown_type':assessor_data.unknown_type,
-                     'unknown_type_document':assessor_data.unknown_type_document and assessor_data.unknown_type_document.id                      
+                     'unknown_type_document':assessor_data.unknown_type_document and assessor_data.unknown_type_document.id
                 }
-            
+
             res.update({'value':vals,})
         else:
             return {'value': {'assessor_id': ''},\
@@ -2394,7 +2394,7 @@ class assessors_moderators_register(models.Model):
                   }
         res.update({'value':result})
         return res
-    
+
     @api.multi
     def open_map(self, street, city, state, country, zip):
         url = "http://maps.google.com/maps?oi=map&q="
@@ -2413,45 +2413,45 @@ class assessors_moderators_register(models.Model):
         'url':url,
         'target': 'new'
         }
-    
+
     @api.multi
     def work_addr_map(self):
         return self.open_map(self.work_address, self.work_city, self.work_province, self.work_country, self.work_zip)
-    
+
     @api.multi
     def home_addr_map(self):
         return self.open_map(self.person_home_address_1, self.person_home_city, self.person_home_province_code, self.country_home, self.person_home_zip)
-    
+
     @api.multi
     def postal_addr_map(self):
         return self.open_map(self.person_postal_address_1, self.person_postal_city, self.person_postal_province_code, self.country_postal, self.person_postal_zip)
-    
+
     @api.multi
     def country_for_province(self, province):
         state = self.env['res.country.state'].browse(province)
         return state.country_id.id
-    
+
     @api.multi
     def onchange_work_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'work_country': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_home_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_home': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_postal_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_postal': country_id }}
         return {}
-    
+
     @api.multi
     def action_submit_button(self):
         context = self._context
@@ -2471,7 +2471,7 @@ class assessors_moderators_register(models.Model):
             raise Warning(_('Please enter mobile number in General Information'))
         if not self.cv_document:
             raise Warning(_('Please upload CV Document'))
-        
+
         if self.qualification_ids:
             for line in self.qualification_ids:
                 if line.qual_unit_type == 'qual':
@@ -2504,7 +2504,7 @@ class assessors_moderators_register(models.Model):
                             'qualification_line_evaluation':accreditation_qualification_line,
                             }
                 q_vals_line.append((0, 0, q_vals))
-        
+
         ir_model_data_obj = self.env['ir.model.data']
         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_assessors_moderator_submit')
         if mail_template_id:
@@ -2574,7 +2574,7 @@ class assessors_moderators_register(models.Model):
             self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
         self.write({'state':'evaluation', 'verify':True, 'ass_mod_state':'submit', 'final_state':'Evaluated'})
         return True
-    
+
     @api.multi
     def action_evaluate_button(self):
         context = self._context
@@ -2592,7 +2592,7 @@ class assessors_moderators_register(models.Model):
 #             self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
         self.write({'state':'evaluation', 'evaluate':True, 'final_state':'Recommended'})
         return True
-    
+
     @api.multi
     def action_denied_button(self):
         context = self._context
@@ -2605,11 +2605,11 @@ class assessors_moderators_register(models.Model):
         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_assessors_moderator_denied')
         if mail_template_id:
             self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
-        
+
         self.write({'assessors_moderators_status_ids':[(0, 0, {'am_name':self.env['res.users'].browse(self._uid).name, 'am_date':datetime.now(), 'am_status':'Rejected', 'am_updation_date':self.write_date, 'am_comment':self.comment_line})]})
         self.write({'state':'denied', 'denied':True, 'final_state':'Rejected', 'comment_line':''})
         return True
-    
+
     @api.multi
     def action_reevaluate_button(self):
         if not self.comment_line:
@@ -2617,7 +2617,7 @@ class assessors_moderators_register(models.Model):
         self.write({'assessors_moderators_status_ids':[(0, 0, {'am_name':self.env['res.users'].browse(self._uid).name, 'am_date':datetime.now(), 'am_status':'Re-Evaluated', 'am_updation_date':self.write_date, 'am_comment':self.comment_line})]})
         self.write({'state':'verification', 'evaluate':False, 'verify':False, 'denied':False, 'comment_line':''})
         return True
-    
+
     @api.model
     def create(self, vals):
         context = self._context
@@ -2789,7 +2789,7 @@ class assessors_moderators_register(models.Model):
                     self.write({'reg_end': new_date})
                 self.write({'state':'approved', 'approved':True, 'assessor_moderator_approval_date':datetime.today().date(), 'final_state':'Approved', })
                 self.write({'reg_start': self.assessor_moderator_approval_date})
-                
+
                 mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_moderator_approved')
                 if mail_template_id:
                     self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
@@ -2797,7 +2797,7 @@ class assessors_moderators_register(models.Model):
         elif self.is_extension_of_scope and self.existing_assessor_moderator == 'ex_moderator':
             assessors_ids = ''
             if self.existing_assessor_number:
-                assessors_ids = self.env['hr.employee'].search([('is_active_assessor', '=', True),('is_assessors', '=', True),('assessor_seq_no', '=', self.existing_assessor_number)])            
+                assessors_ids = self.env['hr.employee'].search([('is_active_assessor', '=', True),('is_assessors', '=', True),('assessor_seq_no', '=', self.existing_assessor_number)])
             if self.existing_assessor_id:
                 assessors_ids = self.env['hr.employee'].search([('is_active_assessor', '=', True),('is_assessors', '=', True),('assessor_moderator_identification_id', '=', self.existing_assessor_id)])
             if self.existing_moderator_id:
@@ -2929,7 +2929,7 @@ class assessors_moderators_register(models.Model):
         elif self.already_registered and self.existing_assessor_moderator == 'ex_moderator':
             assessors_ids = ''
             if self.existing_assessor_number:
-                assessors_ids = self.env['hr.employee'].search([('is_assessors', '=', True), ('assessor_seq_no', '=', self.existing_assessor_number)])            
+                assessors_ids = self.env['hr.employee'].search([('is_assessors', '=', True), ('assessor_seq_no', '=', self.existing_assessor_number)])
             elif self.existing_assessor_id or self.existing_moderator_id:
                 assessors_ids = self.env['hr.employee'].search(['','|'('is_assessors', '=', True), ('assessor_moderator_identification_id', '=', self.existing_assessor_id),('assessor_moderator_identification_id', '=', self.existing_moderator_id)])
             if self.already_registered:
@@ -2996,7 +2996,7 @@ class assessors_moderators_register(models.Model):
                                 if mod_qual.qualification_hr_id == qual.qualification_evaluation_id:
                                    unlink_qual_list.append((2, mod_qual.id))
                     assessor_data.write({'moderator_qualification_ids':unlink_qual_list})
-                    #Below line is commented 
+                    #Below line is commented
                     #assessor_data.write({'moderator_qualification_ids':[(2, assessor.id) for assessor in assessor_data.moderator_qualification_ids]})
                     assessor_data.write({'is_moderators':True,
                                          'is_moderators':True,
@@ -3240,10 +3240,10 @@ class assessors_moderators_register(models.Model):
                 mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_assessor_reregistration')
                 if mail_template_id:
                     self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
-        # Assessor Extension of Scope 
+        # Assessor Extension of Scope
         elif self.is_extension_of_scope and self.existing_assessor_moderator == 'ex_assessor':
             if self.existing_assessor_number:
-                employee_data = self.env['hr.employee'].search([('is_active_assessor','=',True),('is_assessors', '=', True), ('assessor_seq_no', '=', self.existing_assessor_number)])            
+                employee_data = self.env['hr.employee'].search([('is_active_assessor','=',True),('is_assessors', '=', True), ('assessor_seq_no', '=', self.existing_assessor_number)])
             elif self.existing_assessor_id:
                 employee_data = self.env['hr.employee'].search([('is_active_assessor','=',True),('is_assessors', '=', True), ('assessor_moderator_identification_id', '=', self.existing_assessor_id)])
 
@@ -3296,7 +3296,7 @@ class assessors_moderators_register(models.Model):
                     if qual.verify:
                         if ass_qual.qualification_hr_id == qual.qualification_evaluation_id:
                            unlink_qual_list.append((2, ass_qual.id))
-                        
+
             employee_data.write({'qualification_ids':unlink_qual_list})
             # Below line is commented
             #employee_data.write({'qualification_ids':[(2, assessor.id) for assessor in employee_data.qualification_ids]})
@@ -3417,31 +3417,31 @@ class assessors_moderators_register(models.Model):
 #         
 #         if self.state == "verification" and self.verify == False:
 #             raise Warning(_('Sorry! you can not change status to verification first verify application.'))
-        
+
         if self.state == "verification" and self.submitted == False:
             raise Warning(_('Sorry! you can not change status to verification first submit application.'))
-        
+
         if self.state == "evaluation" and self.verify == False:
             raise Warning(_('Sorry! you can not change status to evaluation first verify application.'))
-        
+
         if self.state == "approved" and self.evaluate == False:
             raise Warning(_('Sorry! you can not change status to approve first evaluate application.'))
-                
+
 #         if self.state == "denied" and self.evaluate == False:
 #             raise Warning(_('Sorry! you can not change status to reject first evaluate application.'))
-                
+
         if self.state == "approved" and self.denied == True:
-            raise Warning(_('Sorry! you can not change status to Approved.')) 
-                        
+            raise Warning(_('Sorry! you can not change status to Approved.'))
+
         if self.state == "approved" and self.approved == False:
             raise Warning(_('Sorry! you can not change status to Approved first Approve application.'))
-        
+
         if self.state == "denied" and self.approved == True:
             raise Warning(_('Sorry! you can not change status to Rejected.'))
-        
+
         if self.state == "denied" and self.denied == False:
             raise Warning(_('Sorry! you can not change status to Rejected first Reject application..'))
-        
+
 #        if self.state == "qualification_info" and self.submitted == True:
 #            raise Warning(_('Sorry! you can not submit again. '))
 #         elif self.submitted and not context.get('state') in ['approved','denied']:
@@ -3484,7 +3484,7 @@ assessors_moderators_register()
 class provider_contact(models.Model):
     _name = 'provider.contact'
     _description = 'Provider Contact'
-    
+
     provider_contact_id = fields.Many2one('res.partner', 'Res Partner', required=True, ondelete='cascade', select=True)
     name = fields.Char(string='Name', required=True)
     street = fields.Char(string='Street')
@@ -3506,7 +3506,7 @@ provider_contact()
 class provider_qualification_line_partner(models.Model):
     _name = 'provider.qualification.line.partner'
     _description = 'Provider Qalification Line For partner'
-    
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -3553,7 +3553,7 @@ class provider_master_qualification_line(models.Model):
     is_provider_approved = fields.Boolean(
         string='PROVIDER Learning Material', track_visibility='onchange')
     line_id = fields.Many2one('provider.master.qualification', 'Provider Master Reference')
-    
+
     @api.depends('is_provider_approved')
     @api.onchange('selection')
     def onchange_selection(self):
@@ -3564,7 +3564,7 @@ provider_master_qualification_line()
 class provider_master_qualification(models.Model):
     _name = 'provider.master.qualification'
     _description = 'Master  Qualification'
-    
+
     qualification_id = fields.Many2one("provider.qualification", 'Qualification')
     qualification_line = fields.One2many('provider.master.qualification.line', 'line_id', 'Qualification Lines')
     accreditation_qualification_id = fields.Many2one('res.partner', 'Provider Accreditation Reference')
@@ -3579,13 +3579,13 @@ class provider_master_qualification(models.Model):
     moderator_sla_document = fields.Many2one('ir.attachment', string="SLA Document")
     assessor_no = fields.Char(string = "Assessor ID")
     moderator_no = fields.Char(string = "Moderator ID")
-    
+
     @api.one
     def unlink(self):
         self.qualification_line.unlink()
         res = super(provider_master_qualification, self).unlink()
-        return res 
-    
+        return res
+
     @api.multi
     def onchange_qualification(self, qualification_id):
 #         res = {}
@@ -3634,7 +3634,7 @@ class provider_master_qualification(models.Model):
                 accreditation_qualification_line.append((0, 0, val))
             return {'value':{'qualification_line':accreditation_qualification_line, 'saqa_qual_id':qualification_obj.saqa_qual_id, 'status':'draft'}}
         return {}
-    
+
     @api.multi
     def action_send_request(self):
         self.write({'status':'waiting_approval', 'request_send':True})
@@ -3645,31 +3645,31 @@ class provider_master_qualification(models.Model):
 
     @api.multi
     def action_rejected_request(self):
-        self.write({'status':'rejected', 'reject_request':True})        
+        self.write({'status':'rejected', 'reject_request':True})
         # Mail notification Organisation
 #         ir_model_data_obj = self.env['ir.model.data']
 #         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_sdp', 'email_template_sdf_register_organisation_post_submit')
 #         if mail_template_id:
 #             self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True,context=self.env.context)           
-        
-        return True    
+
+        return True
 provider_master_qualification()
 
 class etqe_assessors_provider_campus_rel(models.Model):
     _name = 'etqe.assessors.provider.campus.rel'
-    
+
     assessors_id = fields.Many2one("hr.employee", 'Assessors', domain=[('is_active_assessor','=',True),('is_assessors', '=', True)] , ondelete='restrict')
     provider_campus_id = fields.Many2one('res.partner', ondelete='cascade')
     awork_phone = fields.Char('Work Phone', readonly=False)
     awork_email = fields.Char('Work Email', size=240)
     campus_assessor_sla_document = fields.Many2one('ir.attachment', string="SLA Document")
     assessor_notification_letter = fields.Many2one('ir.attachment', string="Notification Letter")
-    
+
     @api.multi
     def onchange_assessrs(self, assessors_id):
-        
+
         if assessors_id:
-            assessors_obj = self.env['hr.employee'].browse(assessors_id)            
+            assessors_obj = self.env['hr.employee'].browse(assessors_id)
             return {'value':{'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.work_phone}}
         else:
             return {}
@@ -3677,14 +3677,14 @@ etqe_assessors_provider_campus_rel()
 
 class etqe_moderators_provider_campus_rel(models.Model):
     _name = 'etqe.moderators.provider.campus.rel'
-    
+
     moderators_id = fields.Many2one("hr.employee", 'Moderator', domain=[('is_active_moderator','=',True),('is_moderators', '=', True)], ondelete='restrict')
     provider_campus_id = fields.Many2one('res.partner', ondelete='cascade')
     mwork_phone = fields.Char('Work Phone', readonly=False, size=10)
     mwork_email = fields.Char('Work Email', size=240)
     campus_moderator_sla_document = fields.Many2one('ir.attachment', string="SLA Document")
     moderator_notification_letter = fields.Many2one('ir.attachment', string="Notification Letter")
-        
+
     @api.multi
     def onchange_moderators(self, moderators_id):
 
@@ -3699,7 +3699,7 @@ etqe_moderators_provider_campus_rel()
 class provider_master_campus_qualification_line(models.Model):
     _name = 'provider.master.campus.qualification.line'
     _description = 'Provider Master Campus Qualification Line'
-    
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -3728,7 +3728,7 @@ provider_master_campus_qualification_line()
 class provider_master_campus_qualification(models.Model):
     _name = 'provider.master.campus.qualification'
     _description = 'Accreditation  Qualification'
-    
+
     qualification_id = fields.Many2one("provider.qualification", 'Qualification', ondelete='restrict')
     qualification_line = fields.One2many('provider.master.campus.qualification.line', 'line_id', 'Qualification Lines')
     accreditation_qualification_campus_id = fields.Many2one('res.partner', 'Provider Accreditation Reference')
@@ -3755,7 +3755,7 @@ class provider_master_campus_qualification(models.Model):
                          'is_provider_approved':qualification_lines.is_provider_approved,
                         }
                 accreditation_qualification_line.append((0, 0, val))
-            
+
             return {'value':{'qualification_line':accreditation_qualification_line, 'saqa_qual_id':qualification_obj.saqa_qual_id}}
         return {}
 provider_master_campus_qualification()
@@ -3764,8 +3764,8 @@ provider_master_campus_qualification()
 class skills_programme_unit_standards_master_rel(models.Model):
     _name = 'skills.programme.unit.standards.master.rel'
     _description = 'Skills Programme Unit Standards Master Rel'
-    _rec_name = 'type' 
-    
+    _rec_name = 'type'
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type', required=True)
     type = fields.Selection([
@@ -3789,7 +3789,7 @@ skills_programme_unit_standards_master_rel()
 class skills_programme_master_rel(models.Model):
     _name = 'skills.programme.master.rel'
     _description = 'Skills Programme master Rel'
-    
+
     skills_programme_id = fields.Many2one("skills.programme", 'Skills Programme')
     unit_standards_line = fields.One2many('skills.programme.unit.standards.master.rel', 'skills_programme_id', 'Unit Standards')
     skills_programme_partner_rel_id = fields.Many2one('res.partner', 'Provider Partner Reference')
@@ -3804,7 +3804,7 @@ class skills_programme_master_rel(models.Model):
     moderator_sla_document = fields.Many2one('ir.attachment', string="SLA Document")
     assessor_no = fields.Char(string = "Assessor ID")
     moderator_no = fields.Char(string = "Moderator ID")
-    
+
     @api.multi
     def action_send_request(self):
         self.write({'status':'waiting_approval', 'request_send':True})
@@ -3815,8 +3815,8 @@ class skills_programme_master_rel(models.Model):
 
     @api.multi
     def action_rejected_request(self):
-        self.write({'status':'rejected', 'reject_request':True})        
-    
+        self.write({'status':'rejected', 'reject_request':True})
+
     @api.multi
     def onchange_skills_programme(self, skills_programme_id):
 #         res = {}
@@ -3843,7 +3843,7 @@ skills_programme_master_rel()
 class skills_programme_unit_standards_master_campus_rel(models.Model):
     _name = 'skills.programme.unit.standards.master.campus.rel'
     _description = 'Skills Programme Unit Standards Master Campus Rel'
-    _rec_name = 'type' 
+    _rec_name = 'type'
     name = fields.Char(string='Name')
     type = fields.Char(string='Type', required=True)
     id_no = fields.Char(string='ID NO')
@@ -3858,12 +3858,12 @@ skills_programme_unit_standards_master_campus_rel()
 class skills_programme_master_campus_rel(models.Model):
     _name = 'skills.programme.master.campus.rel'
     _description = 'Skills Programme Master Campus Rel'
-    
+
     skills_programme_id = fields.Many2one("skills.programme", 'Skills Programme')
     unit_standards_line = fields.One2many('skills.programme.unit.standards.master.campus.rel', 'skills_programme_id', 'Unit Standards')
     skills_programme_partner_campus_rel_id = fields.Many2one('res.partner', 'Provider Accreditation Reference')
     skill_saqa_id = fields.Char("SAQA QUAL ID")
-    
+
     @api.multi
     def onchange_skills_programme(self, skills_programme_id):
         unit_standards = []
@@ -3889,7 +3889,7 @@ skills_programme_master_campus_rel()
 class provider_master_contact(models.Model):
     _name = 'provider.master.contact'
     _description = 'Provider Master Contact'
-    
+
     provider_master_contact_id = fields.Many2one('res.partner', 'Provider Contact', required=True, ondelete='cascade', select=True)
     name = fields.Char(string='Name', required=True)
     street = fields.Char(string='Street')
@@ -3911,7 +3911,7 @@ provider_master_contact()
 
 class res_partner(models.Model):
     _inherit = 'res.partner'
-    
+
     @api.model
     def default_get(self, fields):
         ''' To get Qualifications/Skills/Learning Programme/Assessors/Moderators from Main campus'''
@@ -3925,7 +3925,7 @@ class res_partner(models.Model):
         learning_programme_obj_ids = context.get('default_learning_programme_id', False)
         assessors_obj_ids = context.get('default_assessors_ids', False)
         moderators_obj_ids = context.get('default_moderators_ids', False)
-        
+
         q_vals_line, s_vals_line,lp_vals_line, a_vals_line, m_vals_line = [], [], [], [], []
         if qualification_obj_ids:
             for qualification_obj in qualification_obj_ids:
@@ -3956,10 +3956,10 @@ class res_partner(models.Model):
                             'assessor_sla_document':qualification.assessor_sla_document.id,
                             'moderator_sla_document':qualification.moderator_sla_document.id,
                             }
-                q_vals_line.append((0, 0, q_vals))   
-        
+                q_vals_line.append((0, 0, q_vals))
+
                 res.update(qualification_campus_ids = q_vals_line)
-                
+
         if skills_obj_ids:
             for skills_obj in skills_obj_ids:
                 skills = self.env['skills.programme.master.rel'].browse(skills_obj[1])
@@ -3983,8 +3983,8 @@ class res_partner(models.Model):
                             'unit_standards_line':skills_line,
                             'skill_saqa_id':skills.skill_saqa_id,
                             }
-                s_vals_line.append((0, 0, skills_vals))   
-        
+                s_vals_line.append((0, 0, skills_vals))
+
                 res.update(skills_programme_campus_ids = s_vals_line)
 
         if learning_programme_obj_ids:
@@ -4012,7 +4012,7 @@ class res_partner(models.Model):
                             'unit_standards_line':lp_line,
                             'lp_saqa_id':lp.lp_saqa_id,
                             }
-                lp_vals_line.append((0, 0, lp_vals))   
+                lp_vals_line.append((0, 0, lp_vals))
                 res.update(learning_programme_campus_ids = lp_vals_line)
         if assessors_obj_ids:
             for assessors_obj in assessors_obj_ids:
@@ -4024,9 +4024,9 @@ class res_partner(models.Model):
                             'campus_assessor_sla_document':assessor.assessor_sla_document.id,
                             'assessor_notification_letter':assessor.assessor_notification_letter.id,
                             }
-                a_vals_line.append((0, 0, assessor_vals))   
-        
-                res.update(assessors_campus_ids=a_vals_line)            
+                a_vals_line.append((0, 0, assessor_vals))
+
+                res.update(assessors_campus_ids=a_vals_line)
 
         if moderators_obj_ids:
             for moderators_obj in moderators_obj_ids:
@@ -4038,10 +4038,10 @@ class res_partner(models.Model):
                             'campus_moderator_sla_document':moderator.moderator_sla_document.id,
                             'moderator_notification_letter':moderator.moderator_notification_letter.id,
                             }
-                m_vals_line.append((0, 0, moderator_vals))   
-                res.update(moderators_campus_ids=m_vals_line)            
+                m_vals_line.append((0, 0, moderator_vals))
+                res.update(moderators_campus_ids=m_vals_line)
         return res
-    
+
     @api.v7
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = models.Model.fields_view_get(self, cr, uid, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=submenu)
@@ -4056,7 +4056,7 @@ class res_partner(models.Model):
                 parent.remove(sheet)
             res['arch'] = etree.tostring(doc)
         return res
-    
+
     is_active_provider = fields.Boolean("Active", default=True)
     is_existing_provider = fields.Boolean("Existing Provider", default=False)
     is_visible = fields.Boolean("Visible", default=False)
@@ -4162,7 +4162,7 @@ class res_partner(models.Model):
     provider_sapc_group = fields.Boolean(string='SAPC')
     _sql_constraints = [('txtVATRegNo_uniq', 'unique(txtVATRegNo)',
             'VAT Registration Number must be unique per Company!'), ]
-    
+
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         """ Override read_group to add Label for boolean field status """
@@ -4174,7 +4174,7 @@ class res_partner(models.Model):
                 else:
                     rt['is_active_provider'] = 'In Active'
         return ret_val
-    
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
         user = self._uid
@@ -4240,7 +4240,7 @@ class res_partner(models.Model):
                         self._cr.execute("select employer_id from sdf_employer_rel where sdf_prof_id=%s or sdf_id=%s" % (hr_employee_id[0], hr_employee_id[0]))
                         partner.extend(map(lambda x:x[0], self._cr.fetchall()))
                     args.append(('id', 'in', partner))
-                else:                    
+                else:
                     self._cr.execute('select partner_id from res_users where id=%s', (user_data.id,))
                     partner_id = self._cr.fetchone()
                     if partner_id :
@@ -4280,8 +4280,8 @@ class res_partner(models.Model):
                         mail_mail = self.pool.get('email.template')
                         template = self.pool.get('ir.model.data').get_object(cr, uid, 'hwseta_etqe', 'email_template_provider_re_registration_alert')
                         mail_mail.send_mail(cr, uid, template.id, pro_obj.id, force_send=True, raise_exception=True, context=context)
-        return True    
-    
+        return True
+
     @api.multi
     def onchange_qualification(self, qualification_id):
         accreditation_qualification_line = []
@@ -4300,7 +4300,7 @@ class res_partner(models.Model):
                 accreditation_qualification_line.append((0, 0, val))
             return {'value':{'qualification_line':accreditation_qualification_line}}
         return {'value':{'qualification_line':[]}}
-    
+
     @api.model
     def create(self, vals):
 #         vals.update({'provider_accreditation_num':self.env['ir.sequence'].get('provider.accreditation') or ''})
@@ -4309,9 +4309,9 @@ class res_partner(models.Model):
             mainlist = []
             user_obj = self.env['res.users']
             group_obj = self.env['res.groups']
-            # Adding User to Groups 
+            # Adding User to Groups
             if provider_data.provider == True:
-                
+
                 group_data = group_obj.search(['|', ('name', '=', 'Portal'), ('name', '=', 'Providers')])
                 for data in group_data:
                     tup1 = (4, data.id)
@@ -4374,22 +4374,22 @@ class res_partner(models.Model):
             country_id = self.country_for_province(province)
             return {'value': {'country_code_physical': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_provider_province_postal(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_code_postal': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_assessrs(self, assessors_id):
         if assessors_id:
-            assessors_obj = self.env['hr.employee'].browse(assessors_id)            
+            assessors_obj = self.env['hr.employee'].browse(assessors_id)
             return {'value':{'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.work_phone}}
         else:
             return {}
-    
+
     @api.multi
     def onchange_moderators(self, moderators_id):
         if moderators_id:
@@ -4397,7 +4397,7 @@ class res_partner(models.Model):
             return {'value':{'mwork_email':moderators_obj.work_email, 'mwork_phone':moderators_obj.work_phone}}
         else:
             return {}
-        
+
     @api.multi
     def onchange_comment(self, comment):
         if comment:
@@ -4411,16 +4411,16 @@ class res_partner(models.Model):
     def unlink(self):
         raise Warning(_("Sorry!! You cannot delete Approved record !"))
         return super(res_partner, self).unlink()
-    
+
     @api.multi
     def copy(self):
         raise Warning(_("Sorry!! You cannot duplicate Approved record !"))
-        return super(res_partner, self).copy()    
+        return super(res_partner, self).copy()
 res_partner()
 
 class partner_user_rel(models.Model):
     _name = 'partner.user.rel'
-    
+
     u_id = fields.Many2one("res.users", 'User')
     update_date = fields.Date(string='Update Date')
     rel_id = fields.Many2one("res.partner", 'Partner')
@@ -4434,21 +4434,21 @@ class etqe_as_provider_rel(models.Model):
     assessors_id = fields.Many2one('hr.employee', ondelete='cascade')
     provider_accreditation_num = fields.Char("Accreditation Number")
     employer_sdl_no = fields.Char("SDL Number")
-    
+
     @api.multi
     def onchange_provider(self, provider_id):
         if provider_id:
-            provider_obj = self.env['res.partner'].search([('is_active_provider','=',True),('id', '=', provider_id), ('provider', '=', True)])  
+            provider_obj = self.env['res.partner'].search([('is_active_provider','=',True),('id', '=', provider_id), ('provider', '=', True)])
             if not provider_obj:
                 raise Warning(_('Please select valid Provider!'))
-            else:           
+            else:
                 return {'value':{'provider_accreditation_num':provider_obj.provider_accreditation_num, 'employer_sdl_no':provider_obj.employer_sdl_no}}
         else:
             return {}
 
 class etqe_mo_provider_rel(models.Model):
     _name = 'etqe.mo.provider.rel'
-    
+
     provider_id = fields.Many2one('res.partner', 'Provider Name', domain=[('provider', '=', True),('is_active_provider','=',True)] , ondelete='restrict')
     moderators_id = fields.Many2one('hr.employee', ondelete='cascade')
     provider_accreditation_num = fields.Char("Accreditation Number")
@@ -4456,17 +4456,17 @@ class etqe_mo_provider_rel(models.Model):
     @api.multi
     def onchange_provider(self, provider_id):
         if provider_id:
-            provider_obj = self.env['res.partner'].search([('is_active_provider','=',True),('id', '=', provider_id), ('provider', '=', True)])  
+            provider_obj = self.env['res.partner'].search([('is_active_provider','=',True),('id', '=', provider_id), ('provider', '=', True)])
             if not provider_obj:
                 raise Warning(_('Please select valid Provider!'))
-            else:           
+            else:
                 return {'value':{'provider_accreditation_num':provider_obj.provider_accreditation_num, 'employer_sdl_no':provider_obj.employer_sdl_no}}
         else:
             return {}
 
 class etqe_assessors_provider_rel(models.Model):
     _name = 'etqe.assessors.provider.rel'
-    
+
     assessors_id = fields.Many2one("hr.employee", 'Assessors', domain=[('is_active_assessor','=',True),('is_assessors', '=', True)] , ondelete='restrict')
     provider_id = fields.Many2one('res.partner', ondelete='cascade')
     awork_phone = fields.Char('Mobile Number', readonly=False, size=10)
@@ -4480,7 +4480,7 @@ class etqe_assessors_provider_rel(models.Model):
     reject_request = fields.Boolean(string="Reject Request", default=False)
     search_by = fields.Selection([('id', 'Identification No'), ('number', 'Assessor ID')], string="Search by")
 
-    
+
     @api.multi
     def onchange_assessrs(self, assessors_id, search_by):
         provider_master_objects = self.env['res.partner'].search([('provider_accreditation_num', '=', self._context.get('provider_accreditation_num'))])
@@ -4488,8 +4488,8 @@ class etqe_assessors_provider_rel(models.Model):
             pro_lst = []
             for pro_obj in provider_master_objects:
                 pro_lst.append(pro_obj.id)
-            provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))]) 
-            if provider_obj:   
+            provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))])
+            if provider_obj:
                 if provider_obj.assessors_ids:
                     for line in provider_obj.assessors_ids:
                         if assessors_id:
@@ -4497,17 +4497,17 @@ class etqe_assessors_provider_rel(models.Model):
                                 raise Warning(_('Assessor already exist,Please enter unique assessor!'))
         if search_by == 'id':
             if assessors_id:
-                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('id', '=', assessors_id), ('is_assessors', '=', True)])  
+                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('id', '=', assessors_id), ('is_assessors', '=', True)])
                 if not assessors_obj:
                     raise Warning(_('Please enter valid Identification Number!'))
                 else:
                     return {'value':{'identification_id':assessors_obj.assessor_moderator_identification_id, 'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.person_cell_phone_number}}
         if search_by == 'number':
             if assessors_id:
-                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('id', '=', assessors_id), ('is_assessors', '=', True)])  
+                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('id', '=', assessors_id), ('is_assessors', '=', True)])
                 if not assessors_obj:
                     raise Warning(_('Please enter valid Assessor Number!'))
-                else:           
+                else:
                     return {'value':{'identification_id':assessors_obj.assessor_seq_no, 'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.person_cell_phone_number}}
         else:
             return {}
@@ -4516,21 +4516,21 @@ class etqe_assessors_provider_rel(models.Model):
     def onchange_identification_id(self, identification_id, search_by):
         if search_by == 'id':
             if identification_id:
-                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('assessor_moderator_identification_id', '=', identification_id)])            
+                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('assessor_moderator_identification_id', '=', identification_id)])
                 if assessors_obj:
                     return {'value':{'assessors_id':assessors_obj.id, 'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.person_cell_phone_number}}
                 else:
                     raise Warning(_("Assessor with identification id %s does not exist in the system")%(identification_id))
         elif search_by == 'number':
             if identification_id:
-                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('assessor_seq_no', '=', identification_id),('is_assessors', '=', True)])            
+                assessors_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('assessor_seq_no', '=', identification_id),('is_assessors', '=', True)])
                 if assessors_obj:
                     return {'value':{'assessors_id':assessors_obj.id, 'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.person_cell_phone_number}}
                 else:
                     raise Warning(_("Assessor with Assessor id %s is not active in the system")%(identification_id))
         else:
-            return {} 
-    
+            return {}
+
     @api.multi
     def action_send_request(self):
         self.write({'status':'waiting_approval', 'request_send':True})
@@ -4541,12 +4541,12 @@ class etqe_assessors_provider_rel(models.Model):
 
     @api.multi
     def action_rejected_request(self):
-        self.write({'status':'rejected', 'reject_request':True})       
+        self.write({'status':'rejected', 'reject_request':True})
 etqe_assessors_provider_rel()
 
 class etqe_moderators_provider_rel(models.Model):
     _name = 'etqe.moderators.provider.rel'
-    
+
     moderators_id = fields.Many2one("hr.employee", 'Moderator', domain=[('is_active_moderator','=',True),('is_moderators', '=', True)], ondelete='restrict')
     provider_id = fields.Many2one('res.partner', ondelete='cascade')
     mwork_phone = fields.Char('Work Phone', readonly=False, size=10)
@@ -4567,8 +4567,8 @@ class etqe_moderators_provider_rel(models.Model):
             pro_lst = []
             for pro_obj in provider_master_objects:
                 pro_lst.append(pro_obj.id)
-            provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))]) 
-            if provider_obj:   
+            provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))])
+            if provider_obj:
                 if provider_obj.moderators_ids:
                     for line in provider_obj.moderators_ids:
                         if moderators_id:
@@ -4578,7 +4578,7 @@ class etqe_moderators_provider_rel(models.Model):
             if moderators_id:
                 moderators_obj = self.env['hr.employee'].search([('is_active_moderator','=',True),('id', '=', moderators_id), ('is_moderators', '=', True)])
                 if not moderators_obj:
-                    raise Warning(_('Please enter valid Identification Number!'))    
+                    raise Warning(_('Please enter valid Identification Number!'))
                 else:
                     return {'value':{'identification_id':moderators_obj.assessor_moderator_identification_id, 'mwork_email':moderators_obj.work_email, 'mwork_phone':moderators_obj.person_cell_phone_number}}
         elif search_by == 'number':
@@ -4626,7 +4626,7 @@ etqe_moderators_provider_rel()
 class provider_qualification(models.Model):
     _name = 'provider.qualification'
     _description = 'Provider Qualification'
-    
+
     @api.model
     def _search(self, args, offset=0, limit=80, order=None, count=False, access_rights_uid=None):
         user = self._uid
@@ -4661,7 +4661,7 @@ class provider_qualification(models.Model):
         args += ['|', ('name', operator, name), ('saqa_qual_id', operator, name)]
         cuur_ids = self.search(args, limit=limit)
         return cuur_ids.name_get()
-    
+
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         """ Override read_group to add Label for boolean field status """
@@ -4707,7 +4707,7 @@ class provider_qualification(models.Model):
     qualification_verify_id = fields.Many2one('learner.assessment.verify.line', string='Qualification')
     qualification_achieve_id = fields.Many2one('learner.assessment.achieve.line', string='Qualification')
     qualification_achieved_id = fields.Many2one('learner.assessment.achieved.line', string='Qualification')
-            
+
     @api.multi
     def onchange_archive(self, is_archive):
         res = {}
@@ -4745,7 +4745,7 @@ provider_qualification()
 
 class project_project(models.Model):
     _inherit = 'project.project'
-    
+
     @api.v7
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = models.Model.fields_view_get(self, cr, uid, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=submenu)
@@ -4760,7 +4760,7 @@ class project_project(models.Model):
                 parent.remove(sheet)
             res['arch'] = etree.tostring(doc)
         return res
-    
+
     qualification_id = fields.Many2one('provider.qualification', string='Qualification')
     qualification_ids = fields.One2many('project.qualification', 'project_id', string="Qualifications")
     @api.multi
@@ -4773,7 +4773,7 @@ class project_project(models.Model):
             provider_vals = [(0, 0, {'provider_id':provider.id}) for provider in list(set(provider_id))]
             res.update({'value':{ 'pro_ids' : provider_vals }})
         return res
-    
+
     @api.multi
     def get_provider(self):
         ''' Getting provider list for selected qualification '''
@@ -4792,7 +4792,7 @@ project_project()
 
 class project_qualification(models.Model):
     _name = 'project.qualification'
-    
+
     qualification_id = fields.Many2one('provider.qualification', string="Qualifications")
     project_id = fields.Many2one('project.project', string="Project")
 project_qualification()
@@ -4813,7 +4813,7 @@ class provider_qualification_line(models.Model):
                 rec_str += record.name
             res.append((record.id, rec_str))
         return res
-    
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -4842,7 +4842,7 @@ class provider_qualification_line(models.Model):
         string='SETA Learning Material', track_visibility='onchange')
     is_provider_approved = fields.Boolean(
         string='PROVIDER Learning Material', track_visibility='onchange')
-    
+
     @api.multi
     @api.onchange('type')
     def onchange_type(self):
@@ -4860,19 +4860,19 @@ class provider_qualification_line(models.Model):
             self.type_key = 6
         elif self.type == 'Exit Level Outcomes':
             self.type_key = 7
-            
+
     @api.multi
     @api.onchange('is_seta_approved')
     def onchange_is_seta_approved(self):
         if self.is_seta_approved:
             self.is_provider_approved = False
-    
+
     @api.multi
     @api.onchange('is_provider_approved')
     def onchange_is_provider_approved(self):
         if self.is_provider_approved:
             self.is_seta_approved = False
-            
+
 provider_qualification_line()
 
 class provider_accreditation_contact(models.Model):
@@ -4895,7 +4895,7 @@ class provider_accreditation_contact(models.Model):
     status = fields.Char(string='Status')
     fax = fields.Char(string='Fax', size=10)
     designation = fields.Char(string='Job Title')
-    
+
     @api.onchange('email')
     def onchange_validate_email(self):
         if self.email:
@@ -4907,8 +4907,8 @@ provider_accreditation_contact()
 class provider_accreditation_campus_contact(models.Model):
     _name = 'provider.accreditation.campus.contact'
     _description = 'Provider Accreditation Campus Contact'
-    
-    
+
+
     provider_accreditation_campus_contact_id = fields.Many2one('provider.accreditation.campus', 'Provider Accreditation Campus', required=True, ondelete='cascade', select=True)
     name = fields.Char(string='Name', required=True)
     street = fields.Char(string='Street')
@@ -4931,7 +4931,7 @@ provider_accreditation_campus_contact()
 class provider_master_campus_contact(models.Model):
     _name = 'provider.master.campus.contact'
     _description = 'Provider Master Campus Contact'
-    
+
     provider_master_campus_contact_id = fields.Many2one('res.partner', 'Provider Master Campus', required=True, ondelete='cascade', select=True)
     name = fields.Char(string='Name', required=True)
     street = fields.Char(string='Street')
@@ -4954,7 +4954,7 @@ provider_accreditation_campus_contact()
 class provider_accreditation_qualification_line(models.Model):
     _name = 'provider.accreditation.qualification.line'
     _description = 'Provider Accreditation Qalification Line'
-    
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -4977,20 +4977,20 @@ class provider_accreditation_qualification_line(models.Model):
     is_provider_approved = fields.Boolean(
         string='PROVIDER Learning Material', track_visibility='onchange')
     line_id = fields.Many2one('provider.accreditation', 'Provider Accreditation Reference', required=True, ondelete='cascade')
-    
+
     @api.depends('is_provider_approved')
     @api.onchange('selection')
     def onchange_selection(self):
         if self.selection and self.is_provider_approved:
             raise Warning('Note that the Electives choosen must have HWSETA approved report!!!')
-        
+
 provider_accreditation_qualification_line()
 
 class accreditation_qualification_campus_lines_line(models.Model):
     _name = 'accreditation.qualification.campus.lines.line'
     _description = 'accreditation qualification campus lines line'
-    _rec_name = 'type' 
-    
+    _rec_name = 'type'
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -5019,7 +5019,7 @@ accreditation_qualification_campus_lines_line()
 class accreditation_qualification_campus_lines(models.Model):
     _name = 'accreditation.qualification.campus.lines'
     _description = 'Accreditation Qualification Campus Lines'
-    
+
     qualification_id = fields.Many2one("provider.qualification", 'Qualification', ondelete='restrict')
     saqa_qual_id = fields.Char(string='ID')
     qualification_line = fields.One2many('accreditation.qualification.campus.lines.line', 'line_id', 'Qualification Lines')
@@ -5093,10 +5093,10 @@ class etqe_assessors_provider_accreditation_campus_rel(models.Model):
                 else:
                     main_qualification_list + "," + str(qualification_obj[1])
         return main_qualification_list
-    
+
     @api.multi
     def onchange_qualification_list(self, qualification_str):
-        '''Applying domain on assessors. Will show only assessors in which selected qualification 
+        '''Applying domain on assessors. Will show only assessors in which selected qualification
         matches.'''
         res = {}
         if qualification_str:
@@ -5123,9 +5123,9 @@ class etqe_assessors_provider_accreditation_campus_rel(models.Model):
     assessor_notification_letter = fields.Many2one('ir.attachment', string="Notification Letter")
     @api.multi
     def onchange_assessrs(self, assessors_id):
-        
+
         if assessors_id:
-            assessors_obj = self.env['hr.employee'].browse(assessors_id)            
+            assessors_obj = self.env['hr.employee'].browse(assessors_id)
             return {'value':{'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.work_phone}}
         else:
             return {}
@@ -5133,7 +5133,7 @@ etqe_assessors_provider_accreditation_campus_rel()
 
 class etqe_moderators_provider_accreditation_campus_rel(models.Model):
     _name = 'etqe.moderators.provider.accreditation.campus.rel'
-     
+
     @api.multi
     def _get_qualification_list(self):
         ''' Getting qualification via context passed in xml.'''
@@ -5147,10 +5147,10 @@ class etqe_moderators_provider_accreditation_campus_rel(models.Model):
                 else:
                     main_qualification_list + "," + str(qualification_obj[1])
         return main_qualification_list
-     
+
     @api.multi
     def onchange_qualification_list(self, qualification_str):
-        '''Applying domain on moderators. Will show only assessors in which selected qualification 
+        '''Applying domain on moderators. Will show only assessors in which selected qualification
         matches.'''
         res = {}
         if qualification_str:
@@ -5173,7 +5173,7 @@ class etqe_moderators_provider_accreditation_campus_rel(models.Model):
     mwork_phone = fields.Char('Work Phone', readonly=False, size=10)
     mwork_email = fields.Char('Work Email', size=240)
     qualification_list = fields.Char('Qualification List', size=1000, default=_get_qualification_list)
-    campus_moderator_sla_document = fields.Many2one('ir.attachment', string="SLA Document")    
+    campus_moderator_sla_document = fields.Many2one('ir.attachment', string="SLA Document")
     moderator_notification_letter = fields.Many2one('ir.attachment', string="Notification Letter")
  
     @api.multi
@@ -5189,7 +5189,7 @@ etqe_moderators_provider_accreditation_campus_rel()
 class skills_programme_unit_standards_accreditation_campus_rel(models.Model):
     _name = 'skills.programme.unit.standards.accreditation.campus.rel'
     _description = 'Skills Programme Unit Standards Accreditation Campus Rel'
-    _rec_name = 'type' 
+    _rec_name = 'type'
     name = fields.Char(string='Name')
     type = fields.Char(string='Type', required=True)
     id_no = fields.Char(string='ID NO')
@@ -5204,7 +5204,7 @@ skills_programme_unit_standards_accreditation_campus_rel()
 class skills_programme_accreditation_campus_rel(models.Model):
     _name = 'skills.programme.accreditation.campus.rel'
     _description = 'Skills Programme Accreditation Campus Rel'
-    
+
     saqa_skill_id = fields.Char(string='SAQA QUAL ID')
     skills_programme_id = fields.Many2one("skills.programme", 'Skills Programme')
     unit_standards_line = fields.One2many('skills.programme.unit.standards.accreditation.campus.rel', 'skills_programme_id', 'Unit Standards')
@@ -5235,19 +5235,19 @@ skills_programme_accreditation_campus_rel()
 class provider_accreditation_campus(models.Model):
     _name = 'provider.accreditation.campus'
     _description = 'Provider Accreditation Campus'
-    
+
     @api.multi
     def country_for_province(self, province):
         state = self.env['res.country.state'].browse(province)
         return state.country_id.id
-    
+
     @api.multi
     def onchange_header_province_code(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_id': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_header_suburb_code(self, suburb):
         res = {}
@@ -5257,7 +5257,7 @@ class provider_accreditation_campus(models.Model):
             sub_res = self.env['res.suburb'].browse(suburb)
             res.update({'value':{'zip':sub_res.postal_code, 'city':sub_res.city_id, 'state_id':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def _get_image(self, name, args):
         return dict((p.id, tools.image_get_resized_images(p.image)) for p in self)
@@ -5277,13 +5277,13 @@ class provider_accreditation_campus(models.Model):
         if context is None:
             context = {}
         res = super(provider_accreditation_campus, self).default_get(fields)
-        
+
         qualification_obj_ids = context.get('default_qualification_id', False)
         skills_obj_ids = context.get('default_skills_id', False)
         learning_programme_obj_ids = context.get('default_learning_programme_id', False)
         assessors_obj_ids = context.get('default_assessors_ids', False)
         moderators_obj_ids = context.get('default_moderators_ids', False)
-        
+
         q_vals_line, s_vals_line,lp_vals_line, a_vals_line, m_vals_line = [], [], [], [], []
         if qualification_obj_ids:
             for qualification_obj in qualification_obj_ids:
@@ -5314,10 +5314,10 @@ class provider_accreditation_campus(models.Model):
                             'assessor_sla_document':qualification.assessor_sla_document.id,
                             'moderator_sla_document':qualification.moderator_sla_document.id,
                             }
-                q_vals_line.append((0, 0, q_vals))   
-        
+                q_vals_line.append((0, 0, q_vals))
+
                 res.update(qualification_ids=q_vals_line)
-                
+
         if skills_obj_ids:
             for skills_obj in skills_obj_ids:
                 skills = self.env['skills.programme.accreditation.rel'].browse(skills_obj[1])
@@ -5341,8 +5341,8 @@ class provider_accreditation_campus(models.Model):
                             'unit_standards_line':skills_line,
                             'saqa_skill_id':skills.saqa_skill_id,
                             }
-                s_vals_line.append((0, 0, skills_vals))   
-        
+                s_vals_line.append((0, 0, skills_vals))
+
                 res.update(skills_programme_ids=s_vals_line)
 
         if learning_programme_obj_ids:
@@ -5370,7 +5370,7 @@ class provider_accreditation_campus(models.Model):
                             'unit_standards_line':lp_line,
                             'saqa_qual_id':lp.saqa_qual_id,
                             }
-                lp_vals_line.append((0, 0, lp_vals))   
+                lp_vals_line.append((0, 0, lp_vals))
                 res.update(learning_programme_ids=lp_vals_line)
         if assessors_obj_ids:
             for assessors_obj in assessors_obj_ids:
@@ -5382,9 +5382,9 @@ class provider_accreditation_campus(models.Model):
                             'campus_assessor_sla_document':assessor.assessor_sla_document.id,
                             'assessor_notification_letter':assessor.assessor_notification_letter.id,
                             }
-                a_vals_line.append((0, 0, assessor_vals))   
-        
-                res.update(assessors_ids=a_vals_line)            
+                a_vals_line.append((0, 0, assessor_vals))
+
+                res.update(assessors_ids=a_vals_line)
 
         if moderators_obj_ids:
             for moderators_obj in moderators_obj_ids:
@@ -5396,10 +5396,10 @@ class provider_accreditation_campus(models.Model):
                             'campus_moderator_sla_document':moderator.moderator_sla_document.id,
                             'moderator_notification_letter':moderator.moderator_notification_letter.id,
                             }
-                m_vals_line.append((0, 0, moderator_vals))   
-                res.update(moderators_ids=m_vals_line)            
+                m_vals_line.append((0, 0, moderator_vals))
+                res.update(moderators_ids=m_vals_line)
         return res
-    
+
     provider_accreditation_campus_id = fields.Many2one('provider.accreditation', 'Provider Accreditation', required=True, ondelete='cascade', select=True)
     name = fields.Char(string='Name', required=True)
     street = fields.Char(string='Street')
@@ -5453,7 +5453,7 @@ class provider_accreditation_campus(models.Model):
                          "resized as a 64x64px image, with aspect ratio preserved. "\
                          "Use this field anywhere a small image is required."),
                 'has_image': fields2.function(_has_image, type="boolean"),
-            
+
                     }
     @api.multi
     def action_approved_button(self):
@@ -5462,7 +5462,7 @@ class provider_accreditation_campus(models.Model):
             context = {}
         self = self.with_context(approved=True)
         self.write({'state':'approved', 'campus_evaluat':True})
-        
+
     @api.multi
     def action_reject_button(self):
         context = self._context
@@ -5476,8 +5476,8 @@ provider_accreditation_campus()
 class accreditation_qualification_line(models.Model):
     _name = 'accreditation.qualification.line'
     _description = 'accreditation qualification line'
-    _rec_name = 'type' 
-    
+    _rec_name = 'type'
+
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type')
     type = fields.Selection([
@@ -5500,7 +5500,7 @@ class accreditation_qualification_line(models.Model):
         string='SETA Learning Material', track_visibility='onchange')
     is_provider_approved = fields.Boolean(
         string='PROVIDER Learning Material', track_visibility='onchange')
-    
+
     @api.depends('is_provider_approved')
     @api.onchange('selection')
     def onchange_selection(self):
@@ -5513,7 +5513,7 @@ class accreditation_qualification(models.Model):
     _name = 'accreditation.qualification'
     _inherit = 'mail.thread'
     _description = 'Accreditation  Qualification'
-    
+
     qualification_id = fields.Many2one("provider.qualification", 'NAME', ondelete='restrict', track_visibility="always")
     saqa_qual_id = fields.Char(string='ID')
     originator = fields.Char(string='ORIGINATOR')
@@ -5529,7 +5529,7 @@ class accreditation_qualification(models.Model):
     moderator_sla_document = fields.Many2one('ir.attachment', string="Moderator SLA Document")
     assessor_no = fields.Char(string="Assessor ID")
     moderator_no = fields.Char(string="Moderator ID")
-    
+
     @api.onchange('assessor_sla_document','assessors_id',)
     def onchange_assessors_id(self):
         provider_accreditation_id = self._context.get('provider_acc_id')
@@ -5540,8 +5540,8 @@ class accreditation_qualification(models.Model):
             if self.assessor_sla_document and self.assessor_sla_document:
                 provider_acc_record.onchange_assessors_by_onchange(self.assessors_id,self.assessor_sla_document)
         return {'value':{'assessors_id':self.assessors_id.id}}
-            
-    
+
+
     @api.depends('qualification_id')
     @api.onchange('assessor_no')
     def onchange_assessor_no(self):
@@ -5561,8 +5561,8 @@ class accreditation_qualification(models.Model):
                 else:
                     self.assessor_no = ''
                     return {'warning':{'title':'Invalid Assessor','message':'This Assessor is not Linked with selected Qualifications!!'}}
-        
-    
+
+
     @api.depends('qualification_id')
     @api.onchange('moderator_no')
     def onchange_moderator_no(self):
@@ -5582,26 +5582,26 @@ class accreditation_qualification(models.Model):
                 else:
                     self.moderator_no = ''
                     return {'value':{'moderators_no':''}, 'warning':{'title':'Invalid Moderator','message':'This Moderator is not Linked with selected Qualifications!!!'}}
-    
+
     @api.onchange('assessors_id')
     def onchange_assessors_id(self):
         if self.assessors_id:
             assessor_id = self.env['hr.employee'].search([('id', '=', self.assessors_id.id)])
             if assessor_id:
                 self.assessor_no = assessor_id.assessor_seq_no
-    
+
     @api.onchange('moderators_id')
     def onchange_moderators_id(self):
         if self.moderators_id:
             moderator_id = self.env['hr.employee'].search([('id', '=', self.moderators_id.id)])
             if moderator_id:
                 self.moderator_no = moderator_id.moderator_seq_no
-                            
+
     @api.model
     def create(self, vals):
         res = super(accreditation_qualification, self).create(vals)
         return res
-    
+
     @api.one
     @api.depends('qualification_line.selection')
     def _cal_limit(self):
@@ -5612,7 +5612,7 @@ class accreditation_qualification(models.Model):
                     if unit_line.level3 != 'None':
                         total_credit_point += int(unit_line.level3)
         self.total_credits = total_credit_point
-    
+
     @api.multi
     def onchange_qualification(self, qualification_id):
         accreditation_qualification_line, core_lst, fundamental_lst, elective_lst, other_lst = [], [], [], [], []
@@ -5620,9 +5620,9 @@ class accreditation_qualification(models.Model):
         provider_obj = self.env['res.partner']
         qual_list, asse_list, mode_list = [], [], []
         if qualification_obj:
-            for q in qualification_obj:  
+            for q in qualification_obj:
                 qual_list.append(q.id)
-        '''Code to avoid those qualifications which are already exist in provider master in extension of scope provider process'''     
+        '''Code to avoid those qualifications which are already exist in provider master in extension of scope provider process'''
         if (self._context.get('extension_of_scope') == True or self._context.get('existing_provider') == True) and not self._context.get('provider_master_id_number'):
             return {'warning':{'title':'Warning','message':'Please Enter Accreditation Number to fetch existing Provider details!!'}}
         if (self._context.get('extension_of_scope') == True or self._context.get('existing_provider') == True) and self._context.get('provider_master_id_number'):
@@ -5631,7 +5631,7 @@ class accreditation_qualification(models.Model):
                 pro_lst = []
                 for pro_obj in provider_master_objects:
                     pro_lst.append(pro_obj.id)
-                provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))]) 
+                provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))])
                 if provider_obj:
                     if provider_obj.qualification_ids:
                         for master_qual in provider_obj.qualification_ids:
@@ -5720,7 +5720,7 @@ class accreditation_qualification(models.Model):
                             mode_list.append(mod_id.id)
             return {'domain':{'assessors_id':[('id', 'in', asse_list)], 'moderators_id':[('id', 'in', mode_list)]}, 'value':{'qualification_line':accreditation_qualification_line, 'saqa_qual_id':qualification_obj.saqa_qual_id, 'originator':qualification_obj.originator}}
         return {'domain':{'qualification_id':[('id', 'in', qual_list)],'assessors_id':[('id', 'in', asse_list)],'moderators_id':[('id', 'in', mode_list)]}}
-    
+
 accreditation_qualification()
 
 class etqe_assessors_provider_accreditation_rel(models.Model):
@@ -5739,10 +5739,10 @@ class etqe_assessors_provider_accreditation_rel(models.Model):
                 else:
                     main_qualification_list + "," + str(qualification_obj[1])
         return main_qualification_list
-    
+
     @api.multi
     def onchange_qualification_list(self, qualification_str):
-        '''Applying domain on assessors. Will show only assessors in which selected qualification 
+        '''Applying domain on assessors. Will show only assessors in which selected qualification
         matches.'''
         res = {}
         if qualification_str:
@@ -5771,9 +5771,9 @@ class etqe_assessors_provider_accreditation_rel(models.Model):
 
     @api.multi
     def onchange_assessrs(self, assessors_id):
-        
+
         if assessors_id:
-            assessors_obj = self.env['hr.employee'].browse(assessors_id)            
+            assessors_obj = self.env['hr.employee'].browse(assessors_id)
             return {'value':{'awork_email':assessors_obj.work_email, 'awork_phone':assessors_obj.work_phone, 'assessor_no':assessors_obj.assessor_seq_no}}
         else:
             return {}
@@ -5781,7 +5781,7 @@ etqe_assessors_provider_accreditation_rel()
 
 class etqe_moderators_provider_accreditation_rel(models.Model):
     _name = 'etqe.moderators.provider.accreditation.rel'
-    
+
     @api.multi
     def _get_qualification_list(self):
         ''' Getting qualification via context passed in xml.'''
@@ -5795,10 +5795,10 @@ class etqe_moderators_provider_accreditation_rel(models.Model):
                 else:
                     main_qualification_list + "," + str(qualification_obj[1])
         return main_qualification_list
-    
+
     @api.multi
     def onchange_qualification_list(self, qualification_str):
-        '''Applying domain on moderators. Will show only assessors in which selected qualification 
+        '''Applying domain on moderators. Will show only assessors in which selected qualification
         matches.'''
         res = {}
         if qualification_str:
@@ -5824,7 +5824,7 @@ class etqe_moderators_provider_accreditation_rel(models.Model):
     qualification_list = fields.Char('Qualification List', size=1000, default=_get_qualification_list)
     moderator_sla_document = fields.Many2one('ir.attachment', string="SLA Document")
     moderator_notification_letter = fields.Many2one('ir.attachment', string="Notifcation Letter")
-    
+
     @api.multi
     def onchange_moderators(self, moderators_id):
 
@@ -5838,7 +5838,7 @@ etqe_moderators_provider_accreditation_rel()
 class skills_programme_unit_standards_accreditation_rel(models.Model):
     _name = 'skills.programme.unit.standards.accreditation.rel'
     _description = 'Skills Programme Unit Standards Accreditation Rel'
-    _rec_name = 'type' 
+    _rec_name = 'type'
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type', required=True)
     type = fields.Selection([
@@ -5863,7 +5863,7 @@ class skills_programme_accreditation_rel(models.Model):
     _name = 'skills.programme.accreditation.rel'
     _inherit = 'mail.thread'
     _description = 'Skills Programme Accreditation Rel'
-    
+
     saqa_skill_id = fields.Char(string='SAQA QUAL ID')
     skills_programme_id = fields.Many2one("skills.programme", 'NAME', track_visibility="always")
     qualification_id = fields.Many2one("provider.qualification", 'QUALIFICATION', ondelete='restrict')
@@ -5879,7 +5879,7 @@ class skills_programme_accreditation_rel(models.Model):
     moderator_sla_document = fields.Many2one('ir.attachment', string="Moderator SLA Document")
     assessor_no = fields.Char(string="Assessor ID")
     moderator_no = fields.Char(string="Moderator ID")
-    
+
     @api.depends('skills_programme_id')
     @api.onchange('assessor_no')
     def onchange_assessor_no(self):
@@ -5900,8 +5900,8 @@ class skills_programme_accreditation_rel(models.Model):
                 else:
                     self.assessor_no = ''
                     return {'warning':{'title':'Invalid Assessor','message':'This Assessor is not Linked with selected Skills Programme!!'}}
-        
-    
+
+
     @api.depends('skills_programme_id')
     @api.onchange('moderator_no')
     def onchange_moderator_no(self):
@@ -5921,21 +5921,21 @@ class skills_programme_accreditation_rel(models.Model):
                 else:
                     self.moderator_no = ''
                     return {'value':{'moderators_no':''}, 'warning':{'title':'Invalid Moderator','message':'This Moderator is not Linked with selected Skills Programme!!!'}}
-    
+
     @api.onchange('assessors_id')
     def onchange_assessors_id(self):
         if self.assessors_id:
             assessor_id = self.env['hr.employee'].search([('id', '=', self.assessors_id.id)])
             if assessor_id:
                 self.assessor_no = assessor_id.assessor_seq_no
-    
+
     @api.onchange('moderators_id')
     def onchange_moderators_id(self):
         if self.moderators_id:
             moderator_id = self.env['hr.employee'].search([('id', '=', self.moderators_id.id)])
             if moderator_id:
                 self.moderator_no = moderator_id.moderator_seq_no
-                
+
     @api.one
     @api.depends('unit_standards_line.selection')
     def _cal_limit(self):
@@ -5945,8 +5945,8 @@ class skills_programme_accreditation_rel(models.Model):
                 if unit_line.selection:
                     if unit_line.level3:
                         total_credit_point += int(unit_line.level3)
-        self.total_credits = total_credit_point    
-    
+        self.total_credits = total_credit_point
+
     @api.multi
     def onchange_skills_programme(self, skills_programme_id):
         unit_standards = []
@@ -5954,9 +5954,9 @@ class skills_programme_accreditation_rel(models.Model):
         provider_obj = self.env['res.partner']
         skills_list, asse_list, mode_list = [], [], []
         if skills_obj:
-            for s in skills_obj:  
+            for s in skills_obj:
                 skills_list.append(s.id)
-        '''Code to avoid those skills which are already exist in provider master in extension of scope provider process'''     
+        '''Code to avoid those skills which are already exist in provider master in extension of scope provider process'''
         if (self._context.get('extension_of_scope') == True or self._context.get('existing_provider') == True) and not self._context.get('provider_master_id_number'):
             return {'warning':{'title':'Warning','message':'Please Enter Accreditation Number to fetch existing Provider details!!'}}
         if (self._context.get('extension_of_scope') == True or self._context.get('existing_provider') == True) and self._context.get('provider_master_id_number'):
@@ -5965,7 +5965,7 @@ class skills_programme_accreditation_rel(models.Model):
                 pro_lst = []
                 for pro_obj in provider_master_objects:
                     pro_lst.append(pro_obj.id)
-                provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))]) 
+                provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))])
                 if provider_obj:
                     if provider_obj.skills_programme_ids:
                         for master_skills in provider_obj.skills_programme_ids:
@@ -5997,7 +5997,7 @@ class skills_programme_accreditation_rel(models.Model):
                     if pro_moderator.status == 'approved':
                         mod_list.append(pro_moderator.moderators_id.id)
             if ass_list:
-                print 
+                print
                 assessor_ids = self.env['hr.employee'].search([('id', 'in', ass_list)])
                 for ass_id in assessor_ids:
                     for qualification_data in ass_id.qualification_ids:
@@ -6018,7 +6018,7 @@ skills_programme_accreditation_rel()
 class skills_programme_unit_standards_learner_rel(models.Model):
     _name = 'skills.programme.unit.standards.learner.rel'
     _description = 'Skills Programme Unit Standards Learner Rel'
-    _rec_name = 'type' 
+    _rec_name = 'type'
     name = fields.Char(string='Name')
 #     type = fields.Char(string='Type', required=True)
     type = fields.Selection([
@@ -6043,7 +6043,7 @@ skills_programme_unit_standards_learner_rel()
 class skills_programme_learner_rel(models.Model):
     _name = 'skills.programme.learner.rel'
     _description = 'Skills Programme Learner Rel'
-    
+
     saqa_skill_id = fields.Char(string='SAQA QUAL ID')
     skills_programme_id = fields.Many2one("skills.programme", 'Skills Programme', required=True)
     unit_standards_line = fields.One2many('skills.programme.unit.standards.learner.rel', 'skills_programme_id', 'Unit Standards')
@@ -6055,7 +6055,7 @@ class skills_programme_learner_rel(models.Model):
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_active_assessor','=',True),('is_assessors', '=', True)])
     assessor_date = fields.Date("Assessor Date")
     moderators_id = fields.Many2one("hr.employee", string='Moderators', domain=[('is_active_moderator','=',True),('is_moderators', '=', True)])
-    moderator_date = fields.Date("Moderator Date")    
+    moderator_date = fields.Date("Moderator Date")
     minimum_credits = fields.Integer(related="skills_programme_id.total_credit", string="Minimum Credits")
     total_credits = fields.Integer(compute="_cal_limit" , string="Total Credits", store=True)
     #recently added fields
@@ -6067,7 +6067,7 @@ class skills_programme_learner_rel(models.Model):
     certificate_no = fields.Char("Certificate No.")
     certificate_date = fields.Date("Certificate Date")
     skill_status = fields.Char("Status")
-    
+
     @api.model
     def default_get(self, fields):
         context = self._context
@@ -6075,7 +6075,7 @@ class skills_programme_learner_rel(models.Model):
             context = {}
         res = super(skills_programme_learner_rel, self).default_get(fields)
         return res
-    
+
     @api.one
     @api.depends('unit_standards_line.selection')
     def _cal_limit(self):
@@ -6086,7 +6086,7 @@ class skills_programme_learner_rel(models.Model):
                     if unit_line.level3:
                         total_credit_point += int(unit_line.level3)
         self.total_credits = total_credit_point
-    
+
     @api.multi
     def onchange_skills_programme(self, skills_programme_id):
         user = self._uid
@@ -6116,12 +6116,12 @@ class skills_programme_learner_rel(models.Model):
                 for obj in batch_obj:
                     batch_lst.append(obj.id)
          # Commented following code Giving problem when we fetch non-SA learners because context is passed based on identification id
-        '''Code to avoid those skills programme which are already exist in learner master in extension of scope learner process'''     
+        '''Code to avoid those skills programme which are already exist in learner master in extension of scope learner process'''
 #         if self._context.get('existing_learner') == True and not self._context.get('learner_master_id_number'):
 #             return {'warning':{'title':'Warning','message':'Please Enter Identification Number to fetch existing learner details!!'}}
         if self._context.get('existing_learner') == True and self._context.get('learner_master_id_number'):
             learner_master_object = self.env['hr.employee'].search([('learner_identification_id', '=', self._context.get('learner_master_id_number'))])
-            if learner_master_object: 
+            if learner_master_object:
                 learner_master_skills_obj = self.env['skills.programme.learner.rel'].search([('skills_programme_learner_rel_ids', '=',learner_master_object.id)])
                 if learner_master_skills_obj:
                     for master_skill in learner_master_skills_obj:
@@ -6164,7 +6164,7 @@ class skills_programme_learner_rel(models.Model):
             assessor_brw_id = self.env['hr.employee'].search([('id', '=', assessors_id)])
             res.update({'value':{'assessor_date':assessor_brw_id.end_date}})
         return res
-    
+
     @api.multi
     def onchange_moderators_id(self, moderators_id):
         res = {}
@@ -6194,7 +6194,7 @@ skills_programme_learner_rel()
 
 class acc_multi_doc_upload(models.Model):
     _name = 'acc.multi.doc.upload'
-    
+
     pro_acc_id = fields.Many2one('provider.accreditation', string='Related Accreditation')
     pro_assessement_id = fields.Many2one('provider.assessment', string='Related Assessment')
     learner_reg_id = fields.Many2one('learner.registration', string='Related Learner Registration')
@@ -6202,14 +6202,14 @@ class acc_multi_doc_upload(models.Model):
     acc_id = fields.Many2one('res.partner', string="Accreditation")
     name = fields.Char(string='Name Of Doc')
     doc_file = fields.Many2one('ir.attachment', string='Document')
-    
+
     @api.multi
     def onchange_file(self, doc_file):
         res = {}
         if not doc_file :
             return res
         attachment_data = self.env['ir.attachment'].browse(doc_file)
-        values = attachment_data.name 
+        values = attachment_data.name
         res_val = {
               'name' : values,
               }
@@ -6219,19 +6219,19 @@ acc_multi_doc_upload()
 
 class site_visit_upload(models.Model):
     _name = 'site.visit.upload'
-    
+
     pro_acc_id = fields.Many2one('provider.accreditation', string='Related Accreditation')
     acc_id = fields.Many2one('res.partner', string='Accreditation')
     name = fields.Char(string='Name Of Doc')
     doc_file = fields.Many2one('ir.attachment', string='Document')
-    
+
     @api.multi
     def onchange_file(self, doc_file):
         res = {}
         if not doc_file :
             return res
         attachment_data = self.env['ir.attachment'].browse(doc_file)
-        values = attachment_data.name 
+        values = attachment_data.name
         res_val = {
               'name' : values,
               }
@@ -6296,8 +6296,8 @@ class provider_accreditation(models.Model):
             partner_data = self.env['res.users'].browse(user).partner_id
             args.append(('related_provider', '=', partner_data.id))
             return super(provider_accreditation, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
-        
-            
+
+
     @api.multi
     def open_map_addr(self, street, city, state, country, zip):
         url = "http://maps.google.com/maps?oi=map&q="
@@ -6356,16 +6356,16 @@ class provider_accreditation(models.Model):
     @api.multi
     def _has_image(self, name, args):
         return dict((p.id, bool(p.image)) for p in self)
-    
+
     @api.multi
     def header_addr_map(self):
-        return self.open_map_addr(self.street, self.city, self.state_id, self.country_id, self.zip)    
+        return self.open_map_addr(self.street, self.city, self.state_id, self.country_id, self.zip)
  
-    
+
     @api.multi
     def physical_addr_map(self):
-        return self.open_map_addr(self.txtPhysicalAddressLine1, self.city_physical, self.province_code_physical, self.country_code_physical, self.zip_physical)    
-    
+        return self.open_map_addr(self.txtPhysicalAddressLine1, self.city_physical, self.province_code_physical, self.country_code_physical, self.zip_physical)
+
     @api.multi
     def postal_addr_map(self):
         return self.open_map_addr(self.txtPostalAddressLine1, self.city_postal, self.province_code_postal, self.country_code_postal, self.zip_postal)
@@ -6374,7 +6374,7 @@ class provider_accreditation(models.Model):
     def country_for_province(self, province):
         state = self.env['res.country.state'].browse(province)
         return state.country_id.id
-    
+
     @api.multi
     def onchange_header_province_code(self, province):
         if province:
@@ -6399,11 +6399,11 @@ class provider_accreditation(models.Model):
                    'ass_provider_id':self.id,
                     'assessor_sla_document':assessor_sla_document.id,
                 })
-            
+
         if 'assessors_id' in vals and vals['assessors_id']:
             ids_new = self.env['etqe.assessors.provider.accreditation.rel'].create(vals)
         return ids_new
-        
+
     @api.multi
     def onchange_qualification_ids(self, qualification_ids):
         vals, lst, m_lst = {}, [], []
@@ -6457,9 +6457,9 @@ class provider_accreditation(models.Model):
                                 m_lst.append((0, 0, val))
                     vals.update({'moderators_ids':m_lst})
         except:
-            pass           
-        return {'value':vals}        
-             
+            pass
+        return {'value':vals}
+
     @api.multi
     def onchange_skills_programme_ids(self, skills_programme_ids):
         vals, lst, m_lst = {}, [], []
@@ -6510,8 +6510,8 @@ class provider_accreditation(models.Model):
                                 m_lst.append((0, 0, val))
                     vals.update({'moderators_ids':m_lst})
         except:
-            pass           
-        return {'value':vals}        
+            pass
+        return {'value':vals}
 
     @api.multi
     def onchange_learning_programme_ids(self, learning_programme_ids):
@@ -6563,23 +6563,23 @@ class provider_accreditation(models.Model):
                                 m_lst.append((0, 0, val))
                     vals.update({'moderators_ids':m_lst})
         except:
-            pass           
-        return {'value':vals}        
-             
+            pass
+        return {'value':vals}
+
     @api.multi
     def onchange_provider_province_code(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_code_physical': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_provider_province_postal(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_code_postal': country_id }}
         return {}
-    
+
     is_extension_of_scope = fields.Boolean("Extension of Scope", default=False)
     is_existing_provider = fields.Boolean("Re - Accreditation", default=False)
     accreditation_number = fields.Char("Accreditation Number")
@@ -6629,7 +6629,7 @@ class provider_accreditation(models.Model):
                          "resized as a 64x64px image, with aspect ratio preserved. "\
                          "Use this field anywhere a small image is required."),
                 'has_image': fields2.function(_has_image, type="boolean"),
-            
+
                     }
     state = fields.Selection([
             ('general_details', 'General Details'),
@@ -6656,7 +6656,7 @@ class provider_accreditation(models.Model):
     evaluate = fields.Boolean(string='Evaluate')
     recommended1 = fields.Boolean(string='Recommended1')
     validate = fields.Boolean(string='Validate')
-    recommended2 = fields.Boolean(string='Recommended2')   
+    recommended2 = fields.Boolean(string='Recommended2')
     qualification_id = fields.Many2one("provider.qualification", string='Qualification', track_visibility='onchange', ondelete='restrict')
     provider_accreditation_campus_ids = fields.One2many('provider.accreditation.campus', 'provider_accreditation_campus_id', string='Provider Accreditation Campus', track_visibility='onchange')
     provider_accreditation_contact_ids = fields.One2many('provider.accreditation.contact', 'provider_accreditation_contact_id', string='Provider Accreditation Campus', track_visibility='onchange')
@@ -6685,7 +6685,7 @@ class provider_accreditation(models.Model):
     cboTHETAChamberSelect = fields.Many2one("hwseta.chamber.master", string='HWSETA Chamber', track_visibility='onchange', ondelete='restrict')
     cboProviderFocus = fields.Many2one("hwseta.provider.focus.master", string='Provider Focus', track_visibility='onchange', ondelete='restrict')
     txtNumYearsCurrentBusiness = fields.Selection([
-           ('0', '0'),                                                   
+           ('0', '0'),
            ('1', '1'),
            ('2', '2'),
            ('3', '3'),
@@ -6780,7 +6780,7 @@ class provider_accreditation(models.Model):
     quality_management_system_bool = fields.Boolean(string='Verify')
     skills_programme_ids = fields.One2many('skills.programme.accreditation.rel', 'skills_programme_accreditation_rel_id', 'Skills Programme Lines')
     learning_programme_ids = fields.One2many('learning.programme.accreditation.rel', 'learning_programme_accreditation_rel_id', 'Learning Programme Lines')
-    
+
     accreditation_state = fields.Selection([
            ('draft', 'Draft'),
            ('submit', 'Submit'),
@@ -6792,17 +6792,17 @@ class provider_accreditation(models.Model):
     final_state = fields.Char("Status")
     provider_approval_date = fields.Date(string='Provider Approval Date')
     provider_register_date = fields.Date(string='Provider Accreditation Date')
-    provider_expiry_date = fields.Date(string='Provider Accreditation Date')   
+    provider_expiry_date = fields.Date(string='Provider Accreditation Date')
     _sql_constraints = [('txtVATRegNo_uniq', 'unique(txtVATRegNo)',
             'VAT Registration Number must be unique!'), ]
-    
+
     @api.multi
     def onchange_is_existing_provider(self, is_existing_provider):
         res = {}
         if is_existing_provider:
             res.update({'value':{ 'is_extension_of_scope' : False, 'accreditation_number':self.env['res.users'].browse(self._uid).partner_id.provider_accreditation_num}})
         return res
-    
+
     @api.multi
     def onchange_is_extension_of_scope(self, is_extension_of_scope):
         res = {}
@@ -7293,7 +7293,7 @@ class provider_accreditation(models.Model):
         if sic_code_data:
             res.update({'value':{ 'cboOrgSICCode' : sic_code_data[0].code }})
         return res
-     
+
     @api.multi
     def onchange_sic_code(self,cboOrgSICCode):
         res = {}
@@ -7305,7 +7305,7 @@ class provider_accreditation(models.Model):
         else:
             return {'value':{'cboOrgSICCode':''},'warning':{'title':'Invalid SIC Code','message':'Please enter valid SIC Code!'}}
         return res
-        
+
     @api.multi
     def onchange_provider_postal_suburb(self, person_postal_suburb):
         res = {}
@@ -7315,7 +7315,7 @@ class provider_accreditation(models.Model):
             sub_res = self.env['res.suburb'].browse(person_postal_suburb)
             res.update({'value':{'zip_postal':sub_res.postal_code, 'city_postal':sub_res.city_id, 'province_code_postal':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def onchange_provider_physical_suburb(self, provider_physical_suburb):
         res = {}
@@ -7325,7 +7325,7 @@ class provider_accreditation(models.Model):
             sub_res = self.env['res.suburb'].browse(provider_physical_suburb)
             res.update({'value':{'zip_physical':sub_res.postal_code, 'city_physical':sub_res.city_id, 'province_code_physical':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def onchange_provider_suburb(self, provider_suburb):
         res = {}
@@ -7346,7 +7346,7 @@ class provider_accreditation(models.Model):
                     ass_list.append(str(assessor.assessors_id.user_id.partner_id.id))
             print "ass_list====", ass_list
             return str(ass_list).replace('[', '').replace(']', '').replace("'",'')
-    
+
     @api.multi
     def get_mod_partner_ids(self, user_ids):
         '''Used to get Moderators Related partner'''
@@ -7357,7 +7357,7 @@ class provider_accreditation(models.Model):
                     mod_list.append(str(moderator.moderators_id.user_id.partner_id.id))
             print "mod_list=====", mod_list
             return str(mod_list).replace('[', '').replace(']', '').replace("'",'')
-    
+
     @api.model
     def create(self, vals):
         context = self._context
@@ -7402,7 +7402,7 @@ class provider_accreditation(models.Model):
         if not self.is_extension_of_scope:
             if not self.tax_clearance or not self.director_cv or not self.certified_copies_of_qualifications or not self.lease_agreement_document or not self.company_profile_and_organogram or not self.quality_management_system:
                 raise Warning('Please add all mandatory documents from Business Information')
-    
+
             if self.material == 'own_material':
                 if not self.provider_learning_material:
                     raise Warning('Please add all mandatory documents from Business Information')
@@ -7476,11 +7476,11 @@ class provider_accreditation(models.Model):
         if self.moderators_ids:
             mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_accreditation_submit_mod_linking')
             if mail_template_id:
-                self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)    
+                self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_accreditation_submit')
         if mail_template_id:
             self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
-        
+
         self.write({'provider_accreditation_status_ids':[(0, 0, {'pa_name':self.env['res.users'].browse(self._uid).name, 'pa_date':datetime.now(), 'pa_status':'Submitted', 'pa_updation_date':self.write_date, 'pa_comment':self.comment_box})]})
         self.write({'comment_box':''})
         return True
@@ -7528,9 +7528,9 @@ class provider_accreditation(models.Model):
         if(self.skills_programme_registration_letter.id != False and self.skills_programme_registration_letter_bool == False):
             raise Warning(_("Please check Skills Programme Registration letter before Evaluate"))
         if(self.company_profile_and_organogram.id != False and self.company_profile_and_organogram_bool == False):
-            raise Warning(_("Please check Company Profile  and organogram before Evaluate"))        
+            raise Warning(_("Please check Company Profile  and organogram before Evaluate"))
         if(self.quality_management_system.id != False and self.quality_management_system_bool == False):
-            raise Warning(_("Please check Quality Management System before Evaluate"))        
+            raise Warning(_("Please check Quality Management System before Evaluate"))
 
         ir_model_data_obj = self.env['ir.model.data']
         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_accreditation_verify')
@@ -7547,7 +7547,7 @@ class provider_accreditation(models.Model):
         if context is None:
             context = {}
         if not self.comment_box:
-            raise Warning(_("Please enter status comment"))            
+            raise Warning(_("Please enter status comment"))
         self = self.with_context(evaluate=True)
         self.write({'state':'recommended1', 'evaluate':True, 'final_state':'Recommended'})
         '''Below 4 lines of mail template has been commented as per client request on 23rd Nov.17'''
@@ -7565,10 +7565,10 @@ class provider_accreditation(models.Model):
         if context is None:
             context = {}
         if not self.comment_box:
-            raise Warning(_("Please enter status comment"))            
+            raise Warning(_("Please enter status comment"))
         self = self.with_context(recommended1=True)
         self.write({'state':'validated', 'recommended1':True, 'final_state':'Validated'})
-        
+
         '''Below 4 lines of mail template has been commented as per client request on 23rd Nov.17'''
 #         ir_model_data_obj = self.env['ir.model.data']
 #         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_accreditation_evaluated')
@@ -7577,17 +7577,17 @@ class provider_accreditation(models.Model):
         self.write({'provider_accreditation_status_ids':[(0, 0, {'pa_name':self.env['res.users'].browse(self._uid).name, 'pa_date':datetime.now(), 'pa_status':'Validated', 'pa_updation_date':self.write_date, 'pa_comment':self.comment_box})]})
         self.write({'comment_box':''})
         return True
-    
+
     @api.multi
     def action_validate_button(self):
         context = self._context
         if context is None:
             context = {}
         if not self.comment_box:
-            raise Warning(_("Please enter status comment"))            
+            raise Warning(_("Please enter status comment"))
         self = self.with_context(validate=True)
         self.write({'state':'recommended2', 'validate':True, 'final_state':'Recommended2'})
-        '''Below 4 lines of mail template has been commented as per client request on 23rd Nov.17'''        
+        '''Below 4 lines of mail template has been commented as per client request on 23rd Nov.17'''
 #         ir_model_data_obj = self.env['ir.model.data']
 #         mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_accreditation_evaluated')
 #         if mail_template_id:
@@ -7595,14 +7595,14 @@ class provider_accreditation(models.Model):
         self.write({'provider_accreditation_status_ids':[(0, 0, {'pa_name':self.env['res.users'].browse(self._uid).name, 'pa_date':datetime.now(), 'pa_status':'Recommended', 'pa_updation_date':self.write_date, 'pa_comment':self.comment_box})]})
         self.write({'comment_box':''})
         return True
-    
+
     @api.multi
     def action_denied_button(self):
         context = self._context
         if context is None:
             context = {}
         if not self.comment_box:
-            raise Warning(_("Please enter status comment"))            
+            raise Warning(_("Please enter status comment"))
         self = self.with_context(submit=True)
         self.write({'state':'denied', 'denied':True, 'final_state':'Rejected'})
         ir_model_data_obj = self.env['ir.model.data']
@@ -7616,7 +7616,7 @@ class provider_accreditation(models.Model):
     @api.multi
     def action_reevaluate_button(self):
         if not self.comment_box:
-            raise Warning(_("Please enter status comment"))        
+            raise Warning(_("Please enter status comment"))
         self.write({'state':'verification', 'evaluate':False, 'verify':False, 'denied':False, 'recommended1':False, 'validate':False, 'provider_accreditation_status_ids':[(0, 0, {'pa_name':self.env['res.users'].browse(self._uid).name, 'pa_date':datetime.now(), 'pa_status':'Re-Evaluated', 'pa_updation_date':self.write_date, 'pa_comment':self.comment_box})]})
         self.write({'comment_box':''})
         return True
@@ -7625,7 +7625,7 @@ class provider_accreditation(models.Model):
     def action_approve_button(self):
         ir_model_data_obj = self.env['ir.model.data']
         if not self.comment_box:
-            raise Warning(_("Please enter status comment"))        
+            raise Warning(_("Please enter status comment"))
         if (not self.is_existing_provider and not self.is_extension_of_scope) or self.is_existing_provider:
             # code for new provider registration and existing provider
             self.write({'provider_accreditation_status_ids':[(0, 0, {'pa_name':self.env['res.users'].browse(self._uid).name, 'pa_date':datetime.now(), 'pa_status':'Approved', 'pa_updation_date':self.write_date, 'pa_comment':self.comment_box})]})
@@ -7633,7 +7633,7 @@ class provider_accreditation(models.Model):
             context = self._context
             if context is None:
                 context = {}
-            self = self.with_context(submit=True)        
+            self = self.with_context(submit=True)
             credit_provider_contact_lines = []
             credit_provider_campus_contact_lines = []
             credit_qualification_line_lines = []
@@ -7671,9 +7671,9 @@ class provider_accreditation(models.Model):
                                         'status':'approved',
                                         'approval_request':True,
                                         'request_send':True,
-                                        'assessor_no': q_lines.assessor_no, 
+                                        'assessor_no': q_lines.assessor_no,
                                         'assessors_id':q_lines.assessors_id.id,
-                                        'moderator_no': q_lines.moderator_no, 
+                                        'moderator_no': q_lines.moderator_no,
                                         'moderators_id':q_lines.moderators_id.id,
                                         'assessor_sla_document':q_lines.assessor_sla_document.id,
                                         'moderator_sla_document':q_lines.moderator_sla_document.id,
@@ -7706,8 +7706,8 @@ class provider_accreditation(models.Model):
                                         'approval_request':True,
                                         'request_send':True,
                                         'assessors_id':unit_standards.assessors_id.id,
-                                        'assessor_no': unit_standards.assessor_no, 
-                                        'moderator_no': unit_standards.moderator_no, 
+                                        'assessor_no': unit_standards.assessor_no,
+                                        'moderator_no': unit_standards.moderator_no,
                                         'moderators_id':unit_standards.moderators_id.id,
                                         'assessor_sla_document':unit_standards.assessor_sla_document.id,
                                         'moderator_sla_document':unit_standards.moderator_sla_document.id,
@@ -7744,8 +7744,8 @@ class provider_accreditation(models.Model):
                                         'request_send':True,
                                         'assessors_id':unit_standards.assessors_id.id,
                                         'moderators_id':unit_standards.moderators_id.id,
-                                        'assessor_no': unit_standards.assessor_no, 
-                                        'moderator_no': unit_standards.moderator_no, 
+                                        'assessor_no': unit_standards.assessor_no,
+                                        'moderator_no': unit_standards.moderator_no,
                                         'assessor_sla_document':unit_standards.assessor_sla_document.id,
                                         'moderator_sla_document':unit_standards.moderator_sla_document.id,
                                         }
@@ -7824,7 +7824,7 @@ class provider_accreditation(models.Model):
                                         }
                     credit_provider_campus_contact_lines.append((0, 0, provider_campus_contact_data))
             # For physical address, longitude and lattitude
-    #         
+    #
     #         gmapString=""
     #         physical_lat_d=""
     #         physical_lat_m=""
@@ -7832,17 +7832,17 @@ class provider_accreditation(models.Model):
     #         physical_lng_d=""
     #         physical_lng_m=""
     #         physical_lng_s=""
-    #         
+    #
     #         postal_lat_d=""
     #         postal_lat_m=""
     #         postal_lat_s=""
     #         postal_lng_d=""
     #         postal_lng_m=""
     #         postal_lng_s=""
-    #         
+    #
     #         if  self.txtPhysicalAddressLine1:
     #             gmapString=gmapString+self.txtPhysicalAddressLine1;
-    #         
+    #
     #         if self.txtPhysicalAddressLine2:
     #             if self.txtPhysicalAddressLine1:
     #                 gmapString=gmapString+","+self.txtPhysicalAddressLine2
@@ -7853,36 +7853,36 @@ class provider_accreditation(models.Model):
     #                 gmapString=gmapString+","+self.txtPhysicalAddressLine3
     #             else:
     #                 gmapString=gmapString+self.txtPhysicalAddressLine3
-    #                 
+    #
     #         if self.provider_physical_suburb and self.provider_physical_suburb.id:
     #             if self.txtPhysicalAddressLine1 or self.txtPhysicalAddressLine2 or self.txtPhysicalAddressLine3:
     #                 gmapString=gmapString+","+str(self.provider_physical_suburb and self.provider_physical_suburb.name)
     #             else:
-    #                 gmapString=gmapString+str(self.provider_physical_suburb and self.provider_physical_suburb.name)        
-    #             
+    #                 gmapString=gmapString+str(self.provider_physical_suburb and self.provider_physical_suburb.name)
+    #
     #         if self.city_physical and self.city_physical.id:
     #             if self.txtPhysicalAddressLine1 or self.txtPhysicalAddressLine2 or self.txtPhysicalAddressLine3 or self.provider_physical_suburb:
     #                 gmapString=gmapString+","+str(self.city_physical and self.city_physical.name)
     #             else:
     #                 gmapString=gmapString+str(self.city_physical and self.city_physical.name)
-    #     
-    # 
+    #
+    #
     #         if self.province_code_physical and self.province_code_physical.id:
     #             if self.txtPhysicalAddressLine1 or self.txtPhysicalAddressLine2 or self.txtPhysicalAddressLine3 or self.provider_physical_suburb or self.city_physical:
     #                 gmapString=gmapString+","+str(self.province_code_physical and self.province_code_physical.name)
     #             else:
     #                 gmapString=gmapString+str(self.province_code_physical and self.province_code_physical.name)
-    #               
+    #
     #         if self.country_code_physical and self.country_code_physical.id:
     #             if self.txtPhysicalAddressLine1 or self.txtPhysicalAddressLine2 or self.txtPhysicalAddressLine3 or self.provider_physical_suburb or self.city_physical or self.province_code_physical and self.province_code_physical.id:
     #                 gmapString=gmapString+","+str(self.country_code_physical and self.country_code_physical.name)
     #             else:
     #                 gmapString=gmapString+str(self.country_code_physical and self.country_code_physical.name)
-    #             
+    #
     #         print gmapString
-    #             
+    #
     #         g=geocoder.google(gmapString)
-    #         
+    #
     #         print "g.latlng",g.latlng
     #         if g.latlng:
     #             if g.latlng[0]:
@@ -7890,12 +7890,12 @@ class provider_accreditation(models.Model):
     #                 md = abs(g.latlng[0] - d) * 60
     #                 m = int(md)
     #                 sd = (md - m) * 60
-    #                 
+    #
     #                 physical_lat_d=str(d)
     #                 physical_lat_m=str(md)
     #                 physical_lat_s=str(sd)
-    #                 
-    #                 
+    #
+    #
     #             if g.latlng[1]:
     #                 d = int(g.latlng[1])
     #                 md = abs(g.latlng[1] - d) * 60
@@ -7904,14 +7904,14 @@ class provider_accreditation(models.Model):
     #                 physical_lng_d=str(d)
     #                 physical_lng_m=str(md)
     #                 physical_lng_s=str(sd)
-    #                 
+    #
     #         # For postal address, longitude and lattitude
-    #         
+    #
     #         gmapString=""
-    # 
+    #
     #         if  self.txtPostalAddressLine1:
     #             gmapString=gmapString+self.txtPostalAddressLine1;
-    #         
+    #
     #         if self.txtPostalAddressLine2:
     #             if self.txtPostalAddressLine1:
     #                 gmapString=gmapString+","+self.txtPostalAddressLine2
@@ -7922,47 +7922,47 @@ class provider_accreditation(models.Model):
     #                 gmapString=gmapString+","+self.txtPostalAddressLine3
     #             else:
     #                 gmapString=gmapString+self.txtPostalAddressLine3
-    #                 
+    #
     #         if self.provider_postal_suburb and self.provider_postal_suburb.id:
     #             if self.txtPostalAddressLine1 or self.txtPostalAddressLine2 or self.txtPostalAddressLine3:
     #                 gmapString=gmapString+","+str(self.provider_postal_suburb and self.provider_postal_suburb.name)
     #             else:
-    #                 gmapString=gmapString+str(self.provider_postal_suburb and self.provider_postal_suburb.name)     
-    #             
+    #                 gmapString=gmapString+str(self.provider_postal_suburb and self.provider_postal_suburb.name)
+    #
     #         if self.city_postal and self.city_postal.id:
     #             if self.txtPostalAddressLine1 or self.txtPostalAddressLine2 or self.txtPostalAddressLine3 or self.provider_postal_suburb:
     #                 gmapString=gmapString+","+str(self.city_postal and self.city_postal.name)
     #             else:
     #                 gmapString=gmapString+str(self.city_postal and self.city_postal.name)
-    #                 
+    #
     #         if self.province_code_postal and self.province_code_postal.id:
     #             if self.txtPostalAddressLine1 or self.txtPostalAddressLine2 or self.txtPostalAddressLine3 or self.provider_postal_suburb or self.city_postal:
     #                 gmapString=gmapString+","+str(self.province_code_postal and self.province_code_postal.name)
     #             else:
     #                 gmapString=gmapString+str(self.province_code_postal and self.province_code_postal.name)
-    #               
+    #
     #         if self.country_code_postal and self.country_code_postal.id:
     #             if self.txtPostalAddressLine1 or self.txtPostalAddressLine2 or self.txtPostalAddressLine3 or self.provider_postal_suburb or self.city_postal or self.province_code_postal and self.province_code_postal.id:
     #                 gmapString=gmapString+","+str(self.country_code_postal and self.country_code_postal.name)
     #             else:
     #                 gmapString=gmapString+str(self.country_code_postal and self.country_code_postal.name)
-    #             
+    #
     #         print gmapString
-    #             
+    #
     #         g=geocoder.google(gmapString)
-    # 
+    #
     #         if g.latlng:
     #             if g.latlng[0]:
     #                 d = int(g.latlng[0])
     #                 md = abs(g.latlng[0] - d) * 60
     #                 m = int(md)
     #                 sd = (md - m) * 60
-    #                 
+    #
     #                 postal_lat_d=str(d)
     #                 postal_lat_m=str(md)
     #                 postal_lat_s=str(sd)
-    #                 
-    #                 
+    #
+    #
     #             if g.latlng[1]:
     #                 d = int(g.latlng[1])
     #                 md = abs(g.latlng[1] - d) * 60
@@ -7993,7 +7993,7 @@ class provider_accreditation(models.Model):
                                           }
                     batch_val_list.append((0, 0, provider_batch_data))
 
-            credit_provider_campus_lines = []  
+            credit_provider_campus_lines = []
             if self.provider_accreditation_campus_ids:
                 credit_provider_campus_lines = []
                 for provider_campus_vals in self.provider_accreditation_campus_ids:
@@ -8134,7 +8134,7 @@ class provider_accreditation(models.Model):
         #                                      'status': provider_campus_vals.status,
                                             'provider_master_campus_contact_ids':credit_provider_campus_contact_lines,
                                             }
-    
+
                         credit_provider_campus_lines.append((0, 0, provider_campus_data))
             partner_vals = {
                             'name':self.name,
@@ -8212,14 +8212,14 @@ class provider_accreditation(models.Model):
                             'active' : True,
                             'is_visible' : True,
                             'provider_status_Id': 'Accredited',
-                            
+
     #                         'provider_latitude_degree' : physical_lat_d,
     #                         'provider_latitude_minutes' : physical_lat_m,
     #                         'provider_latitude_seconds' : physical_lat_s,
     #                         'provider_longitude_degree' : physical_lng_d,
     #                         'provider_longitude_minutes' : physical_lng_m,
     #                         'provider_longitude_seconds' : physical_lng_s,
-    #                         
+    #
     #                         'provider_latitude_degree_p' : postal_lat_d,
     #                         'provider_latitude_minutes_p' : postal_lat_m,
     #                         'provider_latitude_seconds_p' : postal_lat_s,
@@ -8270,7 +8270,7 @@ class provider_accreditation(models.Model):
                 for rec in self_obj.acc_multi_doc_upload_ids:
                     rec.write({'acc_id':partner_id.id})
                 for rec in self_obj.site_visit_image:
-                    rec.write({'acc_id':partner_id.id})        
+                    rec.write({'acc_id':partner_id.id})
     #                     partner_id.write({'child_ids':credit_provider_campus_lines})
             # # TODO : For Mail Server notification
     #         email_template_obj = self.env['email.template']
@@ -8302,7 +8302,7 @@ class provider_accreditation(models.Model):
     #                 'res_name': 'provider_accreditation',
     #                 'res_id': self.id,
     #             }
-    #         attachment_ids.append(att_obj.create(certificate_attachment_data)[0].id)   
+    #         attachment_ids.append(att_obj.create(certificate_attachment_data)[0].id)
 #             Commented because Attachement problem in email template
 #             ir_model_data_obj = self.env['ir.model.data']
 #             mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_accreditation_approved')
@@ -8326,7 +8326,7 @@ class provider_accreditation(models.Model):
 
             for line in self.moderators_ids:
                 moderators_obj = self.env['hr.employee'].browse([line.moderators_id.id])
-                moderators_obj.write({'mo_provider_rel_id':[(0, 0, pro_ass_vals)]})                                      
+                moderators_obj.write({'mo_provider_rel_id':[(0, 0, pro_ass_vals)]})
         elif self.is_extension_of_scope:
             q_vals_line = []
             s_vals_line = []
@@ -8479,7 +8479,7 @@ class provider_accreditation(models.Model):
                                  'request_send':True,
                                 }
                         moderators_list.append((0, 0, val))
-            credit_provider_campus_lines = []  
+            credit_provider_campus_lines = []
             if self.provider_accreditation_campus_ids:
                 credit_provider_campus_lines = []
                 for provider_campus_vals in self.provider_accreditation_campus_ids:
@@ -8620,7 +8620,7 @@ class provider_accreditation(models.Model):
             for pro_obj in provider_obj:
                 pro_lst.append(pro_obj.id)
             provider_obj = self.env['res.partner'].search([('id', '=', max(pro_lst))])
-            
+
             '''Below code is written to delete provider master data before appending'''
             unlink_qual_list, unlink_skill_list, unlink_lp_list, unlink_ass_list, unlink_mod_list = [], [], [], [], []
             for pro_qual in provider_obj.qualification_ids:
@@ -8646,13 +8646,13 @@ class provider_accreditation(models.Model):
                 for moderator in self.moderators_ids:
                     if pro_moderator.moderators_id == moderator.moderators_id:
                         unlink_mod_list.append((2, pro_moderator.id))
-                        
+
             provider_obj.write({'qualification_ids':unlink_qual_list})
             provider_obj.write({'skills_programme_ids':unlink_skill_list})
             provider_obj.write({'learning_programme_ids':unlink_lp_list})
             provider_obj.write({'assessors_ids':unlink_ass_list})
             provider_obj.write({'moderators_ids':unlink_mod_list})
-            
+
             '''commented below 4 lines, that was written to delete master data before appending'''
 #             provider_obj.write({'qualification_ids':[(2, qual.id) for qual in provider_obj.qualification_ids]})
 #             provider_obj.write({'skills_programme_ids':[(2, skills.id) for skills in provider_obj.skills_programme_ids]})
@@ -8704,15 +8704,15 @@ class provider_accreditation(models.Model):
 
             for line in self.moderators_ids:
                 moderators_obj = self.env['hr.employee'].browse([line.moderators_id.id])
-                moderators_obj.write({'mo_provider_rel_id':[(0, 0, pro_ass_vals)]})  
-            
+                moderators_obj.write({'mo_provider_rel_id':[(0, 0, pro_ass_vals)]})
+
             self.write({'reg_start_date':provider_obj.provider_start_date,
                         'reg_end_date':provider_obj.provider_end_date,
                         })
             self.write({'provider_accreditation_status_ids':[(0, 0, {'pa_name':self.env['res.users'].browse(self._uid).name, 'pa_date':datetime.now(), 'pa_status':'Approved', 'pa_updation_date':self.write_date, 'pa_comment':self.comment_box})]})
             self.write({'comment_box':''})
             self.write({'state':'approved', 'approved':True, 'final_state':'Approved', 'provider_approval_date':datetime.today().date()})
-            
+
             mail_template_id = ir_model_data_obj.get_object_reference('hwseta_etqe', 'email_template_provider_extension_of_scope')
             if mail_template_id:
                 self.pool['email.template'].send_mail(self.env.cr, self.env.uid, mail_template_id[1], self.id, force_send=True, context=self.env.context)
@@ -8778,7 +8778,7 @@ class provider_accreditation(models.Model):
         if self.state == "approved" and self.evaluate == False:
             raise Warning(_('Sorry! you can not change status to approve first evaluate application.'))
         if self.state == "approved" and self.denied == True:
-            raise Warning(_('Sorry! you can not change status to Approved.')) 
+            raise Warning(_('Sorry! you can not change status to Approved.'))
         if self.state == "approved" and self.approved == False:
             raise Warning(_('Sorry! you can not change status to Approved first Approve application.'))
         if self.state == "denied" and self.approved == True:
@@ -8808,7 +8808,7 @@ class provider_accreditation(models.Model):
         provider_obj = self.env['res.partner'].search([('id', '=', user_obj.partner_id.id)])
         today = datetime.today().date()
         if provider_obj:
-            #code to show re-accreditation option before expiry date ,as per mentioned days in ETQE configuration   
+            #code to show re-accreditation option before expiry date ,as per mentioned days in ETQE configuration
             etqe_conf = self.env['etqe.config'].search([])
             if etqe_conf:
                 etqe_brw = self.env['etqe.config'].browse(etqe_conf[0].id)
@@ -8830,7 +8830,7 @@ class provider_accreditation(models.Model):
         ''' Inherited to restrict deleting records '''
         raise Warning(_('Sorry! You cannot delete record'))
         return super(provider_accreditation, self).unlink()
-    
+
     @api.multi
     def copy(self):
         ''' Inherited to avoid duplicating records '''
@@ -8840,13 +8840,13 @@ provider_accreditation()
 
 class learner_assessment_line(models.Model):
     _name = 'learner.assessment.line'
-     
+
     @api.multi
     def _get_provider(self):
         ''' Getting provider from Assessment via context passed in xml.'''
         context = self._context
         provider_id = context.get('provider', False)
-        return provider_id     
+        return provider_id
 #     name = fields.Char(string='Name')
     provider_assessment_ref_id = fields.Many2one('provider.assessment', string='provider_assessment_ref')
 #     learner_id = fields.Many2one('etqe.learner', string='Learner', required=True)
@@ -8858,11 +8858,11 @@ class learner_assessment_line(models.Model):
     verify = fields.Boolean(string="Verification")
     provider_id = fields.Many2one('res.partner', string="Provider", track_visibility='onchange', default=_get_provider)
     identification_id = fields.Char(string="National Id",)
-    
+
     qual_learner_assessment_line_id = fields.Many2many('provider.qualification', 'qualification_id', 'qual_learner_assessment_line_id', string='Qualification')
 #     skill_learner_assessment_line_id = fields.Many2many('skills.programme', 'skills_id', 'skill_learner_assessment_line_id', string='Skills')
     unit_standards_learner_assessment_line_id = fields.Many2many('provider.qualification.line', 'unit_standards_id', 'unit_standards_learner_assessment_line_id', string='Unit Standards')
-    
+
     @api.multi
     def onchange_assessors_id(self, assessors_id, moderators_id):
         res = {}
@@ -8874,13 +8874,13 @@ class learner_assessment_line(models.Model):
                     'value':{
                                 'assessors_id' : '',
                                 'moderators_id':'',
-                            
+
                              },
                      'warning': {'title': 'Error!', 'message': 'Assessor  And Moderator Cant be same in a row'},
-                    }) 
-            
+                    })
+
         return res
-          
+
     @api.model
     def default_get(self, fields):
         context = self._context
@@ -8910,20 +8910,20 @@ class learner_assessment_line(models.Model):
 #         for learner in learner_obj:
 #             provider_list.append(learner.id) 
 #         return {'domain': {'learner_id': [('id', 'in', provider_list)]}}
-        
+
         # This code is used to filter and show only logged user's learner on 06/10/2016
         learner_list = []
         if self._uid == 1:
             etqe_learner_obj = self.env['hr.employee'].search([('is_learner', '=', True), ('provider_learner', '=', True), ('state', 'in', ['active', 'replacement'])])
             for learner in etqe_learner_obj:
-                learner_list.append(learner.id)            
+                learner_list.append(learner.id)
         else:
             etqe_learner_obj = self.env['hr.employee'].search([('is_learner', '=', True), ('provider_learner', '=', True), ('state', 'in', ['active', 'replacement'])])  # ,('logged_provider_id','=',user.partner_id.id)
             for learner in etqe_learner_obj:
                 for qual_line in learner.learner_qualification_ids:
                     provider = qual_line.provider_id.id
                     if provider:
-                        if provider == self.env.user.partner_id.id: 
+                        if provider == self.env.user.partner_id.id:
                             learner_list.append(learner.id)
 #         load qualification as per provider
         qualification = []
@@ -8931,7 +8931,7 @@ class learner_assessment_line(models.Model):
             qualification_obj = self.env['provider.qualification'].search([])
             for quali_id in qualification_obj:
                     qualification.append(quali_id.id)
-        else:           
+        else:
             provider_obj = self.env['res.partner'].search([('provider', '=', True), ('id', '=', provider_id)])
             if provider_obj.qualification_ids:
                 for qualification_id in provider_obj.qualification_ids:
@@ -8940,7 +8940,7 @@ class learner_assessment_line(models.Model):
             elif provider_obj.qualification_campus_ids:
                 for qualification_campus_id in provider_obj.qualification_campus_ids:
                     for quali_id in qualification_campus_id.qualification_id:
-                        qualification.append(quali_id.id)                
+                        qualification.append(quali_id.id)
 #         load skill programme as per provider        
         skill_programme = []
         if self._uid == 1:
@@ -8956,14 +8956,14 @@ class learner_assessment_line(models.Model):
             elif provider_obj.skills_programme_campus_ids:
                 for skill_ids in provider_obj.skills_programme_campus_ids:
                     for skill_id in skill_ids.skills_programme_id:
-                        skill_programme.append(skill_id.id)        
+                        skill_programme.append(skill_id.id)
 #         load Assessor as per provider
         assessors_list = []
         if self._uid == 1:
             assessor_obj = self.env['hr.employee'].search([('is_active_assessor','=',True),('is_assessors', '=', True)])
             for assessor in assessor_obj:
                     assessors_list.append(assessor.id)
-        else:           
+        else:
             provider_obj = self.env['res.partner'].search([('provider', '=', True), ('id', '=', provider_id)])
             if provider_obj.assessors_ids:
                 for assessor_id in provider_obj.assessors_ids:
@@ -8972,14 +8972,14 @@ class learner_assessment_line(models.Model):
             elif provider_obj.assessors_campus_ids:
                 for assessors_campus_id in provider_obj.assessors_campus_ids:
                     for assessor in assessors_campus_id.assessors_id:
-                        assessors_list.append(assessor.id)    
+                        assessors_list.append(assessor.id)
         #   load Moderator as per provider
         moderator_list = []
         if self._uid == 1:
             moderator_obj = self.env['hr.employee'].search([('is_active_moderator','=',True),('is_moderators', '=', True)])
             for moderator in moderator_obj:
                     moderator_list.append(moderator.id)
-        else:           
+        else:
             provider_obj = self.env['res.partner'].search([('provider', '=', True), ('id', '=', provider_id)])
             if provider_obj.moderators_ids:
                 for moderator_id in provider_obj.moderators_ids:
@@ -8988,7 +8988,7 @@ class learner_assessment_line(models.Model):
             elif provider_obj.moderators_campus_ids:
                 for moderators_campus_id in provider_obj.moderators_campus_ids:
                     for moderator in moderators_campus_id.moderators_id:
-                        moderator_list.append(moderator.id)    
+                        moderator_list.append(moderator.id)
         return {'domain': {'learner_id': [('id', 'in', list(set(learner_list)))],
                            'qual_learner_assessment_line_id':[('id', 'in', qualification)],
                            'skill_learner_assessment_line_id':[('id', 'in', skill_programme)],
@@ -9046,7 +9046,7 @@ class learner_assessment_line(models.Model):
                              }
                     })
         return res
-    
+
 #     @api.multi
 #     def onchange_identification_id(self,identification_id):
 #         res = {}
@@ -9073,7 +9073,7 @@ class learner_assessment_line(models.Model):
 #                              }
 #                     })
 #         return res
-    
+
     @api.multi
     def onchange_qualification_ids(self, qualification_id):
         res = {}
@@ -9114,7 +9114,7 @@ learner_assessment_achieve_line()
 
 class learner_assessment_verify_line(models.Model):
     _name = 'learner.assessment.verify.line'
-     
+
     provider_assessment_verify_ref_id = fields.Many2one('provider.assessment', string='provider_assessment_verify_ref')
     learner_id = fields.Many2one('hr.employee', string='Learner', required=True)
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_assessors', '=', True)])
@@ -9131,7 +9131,7 @@ learner_assessment_verify_line()
 
 class learner_assessment_evaluate_line(models.Model):
     _name = 'learner.assessment.evaluate.line'
-    
+
     provider_assessment_evaluate_ref_id = fields.Many2one('provider.assessment', string='provider_assessment_Evaluate_ref')
     learner_id = fields.Many2one('hr.employee', string='Learner', required=True)
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_assessors', '=', True)])
@@ -9148,7 +9148,7 @@ learner_assessment_evaluate_line()
 
 class learner_assessment_achieved_line(models.Model):
     _name = 'learner.assessment.achieved.line'
-     
+
     provider_assessment_achieved_ref_id = fields.Many2one('provider.assessment', string='provider_assessment_achieved_ref')
     learner_id = fields.Many2one('hr.employee', string='Learner', required=True)
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_assessors', '=', True)])
@@ -9156,7 +9156,7 @@ class learner_assessment_achieved_line(models.Model):
     learner_identity_number = fields.Char(string='Learner Number', track_visibility='onchange')
     identification_id = fields.Char(string="National Id", track_visibility='onchange')
     timetable_id = fields.Many2one("learner.timetable", 'TimeTable')
-    is_learner_achieved = fields.Boolean('Achieved') 
+    is_learner_achieved = fields.Boolean('Achieved')
     qual_learner_assessment_achieved_line_id = fields.Many2many('provider.qualification', 'achieved_asse_qual_rel', 'qualification_achieved_id', 'qual_achieve_learner_assessment_line_id', string='Qualification')
     skill_learner_assessment_achieved_line_id = fields.Many2many('skills.programme', 'achieved_asse_skills_rel', 'skills_achieved_id', 'skill_learner_assessment_achieve_line_id', string='Skills')
     unit_standards_learner_assessment_achieved_line_id = fields.Many2many('provider.qualification.line', 'achieved_asse_unit_rel', 'unit_standards_achieved_id', 'unit_standards_learner_assessment_achieve_line_id', string='Unit Standards')
@@ -9164,7 +9164,7 @@ learner_assessment_achieved_line()
 
 class assessment_status(models.Model):
     _name = 'assessment.status'
-     
+
     name = fields.Many2one('res.users', string='Name')
     state = fields.Selection([
             ('draft', 'Draft'),
@@ -9172,7 +9172,7 @@ class assessment_status(models.Model):
             ('verify', 'Verified'),
             ('evaluate', 'Evaluated'),
             ('achieved', 'Achievement'),
-            
+
         ], string='State', index=True, readonly=True, default='draft',
         track_visibility='onchange', copy=False)
     state_title = fields.Char("Status")
@@ -9198,7 +9198,7 @@ class provider_assessment(models.Model):
             assessment_list.extend(assessment_uids)
             domain.append(('id', 'in', assessment_list))
         return super(provider_assessment, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby, lazy=lazy)
-    
+
     @api.model
     def default_get(self, fields_list):
         res = super(provider_assessment, self).default_get(fields_list)
@@ -9233,7 +9233,7 @@ class provider_assessment(models.Model):
 #                         assessment_line_list.append((0, 0, {'identification_id':learner.learner_identification_id or '', 'learner_id':learner.id, 'qual_learner_assessment_line_id': [[6, 0, list(set(qual_list))]], 'unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'skill_learner_assessment_line_id':'', 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
 #         res.update({'learner_ids':assessment_line_list})
         return res
-    
+
     @api.one
     def _get_login_user(self):
         current_login= self.env.user
@@ -9358,7 +9358,7 @@ class provider_assessment(models.Model):
                             learners_assessor_id = learner_qual.assessors_id.id
                             learners_moderator_id = learner_qual.moderators_id.id
                             for unit_line in learner_qual.learner_registration_line_ids:
-                                if unit_line.achieve == False and unit_line.selection:   
+                                if unit_line.achieve == False and unit_line.selection:
                                     pro_qual_id = self.env['provider.qualification.line'].search(['|',('id_no', '=', 'unit_line.id_data'),('title', '=', unit_line.title),('line_id','=',learner_qual.learner_qualification_parent_id.id)]).id
                                     if pro_qual_id:
                                         unit_line_list.append(pro_qual_id)
@@ -9367,7 +9367,7 @@ class provider_assessment(models.Model):
                                     assessment_line_list.append((0, 0, {'identification_id':learner.learner_identification_id or '', 'learner_id':learner.id, 'qual_learner_assessment_line_id': [[6, 0, list(set(qual_list))]], 'unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'skill_learner_assessment_line_id':'', 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
                                 elif learner.citizen_resident_status_code in ['other','unknown']:
                                     assessment_line_list.append((0, 0, {'identification_id':learner.national_id or '', 'learner_id':learner.id, 'qual_learner_assessment_line_id': [[6, 0, list(set(qual_list))]], 'unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'skill_learner_assessment_line_id':'', 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
-                                    
+
         #changes by pradip
         elif batch_id and qual_skill_assessment == 'skill':
             learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_skills', '=', self.env.user.partner_id.id)])
@@ -9457,7 +9457,7 @@ class provider_assessment(models.Model):
             'form': data,
         }
         return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_achievement_certificate', data=datas, context=self._context)
-    
+
     @api.multi
     def action_print_qualification_sor_button(self):
         data1 = self.read()
@@ -9470,7 +9470,7 @@ class provider_assessment(models.Model):
             'form': data,
         }
         return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.qualification_stmt_of_result_report', data=datas, context=self._context)
-    
+
     @api.multi
     def action_print_statement_of_achievement(self):
         data1 = self.read()
@@ -9496,7 +9496,7 @@ class provider_assessment(models.Model):
             'model': 'provider.assessment',
              'form': data,
         }
-        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_skills_programme_statement_of_results', data=datas, context=self._context)    
+        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_skills_programme_statement_of_results', data=datas, context=self._context)
 
     # Changes Added by Ganesh For Learning Programme
     @api.multi
@@ -9510,7 +9510,7 @@ class provider_assessment(models.Model):
             'model': 'provider.assessment',
             'form': data,
         }
-        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_learning_programme_achievement_certificate', data=datas, context=self._context)    
+        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_learning_programme_achievement_certificate', data=datas, context=self._context)
 
     @api.multi
     def action_print_lp_statement_of_result_button(self):
@@ -9523,7 +9523,7 @@ class provider_assessment(models.Model):
             'model': 'provider.assessment',
             'form': data,
         }
-        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_learning_programme_statement_of_result', data=datas, context=self._context)    
+        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_learning_programme_statement_of_result', data=datas, context=self._context)
 
     @api.multi
     def action_learner_status_button(self):
@@ -9531,14 +9531,14 @@ class provider_assessment(models.Model):
         data = data1[0]
         if self._context is None:
             self._context = {}
-        
+
         datas = {
             'ids': self._context.get('active_ids', []),
             'model': 'provider.assessment',
             'form': data,
         }
-        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_learner_status_report', data=datas, context=self._context)    
-    
+        return self.pool['report'].get_action(self._cr, self._uid, [], 'hwseta_etqe.report_learner_status_report', data=datas, context=self._context)
+
     name = fields.Char(string='Name')
     state = fields.Selection([
             ('draft', 'Draft'),
@@ -9547,7 +9547,7 @@ class provider_assessment(models.Model):
             ('verify', 'Verified'),
             ('evaluate', 'Evaluated'),
             ('achieved', 'Achievement'),
-            
+
         ], string='Status', index=True, readonly=True, default='draft',
         track_visibility='onchange', copy=False)
 
@@ -9594,13 +9594,13 @@ class provider_assessment(models.Model):
                               string="Assessment Type")
     is_qdm_provider = fields.Boolean('QDM Provider')
     # Skills Fields
-    learner_ids_for_skills = fields.One2many('learner.assessment.line.for.skills', 'provider_assessment_ref_id_for_skills', string='Learners for Skills', track_visibility='onchange') 
+    learner_ids_for_skills = fields.One2many('learner.assessment.line.for.skills', 'provider_assessment_ref_id_for_skills', string='Learners for Skills', track_visibility='onchange')
     learner_achieve_ids_for_skills = fields.One2many('learner.assessment.achieve.line.for.skills', 'provider_assessment_achieve_ref_id_for_skills', string='Learners Achieve for Skills', track_visibility='onchange')
     learner_verify_ids_for_skills = fields.One2many('learner.assessment.verify.line.for.skills', 'provider_assessment_verify_ref_id_for_skills', string='learner verify ids for Skills', track_visibility='onchange')
     learner_evaluate_ids_for_skills = fields.One2many('learner.assessment.evaluate.line.for.skills', 'provider_assessment_evaluate_ref_id_for_skills', string='Learners evaluate for Skills', track_visibility='onchange')
     learner_achieved_ids_for_skills = fields.One2many('learner.assessment.achieved.line.for.skills', 'provider_assessment_achieved_ref_id_for_skills', string='Learners achieved for Skills', track_visibility='onchange')
     # Learning Programme Fields
-    learner_ids_for_lp = fields.One2many('learner.assessment.line.for.lp', 'provider_assessment_ref_id_for_lp', string='Learners for Learning Programme', track_visibility='onchange') 
+    learner_ids_for_lp = fields.One2many('learner.assessment.line.for.lp', 'provider_assessment_ref_id_for_lp', string='Learners for Learning Programme', track_visibility='onchange')
     learner_achieve_ids_for_lp = fields.One2many('learner.assessment.achieve.line.for.lp', 'provider_assessment_achieve_ref_id_for_lp', string='Learners Achieve for Learning Programme', track_visibility='onchange')
     learner_verify_ids_for_lp = fields.One2many('learner.assessment.verify.line.for.lp', 'provider_assessment_verify_ref_id_for_lp', string='learner verify ids for Learning Programme', track_visibility='onchange')
     learner_evaluate_ids_for_lp = fields.One2many('learner.assessment.evaluate.line.for.lp', 'provider_assessment_evaluate_ref_id_for_lp', string='Learners evaluate for Learning Programme', track_visibility='onchange')
@@ -9611,6 +9611,18 @@ class provider_assessment(models.Model):
     achieved_learner_count = fields.Integer('Achieved Learners', compute='_get_achieved_learner_count')
     partially_achieved_learner_count = fields.Integer('Partially Achieved Learners', compute='_get_partially_achieved_learner_count')
     is_provider = fields.Boolean("Is Provider", compute='_get_login_user', store = False)
+
+    @api.multi
+    def check_unit_standard_upline(self):
+        for this in self:
+            this_us_list = []
+            if this.learner_achieved_ids:
+                for achieved_ids in this.learner_achieved_ids:
+                    for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
+                        if us not in this_us_list:
+                            this_us_list.append(us)
+            dbg(this_us_list)
+
 
     @api.onchange('select_all')
     def onchange_select_all(self):
@@ -9628,16 +9640,16 @@ class provider_assessment(models.Model):
             elif self.state == 'evaluate' and self.learner_achieve_ids:
                 for q_line in self.learner_achieve_ids:
                     q_line.achieve = True
-        elif self.qual_skill_assessment == 'qual' and not self.select_all:                    
+        elif self.qual_skill_assessment == 'qual' and not self.select_all:
             if self.state == 'submitted' and self.learner_verify_ids:
                 for q_line in self.learner_verify_ids:
-                    q_line.verify = False                
+                    q_line.verify = False
             elif self.state == 'verify' and self.learner_evaluate_ids:
                 for q_line in self.learner_evaluate_ids:
-                    q_line.evaluate = False  
+                    q_line.evaluate = False
             elif self.state == 'evaluate' and self.learner_achieve_ids:
                 for q_line in self.learner_achieve_ids:
-                    q_line.achieve = False   
+                    q_line.achieve = False
         #SKILLS
         elif self.qual_skill_assessment == 'skill' and self.select_all:
             if self.state == 'submitted' and self.learner_verify_ids_for_skills:
@@ -9649,13 +9661,13 @@ class provider_assessment(models.Model):
             elif self.state == 'evaluate' and self.learner_achieve_ids_for_skills:
                 for s_line in self.learner_achieve_ids_for_skills:
                     s_line.achieve = True
-        elif self.qual_skill_assessment == 'skill' and not self.select_all:                    
+        elif self.qual_skill_assessment == 'skill' and not self.select_all:
             if self.state == 'submitted' and self.learner_verify_ids_for_skills:
                 for s_line in self.learner_verify_ids_for_skills:
-                    s_line.verify = False                
+                    s_line.verify = False
             elif self.state == 'verify' and self.learner_evaluate_ids_for_skills:
                 for s_line in self.learner_evaluate_ids_for_skills:
-                    s_line.evaluate = False  
+                    s_line.evaluate = False
             elif self.state == 'evaluate' and self.learner_achieve_ids_for_skills:
                 for s_line in self.learner_achieve_ids_for_skills:
                     s_line.achieve = False
@@ -9670,16 +9682,16 @@ class provider_assessment(models.Model):
             elif self.state == 'evaluate' and self.learner_achieve_ids_for_lp:
                 for s_line in self.learner_achieve_ids_for_lp:
                     s_line.achieve = True
-        elif self.qual_skill_assessment == 'lp' and not self.select_all:                    
+        elif self.qual_skill_assessment == 'lp' and not self.select_all:
             if self.state == 'submitted' and self.learner_verify_ids_for_lp:
                 for s_line in self.learner_verify_ids_for_lp:
-                    s_line.verify = False                
+                    s_line.verify = False
             elif self.state == 'verify' and self.learner_evaluate_ids_for_lp:
                 for s_line in self.learner_evaluate_ids_for_lp:
-                    s_line.evaluate = False  
+                    s_line.evaluate = False
             elif self.state == 'evaluate' and self.learner_achieve_ids_for_lp:
                 for s_line in self.learner_achieve_ids_for_lp:
-                    s_line.achieve = False                    
+                    s_line.achieve = False
 
     @api.multi
     def action_fetch_learners_button(self):
@@ -9715,7 +9727,7 @@ class provider_assessment(models.Model):
                                     elif learner.citizen_resident_status_code in ['other','unknown']:
                                         assessment_line_list.append((0, 0, {'identification_id':learner.national_id or '', 'learner_id':learner.id, 'qual_learner_assessment_line_id': [[6, 0, list(set(qual_list))]], 'unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
             self.write({'learner_ids':assessment_line_list})
-            return True      
+            return True
         elif self.batch_id and self.qual_skill_assessment == 'skill':
             for record in self.learner_ids_for_skills:
                 learners_list.append(record.learner_id.id)
@@ -9742,7 +9754,7 @@ class provider_assessment(models.Model):
                                         assessment_line_list.append((0, 0, {'identification_id':learner.national_id or '', 'learner_id':learner.id, 'skill_learner_assessment_line_id': [[6, 0, list(set(skill_list))]], 'skill_unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
 
             self.write({'learner_ids_for_skills':assessment_line_list})
-            return True       
+            return True
         elif self.batch_id and self.qual_skill_assessment == 'lp':
             for record in self.learner_ids_for_lp:
                 learners_list.append(record.learner_id.id)
@@ -9766,10 +9778,10 @@ class provider_assessment(models.Model):
                                     if learner.citizen_resident_status_code in ['dual','PR', 'sa']:
                                         assessment_line_list.append((0, 0, {'identification_id':learner.learner_identification_id or '', 'learner_id':learner.id, 'lp_learner_assessment_line_id': [[6, 0, list(set(lp_list))]], 'lp_unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
                                     elif learner.citizen_resident_status_code in ['other','unknown']:
-                                        assessment_line_list.append((0, 0, {'identification_id':learner.national_id or '', 'learner_id':learner.id, 'lp_learner_assessment_line_id': [[6, 0, list(set(lp_list))]], 'lp_unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id})) 
+                                        assessment_line_list.append((0, 0, {'identification_id':learner.national_id or '', 'learner_id':learner.id, 'lp_learner_assessment_line_id': [[6, 0, list(set(lp_list))]], 'lp_unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
             self.write({'learner_ids_for_lp':assessment_line_list})
-            return True                          
-        
+            return True
+
     @api.multi
     def action_submit_button(self):
         context = self._context
@@ -9826,7 +9838,7 @@ class provider_assessment(models.Model):
                     raise Warning(_("Please select Moderator before submit"))
             learner_submitted = []
             learner_dict = {}
-            if not self.learner_verify_ids_for_skills:        
+            if not self.learner_verify_ids_for_skills:
                 for learner_data in self.learner_ids_for_skills:
                     skill_ids = []
                     unit_ids = []
@@ -9902,7 +9914,7 @@ class provider_assessment(models.Model):
                 self.write({'state':'submitted', 'submited':True, 'learner_verify_ids_for_lp':learner_submitted,'select_all':False})
             else:
                 raise Warning(_("Please add learner record first!!"))
-            
+
             return True
 
     @api.multi
@@ -9915,7 +9927,7 @@ class provider_assessment(models.Model):
                                                               })
         self.write({'state':'draft', 'submited':False, 'verified':False})
         return True
-        
+
     @api.multi
     def action_verify_button(self):
         context = self._context
@@ -10069,7 +10081,7 @@ class provider_assessment(models.Model):
                         for qual in learner_data.qual_learner_assessment_evaluate_line_id:
                             qual_ids.append(qual.id)
                         for unit in learner_data.unit_standards_learner_assessment_evaluate_line_id:
-                            unit_ids.append(unit.id)                    
+                            unit_ids.append(unit.id)
                         learner_dict = {
                                  'learner_id':learner_data.learner_id and learner_data.learner_id.id,
                                  'learner_identity_number' : learner_data.learner_identity_number,
@@ -10212,7 +10224,7 @@ class provider_assessment(models.Model):
                                 for u_line in line.learner_registration_line_ids:
                                     if u_line.selection:
                                         selected_line += 1
-                                        for assessment_unit in learner_data.unit_standards_learner_assessment_achieve_line_id: 
+                                        for assessment_unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
                                             if u_line.title == assessment_unit.title:
                                                 u_line.achieve = True
                                                 line.is_complete = True
@@ -10275,12 +10287,12 @@ class provider_assessment(models.Model):
                                 for u_line in line.unit_standards_line:
                                     if u_line.selection:
                                         selected_line += 1
-                                        for assessment_unit in learner_data.skill_unit_standards_learner_assessment_achieve_line_id: 
+                                        for assessment_unit in learner_data.skill_unit_standards_learner_assessment_achieve_line_id:
                                             if u_line.title == assessment_unit.title:
                                                 u_line.achieve = True
                                                 line.is_complete = True
                                     if u_line.achieve:
-                                        achieved_line += 1   
+                                        achieved_line += 1
                                 if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
                                     line.is_learner_achieved = True
                                     line.certificate_no = self.env['ir.sequence'].get('learner.certificate.no')
@@ -10339,7 +10351,7 @@ class provider_assessment(models.Model):
                                 for u_line in line.unit_standards_line:
                                     if u_line.selection:
                                         selected_line += 1
-                                        for assessment_unit in learner_data.lp_unit_standards_learner_assessment_achieve_line_id: 
+                                        for assessment_unit in learner_data.lp_unit_standards_learner_assessment_achieve_line_id:
                                             if u_line.title == assessment_unit.title:
                                                 u_line.achieve = True
                                                 line.is_complete = True
@@ -10371,7 +10383,7 @@ class provider_assessment(models.Model):
                 learner_line += 1
             if achieve_false == learner_line:
                 raise Warning(_("You haven't achieved any learner! Please achieve atleast one learner to continue.."))
-            
+
             return True
 
     @api.multi
@@ -10402,7 +10414,7 @@ class provider_assessment(models.Model):
 #             moderators_list = [moderators_rel.moderators_id and moderators_rel.moderators_id.id for moderators_rel in provider_data.moderators_ids]
 #             return {'domain': {'assessors_id': [('id', 'in', assessors_list)], 'moderators_id': [('id', 'in', moderators_list)] } , 'value':{'provider_accreditation_num': provider_accreditation_num, 'qualification_id':provider_data.qualification_id and provider_data.qualification_id.id, 'learner_ids':learner_line, 'learner_timetables':learner_line, 'learner_verification_ids':learner_line}}
  
-                     
+
 #         if provider_id and employer_id:
 #             employee_pool=self.env['hr.employee']
 #             learner_search_obj=employee_pool.search([('provider_id', '=', provider_id), ('latest_employer','=',employer_id),('is_learner', '=', True)])
@@ -10423,64 +10435,64 @@ class provider_assessment(models.Model):
 #             moderators_list = [moderators_rel.moderators_id and moderators_rel.moderators_id.id for moderators_rel in provider_data.moderators_ids]
 #             return {'domain': {'assessors_id': [('id', 'in', assessors_list)], 'moderators_id': [('id', 'in', moderators_list)] } ,'value':{'provider_accreditation_num': provider_accreditation_num, 'qualification_id':provider_data.qualification_id and provider_data.qualification_id.id, 'learner_ids':learner_line, 'learner_timetables':learner_line, 'learner_verification_ids':learner_line}}
 
-                
+
         return {}
-    
+
     # #  Added  Sequence for Provider Assessment.
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].get('provider.assessment')
         return super(provider_assessment, self).create(vals)
-    
+
     @api.multi
     def write(self, vals):
         context = self._context
         if context is None:
             context = {}
         res = super(provider_assessment, self).write(vals)
-        
+
         if self.state == "submitted" and self.submited == False:
             raise Warning(_('Sorry! you can not change state to submit'))
-        
+
         if self.state == "verify" and self.verified == False:
             raise Warning(_('Sorry! you can not change state to Verified'))
-          
+
         if self.state == "evaluate" and self.verified == False:
             raise Warning(_('Sorry! you can not change state to Evaluated'))
-                  
+
         if self.state == "achieved" and self.assessed == False:
             raise Warning(_('Sorry! you can not change state to Achievement'))
 
         if self.state == "draft" and self.submited == True:
             raise Warning(_('Sorry! you can not submit again'))
-         
+
         if self.state == "submitted" and self.verified == True:
             raise Warning(_('Sorry! you can not verify again'))
-         
+
         if self.state == "verify" and self.evaluated == True:
             raise Warning(_('Sorry! you can not evaluate again'))
-         
+
         if self.state == "evaluate" and self.assessed == True:
             raise Warning(_('Sorry! you can not achieve again'))
         return res
-    
+
     @api.multi
     def copy(self):
         ''' Inherited to avoid duplicating records '''
         raise Warning(_('Sorry! You cannot create duplicate Assessment'))
-        return super(provider_assessment, self).copy()    
+        return super(provider_assessment, self).copy()
 
     @api.multi
     def unlink(self):
         ''' Inherited to avoid duplicating records '''
         raise Warning(_('Sorry! You cannot delete the Assessment'))
-        return super(provider_assessment, self).unlink()    
+        return super(provider_assessment, self).unlink()
 provider_assessment()
 # This class is created to add One2many field in hr.employee  
 class learner_master_status(models.Model):
     _name = 'learner.master.status'
     _description = 'Learner Master Status'
-    
+
     learner_master_status_id = fields.Many2one('hr.employee', string='Learner Master Status Reference')
     learner_master_uid = fields.Char(string="Name")
     learner_master_status = fields.Char(string="Status")
@@ -10519,7 +10531,7 @@ class learner_registration(models.Model):
                 parent.remove(sheet)
             res['arch'] = etree.tostring(doc)
         return res
-    
+
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         """ Override read_group to filter learner registration's status count based on logged provider """
@@ -10553,7 +10565,7 @@ class learner_registration(models.Model):
         p_id = self.env.user.partner_id.id
         res.update({'provider_id' : p_id,'seeing_rating_id':'1', 'hearing_rating_id':'1', 'walking_rating_id':'1', 'remembering_rating_id':'1', 'communicating_rating_id':'1', 'self_care_rating_id':'1'})
         return res
-    
+
     @api.depends('compute_field')
     def get_user(self):
         res_user = self.env['res.users'].search([('id', '=', self._uid)])
@@ -10561,7 +10573,7 @@ class learner_registration(models.Model):
             self.compute_field = True
         else:
             self.compute_field = False
-    
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
         user = self._uid
@@ -10643,7 +10655,7 @@ class learner_registration(models.Model):
     method_of_communication = fields.Selection([('cell_phone', 'Cell Phone'), ('email', 'Email')], string='Method of Communication')
     status_effective_date = fields.Date(string='Status Effective Date')
     last_updated_operator = fields.Char(string='Last Updated Operator')
-    # Citizenship & Other Info 
+    # Citizenship & Other Info
     african = fields.Boolean(string='African')
     citizen_resident_status_code = fields.Selection([('dual', 'Dual (SA plus other)'), ('other', 'Other'), ('PR', 'Permanent Resident'), ('sa', 'South Africa'), ('unknown', 'Unknown')], string='Citizen Status')
     country_id = fields.Many2one('res.country', string='Nationality', track_visibility='onchange')
@@ -10684,7 +10696,7 @@ class learner_registration(models.Model):
                                                     ('multiple', 'Multiple'),
                                                     ('disabled', 'Disabled but unspecified'),
                                                     ('none', 'None'), ], string='Disability Status')
-    disability_status_saqa = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('9', '9'), ('n', 'N')], string='Disability SAQA Code')    
+    disability_status_saqa = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('9', '9'), ('n', 'N')], string='Disability SAQA Code')
     # Banking Details
     bank_name = fields.Char(string='Bank Name')
     branch_code = fields.Char(string='Branch Code')
@@ -10959,7 +10971,7 @@ class learner_registration(models.Model):
                             'enrollment_date':learner.enrollment_date,
                           }
                     return {'value':val}
-                
+
     @api.multi
     @api.onchange('work_phone','cell','person_fax_number','years_in_occupation','is_existing_learner','work_email')
     def onchange_validate_number(self):
@@ -11004,7 +11016,7 @@ class learner_registration(models.Model):
         elif gender == 'female':
             res.update({'value':{'gender_saqa_code':'f'}})
         return res
-    
+
     @api.multi
     def onchange_gender_saqa_code(self, gender_saqa_code):
         res = {}
@@ -11026,7 +11038,7 @@ class learner_registration(models.Model):
             sub_res = self.env['res.suburb'].browse(person_postal_suburb)
             res.update({'value':{'person_postal_zip':sub_res.postal_code, 'postal_municipality':sub_res.municipality_id, 'person_postal_city':sub_res.city_id, 'person_postal_province_code':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def onchange_person_home_suburb(self, person_home_suburb):
         res = {}
@@ -11036,7 +11048,7 @@ class learner_registration(models.Model):
             sub_res = self.env['res.suburb'].browse(person_home_suburb)
             res.update({'value':{'person_home_zip':sub_res.postal_code, 'person_home_city':sub_res.city_id, 'physical_municipality':sub_res.municipality_id, 'person_home_province_code':sub_res.province_id}})
         return res
-    
+
     @api.multi
     def onchange_person_suburb(self, person_suburb):
         res = {}
@@ -11046,7 +11058,7 @@ class learner_registration(models.Model):
             sub_res = self.env['res.suburb'].browse(person_suburb)
             res.update({'value':{'work_zip':sub_res.postal_code, 'work_city':sub_res.city_id, 'work_province':sub_res.province_id, 'work_municipality':sub_res.municipality_id}})
         return res
-    
+
     @api.multi
     def onchange_id_no(self, identification_id, is_existing_learner):
         res, val = {}, {}
@@ -11095,13 +11107,13 @@ class learner_registration(models.Model):
                 birth_date = datetime.strptime('20' + year + '-' + month + '-' + day, '%Y-%m-%d').date()
             else:
                 birth_date = datetime.strptime('19' + year + '-' + month + '-' + day, '%Y-%m-%d').date()
-            
+
             val.update({'person_birth_date':birth_date})
             res.update({'value':val})
             return res
         else:
             return {'value':{'identification_id':''},'warning':{'title':'Invalid Identification Number','message':'Identification Number should be numeric!'}}
-    
+
     @api.multi
     def onchange_socio(self, socio_economic_status):
         res = {}
@@ -11110,7 +11122,7 @@ class learner_registration(models.Model):
         if socio_economic_status == 'unemployed':
             res.update({'value':{'current_occupation':'', 'years_in_occupation':''}})
         return res
-    
+
     @api.multi
     def open_map(self, street, city, state, country, zip):
         url = "http://maps.google.com/maps?oi=map&q="
@@ -11127,7 +11139,7 @@ class learner_registration(models.Model):
         'url':url,
         'target': 'new'
         }
-    
+
     @api.multi
     def work_addr_map(self):
         return self.open_map(self.work_address, self.work_city, self.work_province, self.work_country, self.work_zip)
@@ -11154,7 +11166,7 @@ class learner_registration(models.Model):
         if self.citizen_resident_status_code in ['other','unknown']:
             if not self.national_id:
                return {'warning':{'title':'Warning','message':'Please fill all the required fields!!'}}
-    
+
     @api.multi
     def action_approved_button(self):
         try:
@@ -11162,7 +11174,7 @@ class learner_registration(models.Model):
             if context is None:
                 context = {}
             context = self._context
-            
+
             self.check_all_required_fields()
             if self.identification_id:
                 if len(self.identification_id) < 13:
@@ -11186,7 +11198,7 @@ class learner_registration(models.Model):
                     if line.learner_qualification_parent_id.is_exit_level_outcomes == False:
                         if line.minimum_credits > line.total_credits:
                             raise Warning(_("Sum of checked unit standards credits point should be greater than or equal to Minimum credits point !!"))
-    
+
             if self.learning_programme_ids:
                 date_list = []
                 for lp_line in self.learning_programme_ids:
@@ -11200,7 +11212,7 @@ class learner_registration(models.Model):
                             continue
                         else:
                             raise Warning('Sorry! Learning Programme start date should be greater than previous Learning programme end date.')
-    
+
             if self.skills_programme_ids:
                 date_list = []
                 for skill_line in self.skills_programme_ids:
@@ -11214,7 +11226,7 @@ class learner_registration(models.Model):
                             continue
                         else:
                             raise Warning('Sorry! Skills Programme start date should be greater than previous skills programme end date.')
-    
+
             if self.learner_qualification_ids:
                 date_list = []
                 for qual_line in self.learner_qualification_ids:
@@ -11228,7 +11240,7 @@ class learner_registration(models.Model):
                             continue
                         else:
                             raise Warning('Sorry! Qualifications start date should be greater than previous qualification end date')
-    
+
             if self.learner_qualification_ids and self.skills_programme_ids:
                 for qual_line in self.learner_qualification_ids:
                     for skill_line in self.skills_programme_ids:
@@ -11240,7 +11252,7 @@ class learner_registration(models.Model):
                             raise Warning(_("Sorry! Skills Program start date should not be in the range of Qualification start date and Qualification end date"))
                         if skill_line.end_date >= qual_line.start_date and skill_line.end_date <= qual_line.end_date:
                             raise Warning(_("Sorry! Skills Program end date should not be in the range of Qualification start date and Qualification end date"))
-    
+
             if self.learner_qualification_ids and self.learning_programme_ids:
                 for qual_line in self.learner_qualification_ids:
                     for lp_line in self.learning_programme_ids:
@@ -11252,7 +11264,7 @@ class learner_registration(models.Model):
                             raise Warning(_("Sorry! Learning Program start date should not be in the range of Qualification start date and Qualification end date"))
                         if lp_line.end_date >= qual_line.start_date and lp_line.end_date <= qual_line.end_date:
                             raise Warning(_("Sorry! Learning Program end date should not be in the range of Qualification start date and Qualification end date"))
-    
+
             if self.skills_programme_ids and self.learning_programme_ids:
                 for skill_line in self.skills_programme_ids:
                     for lp_line in self.learning_programme_ids:
@@ -11269,7 +11281,7 @@ class learner_registration(models.Model):
             self.write({'financial_year':datetime.now()})
             self.write({'state':'approved', 'approved':True, 'final_state':'Approved'})
             self.write({'learner_status_ids':[(0, 0, {'learner_uid':self.env['res.users'].browse(self._uid).name, 'learner_date':datetime.now(), 'learner_status':'Approved', 'learner_comment':self.comment, 'learner_updation_date':self.write_date})]})
-            self.write({'comment':'', 'enrollment_date':self.write_date})        
+            self.write({'comment':'', 'enrollment_date':self.write_date})
             # code for approve entry in master
             employee_obj = self.env['hr.employee']
             if self.is_existing_learner == False:
@@ -11371,16 +11383,16 @@ class learner_registration(models.Model):
                                          })
                 for learner_qualification in self.learner_qualification_ids:
                     learner_qualification.write({'learner_id':employee_id.id,'qual_status':'Enrolled'})
-    
-                for skill_line in self.skills_programme_ids: 
+
+                for skill_line in self.skills_programme_ids:
                     skill_line.write({'skills_programme_learner_rel_ids':employee_id.id,'skill_status':'Enrolled'})
-    
-                for lp_line in self.learning_programme_ids: 
+
+                for lp_line in self.learning_programme_ids:
                     lp_line.write({'learning_programme_learner_rel_ids':employee_id.id,'lp_status':'Enrolled'})
-    
+
                 for other_docs in self.learner_other_docs_ids:
                     other_docs.write({'learner_master_id':employee_id.id})
-    
+
             elif self.is_existing_learner == True:
                 learner_data = ''
                 if self.citizen_resident_status_code in ['dual', 'PR', 'sa']:
@@ -11432,9 +11444,9 @@ class learner_registration(models.Model):
                     if not learner_qualification.start_date or not learner_qualification.end_date or not learner_qualification.batch_id:
                         raise Warning(_("Please enter required fields of Qualifications before approve"))
                     learner_qualification.write({'learner_id':learner_data.id,'qual_status':'Re-Enrolled'})
-                for skill_line in self.skills_programme_ids: 
+                for skill_line in self.skills_programme_ids:
                     skill_line.write({'skills_programme_learner_rel_ids':learner_data.id,'skill_status':'Re-Enrolled'})
-                for lp_line in self.learning_programme_ids: 
+                for lp_line in self.learning_programme_ids:
                     lp_line.write({'learning_programme_learner_rel_ids':learner_data.id,'lp_status':'Re-Enrolled'})
                 learner_data.write({
                                               'name' : self.name,
@@ -11534,7 +11546,7 @@ class learner_registration(models.Model):
             else:
                 raise Warning(_(e))
         return True
-    
+
     @api.multi
     def action_update_button(self):
         learner_data = ''
@@ -11638,7 +11650,7 @@ class learner_registration(models.Model):
         for other_docs in self.learner_other_docs_ids:
             other_docs.write({'learner_master_id':learner_data.id})
         return True
-        
+
 
     @api.model
     def approve_learners(self):
@@ -11654,12 +11666,12 @@ class learner_registration(models.Model):
                 str_name = str_name + ids + '\n'
             else:
                 lst_approve.append(record.identification_id)
-        context['approve_ids'] = lst_approve 
-        context['non_apr_ids'] = non_approve 
+        context['approve_ids'] = lst_approve
+        context['non_apr_ids'] = non_approve
         if lst_approve or non_approve:
             str_name = str_name + 'Please check all the validations one by one!!!'
             context['error_log'] = '**********Not Approved Learners SA Identification Numbers**********' + '\n' + str_name
-            
+
             return {
                 'name': _('Learners Approval Log'),
                 'view_type': 'form',
@@ -11671,7 +11683,7 @@ class learner_registration(models.Model):
                 'context': context,
                 'target': 'new'
             }
-            
+
 
     @api.multi
     def action_rejected_button(self):
@@ -11838,7 +11850,7 @@ class learner_registration(models.Model):
 
     @api.multi
     def write(self, vals):
-        
+
         context = self._context
         if context is None:
             context = {}
@@ -11958,12 +11970,12 @@ class learner_registration(models.Model):
     def unlink(self):
         raise Warning(_("Sorry!! You cannot delete record !"))
         return super(learner_registration, self).unlink()
-    
+
     @api.multi
     def copy(self):
         ''' Inherited to avoid duplicating records '''
         raise Warning(_('Sorry! You cannot create duplicate record'))
-        return super(learner_registration, self).copy()    
+        return super(learner_registration, self).copy()
 learner_registration()
 
 class learner_timetable_period (models.Model):
@@ -12058,7 +12070,7 @@ learner_timetable_period()
 class learner_timetable(models.Model):
     _name = 'learner.timetable'
     _description = 'Learner Timetable'
-    
+
     name = fields.Char(string='Name', required=True)
     faculty = fields.Char(string='Faculty')
 #     standard = fields.Many2one("provider.qualification", 'Standard', ondelete='restrict' , required=True)
@@ -12080,7 +12092,7 @@ learner_timetable()
 
 class learner_qualification(models.Model):
     _name = 'learner.qualification'
-    
+
     name = fields.Char(string='Name')
     originator = fields.Char(string='Originator')
     qab = fields.Char(string='Quality Assurance Body')
@@ -12092,7 +12104,7 @@ learner_qualification()
 
 class learner_qualification_line(models.Model):
     _name = 'learner.qualification.line'
-    
+
     name = fields.Char(string='Name', required=True)
     id_no = fields.Char(string='ID NO')
     title = fields.Char(string='UNIT STANDARD TITLE')
@@ -12105,7 +12117,7 @@ learner_qualification_line()
 
 class learner_assessment(models.Model):
     _name = 'learner.assessment'
-    
+
     name = fields.Char(string='Name')
     assessors_id = fields.Many2one("hr.employee", 'Assessors', domain=[('is_assessors', '=', True)])
     moderators_id = fields.Many2one("hr.employee", 'Moderator', domain=[('is_moderators', '=', True)])
@@ -12115,7 +12127,7 @@ learner_assessment()
 
 class learner_provider_rel(models.Model):
     _name = 'learner.provider.rel'
-    
+
     name = fields.Char(string='Name')
     provider_id = fields.Many2one('res.partner', string='Provider', domain=[('provider', '=', True)])
     provider_accreditation_num = fields.Char(string='Provider Accreditation Number')
@@ -12126,7 +12138,7 @@ learner_provider_rel()
 
 class hr_employee(models.Model):
     _inherit = 'hr.employee'
-     
+
     @api.v7
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = models.Model.fields_view_get(self, cr, uid, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=submenu)
@@ -12141,7 +12153,7 @@ class hr_employee(models.Model):
                 parent.remove(sheet)
             res['arch'] = etree.tostring(doc)
         return res
-    
+
     @api.v7
     def deactivate_assessors(self, cr, uid, context=None):
         '''Method to deactivate assessors if it's end date is expired'''
@@ -12152,7 +12164,7 @@ class hr_employee(models.Model):
         if exp_assessor_obj:
             for obj in exp_assessor_obj:
                 obj.is_active_assessor = False
-        return True    
+        return True
 
     @api.v7
     def deactivate_moderators(self, cr, uid, context=None):
@@ -12164,7 +12176,7 @@ class hr_employee(models.Model):
         if exp_moderator_obj:
             for obj in exp_moderator_obj:
                 obj.is_active_moderator = False
-        return True    
+        return True
 
     @api.multi
     @api.depends('name', 'person_last_name')
@@ -12182,13 +12194,13 @@ class hr_employee(models.Model):
             for record in self:
                 res.append((record.id, record.name))
         return res
-    
+
     @api.model
     def name_search(self, name='', args=[], operator='ilike', limit=1000):
         args += ['|', ('name', operator, name), ('person_last_name', operator, name)]
         cuur_ids = self.search(args, limit=limit)
         return cuur_ids.name_get()
-    
+
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         """ Override read_group to filter learner master's status count based on logged provider """
@@ -12196,10 +12208,10 @@ class hr_employee(models.Model):
 #             domain.append(['logged_provider_id','=',self.env.user.partner_id.id])
             learners = self.env['learner.registration.qualification'].search([('provider_id', '=', self.env.user.partner_id.id)])
             learner_ids = [learner.learner_id.id for learner in learners]
-            skill_learners = self.env['skills.programme.learner.rel'].search(['|',('provider_id', '=', self.env.user.partner_id.id),('create_uid', '=', self.env.user.id)]) 
+            skill_learners = self.env['skills.programme.learner.rel'].search(['|',('provider_id', '=', self.env.user.partner_id.id),('create_uid', '=', self.env.user.id)])
             skills_learner_ids = [s_learner.skills_programme_learner_rel_ids.id for s_learner in skill_learners]
             learner_ids.extend(skills_learner_ids)
-            lp_learners = self.env['learning.programme.learner.rel'].search(['|',('provider_id', '=', self.env.user.partner_id.id),('create_uid', '=', self.env.user.id)]) 
+            lp_learners = self.env['learning.programme.learner.rel'].search(['|',('provider_id', '=', self.env.user.partner_id.id),('create_uid', '=', self.env.user.id)])
             lp_learner_ids = [l_learner.learning_programme_learner_rel_ids.id for l_learner in lp_learners]
             learner_ids.extend(lp_learner_ids)
             domain.append(['id', 'in', learner_ids])
@@ -12244,10 +12256,10 @@ class hr_employee(models.Model):
             learner_ids = []
             learners = self.env['learner.registration.qualification'].search([('provider_id', '=', user_data.partner_id.id)])
             learner_ids = [learner.learner_id.id for learner in learners]
-            skill_learners = self.env['skills.programme.learner.rel'].search(['|',('provider_id', '=', user_data.partner_id.id),('create_uid', '=', user_data.id)]) 
+            skill_learners = self.env['skills.programme.learner.rel'].search(['|',('provider_id', '=', user_data.partner_id.id),('create_uid', '=', user_data.id)])
             skills_learner_ids = [s_learner.skills_programme_learner_rel_ids.id for s_learner in skill_learners]
             learner_ids.extend(skills_learner_ids)
-            lp_learners = self.env['learning.programme.learner.rel'].search(['|',('provider_id', '=', user_data.partner_id.id),('create_uid', '=', user_data.id)]) 
+            lp_learners = self.env['learning.programme.learner.rel'].search(['|',('provider_id', '=', user_data.partner_id.id),('create_uid', '=', user_data.id)])
             lp_learner_ids = [l_learner.learning_programme_learner_rel_ids.id for l_learner in lp_learners]
             learner_ids.extend(lp_learner_ids)
             args.append(('id', 'in', learner_ids))
@@ -12338,7 +12350,7 @@ class hr_employee(models.Model):
                                ('achieved','Achieved'),
                                ('unknown','Unknown') ],
                               string='Status', default='active')
-    
+
     enrollment_date = fields.Date("Enrollment Date")
     learner_status_reason = fields.Text("Status Reason")
     learner_master_status_ids = fields.One2many('learner.master.status', 'learner_master_status_id', 'Status Line')
@@ -12387,7 +12399,7 @@ class hr_employee(models.Model):
                     latest_qual_obj.write({'qual_status':'Enrolled'})
         self.write({'learner_status':'Enrolled','state':'active', 'is_active':True, 'learners_status':'active', 'learner_master_status_ids':[(0, 0, {'learner_master_uid':self.env['res.users'].browse(self._uid).name, 'learner_master_status':'Enrolled', 'learner_master_date':datetime.now(), 'learner_master_comment':self.learner_status_reason})], 'learner_status_reason':''})
         return True
-    
+
 #     @api.multi
 #     def action_dropout_button(self):
 #         if self.state == 'suspended':
@@ -12396,7 +12408,7 @@ class hr_employee(models.Model):
 #             raise Warning(_("please add reason for Drop out in comment"))
 #         self.write({'state':'dropout', 'is_drop_out':True, 'learners_status':'drop_out', 'learner_master_status_ids':[(0, 0, {'learner_master_uid':self.env['res.users'].browse(self._uid).name, 'learner_master_status':'Drop Out', 'learner_master_date':datetime.now(), 'learner_master_comment':self.learner_status_reason})], 'learner_status_reason':''})
 #         return True
-    
+
     @api.multi
     def action_replacement_button(self):
         qual_obj = self.env['learner.registration.qualification'].search([('learner_id','=',self.id)])
@@ -12409,7 +12421,7 @@ class hr_employee(models.Model):
 
         self.write({'learner_status':'Replacement','state':'replacement', 'is_replacement':True, 'learners_status':'replacement', 'learner_master_status_ids':[(0, 0, {'learner_master_uid':self.env['res.users'].browse(self._uid).name, 'learner_master_status':'Replacement', 'learner_master_date':datetime.now(), 'learner_master_comment':self.learner_status_reason})], 'learner_status_reason':''})
         return True
-    
+
     @api.multi
     def action_suspend_button(self):
         qual_obj = self.env['learner.registration.qualification'].search([('learner_id','=',self.id)])
@@ -12421,7 +12433,7 @@ class hr_employee(models.Model):
                     latest_qual_obj.write({'qual_status':'Suspended'})
         self.write({'learner_status':'Replacement','state':'suspended', 'is_suspend':True, 'learners_status':'suspend', 'learner_master_status_ids':[(0, 0, {'learner_master_uid':self.env['res.users'].browse(self._uid).name, 'learner_master_status':'Suspended', 'learner_master_date':datetime.now(), 'learner_master_comment':self.learner_status_reason})], 'learner_status_reason':''})
         return True
-    
+
 #     @api.multi
 #     def action_inactive_button(self):
 #         if self.state == 'suspended':
@@ -12433,33 +12445,33 @@ class hr_employee(models.Model):
     def action_achieved_button(self):
         self.write({'state':'achieved', 'learners_status':'achieved', 'learner_master_status_ids':[(0, 0, {'learner_master_uid':self.env['res.users'].browse(self._uid).name, 'learner_master_status':'Achieved', 'learner_master_date':datetime.now(), 'learner_master_comment':self.learner_status_reason})], 'learner_status_reason':''})
         return True
-    
+
     @api.multi
     def country_for_province(self, province):
         state = self.env['res.country.state'].browse(province)
         return state.country_id.id
-    
+
     @api.multi
     def onchange_work_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'work_country': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_home_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_home': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_postal_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'country_postal': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_employer_id(self, employer_id):
         if not employer_id:
@@ -12470,20 +12482,20 @@ class hr_employee(models.Model):
             result = {'value':{
                                'organisation_sdl_no': employer_data.employer_sdl_no,
                                }}
-        return result    
-    
+        return result
+
     @api.multi
     def work_addr_map(self):
         return self.open_map(self.work_address, self.work_city, self.work_province, self.work_country, self.work_zip)
-    
+
     @api.multi
     def home_addr_map(self):
         return self.open_map(self.person_home_address_1, self.person_home_city, self.person_home_province_code, self.country_home, self.person_home_zip)
-    
+
     @api.multi
     def postal_addr_map(self):
         return self.open_map(self.person_postal_address_1, self.person_postal_city, self.person_postal_province_code, self.country_postal, self.person_postal_zip)
-    
+
     @api.model
     def create(self, vals):
         res = super(hr_employee, self).create(vals)
@@ -12493,9 +12505,9 @@ class hr_employee(models.Model):
             if self._context.get('default_is_assessors'):
                 res['assessor_seq_no'] = self.env['ir.sequence'].get('assessors.master.register')
             if self._context.get('default_is_moderators'):
-                res['moderator_seq_no'] = self.env['ir.sequence'].get('moderators.master.register')           
+                res['moderator_seq_no'] = self.env['ir.sequence'].get('moderators.master.register')
         return res
-    
+
     @api.multi
     def onchange_gender(self, gender):
         res = {}
@@ -12507,7 +12519,7 @@ class hr_employee(models.Model):
         elif gender == 'female':
             res.update({'value':{'gender_saqa_code':'f'}})
         return res
-    
+
     @api.multi
     def onchange_gender_saqa_code(self, gender_saqa_code):
         res = {}
@@ -12539,7 +12551,7 @@ class hr_employee(models.Model):
         elif equity == 'white':
             res.update({'value':{'equity_saqa_code':'wh'}})
         return res
-    
+
     @api.multi
     def onchange_equity_saqa_code(self, equity_saqa_code):
         res = {}
@@ -12559,7 +12571,7 @@ class hr_employee(models.Model):
         elif equity_saqa_code == 'wh':
             res.update({'value':{'equity':'white'}})
         return res
-    
+
     @api.multi
     def onchange_socio(self, socio_economic_status):
         res = {}
@@ -12573,7 +12585,7 @@ class hr_employee(models.Model):
         if socio_economic_status == 'Not working, not looking':
             res.update({'value':{'socio_economic_saqa_code':'3'}})
         if socio_economic_status == 'Home-maker (not working)':
-            res.update({'value':{'socio_economic_saqa_code':'4'}})                                
+            res.update({'value':{'socio_economic_saqa_code':'4'}})
         if socio_economic_status == 'Scholar/student (not w.)':
             res.update({'value':{'socio_economic_saqa_code':'6'}})
         if socio_economic_status == 'Pensioner/retired (not w.)':
@@ -12581,7 +12593,7 @@ class hr_employee(models.Model):
         if socio_economic_status == 'Not working - disabled':
             res.update({'value':{'socio_economic_saqa_code':'8'}})
         if socio_economic_status == 'Not working - no wish to w':
-            res.update({'value':{'socio_economic_saqa_code':'9'}})                                
+            res.update({'value':{'socio_economic_saqa_code':'9'}})
         if socio_economic_status == 'Not working - N.E.C.':
             res.update({'value':{'socio_economic_saqa_code':'10'}})
         if socio_economic_status == 'N/A: aged <15':
@@ -12589,7 +12601,7 @@ class hr_employee(models.Model):
         if socio_economic_status == 'N/A: Institution':
             res.update({'value':{'socio_economic_saqa_code':'98'}})
         if socio_economic_status == 'Unspecified':
-            res.update({'value':{'socio_economic_saqa_code':'U'}})                                
+            res.update({'value':{'socio_economic_saqa_code':'U'}})
         return res
 
     @api.multi
@@ -12605,7 +12617,7 @@ class hr_employee(models.Model):
         if socio_economic_saqa_code == '3':
             res.update({'value':{'socio_economic_status':'Not working, not looking'}})
         if socio_economic_saqa_code == '4':
-            res.update({'value':{'socio_economic_status':'Home-maker (not working)'}})                                
+            res.update({'value':{'socio_economic_status':'Home-maker (not working)'}})
         if socio_economic_saqa_code == '6':
             res.update({'value':{'socio_economic_status':'Scholar/student (not w.)'}})
         if socio_economic_saqa_code == '7':
@@ -12613,7 +12625,7 @@ class hr_employee(models.Model):
         if socio_economic_saqa_code == '8':
             res.update({'value':{'socio_economic_status':'Not working - disabled'}})
         if socio_economic_saqa_code == '9':
-            res.update({'value':{'socio_economic_status':'Not working - no wish to w'}})                                
+            res.update({'value':{'socio_economic_status':'Not working - no wish to w'}})
         if socio_economic_saqa_code == '10':
             res.update({'value':{'socio_economic_status':'Not working - N.E.C.'}})
         if socio_economic_saqa_code == '97':
@@ -12621,9 +12633,9 @@ class hr_employee(models.Model):
         if socio_economic_saqa_code == '98':
             res.update({'value':{'socio_economic_status':'N/A: Institution'}})
         if socio_economic_saqa_code == 'U':
-            res.update({'value':{'socio_economic_status':'Unspecified'}})                                
+            res.update({'value':{'socio_economic_status':'Unspecified'}})
         return res
-    
+
     @api.multi
     def onchange_disability(self, disability_status):
         res = {}
@@ -12676,8 +12688,8 @@ class hr_employee(models.Model):
             res.update({'value':{'disability_status':'none'}})
 
         return res
-    
-    @api.multi    
+
+    @api.multi
     def onchange_language(self, home_language_code):
         res = {}
         if not home_language_code:
@@ -12712,7 +12724,7 @@ class hr_employee(models.Model):
         return res
 
     @api.multi
-    def onchange_home_lang_saqa_code(self, home_lang_saqa_code):    
+    def onchange_home_lang_saqa_code(self, home_lang_saqa_code):
         res = {}
         if not home_lang_saqa_code:
             res.update({'value':{'home_language_code':''}})
@@ -12749,16 +12761,16 @@ class hr_employee(models.Model):
     def unlink(self):
         raise Warning(_("Sorry!! You cannot delete Approved record !"))
         return super(hr_employee, self).unlink()
-    
+
     @api.multi
     def copy(self):
         raise Warning(_("Sorry!! You cannot duplicate Approved record !"))
-        return super(hr_employee, self).copy()    
+        return super(hr_employee, self).copy()
 hr_employee()
 
 class etqe_assessors_tracking(models.Model):
     _name = 'etqe.assessors.tracking'
-    
+
     provider_accreditation_id = fields.Many2one("provider.accreditation", string="Provider Accreditation")
     status = fields.Selection([('requested_approval', 'Requested Approval'),
                                ('approved', 'Approved'),
@@ -12766,26 +12778,26 @@ class etqe_assessors_tracking(models.Model):
                               string='State', readonly=True)
     employee_id = fields.Many2one("hr.employee", string="Employee")
     etqe_approved_denied = fields.Boolean(string='ETQE Approved Denied')
-    
+
     _defaults = {
         'etqe_approved_denied': False,
     }
     @api.multi
     def action_approve_sdf(self):
         self.write({'etqe_approved_denied':True, 'status':'approved'})
-        # TODO: Creation of SDF Master from SDF Registration Information Object. 
+        # TODO: Creation of SDF Master from SDF Registration Information Object.
         return True
-    
+
     @api.multi
     def action_deny_sdf(self):
         self.write({'etqe_approved_denied':False, 'status':'denied'})
-        # TODO: Creation of SDF Master from SDF Registration Information Object. 
+        # TODO: Creation of SDF Master from SDF Registration Information Object.
         return True
 etqe_assessors_tracking()
 
 class etqe_moderators_tracking(models.Model):
     _name = 'etqe.moderators.tracking'
-    
+
     provider_accreditation_id = fields.Many2one("provider.accreditation", string="Provider Accreditation")
     status = fields.Selection([('requested_approval', 'Requested Approval'),
                                ('approved', 'Approved'),
@@ -12797,17 +12809,17 @@ class etqe_moderators_tracking(models.Model):
     _defaults = {
         'etqe_approved_denied': False,
     }
-    
+
     @api.multi
     def action_approve_sdf(self):
         self.write({'etqe_approved_denied':True, 'status':'approved'})
-        # TODO: Creation of SDF Master from SDF Registration Information Object. 
+        # TODO: Creation of SDF Master from SDF Registration Information Object.
         return True
-    
+
     @api.multi
     def action_deny_sdf(self):
         self.write({'etqe_approved_denied':False, 'status':'denied'})
-        # TODO: Creation of SDF Master from SDF Registration Information Object. 
+        # TODO: Creation of SDF Master from SDF Registration Information Object.
         return True
 etqe_moderators_tracking()
 
@@ -12816,7 +12828,7 @@ class etqe_learner_attachment(models.Model):
     Form for Attachment details
     """
     _name = "etqe.learner.attachment"
-    
+
     name = fields.Char('Document Name', required=True)
     data = fields.Binary('File', required=True)
     learner_attach_id = fields.Many2one('etqe.learner', 'Document Upload', ondelete='cascade')
@@ -12825,13 +12837,13 @@ etqe_learner_attachment()
 class etqe_learner(models.Model):
     _name = 'etqe.learner'
     _description = 'Etqe Learner'
-    
+
     seq_no = fields.Char(string='Agreement No')
     surname = fields.Char(string='Surname')
     identity_number = fields.Char(string='Identity Number')
     alternate_identity_no = fields.Char(string='Alternate identity No')
     certificate_no = fields.Char(string='Certificate No')
-    
+
     title = fields.Char(string='Title')
     name = fields.Char(string='Name')
     detials_surname = fields.Char(string='Surname')
@@ -12887,7 +12899,7 @@ class etqe_learner(models.Model):
 #     attached_report = fields.Binary(string="Agreement No")
 #     created = fields.Boolean(string='Created', default=True)
 #     loaded = fields.Boolean(string='Loaded')
-    
+
     @api.multi
     def onchange_crc(self, citizen_residential_status):
         res = {}
@@ -12897,7 +12909,7 @@ class etqe_learner(models.Model):
             country_data = self.env['res.country'].search(['|', ('code', '=', 'ZA'), ('name', '=', 'South Africa')], limit=1)
             res.update({'value':{'nationality_id':country_data and country_data.id}})
         return res
-    
+
     @api.multi
     def onchange_id_no(self, identification_id):
         res, val = {}, {}
@@ -12923,13 +12935,13 @@ class etqe_learner(models.Model):
                 birth_date = datetime.strptime('20' + year + '-' + month + '-' + day, '%Y-%m-%d').date()
             else:
                 birth_date = datetime.strptime('19' + year + '-' + month + '-' + day, '%Y-%m-%d').date()
-            
+
             val.update({'date_of_birth':birth_date})
             res.update({'value':val})
             return res
         else:
             return {'value':{'identity_number':''},'warning':{'title':'Invalid Identification Number','message':'Identification Number should be numeric!'}}
-    
+
     @api.multi
     def onchange_identity_number(self, identification_id):
         res = {}
@@ -12944,26 +12956,26 @@ class etqe_learner(models.Model):
     def create(self, vals):
         vals['seq_no'] = self.env['ir.sequence'].get('sdp.learner')
         return super(etqe_learner, self).create(vals)
-    
+
     @api.multi
     def country_for_province(self, province):
         state = self.env['res.country.state'].browse(province)
         return state.country_id.id
-    
+
     @api.multi
     def onchange_postal_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'learner_country_postal': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_home_province(self, province):
         if province:
             country_id = self.country_for_province(province)
             return {'value': {'learner_country_home': country_id }}
         return {}
-    
+
     @api.multi
     def onchange_country_id(self, country_id):
         res = {}
@@ -12980,13 +12992,13 @@ etqe_learner()
 #Assessment classes for skills programme
 class learner_assessment_line_for_skills(models.Model):
     _name = 'learner.assessment.line.for.skills'
-     
+
     @api.multi
     def _get_provider(self):
         ''' Getting provider from Assessment via context passed in xml.'''
         context = self._context
         provider_id = context.get('provider', False)
-        return provider_id     
+        return provider_id
 #     name = fields.Char(string='Name')
     provider_assessment_ref_id_for_skills = fields.Many2one('provider.assessment', string='provider_assessment_ref')
 #     learner_id = fields.Many2one('etqe.learner', string='Learner', required=True)
@@ -12998,9 +13010,9 @@ class learner_assessment_line_for_skills(models.Model):
     verify = fields.Boolean(string="Verification")
     provider_id = fields.Many2one('res.partner', string="Provider", track_visibility='onchange', default=_get_provider)
     identification_id = fields.Char(string="National Id",)
-    skill_learner_assessment_line_id = fields.Many2many('skills.programme', 'skills_assessment_line_rel','skills_id', 'skill_learner_assessment_line_id', string='Skills')    
-    skill_unit_standards_learner_assessment_line_id = fields.Many2many('skills.programme.unit.standards', 'skills_unit_assessment_line_rel', 'skills_unit_standards_id', 'skill_unit_standards_learner_assessment_line_id', string='Skills Unit Standards')    
-    
+    skill_learner_assessment_line_id = fields.Many2many('skills.programme', 'skills_assessment_line_rel','skills_id', 'skill_learner_assessment_line_id', string='Skills')
+    skill_unit_standards_learner_assessment_line_id = fields.Many2many('skills.programme.unit.standards', 'skills_unit_assessment_line_rel', 'skills_unit_standards_id', 'skill_unit_standards_learner_assessment_line_id', string='Skills Unit Standards')
+
     @api.multi
     def onchange_assessors_id(self, assessors_id, moderators_id):
         res = {}
@@ -13012,13 +13024,13 @@ class learner_assessment_line_for_skills(models.Model):
                     'value':{
                                 'assessors_id' : '',
                                 'moderators_id':'',
-                            
+
                              },
                      'warning': {'title': 'Error!', 'message': 'Assessor  And Moderator Cant be same in a row'},
-                    }) 
-            
+                    })
+
         return res
-          
+
     @api.model
     def default_get(self, fields):
         context = self._context
@@ -13048,20 +13060,20 @@ class learner_assessment_line_for_skills(models.Model):
 #         for learner in learner_obj:
 #             provider_list.append(learner.id) 
 #         return {'domain': {'learner_id': [('id', 'in', provider_list)]}}
-        
+
         # This code is used to filter and show only logged user's learner on 06/10/2016
         learner_list = []
         if self._uid == 1:
             etqe_learner_obj = self.env['hr.employee'].search([('is_learner', '=', True), ('provider_learner', '=', True), ('state', 'in', ['active', 'replacement'])])
             for learner in etqe_learner_obj:
-                learner_list.append(learner.id)            
+                learner_list.append(learner.id)
         else:
             etqe_learner_obj = self.env['hr.employee'].search([('is_learner', '=', True), ('provider_learner', '=', True), ('state', 'in', ['active', 'replacement'])])  # ,('logged_provider_id','=',user.partner_id.id)
             for learner in etqe_learner_obj:
                 for qual_line in learner.learner_qualification_ids:
                     provider = qual_line.provider_id.id
                     if provider:
-                        if provider == self.env.user.partner_id.id: 
+                        if provider == self.env.user.partner_id.id:
                             learner_list.append(learner.id)
 #         load qualification as per provider
         qualification = []
@@ -13069,7 +13081,7 @@ class learner_assessment_line_for_skills(models.Model):
             qualification_obj = self.env['provider.qualification'].search([])
             for quali_id in qualification_obj:
                     qualification.append(quali_id.id)
-        else:           
+        else:
             provider_obj = self.env['res.partner'].search([('provider', '=', True), ('id', '=', provider_id)])
             if provider_obj.qualification_ids:
                 for qualification_id in provider_obj.qualification_ids:
@@ -13078,7 +13090,7 @@ class learner_assessment_line_for_skills(models.Model):
             elif provider_obj.qualification_campus_ids:
                 for qualification_campus_id in provider_obj.qualification_campus_ids:
                     for quali_id in qualification_campus_id.qualification_id:
-                        qualification.append(quali_id.id)                
+                        qualification.append(quali_id.id)
 #         load skill programme as per provider        
         skill_programme = []
         if self._uid == 1:
@@ -13094,14 +13106,14 @@ class learner_assessment_line_for_skills(models.Model):
             elif provider_obj.skills_programme_campus_ids:
                 for skill_ids in provider_obj.skills_programme_campus_ids:
                     for skill_id in skill_ids.skills_programme_id:
-                        skill_programme.append(skill_id.id)        
+                        skill_programme.append(skill_id.id)
 #         load Assessor as per provider
         assessors_list = []
         if self._uid == 1:
             assessor_obj = self.env['hr.employee'].search([('is_assessors', '=', True)])
             for assessor in assessor_obj:
                     assessors_list.append(assessor.id)
-        else:           
+        else:
             provider_obj = self.env['res.partner'].search([('provider', '=', True), ('id', '=', provider_id)])
             if provider_obj.assessors_ids:
                 for assessor_id in provider_obj.assessors_ids:
@@ -13110,14 +13122,14 @@ class learner_assessment_line_for_skills(models.Model):
             elif provider_obj.assessors_campus_ids:
                 for assessors_campus_id in provider_obj.assessors_campus_ids:
                     for assessor in assessors_campus_id.assessors_id:
-                        assessors_list.append(assessor.id)    
+                        assessors_list.append(assessor.id)
         #   load Moderator as per provider
         moderator_list = []
         if self._uid == 1:
             moderator_obj = self.env['hr.employee'].search([('is_moderators', '=', True)])
             for moderator in moderator_obj:
                     moderator_list.append(moderator.id)
-        else:           
+        else:
             provider_obj = self.env['res.partner'].search([('provider', '=', True), ('id', '=', provider_id)])
             if provider_obj.moderators_ids:
                 for moderator_id in provider_obj.moderators_ids:
@@ -13126,7 +13138,7 @@ class learner_assessment_line_for_skills(models.Model):
             elif provider_obj.moderators_campus_ids:
                 for moderators_campus_id in provider_obj.moderators_campus_ids:
                     for moderator in moderators_campus_id.moderators_id:
-                        moderator_list.append(moderator.id)    
+                        moderator_list.append(moderator.id)
         return {'domain': {'learner_id': [('id', 'in', list(set(learner_list)))],
                            'qual_learner_assessment_line_id':[('id', 'in', qualification)],
                            'skill_learner_assessment_line_id':[('id', 'in', skill_programme)],
@@ -13184,7 +13196,7 @@ class learner_assessment_line_for_skills(models.Model):
                              }
                     })
         return res
-    
+
 #     @api.multi
 #     def onchange_identification_id(self,identification_id):
 #         res = {}
@@ -13211,7 +13223,7 @@ class learner_assessment_line_for_skills(models.Model):
 #                              }
 #                     })
 #         return res
-    
+
     @api.multi
     def onchange_qualification_ids(self, qualification_id):
         res = {}
@@ -13241,8 +13253,8 @@ class learner_assessment_achieve_line_for_skills(models.Model):
 #    qual_learner_assessment_achieve_line_id = fields.Many2many('provider.qualification', 'achieve_asse_qual_rel', 'qualification_achieve_id', 'qual_achieve_learner_assessment_line_id', string='Qualification')
 #    skill_learner_assessment_achieve_line_id = fields.Many2many('skills.programme', 'achieve_asse_skills_rel', 'skills_achieve_id', 'skill_learner_assessment_achieve_line_id', string='Skills')
 #    unit_standards_learner_assessment_achieve_line_id = fields.Many2many('provider.qualification.line', 'achieve_asse_unit_rel', 'unit_standards_achieve_id', 'unit_standards_learner_assessment_achieve_line_id', string='Unit Standards')
-    skill_learner_assessment_achieve_line_id = fields.Many2many('skills.programme', 'achieve_asse_skills_rel_new','skills_achieve_id', 'skill_learner_assessment_achieve_line_id', string='Skills')    
-    skill_unit_standards_learner_assessment_achieve_line_id = fields.Many2many('skills.programme.unit.standards', 'achieve_asse_skills_unit_rel_new', 'skills_unit_standards_achieve_id', 'skill_unit_standards_learner_assessment_achieve_line_id', string='Skills Unit Standards')    
+    skill_learner_assessment_achieve_line_id = fields.Many2many('skills.programme', 'achieve_asse_skills_rel_new','skills_achieve_id', 'skill_learner_assessment_achieve_line_id', string='Skills')
+    skill_unit_standards_learner_assessment_achieve_line_id = fields.Many2many('skills.programme.unit.standards', 'achieve_asse_skills_unit_rel_new', 'skills_unit_standards_achieve_id', 'skill_unit_standards_learner_assessment_achieve_line_id', string='Skills Unit Standards')
 
 #     sdl_number = fields.Char(string='SDL Number')
 #     seta_id = fields.Many2one('seta.branches', string='SETA Id')
@@ -13254,8 +13266,8 @@ learner_assessment_achieve_line_for_skills()
 
 class learner_assessment_verify_line_for_skills(models.Model):
     _name = 'learner.assessment.verify.line.for.skills'
-    
-     
+
+
     provider_assessment_verify_ref_id_for_skills = fields.Many2one('provider.assessment', string='provider_assessment_verify_ref')
     learner_id = fields.Many2one('hr.employee', string='Learner', required=True)
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_assessors', '=', True)])
@@ -13268,16 +13280,16 @@ class learner_assessment_verify_line_for_skills(models.Model):
 #    skill_learner_assessment_verify_line_id = fields.Many2many('skills.programme', 'verify_asse_skills_rel', 'skills_verify_id', 'skill_learner_assessment_verify_line_id', string='Skills')
 #    unit_standards_learner_assessment_verify_line_id = fields.Many2many('provider.qualification.line', 'verify_asse_unit_rel', 'unit_standards_verify_id', 'unit_standards_learner_assessment_verify_line_id', string='Unit Standards')
     comment = fields.Char(string="Comment")
-    
-    skill_learner_assessment_verify_line_id = fields.Many2many('skills.programme', 'skills_assessment_verified_rel', 'skills_verify_id', 'skill_learner_assessment_verify_line_id', string='Skills')    
+
+    skill_learner_assessment_verify_line_id = fields.Many2many('skills.programme', 'skills_assessment_verified_rel', 'skills_verify_id', 'skill_learner_assessment_verify_line_id', string='Skills')
     skill_unit_standards_learner_assessment_verify_line_id = fields.Many2many('skills.programme.unit.standards', 'skills_unit_assessment_verified_rel', 'skills_unit_standards_verify_id', 'skill_unit_standards_learner_assessment_verify_line_id', string='Skills Unit Standards')
-    
-    
+
+
 learner_assessment_verify_line_for_skills()
 
 class learner_assessment_evaluate_line_for_skills(models.Model):
     _name = 'learner.assessment.evaluate.line.for.skills'
-    
+
     provider_assessment_evaluate_ref_id_for_skills = fields.Many2one('provider.assessment', string='provider_assessment_Evaluate_ref')
     learner_id = fields.Many2one('hr.employee', string='Learner', required=True)
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_assessors', '=', True)])
@@ -13290,15 +13302,15 @@ class learner_assessment_evaluate_line_for_skills(models.Model):
 #    skill_learner_assessment_evaluate_line_id = fields.Many2many('skills.programme', 'evaluate_asse_skills_rel', 'skills_verify_id', 'skill_learner_assessment_verify_line_id', string='Skills')
 #    unit_standards_learner_assessment_evaluate_line_id = fields.Many2many('provider.qualification.line', 'evaluate_asse_unit_rel', 'unit_standards_verify_id', 'unit_standards_learner_assessment_verify_line_id', string='Unit Standards')
     comment = fields.Char(string="Comment")
-    
-    skill_learner_assessment_evaluate_line_id = fields.Many2many('skills.programme', 'skills_assessment_evaluate_rel', 'skills_verify_id', 'skill_learner_assessment_verify_line_id', string='Skills')    
-    skill_unit_standards_learner_assessment_evaluate_line_id = fields.Many2many('skills.programme.unit.standards', 'skills_unit_assessment_evaluate_rel', 'skills_unit_standards_verify_id', 'skill_unit_standards_learner_assessment_verify_line_id', string='Skills Unit Standards')    
-    
+
+    skill_learner_assessment_evaluate_line_id = fields.Many2many('skills.programme', 'skills_assessment_evaluate_rel', 'skills_verify_id', 'skill_learner_assessment_verify_line_id', string='Skills')
+    skill_unit_standards_learner_assessment_evaluate_line_id = fields.Many2many('skills.programme.unit.standards', 'skills_unit_assessment_evaluate_rel', 'skills_unit_standards_verify_id', 'skill_unit_standards_learner_assessment_verify_line_id', string='Skills Unit Standards')
+
 learner_assessment_evaluate_line_for_skills()
 
 class learner_assessment_achieved_line_for_skills(models.Model):
     _name = 'learner.assessment.achieved.line.for.skills'
-     
+
     provider_assessment_achieved_ref_id_for_skills = fields.Many2one('provider.assessment', string='provider_assessment_achieved_ref')
     learner_id = fields.Many2one('hr.employee', string='Learner', required=True)
     assessors_id = fields.Many2one("hr.employee", string='Assessors', domain=[('is_assessors', '=', True)])
@@ -13311,7 +13323,7 @@ class learner_assessment_achieved_line_for_skills(models.Model):
 #     skill_learner_assessment_achieved_line_id = fields.Many2many('skills.programme', 'achieved_asse_skills_rel', 'skills_achieved_id', 'skill_learner_assessment_achieve_line_id', string='Skills')
 #     unit_standards_learner_assessment_achieved_line_id = fields.Many2many('provider.qualification.line', 'achieved_asse_unit_rel', 'unit_standards_achieved_id', 'unit_standards_learner_assessment_achieve_line_id', string='Unit Standards')
 
-    skill_learner_assessment_achieved_line_id = fields.Many2many('skills.programme','skills_assessment_achieved_rel', 'skills_achieved_id', 'skill_learner_assessment_achieved_line_id', string='Skills')    
-    skill_unit_standards_learner_assessment_achieved_line_id = fields.Many2many('skills.programme.unit.standards','skills_unit_assessment_achieved_rel', 'skills_unit_standards_achieved_id', 'skill_unit_standards_learner_assessment_achieved_line_id', string='Skills Unit Standards')    
+    skill_learner_assessment_achieved_line_id = fields.Many2many('skills.programme','skills_assessment_achieved_rel', 'skills_achieved_id', 'skill_learner_assessment_achieved_line_id', string='Skills')
+    skill_unit_standards_learner_assessment_achieved_line_id = fields.Many2many('skills.programme.unit.standards','skills_unit_assessment_achieved_rel', 'skills_unit_standards_achieved_id', 'skill_unit_standards_learner_assessment_achieved_line_id', string='Skills Unit Standards')
 
 learner_assessment_achieved_line_for_skills()

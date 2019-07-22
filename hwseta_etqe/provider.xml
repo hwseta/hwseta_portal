@@ -4704,7 +4704,7 @@
 							/> <button name="action_achieved_button" string="Achieve" type="object" class="oe_highlight" 
 							attrs="{'invisible':['|',('state','in',['draft','verify','learners','submitted']),('assessed','=',True)]}" 
 							/> -->
-
+                        <button name="check_unit_standard_upline" string="Check Unit Standards"/>
 						<button name="action_submit_button" string="Submit" type="object"
 							class="oe_highlight" attrs="{'invisible':[('submited','=',True)]}"
 							groups="hwseta_etqe.group_providers,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"/>
