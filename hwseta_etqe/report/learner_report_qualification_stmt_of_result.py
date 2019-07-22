@@ -79,15 +79,12 @@ class learner_qualification_stmt_of_result(report_sxw.rml_parse):
 		"""
 		This function is used to retrieve Unit standard data
 		"""
-		dbg("get_unit_standard:" + str(achieved_id))
 		unit_standard, unit_standard_type = [], []
 		self.cr.execute(
 			"select unit_standards_learner_assessment_achieve_line_id from achieved_asse_unit_rel where unit_standards_achieved_id=%s" % (achieved_id.id))
 		qualification_line_ids = map(lambda x: x[0], self.cr.fetchall())
-		dbg("all qualification_line_ids" + str(qualification_line_ids))
 		for qualification_line in self.pool.get('provider.qualification.line').browse(self.cr, self.uid, qualification_line_ids):
 			unit_standard_type.append(qualification_line.type)
-		dbg("unit_standard_type list:" + str(unit_standard_type))
 		total_line = []
 		newlist = []
 		for u_type in list(set(unit_standard_type)):
@@ -118,10 +115,12 @@ class learner_qualification_stmt_of_result(report_sxw.rml_parse):
 			if total_nfq_level == 0:
 				total_nfq_level += 1
 			unit_standard_list = sorted(val_lst, key = lambda k: k ['nlrd_number'], reverse=True)
-			dbg("unit_standard_list nlrd_number:" + str(unit_standard_list[0].get('nlrd_number')))
+			# dbg("unit_standard_list nlrd_number:" + str(unit_standard_list[0].get('nlrd_number')))
 			unit_standard.append({'type_key': key, 'type': u_type, 'value': unit_standard_list[
 								 ::-1], 't_credits': total_credits, 'percentage': nfq_level * 100 / total_nfq_level, 'counter': len(list(set(unit_standard_type)))})
 			newlist = sorted(unit_standard, key=lambda k: k['type_key'])
+			dbg("get_unit_standard--- learner name:" + str(achieved_id.learner_id.name) + " identification_id:" + str(achieved_id.identification_id))
+			dbg("newlist:" + str(newlist))
 		return newlist
 
 	def get_status(self, achieved_id):
