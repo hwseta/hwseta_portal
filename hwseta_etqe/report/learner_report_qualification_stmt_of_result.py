@@ -120,7 +120,7 @@ class learner_qualification_stmt_of_result(report_sxw.rml_parse):
 								 ::-1], 't_credits': total_credits, 'percentage': nfq_level * 100 / total_nfq_level, 'counter': len(list(set(unit_standard_type)))})
 			newlist = sorted(unit_standard, key=lambda k: k['type_key'])
 		dbg("get_unit_standard--- learner name:" + str(achieved_id.learner_id.name) + " identification_id:" + str(achieved_id.identification_id))
-		dbg([bozz.get('nlrd_number') for bozz in str(newlist[0].get('value'))])
+		dbg([bozz.get('nlrd_number') for bozz in newlist[0].get('value')])
 		return newlist
 
 	def get_status(self, achieved_id):
