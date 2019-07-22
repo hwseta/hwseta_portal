@@ -118,7 +118,7 @@ class learner_qualification_stmt_of_result(report_sxw.rml_parse):
 			if total_nfq_level == 0:
 				total_nfq_level += 1
 			unit_standard_list = sorted(val_lst, key = lambda k: k ['nlrd_number'], reverse=True)
-			dbg("unit_standard_list:" + str(unit_standard_list))
+			dbg("unit_standard_list nlrd_number:" + str(unit_standard_list[0].get('nlrd_number')))
 			unit_standard.append({'type_key': key, 'type': u_type, 'value': unit_standard_list[
 								 ::-1], 't_credits': total_credits, 'percentage': nfq_level * 100 / total_nfq_level, 'counter': len(list(set(unit_standard_type)))})
 			newlist = sorted(unit_standard, key=lambda k: k['type_key'])
