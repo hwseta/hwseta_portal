@@ -9652,7 +9652,14 @@ class provider_assessment(models.Model):
 			dbg(this_us_list)
 			# dbg(this_mod_us_list)
 			mod_diff = [x for x in this_us_list if x not in this_mod_us_list]
-			dbg("mod_diff" + str(mod_diff))
+			ass_diff = [x for x in this_us_list if x not in this_ass_us_list]
+			for x in mod_diff:
+				text_guy += "in assessment, not in moderator: " + str(x) + "\n"
+			for x in ass_diff:
+				text_guy += "in assessment, not in assessor: " + str(x) + "\n"
+			dbg(text_guy)
+			# dbg("ass_diff" + str(ass_diff))
+			# dbg("mod_diff" + str(mod_diff))
 
 
 
