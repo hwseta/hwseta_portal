@@ -9669,12 +9669,12 @@ class provider_assessment(models.Model):
 				text_guy += "<div>in assessment, not in provider: " + str(x) + "</div>"
 			text_guy += "<h1>Moderator:" + moderator_name + "</h1>"
 			for x in mod_diff:
-				text_guy += "in assessment, not in moderator: " + str(x) + "</div>"
+				text_guy += "<div>in assessment, not in moderator: " + str(x) + "</div>"
 			text_guy += "<h1>Assessor:" + assessor_name + "</h1>"
 			for x in ass_diff:
-				text_guy += "in assessment, not in assessor: " + str(x) + "</div>"
+				text_guy += "<div>in assessment, not in assessor: " + str(x) + "</div>"
 			self.unit_standard_variance = text_guy
-			dbg(text_guy)
+			# dbg(text_guy)
 			# dbg("ass_diff" + str(ass_diff))
 			# dbg("mod_diff" + str(mod_diff))
 
