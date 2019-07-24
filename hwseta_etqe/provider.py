@@ -9643,7 +9643,8 @@ class provider_assessment(models.Model):
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.id_data not in this_prov_us_list and prov_us.selection:
 						dbg(prov_us.id_data)
-						this_prov_us_list.append([x.id_data for x in prov_us])
+						# this_prov_us_list.append([x.id_data for x in prov_us])
+						this_prov_us_list.append(prov_us.id_data)
 			for achieved_ids in self.learner_achieved_ids:
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us.id_no not in this_us_list:
