@@ -9640,9 +9640,9 @@ class provider_assessment(models.Model):
 		provider_name = self.provider_id.name
 		if self.learner_achieved_ids:
 			for prov_quals in self.provider_id.qualification_ids:
-				if prov_quals.id_data not in this_prov_us_list:
-					this_prov_us_list.append([x.id_data for x in prov_quals])
-			dbg("found achieved")
+				for prov_us in prov_quals:
+					if prov_us.id_data not in this_prov_us_list:
+						this_prov_us_list.append([x.id_data for x in prov_us])
 			for achieved_ids in self.learner_achieved_ids:
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us.id_no not in this_us_list:
