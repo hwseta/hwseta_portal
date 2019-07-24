@@ -9649,8 +9649,10 @@ class provider_assessment(models.Model):
 						for ass_us in ass_qualifications.qualification_line_hr:
 							if ass_us.id_no not in this_ass_us_list:
 								this_ass_us_list.append(ass_us.id_no)
+			dbg(this_us_list)
+			dbg(this_mod_us_list)
 			mod_diff = [x for x in this_us_list if x not in this_mod_us_list]
-			dbg(mod_diff)
+			dbg("mod_diff" + str(mod_diff))
 
 
 
