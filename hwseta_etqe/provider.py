@@ -9645,7 +9645,7 @@ class provider_assessment(models.Model):
 							this_mod_us_list.append(mod_us)
 				if achieved_ids.assessors_id:
 					for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
-						for ass_us in ass_qualifications.quallification_line_hr:
+						for ass_us in ass_qualifications.qualification_line_hr:
 							this_ass_us_list.append(ass_us)
 			dbg("this us list" + str(this_us_list))
 			dbg("this mod list" + str(this_mod_us_list))
