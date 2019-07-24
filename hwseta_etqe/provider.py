@@ -9624,7 +9624,7 @@ class provider_assessment(models.Model):
 	achieved_learner_count = fields.Integer('Achieved Learners', compute='_get_achieved_learner_count')
 	partially_achieved_learner_count = fields.Integer('Partially Achieved Learners', compute='_get_partially_achieved_learner_count')
 	is_provider = fields.Boolean("Is Provider", compute='_get_login_user', store = False)
-	unit_standard_variance = fields.Text()
+	unit_standard_variance = fields.Text("Unit Standard Variance")
 
 	@api.one
 	def check_unit_standard_upline(self):
@@ -9632,20 +9632,28 @@ class provider_assessment(models.Model):
 		# for this in self:
 		this_us_list = []
 		this_mod_us_list = []
+		this_prov_us_list = []
 		this_ass_us_list = []
 		text_guy = ""
+		moderator_name = ""
+		assessor_name = ""
+		provider_name = self.provider_id.name
 		if self.learner_achieved_ids:
+			prov_quals = [x for x in self.provider_id.qualification_ids]
+			this_prov_us_list.append([x.id_data for x in prov_quals.qualification_lines])
 			dbg("found achieved")
 			for achieved_ids in self.learner_achieved_ids:
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us.id_no not in this_us_list:
 						this_us_list.append(us.id_no)
 				if achieved_ids.moderators_id:
+					moderator_name = achieved_ids.moderators_id.name
 					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.qualification_line_hr:
 							if mod_us.id_no not in this_mod_us_list:
 								this_mod_us_list.append(mod_us.id_no)
 				if achieved_ids.assessors_id:
+					assessor_name = achieved_ids.assessors_id.name
 					for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
 						for ass_us in ass_qualifications.qualification_line_hr:
 							if ass_us.id_no not in this_ass_us_list:
@@ -9654,10 +9662,16 @@ class provider_assessment(models.Model):
 			# dbg(this_mod_us_list)
 			mod_diff = [x for x in this_us_list if x not in this_mod_us_list]
 			ass_diff = [x for x in this_us_list if x not in this_ass_us_list]
+			prov_diff = [x for x in this_us_list if x not in this_prov_us_list]
+			text_guy += "<h1>Provider:" + provider_name + "</h1>"
+			for x in prov_diff:
+				text_guy += "<div>in assessment, not in provider: " + str(x) + "</div>"
+			text_guy += "<h1>Moderator:" + moderator_name + "</h1>"
 			for x in mod_diff:
-				text_guy += "in assessment, not in moderator: " + str(x) + "\n"
+				text_guy += "in assessment, not in moderator: " + str(x) + "</div>"
+			text_guy += "<h1>Assessor:" + assessor_name + "</h1>"
 			for x in ass_diff:
-				text_guy += "in assessment, not in assessor: " + str(x) + "\n"
+				text_guy += "in assessment, not in assessor: " + str(x) + "</div>"
 			self.unit_standard_variance = text_guy
 			dbg(text_guy)
 			# dbg("ass_diff" + str(ass_diff))
