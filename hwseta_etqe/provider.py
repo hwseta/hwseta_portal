@@ -9624,6 +9624,7 @@ class provider_assessment(models.Model):
 	achieved_learner_count = fields.Integer('Achieved Learners', compute='_get_achieved_learner_count')
 	partially_achieved_learner_count = fields.Integer('Partially Achieved Learners', compute='_get_partially_achieved_learner_count')
 	is_provider = fields.Boolean("Is Provider", compute='_get_login_user', store = False)
+	unit_standard_variance = fields.Text()
 
 	@api.one
 	def check_unit_standard_upline(self):
@@ -9657,6 +9658,7 @@ class provider_assessment(models.Model):
 				text_guy += "in assessment, not in moderator: " + str(x) + "\n"
 			for x in ass_diff:
 				text_guy += "in assessment, not in assessor: " + str(x) + "\n"
+			self.unit_standard_variance = text_guy
 			dbg(text_guy)
 			# dbg("ass_diff" + str(ass_diff))
 			# dbg("mod_diff" + str(mod_diff))

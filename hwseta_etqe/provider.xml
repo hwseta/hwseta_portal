@@ -5199,6 +5199,11 @@
 									<field name= "total_learner_count"/>
 								</group>
 							</page>
+                            <page string="Unit Standard Variance">
+								<group>
+									<field name= "unit_standard_variance" widget="html"/>
+								</group>
+							</page>
 						</notebook>
 					<div class="oe_chatter">
 						<field name="message_follower_ids" widget="mail_followers" />
