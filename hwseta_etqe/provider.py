@@ -9637,18 +9637,18 @@ class provider_assessment(models.Model):
 			dbg("found achieved")
 			for achieved_ids in self.learner_achieved_ids:
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
-					if us not in this_us_list:
-						this_us_list.append(us)
+					if us.id_no not in this_us_list:
+						this_us_list.append(us.id_no)
 				if achieved_ids.moderators_id:
 					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.qualification_line_hr:
-							if mod_us.saqa_qual_id not in this_mod_us_list:
-								this_mod_us_list.append(mod_us)
+							if mod_us.id_no not in this_mod_us_list:
+								this_mod_us_list.append(mod_us.id_no)
 				if achieved_ids.assessors_id:
 					for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
 						for ass_us in ass_qualifications.qualification_line_hr:
-							if ass_us.saqa_qual_id not in this_ass_us_list:
-								this_ass_us_list.append(ass_us.saqa_qual_id)
+							if ass_us.id_no not in this_ass_us_list:
+								this_ass_us_list.append(ass_us.id_no)
 			mod_diff = [x for x in this_us_list if x not in this_mod_us_list]
 			dbg(mod_diff)
 
