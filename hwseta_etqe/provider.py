@@ -9642,14 +9642,16 @@ class provider_assessment(models.Model):
 				if achieved_ids.moderators_id:
 					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.qualification_line_hr:
-							this_mod_us_list.append(mod_us)
+							if mod_us.saqa_qual_id not in this_mod_us_list:
+								this_mod_us_list.append(mod_us)
 				if achieved_ids.assessors_id:
 					for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
 						for ass_us in ass_qualifications.qualification_line_hr:
-							this_ass_us_list.append(ass_us)
-			dbg("this us list" + str(this_us_list))
-			dbg("this mod list" + str(this_mod_us_list))
-			dbg("this ass list" + str(this_ass_us_list))
+							if ass_us.saqa_qual_id not in this_ass_us_list:
+								this_ass_us_list.append(ass_us.saqa_qual_id)
+			mod_diff = [x for x in this_us_list if x not in this_mod_us_list]
+			dbg(mod_diff)
+
 
 
 
