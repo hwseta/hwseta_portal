@@ -9630,13 +9630,28 @@ class provider_assessment(models.Model):
 		dbg("check_unit_standard_upline")
 		# for this in self:
 		this_us_list = []
+		this_mod_us_list = []
+		this_ass_us_list = []
+		text_guy = ""
 		if self.learner_achieved_ids:
 			dbg("found achieved")
 			for achieved_ids in self.learner_achieved_ids:
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us not in this_us_list:
 						this_us_list.append(us)
-		dbg(this_us_list)
+				if achieved_ids.moderator_id:
+					for mod_qualifications in achieved_ids.moderator_id.qualification_ids:
+						for mod_us in mod_qualifications.quallification_line_hr:
+							this_mod_us_list.append(mod_us)
+				if achieved_ids.assessor_id:
+					for ass_qualifications in achieved_ids.moderator_id.qualification_ids:
+						for ass_us in ass_qualifications.quallification_line_hr:
+							this_ass_us_list.append(ass_us)
+			dbg("this us list" + str(this_us_list))
+			dbg("this mod list" + str(this_mod_us_list))
+			dbg("this ass list" + str(this_ass_us_list))
+
+
 
 
 	@api.onchange('select_all')
@@ -12774,8 +12789,26 @@ class hr_employee(models.Model):
 
 	@api.multi
 	def unlink(self):
-		raise Warning(_("Sorry!! You cannot delete Approved record !"))
-		return super(hr_employee, self).unlink()
+		if self.env.user.has_group('hwseta_etqe.group_seta_administrator'):
+			for achieve in self.env['learner.assessment.achieve.line'].search([('learner_id','=',self.id)]):
+				dbg(achieve)
+				achieve.unlink()
+			for achieved in self.env['learner.assessment.achieved.line'].search([('learner_id','=',self.id)]):
+				dbg(achieved)
+				achieved.unlink()
+			for evaluate in self.env['learner.assessment.evaluate.line'].search([('learner_id','=',self.id)]):
+				dbg(evaluate)
+				evaluate.unlink()
+			for line in self.env['learner.assessment.line'].search([('learner_id','=',self.id)]):
+				dbg(line)
+				line.unlink()
+			for verify in self.env['learner.assessment.verify.line'].search([('learner_id','=',self.id)]):
+				dbg(verify)
+				verify.unlink()
+			return super(hr_employee, self).unlink()
+		else:
+			raise Warning(_("Sorry!! You cannot delete Approved record !"))
+
 
 	@api.multi
 	def copy(self):
