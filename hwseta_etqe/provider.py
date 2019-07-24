@@ -9666,14 +9666,17 @@ class provider_assessment(models.Model):
 			ass_diff = [x for x in this_us_list if x not in this_ass_us_list]
 			prov_diff = [x for x in this_us_list if x not in this_prov_us_list]
 			text_guy += "<h1>Provider:" + provider_name + "</h1>"
+			text_guy += "<h3>In assessment, not in Provider:</h3>"
 			for x in prov_diff:
-				text_guy += "<div>in assessment, not in provider: " + str(x) + "</div>"
+				text_guy += "<div>" + str(x) + "</div>"
 			text_guy += "<h1>Moderator:" + moderator_name + "</h1>"
+			text_guy += "<h3>In assessment, not in Moderator:</h3>"
 			for x in mod_diff:
-				text_guy += "<div>in assessment, not in moderator: " + str(x) + "</div>"
+				text_guy += "<div>" + str(x) + "</div>"
 			text_guy += "<h1>Assessor:" + assessor_name + "</h1>"
+			text_guy += "<h3>In assessment, not in Assessor:</h3>"
 			for x in ass_diff:
-				text_guy += "<div>in assessment, not in assessor: " + str(x) + "</div>"
+				text_guy += "<div>" + str(x) + "</div>"
 			self.unit_standard_variance = text_guy
 			# dbg(text_guy)
 			# dbg("ass_diff" + str(ass_diff))
