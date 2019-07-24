@@ -9640,7 +9640,7 @@ class provider_assessment(models.Model):
 					if us not in this_us_list:
 						this_us_list.append(us)
 				if achieved_ids.moderators_id:
-					for mod_qualifications in achieved_ids.moderators_id.qualification_ids:
+					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.quallification_line_hr:
 							this_mod_us_list.append(mod_us)
 				if achieved_ids.assessors_id:
