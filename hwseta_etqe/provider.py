@@ -9639,11 +9639,11 @@ class provider_assessment(models.Model):
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us not in this_us_list:
 						this_us_list.append(us)
-				if achieved_ids.moderator_id:
+				if achieved_ids.moderators_id:
 					for mod_qualifications in achieved_ids.moderator_id.qualification_ids:
 						for mod_us in mod_qualifications.quallification_line_hr:
 							this_mod_us_list.append(mod_us)
-				if achieved_ids.assessor_id:
+				if achieved_ids.assessors_id:
 					for ass_qualifications in achieved_ids.moderator_id.qualification_ids:
 						for ass_us in ass_qualifications.quallification_line_hr:
 							this_ass_us_list.append(ass_us)
