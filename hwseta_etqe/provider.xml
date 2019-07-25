@@ -1030,6 +1030,17 @@
 					<attribute name="invisible">True</attribute> </xpath> -->
 			</field>
 		</record>
+         <record id="view_provider_admin_readonly" model="ir.ui.view">
+             <field name="name">hr.attendance.form</field>
+             <field name="model">hr.attendance</field>
+             <field name="inherit_id" ref="hwseta_etqe.view_provider_form" />
+             <field name="groups_id" eval="[(6, 0, [ref('hwseta_etqe.group_seta_administrator')])]"/>
+             <field name="arch" type="xml">
+                 <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                 </xpath>
+             </field>
+         </record>
 
 		<!-- This form view is inherited to give readonly access to specified fields 
 			in PROVIDER portal -->
@@ -5200,14 +5211,16 @@
 								</group>
 							</page>
                             <page string="Unit Standard Variance">
+                                <button name="check_unit_standard_upline" type="object" string="Check Unit Standards"/>
 								<group>
-                                    <button name="check_unit_standard_upline" type="object" string="Check Unit Standards"/>
+
 									<field name= "unit_standard_variance" widget="html"/>
 								</group>
 							</page>
                             <page string="Unit Standard Library Variance">
-								<group>
-                                    <button name="check_unit_standard_library" type="object" string="Check Unit Standards Library"/>
+								<button name="check_unit_standard_library" type="object" string="Check Unit Standards Library"/>
+                                <group>
+
 									<field name= "unit_standard_library_variance" widget="html"/>
 								</group>
 							</page>
