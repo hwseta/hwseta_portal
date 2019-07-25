@@ -464,6 +464,17 @@
 				</form>
 			</field>
 		</record>
+        <record id="view_sdf_form_readonly" model="ir.ui.view">
+             <field name="name">hr.employee.form</field>
+             <field name="model">hr.employee</field>
+             <field name="inherit_id" ref="hwseta_sdf.view_sdf_form" />
+             <field name="groups_id" eval="[(6, 0, [ref('hwseta_etqe.group_seta_administrator')])]"/>
+             <field name="arch" type="xml">
+                 <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                 </xpath>
+             </field>
+         </record>
 
 		<record id="view_sdf_tree" model="ir.ui.view">
 			<field name="name">hr.sdf.tree</field>
