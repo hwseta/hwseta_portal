@@ -1031,8 +1031,8 @@
 			</field>
 		</record>
          <record id="view_provider_admin_readonly" model="ir.ui.view">
-             <field name="name">hr.attendance.form</field>
-             <field name="model">hr.attendance</field>
+             <field name="name">res.partner.form</field>
+             <field name="model">res.partner</field>
              <field name="inherit_id" ref="hwseta_etqe.view_provider_form" />
              <field name="groups_id" eval="[(6, 0, [ref('hwseta_etqe.group_seta_administrator')])]"/>
              <field name="arch" type="xml">
