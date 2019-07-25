@@ -5205,6 +5205,12 @@
 									<field name= "unit_standard_variance" widget="html"/>
 								</group>
 							</page>
+                            <page string="Unit Standard Library Variance">
+								<group>
+                                    <button name="check_unit_standard_library" type="object" string="Check Unit Standards Library"/>
+									<field name= "unit_standard_library_variance" widget="html"/>
+								</group>
+							</page>
 						</notebook>
 					<div class="oe_chatter">
 						<field name="message_follower_ids" widget="mail_followers" />

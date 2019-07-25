@@ -9625,6 +9625,26 @@ class provider_assessment(models.Model):
 	partially_achieved_learner_count = fields.Integer('Partially Achieved Learners', compute='_get_partially_achieved_learner_count')
 	is_provider = fields.Boolean("Is Provider", compute='_get_login_user', store = False)
 	unit_standard_variance = fields.Text("Unit Standard Variance")
+	unit_standard_library_variance = fields.Text("Unit Standard Variance")
+
+	@api.one
+	def check_unit_standard_library(self):
+		dbg("check_unit_standard_library")
+		this_us_list = []
+		text_guy = ""
+		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
+		if self.learner_achieved_ids:
+			for achieved_ids in self.learner_achieved_ids:
+				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
+					if us.id_no not in this_us_list:
+						this_us_list.append(us.id_no)
+			lib_diff = [x for x in this_us_list if x not in lib_us_list]
+			text_guy += "<h1>Library:</h1>"
+			text_guy += "<h3>In assessment, not in Library:</h3>"
+			for x in lib_diff:
+				text_guy += "<div>" + str(x) + "</div>"
+		self.unit_standard_library_variance = text_guy
+
 
 	@api.one
 	def check_unit_standard_upline(self):
