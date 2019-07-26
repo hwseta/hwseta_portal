@@ -80,7 +80,7 @@
 					<attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}
 					</attribute>
 				</xpath>
-				<!-- <xpath expr="/form/sheet/group/group/div/div[@name='address_format']/field[@name='state_id']" 
+				<!-- <xpath expr="/form/sheet/group/group/div/div[@name='address_format']/field[@name='state_id']"
 					position="attributes"> <attribute name="placeholder">State</attribute> </xpath> -->
 				<xpath expr="//form/sheet/div/field[@name='category_id']"
 					position="after">
@@ -103,7 +103,7 @@
 							<!-- <field name="provider_contact_name" attrs="{'invisible':['|',('provider','=',False)]}"/> -->
 							<field name="provider_accreditation_num" attrs="{'invisible':[('provider','=',False)]}" />
 							<field name="provider_etqa_decision_number" attrs="{'invisible':[('provider','=',False)]}" />
-							<!-- <field name="provider_sdl_no" attrs="{'invisible':[('provider','=',False)], 
+							<!-- <field name="provider_sdl_no" attrs="{'invisible':[('provider','=',False)],
 								'required':[('provider','=',True)]}"/> -->
 							<!-- <field name="provider_website_address" attrs="{'invisible':[('provider','=',False)]}"/> -->
 							<field name="provider_date_stamp" attrs="{'invisible':[('provider','=',False)]}" />
@@ -138,7 +138,7 @@
 									<field name="provider_physical_suburb" placeholder="Physical Suburb"
 										on_change='onchange_provider_physical_suburb(provider_physical_suburb)'
 										options="{'no_create':True}" />
-									<!-- <field name="physical_address_code" placeholder="Physical Address 
+									<!-- <field name="physical_address_code" placeholder="Physical Address
 										Code"/> -->
 									<div class="address_format">
 										<field name='city_physical' placeholder="City" style="width: 39%%"
@@ -163,7 +163,7 @@
 									<field name="provider_postal_suburb" placeholder="Postal suburb"
 										on_change='onchange_provider_postal_suburb(provider_postal_suburb)'
 										options="{'no_create':True}" />
-									<!-- <field name="postal_address_code" placeholder="Postal Address 
+									<!-- <field name="postal_address_code" placeholder="Postal Address
 										Code"/> -->
 									<div class="address_format">
 										<field name='city_postal' placeholder="City" style="width: 37%%"
@@ -235,8 +235,8 @@
 								<field name="alternate_acc_number" attrs="{'invisible':[('optYesNo','=',False)]}" />
 							</group>
 						</group>
-						<!-- <group string = "Document Uploads"> <field name="cipro_documents"/> 
-							<field name="tax_clearance"/> <field name="director_cv"/> <field name="certified_copies_of_qualifications"/> 
+						<!-- <group string = "Document Uploads"> <field name="cipro_documents"/>
+							<field name="tax_clearance"/> <field name="director_cv"/> <field name="certified_copies_of_qualifications"/>
 							</group> -->
 						<group>
 							<group>
@@ -281,7 +281,7 @@
 						</group>
 					</page>
 				</xpath>
-				
+
 					<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
 					position="after">
 					<page string="Moderator" attrs="{'invisible':[('provider','=',False)]}">
@@ -650,10 +650,10 @@
 											<a t-if="! read_only_mode" type="delete"
 												style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
 											<div class="oe_module_vignette">
-												<!-- <a type="open"> <t t-if="record.has_image.raw_value === 
-													true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small', 
-													record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image 
-													and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value" 
+												<!-- <a type="open"> <t t-if="record.has_image.raw_value ===
+													true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small',
+													record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image
+													and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value"
 													class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> -->
 												<div class="oe_module_desc">
 													<div
@@ -681,7 +681,7 @@
 																		Phone:
 																		<field name="phone" placeholder="0116076900" />
 																	</div>
-																	<!-- <div t-if="record.mobile.raw_value">Mobile: <field 
+																	<!-- <div t-if="record.mobile.raw_value">Mobile: <field
 																		name="mobile"/></div> -->
 																	<div t-if="record.status.raw_value">
 																		Status:
@@ -745,7 +745,7 @@
 					position="attributes">
 					<attribute name="string">Contacts / Branch</attribute>
 				</xpath>
-				
+
 				<xpath
 					expr="//field[@name='child_ids']/form/sheet/field[@name='supplier']"
 					position="before">
@@ -768,10 +768,10 @@
 											<a t-if="! read_only_mode" type="delete"
 												style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
 											<div class="oe_module_vignette">
-												<!-- <a type="open"> <t t-if="record.has_image.raw_value === 
-													true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small', 
-													record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image 
-													and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value" 
+												<!-- <a type="open"> <t t-if="record.has_image.raw_value ===
+													true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small',
+													record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image
+													and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value"
 													class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> -->
 												<div class="oe_module_desc">
 													<div
@@ -799,7 +799,7 @@
 																		Phone:
 																		<field name="phone" placeholder="0116076900" />
 																	</div>
-																	<!-- <div t-if="record.mobile.raw_value">Mobile: <field 
+																	<!-- <div t-if="record.mobile.raw_value">Mobile: <field
 																		name="mobile"/></div> -->
 																	<div t-if="record.status.raw_value">
 																		Status:
@@ -1017,30 +1017,19 @@
 						attrs="{'readonly':[('provider','=',True)], 'required': ['|','|',('user_ids','!=', []),('provider','=',True),('employer','=',True)]}" />
 				</xpath>
 
-				<!-- <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_payment_term']" 
-					position="attributes"> <attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}</attribute> 
-					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_supplier_payment_term']" 
-					position="attributes"> <attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}</attribute> 
-					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_account_receivable']" 
-					position="attributes"> <attribute name="attrs">{'required':[('provider','!=',True)]}</attribute> 
-					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_account_payable']" 
-					position="attributes"> <attribute name="attrs">{'required':[('provider','!=',True)]}</attribute> 
+				<!-- <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_payment_term']"
+					position="attributes"> <attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}</attribute>
+					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_supplier_payment_term']"
+					position="attributes"> <attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}</attribute>
+					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_account_receivable']"
+					position="attributes"> <attribute name="attrs">{'required':[('provider','!=',True)]}</attribute>
+					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_account_payable']"
+					position="attributes"> <attribute name="attrs">{'required':[('provider','!=',True)]}</attribute>
 					</xpath> -->
-				<!-- <xpath expr="//div[@class='oe_chatter']" position="attributes"> 
+				<!-- <xpath expr="//div[@class='oe_chatter']" position="attributes">
 					<attribute name="invisible">True</attribute> </xpath> -->
 			</field>
 		</record>
-         <record id="view_provider_admin_readonly" model="ir.ui.view">
-             <field name="name">res.partner.form</field>
-             <field name="model">res.partner</field>
-             <field name="inherit_id" ref="hwseta_etqe.view_provider_form" />
-             <field name="groups_id" eval="[(6, 0, [ref('hwseta_etqe.group_seta_administrator')])]"/>
-             <field name="arch" type="xml">
-                 <xpath expr="//field[@name='email']" position="attributes">
-                    <attribute name="readonly">False</attribute>
-                 </xpath>
-             </field>
-         </record>
 
 		<!-- This form view is inherited to give readonly access to specified fields 
 			in PROVIDER portal -->
@@ -1312,9 +1301,9 @@
 				<field name="fax" position="attributes">
 					<attribute name="readonly">1</attribute>
 				</field>
-<!--				<field name="email" position="attributes">-->
-<!--					<attribute name="readonly">1</attribute>-->
-<!--				</field>-->
+				<field name="email" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</field>
 			</field>
 		</record>
 		
@@ -1429,1516 +1418,340 @@
 			</field>
 		</record>
 
-<!--		<record id="provider_accreditation_form" model="ir.ui.view">-->
-<!--			<field name="name">provider.accreditation.form</field>-->
-<!--			<field name="model">provider.accreditation</field>-->
-<!--			<field name="arch" type="xml">-->
-<!--				<form string="Accreditation">-->
-<!--					<header>-->
-<!--						<field name="submitted" invisible="1" />-->
-<!--						<field name="verify" invisible="1" />-->
-<!--						<field name="evaluate" invisible="1" />-->
-<!--						<field name="approved" invisible="1" />-->
-<!--						<field name="denied" invisible="1" />-->
-<!--						<field name="recommended1" invisible="1" />-->
-<!--						<field name="validate" invisible="1" />-->
-<!--						<field name="recommended2" invisible="1" />-->
-<!--						&lt;!&ndash; <button name="action_submit_button" string="Submit" type="object" -->
-<!--							class="oe_highlight" attrs="{'invisible':['|',('submitted','=',True)]}"/> -->
-<!--							<button name="action_approve_button" states="pending" string="Approve" type="object" -->
-<!--							class="oe_highlight" attrs="{'invisible':['|',('approved','=',True),('submitted','=',False)]}"/> &ndash;&gt;-->
-<!--						<button name="action_submit_button" string="Submit" type="object"-->
-<!--							class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_providers,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','qualification','approved','verification','evaluation','denied']),('submitted','=',True)]}" />-->
-<!--						<button name="action_verify_button" string="Evaluate" type="object"-->
-<!--							class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|','|',('state','not in',['verification']),('verify','=',True),('approved','=',True)]}" />&lt;!&ndash; -->
-<!--							,('verify','=',True) &ndash;&gt;-->
-<!--						<button name="action_evaluate_button" string="Recommended"-->
-<!--							type="object" class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','campus','qualification','verification','approved','denied']),('evaluate','=',True)]}" />-->
-<!--						<button name="action_recommended1_button" string="Validate"-->
-<!--							type="object" class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|',('state','not in',['recommended1']),('recommended1','=',True)]}" />-->
-<!--						<button name="action_validate_button" string="Recommended"-->
-<!--							type="object" class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|',('state','not in',['validated']),('validate','=',True)]}" />-->
-<!--						<button name="action_approve_button" string="Approve" type="object"-->
-<!--							class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|','|',('state','not in',['recommended2']),('approved','=',True),('denied','=',True)]}" />-->
-<!--						<button name="action_denied_button" string="Reject" type="object"-->
-<!--							class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','campus','qualification','approved','denied']),('approved','=',True)]}" />-->
-<!--						&lt;!&ndash; <button name="action_denied_button" string="Reject" type="object" -->
-<!--							class="oe_highlight" attrs="{'invisible':['|','|','|',('state','in',['general_details','general_business_information','address_info','campus','qualification','verification','denied']),('denied','=',True),('evaluate','=',False),('approved','=',True)]}"/> &ndash;&gt;-->
-
-<!--						<button name="action_reevaluate_button" string="Re-Evaluate"-->
-<!--							type="object" class="oe_highlight"-->
-<!--						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"-->
-<!--							attrs="{'invisible':[('state','not in',['denied'])]}" />-->
-<!--						<field name="state" widget="statusbar" clickable="True"-->
-<!--							statusbar_visible="general_details,qualification,campus,recommended2,approved,denied"-->
-<!--							statusbar_colors='{"general_details":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',False)]}"/>-->
-<!--						<field name="state" widget="statusbar" clickable="True"-->
-<!--							statusbar_visible="general_details,general_business_information,address_info,qualification, campus,verification,evaluation,recommended1,validated,recommended2,approved,denied"-->
-<!--							statusbar_colors='{"campus":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',True)]}"/>-->
-<!--					</header>-->
-<!--						<field name="image" widget='image'-->
-<!--							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}"-->
-<!--							class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}' />-->
-<!--						<div class="oe_title oe_left"-->
-<!--							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}">-->
-<!--							<div class="oe_edit_only">-->
-<!--								<field name="is_existing_provider" attrs="{'readonly':[('state','not in',['general_details'])]}"-->
-<!--									on_change="onchange_is_existing_provider(is_existing_provider)"-->
-<!--									invisible="context.get('active')" />-->
-<!--								<label for="is_existing_provider" invisible="context.get('active')" />-->
-<!--								<field name="is_extension_of_scope" invisible="not context.get('active')" attrs="{'readonly':[('state','not in',['general_details'])]}"-->
-<!--									on_change="onchange_is_extension_of_scope(is_extension_of_scope)" />-->
-<!--								<label for="is_extension_of_scope" invisible="not context.get('active')" />-->
-<!--							</div>-->
-
-<!--							<div class="oe_edit_only"-->
-<!--								attrs="{'invisible':[('is_existing_provider','=',False),('is_extension_of_scope','=',False)]}">-->
-<!--								<label for="accreditation_number" />-->
-<!--								<field name="accreditation_number"-->
-<!--									attrs="{'required':['|',('is_existing_provider','=',True),('is_extension_of_scope','=',True)],'readonly':[('approved','=',True)]}"-->
-<!--									on_change="onchange_accreditation_number(accreditation_number,is_existing_provider,is_extension_of_scope)"-->
-<!--									placeholder="Accreditation Number" />-->
-<!--							</div>-->
-<!--							<div class="oe_edit_only">-->
-<!--								<label for="name" />-->
-<!--							</div>-->
-<!--							<h1>-->
-<!--								<field name="name" attrs="{'readonly':[('approved','=',True)]}"-->
-<!--									default_focus="1" placeholder="Name" />-->
-<!--							</h1>-->
-<!--							<field name="txtTradeName" attrs="{'readonly':[('approved','=',True)]}"-->
-<!--								default_focus="1" placeholder="Trading as .." />-->
-
-<!--						</div>-->
-<!--						&lt;!&ndash; <group attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation'])]}" -->
-<!--							colspan="4" col="4" > <field name="provider_accreditation_ref" readonly="1" -->
-<!--							placeholder="Accreditation Reference Number"/> <field name="sequence_num" -->
-<!--							readonly="1" placeholder="Sequence Number"/> </group> &ndash;&gt;-->
-<!--						<group-->
-<!--							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}">-->
-<!--							<group>-->
-<!--								<label string="Address" />-->
-<!--								<div>-->
-<!--									<field name="street" placeholder="Street Number"-->
-<!--										required="1" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<field name="street2" required="1" placeholder="Street Name"-->
-<!--										attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<field name="street3" placeholder="Building\Office Park"-->
-<!--										attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<field name="provider_suburb" placeholder="Suburb..." options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--										on_change='onchange_provider_suburb(provider_suburb)' attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<div class="address_format">-->
-<!--										<field name="city" placeholder="City" style="width: 40%%"-->
-<!--											attrs="{'readonly':[('approved','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>-->
-<!--										<field name="state_id" required="1" class="oe_no_button"-->
-<!--											placeholder="Province" style="width: 37%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--											attrs="{'readonly':[('approved','=',True)]}" on_change='onchange_header_province_code(state_id)' />-->
-<!--										<field name="zip" placeholder="ZIP" style="width: 20%%"-->
-<!--											attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									</div>-->
-<!--									<field name="country_id" required="1" placeholder="Country" options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--										class="oe_no_button" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<button name="header_addr_map" required="1" string="Map"-->
-<!--										type="object" icon="gtk-zoom-in" />-->
-<!--								</div>-->
-<!--								<field name="provider_accreditation_ref" readonly="1"-->
-<!--									placeholder="Accreditation Reference Number" />-->
-<!--								<field name="provider_register_date" readonly="1" />-->
-<!--								<field name="provider_approval_date" readonly="1" />-->
-<!--							</group>-->
-<!--							<group>-->
-<!--								<field name="phone" placeholder="0116076900"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}"/>-->
-<!--								<field name="mobile" attrs="{'readonly':[('approved','=',True)]}"-->
-<!--									placeholder="0824513619"/>-->
-<!--								<field name="fax" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="email" widget="email" required="1" attrs="{'readonly':[('approved','=',True)]}"/>-->
-<!--								<field name="related_provider" invisible="1" readonly="1" />-->
-<!--								<field name="website" widget="url" placeholder="e.g. www.hwseta.org.za"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="sequence_num" readonly="1" placeholder="Sequence Number" />-->
-<!--							</group>-->
-<!--						</group>-->
-<!--						<group-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','campus','qualification','verification','evaluation','approved','recommended1','validated','recommended2'])]}">-->
-<!--							<group string="Physical Address" attrs="{'readonly':[('approved','=',True)]}">-->
-<!--								<label for="txtPhysicalAddressLine1" string="Physical Address" />-->
-<!--								<div>-->
-<!--									<field name="txtPhysicalAddressLine1" placeholder="Street Number"-->
-<!--										attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<field name="txtPhysicalAddressLine2" placeholder="Street Name"-->
-<!--										attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<field name="txtPhysicalAddressLine3" placeholder="Building\Office Park"-->
-<!--										attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--									<field name="provider_physical_suburb" placeholder="Physical suburb"-->
-<!--										on_change='onchange_provider_physical_suburb(provider_physical_suburb)'-->
-<!--										attrs="{'readonly':[('approved','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>-->
-<!--									&lt;!&ndash; <field name="txtPhysicalCode" placeholder="Physical Code" attrs="{'readonly':[('approved','=',True)]}"/> &ndash;&gt;-->
-<!--									<div class="address_format">-->
-<!--										<field name='city_physical' placeholder="City" style="width: 39%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>-->
-<!--										<field name='province_code_physical' class="oe_no_button"-->
-<!--											placeholder="Province" style="width: 37%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--											on_change='onchange_provider_province_code(province_code_physical)' />-->
-<!--										<field name='zip_physical' placeholder="ZIP" style="width: 20%%" />-->
-<!--									</div>-->
-<!--									<field name='country_code_physical' placeholder="Country"-->
-<!--										class="oe_no_button" options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<button name="physical_addr_map" string="Map" type="object"-->
-<!--										icon="gtk-zoom-in" />-->
-<!--								</div>-->
-<!--							</group>-->
-<!--							<group string="Postal Address" attrs="{'readonly':[('approved','=',True)]}">-->
-<!--								<label for="same_as_home" />-->
-<!--								<field name="same_as_home" nolabel="1" />-->
-<!--								<label for="txtPostalAddressLine1" string="Postal Address" />-->
-<!--								<div>-->
-<!--									<field name="txtPostalAddressLine1" placeholder="Street Number"-->
-<!--										attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--									<field name="txtPostalAddressLine2" placeholder="Street Name"-->
-<!--										attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--									<field name="txtPostalAddressLine3" placeholder="Building\Office Park"-->
-<!--										attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--									<field name="provider_postal_suburb" placeholder="Postal Suburb"-->
-<!--										on_change='onchange_provider_postal_suburb(provider_postal_suburb)'-->
-<!--										attrs="{'invisible':[('same_as_home','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>-->
-<!--									&lt;!&ndash; <field name="txtPostalCode" placeholder="Postal Code" attrs="{'invisible':[('same_as_home','=',True)]}"/> &ndash;&gt;-->
-<!--									<div class="address_format">-->
-<!--										<field name='city_postal' placeholder="City" style="width: 37%%"-->
-<!--											attrs="{'invisible':[('same_as_home','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>-->
-<!--										<field name='province_code_postal' class="oe_no_button"-->
-<!--											placeholder="Province" style="width: 37%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--											on_change='onchange_provider_province_postal(province_code_postal)'-->
-<!--											attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--										<field name='zip_postal' placeholder="ZIP" style="width: 20%%"-->
-<!--											attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--									</div>-->
-<!--									<field name='country_code_postal' placeholder="Country"-->
-<!--										class="oe_no_button" options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--										attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--									<button name="postal_addr_map" string="Map" type="object"-->
-<!--										icon="gtk-zoom-in" attrs="{'invisible':[('same_as_home','=',True)]}" />-->
-<!--								</div>-->
-<!--							</group>-->
-<!--						</group>-->
-<!--						<group string="Organisation Details"-->
-<!--							attrs="{'invisible':[('state','!=','general_business_information')]}">-->
-<!--							<group>-->
-<!--								&lt;!&ndash; <field name="txtRegName" attrs="{'readonly':[('approved','=',True)]}"/> -->
-<!--									<field name="txtTradeName" attrs="{'readonly':[('approved','=',True)]}"/> -->
-<!--									<field name="txtAbbrTradeName" attrs="{'readonly':[('approved','=',True)]}"/> &ndash;&gt;-->
-<!--								<field name="txtStateAccNumber" invisible="1"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="cboOrgLegalStatus" invisible="1"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="txtCompanyRegNo" attrs="{'readonly':[('approved','=',True)]}" />-->
-
-<!--								<field name="optAccStatus" readonly="1" />-->
-<!--								<field name='empl_sic_code_id' attrs="{'readonly':[('approved','=',True)]}"-->
-<!--									string='SIC Description' on_change="onchange_sic_code_id(empl_sic_code_id)" -->
-<!--									options="{'no_create': True,'no_quick_create':True}"/>-->
-<!--								<field name="txtNumYearsCurrentBusiness" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="material" attrs="{'readonly':[('approved','=',True)]}" />-->
-
-
-
-<!--							</group>-->
-<!--							<group>-->
-<!--								<field name="txtVATRegNo" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								&lt;!&ndash; <field name="cboOrgSICCode" attrs="{'readonly':[('approved','=',True)]}"/> &ndash;&gt;-->
-<!--								<field name='cboOrgSICCode' attrs="{'readonly':[('approved','=',True)]}"-->
-<!--									string="SIC Code" on_change="onchange_sic_code(cboOrgSICCode)" />-->
-<!--								&lt;!&ndash; <field name="txtSDLNo" attrs="{'readonly':[('approved','=',True)]}"/> &ndash;&gt;-->
-<!--								<field name="cboProviderFocus" invisible="1"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="txtNumStaffMembers" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--							</group>-->
-<!--						</group>-->
-
-<!--						<group-->
-<!--							attrs="{'invisible':[('state','!=','general_business_information')]}">-->
-<!--							<field name="cboTHETAChamberSelect" invisible="1"-->
-<!--								attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--						</group>-->
-
-<!--						<group string="Programme Approval"-->
-<!--							attrs="{'invisible':[('state','!=','general_business_information')]}">-->
-<!--							<group>-->
-<!--								<field name="optYesNo" attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="cboSETA" invisible="1"-->
-<!--									attrs="{'invisible':[('optYesNo','=',False)],'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="alternate_acc_number"-->
-<!--									attrs="{'invisible':[('optYesNo','=',False)],'readonly':[('approved','=',True)]}" />-->
-
-<!--							</group>-->
-<!--						</group>-->
-
-<!--						&lt;!&ndash; <group string = "Document Uploads" attrs="{'invisible':[('state','in',['general_details','address_info','campus','qualification','evaluation','approved','denied'])]}"> -->
-<!--							<field name="cipro_documents"/> <field name="tax_clearance"/> <field name="director_cv"/> -->
-<!--							<field name="certified_copies_of_qualifications"/> </group> &ndash;&gt;-->
-
-<!--						<group string="Document"-->
-<!--							attrs="{'invisible':[('state','not in',['general_business_information','verification'])]}">-->
-<!--							<group colspan="4" col="4">-->
-<!--								<field name="cipro_documents" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'invisible':[('is_extension_of_scope','=',False)]}"-->
-<!--									context="{'model' : 'provider.accreditation', 'field_name' : 'Cipro Documents'}" />-->
-<!--								<field name="cipro_documents_bool"-->
-<!--									attrs="{'invisible':[('is_extension_of_scope','=',False)],'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="tax_clearance" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}"-->
-<!--									context="{'model' : 'provider.accreditation', 'field_name' : 'Tax Clearance'}" />-->
-<!--								<field name="tax_clearance_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="director_cv" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}"-->
-<!--									context="{'model' : 'provider.accreditation', 'field_name' : 'Director C.V'}" />-->
-<!--								<field name="director_cv_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="certified_copies_of_qualifications" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}"-->
-<!--									context="{'model' : 'provider.accreditation', 'field_name' : 'Certified copies of Qualifications'}" />-->
-<!--								<field name="certified_copies_of_qualifications_bool"-->
-<!--									attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="lease_agreement_document" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />-->
-<!--								<field name="lease_agreement_document_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="professional_body_registration" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="professional_body_registration_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="business_residence_proof" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)]}" />-->
-<!--								<field name="business_residence_proof_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="workplace_agreement" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />-->
-<!--								<field name="workplace_agreement_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="provider_learning_material" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('material','=','own_material'),('state','in',['general_business_information'])]}" />-->
-<!--								<field name="provider_learning_material_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="skills_programme_registration_letter" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />-->
-<!--								<field name="skills_programme_registration_letter_bool"-->
-<!--									attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="company_profile_and_organogram" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />-->
-<!--								<field name="company_profile_and_organogram_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--								<field name="quality_management_system" domain="[('id','=',None)]"-->
-<!--									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />-->
-<!--								<field name="quality_management_system_bool" attrs="{'readonly':[('state','!=','verification')]}" />-->
-<!--							</group>-->
-<!--						</group>-->
-<!--						<group-->
-<!--							attrs="{'invisible':[('state','not in',['verification','approved'])]}">-->
-<!--							<field name="verification_comment" />-->
-<!--						</group>-->
-<!--						<group-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','qualification','address_info','approved'])]}">-->
-<!--							<field name="comment_box" />-->
-<!--							&lt;!&ndash;attrs="{'required':[('state','not in',['campus','general_details','general_business_information','qualification','address_info','approved'])]}" &ndash;&gt;-->
-<!--						</group>-->
-<!--						<div attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">-->
-<!--	                        	<ul style="font-size: 12px;">-->
-<!--	                            	<li style="color: green">Verifed</li>-->
-<!--	                                <li style="color: red">Not Verified</li>-->
-<!--	                            </ul>-->
-<!--                        </div>-->
-<!--						<group string="Qualifications" colspan="2" col="8"-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">-->
-<!--							<field name="qualification_ids" nolabel="1"-->
-<!--								attrs="{'readonly': [('verify','=',True)]}"-->
-<!--								on_change="onchange_qualification_ids(qualification_ids)"-->
-<!--								context="{'model' : 'accreditation.qualification','provider_master_id_number' : accreditation_number,'extension_of_scope':is_extension_of_scope, 'existing_provider':is_existing_provider, 'provider_acc_id':context.get('active_id')}">-->
-<!--								<tree delete="true" colors="red:verify == False;green:verify == True">-->
-<!--									<field name="saqa_qual_id" />-->
-<!--									<field name="qualification_id" placeholder="Qualification"-->
-<!--										class="oe_no_button" options="{'no_create': True,'no_quick_create':True}" />-->
-<!--									<field name="assessors_id"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="moderators_id"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-
-<!--									<field name="select" editable="bottom" />-->
-<!--									<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>-->
-<!--									&lt;!&ndash; <field name="originator" readonly="1"/> &ndash;&gt;-->
-<!--								</tree>-->
-<!--								<form string="Qualifications">-->
-<!--									<sheet>-->
-<!--										<group>-->
-<!--											<group>-->
-<!--												<field name="qualification_id" on_change="onchange_qualification(qualification_id)"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open': True}"-->
-<!--													 required = '1'/>&lt;!&ndash; domain="[('seta_branch_id','=','11')]" wrote in py &ndash;&gt;-->
-<!--												<field name="assessor_no" placeholder="Enter Assessor ID" attrs="{'invisible':[('qualification_id','=',False)]}"/>-->
-<!--												<field name="assessors_id" domain="[('id','=',None)]"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}" required = '1'/>-->
-<!--												<field name="assessor_sla_document" domain="[('id','=',None)]" -->
-<!--													options="{'no_open':True}" required = '1'/>-->
-<!--												<field name="minimum_credits" />-->
-<!--												<field name="select" />-->
-<!--											</group>-->
-<!--											<group>-->
-<!--												<field name="saqa_qual_id" />-->
-<!--												<field name="moderator_no" placeholder="Enter Moderator ID" attrs="{'invisible':[('qualification_id','=',False)]}"/>-->
-<!--												<field name="moderators_id" domain="[('id','=',None)]"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}" required = '1'/>-->
-<!--												<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--													options="{'no_open':True}" required = '1'/>-->
-<!--												&lt;!&ndash; <field name="originator" readonly="1" /> &ndash;&gt;-->
-<!--												<field name="total_credits" />-->
-<!--												<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>-->
-<!--											</group>-->
-<!--										</group>-->
-<!--										<div>-->
-<!--											<ul style="font-size: 12px;">-->
-<!--		                            			<li style="color: blue">Provider Learning Material</li>-->
-<!--		                            		</ul>-->
-<!--										</div>-->
-<!--										<group>-->
-<!--											<field name="qualification_line" nolabel="1">-->
-<!--												<tree string="Qualifications Line" editable="bottom"-->
-<!--													delete="false" create="false" colors="blue:is_provider_approved == True">-->
-<!--													<field name="type" readonly="1" />-->
-<!--													<field name="id_no" readonly="1" />-->
-<!--													<field name="title" readonly="1" />-->
-<!--													<field name="level1" readonly="1" />-->
-<!--													<field name="level2" readonly="1" />-->
-<!--													<field name="level3" readonly="1" />-->
-<!--													<field name="is_seta_approved" readonly="1"/>-->
-<!--													<field name="is_provider_approved" readonly="1"/>-->
-<!--													<field name="selection"-->
-<!--														attrs="{'readonly': ['|', ('type','in',['Core','Fundamental']),('is_seta_approved','=',True)]}" />-->
-<!--												</tree>-->
-<!--											</field>-->
-<!--										</group>-->
-<!--									</sheet>-->
-<!--									<div class="oe_chatter">-->
-<!--										<field name="message_follower_ids" widget="mail_followers" />-->
-<!--										<field name="message_ids" widget="mail_thread" />-->
-<!--									</div>-->
-<!--								</form>-->
-<!--							</field>-->
-<!--						</group>-->
-
-<!--						<group string="Skills Programme" colspan="2" col="8"-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">-->
-<!--							<field name="skills_programme_ids" nolabel="1"-->
-<!--								on_change="onchange_skills_programme_ids(skills_programme_ids)" attrs="{'readonly': [('verify','=',True)]}"-->
-<!--								context="{'model' : 'skills.programme.accreditation.rel','provider_master_id_number' : accreditation_number,'extension_of_scope':is_extension_of_scope, 'existing_provider':is_existing_provider}">-->
-<!--								<tree delete="true" colors="red:verify == False;green:verify == True">-->
-<!--									<field name="saqa_skill_id" />-->
-<!--									<field name="skills_programme_id" widget="selection"-->
-<!--										placeholder="Skills Programme" class="oe_no_button" />-->
-<!--									<field name="assessors_id"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="moderators_id"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-
-<!--									<field name="select" />-->
-<!--									<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>-->
-<!--									&lt;!&ndash; <field name="qualification_id"/> &ndash;&gt;-->
-
-<!--								</tree>-->
-<!--								<form string="Skills Programme">-->
-<!--									<sheet>-->
-<!--										<group>-->
-<!--											<group>-->
-<!--												<field name="skills_programme_id"-->
-<!--													on_change="onchange_skills_programme(skills_programme_id)"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--													 required = '1'/>&lt;!&ndash; domain="[('seta_branch_id','=','11')]"  wrote in py&ndash;&gt;-->
-<!--												<field name="assessor_no" placeholder="Enter Assessor ID" attrs="{'invisible':[('skills_programme_id','=',False)]}"/>-->
-<!--												<field name="assessors_id" required = '1' domain="[('id','=',None)]"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--												<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--													options="{'no_open':True}" required = '1'/>-->
-<!--												<field name="minimum_credits" />-->
-<!--												<field name="select" />-->
-<!--											</group>-->
-<!--											<group>-->
-<!--												<field name="saqa_skill_id" />-->
-<!--												<field name="moderator_no" placeholder="Enter Moderator ID" attrs="{'invisible':[('skills_programme_id','=',False)]}"/>-->
-<!--												<field name="moderators_id" required = '1' domain="[('id','=',None)]"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--												<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--													options="{'no_open':True}" required = '1'/>-->
-<!--												<field name="total_credits" />-->
-<!--												<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>-->
-
-<!--											</group>-->
-<!--										</group>-->
-<!--										&lt;!&ndash; <field name="qualification_id" readonly="1"/> &ndash;&gt;-->
-<!--										<group>-->
-<!--											<field name="unit_standards_line" nolabel="1">-->
-<!--												<tree string="Unit Standards Line" editable="bottom"-->
-<!--													delete="false" create="false">-->
-<!--													<field name="type" readonly="1" />-->
-<!--													<field name="id_no" readonly="1" />-->
-<!--													<field name="title" readonly="1" />-->
-<!--													<field name="level1" readonly="1" />-->
-<!--													<field name="level2" readonly="1" />-->
-<!--													<field name="level3" readonly="1" />-->
-<!--													<field name="selection" />-->
-<!--												</tree>-->
-
-<!--											</field>-->
-<!--										</group>-->
-<!--									</sheet>-->
-<!--									<div class="oe_chatter">-->
-<!--										<field name="message_follower_ids" widget="mail_followers" />-->
-<!--										<field name="message_ids" widget="mail_thread" />-->
-<!--									</div>-->
-<!--								</form>-->
-<!--							</field>-->
-<!--						</group>-->
-<!--						&lt;!&ndash; Learning programme START &ndash;&gt;-->
-<!--						<group string="Learning Programme" colspan="2" col="8"-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">-->
-<!--							<field name="learning_programme_ids" nolabel="1"-->
-<!--								on_change="onchange_learning_programme_ids(learning_programme_ids)" attrs="{'readonly': [('verify','=',True)]}"-->
-<!--								context="{'model' : 'learning.programme.accreditation.rel','provider_master_id_number' : accreditation_number,'extension_of_scope':is_extension_of_scope, 'existing_provider':is_existing_provider}">-->
-<!--								<tree delete="true" colors="red:verify == False;green:verify == True">-->
-<!--									<field name="saqa_qual_id" />-->
-<!--									<field name="learning_programme_id" widget="selection"-->
-<!--										placeholder="Learning Programme" class="oe_no_button" />-->
-<!--									<field name="assessors_id"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="moderators_id"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--									<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-
-<!--									<field name="select" />-->
-<!--									<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>-->
-<!--									&lt;!&ndash; <field name="qualification_id"/> &ndash;&gt;-->
-
-<!--								</tree>-->
-<!--								<form string="Learning Programme">-->
-<!--									<sheet>-->
-<!--										<group>-->
-<!--											<group>-->
-<!--												<field name="learning_programme_id"-->
-<!--													on_change="onchange_learning_programme(learning_programme_id)"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}"-->
-<!--													 required = '1'/>&lt;!&ndash; domain="[('seta_branch_id','=','11')]"  wrote in py&ndash;&gt;-->
-<!--												<field name="assessor_no" placeholder="Enter Assessor ID" attrs="{'invisible':[('learning_programme_id','=',False)]}"/>-->
-<!--												<field name="assessors_id" required = '1' domain="[('id','=',None)]"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--												<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--													options="{'no_open':True}" required = '1'/>-->
-<!--												<field name="minimum_credits" />-->
-<!--												<field name="select" />-->
-<!--											</group>-->
-<!--											<group>-->
-<!--												<field name="saqa_qual_id" />-->
-<!--												<field name="moderator_no" placeholder="Enter Moderator ID" attrs="{'invisible':[('learning_programme_id','=',False)]}"/>-->
-<!--												<field name="moderators_id" required = '1' domain="[('id','=',None)]"-->
-<!--													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--												<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--													options="{'no_open':True}" required = '1'/>-->
-<!--												<field name="total_credits" />-->
-<!--												<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>-->
-
-<!--											</group>-->
-<!--										</group>-->
-<!--										&lt;!&ndash; <field name="qualification_id" readonly="1"/> &ndash;&gt;-->
-<!--										<group>-->
-<!--											<field name="unit_standards_line" nolabel="1">-->
-<!--												<tree string="Unit Standards Line" editable="bottom"-->
-<!--													delete="false" create="false">-->
-<!--													<field name="type" readonly="1" />-->
-<!--													<field name="id_no" readonly="1" />-->
-<!--													<field name="title" readonly="1" />-->
-<!--													<field name="level1" readonly="1" />-->
-<!--													<field name="level2" readonly="1" />-->
-<!--													<field name="level3" readonly="1" />-->
-<!--													<field name="selection" attrs="{'readonly': [('type','in',['Core','Fundamental'])]}"  />-->
-<!--													<field name="seta_approved_lp" readonly="1"/>-->
-<!--													<field name="provider_approved_lp" readonly="1"/>-->
-<!--												</tree>-->
-<!--											</field>-->
-<!--										</group>-->
-<!--									</sheet>-->
-<!--									<div class="oe_chatter">-->
-<!--										<field name="message_follower_ids" widget="mail_followers" />-->
-<!--										<field name="message_ids" widget="mail_thread" />-->
-<!--									</div>-->
-<!--								</form>-->
-<!--							</field>-->
-<!--						</group>-->
-<!--						&lt;!&ndash; Learning programme END &ndash;&gt;-->
-<!--						<group string="Other Documents"-->
-<!--							attrs="{'invisible':[('state','in',['general_details','address_info','campus','qualification','evaluation','approved','denied'])]}">-->
-<!--							<field name="acc_multi_doc_upload_ids" nolabel="1">-->
-<!--								<tree string="Other Documents" editable="bottom">-->
-<!--									<field name="name" />-->
-<!--									<field name="doc_file" on_change="onchange_file(doc_file)"-->
-<!--										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />-->
-<!--								</tree>-->
-<!--							</field>-->
-<!--						</group>-->
-<!--						<group string="Site Visit Image Upload "-->
-<!--							attrs="{'invisible':[('state','in',['general_details','address_info','campus','qualification','evaluation','approved','denied'])]}">-->
-<!--							<field name="site_visit_image" nolabel="1">-->
-<!--								<tree string="Site Visit Image Upload" editable="bottom">-->
-<!--									<field name="name" />-->
-<!--									<field name="doc_file" on_change="onchange_file(doc_file)"-->
-<!--										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />-->
-<!--								</tree>-->
-<!--							</field>-->
-<!--						</group>-->
-
-<!--						&lt;!&ndash; One2many field for status in provider.accreditaion &ndash;&gt;-->
-<!--						<group string="Status" colspan="2" col="8"-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','qualification','campus'])]}">-->
-<!--							<field name="provider_accreditation_status_ids" nolabel="1"-->
-<!--								readonly="True">-->
-<!--								<tree>-->
-<!--									<field name="pa_name" />-->
-<!--									<field name="pa_date" />-->
-<!--									<field name="pa_status" />-->
-<!--									<field name="pa_comment" />-->
-<!--									<field name="pa_updation_date" />-->
-<!--								</tree>-->
-<!--							</field>-->
-<!--						</group>-->
-<!--						<group string="Satellite Campus" colspan="4" col="8"-->
-<!--							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','qualification','verification','approved','denied'])]}">-->
-<!--							<field name="provider_accreditation_campus_ids"-->
-<!--								context="{'default_qualification_id': qualification_ids,'default_skills_id': skills_programme_ids,'default_learning_programme_id': learning_programme_ids,'default_assessors_ids':assessors_ids,'default_moderators_ids':moderators_ids}"-->
-<!--								nolabel="1" attrs="{'readonly':[('approved','=',True)]}" mode="kanban">-->
-<!--								<kanban>-->
-<!--									<field name="name" />-->
-<!--									<field name="phone" placeholder="0116076900" />-->
-<!--									<field name="email" />-->
-<!--									<field name="designation" />-->
-<!--									<field name="status" />-->
-<!--									<field name="color" />-->
-<!--									<field name="street" />-->
-<!--									<field name="street2" />-->
-<!--									<field name="street3" />-->
-<!--									<field name="zip" />-->
-<!--									<field name="suburb" />-->
-<!--									<field name="city" />-->
-<!--									<field name="country_id" />-->
-<!--									<field name="mobile" placeholder="0824513619" />-->
-<!--									<field name="fax" />-->
-<!--									<field name="state_id" />-->
-<!--									<field name="has_image" />-->
-<!--									<templates>-->
-<!--										<t t-name="kanban-box">-->
-<!--											<t t-set="color" t-value="kanban_color(record.color.raw_value)" />-->
-<!--											<div style="position: relative">-->
-<!--												<a t-if="! read_only_mode" type="delete"-->
-<!--													style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>-->
-<!--												<div class="oe_module_vignette">-->
-<!--													<a type="open">-->
-<!--														<t t-if="record.has_image.raw_value === true">-->
-<!--															<img-->
-<!--																t-att-src="kanban_image('provider.accreditation.campus', 'image_small', record.id.value)"-->
-<!--																class="oe_avatar oe_kanban_avatar_smallbox" />-->
-<!--														</t>-->
-<!--														<t t-if="record.image and record.image.raw_value !== false">-->
-<!--															<img t-att-src="'data:image/png;base64,'+record.image.raw_value"-->
-<!--																class="oe_avatar oe_kanban_avatar_smallbox" />-->
-<!--														</t>-->
-
-<!--													</a>-->
-<!--													<div class="oe_module_desc">-->
-<!--														<div-->
-<!--															class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">-->
-<!--															<table class="oe_kanban_table">-->
-<!--																<tr>-->
-<!--																	<td class="oe_kanban_title1" align="left" valign="middle">-->
-<!--																		<h4>-->
-<!--																			<a type="open">-->
-<!--																				<field name="name" />-->
-<!--																			</a>-->
-<!--																		</h4>-->
-<!--																		<i>-->
-<!--																			<div t-if="record.designation.raw_value">-->
-<!--																				<field name="designation" />-->
-<!--																			</div>-->
-<!--																		</i>-->
-<!--																		<div>-->
-<!--																			<a t-if="record.email.raw_value" title="Mail"-->
-<!--																				t-att-href="'mailto:'+record.email.value">-->
-<!--																				<field name="email" />-->
-<!--																			</a>-->
-<!--																		</div>-->
-<!--																		<div t-if="record.phone.raw_value">-->
-<!--																			Phone:-->
-<!--																			<field name="phone" placeholder="0116076900" />-->
-<!--																		</div>-->
-<!--																		<div t-if="record.mobile.raw_value">-->
-<!--																			Mobile:-->
-<!--																			<field name="mobile" placeholder="0824513619" />-->
-<!--																		</div>-->
-<!--																		<div t-if="record.fax.raw_value">-->
-<!--																			Fax:-->
-<!--																			<field name="fax" />-->
-<!--																		</div>-->
-
-<!--																	</td>-->
-<!--																</tr>-->
-<!--															</table>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</div>-->
-<!--											</div>-->
-<!--										</t>-->
-<!--									</templates>-->
-<!--								</kanban>-->
-
-
-<!--								<form string="Provider Accreditation campus">-->
-<!--									<header>-->
-<!--										<button name="action_approved_button" string="Approve"-->
-<!--											type="object" class="oe_highlight"-->
-<!--											attrs="{'invisible':['|','|',('state','in',['approved','denied'])]}" />-->
-<!--										<button name="action_reject_button" string="Reject"-->
-<!--											type="object" class="oe_highlight"-->
-<!--											attrs="{'invisible':['|','|',('state','in',['approved','denied'])]}" />-->
-<!--										<field name="state" widget="statusbar" clickable="False"-->
-<!--											statusbar_visible="draft,approved,denied" statusbar_colors='{"campus":"blue"}'-->
-<!--											attrs="{'readonly':True}" />-->
-<!--									</header>-->
-<!--									<sheet>-->
-<!--										<field name="image" widget='image' class="oe_avatar oe_left"-->
-<!--											options='{"preview_image": "image_medium"}' />-->
-<!--										<div class="oe_title">-->
-<!--											<label for="name" class="oe_edit_only" />-->
-<!--											<h1>-->
-<!--												<field name="name" style="width: 70%%" />-->
-<!--											</h1>-->
-<!--										</div>-->
-<!--										<group>-->
-<!--											<group>-->
-<!--												<label for="street" string="Address" />-->
-<!--												<div name="div_address">-->
-<!--													<field name="street" placeholder="Street Number" />-->
-<!--													<field name="street2" placeholder="Street Name" />-->
-<!--													<field name="street3" placeholder="Building\Office Park" />-->
-<!--													<field name="suburb" placeholder="Suburb"-->
-<!--														on_change="onchange_header_suburb_code(suburb)" />-->
-<!--													<div class="address_format">-->
-<!--														<field name="city" placeholder="City" style="width: 40%%" />-->
-<!--														<field name="state_id" class="oe_no_button"-->
-<!--															placeholder="Province" style="width: 37%%"-->
-<!--															on_change='onchange_header_province_code(state_id)'-->
-<!--															options='{"no_open": True}' />-->
-<!--														<field name="zip" placeholder="ZIP" style="width: 20%%" />-->
-<!--													</div>-->
-<!--													<field name="country_id" placeholder="Country" class="oe_no_button"-->
-<!--														options='{"no_open": True, "no_create": True}' />-->
-<!--												</div>-->
-<!--												<field name="status" />-->
-<!--											</group>-->
-<!--											<group>-->
-<!--												<field name="email" required="1" />-->
-<!--												<field name="phone" placeholder="0116076900" />-->
-<!--												<field name="mobile" placeholder="0824513619" />-->
-<!--												<field name="fax" />-->
-<!--												<field name="designation" />-->
-<!--												<field name="campus_evaluat" invisable="1" />-->
-<!--											</group>-->
-
-<!--										</group>-->
-
-<!--										<group string="Contact Details" colspan="4" col="8">-->
-<!--											<field name="provider_accreditation_campus_contact_ids"-->
-<!--												nolabel="1" mode="kanban">-->
-<!--												<kanban>-->
-<!--													<field name="name" />-->
-<!--													<field name="phone" placeholder="0116076900" />-->
-<!--													<field name="mobile" placeholder="0824513619" />-->
-<!--													<field name="email" />-->
-<!--													<field name="designation" />-->
-<!--													<field name="status" />-->
-<!--													<field name="fax" />-->
-<!--													<templates>-->
-<!--														<t t-name="kanban-box">-->
-<!--															&lt;!&ndash; <t t-set="color" t-value="kanban_color(record.color.raw_value)"/> &ndash;&gt;-->
-<!--															<div style="position: relative">-->
-<!--																<a t-if="! read_only_mode" type="delete"-->
-<!--																	style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>-->
-<!--																<div class="oe_module_vignette">-->
-<!--																	&lt;!&ndash; <a type="open"> <t t-if="record.has_image.raw_value -->
-<!--																		=== true"> <img t-att-src="kanban_image('provider.accreditation.campus', -->
-<!--																		'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> -->
-<!--																		</t> <t t-if="record.image and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value" -->
-<!--																		class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> &ndash;&gt;-->
-<!--																	<div class="oe_module_desc">-->
-<!--																		<div-->
-<!--																			class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">-->
-<!--																			<table class="oe_kanban_table">-->
-<!--																				<tr>-->
-<!--																					<td class="oe_kanban_title1" align="left"-->
-<!--																						valign="middle">-->
-<!--																						<h4>-->
-<!--																							<a type="open">-->
-<!--																								<field name="name" />-->
-<!--																							</a>-->
-<!--																						</h4>-->
-<!--																						<i>-->
-<!--																							<div t-if="record.designation.raw_value">-->
-<!--																								<field name="designation" />-->
-<!--																							</div>-->
-<!--																						</i>-->
-<!--																						<div>-->
-<!--																							<a t-if="record.email.raw_value" title="Mail"-->
-<!--																								t-att-href="'mailto:'+record.email.value">-->
-<!--																								<field name="email" />-->
-<!--																							</a>-->
-<!--																						</div>-->
-<!--																						<div t-if="record.phone.raw_value">-->
-<!--																							Phone:-->
-<!--																							<field name="phone" placeholder="0116076900" />-->
-<!--																						</div>-->
-<!--																						&lt;!&ndash; <div t-if="record.mobile.raw_value">Mobile: <field -->
-<!--																							name="mobile"/></div> &ndash;&gt;-->
-<!--																						<div t-if="record.status.raw_value">-->
-<!--																							Status:-->
-<!--																							<field name="status" />-->
-<!--																						</div>-->
-<!--																						<div t-if="record.status.raw_value">-->
-<!--																							Status:-->
-<!--																							<field name="status" />-->
-<!--																						</div>-->
-<!--																					</td>-->
-<!--																				</tr>-->
-<!--																			</table>-->
-<!--																		</div>-->
-<!--																	</div>-->
-<!--																</div>-->
-<!--															</div>-->
-<!--														</t>-->
-<!--													</templates>-->
-<!--												</kanban>-->
-
-<!--												<form string="Provider Accreditation campus">-->
-<!--													<sheet>-->
-<!--														<field name="image" widget='image' class="oe_avatar oe_left"-->
-<!--															options='{"preview_image": "image_medium"}' />-->
-<!--														<div class="oe_title">-->
-<!--															<label for="name" class="oe_edit_only" />-->
-<!--															<h1>-->
-<!--																<field name="name" style="width: 70%%" />-->
-<!--															</h1>-->
-<!--														</div>-->
-<!--														<group>-->
-<!--															<field name="sur_name" />-->
-<!--															<field name="email" />-->
-<!--															<field name="phone" placeholder="0116076900" />-->
-<!--															<field name="mobile" placeholder="0824513619" />-->
-<!--															<field name="fax" />-->
-<!--															<field name="designation" />-->
-<!--															<field name="status" />-->
-<!--														</group>-->
-<!--														<group>-->
-<!--															<label for="street" string="Address" />-->
-<!--															<div name="div_address">-->
-<!--																<field name="street" placeholder="Street Number" />-->
-<!--																<field name="street2" placeholder="Street Name" />-->
-<!--																<div class="address_format">-->
-<!--																	<field name="city" placeholder="City" style="width: 40%%" />-->
-<!--																	<field name="state_id" class="oe_no_button"-->
-<!--																		placeholder="Province" style="width: 37%%" options='{"no_open": True}' />-->
-<!--																	<field name="zip" placeholder="ZIP" style="width: 20%%" />-->
-<!--																</div>-->
-<!--																<field name="country_id" placeholder="Country"-->
-<!--																	class="oe_no_button" options='{"no_open": True, "no_create": True}' />-->
-<!--															</div>-->
-<!--														</group>-->
-<!--													</sheet>-->
-<!--												</form>-->
-<!--											</field>-->
-<!--										</group>-->
-
-<!--										<group colspan="2" col="8" string="Qualifications">-->
-<!--											<field name="qualification_ids" nolabel="1">-->
-<!--												<tree string="Qualifications" delete="false" create="false">-->
-<!--													<field name="saqa_qual_id" />-->
-<!--													<field name="qualification_id" widget="selection" -->
-<!--														placeholder="Qualification" class="oe_no_button" />-->
-<!--													<field name="assessors_id" -->
-<!--														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--													<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--													<field name="moderators_id"-->
-<!--														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--													<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-
-<!--												</tree>-->
-<!--												<form string="Qualifications">-->
-<!--													<sheet>-->
-<!--														<group>-->
-<!--															<group>-->
-<!--																<field name="qualification_id" domain="[('id','=',None)]"-->
-<!--																	on_change="onchange_qualification(qualification_id)"-->
-<!--																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--																<field name="assessors_id" domain="[('id','=',None)]"-->
-<!--																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--																<field name="moderators_id" domain="[('id','=',None)]"-->
-<!--																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--															</group>-->
-<!--															<group>-->
-<!--																<field name="saqa_qual_id" />-->
-<!--																<field name="assessor_sla_document" domain="[('id','=',None)]"-->
-<!--																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--																<field name="moderator_sla_document" domain="[('id','=',None)]"-->
-<!--																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--															</group>-->
-<!--														</group>-->
-<!--														<group>-->
-<!--															<field name="qualification_line" nolabel="1">-->
-<!--																<tree string="Qualifications Line" editable="bottom"-->
-<!--																	delete="false" create="false">-->
-<!--																	<field name="type" readonly="1" />-->
-<!--																	<field name="id_no" readonly="1" />-->
-<!--																	<field name="title" readonly="1" />-->
-<!--																	<field name="level1" readonly="1" />-->
-<!--																	<field name="level2" readonly="1" />-->
-<!--																	<field name="level3" readonly="1" />-->
-<!--																	<field name="selection"-->
-<!--																		attrs="{'readonly': [('type','in',['Core','Fundamental','Elective'])]}" />-->
-<!--																	<field name="is_seta_approved" readonly="1"/>-->
-<!--																	<field name="is_provider_approved" readonly="1"/>-->
-<!--																</tree>-->
-
-<!--															</field>-->
-<!--														</group>-->
-
-<!--													</sheet>-->
-<!--												</form>-->
-<!--											</field>-->
-<!--										</group>-->
-
-<!--										<group colspan="2" col="8" string="Skills Programme ">-->
-<!--											<field name="skills_programme_ids" nolabel="1">-->
-<!--												<tree string="Skills Programme" delete="false" create="false">-->
-<!--													<field name="saqa_skill_id" />-->
-<!--													<field name="skills_programme_id" widget="selection"-->
-<!--														placeholder="Skills Programme" class="oe_no_button" />-->
-<!--												</tree>-->
-<!--												<form string="Skills Programme">-->
-<!--													<sheet>-->
-<!--														<group>-->
-<!--															<field name="skills_programme_id" domain="[('id','=',None)]"-->
-<!--																on_change="onchange_skills_programme(skills_programme_id)"-->
-<!--																options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--															<field name="saqa_skill_id" />-->
-<!--														</group>-->
-
-<!--														<group>-->
-<!--															<field name="unit_standards_line" nolabel="1">-->
-<!--																<tree string="Unit Standards Line" editable="bottom"-->
-<!--																	delete="false" create="false">-->
-<!--																	<field name="type" readonly="1" />-->
-<!--																	<field name="id_no" readonly="1" />-->
-<!--																	<field name="title" readonly="1" />-->
-<!--																	<field name="level1" readonly="1" />-->
-<!--																	<field name="level2" readonly="1" />-->
-<!--																	<field name="level3" readonly="1" />-->
-<!--																	<field name="selection" />-->
-<!--																</tree>-->
-
-<!--															</field>-->
-<!--														</group>-->
-
-<!--													</sheet>-->
-<!--												</form>-->
-<!--											</field>-->
-<!--										</group>-->
-<!--&lt;!&ndash; LEARNING PROGRAMME CAMPUS START &ndash;&gt;-->
-<!--										<group colspan="2" col="8" string="Learning Programme ">-->
-<!--											<field name="learning_programme_ids" nolabel="1">-->
-<!--												<tree string="Learning Programme" delete="false" create="false">-->
-<!--													<field name="saqa_qual_id" />-->
-<!--													<field name="learning_programme_id" widget="selection"-->
-<!--														placeholder="Learning Programme" class="oe_no_button" />-->
-<!--												</tree>-->
-<!--												<form string="Learning Programme">-->
-<!--													<sheet>-->
-<!--														<group>-->
-<!--															<field name="learning_programme_id" domain="[('id','=',None)]"-->
-<!--																on_change="onchange_learning_programme(learning_programme_id)"-->
-<!--																options="{'no_create': True,'no_quick_create':True,'no_open':True}" />-->
-<!--															<field name="saqa_qual_id" />-->
-<!--														</group>-->
-<!--														<group>-->
-<!--															<field name="unit_standards_line" nolabel="1">-->
-<!--																<tree string="Unit Standards Line" editable="bottom"-->
-<!--																	delete="false" create="false">-->
-<!--																	<field name="type" readonly="1" />-->
-<!--																	<field name="id_no" readonly="1" />-->
-<!--																	<field name="title" readonly="1" />-->
-<!--																	<field name="level1" readonly="1" />-->
-<!--																	<field name="level2" readonly="1" />-->
-<!--																	<field name="level3" readonly="1" />-->
-<!--																	<field name="selection" attrs="{'readonly': [('type','in',['Core','Fundamental'])]}"/>-->
-<!--																	<field name="seta_approved_lp" readonly="1" />-->
-<!--																	<field name="provider_approved_lp" readonly="1" />-->
-<!--																</tree>-->
-<!--															</field>-->
-<!--														</group>-->
-<!--													</sheet>-->
-<!--												</form>-->
-<!--											</field>-->
-<!--										</group>-->
-<!--&lt;!&ndash; LEARNINF PROGRAMME CAMPUS END &ndash;&gt;-->
-
-<!--										<group string="Assessor">-->
-<!--											<group>-->
-<!--												<field name="assessors_ids"-->
-<!--													context="{'qualification_ids_assessors': qualification_ids}"-->
-<!--													nolabel="1">-->
-<!--													<tree editable="Bottom" delete="false" create="false">-->
-<!--														<field name="qualification_list"-->
-<!--															on_change="onchange_qualification_list(qualification_list)"-->
-<!--															invisible="1" />-->
-<!--														<field name="assessors_id" string="Name"-->
-<!--															on_change="onchange_assessrs(assessors_id)" widget="selection" />-->
-<!--														<field name="awork_email" widget="email" />-->
-<!--														<field name="awork_phone" />-->
-<!--														<field name="campus_assessor_sla_document" domain="[('id','=',None)]"/>-->
-<!--														<field name="assessor_notification_letter" domain="[('id','=',None)]" />-->
-<!--													</tree>-->
-<!--												</field>-->
-<!--											</group>-->
-<!--										</group>-->
-<!--										<group string="Moderator">-->
-<!--											<group>-->
-<!--												<field name="moderators_ids"-->
-<!--													context="{'qualification_ids_moderators': qualification_ids}"-->
-<!--													nolabel="1">-->
-<!--													<tree editable="Bottom" delete="false" create="false">-->
-<!--														<field name="qualification_list"-->
-<!--															on_change="onchange_qualification_list(qualification_list)"-->
-<!--															invisible="1" />-->
-<!--														<field name="moderators_id" string="Name"-->
-<!--															on_change="onchange_moderators(moderators_id)" widget="selection" />-->
-<!--														<field name="mwork_email" widget="email" />-->
-<!--														<field name="mwork_phone" />-->
-<!--														<field name="campus_moderator_sla_document" domain="[('id','=',None)]"/>-->
-<!--														<field name="moderator_notification_letter" domain="[('id','=',None)]" />-->
-<!--													</tree>-->
-<!--												</field>-->
-<!--											</group>-->
-<!--										</group>-->
-
-
-<!--									</sheet>-->
-<!--								</form>-->
-<!--							</field>-->
-<!--						</group>-->
-
-<!--						<group string="Assessor"-->
-<!--							attrs="{'invisible':[('state','!=','qualification')]}">-->
-<!--							<group>-->
-<!--								<field name="assessors_ids"-->
-<!--									context="{'qualification_ids_assessors': qualification_ids}"-->
-<!--									nolabel="1" attrs="{'readonly': [('verify','=',True)]}">-->
-<!--									<tree editable="Bottom" delete="true">-->
-<!--										<field name="qualification_list"-->
-<!--											on_change="onchange_qualification_list(qualification_list)"-->
-<!--											invisible="1" />-->
-<!--										<field name="assessors_id" string="Name"-->
-<!--											on_change="onchange_assessrs(assessors_id)" widget="selection" />-->
-<!--										<field name="awork_email" widget="email" />-->
-<!--										<field name="awork_phone" />-->
-<!--										<field name="assessor_sla_document" domain="[('id','=',None)]"/>-->
-<!--										<field name="assessor_notification_letter" domain="[('id','=',None)]"/>-->
-<!--									</tree>-->
-<!--								</field>-->
-<!--							</group>-->
-<!--						</group>-->
-<!--						<group string="Moderator"-->
-<!--							attrs="{'invisible':[('state','!=','qualification')]}">-->
-<!--							<group>-->
-<!--								<field name="moderators_ids"-->
-<!--									context="{'qualification_ids_moderators': qualification_ids}"-->
-<!--									nolabel="1" attrs="{'readonly': [('verify','=',True)]}">-->
-<!--									<tree editable="Bottom" delete="true">-->
-<!--										<field name="qualification_list"-->
-<!--											on_change="onchange_qualification_list(qualification_list)"-->
-<!--											invisible="1" />-->
-<!--										<field name="moderators_id" string="Name"-->
-<!--											on_change="onchange_moderators(moderators_id)" widget="selection" />-->
-<!--										<field name="mwork_email" widget="email" />-->
-<!--										<field name="mwork_phone" />-->
-<!--										<field name="moderator_sla_document" domain="[('id','=',None)]"/>-->
-<!--										<field name="moderator_notification_letter" domain="[('id','=',None)]" />-->
-<!--									</tree>-->
-<!--								</field>-->
-<!--							</group>-->
-<!--						</group>-->
-
-
-<!--						<group string="Contact Details"-->
-<!--							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation'])]}"-->
-<!--							colspan="4" col="8">-->
-<!--							<field name="provider_accreditation_contact_ids" nolabel="1"-->
-<!--								attrs="{'readonly':[('approved','=',True)]}" mode="kanban">-->
-<!--								<kanban>-->
-<!--									<field name="name" />-->
-<!--									<field name="phone" placeholder="0116076900" />-->
-<!--									<field name="mobile" placeholder="0824513619" />-->
-<!--									<field name="email" />-->
-<!--									<field name="designation" />-->
-<!--									<field name="status" />-->
-<!--									<field name="fax" />-->
-<!--									<templates>-->
-<!--										<t t-name="kanban-box">-->
-<!--											&lt;!&ndash; <t t-set="color" t-value="kanban_color(record.color.raw_value)"/> &ndash;&gt;-->
-<!--											<div style="position: relative">-->
-<!--												<a t-if="! read_only_mode" type="delete"-->
-<!--													style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>-->
-<!--												<div class="oe_module_vignette">-->
-<!--													&lt;!&ndash; <a type="open"> <t t-if="record.has_image.raw_value === -->
-<!--														true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small', -->
-<!--														record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image -->
-<!--														and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value" -->
-<!--														class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> &ndash;&gt;-->
-<!--													<div class="oe_module_desc">-->
-<!--														<div-->
-<!--															class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">-->
-<!--															<table class="oe_kanban_table">-->
-<!--																<tr>-->
-<!--																	<td class="oe_kanban_title1" align="left" valign="middle">-->
-<!--																		<h4>-->
-<!--																			<a type="open">-->
-<!--																				<field name="name" />-->
-<!--																			</a>-->
-<!--																		</h4>-->
-<!--																		<i>-->
-<!--																			<div t-if="record.designation.raw_value">-->
-<!--																				<field name="designation" />-->
-<!--																			</div>-->
-<!--																		</i>-->
-<!--																		<div>-->
-<!--																			<a t-if="record.email.raw_value" title="Mail"-->
-<!--																				t-att-href="'mailto:'+record.email.value">-->
-<!--																				<field name="email" />-->
-<!--																			</a>-->
-<!--																		</div>-->
-<!--																		<div t-if="record.phone.raw_value">-->
-<!--																			Phone:-->
-<!--																			<field name="phone" placeholder="0116076900" />-->
-<!--																		</div>-->
-<!--																		&lt;!&ndash; <div t-if="record.mobile.raw_value">Mobile: <field -->
-<!--																			name="mobile"/></div> &ndash;&gt;-->
-<!--																		<div t-if="record.status.raw_value">-->
-<!--																			Status:-->
-<!--																			<field name="status" />-->
-<!--																		</div>-->
-
-<!--																	</td>-->
-<!--																</tr>-->
-<!--															</table>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</div>-->
-<!--											</div>-->
-<!--										</t>-->
-<!--									</templates>-->
-<!--								</kanban>-->
-
-<!--								<form string="Provider Accreditation campus">-->
-<!--									<sheet>-->
-<!--										<field name="image" widget='image' class="oe_avatar oe_left"-->
-<!--											options='{"preview_image": "image_medium"}' />-->
-<!--										<div class="oe_title">-->
-<!--											<label for="name" class="oe_edit_only" />-->
-<!--											<h1>-->
-<!--												<field name="name" style="width: 70%%" />-->
-<!--											</h1>-->
-<!--										</div>-->
-<!--										<group>-->
-<!--											<field name="sur_name" />-->
-<!--											<field name="email" required="1"/>-->
-<!--											<field name="phone" />-->
-<!--											<field name="mobile" placeholder="0824513619" />-->
-<!--											<field name="fax" />-->
-<!--											<field name="designation" />-->
-<!--											<field name="status" />-->
-<!--										</group>-->
-<!--										<group>-->
-<!--											<label for="street" string="Address" />-->
-<!--											<div name="div_address">-->
-<!--												<field name="street" placeholder="Street Number" />-->
-<!--												<field name="street2" placeholder="Street Name" />-->
-<!--												<div class="address_format">-->
-<!--													<field name="city" placeholder="City" style="width: 40%%" />-->
-<!--													<field name="state_id" class="oe_no_button"-->
-<!--														placeholder="Province" style="width: 37%%" options='{"no_open": True, "no_create": True}' />-->
-<!--													<field name="zip" placeholder="ZIP" style="width: 20%%" />-->
-<!--												</div>-->
-<!--												<field name="country_id" placeholder="Country" class="oe_no_button"-->
-<!--													options='{"no_open": True, "no_create": True}' />-->
-<!--											</div>-->
-<!--										</group>-->
-<!--									</sheet>-->
-<!--								</form>-->
-<!--							</field>-->
-<!--						</group>-->
-<!--					<div class="oe_chatter">-->
-<!--						<field name="message_follower_ids" widget="mail_followers" />-->
-<!--						<field name="message_ids" widget="mail_thread" />-->
-<!--					</div>-->
-<!--				</form>-->
-<!--			</field>-->
-<!--		</record>-->
-
-        <record id="view_provider_form" model="ir.ui.view">
-			<field name="name">view.partner.form.inherit.provider</field>
-			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="base.view_partner_form" />
+		<record id="provider_accreditation_form" model="ir.ui.view">
+			<field name="name">provider.accreditation.form</field>
+			<field name="model">provider.accreditation</field>
 			<field name="arch" type="xml">
-				<xpath expr='//form[@string="Partners"]' position='attributes'>
-                	<attribute name="create">false</attribute>
-            	</xpath>
-				<xpath expr="//field[@name='website']" position="replace">
-					<field name="website" widget="url" placeholder="e.g. www.hwseta.org.za" />
-				</xpath>
-				<xpath expr="//field[@name='active']" position="replace">
-				</xpath>
-				<xpath expr="/form/sheet/div[@name='buttons']" position="after">
-					<group>
-						<field name="active" invisible="1" />
-						<field name='provider' invisible="True" placeholder="Provider" />
-					</group>
-				</xpath>
-				<xpath expr="//field[@name='phone']" position="attributes">
-					<attribute name="placeholder">0116076900</attribute>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@name='sales_purchases']"
-					position="attributes">
-					<attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}
-					</attribute>
-				</xpath>
-				<!-- <xpath expr="/form/sheet/group/group/div/div[@name='address_format']/field[@name='state_id']"
-					position="attributes"> <attribute name="placeholder">State</attribute> </xpath> -->
-				<xpath expr="//form/sheet/div/field[@name='category_id']"
-					position="after">
-					<field name='provider_trading_name' attrs="{'invisible':[('provider','=',False)]}"
-						placeholder="Trading as .." nolabel="1" />
-				</xpath>
-				<xpath expr="/form/sheet/div[@class='oe_right oe_button_box']"
-					position="after">
-					<group>
-						<group>
-							<field name="provider_etqe_id" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_sic_code" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_sars_number" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_type_id" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_class_Id" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_status_Id" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="is_qdm_provider" attrs="{'invisible':[('provider','=',False)]}" />
-						</group>
-						<group>
-							<!-- <field name="provider_contact_name" attrs="{'invisible':['|',('provider','=',False)]}"/> -->
-							<field name="provider_accreditation_num" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_etqa_decision_number" attrs="{'invisible':[('provider','=',False)]}" />
-							<!-- <field name="provider_sdl_no" attrs="{'invisible':[('provider','=',False)],
-								'required':[('provider','=',True)]}"/> -->
-							<!-- <field name="provider_website_address" attrs="{'invisible':[('provider','=',False)]}"/> -->
-							<field name="provider_date_stamp" attrs="{'invisible':[('provider','=',False)]}" />
-							<field name="provider_start_date"
-								attrs="{'invisible':[('provider','=',False)],'readonly':[('provider','=',True)]}" />
-							<field name="provider_end_date"
-								attrs="{'invisible':[('provider','=',False)],'readonly':[('provider','=',True)]}" />
-							<field name="is_active_provider" attrs="{'invisible':[('provider','=',False)],'readonly':[('provider','=',True)]}" />
-							<field name="is_visible" invisible="1"/>
-						</group>
-					</group>
-					<group string="Provider Groups" col="8" attrs="{'invisible':[('provider','=',False)]}">
-						<field name='provider_hwseta_group' />
-						<field name='provider_dhet_group' />
-						<field name='provider_hpcsa_group' />
-						<field name='provider_otherseta_group' />
-						<field name='provider_che_group' />
-						<field name='provider_sanc_group' />
-						<field name='provider_sapc_group' />
-					</group>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="before">
-					<page string="Address" attrs="{'invisible':[('provider','=',False)]}">
-						<group>
+				<form string="Accreditation">
+					<header>
+						<field name="submitted" invisible="1" />
+						<field name="verify" invisible="1" />
+						<field name="evaluate" invisible="1" />
+						<field name="approved" invisible="1" />
+						<field name="denied" invisible="1" />
+						<field name="recommended1" invisible="1" />
+						<field name="validate" invisible="1" />
+						<field name="recommended2" invisible="1" />
+						<!-- <button name="action_submit_button" string="Submit" type="object"
+							class="oe_highlight" attrs="{'invisible':['|',('submitted','=',True)]}"/>
+							<button name="action_approve_button" states="pending" string="Approve" type="object"
+							class="oe_highlight" attrs="{'invisible':['|',('approved','=',True),('submitted','=',False)]}"/> -->
+						<button name="action_submit_button" string="Submit" type="object"
+							class="oe_highlight"
+						    groups="hwseta_etqe.group_providers,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','qualification','approved','verification','evaluation','denied']),('submitted','=',True)]}" />
+						<button name="action_verify_button" string="Evaluate" type="object"
+							class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|','|',('state','not in',['verification']),('verify','=',True),('approved','=',True)]}" /><!--
+							,('verify','=',True) -->
+						<button name="action_evaluate_button" string="Recommended"
+							type="object" class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','campus','qualification','verification','approved','denied']),('evaluate','=',True)]}" />
+						<button name="action_recommended1_button" string="Validate"
+							type="object" class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|',('state','not in',['recommended1']),('recommended1','=',True)]}" />
+						<button name="action_validate_button" string="Recommended"
+							type="object" class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|',('state','not in',['validated']),('validate','=',True)]}" />
+						<button name="action_approve_button" string="Approve" type="object"
+							class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|','|',('state','not in',['recommended2']),('approved','=',True),('denied','=',True)]}" />
+						<button name="action_denied_button" string="Reject" type="object"
+							class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','campus','qualification','approved','denied']),('approved','=',True)]}" />
+						<!-- <button name="action_denied_button" string="Reject" type="object"
+							class="oe_highlight" attrs="{'invisible':['|','|','|',('state','in',['general_details','general_business_information','address_info','campus','qualification','verification','denied']),('denied','=',True),('evaluate','=',False),('approved','=',True)]}"/> -->
+
+						<button name="action_reevaluate_button" string="Re-Evaluate"
+							type="object" class="oe_highlight"
+						    groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
+							attrs="{'invisible':[('state','not in',['denied'])]}" />
+						<field name="state" widget="statusbar" clickable="True"
+							statusbar_visible="general_details,qualification,campus,recommended2,approved,denied"
+							statusbar_colors='{"general_details":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',False)]}"/>
+						<field name="state" widget="statusbar" clickable="True"
+							statusbar_visible="general_details,general_business_information,address_info,qualification, campus,verification,evaluation,recommended1,validated,recommended2,approved,denied"
+							statusbar_colors='{"campus":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',True)]}"/>
+					</header>
+						<field name="image" widget='image'
+							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}"
+							class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}' />
+						<div class="oe_title oe_left"
+							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}">
+							<div class="oe_edit_only">
+								<field name="is_existing_provider" attrs="{'readonly':[('state','not in',['general_details'])]}"
+									on_change="onchange_is_existing_provider(is_existing_provider)"
+									invisible="context.get('active')" />
+								<label for="is_existing_provider" invisible="context.get('active')" />
+								<field name="is_extension_of_scope" invisible="not context.get('active')" attrs="{'readonly':[('state','not in',['general_details'])]}"
+									on_change="onchange_is_extension_of_scope(is_extension_of_scope)" />
+								<label for="is_extension_of_scope" invisible="not context.get('active')" />
+							</div>
+
+							<div class="oe_edit_only"
+								attrs="{'invisible':[('is_existing_provider','=',False),('is_extension_of_scope','=',False)]}">
+								<label for="accreditation_number" />
+								<field name="accreditation_number"
+									attrs="{'required':['|',('is_existing_provider','=',True),('is_extension_of_scope','=',True)],'readonly':[('approved','=',True)]}"
+									on_change="onchange_accreditation_number(accreditation_number,is_existing_provider,is_extension_of_scope)"
+									placeholder="Accreditation Number" />
+							</div>
+							<div class="oe_edit_only">
+								<label for="name" />
+							</div>
+							<h1>
+								<field name="name" attrs="{'readonly':[('approved','=',True)]}"
+									default_focus="1" placeholder="Name" />
+							</h1>
+							<field name="txtTradeName" attrs="{'readonly':[('approved','=',True)]}"
+								default_focus="1" placeholder="Trading as .." />
+
+						</div>
+						<!-- <group attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation'])]}"
+							colspan="4" col="4" > <field name="provider_accreditation_ref" readonly="1"
+							placeholder="Accreditation Reference Number"/> <field name="sequence_num"
+							readonly="1" placeholder="Sequence Number"/> </group> -->
+						<group
+							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}">
 							<group>
-								<label for="street" string="Physical Address" />
+								<label string="Address" />
 								<div>
-									<field name="physical_address_1" placeholder="Street Number" />
-									<field name="physical_address_2" placeholder="Street Name" />
-									<field name="physical_address_3" placeholder="Building\Office Park" />
-									<field name="provider_physical_suburb" placeholder="Physical Suburb"
-										on_change='onchange_provider_physical_suburb(provider_physical_suburb)'
-										options="{'no_create':True}" />
-									<!-- <field name="physical_address_code" placeholder="Physical Address
-										Code"/> -->
+									<field name="street" placeholder="Street Number"
+										required="1" attrs="{'readonly':[('approved','=',True)]}" />
+									<field name="street2" required="1" placeholder="Street Name"
+										attrs="{'readonly':[('approved','=',True)]}" />
+									<field name="street3" placeholder="Building\Office Park"
+										attrs="{'readonly':[('approved','=',True)]}" />
+									<field name="provider_suburb" placeholder="Suburb..." options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										on_change='onchange_provider_suburb(provider_suburb)' attrs="{'readonly':[('approved','=',True)]}" />
 									<div class="address_format">
-										<field name='city_physical' placeholder="City" style="width: 39%%"
-											options="{'no_create':True}" />
+										<field name="city" placeholder="City" style="width: 40%%"
+											attrs="{'readonly':[('approved','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+										<field name="state_id" required="1" class="oe_no_button"
+											placeholder="Province" style="width: 37%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											attrs="{'readonly':[('approved','=',True)]}" on_change='onchange_header_province_code(state_id)' />
+										<field name="zip" placeholder="ZIP" style="width: 20%%"
+											attrs="{'readonly':[('approved','=',True)]}" />
+									</div>
+									<field name="country_id" required="1" placeholder="Country" options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										class="oe_no_button" attrs="{'readonly':[('approved','=',True)]}" />
+									<button name="header_addr_map" required="1" string="Map"
+										type="object" icon="gtk-zoom-in" />
+								</div>
+								<field name="provider_accreditation_ref" readonly="1"
+									placeholder="Accreditation Reference Number" />
+								<field name="provider_register_date" readonly="1" />
+								<field name="provider_approval_date" readonly="1" />
+							</group>
+							<group>
+								<field name="phone" placeholder="0116076900"
+									attrs="{'readonly':[('approved','=',True)]}"/>
+								<field name="mobile" attrs="{'readonly':[('approved','=',True)]}"
+									placeholder="0824513619"/>
+								<field name="fax" attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="email" widget="email" required="1" attrs="{'readonly':[('approved','=',True)]}"/>
+								<field name="related_provider" invisible="1" readonly="1" />
+								<field name="website" widget="url" placeholder="e.g. www.hwseta.org.za"
+									attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="sequence_num" readonly="1" placeholder="Sequence Number" />
+							</group>
+						</group>
+						<group
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','campus','qualification','verification','evaluation','approved','recommended1','validated','recommended2'])]}">
+							<group string="Physical Address" attrs="{'readonly':[('approved','=',True)]}">
+								<label for="txtPhysicalAddressLine1" string="Physical Address" />
+								<div>
+									<field name="txtPhysicalAddressLine1" placeholder="Street Number"
+										attrs="{'readonly':[('approved','=',True)]}" />
+									<field name="txtPhysicalAddressLine2" placeholder="Street Name"
+										attrs="{'readonly':[('approved','=',True)]}" />
+									<field name="txtPhysicalAddressLine3" placeholder="Building\Office Park"
+										attrs="{'readonly':[('approved','=',True)]}" />
+									<field name="provider_physical_suburb" placeholder="Physical suburb"
+										on_change='onchange_provider_physical_suburb(provider_physical_suburb)'
+										attrs="{'readonly':[('approved','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+									<!-- <field name="txtPhysicalCode" placeholder="Physical Code" attrs="{'readonly':[('approved','=',True)]}"/> -->
+									<div class="address_format">
+										<field name='city_physical' placeholder="City" style="width: 39%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
 										<field name='province_code_physical' class="oe_no_button"
-											placeholder="Province" style="width: 37%%"
-											options="{'no_open': True,'no_create':True}"
+											placeholder="Province" style="width: 37%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"
 											on_change='onchange_provider_province_code(province_code_physical)' />
 										<field name='zip_physical' placeholder="ZIP" style="width: 20%%" />
 									</div>
 									<field name='country_code_physical' placeholder="Country"
-										class="oe_no_button" options="{'no_open': True,'no_create':True}" />
-									<button name="physical_addr_map" string="Map" type="object" />
-								</div>
-							</group>
-							<group>
-								<label for="street" string="Postal Address" />
-								<div>
-									<field name="postal_address_1" placeholder="Street Number" />
-									<field name="postal_address_2" placeholder="Street Name" />
-									<field name="postal_address_3" placeholder="Building\Office Park" />
-									<field name="provider_postal_suburb" placeholder="Postal suburb"
-										on_change='onchange_provider_postal_suburb(provider_postal_suburb)'
-										options="{'no_create':True}" />
-									<!-- <field name="postal_address_code" placeholder="Postal Address
-										Code"/> -->
-									<div class="address_format">
-										<field name='city_postal' placeholder="City" style="width: 37%%"
-											options="{'no_create':True}" />
-										<field name='province_code_postal' class="oe_no_button"
-											placeholder="Province" style="width: 37%%"
-											options="{'no_open': True,'no_create':True}"
-											on_change='onchange_provider_province_postal(province_code_postal)' />
-										<field name='zip_postal' placeholder="ZIP" style="width: 20%%" />
-									</div>
-									<field name='country_code_postal' placeholder="Country"
-										class="oe_no_button" options="{'no_open': True,'no_create':True}" />
-									<button name="postal_addr_map" string="Map" type="object"
+										class="oe_no_button" options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<button name="physical_addr_map" string="Map" type="object"
 										icon="gtk-zoom-in" />
 								</div>
 							</group>
-						</group>
-						<group invisible="1">
-							<group>
-								<group>
-									<field name='provider_latitude_degree' style="width: 40%%" />
-									<field name='provider_latitude_minutes' style="width: 40%%" />
-									<field name='provider_latitude_seconds' style="width: 40%%" />
-									<field name='provider_longitude_degree' style="width: 40%%" />
-									<field name='provider_longitude_minutes' style="width: 40%%" />
-									<field name='provider_longitude_seconds' style="width: 40%%" />
-								</group>
+							<group string="Postal Address" attrs="{'readonly':[('approved','=',True)]}">
+								<label for="same_as_home" />
+								<field name="same_as_home" nolabel="1" />
+								<label for="txtPostalAddressLine1" string="Postal Address" />
+								<div>
+									<field name="txtPostalAddressLine1" placeholder="Street Number"
+										attrs="{'invisible':[('same_as_home','=',True)]}" />
+									<field name="txtPostalAddressLine2" placeholder="Street Name"
+										attrs="{'invisible':[('same_as_home','=',True)]}" />
+									<field name="txtPostalAddressLine3" placeholder="Building\Office Park"
+										attrs="{'invisible':[('same_as_home','=',True)]}" />
+									<field name="provider_postal_suburb" placeholder="Postal Suburb"
+										on_change='onchange_provider_postal_suburb(provider_postal_suburb)'
+										attrs="{'invisible':[('same_as_home','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+									<!-- <field name="txtPostalCode" placeholder="Postal Code" attrs="{'invisible':[('same_as_home','=',True)]}"/> -->
+									<div class="address_format">
+										<field name='city_postal' placeholder="City" style="width: 37%%"
+											attrs="{'invisible':[('same_as_home','=',True)]}" options="{'no_create': True,'no_quick_create':True,'no_open':True}"/>
+										<field name='province_code_postal' class="oe_no_button"
+											placeholder="Province" style="width: 37%%" options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+											on_change='onchange_provider_province_postal(province_code_postal)'
+											attrs="{'invisible':[('same_as_home','=',True)]}" />
+										<field name='zip_postal' placeholder="ZIP" style="width: 20%%"
+											attrs="{'invisible':[('same_as_home','=',True)]}" />
+									</div>
+									<field name='country_code_postal' placeholder="Country"
+										class="oe_no_button" options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+										attrs="{'invisible':[('same_as_home','=',True)]}" />
+									<button name="postal_addr_map" string="Map" type="object"
+										icon="gtk-zoom-in" attrs="{'invisible':[('same_as_home','=',True)]}" />
+								</div>
 							</group>
-							<group>
-								<group>
-									<field name='provider_latitude_degree_p' style="width: 40%%" />
-									<field name='provider_latitude_minutes_p' style="width: 40%%" />
-									<field name='provider_latitude_seconds_p' style="width: 40%%" />
-									<field name='provider_longitude_degree_p' style="width: 40%%" />
-									<field name='provider_longitude_minutes_p' style="width: 40%%" />
-									<field name='provider_longitude_seconds_p' style="width: 40%%" />
-								</group>
-							</group>
 						</group>
-					</page>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="before">
-					<page string="Business Info" attrs="{'invisible':[('provider','=',False)]}">
-						<group string="Organisation Details">
+						<group string="Organisation Details"
+							attrs="{'invisible':[('state','!=','general_business_information')]}">
 							<group>
-								<field name="txtRegName" invisible="1" />
-								<field name="txtTradeName" invisible="1" />
-								<field name="txtAbbrTradeName" invisible="1" />
-								<field name="cboOrgLegalStatus" invisible="1" />
-								<field name="txtCompanyRegNo" />
-								<field name="txtVATRegNo" />
-								<field name="SICCode" invisible="1" />
+								<!-- <field name="txtRegName" attrs="{'readonly':[('approved','=',True)]}"/>
+									<field name="txtTradeName" attrs="{'readonly':[('approved','=',True)]}"/>
+									<field name="txtAbbrTradeName" attrs="{'readonly':[('approved','=',True)]}"/> -->
+								<field name="txtStateAccNumber" invisible="1"
+									attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="cboOrgLegalStatus" invisible="1"
+									attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="txtCompanyRegNo" attrs="{'readonly':[('approved','=',True)]}" />
 
-								<field name="material" />
+								<field name="optAccStatus" readonly="1" />
+								<field name='empl_sic_code_id' attrs="{'readonly':[('approved','=',True)]}"
+									string='SIC Description' on_change="onchange_sic_code_id(empl_sic_code_id)"
+									options="{'no_create': True,'no_quick_create':True}"/>
+								<field name="txtNumYearsCurrentBusiness" attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="material" attrs="{'readonly':[('approved','=',True)]}" />
+
+
+
 							</group>
 							<group>
-								<field name="cboOrgSICCode" invisible="1" />
-								<field name="txtSDLNo" invisible="1" />
-								<field name="cboTHETAChamberSelect" invisible="1" />
-								<field name="cboProviderFocus" />
-								<field name="txtNumYearsCurrentBusiness" />
-								<field name="txtNumStaffMembers" />
+								<field name="txtVATRegNo" attrs="{'readonly':[('approved','=',True)]}" />
+								<!-- <field name="cboOrgSICCode" attrs="{'readonly':[('approved','=',True)]}"/> -->
+								<field name='cboOrgSICCode' attrs="{'readonly':[('approved','=',True)]}"
+									string="SIC Code" on_change="onchange_sic_code(cboOrgSICCode)" />
+								<!-- <field name="txtSDLNo" attrs="{'readonly':[('approved','=',True)]}"/> -->
+								<field name="cboProviderFocus" invisible="1"
+									attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="txtNumStaffMembers" attrs="{'readonly':[('approved','=',True)]}" />
 							</group>
 						</group>
-						<group string="Programme Approval">
+
+						<group
+							attrs="{'invisible':[('state','!=','general_business_information')]}">
+							<field name="cboTHETAChamberSelect" invisible="1"
+								attrs="{'readonly':[('approved','=',True)]}" />
+						</group>
+
+						<group string="Programme Approval"
+							attrs="{'invisible':[('state','!=','general_business_information')]}">
 							<group>
-								<field name="optYesNo" />
-								<field name="alternate_acc_number" attrs="{'invisible':[('optYesNo','=',False)]}" />
+								<field name="optYesNo" attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="cboSETA" invisible="1"
+									attrs="{'invisible':[('optYesNo','=',False)],'readonly':[('approved','=',True)]}" />
+								<field name="alternate_acc_number"
+									attrs="{'invisible':[('optYesNo','=',False)],'readonly':[('approved','=',True)]}" />
+
 							</group>
 						</group>
-						<!-- <group string = "Document Uploads"> <field name="cipro_documents"/>
-							<field name="tax_clearance"/> <field name="director_cv"/> <field name="certified_copies_of_qualifications"/>
-							</group> -->
-						<group>
-							<group>
+
+						<!-- <group string = "Document Uploads" attrs="{'invisible':[('state','in',['general_details','address_info','campus','qualification','evaluation','approved','denied'])]}">
+							<field name="cipro_documents"/> <field name="tax_clearance"/> <field name="director_cv"/>
+							<field name="certified_copies_of_qualifications"/> </group> -->
+
+						<group string="Document"
+							attrs="{'invisible':[('state','not in',['general_business_information','verification'])]}">
+							<group colspan="4" col="4">
 								<field name="cipro_documents" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'invisible':[('is_extension_of_scope','=',False)]}"
 									context="{'model' : 'provider.accreditation', 'field_name' : 'Cipro Documents'}" />
+								<field name="cipro_documents_bool"
+									attrs="{'invisible':[('is_extension_of_scope','=',False)],'readonly':[('state','!=','verification')]}" />
 								<field name="tax_clearance" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}"
 									context="{'model' : 'provider.accreditation', 'field_name' : 'Tax Clearance'}" />
-								<field name="quality_management_system" domain="[('id','=',None)]" />
+								<field name="tax_clearance_bool" attrs="{'readonly':[('state','!=','verification')]}" />
 								<field name="director_cv" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}"
 									context="{'model' : 'provider.accreditation', 'field_name' : 'Director C.V'}" />
+								<field name="director_cv_bool" attrs="{'readonly':[('state','!=','verification')]}" />
 								<field name="certified_copies_of_qualifications" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}"
 									context="{'model' : 'provider.accreditation', 'field_name' : 'Certified copies of Qualifications'}" />
-								<field name="lease_agreement_document" domain="[('id','=',None)]" />
+								<field name="certified_copies_of_qualifications_bool"
+									attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="lease_agreement_document" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />
+								<field name="lease_agreement_document_bool" attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="professional_body_registration" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="professional_body_registration_bool" attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="business_residence_proof" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)]}" />
+								<field name="business_residence_proof_bool" attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="workplace_agreement" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />
+								<field name="workplace_agreement_bool" attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="provider_learning_material" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('material','=','own_material'),('state','in',['general_business_information'])]}" />
+								<field name="provider_learning_material_bool" attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="skills_programme_registration_letter" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />
+								<field name="skills_programme_registration_letter_bool"
+									attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="company_profile_and_organogram" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />
+								<field name="company_profile_and_organogram_bool" attrs="{'readonly':[('state','!=','verification')]}" />
+								<field name="quality_management_system" domain="[('id','=',None)]"
+									attrs="{'readonly':[('approved','=',True)],'required':[('state','=','general_business_information')]}" />
+								<field name="quality_management_system_bool" attrs="{'readonly':[('state','!=','verification')]}" />
 							</group>
-							<group>
-								<field name="company_profile_and_organogram" domain="[('id','=',None)]" />
-								<field name="workplace_agreement" domain="[('id','=',None)]" />
-								<field name="provider_learning_material" domain="[('id','=',None)]" />
-								<field name="skills_programme_registration_letter" domain="[('id','=',None)]" />
-								<field name="professional_body_registration" domain="[('id','=',None)]" />
-								<field name="business_residence_proof" domain="[('id','=',None)]" />
-
-							</group>
 						</group>
-						<group string="Other Documents">
-							<field name="acc_multi_doc_upload_master_ids" nolabel="1">
-								<tree string="Other Documents" editable="bottom">
-									<field name="name" />
-									<field name="doc_file" on_change="onchange_file(doc_file)"
-										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
-								</tree>
-							</field>
+						<group
+							attrs="{'invisible':[('state','not in',['verification','approved'])]}">
+							<field name="verification_comment" />
 						</group>
-						<group string="Site Visit Image Upload ">
-							<field name="site_visit_image_master_ids" nolabel="1">
-								<tree string="Site Visit Image Upload" editable="bottom">
-									<field name="name" />
-									<field name="doc_file" on_change="onchange_file(doc_file)"
-										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
-								</tree>
-							</field>
+						<group
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','qualification','address_info','approved'])]}">
+							<field name="comment_box" />
+							<!--attrs="{'required':[('state','not in',['campus','general_details','general_business_information','qualification','address_info','approved'])]}" -->
 						</group>
-					</page>
-				</xpath>
-
-					<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="after">
-					<page string="Moderator" attrs="{'invisible':[('provider','=',False)]}">
-
-						<group>
-							<field name="moderators_ids" nolabel="1"
-							context="{'model' : 'etqe.moderators.provider.rel','provider_accreditation_num':provider_accreditation_num}" >
-								<tree editable="Bottom" delete="false">
-									<field name="search_by"/>
-									<field name="identification_id"
-										on_change="onchange_identification_id(identification_id, search_by)" attrs="{'readonly':[('search_by','not in',['number','id'])]}"/>
-									<field name="moderators_id" string="Name" domain="[('id','=',None)]" required="1"
-										on_change="onchange_moderators(moderators_id,search_by)" options='{"no_open": True,"no_create":True}' />
-									<field name="mwork_email" widget="email" />
-									<field name="mwork_phone" />
-									<field name="moderator_sla_document" domain="[('id','=',None)]"/>
-									<field name="moderator_notification_letter" domain="[('id','=',None)]" />
-									<field name="status" readonly="1"></field>
-									<field name="request_send" invisible="1" />
-									<field name="approval_request" invisible="1" />
-									<field name="reject_request" invisible="1" />
-									<button name="action_send_request" string="Send request"
-										type="object" icon="gtk-go-forward" attrs="{'invisible':[('request_send','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_etqe.group_providers" />
-									<button name="action_approved_request" string="Approve"
-										type="object" icon="gtk-go-forward"
-										attrs="{'invisible':['|','|',('approval_request','=',True),('request_send','=',False),('reject_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-									<button name="action_rejected_request" string="Reject"
-										type="object" icon="gtk-close"
-										attrs="{'invisible':['|','|',('reject_request','=',True),('request_send','=',False),('approval_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-								</tree>
-							</field>
-						</group>
-					</page>
-					<page string="Batches" attrs="{'invisible':[('provider','=',False)]}">
-						<group>
-							<field name="provider_batch_ids" nolabel="1">
-								<tree editable="Bottom" delete="false">
-									<field name="batch_master_id"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="batch_status"/>
-								</tree>
-							</field>
-						</group>
-					</page>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="after">
-					<page string="Assessor" attrs="{'invisible':[('provider','=',False)]}">
-						<group>
-							<field name="assessors_ids" nolabel="1"
-							context="{'model' : 'etqe.assessors.provider.rel','provider_accreditation_num':provider_accreditation_num}" >
-								<tree editable="Bottom" delete="false">
-									<field name="search_by"/>
-									<field name="identification_id"
-										on_change="onchange_identification_id(identification_id,search_by)" attrs="{'readonly':[('search_by','not in',['number','id'])]}"/>
-									<field name="assessors_id" string="Name"
-										options='{"no_open": True,"no_create":True}' on_change="onchange_assessrs(assessors_id,search_by)"
-										domain="[('id','=',None)]" required="1"/>
-									<field name="awork_email" widget="email" />
-									<field name="awork_phone" />
-									<field name="assessor_sla_document" domain="[('id','=',None)]"/>
-									<field name="assessor_notification_letter" domain="[('id','=',None)]" />
-									<field name="status" readonly="1"></field>
-									<field name="request_send" invisible="1" />
-									<field name="approval_request" invisible="1" />
-									<field name="reject_request" invisible="1" />
-									<button name="action_send_request" string="Send request"
-										type="object" icon="gtk-go-forward" attrs="{'invisible':[('request_send','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_etqe.group_providers" />
-									<button name="action_approved_request" string="Approve"
-										type="object" icon="gtk-go-forward"
-										attrs="{'invisible':['|','|',('approval_request','=',True),('request_send','=',False),('reject_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-									<button name="action_rejected_request" string="Reject"
-										type="object" icon="gtk-close"
-										attrs="{'invisible':['|','|',('reject_request','=',True),('request_send','=',False),('approval_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-								</tree>
-							</field>
-						</group>
-					</page>
-				</xpath>
-				<!-- Provider Master Learning Programme Starts -->
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="after">
-					<page string="Learning Programme" attrs="{'invisible':[('provider','=',False)]}">
-						<group colspan="2" col="8">
-							<field name="learning_programme_ids" nolabel="1" readonly="0">
-								<tree delete="false">
-									<field name="request_send" invisible="1" />
-									<field name="approval_request" invisible="1" />
-									<field name="reject_request" invisible="1" />
-
-									<field name="lp_saqa_id" />
-									<field name="learning_programme_id" widget="selection"
-										placeholder="Learning Programme" class="oe_no_button" />
+						<div attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">
+	                        	<ul style="font-size: 12px;">
+	                            	<li style="color: green">Verifed</li>
+	                                <li style="color: red">Not Verified</li>
+	                            </ul>
+                        </div>
+						<group string="Qualifications" colspan="2" col="8"
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">
+							<field name="qualification_ids" nolabel="1"
+								attrs="{'readonly': [('verify','=',True)]}"
+								on_change="onchange_qualification_ids(qualification_ids)"
+								context="{'model' : 'accreditation.qualification','provider_master_id_number' : accreditation_number,'extension_of_scope':is_extension_of_scope, 'existing_provider':is_existing_provider, 'provider_acc_id':context.get('active_id')}">
+								<tree delete="true" colors="red:verify == False;green:verify == True">
+									<field name="saqa_qual_id" />
+									<field name="qualification_id" placeholder="Qualification"
+										class="oe_no_button" options="{'no_create': True,'no_quick_create':True}" />
 									<field name="assessors_id"
 										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
 									<field name="assessor_sla_document" domain="[('id','=',None)]"
@@ -2947,198 +1760,36 @@
 										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
 									<field name="moderator_sla_document" domain="[('id','=',None)]"
 										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="status"></field>
-									<button name="action_send_request" string="Send request"
-										type="object" icon="gtk-go-forward" attrs="{'invisible':[('request_send','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_etqe.group_providers" />
-									<button name="action_approved_request" string="Approve"
-										type="object" icon="gtk-go-forward"
-										attrs="{'invisible':['|','|',('approval_request','=',True),('request_send','=',False),('reject_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-									<button name="action_rejected_request" string="Reject"
-										type="object" icon="gtk-close"
-										attrs="{'invisible':['|','|',('reject_request','=',True),('request_send','=',False),('approval_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-								</tree>
-								<form string="Learning Programme">
-									<sheet>
-										<group>
-											<group>
-												<field name="learning_programme_id"
-													on_change="onchange_learning_programme(learning_programme_id)"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
-													domain="[('seta_branch_id','=','11')]" />
-												<field name="assessor_no" placeholder="Enter Assessor ID"/>
-												<field name="assessors_id"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-												<field name="assessor_sla_document" domain="[('id','=',None)]"
-													options="{'no_open':True}" />
 
-											</group>
-											<group>
-												<field name="lp_saqa_id" />
-												<field name="moderator_no" placeholder="Enter Moderator ID"/>
-												<field name="moderators_id"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-												<field name="moderator_sla_document" domain="[('id','=',None)]"
-													options="{'no_open':True}" />
-											</group>
-										</group>
-										<group>
-											<field name="unit_standards_line" nolabel="1">
-												<tree string="Unit Standards" editable="bottom" delete="false" create="false">
-													<field name="type" readonly="1" />
-													<field name="id_no" readonly="1" />
-													<field name="title" readonly="1" />
-													<field name="level1" readonly="1" />
-													<field name="level2" readonly="1" />
-													<field name="level3" readonly="1" />
-													<field name="selection" attrs="{'readonly': [('type','in',['Core','Fundamental'])]}"/>
-													<field name="seta_approved_lp" readonly="1"/>
-													<field name="provider_approved_lp" readonly="1"/>
-												</tree>
-											</field>
-										</group>
-
-									</sheet>
-								</form>
-							</field>
-						</group>
-					</page>
-				</xpath>
-				<!-- Provider Master Learning Programme Ends -->
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="after">
-					<page string="Skills Programme" attrs="{'invisible':[('provider','=',False)]}">
-						<group colspan="2" col="8">
-							<field name="skills_programme_ids" nolabel="1">
-								<tree delete="false">
-									<field name="request_send" invisible="1" />
-									<field name="approval_request" invisible="1" />
-									<field name="reject_request" invisible="1" />
-
-									<field name="skill_saqa_id" />
-									<field name="skills_programme_id" widget="selection"
-										placeholder="Skills Programme" class="oe_no_button" />
-									<field name="assessors_id"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="assessor_sla_document" domain="[('id','=',None)]"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="moderators_id"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="moderator_sla_document" domain="[('id','=',None)]"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="status"></field>
-									<button name="action_send_request" string="Send request"
-										type="object" icon="gtk-go-forward" attrs="{'invisible':[('request_send','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_etqe.group_providers" />
-									<button name="action_approved_request" string="Approve"
-										type="object" icon="gtk-go-forward"
-										attrs="{'invisible':['|','|',('approval_request','=',True),('request_send','=',False),('reject_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-									<button name="action_rejected_request" string="Reject"
-										type="object" icon="gtk-close"
-										attrs="{'invisible':['|','|',('reject_request','=',True),('request_send','=',False),('approval_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-								</tree>
-								<form string="Skills Programme">
-									<sheet>
-										<group>
-											<group>
-												<field name="skills_programme_id"
-													on_change="onchange_skills_programme(skills_programme_id)"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
-													domain="[('seta_branch_id','=','11')]" />
-												<field name="assessor_no" placeholder="Enter Assessor ID"/>
-												<field name="assessors_id"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-												<field name="assessor_sla_document" domain="[('id','=',None)]"
-													options="{'no_open':True}" />
-
-											</group>
-											<group>
-												<field name="skill_saqa_id" />
-												<field name="moderator_no" placeholder="Enter Moderator ID"/>
-												<field name="moderators_id"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-												<field name="moderator_sla_document" domain="[('id','=',None)]"
-													options="{'no_open':True}" />
-											</group>
-										</group>
-										<group>
-											<field name="unit_standards_line" nolabel="1">
-												<tree string="Unit Standards" editable="bottom" delete="false" create="false">
-													<field name="type" readonly="1" />
-													<field name="id_no" readonly="1" />
-													<field name="title" readonly="1" />
-													<field name="level1" readonly="1" />
-													<field name="level2" readonly="1" />
-													<field name="level3" readonly="1" />
-													<field name="selection" />
-												</tree>
-											</field>
-										</group>
-
-									</sheet>
-								</form>
-							</field>
-						</group>
-					</page>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="after">
-					<page string="Qualification" attrs="{'invisible':[('provider','=',False)]}">
-						<group colspan="2" col="8">
-							<field name="qualification_ids" nolabel="1">
-								<tree delete="false">
-									<field name="saqa_qual_id" readonly="1" />
-									<field name="request_send" invisible="1" />
-									<field name="approval_request" invisible="1" />
-									<field name="reject_request" invisible="1" />
-									<field name="qualification_id" widget="selection"
-										placeholder="Qualification" class="oe_no_button" />
-									<field name="assessors_id"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="assessor_sla_document" domain="[('id','=',None)]"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="moderators_id"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="moderator_sla_document" domain="[('id','=',None)]"
-										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-									<field name="status"></field>
-									<button name="action_send_request" string="Send request"
-										type="object" icon="gtk-go-forward" attrs="{'invisible':[('request_send','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer,hwseta_etqe.group_providers" />
-									<button name="action_approved_request" string="Approve"
-										type="object" icon="gtk-go-forward"
-										attrs="{'invisible':['|','|',('approval_request','=',True),('request_send','=',False),('reject_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
-									<button name="action_rejected_request" string="Reject"
-										type="object" icon="gtk-close"
-										attrs="{'invisible':['|','|',('reject_request','=',True),('request_send','=',False),('approval_request','=',True)]}"
-										groups="hwseta_sdp.group_sdp_manager,hwseta_sdp.group_wsp_officer" />
+									<field name="select" editable="bottom" />
+									<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>
+									<!-- <field name="originator" readonly="1"/> -->
 								</tree>
 								<form string="Qualifications">
 									<sheet>
 										<group>
 											<group>
 												<field name="qualification_id" on_change="onchange_qualification(qualification_id)"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
-													domain="[('seta_branch_id','=','11')]" />
-												<field name="assessor_no" placeholder="Enter Assessor ID"/>
-												<field name="assessors_id"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+													options="{'no_create': True,'no_quick_create':True,'no_open': True}"
+													 required = '1'/><!-- domain="[('seta_branch_id','=','11')]" wrote in py -->
+												<field name="assessor_no" placeholder="Enter Assessor ID" attrs="{'invisible':[('qualification_id','=',False)]}"/>
+												<field name="assessors_id" domain="[('id','=',None)]"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" required = '1'/>
 												<field name="assessor_sla_document" domain="[('id','=',None)]"
-													options="{'no_open':True}" />
-
+													options="{'no_open':True}" required = '1'/>
+												<field name="minimum_credits" />
+												<field name="select" />
 											</group>
 											<group>
 												<field name="saqa_qual_id" />
-												<field name="moderator_no" placeholder="Enter Moderator ID"/>
-												<field name="moderators_id"
-													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="moderator_no" placeholder="Enter Moderator ID" attrs="{'invisible':[('qualification_id','=',False)]}"/>
+												<field name="moderators_id" domain="[('id','=',None)]"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" required = '1'/>
 												<field name="moderator_sla_document" domain="[('id','=',None)]"
-													options="{'no_open':True}" />
+													options="{'no_open':True}" required = '1'/>
+												<!-- <field name="originator" readonly="1" /> -->
+												<field name="total_credits" />
+												<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>
 											</group>
 										</group>
 										<div>
@@ -3151,130 +1802,776 @@
 												<tree string="Qualifications Line" editable="bottom"
 													delete="false" create="false" colors="blue:is_provider_approved == True">
 													<field name="type" readonly="1" />
-													<field name="id_data" readonly="1" />
+													<field name="id_no" readonly="1" />
 													<field name="title" readonly="1" />
 													<field name="level1" readonly="1" />
 													<field name="level2" readonly="1" />
 													<field name="level3" readonly="1" />
-													<field name="selection"
-														attrs="{'readonly': ['|',('type','in',['Core','Fundamental']),('is_seta_approved','=',True)]}" />
 													<field name="is_seta_approved" readonly="1"/>
 													<field name="is_provider_approved" readonly="1"/>
+													<field name="selection"
+														attrs="{'readonly': ['|', ('type','in',['Core','Fundamental']),('is_seta_approved','=',True)]}" />
 												</tree>
 											</field>
 										</group>
 									</sheet>
+									<div class="oe_chatter">
+										<field name="message_follower_ids" widget="mail_followers" />
+										<field name="message_ids" widget="mail_thread" />
+									</div>
 								</form>
 							</field>
 						</group>
-					</page>
-				</xpath>
-				<xpath
-					expr="/form/sheet/notebook/page[@string='Internal Notes']/field[@name='comment']"
-					position="replace">
-					<field name="comment" on_change="onchange_comment(comment)" />
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Internal Notes']"
-					position="after">
-					<page string="Internal Note Track">
-						<group>
-							<field name="partner_user_rel_ids" nolabel="1" readonly="1">
-								<tree editable="top" delete="false">
-									<field name="u_id" />
-									<field name="update_date" />
-									<field name="comment" />
+
+						<group string="Skills Programme" colspan="2" col="8"
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">
+							<field name="skills_programme_ids" nolabel="1"
+								on_change="onchange_skills_programme_ids(skills_programme_ids)" attrs="{'readonly': [('verify','=',True)]}"
+								context="{'model' : 'skills.programme.accreditation.rel','provider_master_id_number' : accreditation_number,'extension_of_scope':is_extension_of_scope, 'existing_provider':is_existing_provider}">
+								<tree delete="true" colors="red:verify == False;green:verify == True">
+									<field name="saqa_skill_id" />
+									<field name="skills_programme_id" widget="selection"
+										placeholder="Skills Programme" class="oe_no_button" />
+									<field name="assessors_id"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="assessor_sla_document" domain="[('id','=',None)]"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="moderators_id"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="moderator_sla_document" domain="[('id','=',None)]"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+
+									<field name="select" />
+									<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>
+									<!-- <field name="qualification_id"/> -->
+
+								</tree>
+								<form string="Skills Programme">
+									<sheet>
+										<group>
+											<group>
+												<field name="skills_programme_id"
+													on_change="onchange_skills_programme(skills_programme_id)"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													 required = '1'/><!-- domain="[('seta_branch_id','=','11')]"  wrote in py-->
+												<field name="assessor_no" placeholder="Enter Assessor ID" attrs="{'invisible':[('skills_programme_id','=',False)]}"/>
+												<field name="assessors_id" required = '1' domain="[('id','=',None)]"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="assessor_sla_document" domain="[('id','=',None)]"
+													options="{'no_open':True}" required = '1'/>
+												<field name="minimum_credits" />
+												<field name="select" />
+											</group>
+											<group>
+												<field name="saqa_skill_id" />
+												<field name="moderator_no" placeholder="Enter Moderator ID" attrs="{'invisible':[('skills_programme_id','=',False)]}"/>
+												<field name="moderators_id" required = '1' domain="[('id','=',None)]"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="moderator_sla_document" domain="[('id','=',None)]"
+													options="{'no_open':True}" required = '1'/>
+												<field name="total_credits" />
+												<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>
+
+											</group>
+										</group>
+										<!-- <field name="qualification_id" readonly="1"/> -->
+										<group>
+											<field name="unit_standards_line" nolabel="1">
+												<tree string="Unit Standards Line" editable="bottom"
+													delete="false" create="false">
+													<field name="type" readonly="1" />
+													<field name="id_no" readonly="1" />
+													<field name="title" readonly="1" />
+													<field name="level1" readonly="1" />
+													<field name="level2" readonly="1" />
+													<field name="level3" readonly="1" />
+													<field name="selection" />
+												</tree>
+
+											</field>
+										</group>
+									</sheet>
+									<div class="oe_chatter">
+										<field name="message_follower_ids" widget="mail_followers" />
+										<field name="message_ids" widget="mail_thread" />
+									</div>
+								</form>
+							</field>
+						</group>
+						<!-- Learning programme START -->
+						<group string="Learning Programme" colspan="2" col="8"
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','campus','approved','denied'])]}">
+							<field name="learning_programme_ids" nolabel="1"
+								on_change="onchange_learning_programme_ids(learning_programme_ids)" attrs="{'readonly': [('verify','=',True)]}"
+								context="{'model' : 'learning.programme.accreditation.rel','provider_master_id_number' : accreditation_number,'extension_of_scope':is_extension_of_scope, 'existing_provider':is_existing_provider}">
+								<tree delete="true" colors="red:verify == False;green:verify == True">
+									<field name="saqa_qual_id" />
+									<field name="learning_programme_id" widget="selection"
+										placeholder="Learning Programme" class="oe_no_button" />
+									<field name="assessors_id"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="assessor_sla_document" domain="[('id','=',None)]"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="moderators_id"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+									<field name="moderator_sla_document" domain="[('id','=',None)]"
+										options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+
+									<field name="select" />
+									<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>
+									<!-- <field name="qualification_id"/> -->
+
+								</tree>
+								<form string="Learning Programme">
+									<sheet>
+										<group>
+											<group>
+												<field name="learning_programme_id"
+													on_change="onchange_learning_programme(learning_programme_id)"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													 required = '1'/><!-- domain="[('seta_branch_id','=','11')]"  wrote in py-->
+												<field name="assessor_no" placeholder="Enter Assessor ID" attrs="{'invisible':[('learning_programme_id','=',False)]}"/>
+												<field name="assessors_id" required = '1' domain="[('id','=',None)]"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="assessor_sla_document" domain="[('id','=',None)]"
+													options="{'no_open':True}" required = '1'/>
+												<field name="minimum_credits" />
+												<field name="select" />
+											</group>
+											<group>
+												<field name="saqa_qual_id" />
+												<field name="moderator_no" placeholder="Enter Moderator ID" attrs="{'invisible':[('learning_programme_id','=',False)]}"/>
+												<field name="moderators_id" required = '1' domain="[('id','=',None)]"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="moderator_sla_document" domain="[('id','=',None)]"
+													options="{'no_open':True}" required = '1'/>
+												<field name="total_credits" />
+												<field name="verify" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_administrator,hwseta_etqe.group_etqe_administrator,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer"/>
+
+											</group>
+										</group>
+										<!-- <field name="qualification_id" readonly="1"/> -->
+										<group>
+											<field name="unit_standards_line" nolabel="1">
+												<tree string="Unit Standards Line" editable="bottom"
+													delete="false" create="false">
+													<field name="type" readonly="1" />
+													<field name="id_no" readonly="1" />
+													<field name="title" readonly="1" />
+													<field name="level1" readonly="1" />
+													<field name="level2" readonly="1" />
+													<field name="level3" readonly="1" />
+													<field name="selection" attrs="{'readonly': [('type','in',['Core','Fundamental'])]}"  />
+													<field name="seta_approved_lp" readonly="1"/>
+													<field name="provider_approved_lp" readonly="1"/>
+												</tree>
+											</field>
+										</group>
+									</sheet>
+									<div class="oe_chatter">
+										<field name="message_follower_ids" widget="mail_followers" />
+										<field name="message_ids" widget="mail_thread" />
+									</div>
+								</form>
+							</field>
+						</group>
+						<!-- Learning programme END -->
+						<group string="Other Documents"
+							attrs="{'invisible':[('state','in',['general_details','address_info','campus','qualification','evaluation','approved','denied'])]}">
+							<field name="acc_multi_doc_upload_ids" nolabel="1">
+								<tree string="Other Documents" editable="bottom">
+									<field name="name" />
+									<field name="doc_file" on_change="onchange_file(doc_file)"
+										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
 								</tree>
 							</field>
 						</group>
-					</page>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="after">
-					<page string="Provider Contact" attrs="{'invisible':[('provider','=',False)]}">
+						<group string="Site Visit Image Upload "
+							attrs="{'invisible':[('state','in',['general_details','address_info','campus','qualification','evaluation','approved','denied'])]}">
+							<field name="site_visit_image" nolabel="1">
+								<tree string="Site Visit Image Upload" editable="bottom">
+									<field name="name" />
+									<field name="doc_file" on_change="onchange_file(doc_file)"
+										domain="[('id','=',None)]" context="{'wsp_doc':True, 'name':name, 'other_doc':True}" />
+								</tree>
+							</field>
+						</group>
 
-						<field name="provider_master_contact_ids" nolabel="1" mode="kanban">
-							<kanban>
-								<field name="name" />
-								<field name="phone" placeholder="0116076900" />
-								<field name="mobile" placeholder="0824513619" />
-								<field name="email" />
-								<field name="designation" />
-								<field name="status" />
-								<field name="fax" />
-								<templates>
-									<t t-name="kanban-box">
-										<!-- <t t-set="color" t-value="kanban_color(record.color.raw_value)"/> -->
-										<div style="position: relative">
-											<a t-if="! read_only_mode" type="delete"
-												style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
-											<div class="oe_module_vignette">
-												<!-- <a type="open"> <t t-if="record.has_image.raw_value ===
-													true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small',
-													record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image
-													and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value"
-													class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> -->
-												<div class="oe_module_desc">
-													<div
-														class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
-														<table class="oe_kanban_table">
-															<tr>
-																<td class="oe_kanban_title1" align="left" valign="middle">
-																	<h4>
-																		<a type="open">
-																			<field name="name" />
-																		</a>
-																	</h4>
-																	<i>
-																		<div t-if="record.designation.raw_value">
-																			<field name="designation" />
+						<!-- One2many field for status in provider.accreditaion -->
+						<group string="Status" colspan="2" col="8"
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','qualification','campus'])]}">
+							<field name="provider_accreditation_status_ids" nolabel="1"
+								readonly="True">
+								<tree>
+									<field name="pa_name" />
+									<field name="pa_date" />
+									<field name="pa_status" />
+									<field name="pa_comment" />
+									<field name="pa_updation_date" />
+								</tree>
+							</field>
+						</group>
+						<group string="Satellite Campus" colspan="4" col="8"
+							attrs="{'invisible':[('state','in',['general_details','general_business_information','address_info','qualification','verification','approved','denied'])]}">
+							<field name="provider_accreditation_campus_ids"
+								context="{'default_qualification_id': qualification_ids,'default_skills_id': skills_programme_ids,'default_learning_programme_id': learning_programme_ids,'default_assessors_ids':assessors_ids,'default_moderators_ids':moderators_ids}"
+								nolabel="1" attrs="{'readonly':[('approved','=',True)]}" mode="kanban">
+								<kanban>
+									<field name="name" />
+									<field name="phone" placeholder="0116076900" />
+									<field name="email" />
+									<field name="designation" />
+									<field name="status" />
+									<field name="color" />
+									<field name="street" />
+									<field name="street2" />
+									<field name="street3" />
+									<field name="zip" />
+									<field name="suburb" />
+									<field name="city" />
+									<field name="country_id" />
+									<field name="mobile" placeholder="0824513619" />
+									<field name="fax" />
+									<field name="state_id" />
+									<field name="has_image" />
+									<templates>
+										<t t-name="kanban-box">
+											<t t-set="color" t-value="kanban_color(record.color.raw_value)" />
+											<div style="position: relative">
+												<a t-if="! read_only_mode" type="delete"
+													style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+												<div class="oe_module_vignette">
+													<a type="open">
+														<t t-if="record.has_image.raw_value === true">
+															<img
+																t-att-src="kanban_image('provider.accreditation.campus', 'image_small', record.id.value)"
+																class="oe_avatar oe_kanban_avatar_smallbox" />
+														</t>
+														<t t-if="record.image and record.image.raw_value !== false">
+															<img t-att-src="'data:image/png;base64,'+record.image.raw_value"
+																class="oe_avatar oe_kanban_avatar_smallbox" />
+														</t>
+
+													</a>
+													<div class="oe_module_desc">
+														<div
+															class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+															<table class="oe_kanban_table">
+																<tr>
+																	<td class="oe_kanban_title1" align="left" valign="middle">
+																		<h4>
+																			<a type="open">
+																				<field name="name" />
+																			</a>
+																		</h4>
+																		<i>
+																			<div t-if="record.designation.raw_value">
+																				<field name="designation" />
+																			</div>
+																		</i>
+																		<div>
+																			<a t-if="record.email.raw_value" title="Mail"
+																				t-att-href="'mailto:'+record.email.value">
+																				<field name="email" />
+																			</a>
 																		</div>
-																	</i>
-																	<div>
-																		<a t-if="record.email.raw_value" title="Mail"
-																			t-att-href="'mailto:'+record.email.value">
-																			<field name="email" />
-																		</a>
-																	</div>
-																	<div t-if="record.phone.raw_value">
-																		Phone:
-																		<field name="phone" placeholder="0116076900" />
-																	</div>
-																	<!-- <div t-if="record.mobile.raw_value">Mobile: <field
-																		name="mobile"/></div> -->
-																	<div t-if="record.status.raw_value">
-																		Status:
-																		<field name="status" />
-																	</div>
+																		<div t-if="record.phone.raw_value">
+																			Phone:
+																			<field name="phone" placeholder="0116076900" />
+																		</div>
+																		<div t-if="record.mobile.raw_value">
+																			Mobile:
+																			<field name="mobile" placeholder="0824513619" />
+																		</div>
+																		<div t-if="record.fax.raw_value">
+																			Fax:
+																			<field name="fax" />
+																		</div>
 
-																</td>
-															</tr>
-														</table>
+																	</td>
+																</tr>
+															</table>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									</t>
-								</templates>
-							</kanban>
+										</t>
+									</templates>
+								</kanban>
 
-							<form string="Provider Contact">
-								<sheet>
-									<field name="image" widget='image' class="oe_avatar oe_left"
-										options='{"preview_image": "image_medium"}' />
-									<div class="oe_title">
-										<label for="name" class="oe_edit_only" />
-										<h1>
-											<field name="name" style="width: 70%%" />
-										</h1>
-									</div>
-									<group>
+
+								<form string="Provider Accreditation campus">
+									<header>
+										<button name="action_approved_button" string="Approve"
+											type="object" class="oe_highlight"
+											attrs="{'invisible':['|','|',('state','in',['approved','denied'])]}" />
+										<button name="action_reject_button" string="Reject"
+											type="object" class="oe_highlight"
+											attrs="{'invisible':['|','|',('state','in',['approved','denied'])]}" />
+										<field name="state" widget="statusbar" clickable="False"
+											statusbar_visible="draft,approved,denied" statusbar_colors='{"campus":"blue"}'
+											attrs="{'readonly':True}" />
+									</header>
+									<sheet>
+										<field name="image" widget='image' class="oe_avatar oe_left"
+											options='{"preview_image": "image_medium"}' />
+										<div class="oe_title">
+											<label for="name" class="oe_edit_only" />
+											<h1>
+												<field name="name" style="width: 70%%" />
+											</h1>
+										</div>
+										<group>
+											<group>
+												<label for="street" string="Address" />
+												<div name="div_address">
+													<field name="street" placeholder="Street Number" />
+													<field name="street2" placeholder="Street Name" />
+													<field name="street3" placeholder="Building\Office Park" />
+													<field name="suburb" placeholder="Suburb"
+														on_change="onchange_header_suburb_code(suburb)" />
+													<div class="address_format">
+														<field name="city" placeholder="City" style="width: 40%%" />
+														<field name="state_id" class="oe_no_button"
+															placeholder="Province" style="width: 37%%"
+															on_change='onchange_header_province_code(state_id)'
+															options='{"no_open": True}' />
+														<field name="zip" placeholder="ZIP" style="width: 20%%" />
+													</div>
+													<field name="country_id" placeholder="Country" class="oe_no_button"
+														options='{"no_open": True, "no_create": True}' />
+												</div>
+												<field name="status" />
+											</group>
+											<group>
+												<field name="email" required="1" />
+												<field name="phone" placeholder="0116076900" />
+												<field name="mobile" placeholder="0824513619" />
+												<field name="fax" />
+												<field name="designation" />
+												<field name="campus_evaluat" invisable="1" />
+											</group>
+
+										</group>
+
+										<group string="Contact Details" colspan="4" col="8">
+											<field name="provider_accreditation_campus_contact_ids"
+												nolabel="1" mode="kanban">
+												<kanban>
+													<field name="name" />
+													<field name="phone" placeholder="0116076900" />
+													<field name="mobile" placeholder="0824513619" />
+													<field name="email" />
+													<field name="designation" />
+													<field name="status" />
+													<field name="fax" />
+													<templates>
+														<t t-name="kanban-box">
+															<!-- <t t-set="color" t-value="kanban_color(record.color.raw_value)"/> -->
+															<div style="position: relative">
+																<a t-if="! read_only_mode" type="delete"
+																	style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+																<div class="oe_module_vignette">
+																	<!-- <a type="open"> <t t-if="record.has_image.raw_value
+																		=== true"> <img t-att-src="kanban_image('provider.accreditation.campus',
+																		'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+																		</t> <t t-if="record.image and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value"
+																		class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> -->
+																	<div class="oe_module_desc">
+																		<div
+																			class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+																			<table class="oe_kanban_table">
+																				<tr>
+																					<td class="oe_kanban_title1" align="left"
+																						valign="middle">
+																						<h4>
+																							<a type="open">
+																								<field name="name" />
+																							</a>
+																						</h4>
+																						<i>
+																							<div t-if="record.designation.raw_value">
+																								<field name="designation" />
+																							</div>
+																						</i>
+																						<div>
+																							<a t-if="record.email.raw_value" title="Mail"
+																								t-att-href="'mailto:'+record.email.value">
+																								<field name="email" />
+																							</a>
+																						</div>
+																						<div t-if="record.phone.raw_value">
+																							Phone:
+																							<field name="phone" placeholder="0116076900" />
+																						</div>
+																						<!-- <div t-if="record.mobile.raw_value">Mobile: <field
+																							name="mobile"/></div> -->
+																						<div t-if="record.status.raw_value">
+																							Status:
+																							<field name="status" />
+																						</div>
+																						<div t-if="record.status.raw_value">
+																							Status:
+																							<field name="status" />
+																						</div>
+																					</td>
+																				</tr>
+																			</table>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</t>
+													</templates>
+												</kanban>
+
+												<form string="Provider Accreditation campus">
+													<sheet>
+														<field name="image" widget='image' class="oe_avatar oe_left"
+															options='{"preview_image": "image_medium"}' />
+														<div class="oe_title">
+															<label for="name" class="oe_edit_only" />
+															<h1>
+																<field name="name" style="width: 70%%" />
+															</h1>
+														</div>
+														<group>
+															<field name="sur_name" />
+															<field name="email" />
+															<field name="phone" placeholder="0116076900" />
+															<field name="mobile" placeholder="0824513619" />
+															<field name="fax" />
+															<field name="designation" />
+															<field name="status" />
+														</group>
+														<group>
+															<label for="street" string="Address" />
+															<div name="div_address">
+																<field name="street" placeholder="Street Number" />
+																<field name="street2" placeholder="Street Name" />
+																<div class="address_format">
+																	<field name="city" placeholder="City" style="width: 40%%" />
+																	<field name="state_id" class="oe_no_button"
+																		placeholder="Province" style="width: 37%%" options='{"no_open": True}' />
+																	<field name="zip" placeholder="ZIP" style="width: 20%%" />
+																</div>
+																<field name="country_id" placeholder="Country"
+																	class="oe_no_button" options='{"no_open": True, "no_create": True}' />
+															</div>
+														</group>
+													</sheet>
+												</form>
+											</field>
+										</group>
+
+										<group colspan="2" col="8" string="Qualifications">
+											<field name="qualification_ids" nolabel="1">
+												<tree string="Qualifications" delete="false" create="false">
+													<field name="saqa_qual_id" />
+													<field name="qualification_id" widget="selection"
+														placeholder="Qualification" class="oe_no_button" />
+													<field name="assessors_id"
+														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+													<field name="assessor_sla_document" domain="[('id','=',None)]"
+														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+													<field name="moderators_id"
+														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+													<field name="moderator_sla_document" domain="[('id','=',None)]"
+														options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+
+												</tree>
+												<form string="Qualifications">
+													<sheet>
+														<group>
+															<group>
+																<field name="qualification_id" domain="[('id','=',None)]"
+																	on_change="onchange_qualification(qualification_id)"
+																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+																<field name="assessors_id" domain="[('id','=',None)]"
+																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+																<field name="moderators_id" domain="[('id','=',None)]"
+																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+															</group>
+															<group>
+																<field name="saqa_qual_id" />
+																<field name="assessor_sla_document" domain="[('id','=',None)]"
+																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+																<field name="moderator_sla_document" domain="[('id','=',None)]"
+																	options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+															</group>
+														</group>
+														<group>
+															<field name="qualification_line" nolabel="1">
+																<tree string="Qualifications Line" editable="bottom"
+																	delete="false" create="false">
+																	<field name="type" readonly="1" />
+																	<field name="id_no" readonly="1" />
+																	<field name="title" readonly="1" />
+																	<field name="level1" readonly="1" />
+																	<field name="level2" readonly="1" />
+																	<field name="level3" readonly="1" />
+																	<field name="selection"
+																		attrs="{'readonly': [('type','in',['Core','Fundamental','Elective'])]}" />
+																	<field name="is_seta_approved" readonly="1"/>
+																	<field name="is_provider_approved" readonly="1"/>
+																</tree>
+
+															</field>
+														</group>
+
+													</sheet>
+												</form>
+											</field>
+										</group>
+
+										<group colspan="2" col="8" string="Skills Programme ">
+											<field name="skills_programme_ids" nolabel="1">
+												<tree string="Skills Programme" delete="false" create="false">
+													<field name="saqa_skill_id" />
+													<field name="skills_programme_id" widget="selection"
+														placeholder="Skills Programme" class="oe_no_button" />
+												</tree>
+												<form string="Skills Programme">
+													<sheet>
+														<group>
+															<field name="skills_programme_id" domain="[('id','=',None)]"
+																on_change="onchange_skills_programme(skills_programme_id)"
+																options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+															<field name="saqa_skill_id" />
+														</group>
+
+														<group>
+															<field name="unit_standards_line" nolabel="1">
+																<tree string="Unit Standards Line" editable="bottom"
+																	delete="false" create="false">
+																	<field name="type" readonly="1" />
+																	<field name="id_no" readonly="1" />
+																	<field name="title" readonly="1" />
+																	<field name="level1" readonly="1" />
+																	<field name="level2" readonly="1" />
+																	<field name="level3" readonly="1" />
+																	<field name="selection" />
+																</tree>
+
+															</field>
+														</group>
+
+													</sheet>
+												</form>
+											</field>
+										</group>
+<!-- LEARNING PROGRAMME CAMPUS START -->
+										<group colspan="2" col="8" string="Learning Programme ">
+											<field name="learning_programme_ids" nolabel="1">
+												<tree string="Learning Programme" delete="false" create="false">
+													<field name="saqa_qual_id" />
+													<field name="learning_programme_id" widget="selection"
+														placeholder="Learning Programme" class="oe_no_button" />
+												</tree>
+												<form string="Learning Programme">
+													<sheet>
+														<group>
+															<field name="learning_programme_id" domain="[('id','=',None)]"
+																on_change="onchange_learning_programme(learning_programme_id)"
+																options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+															<field name="saqa_qual_id" />
+														</group>
+														<group>
+															<field name="unit_standards_line" nolabel="1">
+																<tree string="Unit Standards Line" editable="bottom"
+																	delete="false" create="false">
+																	<field name="type" readonly="1" />
+																	<field name="id_no" readonly="1" />
+																	<field name="title" readonly="1" />
+																	<field name="level1" readonly="1" />
+																	<field name="level2" readonly="1" />
+																	<field name="level3" readonly="1" />
+																	<field name="selection" attrs="{'readonly': [('type','in',['Core','Fundamental'])]}"/>
+																	<field name="seta_approved_lp" readonly="1" />
+																	<field name="provider_approved_lp" readonly="1" />
+																</tree>
+															</field>
+														</group>
+													</sheet>
+												</form>
+											</field>
+										</group>
+<!-- LEARNINF PROGRAMME CAMPUS END -->
+
+										<group string="Assessor">
+											<group>
+												<field name="assessors_ids"
+													context="{'qualification_ids_assessors': qualification_ids}"
+													nolabel="1">
+													<tree editable="Bottom" delete="false" create="false">
+														<field name="qualification_list"
+															on_change="onchange_qualification_list(qualification_list)"
+															invisible="1" />
+														<field name="assessors_id" string="Name"
+															on_change="onchange_assessrs(assessors_id)" widget="selection" />
+														<field name="awork_email" widget="email" />
+														<field name="awork_phone" />
+														<field name="campus_assessor_sla_document" domain="[('id','=',None)]"/>
+														<field name="assessor_notification_letter" domain="[('id','=',None)]" />
+													</tree>
+												</field>
+											</group>
+										</group>
+										<group string="Moderator">
+											<group>
+												<field name="moderators_ids"
+													context="{'qualification_ids_moderators': qualification_ids}"
+													nolabel="1">
+													<tree editable="Bottom" delete="false" create="false">
+														<field name="qualification_list"
+															on_change="onchange_qualification_list(qualification_list)"
+															invisible="1" />
+														<field name="moderators_id" string="Name"
+															on_change="onchange_moderators(moderators_id)" widget="selection" />
+														<field name="mwork_email" widget="email" />
+														<field name="mwork_phone" />
+														<field name="campus_moderator_sla_document" domain="[('id','=',None)]"/>
+														<field name="moderator_notification_letter" domain="[('id','=',None)]" />
+													</tree>
+												</field>
+											</group>
+										</group>
+
+
+									</sheet>
+								</form>
+							</field>
+						</group>
+
+						<group string="Assessor"
+							attrs="{'invisible':[('state','!=','qualification')]}">
+							<group>
+								<field name="assessors_ids"
+									context="{'qualification_ids_assessors': qualification_ids}"
+									nolabel="1" attrs="{'readonly': [('verify','=',True)]}">
+									<tree editable="Bottom" delete="true">
+										<field name="qualification_list"
+											on_change="onchange_qualification_list(qualification_list)"
+											invisible="1" />
+										<field name="assessors_id" string="Name"
+											on_change="onchange_assessrs(assessors_id)" widget="selection" />
+										<field name="awork_email" widget="email" />
+										<field name="awork_phone" />
+										<field name="assessor_sla_document" domain="[('id','=',None)]"/>
+										<field name="assessor_notification_letter" domain="[('id','=',None)]"/>
+									</tree>
+								</field>
+							</group>
+						</group>
+						<group string="Moderator"
+							attrs="{'invisible':[('state','!=','qualification')]}">
+							<group>
+								<field name="moderators_ids"
+									context="{'qualification_ids_moderators': qualification_ids}"
+									nolabel="1" attrs="{'readonly': [('verify','=',True)]}">
+									<tree editable="Bottom" delete="true">
+										<field name="qualification_list"
+											on_change="onchange_qualification_list(qualification_list)"
+											invisible="1" />
+										<field name="moderators_id" string="Name"
+											on_change="onchange_moderators(moderators_id)" widget="selection" />
+										<field name="mwork_email" widget="email" />
+										<field name="mwork_phone" />
+										<field name="moderator_sla_document" domain="[('id','=',None)]"/>
+										<field name="moderator_notification_letter" domain="[('id','=',None)]" />
+									</tree>
+								</field>
+							</group>
+						</group>
+
+
+						<group string="Contact Details"
+							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation'])]}"
+							colspan="4" col="8">
+							<field name="provider_accreditation_contact_ids" nolabel="1"
+								attrs="{'readonly':[('approved','=',True)]}" mode="kanban">
+								<kanban>
+									<field name="name" />
+									<field name="phone" placeholder="0116076900" />
+									<field name="mobile" placeholder="0824513619" />
+									<field name="email" />
+									<field name="designation" />
+									<field name="status" />
+									<field name="fax" />
+									<templates>
+										<t t-name="kanban-box">
+											<!-- <t t-set="color" t-value="kanban_color(record.color.raw_value)"/> -->
+											<div style="position: relative">
+												<a t-if="! read_only_mode" type="delete"
+													style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+												<div class="oe_module_vignette">
+													<!-- <a type="open"> <t t-if="record.has_image.raw_value ===
+														true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small',
+														record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image
+														and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value"
+														class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> -->
+													<div class="oe_module_desc">
+														<div
+															class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+															<table class="oe_kanban_table">
+																<tr>
+																	<td class="oe_kanban_title1" align="left" valign="middle">
+																		<h4>
+																			<a type="open">
+																				<field name="name" />
+																			</a>
+																		</h4>
+																		<i>
+																			<div t-if="record.designation.raw_value">
+																				<field name="designation" />
+																			</div>
+																		</i>
+																		<div>
+																			<a t-if="record.email.raw_value" title="Mail"
+																				t-att-href="'mailto:'+record.email.value">
+																				<field name="email" />
+																			</a>
+																		</div>
+																		<div t-if="record.phone.raw_value">
+																			Phone:
+																			<field name="phone" placeholder="0116076900" />
+																		</div>
+																		<!-- <div t-if="record.mobile.raw_value">Mobile: <field
+																			name="mobile"/></div> -->
+																		<div t-if="record.status.raw_value">
+																			Status:
+																			<field name="status" />
+																		</div>
+
+																	</td>
+																</tr>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</t>
+									</templates>
+								</kanban>
+
+								<form string="Provider Accreditation campus">
+									<sheet>
+										<field name="image" widget='image' class="oe_avatar oe_left"
+											options='{"preview_image": "image_medium"}' />
+										<div class="oe_title">
+											<label for="name" class="oe_edit_only" />
+											<h1>
+												<field name="name" style="width: 70%%" />
+											</h1>
+										</div>
 										<group>
 											<field name="sur_name" />
-											<field name="email" />
-											<field name="phone" placeholder="0116076900" />
+											<field name="email" required="1"/>
+											<field name="phone" />
 											<field name="mobile" placeholder="0824513619" />
 											<field name="fax" />
 											<field name="designation" />
+											<field name="status" />
 										</group>
 										<group>
 											<label for="street" string="Address" />
@@ -3284,310 +2581,26 @@
 												<div class="address_format">
 													<field name="city" placeholder="City" style="width: 40%%" />
 													<field name="state_id" class="oe_no_button"
-														placeholder="Province" style="width: 37%%"
-														options='{"no_open": True,"no_create":True}' />
+														placeholder="Province" style="width: 37%%" options='{"no_open": True, "no_create": True}' />
 													<field name="zip" placeholder="ZIP" style="width: 20%%" />
 												</div>
 												<field name="country_id" placeholder="Country" class="oe_no_button"
 													options='{"no_open": True, "no_create": True}' />
 											</div>
-											<field name="status" />
 										</group>
-									</group>
-								</sheet>
-							</form>
-						</field>
-					</page>
-				</xpath>
-				<xpath expr="/form/sheet/notebook/page[@string='Contacts']"
-					position="attributes">
-					<attribute name="string">Contacts / Branch</attribute>
-				</xpath>
-
-				<xpath
-					expr="//field[@name='child_ids']/form/sheet/field[@name='supplier']"
-					position="before">
-					<group string="Contact Details" colspan="4" col="8"
-						attrs="{'invisible':[('provider','=',False)]}">
-						<field name="provider_master_campus_contact_ids" nolabel="1"
-							mode="kanban">
-							<kanban>
-								<field name="name" />
-								<field name="phone" placeholder="0116076900" />
-								<field name="mobile" placeholder="0824513619" />
-								<field name="email" />
-								<field name="designation" />
-								<field name="status" />
-								<field name="fax" />
-								<templates>
-									<t t-name="kanban-box">
-										<!-- <t t-set="color" t-value="kanban_color(record.color.raw_value)"/> -->
-										<div style="position: relative">
-											<a t-if="! read_only_mode" type="delete"
-												style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
-											<div class="oe_module_vignette">
-												<!-- <a type="open"> <t t-if="record.has_image.raw_value ===
-													true"> <img t-att-src="kanban_image('provider.accreditation.campus', 'image_small',
-													record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> </t> <t t-if="record.image
-													and record.image.raw_value !== false"> <img t-att-src="'data:image/png;base64,'+record.image.raw_value"
-													class="oe_avatar oe_kanban_avatar_smallbox"/> </t> </a> -->
-												<div class="oe_module_desc">
-													<div
-														class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
-														<table class="oe_kanban_table">
-															<tr>
-																<td class="oe_kanban_title1" align="left" valign="middle">
-																	<h4>
-																		<a type="open">
-																			<field name="name" />
-																		</a>
-																	</h4>
-																	<i>
-																		<div t-if="record.designation.raw_value">
-																			<field name="designation" />
-																		</div>
-																	</i>
-																	<div>
-																		<a t-if="record.email.raw_value" title="Mail"
-																			t-att-href="'mailto:'+record.email.value">
-																			<field name="email" />
-																		</a>
-																	</div>
-																	<div t-if="record.phone.raw_value">
-																		Phone:
-																		<field name="phone" placeholder="0116076900" />
-																	</div>
-																	<!-- <div t-if="record.mobile.raw_value">Mobile: <field
-																		name="mobile"/></div> -->
-																	<div t-if="record.status.raw_value">
-																		Status:
-																		<field name="status" />
-																	</div>
-																	<div t-if="record.status.raw_value">
-																		Status:
-																		<field name="status" />
-																	</div>
-																</td>
-															</tr>
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
-									</t>
-								</templates>
-							</kanban>
-
-							<form string="Provider Master campus">
-								<sheet>
-									<field name="image" widget='image' class="oe_avatar oe_left"
-										options='{"preview_image": "image_medium"}' />
-									<div class="oe_title">
-										<label for="name" class="oe_edit_only" />
-										<h1>
-											<field name="name" style="width: 70%%" />
-										</h1>
-									</div>
-									<group>
-										<field name="sur_name" />
-										<field name="email" />
-										<field name="phone" placeholder="0116076900" />
-										<field name="mobile" placeholder="0824513619" />
-										<field name="fax" />
-										<field name="designation" />
-										<field name="status" />
-									</group>
-									<group>
-										<label for="street" string="Address" />
-										<div name="div_address">
-											<field name="street" placeholder="Street Number" />
-											<field name="street2" placeholder="Street Name" />
-											<div class="address_format">
-												<field name="city" placeholder="City" style="width: 40%%" />
-												<field name="state_id" class="oe_no_button"
-													placeholder="Province" style="width: 37%%" options='{"no_open": True}' />
-												<field name="zip" placeholder="ZIP" style="width: 20%%" />
-											</div>
-											<field name="country_id" placeholder="Country" class="oe_no_button"
-												options='{"no_open": True, "no_create": True}' />
-										</div>
-									</group>
-								</sheet>
-							</form>
-						</field>
-					</group>
-
-					<group string="Qualifications" attrs="{'invisible':[('provider','=',False)]}">
-						<field name="qualification_campus_ids" nolabel="1">
-							<tree>
-								<field name="saqa_qual_id" />
-								<field name="qualification_id" widget="selection"
-									placeholder="Qualification" class="oe_no_button" />
-								<field name="assessors_id"
-									options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-								<field name="assessor_sla_document" domain="[('id','=',None)]"
-									options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-								<field name="moderators_id"
-									options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-								<field name="moderator_sla_document" domain="[('id','=',None)]"
-									options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-							</tree>
-							<form string="Qualifications">
-								<sheet>
-									<group>
-										<group>
-											<field name="qualification_id" on_change="onchange_qualification(qualification_id)" />
-
-											<field name="assessors_id"
-												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-											<field name="moderators_id"
-												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-										</group>
-										<group>
-											<field name="saqa_qual_id" />
-											<field name="assessor_sla_document" domain="[('id','=',None)]"
-												options="{'no_open':True}" />
-											<field name="moderator_sla_document" domain="[('id','=',None)]"
-												options="{'no_open':True}" />
-										</group>
-									</group>
-									<group>
-										<field name="qualification_line" nolabel="1">
-											<tree string="Qualifications Line" editable="bottom"
-												delete="false" create="false" colors="blue:is_provider_approved == True">
-												<field name="type" readonly="1" />
-												<field name="id_data" readonly="1" />
-												<field name="title" readonly="1" />
-												<field name="level1" readonly="1" />
-												<field name="level2" readonly="1" />
-												<field name="level3" readonly="1" />
-												<field name="selection" />
-												<field name="is_seta_approved" readonly="1"/>
-												<field name="is_provider_approved" readonly="1"/>
-											</tree>
-										</field>
-									</group>
-								</sheet>
-							</form>
-						</field>
-					</group>
-					<group colspan="2" col="8" string="Skills Programme"
-						attrs="{'invisible':[('provider','=',False)]}">
-						<field name="skills_programme_campus_ids" nolabel="1">
-							<tree string="Skills Programme">
-								<field name="skill_saqa_id" />
-								<field name="skills_programme_id" widget="selection"
-									placeholder="Skills Programme" class="oe_no_button" />
-							</tree>
-							<form string="Skills Programme">
-								<sheet>
-									<group>
-										<field name="skills_programme_id"
-											on_change="onchange_skills_programme(skills_programme_id)"
-											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-										<field name="skill_saqa_id" />
-									</group>
-									<group>
-										<field name="unit_standards_line" nolabel="1">
-											<tree string="Unit Standards Line" editable="bottom"
-												delete="false" create="false">
-												<field name="type" readonly="1" />
-												<field name="id_no" readonly="1" />
-												<field name="title" readonly="1" />
-												<field name="level1" readonly="1" />
-												<field name="level2" readonly="1" />
-												<field name="level3" readonly="1" />
-												<field name="selection" />
-											</tree>
-										</field>
-									</group>
-								</sheet>
-							</form>
-						</field>
-					</group>
-					<group colspan="2" col="8" string="Learning Programme"
-						attrs="{'invisible':[('provider','=',False)]}">
-						<field name="learning_programme_campus_ids" nolabel="1">
-							<tree string="Learning Programme">
-								<field name="lp_saqa_id" />
-								<field name="learning_programme_id" widget="selection"
-									placeholder="Learning Programme" class="oe_no_button" />
-							</tree>
-							<form string="Learning Programme">
-								<sheet>
-									<group>
-										<field name="learning_programme_id"
-											on_change="onchange_learning_programme(learning_programme_id)"
-											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
-										<field name="lp_saqa_id" />
-									</group>
-									<group>
-										<field name="unit_standards_line" nolabel="1">
-											<tree string="Unit Standards Line" editable="bottom"
-												delete="false" create="false">
-												<field name="type" readonly="1" />
-												<field name="id_no" readonly="1" />
-												<field name="title" readonly="1" />
-												<field name="level1" readonly="1" />
-												<field name="level2" readonly="1" />
-												<field name="level3" readonly="1" />
-												<field name="selection" />
-												<field name="seta_approved_lp" readonly="1"/>
-												<field name="provider_approved_lp" readonly="1"/>
-											</tree>
-										</field>
-									</group>
-								</sheet>
-							</form>
-						</field>
-					</group>
-					<field name="provider" inivisible="1" />
-					<group string="Assessors" attrs="{'invisible':[('provider','=',False)]}">
-						<field name="assessors_campus_ids" nolabel="1">
-							<tree editable="Bottom">
-								<field name="assessors_id" string="Name"
-									on_change="onchange_assessrs(assessors_id)" widget="selection" />
-								<field name="awork_email" widget="email" />
-								<field name="awork_phone" />
-								<field name="campus_assessor_sla_document" domain="[('id','=',None)]" />
-								<field name="assessor_notification_letter" domain="[('id','=',None)]" />
-							</tree>
-						</field>
-					</group>
-					<group string="Moderators" attrs="{'invisible':[('provider','=',False)]}">
-						<field name="moderators_campus_ids" nolabel="1">
-							<tree editable="Bottom">
-								<field name="moderators_id" string="Name"
-									on_change="onchange_moderators(moderators_id)" widget="selection" />
-								<field name="mwork_email" widget="email" />
-								<field name="mwork_phone" />
-								<field name="campus_moderator_sla_document" domain="[('id','=',None)]" />
-								<field name="moderator_notification_letter" domain="[('id','=',None)]" />
-							</tree>
-						</field>
-					</group>
-				</xpath>
-				<xpath expr="//field[@name='child_ids']" position="attributes">
-					  <attribute name="context">{'default_qualification_id': qualification_ids,'default_skills_id': skills_programme_ids,'default_learning_programme_id': learning_programme_ids,'default_assessors_ids':assessors_ids,'default_moderators_ids':moderators_ids}</attribute>
-				</xpath>
-				<xpath expr="//field[@name='email']" position="replace">
-					<field name="email" widget="email"
-						attrs="{'readonly':[('provider','=',True)], 'required': ['|','|',('user_ids','!=', []),('provider','=',True),('employer','=',True)]}" />
-				</xpath>
-
-				<!-- <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_payment_term']"
-					position="attributes"> <attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}</attribute>
-					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_supplier_payment_term']"
-					position="attributes"> <attribute name="attrs">{'invisible':['|',('provider','=',True),('employer','=',True)]}</attribute>
-					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_account_receivable']"
-					position="attributes"> <attribute name="attrs">{'required':[('provider','!=',True)]}</attribute>
-					</xpath> <xpath expr="/form/sheet/notebook/page[@name='accounting']/group/group/field[@name='property_account_payable']"
-					position="attributes"> <attribute name="attrs">{'required':[('provider','!=',True)]}</attribute>
-					</xpath> -->
-				<!-- <xpath expr="//div[@class='oe_chatter']" position="attributes">
-					<attribute name="invisible">True</attribute> </xpath> -->
+									</sheet>
+								</form>
+							</field>
+						</group>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
 			</field>
 		</record>
+
+
 		<record id="view_provider_accreditation_filter" model="ir.ui.view">
 			<field name="name">Accreditation Ref No</field>
 			<field name="model">provider.accreditation</field>
