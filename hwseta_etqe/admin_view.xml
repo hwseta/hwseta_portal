@@ -1950,7 +1950,7 @@
 				<!-- <xpath expr="//div[@class='oe_chatter']" position="attributes">
 					<attribute name="invisible">True</attribute> </xpath> -->
 			</field>
-            </record>
+        </record>
 		<record id="view_res_partner_tree_admin" model="ir.ui.view">
 			<field name="name">provider.tree.admin</field>
 			<field name="model">res.partner</field>
