@@ -9633,6 +9633,9 @@ class provider_assessment(models.Model):
 		this_us_list = []
 		text_guy = ""
 		list_of_dict = []
+		this_mod_us_list = []
+		this_prov_us_list = []
+		this_ass_us_list = []
 		for x in self.env['provider.qualification'].search([]):
 			dbg(x.saqa_qual_id)
 			dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
@@ -9642,18 +9645,42 @@ class provider_assessment(models.Model):
 								})
 		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
 		if self.learner_achieved_ids:
+			for prov_quals in self.provider_id.qualification_ids:
+				for prov_us in prov_quals.qualification_line:
+					if prov_us.id_data not in this_prov_us_list and prov_us.selection:
+						dbg(prov_us.id_data)
+						# this_prov_us_list.append([x.id_data for x in prov_us])
+						this_prov_us_list.append(prov_us.id_data)
 			for achieved_ids in self.learner_achieved_ids:
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us.id_no not in this_us_list:
 						this_us_list.append(us.id_no)
 			lib_diff = [x for x in this_us_list if x not in lib_us_list]
-			# dbg(lib_us_list)
-			# dbg(this_us_list)
-			# dbg(lib_diff)
+			for achieved_ids in self.learner_achieved_ids:
+				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
+					if us.id_no not in this_us_list:
+						this_us_list.append(us.id_no)
+				if achieved_ids.moderators_id:
+					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
+						for mod_us in mod_qualifications.qualification_line_hr:
+							if mod_us.id_no not in this_mod_us_list:
+								this_mod_us_list.append(mod_us.id_no)
+				if achieved_ids.assessors_id:
+					for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
+						for ass_us in ass_qualifications.qualification_line_hr:
+							if ass_us.id_no not in this_ass_us_list:
+								this_ass_us_list.append(ass_us.id_no)
 			for libz in list_of_dict:
 				text_guy += "<div>-----------Qualification:" + str(libz.get('code')) + "</div>"
 				for us in libz.get('list_of_us'):
-					text_guy += "<div>Qualification:" + str(libz) + "--Code:" + str(us) + "</div>"
+					string_thing = "<div>Qualification:" + str(libz.get('code')) + "--Code:" + str(us)
+					if us not in this_mod_us_list:
+						string_thing += "-Moderator:" + str(us)
+					if us not in this_ass_us_list:
+						string_thing += "-Assessor:" + str(us)
+					if us not in this_prov_us_list:
+						string_thing += "-Provider:" + str(us)
+					text_guy += string_thing + "</div>"	
 			# text_guy += "<h1>Library:</h1>"
 			# text_guy += "<h3>In assessment, not in Library:</h3>"
 			# for x in lib_diff:
