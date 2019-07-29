@@ -9632,6 +9632,10 @@ class provider_assessment(models.Model):
 		dbg("check_unit_standard_library")
 		this_us_list = []
 		text_guy = ""
+		for x in self.env['provider.qualification'].search([]):
+			dbg(x.saqa_qual_id)
+			for z in x.qualification_line:
+				dbg(str(x.name) + str(z.id_no))
 		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
 		if self.learner_achieved_ids:
 			for achieved_ids in self.learner_achieved_ids:
@@ -9639,9 +9643,9 @@ class provider_assessment(models.Model):
 					if us.id_no not in this_us_list:
 						this_us_list.append(us.id_no)
 			lib_diff = [x for x in this_us_list if x not in lib_us_list]
-			dbg(lib_us_list)
-			dbg(this_us_list)
-			dbg(lib_diff)
+			# dbg(lib_us_list)
+			# dbg(this_us_list)
+			# dbg(lib_diff)
 			text_guy += "<h1>Library:</h1>"
 			text_guy += "<h3>In assessment, not in Library:</h3>"
 			for x in lib_diff:
