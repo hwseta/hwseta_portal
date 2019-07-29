@@ -1153,14 +1153,13 @@
 		</record>
 		<!-- res partner action menu -->
 		<record id="action_partner_view_admin" model="ir.actions.act_window">
-<!--			<field name="name">action.partner.Admin</field>-->
+			<field name="name">action.partner.Admin</field>
 			<field name="res_model">res.partner</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="domain">[('provider','=',True),('parent_id','=',None),('active','=',True)]
-			</field>
-			<!-- <field name="context">{'default_is_learner':1,'default_seta_elements':1,'default_provider_learner':1}
-			</field> -->
+<!--			<field name="domain">[('provider','=',True),('parent_id','=',None),('active','=',True)]</field>-->
+<!--            <field name="context">{'default_is_learner':1,'default_seta_elements':1,'default_provider_learner':1}</field>-->
+			 
 			<field name="view_id" eval="False" />
 			<field name="search_view_id" ref="view_partner_search_admin" />
 			<field name="help" type="html">
