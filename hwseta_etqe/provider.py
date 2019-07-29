@@ -9634,8 +9634,7 @@ class provider_assessment(models.Model):
 		text_guy = ""
 		for x in self.env['provider.qualification'].search([]):
 			dbg(x.saqa_qual_id)
-			for z in x.qualification_line:
-				dbg(str(x.name) + str(z.id_no))
+			dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
 		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
 		if self.learner_achieved_ids:
 			for achieved_ids in self.learner_achieved_ids:
