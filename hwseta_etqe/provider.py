@@ -9653,7 +9653,7 @@ class provider_assessment(models.Model):
 			for libz in list_of_dict:
 				text_guy += "<div>" + str(libz.get('code')) + "</div>"
 				for us in libz.get('list_of_us'):
-					text_guy += "<div>" + us + "</div>"
+					text_guy += "<div>" + str(us) + "</div>"
 			# text_guy += "<h1>Library:</h1>"
 			# text_guy += "<h3>In assessment, not in Library:</h3>"
 			# for x in lib_diff:
