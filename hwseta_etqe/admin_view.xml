@@ -1081,6 +1081,112 @@
 		<menuitem name="providers" id="learner_res_partner_admin_menu" action="action_res_partner_view_admin"
 			sequence="1" groups="hwseta_etqe.group_seta_administrator"/>
 
+<!--        partner view-->
+        <record id="view_partner_form_admin" model="ir.ui.view">
+			<field name="name">partner.form.admin</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<form create="false">
+					<!-- <header>
+
+					</header> -->
+					<group>
+						<group>
+							<field name="is_active_provider"/>
+							<field name="is_existing_provider"/>
+							<field name="is_visible"/>
+							<field name="phone"/>
+							<field name="mobile"/>
+							<field name="email"/>
+							<field name="provider_contact_ids"/>
+							<field name="qualification_line"/>
+							<field name="qualification_id"/>
+							<field name="assessors_ids"/>
+							<field name="moderators_ids"/>
+							<field name="assessors_campus_ids"/>
+							<field name="moderators_campus_ids"/>
+							<field name="assess_pro_id"/>
+							<field name="provider_sic_code"/>
+							<field name="txtRegName"/>
+							<field name="txtTradeName"/>
+							<field name="txtAbbrTradeName"/>
+							<field name="cboOrgLegalStatus"/>
+							<field name="txtCompanyRegNo"/>
+							<field name="txtVATRegNo"/>
+							<field name="cboOrgSICCode"/>
+							<field name="txtSDLNo"/>
+							<field name="cboTHETAChamberSelect"/>
+							<field name="cboProviderFocus"/>
+							<field name="txtNumYearsCurrentBusiness"/>
+						</group>
+					</group>
+					<!-- <div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div> -->
+				</form>
+			</field>
+		</record>
+
+		<record id="view_partner_tree_admin" model="ir.ui.view">
+			<field name="name">partner.tree.admin</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<tree string="res_partner" create="false">
+					<field name="provider_accreditation_num"/>
+					<field name="display_name"/>
+					<field name="phone"/>
+					<field name="email"/>
+				</tree>
+			</field>
+		</record>
+		<record id="view_partner_search_admin" model="ir.ui.view">
+			<field name="name">partner.search.admin</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<search string="res partner Search">
+					<field name="name"/>
+
+
+				</search>
+			</field>
+		</record>
+		<!-- res partner action menu -->
+		<record id="action_partner_view_admin" model="ir.actions.act_window">
+<!--			<field name="name">action.partner.Admin</field>-->
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('provider','=',True),('parent_id','=',None),('active','=',True)]
+			</field>
+			<!-- <field name="context">{'default_is_learner':1,'default_seta_elements':1,'default_provider_learner':1}
+			</field> -->
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="view_partner_search_admin" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add a new Profile.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_partner_tree_admin" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_partner_tree_admin" />
+			<field name="act_window_id" ref="action_partner_view_admin" />
+		</record>
+
+		<record id="action_partner_form_admin" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_partner_form_admin" />
+			<field name="act_window_id" ref="action_partner_view_admin" />
+		</record>
+		<!--<menuitem name="providers" id="learner_res_partner_admin_menu" action="action_res_partner_view_admin"-->
+			<!--sequence="1" parent="seta_admin_submenu" groups="hwseta_etqe.group_seta_administrator"/>-->
+		<menuitem name="Partners" id="partner_admin_menu" action="action_partner_view_admin"
+			sequence="1" groups="hwseta_etqe.group_seta_administrator"/>
 	</data>
 
 </openerp>
