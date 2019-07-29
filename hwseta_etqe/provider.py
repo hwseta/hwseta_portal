@@ -9632,9 +9632,14 @@ class provider_assessment(models.Model):
 		dbg("check_unit_standard_library")
 		this_us_list = []
 		text_guy = ""
+		list_of_dict = []
 		for x in self.env['provider.qualification'].search([]):
 			dbg(x.saqa_qual_id)
 			dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
+			list_of_dict.append({'name':x.name,
+								'code':x.saqa_qual_id,
+								'list_of_us':[z.id_no for z in x.qualification_line]
+								})
 		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
 		if self.learner_achieved_ids:
 			for achieved_ids in self.learner_achieved_ids:
@@ -9645,10 +9650,14 @@ class provider_assessment(models.Model):
 			# dbg(lib_us_list)
 			# dbg(this_us_list)
 			# dbg(lib_diff)
-			text_guy += "<h1>Library:</h1>"
-			text_guy += "<h3>In assessment, not in Library:</h3>"
-			for x in lib_diff:
-				text_guy += "<div>" + str(x) + "</div>"
+			for libz in list_of_dict:
+				text_guy += "<div>" + str(libz.get('code')) + "</div>"
+				for us in libz.get('list_of_us'):
+					text_guy += "<div>" + us + "</div>"
+			# text_guy += "<h1>Library:</h1>"
+			# text_guy += "<h3>In assessment, not in Library:</h3>"
+			# for x in lib_diff:
+			# 	text_guy += "<div>" + str(x) + "</div>"
 		self.unit_standard_library_variance = text_guy
 
 
