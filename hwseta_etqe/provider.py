@@ -9697,6 +9697,7 @@ class provider_assessment(models.Model):
 		this_mod_us_list = []
 		this_prov_us_list = []
 		this_ass_us_list = []
+		list_of_dict = []
 		quals_list = []
 		lib_quals = []
 		big_dic = {}
