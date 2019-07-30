@@ -9715,9 +9715,9 @@ class provider_assessment(models.Model):
 		if self.learner_achieved_ids:
 			for prov_quals in self.provider_id.qualification_ids:
 				for prov_us in prov_quals.qualification_line:
-					if prov_us.id_data not in this_prov_us_list and prov_us.selection:
+					if prov_us not in this_prov_us_id_list and prov_us.selection:
 						# this_prov_us_list.append([x.id_data for x in prov_us])
-						this_prov_us_list.append(prov_us.id_data)
+						this_prov_us_id_list.append(prov_us.id_data)
 			big_dic.update({'provider_unit_standards': this_prov_us_list, 'provider_name': provider_name})
 			for achieved_ids in self.learner_achieved_ids:
 				# build qualifications list from assessment
