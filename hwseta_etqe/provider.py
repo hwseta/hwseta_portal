@@ -9760,7 +9760,7 @@ class provider_assessment(models.Model):
 					lib_x = x.id_no
 				# dbg(prov_x)
 				# dbg(mod_x)
-				rows += '<tr><td>' + x + '</td><td>' + lib_x + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
+				rows += '<tr><td>' + x.id_no + '</td><td>' + lib_x + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
 			# dbg(rows)
 			end_table = '</table>'
 			whole_table = style + start_table + header + rows + end_table
