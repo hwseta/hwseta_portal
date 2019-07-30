@@ -9726,7 +9726,7 @@ class provider_assessment(models.Model):
 			for achieved_ids in self.learner_achieved_ids:
 				# build qualifications list from assessment
 				for qualz in achieved_ids.qual_learner_assessment_achieved_line_id:
-					if qualz.qual_learner_assessment_achieved_line_id.saqa_qual_id not in quals_list:
+					if qualz.saqa_qual_id not in quals_list:
 						quals_list.append(qualz.qual_learner_assessment_achieved_line_id.saqa_qual_id)
 				# build assessment US list
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
