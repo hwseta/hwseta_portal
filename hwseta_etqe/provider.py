@@ -9763,9 +9763,10 @@ class provider_assessment(models.Model):
 				else: ass_x = 'nope'
 				if x in this_mod_us_list: mod_x = x
 				else: mod_x = 'nope'
-				dbg(prov_x)
-				dbg(mod_x)
+				# dbg(prov_x)
+				# dbg(mod_x)
 				rows += '<tr><td>' + x + '</td><td>' + x if x in lib_us_list else 'nope' + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
+				dbg(rows)
 			end_table = '</table>'
 			whole_table = start_table + header + rows + end_table
 			self.unit_standard_library_variance = whole_table
