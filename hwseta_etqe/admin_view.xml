@@ -1186,6 +1186,479 @@
 			<!--sequence="1" parent="seta_admin_submenu" groups="hwseta_etqe.group_seta_administrator"/>-->
 		<menuitem name="Partners" id="partner_admin_menu" action="action_partner_view_admin"
 			sequence="1" groups="hwseta_etqe.group_seta_administrator"/>
+
+<!--        sdf view-->
+        <record id="view_sdf_form_admin" model="ir.ui.view">
+			<field name="name">hr.sdf.form.admin</field>
+			<field name="model">hr.employee</field>
+			<field eval="1" name="priority" />
+			<field name="arch" type="xml">
+				<!-- <form string="SDF" attrs="{'invisible':[('is_learner_from_assessment','=',True)]}"> -->
+				<form string="SDF">
+					<sheet>
+						<field name="image_medium" widget='image' class="oe_left oe_avatar" />
+						<div>
+							<group>
+								<group>
+									<field name="is_learner_from_assessment"/>
+									<field name="person_title" />
+									<label for="name" />
+									<h1>
+										<field name="name" />
+										<field name="rsa_identity_no" attrs="{'invisible':[('is_learner','=',False)]}"
+											readonly="1" />
+									</h1>
+									<field name="person_middle_name"
+										attrs="{'invisible':[('provider_learner','=',False)]}" />
+									<field name="maiden_name" />
+									<field name="person_last_name" string="Surname" />
+								</group>
+								<group>
+									<field name="sdf_type" attrs="{'invisible':[('is_sdf','=',False)]}" />
+									<field name="primary_secondary" attrs="{'invisible':[('is_sdf','=',False)]}" />
+									<!--<label for="category_ids" class="oe_edit_only" groups="base.group_hr_user"/> -->
+									<!--<field name="category_ids" widget="many2many_tags" placeholder="e.g.
+										Part Time" groups="base.group_hr_user"/> -->
+									<field name="work_email" widget="email" required="1"/>
+									<field name="work_phone" placeholder="0116076900" />
+									<field name="learner_status" attrs="{'invisible':[('is_learner','=',False)]}" />
+									<field name="learner_reg_no" string="Learner Registration No."
+										attrs="{'invisible':[('is_learner','=',False)]}" />
+									<field name="latest_employer" domain="[('employer','=',True)]"
+										invisible="1" />
+								</group>
+							</group>
+						</div>
+						<div class="oe_right oe_button_box" name="button_box">
+							<!-- Put here related buttons -->
+						</div>
+						<notebook>
+							<page string="Public Information">
+								<group>
+									<group string="Contact Information">
+										<label for="street" string="Work Address" />
+										<div>
+											<field name="work_address" placeholder="Work Address 1" />
+											<field name="work_address2" placeholder="Work Address 2" />
+											<field name="work_address3" placeholder="Work Address 3" />
+											<div class="address_format">
+												<field name="person_suburb" placeholder="Suburb"
+													style="width: 52%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_person_suburb(person_suburb)" />
+												<field name="work_municipality" placeholder="Municipality"
+													style="width: 48%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											</div>
+											<div class="address_format">
+												<field name="work_city" class="oe_no_button"
+													placeholder="City" style="width: 39%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="work_province" class="oe_no_button"
+													placeholder="Province Code" style="width: 37%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_work_province(work_province)" />
+												<field name="work_zip" class="oe_no_button"
+													placeholder="ZIP" style="width: 20%%" />
+											</div>
+											<field name="work_country" placeholder="Country" class="oe_no_button"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											<!-- <field name="mobile_phone" placeholder="Mobile"/> -->
+											<button name="work_addr_map" string="Map" type="object"
+												icon="gtk-zoom-in" />
+										</div>
+										<field name="status_reason" attrs="{'invisible':[('is_learner','=',False)]}" />
+									</group>
+									<group string="Position">
+										<field name="department" />
+										<field name="job_title" />
+										<field name="manager" />
+										<!--<field name="department_id" on_change="onchange_department_id(department_id)"/>
+											<field name="job_id"/> <field name="parent_id"/> -->
+										<!--<field name="coach_id"/> -->
+									</group>
+									<group>
+										<!-- <field name="company_id" groups="base.group_multi_company"
+											on_change="onchange_company(company_id)"/> -->
+										<field name="user_id" on_change="onchange_user(user_id)"
+											string="Related User"/>
+									</group>
+								</group>
+								<field name="notes" placeholder="About You ..." colspan="4" />
+							</page>
+							<page string="Personal Information">
+								<group>
+									<group string="Status">
+										<field name="gender" />
+										<field name="gender_saqa_code"
+											attrs="{'invisible':[('provider_learner','=',False)]}" />
+										<field name="marital" />
+										<field name="dissability" />
+										<field name="disability_status" />
+										<field name="socio_economic_saqa_code" invisible="1" />
+										<field name="socio_economic_status" />
+										<field name="current_occupation"
+											attrs="{'readonly':[('socio_economic_status','=','unemployed')]}" />
+										<field name="years_in_occupation"
+											attrs="{'readonly':[('socio_economic_status','=','unemployed')]}" />
+										<field name="is_sdf" readonly="1" invisible="1" />
+										<field name="is_learner" readonly="1" invisible="1" />
+										<field name="seta_elements" invisible="1" />
+									</group>
+									<group string="Citizenship &amp; Other Info">
+										<!-- <field name="african" invisible="1"/> -->
+										<field name="citizen_resident_status_code" required="1"
+											attrs="{'readonly':[('provider_learner','=',True)]}"
+											on_change="onchange_crc(citizen_resident_status_code)" />
+										<field name="country_id" string="Country of Nationality"
+											attrs="{'readonly':[('provider_learner','=',True)]}"
+											options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+										<!-- <field name="nationality_saqa_code"/> -->
+										<field name="identification_id" string="R.S.A.Identification No" readonly="1"
+											attrs="{'invisible':[('provider_learner','=',True)],'required':[('citizen_resident_status_code','=','sa'),('provider_learner','=',False),('is_assessors','=',False),('is_moderators','=',False)],'readonly':['|',('citizen_resident_status_code','=','other'),('provider_learner','=',True)]}"
+											on_change="onchange_id_no(identification_id,citizen_resident_status_code)" />
+										<field name="alternate_id_type"
+											attrs="{'readonly':[('provider_learner','=',True)]}" />
+										<field name="national_id"
+											attrs="{'readonly':[('citizen_resident_status_code','=','sa')]}" />
+										<field name="person_birth_date" />
+										<field name="passport_id" groups="base.group_hr_user"
+											attrs="{'readonly':[('citizen_resident_status_code','=','sa')]}" />
+										<field name="id_document" string="ID Document/Passport Upload"
+											domain="[('id','=',None)]"
+											attrs="{'required':[('citizen_resident_status_code','=','sa')],'readonly':[('citizen_resident_status_code','=','other')]}" />
+										<!-- <field name="sdf_letter_from_employer" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<field name="home_language_code" string="Language"
+											options="{'no_create': True,'no_open': True}" />
+										<field name="equity" />
+										<field name="equity_saqa_code" invisible="1" />
+										<field name="disability_status_saqa" invisible="1" />
+										<!-- <field name="home_lang_saqa_code"/> -->
+										<!--<field name="bank_account_id"/> -->
+										<!-- <field name="otherid" groups="base.group_hr_user" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<!-- <field name="filler02" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<!-- <field name="rsa_identity_no" attrs="{'invisible':[('is_learner','=',False)]}"/> -->
+										<field name="record_last_update" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="wsp_year" attrs="{'invisible':[('is_learner','=',False)]}" />
+									</group>
+									<group string="Contact Information">
+										<!-- <field name="person_alternate_id" string='Alternate Id'/>
+											<field name="alternate_id_type_id" attrs="{'invisible':[('is_sdf','=',False)]}"/>
+											<field name="equity_code"/> <field name="filler01" attrs="{'invisible':[('is_sdf','=',False)]}"/> -->
+										<!-- <field name="detail_surname" string="Name"/> -->
+										<!-- <field name="person_name"/> -->
+										<field name="initials" />
+										<field name="cont_number_home" attrs="{'invisible':[('is_sdf','=',False)]}" />
+										<field name="cont_number_office" attrs="{'invisible':[('is_sdf','=',False)]}" />
+										<field name="person_cell_phone_number" placeholder="0824513619"
+											attrs="{'invisible':[('is_sdf','=',False)]}" />
+										<field name="cell" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="person_fax_number" />
+										<!-- <field name="learner_reg_no" attrs="{'invisible':[('is_learner','=',False)]}"/> -->
+										<field name="method_of_communication" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="status_effective_date"
+											attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)]}" />
+										<field name="last_updated_operator"
+											attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)]}" />
+									</group>
+
+									<group string="Learner Data" attrs="{'invisible':[('is_sdf','=',True)]}">
+										<field name="highest_education" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="status_comments" attrs="{'invisible':[('is_learner','=',False)]}" />
+										<field name="certificate_no"
+											attrs="{'invisible':['|',('is_learner','=',False),('provider_learner','=',True)]}" />
+										<!-- <field name="citizen_resident_status_code"/> <field name="citizen_status_saqa_code"/> -->
+									</group>
+									<group string="Ratings" attrs="{'invisible': [('is_sdf','=',True)]}">
+										<field name="seeing_rating_id" />
+										<field name="hearing_rating_id" />
+										<field name="walking_rating_id" />
+										<field name="statssa_area_code"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="popi_act_status_date"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="remembering_rating_id" />
+										<field name="communicating_rating_id" />
+										<field name="self_care_rating_id" />
+										<field name="last_school_emis_no"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="last_school_year"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="popi_act_status_id"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+										<field name="date_stamp"
+											attrs="{'invisible':[('provider_learner','=',True)]}" />
+									</group>
+									<group string="Banking Details" invisible="1">
+										<field name="bank_name" />
+										<field name="branch_code" />
+										<field name="bank_account_number" />
+									</group>
+								</group>
+							</page>
+							<page string="Address" attrs="{'invisible': [('seta_elements','=',False)]}">
+								<group>
+									<group>
+										<label for="street" string="Home Address" />
+										<div>
+											<field name="person_home_address_1" placeholder="Home Address 1"
+												required="1" attrs="{'readonly':[('provider_learner','=',True)]}" />
+											<field name="person_home_address_2" placeholder="Home Address 2"
+												attrs="{'readonly':[('provider_learner','=',True)]}" />
+											<field name="person_home_address_3" placeholder="Home Address 3" />
+											<div class="address_format">
+												<field name="person_home_suburb" placeholder="Suburb"
+													style="width: 52%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_person_home_suburb(person_home_suburb)" />
+												<field name="physical_municipality" placeholder="Municipality"
+													style="width: 48%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											</div>
+											<div class="address_format">
+												<field name="person_home_city" placeholder="City"
+													style="width: 39%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="person_home_province_code" class="oe_no_button"
+													placeholder="Province Code" style="width: 37%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_home_province(person_home_province_code)" />
+												<field name="person_home_zip" placeholder="ZIP"
+													style="width: 20%%" />
+											</div>
+											<field name="country_home" placeholder="Country" class="oe_no_button"
+												options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											<!--<field name="person_home_country_id" placeholder="Country"
+												class="oe_no_button" options='{"no_open": True}'/> -->
+											<!-- <field name="person_cell_phone_number" placeholder="Cell
+												Phone Number"/> <field name="person_fax_number" placeholder="Fax Number"/> -->
+											<button name="home_addr_map" string="Map" type="object"
+												icon="gtk-zoom-in" />
+										</div>
+									</group>
+									<group>
+										<label for="same_as_home" />
+										<field name="same_as_home" nolabel="1" />
+										<label for="street" string="Postal Address"
+											attrs="{'invisible':[('same_as_home','=',True)]}" />
+										<div>
+											<field name="person_postal_address_1" placeholder="Postal Address 1"
+												attrs="{'invisible':[('same_as_home','=',True)],'required':[('same_as_home','=',False)]}" />
+											<field name="person_postal_address_2" placeholder="Postal Address 2"
+												attrs="{'invisible':[('same_as_home','=',True)]}" />
+											<field name="person_postal_address_3" placeholder="Postal Address 3"
+												attrs="{'invisible':[('same_as_home','=',True)]}" />
+											<div class="address_format">
+												<field name="person_postal_suburb" placeholder="Suburb"
+													attrs="{'invisible':[('same_as_home','=',True)]}" style="width: 52%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_person_postal_suburb(person_postal_suburb)" />
+												<field name="postal_municipality" placeholder="Municipality"
+													attrs="{'invisible':[('same_as_home','=',True)]}" style="width: 48%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+											</div>
+											<div class="address_format">
+												<field name="person_postal_city" placeholder="City"
+													style="width: 37%%" attrs="{'invisible':[('same_as_home','=',True)]}"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}" />
+												<field name="person_postal_province_code" class="oe_no_button"
+													placeholder="Province Code" style="width: 37%%"
+													options="{'no_create': True,'no_quick_create':True,'no_open':True}"
+													on_change="onchange_postal_province(person_postal_province_code)"
+													attrs="{'invisible':[('same_as_home','=',True)]}" />
+												<field name="person_postal_zip" placeholder="ZIP"
+													style="width: 20%%" attrs="{'invisible':[('same_as_home','=',True)]}" />
+											</div>
+											<field name="country_postal" placeholder="Country"
+												class="oe_no_button" options='{"no_open": True}'
+												attrs="{'invisible':[('same_as_home','=',True)]}" />
+											<!-- <field name="provider_code" class="oe_no_button" placeholder="Provider
+												Code"/> <field name="person_home_addr_postal_code" placeholder="Home Address
+												Postal Code"/> -->
+											<button name="postal_addr_map" string="Map" type="object"
+												icon="gtk-zoom-in" attrs="{'invisible':[('same_as_home','=',True)]}" />
+										</div>
+									</group>
+								</group>
+							</page>
+							<page string="History"
+								attrs="{'invisible': ['|',('is_sdf','=',True),('is_learner_from_assessment','=',True)]}">
+								<group>
+									<group>
+										<field name="provider_etqe_id" />
+										<field name="person_previous_lastname" />
+										<field name="person_previous_alternate_id" />
+									</group>
+									<group>
+										<field name="person_previous_alternate_id_type_id" />
+										<field name="person_previous_provider_code" />
+										<field name="person_previous_provider_etqe_id" />
+									</group>
+								</group>
+							</page>
+							<!-- <page string="Ratings" attrs="{'invisible': [('is_sdf','=',True)]}">
+								<group> <group> <field name="seeing_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}"
+								/> <field name="hearing_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}"
+								/> <field name="walking_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}"
+								/> <field name="statssa_area_code" attrs="{'invisible':[('provider_learner','=',True)]}"
+								/> <field name="popi_act_status_date" attrs="{'invisible':[('provider_learner','=',True)]}"
+								/> </group> <group> <field name="remembering_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}"
+								/> <field name="communicating_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}"
+								/> <field name="self_care_rating_id" attrs="{'readonly':[('provider_learner','=',True)]}"
+								/> <field name="last_school_emis_no" attrs="{'invisible':[('provider_learner','=',True)]}"
+								/> <field name="last_school_year" attrs="{'invisible':[('provider_learner','=',True)]}"
+								/> <field name="popi_act_status_id" attrs="{'invisible':[('provider_learner','=',True)]}"
+								/> <field name="date_stamp" attrs="{'invisible':[('provider_learner','=',True)]}"
+								/> </group> </group> </page> -->
+							<!-- Add Emp directly -->
+							<page string="Employers"
+								attrs="{'invisible': ['|',('seta_elements','=',False),('is_learner','=',True)]}">
+								<group>
+									<field name="employer_ids" nolabel="1">
+										<tree string="Employers" editable="bottom" delete="false">
+											<field name="sdl_no" required="1"
+												on_change="onchange_sdl_number(sdl_no)" />
+											<field name="emp_add" invisible="1" />
+											<field name="request_send" invisible="1" />
+											<!-- <field name="employer_id" required="1" on_change="onchange_employer_id(employer_id)"
+												widget='selection'/> -->
+											<field name="employer_id" domain="[('id','=',None)]"
+												options="{'no_create':True,'no_open':True}" required="1" />
+											<field name="employer_trading_name" />
+											<field name="seta_id" invisible="1" />
+											<field name="registration_number" />
+											<field name="state" readonly="1" invisible="1" />
+											<field name="confirm_sdf_appointment_letter_from_employer"
+												domain="[('id','=',None)]" required="1"/>
+											<field name="status" readonly="1" />
+											<button name="action_send_request" string="Send request"
+												type="object" icon="gtk-go-forward"
+												attrs="{'invisible':['|',('emp_add','=',False),('request_send','=',True)]}" />
+										</tree>
+									</field>
+								</group>
+							</page>
+							<page string="Agreements"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+								<field name="agreement_ids">
+									<tree string="Agreement" editable="bottom" create="0">
+										<field name="seq_no" invisible="1" />
+										<field name="learner_reg_no" />
+										<field name="attached_report" filename="seq_no" />
+										<field name="identity_number" />
+										<field name="state" />
+									</tree>
+								</field>
+							</page>
+							<page string="Projects"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+								<field name="project_ids">
+									<tree string="Projects" editable="bottom" create="0">
+										<field name="project_id" />
+										<field name="project_type_id" />
+										<field name="qualification_ids" widget="many2many_tags" />
+										<field name="project_budget" invisible="1" />
+									</tree>
+								</field>
+							</page>
+							<page string="Achievements"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page>
+							<page string="Providers"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page>
+							<page string="Unit Standards" invisible="1">
+							</page>
+							<!-- Commented because no more needed -->
+							<!-- <page string="Unit Standards"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page> -->
+							<page string="Assessments"
+								attrs="{'invisible':['|',('is_learner','=',False),('is_learner_from_assessment','=',True)]}">
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_sdf_tree_admin" model="ir.ui.view">
+			<field name="name">sdf.tree.admin</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<tree string="SDF">
+					<field name="identification_id"/>
+					<field name="name"/>
+					<field name="person_last_name" string="Surname"/>
+					<field name="work_phone" placeholder="0116076900"/>
+					<field name="work_email"/>
+					<!-- <field name="company_id" groups="base.group_multi_company" /> -->
+					<!--<field name="department_id"/> <field name="job_id"/> <field name="parent_id"/> -->
+					<field name="coach_id" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+		<record id="view_sdf_search_admin" model="ir.ui.view">
+			<field name="name">sdf.search.admin</field>
+			<field name="model">hr.employee</field>
+			<field name="arch" type="xml">
+				<search string="SDF">
+					<!--  <field name="name" string="Employees"
+						filter_domain="['|',('work_email','ilike',self),('name','ilike',self)]" /> -->
+					<field name="department_id"/>
+					<field name="name"/>
+					<field name="identification_id"/>
+					<field name="work_email"/>
+					<!--<field name="category_ids" groups="base.group_hr_user"/> -->
+					<group expand="0" string="Group By">
+						<filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by':'parent_id'}"/>
+						<filter string="Coach" icon="terp-personal" domain="[]" context="{'group_by':'coach_id'}"/>
+						<filter string="Department" icon="terp-personal+" domain="[]" context="{'group_by':'department_id'}"/>
+						<filter string="Job" icon="terp-gtk-select-all" domain="[]" context="{'group_by':'job_id'}"/>
+						<filter string="Company" icon="terp-go-home" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+					</group>
+				</search>
+			</field>
+		</record>
+		<!-- res partner action menu -->
+		<record id="action_sdf_view_admin" model="ir.actions.act_window">
+			<field name="name">action.sdf.Admin</field>
+			<field name="res_model">hr.employee</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('is_sdf','=',True)]</field>
+            <field name="context">{'default_is_sdf':1,'default_seta_elements':1}</field>
+
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="view_sdf_search_admin" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add a new Profile.
+				</p>
+			</field>
+		</record>
+
+		<record id="action_sdf_tree_admin" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_sdf_tree_admin" />
+			<field name="act_window_id" ref="action_sdf_view_admin" />
+		</record>
+
+		<record id="action_sdf_form_admin" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_sdf_form_admin" />
+			<field name="act_window_id" ref="action_sdf_view_admin" />
+		</record>
+		<!--<menuitem name="providers" id="learner_res_partner_admin_menu" action="action_res_partner_view_admin"-->
+			<!--sequence="1" parent="seta_admin_submenu" groups="hwseta_etqe.group_seta_administrator"/>-->
+		<menuitem name="SDF's" id="sdf_admin_menu" action="action_sdf_view_admin"
+			sequence="1" groups="hwseta_etqe.group_seta_administrator"/>
 	</data>
 
 </openerp>

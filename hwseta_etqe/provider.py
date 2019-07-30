@@ -9627,74 +9627,160 @@ class provider_assessment(models.Model):
 	unit_standard_variance = fields.Text("Unit Standard Variance")
 	unit_standard_library_variance = fields.Text("Unit Standard Variance")
 
+	# @api.one
+	# def check_unit_standard_library(self):
+	# 	dbg("check_unit_standard_library")
+	# 	this_us_list = []
+	# 	text_guy = ""
+	# 	list_of_dict = []
+	# 	this_mod_us_list = []
+	# 	this_prov_us_list = []
+	# 	this_ass_us_list = []
+	# 	for x in self.env['provider.qualification'].search([]):
+	# 		dbg(x.saqa_qual_id)
+	# 		dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
+	# 		list_of_dict.append({'name':x.name,
+	# 							'code':x.saqa_qual_id,
+	# 							'list_of_us':[z.id_no for z in x.qualification_line]
+	# 							})
+	# 	lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
+	# 	if self.learner_achieved_ids:
+	# 		for prov_quals in self.provider_id.qualification_ids:
+	# 			for prov_us in prov_quals.qualification_line:
+	# 				if prov_us.id_data not in this_prov_us_list and prov_us.selection:
+	# 					dbg(prov_us.id_data)
+	# 					# this_prov_us_list.append([x.id_data for x in prov_us])
+	# 					this_prov_us_list.append(prov_us.id_data)
+	# 		for achieved_ids in self.learner_achieved_ids:
+	# 			for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
+	# 				if us.id_no not in this_us_list:
+	# 					this_us_list.append(us.id_no)
+	# 		lib_diff = [x for x in this_us_list if x not in lib_us_list]
+	# 		for achieved_ids in self.learner_achieved_ids:
+	# 			for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
+	# 				if us.id_no not in this_us_list:
+	# 					this_us_list.append(us.id_no)
+	# 			if achieved_ids.moderators_id:
+	# 				for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
+	# 					for mod_us in mod_qualifications.qualification_line_hr:
+	# 						if mod_us.id_no not in this_mod_us_list:
+	# 							this_mod_us_list.append(mod_us.id_no)
+	# 			if achieved_ids.assessors_id:
+	# 				for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
+	# 					for ass_us in ass_qualifications.qualification_line_hr:
+	# 						if ass_us.id_no not in this_ass_us_list:
+	# 							this_ass_us_list.append(ass_us.id_no)
+	# 		for libz in list_of_dict:
+	# 			text_guy += "<div>-----------Qualification:" + str(libz.get('code')) + "-name:" + str(libz.get('name')) + "</div>"
+	# 			for us in libz.get('list_of_us'):
+	# 				string_thing = "<div>Qualification:" + str(libz.get('code')) + "--Code:" + str(us)
+	# 				if us not in this_mod_us_list:
+	# 					string_thing += "-Moderator:" + str(us)
+	# 				if us not in this_ass_us_list:
+	# 					string_thing += "-Assessor:" + str(us)
+	# 				if us not in this_prov_us_list:
+	# 					string_thing += "-Provider:" + str(us)
+	# 				text_guy += string_thing + "</div>"
+	#
+	# 		# text_guy += "<h1>Library:</h1>"
+	# 		# text_guy += "<h3>In assessment, not in Library:</h3>"
+	# 		# for x in lib_diff:
+	# 		# 	text_guy += "<div>" + str(x) + "</div>"
+	# 	self.unit_standard_library_variance = text_guy
+
 	@api.one
 	def check_unit_standard_library(self):
 		dbg("check_unit_standard_library")
-		this_us_list = []
-		text_guy = ""
+		this_us_id_list = []
+		this_mod_us_id_list = []
+		this_prov_us_id_list = []
+		this_ass_us_id_list = []
 		list_of_dict = []
-		this_mod_us_list = []
-		this_prov_us_list = []
-		this_ass_us_list = []
+		quals_list = []
+		lib_quals = []
+		big_dic = {}
+		text_guy = ""
+		moderator_name = ""
+		assessor_name = ""
+		provider_name = self.provider_id.name
 		for x in self.env['provider.qualification'].search([]):
-			dbg(x.saqa_qual_id)
-			dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
-			list_of_dict.append({'name':x.name,
-								'code':x.saqa_qual_id,
-								'list_of_us':[z.id_no for z in x.qualification_line]
-								})
+			list_of_dict.append({'name': x.name,
+			                     'code': x.saqa_qual_id,
+			                     'list_of_us': [z.id_no for z in x.qualification_line]
+			                     })
+			lib_quals.append(x.saqa_qual_id)
 		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
+		lib_us_id_list = [x for x in self.env['provider.qualification.line'].search([])]
+		big_dic.update({'lib_quals': lib_quals, 'lib_us': lib_us_list})
 		if self.learner_achieved_ids:
 			for prov_quals in self.provider_id.qualification_ids:
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.id_data not in this_prov_us_list and prov_us.selection:
-						dbg(prov_us.id_data)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 						this_prov_us_list.append(prov_us.id_data)
+			big_dic.update({'provider_unit_standards': this_prov_us_list, 'provider_name': provider_name})
 			for achieved_ids in self.learner_achieved_ids:
+				# build qualifications list from assessment
+				for qualz in achieved_ids.qual_learner_assessment_achieved_line_id:
+					if qualz.saqa_qual_id not in quals_list:
+						quals_list.append(qualz.saqa_qual_id)
+				# build assessment US list
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
-					if us.id_no not in this_us_list:
-						this_us_list.append(us.id_no)
-			lib_diff = [x for x in this_us_list if x not in lib_us_list]
-			for achieved_ids in self.learner_achieved_ids:
-				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
-					if us.id_no not in this_us_list:
-						this_us_list.append(us.id_no)
+					# build list of US db ids to compare US in specific qualification
+					if us not in this_us_id_list:
+						this_us_id_list.append(us)
 				if achieved_ids.moderators_id:
+					moderator_name = achieved_ids.moderators_id.name
+					# build moderator US list
 					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.qualification_line_hr:
-							if mod_us.id_no not in this_mod_us_list:
-								this_mod_us_list.append(mod_us.id_no)
+							if mod_us not in this_mod_us_id_list:
+								this_mod_us_id_list.append(mod_us)
 				if achieved_ids.assessors_id:
+					assessor_name = achieved_ids.assessors_id.name
 					for ass_qualifications in achieved_ids.assessors_id.qualification_ids:
 						for ass_us in ass_qualifications.qualification_line_hr:
-							if ass_us.id_no not in this_ass_us_list:
-								this_ass_us_list.append(ass_us.id_no)
-			for libz in list_of_dict:
-				text_guy += "<div>-----------Qualification:" + str(libz.get('code')) + "-name:" + str(libz.get('name')) + "</div>"
-				for us in libz.get('list_of_us'):
-					string_thing = "<div>Qualification:" + str(libz.get('code')) + "--Code:" + str(us)
-					if us not in this_mod_us_list:
-						string_thing += "-Moderator:" + str(us)
-					if us not in this_ass_us_list:
-						string_thing += "-Assessor:" + str(us)
-					if us not in this_prov_us_list:
-						string_thing += "-Provider:" + str(us)
-					text_guy += string_thing + "</div>"
-
-			# text_guy += "<h1>Library:</h1>"
-			# text_guy += "<h3>In assessment, not in Library:</h3>"
-			# for x in lib_diff:
-			# 	text_guy += "<div>" + str(x) + "</div>"
-		self.unit_standard_library_variance = text_guy
-
+							if ass_us not in this_ass_us_id_list:
+								this_ass_us_id_list.append(ass_us)
+			rows = ''
+			style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;text-align: center;}</style>'
+			start_table = '<table id="lib_units">'
+			header = '<tr><th>Assessment</th><th>library</th><th>provider</th><th>moderator</th><th>assessor</th></tr>'
+			header2 = '<tr><th>Assessment</th><th>library</th><th>' + provider_name + '</th><th>' + moderator_name + '</th><th>' + assessor_name + '</th></tr>'
+			for x in this_us_id_list:
+				if x in this_prov_us_id_list:
+					prov_x = 'x'
+				else:
+					prov_x = x.id_no
+				if x in this_ass_us_id_list:
+					ass_x = 'x'
+				else:
+					ass_x = x.id_no
+				if x in this_mod_us_id_list:
+					mod_x = 'x'
+				else:
+					mod_x = x.id_no
+				if x in lib_us_id_list:
+					lib_x = 'x'
+				else:
+					lib_x = x.id_no
+				# dbg(prov_x)
+				# dbg(mod_x)
+				rows += '<tr><td>' + x + '</td><td>' + lib_x + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
+			# dbg(rows)
+			end_table = '</table>'
+			whole_table = style + start_table + header + rows + end_table
+			dbg(whole_table)
+			self.unit_standard_library_variance = whole_table
 
 	@api.one
 	def check_unit_standard_upline(self):
 		dbg("check_unit_standard_upline")
 		# for this in self:
 		this_us_list = []
+		this_us_id_list = []
 		this_mod_us_list = []
+		this_mod_us_id_list = []
 		this_prov_us_list = []
 		this_ass_us_list = []
 		list_of_dict = []
@@ -9727,6 +9813,9 @@ class provider_assessment(models.Model):
 						quals_list.append(qualz.saqa_qual_id)
 				# build assessment US list
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
+					# build list of US db ids to compare US in specific qualification
+					if us not in this_us_id_list:
+						this_us_id_list.append(us)
 					if us.id_no not in this_us_list:
 						this_us_list.append(us.id_no)
 				if achieved_ids.moderators_id:
@@ -9734,6 +9823,8 @@ class provider_assessment(models.Model):
 					# build moderator US list
 					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.qualification_line_hr:
+							if mod_us not in this_mod_us_id_list:
+								this_mod_us_id_list.append(mod_us)
 							if mod_us.id_no not in this_mod_us_list:
 								this_mod_us_list.append(mod_us.id_no)
 				if achieved_ids.assessors_id:
@@ -9753,18 +9844,18 @@ class provider_assessment(models.Model):
 			ass_diff = [x for x in this_us_list if x not in this_ass_us_list]
 			prov_diff = [x for x in this_us_list if x not in this_prov_us_list]
 			rows = ''
-			style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;}</style>'
+			style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;text-align: center;}</style>'
 			start_table = '<table id="lib_units">'
 			header = '<tr><th>Assessment</th><th>library</th><th>provider</th><th>moderator</th><th>assessor</th></tr>'
 			for x in this_us_list:
-				if x in this_prov_us_list: prov_x = x
-				else: prov_x = 'x'
-				if x in this_ass_us_list: ass_x = x
-				else: ass_x = 'x'
-				if x in this_mod_us_list: mod_x = x
-				else: mod_x = 'x'
-				if x in lib_us_list: lib_x = x
-				else: lib_x = 'x'
+				if x in this_prov_us_list: prov_x = 'x'
+				else:prov_x = x
+				if x in this_ass_us_list: ass_x = 'x'
+				else: ass_x = x
+				if x in this_mod_us_list: mod_x = 'x'
+				else: mod_x = x
+				if x in lib_us_list: lib_x = 'x'
+				else: lib_x = x
 				# dbg(prov_x)
 				# dbg(mod_x)
 				rows += '<tr><td>' + x + '</td><td>' + lib_x + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
@@ -9786,13 +9877,6 @@ class provider_assessment(models.Model):
 			for x in ass_diff:
 				text_guy += "<div>" + str(x) + "</div>"
 			self.unit_standard_variance = text_guy
-			# dbg(text_guy)
-			# dbg("ass_diff" + str(ass_diff))
-			# dbg("mod_diff" + str(mod_diff))
-
-
-
-
 
 	@api.onchange('select_all')
 	def onchange_select_all(self):
