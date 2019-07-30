@@ -323,6 +323,7 @@ class wss_draft(models.Model):
                     'number_of_employees',
                     'extension_reason',
                     'extension_status',
+                    'extendable',
                     'street',
                     'street2',
                     'postal_street',

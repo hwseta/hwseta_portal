@@ -9671,7 +9671,7 @@ class provider_assessment(models.Model):
 							if ass_us.id_no not in this_ass_us_list:
 								this_ass_us_list.append(ass_us.id_no)
 			for libz in list_of_dict:
-				text_guy += "<div>-----------Qualification:" + str(libz.get('code')) + "</div>"
+				text_guy += "<div>-----------Qualification:" + str(libz.get('code')) + "-name:" + str(libz.get('name')) + "</div>"
 				for us in libz.get('list_of_us'):
 					string_thing = "<div>Qualification:" + str(libz.get('code')) + "--Code:" + str(us)
 					if us not in this_mod_us_list:
@@ -9680,7 +9680,8 @@ class provider_assessment(models.Model):
 						string_thing += "-Assessor:" + str(us)
 					if us not in this_prov_us_list:
 						string_thing += "-Provider:" + str(us)
-					text_guy += string_thing + "</div>"	
+					text_guy += string_thing + "</div>"
+
 			# text_guy += "<h1>Library:</h1>"
 			# text_guy += "<h3>In assessment, not in Library:</h3>"
 			# for x in lib_diff:
@@ -9696,10 +9697,23 @@ class provider_assessment(models.Model):
 		this_mod_us_list = []
 		this_prov_us_list = []
 		this_ass_us_list = []
+		quals_list = []
+		lib_quals = []
+		big_dic = {}
 		text_guy = ""
 		moderator_name = ""
 		assessor_name = ""
 		provider_name = self.provider_id.name
+		for x in self.env['provider.qualification'].search([]):
+			dbg(x.saqa_qual_id)
+			dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
+			list_of_dict.append({'name':x.name,
+								'code':x.saqa_qual_id,
+								'list_of_us':[z.id_no for z in x.qualification_line]
+								})
+			lib_quals.append(x.saqa_qual_id)
+		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
+		big_dic.update({'lib_quals':lib_quals,'lib_us':lib_us_list})
 		if self.learner_achieved_ids:
 			for prov_quals in self.provider_id.qualification_ids:
 				for prov_us in prov_quals.qualification_line:
@@ -9707,12 +9721,19 @@ class provider_assessment(models.Model):
 						dbg(prov_us.id_data)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 						this_prov_us_list.append(prov_us.id_data)
+			big_dic.update({'provider_unit_standards':this_prov_us_list,'provider_name':provider_name})
 			for achieved_ids in self.learner_achieved_ids:
+				# build qualifications list from assessment
+				for qualz in achieved_ids.qual_learner_assessment_achieved_line_id:
+					if qualz.qual_learner_assessment_achieved_line_id.saqa_qual_id not in quals_list:
+						quals_list.append(qualz.qual_learner_assessment_achieved_line_id.saqa_qual_id)
+				# build assessment US list
 				for us in achieved_ids.unit_standards_learner_assessment_achieved_line_id:
 					if us.id_no not in this_us_list:
 						this_us_list.append(us.id_no)
 				if achieved_ids.moderators_id:
 					moderator_name = achieved_ids.moderators_id.name
+					# build moderator US list
 					for mod_qualifications in achieved_ids.moderators_id.moderator_qualification_ids:
 						for mod_us in mod_qualifications.qualification_line_hr:
 							if mod_us.id_no not in this_mod_us_list:
@@ -9723,11 +9744,25 @@ class provider_assessment(models.Model):
 						for ass_us in ass_qualifications.qualification_line_hr:
 							if ass_us.id_no not in this_ass_us_list:
 								this_ass_us_list.append(ass_us.id_no)
-			dbg(this_prov_us_list)
-			# dbg(this_mod_us_list)
+			big_dic.update({'assessment_quals': quals_list,
+			                'assessment_unit_standards':this_us_list,
+			                'moderator_unit_standards':this_mod_us_list,
+			                'assessor_unit_standards':this_ass_us_list,
+			                'assessor_name':assessor_name,
+			                'moderator_name':moderator_name,
+			                })
 			mod_diff = [x for x in this_us_list if x not in this_mod_us_list]
 			ass_diff = [x for x in this_us_list if x not in this_ass_us_list]
 			prov_diff = [x for x in this_us_list if x not in this_prov_us_list]
+			rows = ''
+			start_table = '<table>'
+
+			header = '<tr><th>Assessment</th><th>library</th><th>provider</th><th>moderator</th><th>assessor</th></tr>'
+			for x in this_us_list:
+				rows += '<tr><td>' + x + '</td><td>' + x if x in lib_us_list else 'nope' + '</td><td>' + x if x in this_prov_us_list else 'nope' + '</td><td>' + x if x in this_mod_us_list else 'nope' + '</td><td>' + x if x in this_ass_us_list else 'nope' + '</td></tr>'
+			end_table = '</table>'
+			whole_table = start_table + header + rows + end_table
+			self.unit_standard_library_variance = whole_table
 			text_guy += "<h1>Provider:" + provider_name + "</h1>"
 			text_guy += "<h3>In assessment, not in Provider:</h3>"
 			for x in prov_diff:
