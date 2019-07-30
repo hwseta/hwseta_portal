@@ -9742,6 +9742,7 @@ class provider_assessment(models.Model):
 			header = '<tr><th>Assessment</th><th>library</th><th>provider</th><th>moderator</th><th>assessor</th></tr>'
 			header2 = '<tr><th>Assessment</th><th>library</th><th>' + provider_name + '</th><th>' + moderator_name + '</th><th>' + assessor_name + '</th></tr>'
 			for x in this_us_id_list:
+				dbg(x)
 				if x in this_prov_us_id_list:
 					prov_x = 'x'
 				else:
@@ -9761,9 +9762,10 @@ class provider_assessment(models.Model):
 				# dbg(prov_x)
 				# dbg(mod_x)
 				rows += '<tr><td>' + x.id_no + '</td><td>' + lib_x + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
+				dbg('<tr><td>' + x.id_no + '</td><td>' + lib_x + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>')
 			# dbg(rows)
 			end_table = '</table>'
-			whole_table = style + start_table + header + rows + end_table
+			whole_table = style + start_table + header + header2 + rows + end_table
 			dbg(whole_table)
 			self.unit_standard_library_variance = whole_table
 
