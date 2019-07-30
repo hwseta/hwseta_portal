@@ -9706,8 +9706,6 @@ class provider_assessment(models.Model):
 		assessor_name = ""
 		provider_name = self.provider_id.name
 		for x in self.env['provider.qualification'].search([]):
-			dbg(x.saqa_qual_id)
-			dbg(str(x.name) + str(x.saqa_qual_id) + str([z.id_no for z in x.qualification_line]))
 			list_of_dict.append({'name':x.name,
 								'code':x.saqa_qual_id,
 								'list_of_us':[z.id_no for z in x.qualification_line]
@@ -9719,7 +9717,6 @@ class provider_assessment(models.Model):
 			for prov_quals in self.provider_id.qualification_ids:
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.id_data not in this_prov_us_list and prov_us.selection:
-						dbg(prov_us.id_data)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 						this_prov_us_list.append(prov_us.id_data)
 			big_dic.update({'provider_unit_standards':this_prov_us_list,'provider_name':provider_name})
@@ -9766,6 +9763,8 @@ class provider_assessment(models.Model):
 				else: ass_x = 'nope'
 				if x in this_mod_us_list: mod_x = x
 				else: mod_x = 'nope'
+				dbg(prov_x)
+				dbg(mod_x)
 				rows += '<tr><td>' + x + '</td><td>' + x if x in lib_us_list else 'nope' + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
 			end_table = '</table>'
 			whole_table = start_table + header + rows + end_table
