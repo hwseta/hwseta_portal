@@ -9704,21 +9704,15 @@ class provider_assessment(models.Model):
 		assessor_name = ""
 		provider_name = self.provider_id.name
 		for x in self.env['provider.qualification'].search([]):
-			list_of_dict.append({'name': x.name,
-			                     'code': x.saqa_qual_id,
-			                     'list_of_us': [z.id_no for z in x.qualification_line]
-			                     })
 			lib_quals.append(x.saqa_qual_id)
 		lib_us_list = [x.id_no for x in self.env['provider.qualification.line'].search([])]
 		lib_us_id_list = [x for x in self.env['provider.qualification.line'].search([])]
-		big_dic.update({'lib_quals': lib_quals, 'lib_us': lib_us_list})
 		if self.learner_achieved_ids:
 			for prov_quals in self.provider_id.qualification_ids:
 				for prov_us in prov_quals.qualification_line:
 					if prov_us not in this_prov_us_id_list and prov_us.selection:
 						# this_prov_us_list.append([x.id_data for x in prov_us])
-						this_prov_us_id_list.append(prov_us.id_data)
-			big_dic.update({'provider_unit_standards': this_prov_us_list, 'provider_name': provider_name})
+						this_prov_us_id_list.append(prov_us)
 			for achieved_ids in self.learner_achieved_ids:
 				# build qualifications list from assessment
 				for qualz in achieved_ids.qual_learner_assessment_achieved_line_id:
