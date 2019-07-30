@@ -9760,7 +9760,13 @@ class provider_assessment(models.Model):
 
 			header = '<tr><th>Assessment</th><th>library</th><th>provider</th><th>moderator</th><th>assessor</th></tr>'
 			for x in this_us_list:
-				rows += '<tr><td>' + x + '</td><td>' + x if x in lib_us_list else 'nope' + '</td><td>' + x if x in this_prov_us_list else 'nope' + '</td><td>' + x if x in this_mod_us_list else 'nope' + '</td><td>' + x if x in this_ass_us_list else 'nope' + '</td></tr>'
+				if x in this_prov_us_list: prov_x = x
+				else: prov_x = 'nope'
+				if x in this_ass_us_list: ass_x = x
+				else: ass_x = 'nope'
+				if x in this_mod_us_list: mod_x = x
+				else: mod_x = 'nope'
+				rows += '<tr><td>' + x + '</td><td>' + x if x in lib_us_list else 'nope' + '</td><td>' + prov_x + '</td><td>' + mod_x + '</td><td>' + ass_x + '</td></tr>'
 			end_table = '</table>'
 			whole_table = start_table + header + rows + end_table
 			self.unit_standard_library_variance = whole_table
