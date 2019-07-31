@@ -1436,7 +1436,10 @@
 							class="oe_highlight" attrs="{'invisible':['|',('submitted','=',True)]}"/>
 							<button name="action_approve_button" states="pending" string="Approve" type="object"
 							class="oe_highlight" attrs="{'invisible':['|',('approved','=',True),('submitted','=',False)]}"/> -->
-						<button name="action_submit_button" string="Submit" type="object"
+						<button name="check_unit_standards_lib" string="Check US" type="object"
+							class="oe_highlight"
+							/>
+                        <button name="action_submit_button" string="Submit" type="object"
 							class="oe_highlight"
 						    groups="hwseta_etqe.group_providers,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
 							attrs="{'invisible':['|',('state','in',['general_details','general_business_information','address_info','qualification','approved','verification','evaluation','denied']),('submitted','=',True)]}" />

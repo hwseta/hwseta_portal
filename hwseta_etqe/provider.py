@@ -6268,6 +6268,19 @@ class provider_accreditation(models.Model):
 	_inherit = 'mail.thread'
 	_description = 'Provider Accreditation'
 
+	@api.one
+	def check_unit_standards_lib(self):
+		quals_dict = {}
+		if self.qualification_ids:
+			for prov_quals in self.qualification_ids:
+				quals_dict.update({prov_quals:[]})
+				for prov_us in prov_quals.qualification_line:
+					if prov_us.id_data not in this_prov_us_list and prov_us.selection:
+						list_of_quals.get(prov_quals).append(prov_us.id_data)
+						# this_prov_us_list.append([x.id_data for x in prov_us])
+						this_prov_us_list.append(prov_us.id_data)
+
+
 	@api.model
 	def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
 		""" Override read_group to filter record count based on logged provider """
