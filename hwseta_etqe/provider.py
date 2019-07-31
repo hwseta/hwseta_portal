@@ -6279,6 +6279,9 @@ class provider_accreditation(models.Model):
 					if prov_us.id_no not in quals_dict.get(prov_quals) and prov_us.selection:
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
+			for k,v in quals_dict.items():
+				if self.env['provider.qualification'].search([('id','=',k.id)]):
+					dbg('matched quals:' + k.id)
 			dbg(quals_dict)
 
 
