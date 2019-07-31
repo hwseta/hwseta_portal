@@ -6276,7 +6276,7 @@ class provider_accreditation(models.Model):
 			for prov_quals in self.qualification_ids:
 				quals_dict.update({prov_quals:[]})
 				for prov_us in prov_quals.qualification_line:
-					if prov_us.id_no not in this_prov_us_list and prov_us.selection:
+					if prov_us.id_no not in list_of_quals.get(prov_quals) and prov_us.selection:
 						list_of_quals.get(prov_quals).append(prov_us.id_no)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 			dbg(quals_dict)
