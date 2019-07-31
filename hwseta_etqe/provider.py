@@ -6270,6 +6270,7 @@ class provider_accreditation(models.Model):
 
 	@api.one
 	def check_unit_standards_lib(self):
+		dbg('check_unit_standards_lib')
 		quals_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
@@ -6279,6 +6280,7 @@ class provider_accreditation(models.Model):
 						list_of_quals.get(prov_quals).append(prov_us.id_data)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 						this_prov_us_list.append(prov_us.id_data)
+			dbg(quals_dict)
 
 
 	@api.model
