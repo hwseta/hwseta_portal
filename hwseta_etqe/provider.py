@@ -6280,10 +6280,9 @@ class provider_accreditation(models.Model):
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 			for k,v in quals_dict.items():
-				dbg(k)
-				if self.env['provider.qualification'].search([('id','=',k.id)]):
+				dbg(self.env['provider.qualification'].search([('id','=',k.accreditation_qualification_id.id)]))
+				if self.env['provider.qualification'].search([('id','=',k.accreditation_qualification_id.id)]):
 					dbg('matched quals:' + k.id)
-			dbg(quals_dict)
 
 
 	@api.model
