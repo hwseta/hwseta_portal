@@ -1423,7 +1423,9 @@
 			<field name="model">provider.accreditation</field>
 			<field name="arch" type="xml">
 				<form string="Accreditation">
+
 					<header>
+					
 						<field name="submitted" invisible="1" />
 						<field name="verify" invisible="1" />
 						<field name="evaluate" invisible="1" />
@@ -1486,6 +1488,7 @@
 							statusbar_visible="general_details,general_business_information,address_info,qualification, campus,verification,evaluation,recommended1,validated,recommended2,approved,denied"
 							statusbar_colors='{"campus":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',True)]}"/>
 					</header>
+					<field name="draft_reason"/>
 						<field name="image" widget='image'
 							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}"
 							class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}' />
@@ -1557,7 +1560,7 @@
 								<field name="provider_approval_date" readonly="1" />
 							</group>
 							<group>
-							<field name="draft_reason"/>
+							
 								<field name="phone" placeholder="0116076900"
 									attrs="{'readonly':[('approved','=',True)]}"/>
 								<field name="mobile" attrs="{'readonly':[('approved','=',True)]}"
