@@ -6270,7 +6270,7 @@ class provider_accreditation(models.Model):
 	_description = 'Provider Accreditation'
 
 	def chatter(self, author, msg):
-		self.message.post(body=_(msg), subtype='mail.mt_comment', author_id=author.partner_id.id)
+		self.message_post(body=_(msg), subtype='mail.mt_comment', author_id=author.partner_id.id)
 
 	@api.one
 	def check_unit_standards_lib(self):
