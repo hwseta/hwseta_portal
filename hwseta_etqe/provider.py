@@ -8828,7 +8828,9 @@ class provider_accreditation(models.Model):
 			raise Warning(_('Sorry! you can not change status to Validated first Validate application..'))
 		if self.state == "recommended2" and self.validate == False:
 			raise Warning(_('Sorry! you can not change status to Recommended first Recommended application..'))
-		if not self.is_extension_of_scope and not self.is_existing_provider or not self.env.user.has_group('hwseta_etqe.group_seta_administrator'):
+		if self.env.user.has_group('hwseta_etqe.group_seta_administrator'):
+			dbg('fml you are in this group!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1')
+		if not self.env.user.has_group('hwseta_etqe.group_seta_administrator') or not self.is_extension_of_scope and not self.is_existing_provider:
 			for line in self.qualification_ids:
 				if line.qualification_id.is_exit_level_outcomes == False:
 					if line.minimum_credits > line.total_credits:
