@@ -7,6 +7,7 @@ from openerp.exceptions import Warning
 from openerp.osv import fields as fields2, osv
 import random
 from lxml import etree
+from openerp.osv.orm import except_orm
 DEBUG = True
 
 if DEBUG:
@@ -6832,6 +6833,15 @@ class provider_accreditation(models.Model):
 	draft_reason = fields.Text()
 	_sql_constraints = [('txtVATRegNo_uniq', 'unique(txtVATRegNo)',
 			'VAT Registration Number must be unique!'), ]
+
+	@api.one
+	def set_to_draft(self):
+		if self.draft_reason and self.accreditation_state != "draft":
+			self.chatter(self.env.user, "This accreditation was set back to draft with reasoning:" + str(self.draft_reason))
+			self.accreditation_state = "draft"
+			self.draft_reason = ""
+		else:
+			raise except_orm(_("Missing Values!"), _('Please fill in draft reasoning before setting to draft'))
 
 	@api.multi
 	def onchange_is_existing_provider(self, is_existing_provider):

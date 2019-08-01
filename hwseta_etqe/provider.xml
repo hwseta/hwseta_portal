@@ -1436,6 +1436,10 @@
 							class="oe_highlight" attrs="{'invisible':['|',('submitted','=',True)]}"/>
 							<button name="action_approve_button" states="pending" string="Approve" type="object"
 							class="oe_highlight" attrs="{'invisible':['|',('approved','=',True),('submitted','=',False)]}"/> -->
+						<button name="set_to_draft" string="Set to draft" type="object"
+							class="oe_highlight"
+							/>
+						
 						<button name="check_unit_standards_lib" string="Check US" type="object"
 							class="oe_highlight"
 							/>
