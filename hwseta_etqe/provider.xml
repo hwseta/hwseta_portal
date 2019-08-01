@@ -1439,7 +1439,7 @@
 							<button name="action_approve_button" states="pending" string="Approve" type="object"
 							class="oe_highlight" attrs="{'invisible':['|',('approved','=',True),('submitted','=',False)]}"/> -->
 						<button name="set_to_draft" string="Set to draft" type="object"
-							class="oe_highlight"
+							class="oe_highlight" groups="hwseta_etqe.group_seta_administrator"
 							/>
 						
 						<button name="check_unit_standards_lib" string="Check US" type="object"
@@ -1488,7 +1488,7 @@
 							statusbar_visible="general_details,general_business_information,address_info,qualification, campus,verification,evaluation,recommended1,validated,recommended2,approved,denied"
 							statusbar_colors='{"campus":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',True)]}"/>
 					</header>
-					<field name="draft_reason"/>
+					<field name="draft_reason" groups="hwseta_etqe.group_seta_administrator"/>
 						<field name="image" widget='image'
 							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}"
 							class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}' />
