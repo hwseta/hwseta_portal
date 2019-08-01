@@ -6268,6 +6268,9 @@ class provider_accreditation(models.Model):
 	_inherit = 'mail.thread'
 	_description = 'Provider Accreditation'
 
+	def chatter(self, author, msg):
+		self.message.post(body=_(msg), subtype='mail.mt_comment', author_id=author.partner_id.id)
+
 	@api.one
 	def check_unit_standards_lib(self):
 		dbg('check_unit_standards_lib')
@@ -6826,6 +6829,7 @@ class provider_accreditation(models.Model):
 	provider_approval_date = fields.Date(string='Provider Approval Date')
 	provider_register_date = fields.Date(string='Provider Accreditation Date')
 	provider_expiry_date = fields.Date(string='Provider Accreditation Date')
+	draft_reason = fields.Text()
 	_sql_constraints = [('txtVATRegNo_uniq', 'unique(txtVATRegNo)',
 			'VAT Registration Number must be unique!'), ]
 

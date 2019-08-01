@@ -1553,6 +1553,7 @@
 								<field name="provider_approval_date" readonly="1" />
 							</group>
 							<group>
+							<field name="draft_reason"/>
 								<field name="phone" placeholder="0116076900"
 									attrs="{'readonly':[('approved','=',True)]}"/>
 								<field name="mobile" attrs="{'readonly':[('approved','=',True)]}"
