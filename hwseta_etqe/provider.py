@@ -6285,7 +6285,7 @@ class provider_accreditation(models.Model):
 					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 						for x in z.qualification_line:
 							if x.id_no in quals_dict.get(k):
-								dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k) + 'lib' + str(z)))
+								dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k)) + 'lib' + str(z))
 							else:
 								raise Warning(_('mismatch on unit standard:' + str(x.id_no) + '-on qualification:' + str(k.id) + 'lib' + str(z.id)))
 					# if v not in [z.qualification_line.id_no for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)])]:
