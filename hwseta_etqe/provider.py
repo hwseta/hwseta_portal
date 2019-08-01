@@ -6282,7 +6282,10 @@ class provider_accreditation(models.Model):
 			for k,v in quals_dict.items():
 				dbg(self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]))
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
+					if v not in [z.qualification_line.id_no for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)])]:
+						dbg('no match' + str(v))
 					dbg('matched quals:' + str(k.id))
+
 
 
 	@api.model
