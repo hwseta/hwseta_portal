@@ -6296,7 +6296,7 @@ class provider_accreditation(models.Model):
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 					dbg('')
 					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
-						text_guy += str(self.check_us_lib_min_cred(z)) + '--qual' + str(z.saqa_qual_id) + '\n'
+						text_guy += str(self.check_us_lib_min_cred(z)) + '--qual: ' + str(z.saqa_qual_id) + 'min creds' + str(z.m_credits) + '\n'
 					# 	for x in z.qualification_line:
 					# 		if x.id_no in quals_dict.get(k):
 					# 			dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k)) + 'lib' + str(z))
