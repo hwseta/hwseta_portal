@@ -6274,9 +6274,9 @@ class provider_accreditation(models.Model):
 		this_total = 0
 		if qual:
 			for us in qual.qualification_line:
-				dbg('qual:' + qual.saqa_qual_id + str(us.level3))
+				dbg('qual:' + qual.saqa_qual_id + '--us min:'+ str(us.level3))
 				this_total += int(us.level3)
-			dbg(str(this_total))
+			dbg('total' + str(this_total))
 		return this_total
 
 	@api.one
