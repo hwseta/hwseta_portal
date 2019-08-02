@@ -6293,9 +6293,10 @@ class provider_accreditation(models.Model):
 					if prov_us.id_no not in quals_dict.get(prov_quals) and prov_us.selection:
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
+			text_guy += '----------------------------------------\n'
 			for k,v in quals_dict.items():
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
-					dbg('')
+					# dbg('')
 					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 						text_guy += str(self.check_us_lib_min_cred(z)) + '--qual: ' + str(z.saqa_qual_id) + 'min creds' + str(z.m_credits) + '\n'
 					# 	for x in z.qualification_line:
