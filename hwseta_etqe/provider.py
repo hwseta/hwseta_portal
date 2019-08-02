@@ -6274,9 +6274,9 @@ class provider_accreditation(models.Model):
 		this_total = 0
 		if qual:
 			for us in qual.qualification_line:
-				dbg(us.level3)
+				dbg('qual:' + qual.qualification_id + str(us.level3))
 				this_total += int(us.level3)
-			dbg(this_total)
+			dbg(str(this_total))
 		return this_total
 
 	@api.one
@@ -6287,6 +6287,7 @@ class provider_accreditation(models.Model):
 		if self.qualification_ids:
 
 			for prov_quals in self.qualification_ids:
+				text_guy += str(self.check_us_lib_min_cred(prov_quals))
 				quals_dict.update({prov_quals:[]})
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.id_no not in quals_dict.get(prov_quals) and prov_us.selection:
