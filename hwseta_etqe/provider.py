@@ -6269,15 +6269,13 @@ class provider_accreditation(models.Model):
 	_description = 'Provider Accreditation'
 
 	@api.one
-	def check_us_lib_min_cred(self):
+	def check_us_lib_min_cred(self,qual):
 		dbg('check_us_lib_min_cred')
 		this_total = 0
-		if self.qualification_ids:
-			for prov_quals in self.qualification_ids:
-				dbg(prov_quals)
-				for us in prov_quals.qualification_line:
-					dbg(us.level3)
-					this_total += int(us.level3)
+		if qual:
+			for us in qual.qualification_line:
+				dbg(us.level3)
+				this_total += int(us.level3)
 			dbg(this_total)
 		return this_total
 
@@ -6287,7 +6285,7 @@ class provider_accreditation(models.Model):
 		quals_dict = {}
 		text_guy = ''
 		if self.qualification_ids:
-			text_guy += str(self.check_us_lib_min_cred())
+
 			for prov_quals in self.qualification_ids:
 				quals_dict.update({prov_quals:[]})
 				for prov_us in prov_quals.qualification_line:
@@ -6297,7 +6295,8 @@ class provider_accreditation(models.Model):
 			for k,v in quals_dict.items():
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 					dbg('')
-					# for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
+					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
+						text_guy += str(self.check_us_lib_min_cred(z)) + '--qual' + str(z.saqa_qual_id) + '\n'
 					# 	for x in z.qualification_line:
 					# 		if x.id_no in quals_dict.get(k):
 					# 			dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k)) + 'lib' + str(z))
