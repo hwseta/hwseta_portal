@@ -8838,12 +8838,13 @@ class provider_accreditation(models.Model):
 			raise Warning(_('Sorry! you can not change status to Validated first Validate application..'))
 		if self.state == "recommended2" and self.validate == False:
 			raise Warning(_('Sorry! you can not change status to Recommended first Recommended application..'))
-		if not self.is_extension_of_scope and not self.is_existing_provider:
-			for line in self.qualification_ids:
-				if line.qualification_id.is_exit_level_outcomes == False:
-					if line.minimum_credits > line.total_credits:
-						raise Warning(_("Sum of checked unit standards credits point should be greater than or equal to Minimum credits point !!"))
-#         for line in self.skills_programme_ids:
+		if not self.env.user.has_group('hwseta_etqe.group_seta_administrator'):		
+			if not self.is_extension_of_scope and not self.is_existing_provider:
+				for line in self.qualification_ids:
+					if line.qualification_id.is_exit_level_outcomes == False:
+						if line.minimum_credits > line.total_credits:
+							raise Warning(_("Sum of checked unit standards credits point should be greater than or equal to Minimum credits point !!"))
+	#         for line in self.skills_programme_ids:
 #             if int(line.minimum_credits) > line.total_credits:
 #                 raise Warning(_("Sum of checked unit standards credits point should be greater than or equal to Minimum credits point in Skills Programme!!"))
 		return res
