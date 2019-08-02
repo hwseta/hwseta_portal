@@ -6272,6 +6272,7 @@ class provider_accreditation(models.Model):
 	def check_unit_standards_lib(self):
 		dbg('check_unit_standards_lib')
 		quals_dict = {}
+		text_guy = ''
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
 				quals_dict.update({prov_quals:[]})
@@ -6280,16 +6281,17 @@ class provider_accreditation(models.Model):
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 						# this_prov_us_list.append([x.id_data for x in prov_us])
 			for k,v in quals_dict.items():
-				dbg(self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]))
+
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
-					text_guy = ''
 					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 						for x in z.qualification_line:
 							if x.id_no in quals_dict.get(k):
 								dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k)) + 'lib' + str(z))
 							else:
-								text_guy += 'mismatch on unit standard:' + str(x.id_no) + '-on qualification:' + str(k.id) + 'lib' + str(z.id) + '\n'
-					raise Warning(_(text_guy))
+								dbg('mismatch on unit standard:' + str(x.id_no) + '-on qualification:' + str(k.id) + 'lib' + str(z.id))
+				else:
+					text_guy += 'issue on qual:' + str(k.qualification_id) + '--Unit standard:' + str(v)
+			raise Warning(_(text_guy))
 					# if v not in [z.qualification_line.id_no for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)])]:
 					# 	dbg('no match' + str(v))
 					# dbg('matched quals:' + str(k.id))
