@@ -6322,16 +6322,16 @@ class provider_accreditation(models.Model):
 				text_guy += str(self.check_lp_us_lib_min_cred(lp_quals)) + '--LP: ' + str(lp_quals.saqa_qual_id)+ 'min creds' + 'no min cred?\n'
 				lp_dict.update({lp_quals:[]})
 				for lp_us in lp_quals.unit_standards_line:
-					if lp_us.id_no not in quals_dict.get(lp_quals) and lp_us.selection:
-						quals_dict.get(lp_quals).append(lp_us.id_no)
+					if lp_us.id_no not in lp_dict.get(lp_quals) and lp_us.selection:
+						lp_dict.get(lp_quals).append(lp_us.id_no)
 			text_guy += '-------------sp vs lib------------------\n'
 			for sp_quals in self.skills_programme_ids:
 				# text_guy += str(self.check_sp_us_lib_min_cred(sp_quals)) + '--sP: ' + str(sp_quals.saqa_qual_id)+ 'min creds' + str(sp_quals.skills_programme.m_credits) + '\n'
 				text_guy += str(self.check_sp_us_lib_min_cred(sp_quals)) + '--sP: ' + str(sp_quals.saqa_qual_id)+ 'min creds' + 'no min cred?\n'
 				sp_dict.update({sp_quals:[]})
 				for lp_us in sp_quals.unit_standards_line:
-					if lp_us.id_no not in quals_dict.get(sp_quals) and lp_us.selection:
-						quals_dict.get(sp_quals).append(lp_us.id_no)
+					if lp_us.id_no not in sp_dict.get(sp_quals) and lp_us.selection:
+						sp_dict.get(sp_quals).append(lp_us.id_no)
 			text_guy += '----------------------------------------\n'
 			for k,v in quals_dict.items():
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
