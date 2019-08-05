@@ -6321,6 +6321,7 @@ class provider_accreditation(models.Model):
 							matching_qual and\
 							prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
 						quals_dict.get(prov_quals).append(prov_us.id_no)
+			raise Warning(_(quals_dict))
 
 	@api.one
 	def check_unit_standards_lib(self):
