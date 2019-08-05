@@ -6303,12 +6303,13 @@ class provider_accreditation(models.Model):
 
 	@api.multi
 	def check_all_assessors(self):
-		for this in self:
+		for this in self.env['provider.accreditation'].search([]):
 			this.check_assessor()
 
 	@api.one
 	def check_assessor(self):
 		dbg('check_assessor')
+		dbg(self.id)
 		quals_dict = {}
 		text_guy = ''
 		stat = False
