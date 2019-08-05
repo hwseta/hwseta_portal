@@ -1439,6 +1439,9 @@
 						<button name="check_unit_standards_lib" string="Check US" type="object"
 							class="oe_highlight"
 							/>
+                        <button name="check_assessor" string="Check assessor" type="object"
+							class="oe_highlight"
+							/>
                         <button name="action_submit_button" string="Submit" type="object"
 							class="oe_highlight"
 						    groups="hwseta_etqe.group_providers,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"

@@ -6302,6 +6302,27 @@ class provider_accreditation(models.Model):
 		return this_total
 
 	@api.one
+	def check_assessor(self):
+		dbg('check_unit_standards_lib')
+		quals_dict = {}
+		text_guy = ''
+		if self.qualification_ids:
+			text_guy += '-------------provider vs lib--------------\n'
+			for prov_quals in self.qualification_ids:
+				matching_qual = False
+				assessor = prov_quals.assessors_id
+				assessor_quals = prov_quals.assessors_id.qualification_ids
+				quals_dict.update({prov_quals: []})
+				if prov_quals.saqa_qual_id in [ass_qual.id for ass_qual in assessor_quals]:
+					matching_qual = True
+				for prov_us in prov_quals.qualification_line:
+					if prov_us.id_no not in quals_dict.get(prov_quals) and\
+							prov_us.selection and\
+							matching_qual and\
+							prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
+						quals_dict.get(prov_quals).append(prov_us.id_no)
+
+	@api.one
 	def check_unit_standards_lib(self):
 		dbg('check_unit_standards_lib')
 		quals_dict = {}
