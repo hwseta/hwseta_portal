@@ -6309,8 +6309,8 @@ class provider_accreditation(models.Model):
 
 	@api.one
 	def check_assessor(self):
-		dbg('check_assessor')
-		dbg(self.id)
+		# dbg('check_assessor')
+		# dbg(self.id)
 		quals_dict = {}
 		text_guy = ''
 		stat = False
@@ -6328,14 +6328,15 @@ class provider_accreditation(models.Model):
 							matching_qual and\
 							prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
 						stat = True
+						dbg(self.id)
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 			self.broken_rec = stat
 			# raise Warning(_(quals_dict))
 
 	@api.one
 	def check_moderator(self):
-		dbg('check_moderator')
-		dbg(self.id)
+		# dbg('check_moderator')
+		# dbg(self.id)
 		quals_dict = {}
 		text_guy = ''
 		stat = False
@@ -6353,6 +6354,7 @@ class provider_accreditation(models.Model):
 							matching_qual and \
 							prov_us.id_no not in [us_id.id_no for us_id in moderator_quals.qualification_line_hr]:
 						stat = True
+						dbg(self.id)
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 			self.broken_rec = stat
 
