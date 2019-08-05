@@ -1439,7 +1439,7 @@
 						<button name="check_unit_standards_lib" string="Check US" type="object"
 							class="oe_highlight"
 							/>
-                        <button name="check_assessor" string="Check assessor" type="object"
+                        <button name="check_all_assessors" string="Check all assessors" type="object"
 							class="oe_highlight"
 							/>
                         <button name="action_submit_button" string="Submit" type="object"

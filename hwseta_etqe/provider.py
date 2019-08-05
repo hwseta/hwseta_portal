@@ -6301,11 +6301,17 @@ class provider_accreditation(models.Model):
 			dbg('total' + str(this_total))
 		return this_total
 
+	@api.multi
+	def check_all_assessors(self):
+		for this in self:
+			this.check_assessor()
+
 	@api.one
 	def check_assessor(self):
-		dbg('check_unit_standards_lib')
+		dbg('check_assessor')
 		quals_dict = {}
 		text_guy = ''
+		stat = False
 		if self.qualification_ids:
 			text_guy += '-------------provider vs lib--------------\n'
 			for prov_quals in self.qualification_ids:
@@ -6320,8 +6326,10 @@ class provider_accreditation(models.Model):
 							prov_us.selection and\
 							matching_qual and\
 							prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
+						stat = True
 						quals_dict.get(prov_quals).append(prov_us.id_no)
-			raise Warning(_(quals_dict))
+			self.broken_rec = stat
+			# raise Warning(_(quals_dict))
 
 	@api.one
 	def check_unit_standards_lib(self):
@@ -6697,6 +6705,8 @@ class provider_accreditation(models.Model):
 			return {'value': {'country_code_postal': country_id }}
 		return {}
 
+
+	broken_rec = fields.Boolean(default=False)
 	unit_standard_report = fields.Text()
 	is_extension_of_scope = fields.Boolean("Extension of Scope", default=False)
 	is_existing_provider = fields.Boolean("Re - Accreditation", default=False)
