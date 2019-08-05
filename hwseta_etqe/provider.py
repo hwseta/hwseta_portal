@@ -6334,6 +6334,16 @@ class provider_accreditation(models.Model):
 			# raise Warning(_(quals_dict))
 
 	@api.one
+	def build_prov_dict(self):
+		prov_dict = {}
+		if self.qualification_ids:
+			for prov_quals in self.qualification_ids:
+				prov_dict.update({prov_quals.saqa_qual_id:[]})
+				for prov_us in prov_quals.qualification_line:
+					prov_dict.get(prov_quals.saqa_qual_id).append(prov_us)
+		raise Warning(_(prov_dict))
+
+	@api.one
 	def check_moderator(self):
 		# dbg('check_moderator')
 		# dbg(self.id)
