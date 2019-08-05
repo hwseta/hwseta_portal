@@ -1482,6 +1482,7 @@
 							statusbar_visible="general_details,general_business_information,address_info,qualification, campus,verification,evaluation,recommended1,validated,recommended2,approved,denied"
 							statusbar_colors='{"campus":"blue"}' attrs="{'invisible':[('is_extension_of_scope','=',True)]}"/>
 					</header>
+                    <field name="unit_standard_report" widget="html"/>
 						<field name="image" widget='image'
 							attrs="{'invisible':[('state','in',['general_business_information','address_info','campus','qualification','verification','evaluation','recommended1','validated','recommended2'])]}"
 							class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}' />
