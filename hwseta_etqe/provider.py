@@ -6350,8 +6350,9 @@ class provider_accreditation(models.Model):
 					if mod_quals not in mod_quals_dict:
 						mod_quals_dict.update({mod_quals: []})
 				quals_dict.update({prov_quals: []})
-				if prov_quals.saqa_qual_id in [mod_qual.id for mod_qual in moderator_quals]:
+				if prov_quals.saqa_qual_id in [mod_qual.saqa_qual_id for mod_qual in moderator_quals]:
 					matching_qual = True
+					dbg('matching qual!!!!!!!!')
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.id_no not in quals_dict.get(prov_quals) and \
 							prov_us.selection and \
