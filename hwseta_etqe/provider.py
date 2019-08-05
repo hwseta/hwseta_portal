@@ -6338,6 +6338,7 @@ class provider_accreditation(models.Model):
 		# dbg('check_moderator')
 		# dbg(self.id)
 		quals_dict = {}
+		mod_quals_dict = {}
 		text_guy = ''
 		stat = False
 		if self.qualification_ids:
@@ -6345,6 +6346,9 @@ class provider_accreditation(models.Model):
 			for prov_quals in self.qualification_ids:
 				matching_qual = False
 				moderator_quals = prov_quals.moderators_id.moderator_qualification_ids
+				for mod_quals in moderator_quals:
+					if mod_quals not in mod_quals_dict:
+						mod_quals_dict.update({mod_quals: []})
 				quals_dict.update({prov_quals: []})
 				if prov_quals.saqa_qual_id in [mod_qual.id for mod_qual in moderator_quals]:
 					matching_qual = True
@@ -6356,6 +6360,7 @@ class provider_accreditation(models.Model):
 						stat = True
 						dbg(self.id)
 						quals_dict.get(prov_quals).append(prov_us.id_no)
+		dbg(mod_quals_dict)
 			self.broken_rec = stat
 
 	@api.one
