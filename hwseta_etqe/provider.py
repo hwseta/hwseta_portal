@@ -6305,6 +6305,7 @@ class provider_accreditation(models.Model):
 	def check_all_assessors(self):
 		for this in self.env['provider.accreditation'].search([]):
 			this.check_assessor()
+			this.check_moderator()
 
 	@api.one
 	def check_assessor(self):
@@ -6317,7 +6318,6 @@ class provider_accreditation(models.Model):
 			text_guy += '-------------provider vs lib--------------\n'
 			for prov_quals in self.qualification_ids:
 				matching_qual = False
-				assessor = prov_quals.assessors_id
 				assessor_quals = prov_quals.assessors_id.qualification_ids
 				quals_dict.update({prov_quals: []})
 				if prov_quals.saqa_qual_id in [ass_qual.id for ass_qual in assessor_quals]:
@@ -6331,6 +6331,30 @@ class provider_accreditation(models.Model):
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 			self.broken_rec = stat
 			# raise Warning(_(quals_dict))
+
+	@api.one
+	def check_moderator(self):
+		dbg('check_moderator')
+		dbg(self.id)
+		quals_dict = {}
+		text_guy = ''
+		stat = False
+		if self.qualification_ids:
+			text_guy += '-------------provider vs lib--------------\n'
+			for prov_quals in self.qualification_ids:
+				matching_qual = False
+				moderator_quals = prov_quals.moderators_id.moderator_qualification_ids
+				quals_dict.update({prov_quals: []})
+				if prov_quals.saqa_qual_id in [mod_qual.id for mod_qual in moderator_quals]:
+					matching_qual = True
+				for prov_us in prov_quals.qualification_line:
+					if prov_us.id_no not in quals_dict.get(prov_quals) and \
+							prov_us.selection and \
+							matching_qual and \
+							prov_us.id_no not in [us_id.id_no for us_id in moderator_quals.qualification_line_hr]:
+						stat = True
+						quals_dict.get(prov_quals).append(prov_us.id_no)
+			self.broken_rec = stat
 
 	@api.one
 	def check_unit_standards_lib(self):
