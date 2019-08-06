@@ -6349,6 +6349,8 @@ class provider_accreditation(models.Model):
 						dbg(str(k) + '--us:' + str(us))
 					else:
 						mismatch_dict.get(k).append(us)
+			else:
+				mismatch_dict.update({k:"not found"})
 		# dbg(prov_dict)
 		# dbg(ass_dict)
 		raise Warning(_(mismatch_dict))
