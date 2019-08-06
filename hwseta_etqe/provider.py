@@ -6286,7 +6286,7 @@ class provider_accreditation(models.Model):
 		if lp:
 			for us in lp.unit_standards_line:
 				this_total += int(us.level3)
-				dbg('qual:' + lp.saqa_skill_id + '--us min:' + str(us.level3) + '--running total:' + str(this_total))
+				dbg('qual:' + lp.saqa_qual_id + '--us min:' + str(us.level3) + '--running total:' + str(this_total))
 			dbg('total' + str(this_total))
 		return this_total
 
