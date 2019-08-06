@@ -6366,7 +6366,9 @@ class provider_accreditation(models.Model):
 						dbg(ass_dict)
 						for ass_us in ass_quals.qualification_line_hr:
 							dbg(ass_dict)
-							ass_dict.get(ass_quals).append(ass_us.id_no)
+							dbg(type(ass_dict.get(ass_quals)))
+							ass_dict[ass_quals].append(ass_us.id_no)
+							# ass_dict.get(ass_quals).append(ass_us.id_no)
 		return ass_dict
 		# raise Warning(_(ass_dict))
 
