@@ -6466,13 +6466,11 @@ class provider_accreditation(models.Model):
 
 		if self.learning_programme_ids:
 			text_guy += '------------lp vs lib-------------\n'
-			text_guy += self.check_min_lp()
+			text_guy += self.check_min_lp()[0]
 		if self.skills_programme_ids:
 			text_guy += '------------sp vs lib-------------\n'
-			text_guy += self.check_min_sp()
-
+			text_guy += self.check_min_sp()[0]
 			text_guy += '----------------------------------------\n'
-
 		self.unit_standard_report = text_guy
 		raise Warning(_(text_guy))
 
