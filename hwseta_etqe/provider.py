@@ -6363,12 +6363,12 @@ class provider_accreditation(models.Model):
 					if ass_quals.saqa_qual_id not in ass_dict:
 						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
 						ass_dict.update({ass_quals.saqa_qual_id:[]})
-						dbg(ass_dict)
+						# dbg(ass_dict)
 						for ass_us in ass_quals.qualification_line_hr:
-							dbg(ass_dict)
-							dbg(type(ass_dict.get(ass_quals)))
-							ass_dict[ass_quals].append(ass_us.id_no)
-							# ass_dict.get(ass_quals).append(ass_us.id_no)
+							# dbg(ass_dict)
+							# dbg(type(ass_dict.get(ass_quals)))
+							# ass_dict[ass_quals].append(ass_us.id_no)
+							ass_dict.get(ass_quals.saqa_qual_id).append(ass_us.id_no)
 		return ass_dict
 		# raise Warning(_(ass_dict))
 
