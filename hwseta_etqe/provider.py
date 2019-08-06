@@ -6342,7 +6342,7 @@ class provider_accreditation(models.Model):
 		dbg('ass' + str(type(ass_dict)))
 		dbg(prov_dict)
 		for k,v in prov_dict.items():
-			if k in ass_dict:
+			if k.get('units') in ass_dict:
 				mismatch_dict.update({k:[]})
 				for us in v:
 					if us in ass_dict.get(k):
@@ -6376,13 +6376,13 @@ class provider_accreditation(models.Model):
 		ass_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
-				dbg([x.saqa_qual_id for x in prov_quals.assessors_id.qualification_ids])
+				assessor = prov_quals.assessors_id
 				for ass_quals in prov_quals.assessors_id.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
 						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
-						ass_dict.update({ass_quals.saqa_qual_id:[]})
+						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
-							ass_dict.get(ass_quals.saqa_qual_id).append(ass_us.id_no)
+							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
 		dbg('build_ass_dict :' + str(ass_dict))
 		return ass_dict
 		# raise Warning(_(ass_dict))
