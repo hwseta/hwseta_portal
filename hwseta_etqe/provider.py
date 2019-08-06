@@ -6335,7 +6335,7 @@ class provider_accreditation(models.Model):
 
 	@api.one
 	def compare_unit_standard_dicts(self):
-		prov_dict = self.build_prov_dict()
+		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()
 		mismatch_dict = {}
 		dbg(type(prov_dict))
@@ -6361,6 +6361,7 @@ class provider_accreditation(models.Model):
 				prov_dict.update({prov_quals.saqa_qual_id:[]})
 				for prov_us in prov_quals.qualification_line:
 					prov_dict.get(prov_quals.saqa_qual_id).append(prov_us.id_no)
+		dbg(type(prov_dict))
 		return prov_dict
 		# raise Warning(_(prov_dict))
 
