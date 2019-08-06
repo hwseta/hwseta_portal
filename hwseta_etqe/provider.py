@@ -6337,9 +6337,19 @@ class provider_accreditation(models.Model):
 	def compare_unit_standard_dicts(self):
 		prov_dict = self.build_prov_dict()
 		ass_dict = self.build_ass_dict()
+		mismatch_dict = {}
+		for k, v in prov_dict.items():
+			if k in ass_dict:
+				mismatch_dict.update({k:[]})
+				for us in v:
+					if us in ass_dict.get(k):
+						dbg(str(k) + '--us:' + str(us))
+					else:
+						mismatch_dict.get(k).append(us)
 		dbg(prov_dict)
 		dbg(ass_dict)
-		raise Warning(_(cmp(prov_dict,ass_dict)))
+		raise Warning(_(mismatch_dict))
+		# raise Warning(_(cmp(prov_dict,ass_dict)))
 
 	@api.one
 	def build_prov_dict(self):
@@ -6363,11 +6373,7 @@ class provider_accreditation(models.Model):
 					if ass_quals.saqa_qual_id not in ass_dict:
 						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
 						ass_dict.update({ass_quals.saqa_qual_id:[]})
-						# dbg(ass_dict)
 						for ass_us in ass_quals.qualification_line_hr:
-							# dbg(ass_dict)
-							# dbg(type(ass_dict.get(ass_quals)))
-							# ass_dict[ass_quals].append(ass_us.id_no)
 							ass_dict.get(ass_quals.saqa_qual_id).append(ass_us.id_no)
 		return ass_dict
 		# raise Warning(_(ass_dict))
