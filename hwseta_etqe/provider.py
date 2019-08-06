@@ -6338,8 +6338,8 @@ class provider_accreditation(models.Model):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()
 		mismatch_dict = {}
-		dbg('prov' + type(prov_dict))
-		dbg('ass' + type(ass_dict))
+		dbg('prov' + str(type(prov_dict)))
+		dbg('ass' + str(type(ass_dict)))
 		dbg(prov_dict)
 		for k,v in prov_dict.items():
 			if k in ass_dict:
