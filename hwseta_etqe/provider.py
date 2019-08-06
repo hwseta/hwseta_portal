@@ -6344,7 +6344,7 @@ class provider_accreditation(models.Model):
 		for k,v in prov_dict.items():
 			dbg(k)
 			dbg(type(k))
-			if k.get('units') in ass_dict:
+			if k in ass_dict:
 				mismatch_dict.update({k:[]})
 				for us in v:
 					if us in ass_dict.get(k):
@@ -6363,10 +6363,12 @@ class provider_accreditation(models.Model):
 		prov_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
-				prov_dict.update({prov_quals.saqa_qual_id:[]})
+				prov_dict.update({prov_quals.saqa_qual_id:{'assessor':prov_quals.assessors_id,
+				                                           'moderator':prov_quals.moderators_id,
+				                                           'units':[]}})
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.selection:
-						prov_dict.get(prov_quals.saqa_qual_id).append(prov_us.id_no)
+						prov_dict.get(prov_quals.saqa_qual_id).get('units').append(prov_us.id_no)
 		dbg('build_prov_dict :' + str(prov_dict))
 		return prov_dict
 		# raise Warning(_(prov_dict))
