@@ -6429,7 +6429,7 @@ class provider_accreditation(models.Model):
 		if self.skills_programme_ids:
 			text_guy += '------------lp vs lib-------------\n'
 			for sp_quals in self.skills_programme_ids:
-				text_guy += str(self.check_lp_us_lib_min_cred(sp_quals)) + '--LP: ' + str(
+				text_guy += str(self.check_sp_us_lib_min_cred(sp_quals)) + '--LP: ' + str(
 					sp_quals.saqa_qual_id) + 'min creds' + 'no min cred?\n'
 		return text_guy
 
