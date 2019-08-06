@@ -6344,7 +6344,10 @@ class provider_accreditation(models.Model):
 		for k,v in prov_dict.items():
 			dbg(k)
 			dbg(type(k))
-			if k in ass_dict:
+			prov_assessor = prov_dict.get(k).get('assessor')
+			ass_assessor = ass_dict.get(k).get('assessor')
+			if k in ass_dict and ass_assessor == prov_assessor:
+				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
 				mismatch_dict.update({k:[]})
 				for us in v:
 					if us in ass_dict.get(k):
