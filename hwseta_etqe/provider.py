@@ -6342,6 +6342,8 @@ class provider_accreditation(models.Model):
 		dbg('ass' + str(type(ass_dict)))
 		dbg(prov_dict)
 		for k,v in prov_dict.items():
+			dbg(k)
+			dbg(type(k))
 			if k.get('units') in ass_dict:
 				mismatch_dict.update({k:[]})
 				for us in v:
