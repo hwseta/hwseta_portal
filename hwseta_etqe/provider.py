@@ -6338,7 +6338,9 @@ class provider_accreditation(models.Model):
 		prov_dict = self.build_prov_dict()
 		ass_dict = self.build_ass_dict()
 		mismatch_dict = {}
-		for k, v in prov_dict.items():
+		dbg(type(prov_dict))
+		dbg(prov_dict)
+		for k,v in prov_dict.items():
 			if k in ass_dict:
 				mismatch_dict.update({k:[]})
 				for us in v:
@@ -6346,8 +6348,8 @@ class provider_accreditation(models.Model):
 						dbg(str(k) + '--us:' + str(us))
 					else:
 						mismatch_dict.get(k).append(us)
-		dbg(prov_dict)
-		dbg(ass_dict)
+		# dbg(prov_dict)
+		# dbg(ass_dict)
 		raise Warning(_(mismatch_dict))
 		# raise Warning(_(cmp(prov_dict,ass_dict)))
 
