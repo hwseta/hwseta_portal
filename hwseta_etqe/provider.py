@@ -6337,6 +6337,8 @@ class provider_accreditation(models.Model):
 	def compare_unit_standard_dicts(self):
 		prov_dict = self.build_prov_dict()
 		ass_dict = self.build_ass_dict()
+		dbg(prov_dict)
+		dbg(ass_dict)
 		raise Warning(_(cmp(prov_dict,ass_dict)))
 
 	@api.one
