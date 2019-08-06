@@ -6361,7 +6361,8 @@ class provider_accreditation(models.Model):
 			for prov_quals in self.qualification_ids:
 				prov_dict.update({prov_quals.saqa_qual_id:[]})
 				for prov_us in prov_quals.qualification_line:
-					prov_dict.get(prov_quals.saqa_qual_id).append(prov_us.id_no)
+					if prov_us.selection:
+						prov_dict.get(prov_quals.saqa_qual_id).append(prov_us.id_no)
 		dbg('build_prov_dict :' + str(type(prov_dict)))
 		return prov_dict
 		# raise Warning(_(prov_dict))
