@@ -6334,14 +6334,36 @@ class provider_accreditation(models.Model):
 			# raise Warning(_(quals_dict))
 
 	@api.one
+	def compare_unit_standard_dicts(self):
+		prov_dict = self.build_prov_dict()
+		ass_dict = self.build_ass_dict()
+		raise Warning(_(cmp(prov_dict,ass_dict)))
+
+	@api.one
 	def build_prov_dict(self):
 		prov_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
 				prov_dict.update({prov_quals.saqa_qual_id:[]})
 				for prov_us in prov_quals.qualification_line:
-					prov_dict.get(prov_quals.saqa_qual_id).append(prov_us)
-		raise Warning(_(prov_dict))
+					prov_dict.get(prov_quals.saqa_qual_id).append(prov_us.id_no)
+		return prov_dict
+		# raise Warning(_(prov_dict))
+
+
+# TODO : fixme
+	@api.one
+	def build_ass_dict(self):
+		ass_dict = {}
+		if self.qualification_ids:
+			for prov_quals in self.qualification_ids:
+				for ass_quals in prov_quals.assessors_id.qualification_ids:
+					if not ass_quals.saqa_qual_id not in ass_dict:
+						ass_dict.update({ass_quals.saqa_qual_id: []})
+						for ass_us in ass_quals.qualification_line_hr:
+							ass_dict.get(ass_quals).append(ass_us.id_no)
+		return ass_dict
+		# raise Warning(_(ass_dict))
 
 	@api.one
 	def check_moderator(self):

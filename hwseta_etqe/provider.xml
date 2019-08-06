@@ -1445,6 +1445,9 @@
                         <button name="build_prov_dict" string="build_prov_dict" type="object"
 							class="oe_highlight"
 							/>
+                        <button name="compare_unit_standard_dicts" string="compare_unit_standard_dicts" type="object"
+							class="oe_highlight"
+							/>
                         <button name="action_submit_button" string="Submit" type="object"
 							class="oe_highlight"
 						    groups="hwseta_etqe.group_providers,hwseta_etqe.group_etqe_applicant_skill_developer,hwseta_etqe.group_etqe_manager,hwseta_etqe.group_etqe_executive_manager,hwseta_etqe.group_etqe_provincial_manager,hwseta_etqe.group_etqe_officer,hwseta_etqe.group_etqe_provincial_officer,hwseta_etqe.group_etqe_provincial_administrator, hwseta_etqe.group_etqe_administrator"
