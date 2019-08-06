@@ -6301,36 +6301,36 @@ class provider_accreditation(models.Model):
 			dbg('total' + str(this_total))
 		return this_total
 
-	@api.multi
-	def check_all_assessors(self):
-		for this in self.env['provider.accreditation'].search([]):
-			this.check_assessor()
-			this.check_moderator()
+	# @api.multi
+	# def check_all_assessors(self):
+	# 	for this in self.env['provider.accreditation'].search([]):
+	# 		this.check_assessor()
+	# 		this.check_moderator()
 
-	@api.one
-	def check_assessor(self):
-		# dbg('check_assessor')
-		# dbg(self.id)
-		quals_dict = {}
-		text_guy = ''
-		stat = False
-		if self.qualification_ids:
-			text_guy += '-------------provider vs lib--------------\n'
-			for prov_quals in self.qualification_ids:
-				matching_qual = False
-				assessor_quals = prov_quals.assessors_id.qualification_ids
-				quals_dict.update({prov_quals: []})
-				if prov_quals.saqa_qual_id in [ass_qual.id for ass_qual in assessor_quals]:
-					matching_qual = True
-				for prov_us in prov_quals.qualification_line:
-					if prov_us.id_no not in quals_dict.get(prov_quals) and\
-							prov_us.selection and\
-							matching_qual and\
-							prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
-						stat = True
-						dbg(self.id)
-						quals_dict.get(prov_quals).append(prov_us.id_no)
-			self.broken_rec = stat
+	# @api.one
+	# def check_assessor(self):
+	# 	# dbg('check_assessor')
+	# 	# dbg(self.id)
+	# 	quals_dict = {}
+	# 	text_guy = ''
+	# 	stat = False
+	# 	if self.qualification_ids:
+	# 		text_guy += '-------------provider vs lib--------------\n'
+	# 		for prov_quals in self.qualification_ids:
+	# 			matching_qual = False
+	# 			assessor_quals = prov_quals.assessors_id.qualification_ids
+	# 			quals_dict.update({prov_quals: []})
+	# 			if prov_quals.saqa_qual_id in [ass_qual.id for ass_qual in assessor_quals]:
+	# 				matching_qual = True
+	# 			for prov_us in prov_quals.qualification_line:
+	# 				if prov_us.id_no not in quals_dict.get(prov_quals) and\
+	# 						prov_us.selection and\
+	# 						matching_qual and\
+	# 						prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
+	# 					stat = True
+	# 					dbg(self.id)
+	# 					quals_dict.get(prov_quals).append(prov_us.id_no)
+	# 		self.broken_rec = stat
 			# raise Warning(_(quals_dict))
 
 	@api.one
@@ -6357,11 +6357,8 @@ class provider_accreditation(models.Model):
 					else:
 						mismatch_dict.get(k).get('units').append(us)
 			else:
-				mismatch_dict.update({k:"not found"})
-		# dbg(prov_dict)
-		# dbg(ass_dict)
+				mismatch_dict.update({k: "not found"})
 		raise Warning(_(mismatch_dict))
-		# raise Warning(_(cmp(prov_dict,ass_dict)))
 
 	@api.one
 	def build_prov_dict(self):
@@ -6378,8 +6375,6 @@ class provider_accreditation(models.Model):
 		return prov_dict
 		# raise Warning(_(prov_dict))
 
-
-# TODO : fixme
 	@api.one
 	def build_ass_dict(self):
 		ass_dict = {}
@@ -6396,36 +6391,90 @@ class provider_accreditation(models.Model):
 		return ass_dict
 		# raise Warning(_(ass_dict))
 
+	# @api.one
+	# def check_moderator(self):
+	# 	# dbg('check_moderator')
+	# 	# dbg(self.id)
+	# 	quals_dict = {}
+	# 	mod_quals_dict = {}
+	# 	text_guy = ''
+	# 	stat = False
+	# 	if self.qualification_ids:
+	# 		text_guy += '-------------provider vs lib--------------\n'
+	# 		for prov_quals in self.qualification_ids:
+	# 			matching_qual = False
+	# 			moderator_quals = prov_quals.moderators_id.moderator_qualification_ids
+	# 			for mod_quals in moderator_quals:
+	# 				if mod_quals not in mod_quals_dict:
+	# 					mod_quals_dict.update({mod_quals: []})
+	# 			quals_dict.update({prov_quals: []})
+	# 			if prov_quals.saqa_qual_id in [mod_qual.saqa_qual_id for mod_qual in moderator_quals]:
+	# 				matching_qual = True
+	# 				dbg('matching qual!!!!!!!!')
+	# 			for prov_us in prov_quals.qualification_line:
+	# 				if prov_us.id_no not in quals_dict.get(prov_quals) and \
+	# 						prov_us.selection and \
+	# 						matching_qual and \
+	# 						prov_us.id_no not in [us_id.id_no for us_id in moderator_quals.qualification_line_hr]:
+	# 					stat = True
+	# 					dbg(self.id)
+	# 					quals_dict.get(prov_quals).append(prov_us.id_no)
+	# 	dbg(mod_quals_dict)
+	# 	self.broken_rec = stat
+
 	@api.one
-	def check_moderator(self):
-		# dbg('check_moderator')
-		# dbg(self.id)
-		quals_dict = {}
-		mod_quals_dict = {}
+	def check_min_sp(self):
+		dbg('check_min_lp')
 		text_guy = ''
-		stat = False
+		if self.skills_programme_ids:
+			text_guy += '------------lp vs lib-------------\n'
+			for sp_quals in self.skills_programme_ids:
+				text_guy += str(self.check_lp_us_lib_min_cred(sp_quals)) + '--LP: ' + str(
+					sp_quals.saqa_qual_id) + 'min creds' + 'no min cred?\n'
+		return text_guy
+
+	@api.one
+	def check_min_lp(self):
+		dbg('check_min_cred')
+		text_guy = ''
+		if self.learning_programme_ids:
+			text_guy += '------------lp vs lib-------------\n'
+			for lp_quals in self.learning_programme_ids:
+				text_guy += str(self.check_lp_us_lib_min_cred(lp_quals)) + '--LP: ' + str(
+					lp_quals.saqa_qual_id) + 'min creds' + 'no min cred?\n'
+		return text_guy
+
+	@api.one
+	def check_min_cred(self):
+		dbg('check_min_cred')
+		quals_dict = {}
+		text_guy = ''
 		if self.qualification_ids:
-			text_guy += '-------------provider vs lib--------------\n'
+			text_guy += '------------provider vs lib-------------\n'
 			for prov_quals in self.qualification_ids:
-				matching_qual = False
-				moderator_quals = prov_quals.moderators_id.moderator_qualification_ids
-				for mod_quals in moderator_quals:
-					if mod_quals not in mod_quals_dict:
-						mod_quals_dict.update({mod_quals: []})
-				quals_dict.update({prov_quals: []})
-				if prov_quals.saqa_qual_id in [mod_qual.saqa_qual_id for mod_qual in moderator_quals]:
-					matching_qual = True
-					dbg('matching qual!!!!!!!!')
+				quals_dict.update({prov_quals:[]})
 				for prov_us in prov_quals.qualification_line:
-					if prov_us.id_no not in quals_dict.get(prov_quals) and \
-							prov_us.selection and \
-							matching_qual and \
-							prov_us.id_no not in [us_id.id_no for us_id in moderator_quals.qualification_line_hr]:
-						stat = True
-						dbg(self.id)
+					if prov_us.id_no not in quals_dict.get(prov_quals) and prov_us.selection:
 						quals_dict.get(prov_quals).append(prov_us.id_no)
-		dbg(mod_quals_dict)
-		self.broken_rec = stat
+			for k,v in quals_dict.items():
+				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
+					# dbg('')
+					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
+						text_guy += str(self.check_us_lib_min_cred(z)) + '--qual: ' + str(z.saqa_qual_id) + 'min creds' + str(z.m_credits) + '\n'
+				else:
+					text_guy += 'issue on qual:' + str(k.qualification_id) + '--Unit standard:' + str(v)
+
+		if self.learning_programme_ids:
+			text_guy += '------------lp vs lib-------------\n'
+			text_guy += self.check_min_lp()
+		if self.skills_programme_ids:
+			text_guy += '------------sp vs lib-------------\n'
+			text_guy += self.check_min_sp()
+
+			text_guy += '----------------------------------------\n'
+
+		self.unit_standard_report = text_guy
+		raise Warning(_(text_guy))
 
 	@api.one
 	def check_unit_standards_lib(self):
@@ -6435,40 +6484,20 @@ class provider_accreditation(models.Model):
 		lp_dict = {}
 		text_guy = ''
 		if self.qualification_ids:
-			text_guy += '-------------provider vs lib--------------\n'
 			for prov_quals in self.qualification_ids:
-				text_guy += str(self.check_us_lib_min_cred(prov_quals)) + '--qual: ' + str(prov_quals.saqa_qual_id)+ 'min creds' + str(prov_quals.qualification_id.m_credits) + '\n'
 				quals_dict.update({prov_quals:[]})
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.id_no not in quals_dict.get(prov_quals) and prov_us.selection:
 						quals_dict.get(prov_quals).append(prov_us.id_no)
-			text_guy += '------------lp vs lib-------------\n'
-			for lp_quals in self.learning_programme_ids:
-				# text_guy += str(self.check_lp_us_lib_min_cred(lp_quals)) + '--LP: ' + str(lp_quals.saqa_qual_id)+ 'min creds' + str(lp_quals.learning_programme_id.m_credits) + '\n'
-				text_guy += str(self.check_lp_us_lib_min_cred(lp_quals)) + '--LP: ' + str(lp_quals.saqa_qual_id)+ 'min creds' + 'no min cred?\n'
-				lp_dict.update({lp_quals:[]})
-				for lp_us in lp_quals.unit_standards_line:
-					if lp_us.id_no not in lp_dict.get(lp_quals) and lp_us.selection:
-						lp_dict.get(lp_quals).append(lp_us.id_no)
-			text_guy += '-------------sp vs lib------------------\n'
-			for sp_quals in self.skills_programme_ids:
-				# text_guy += str(self.check_sp_us_lib_min_cred(sp_quals)) + '--sP: ' + str(sp_quals.saqa_qual_id)+ 'min creds' + str(sp_quals.skills_programme.m_credits) + '\n'
-				text_guy += str(self.check_sp_us_lib_min_cred(sp_quals)) + '--sP: ' + str(sp_quals.saqa_skill_id)+ 'min creds' + 'no min cred?\n'
-				sp_dict.update({sp_quals:[]})
-				for lp_us in sp_quals.unit_standards_line:
-					if lp_us.id_no not in sp_dict.get(sp_quals) and lp_us.selection:
-						sp_dict.get(sp_quals).append(lp_us.id_no)
-			text_guy += '----------------------------------------\n'
 			for k,v in quals_dict.items():
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 					# dbg('')
 					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
-						text_guy += str(self.check_us_lib_min_cred(z)) + '--qual: ' + str(z.saqa_qual_id) + 'min creds' + str(z.m_credits) + '\n'
-					# 	for x in z.qualification_line:
-					# 		if x.id_no in quals_dict.get(k):
-					# 			dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k)) + 'lib' + str(z))
-					# 		else:
-					# 			dbg('mismatch on unit standard:' + str(x.id_no) + '-on qualification:' + str(k.id) + 'lib' + str(z.id))
+						for x in z.qualification_line:
+							if x.id_no in quals_dict.get(k):
+								dbg('big match:::' + str(x.id_no) + '---' + str(quals_dict.get(k)) + 'lib' + str(z))
+							else:
+								dbg('mismatch on unit standard:' + str(x.id_no) + '-on qualification:' + str(k.id) + 'lib' + str(z.id))
 				else:
 					text_guy += 'issue on qual:' + str(k.qualification_id) + '--Unit standard:' + str(v)
 			self.unit_standard_report = text_guy
