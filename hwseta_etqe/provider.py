@@ -6376,6 +6376,7 @@ class provider_accreditation(models.Model):
 		ass_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
+				dbg([x.saqa_qual_id for x in prov_quals.assessors_id.qualification_ids])
 				for ass_quals in prov_quals.assessors_id.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
 						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
