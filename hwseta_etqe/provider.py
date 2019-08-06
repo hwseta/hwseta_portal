@@ -6338,7 +6338,8 @@ class provider_accreditation(models.Model):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()
 		mismatch_dict = {}
-		dbg(type(prov_dict))
+		dbg('prov' + type(prov_dict))
+		dbg('ass' + type(ass_dict))
 		dbg(prov_dict)
 		for k,v in prov_dict.items():
 			if k in ass_dict:
@@ -6361,7 +6362,7 @@ class provider_accreditation(models.Model):
 				prov_dict.update({prov_quals.saqa_qual_id:[]})
 				for prov_us in prov_quals.qualification_line:
 					prov_dict.get(prov_quals.saqa_qual_id).append(prov_us.id_no)
-		dbg(type(prov_dict))
+		dbg('build_prov_dict :' + str(type(prov_dict)))
 		return prov_dict
 		# raise Warning(_(prov_dict))
 
@@ -6378,6 +6379,7 @@ class provider_accreditation(models.Model):
 						ass_dict.update({ass_quals.saqa_qual_id:[]})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).append(ass_us.id_no)
+		dbg('build_ass_dict :' + str(type(ass_dict)))
 		return ass_dict
 		# raise Warning(_(ass_dict))
 
