@@ -6312,7 +6312,7 @@ class provider_accreditation(models.Model):
 		text_guy = ''
 		style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;text-align: center;}</style>'
 		start_table = '<table id="lib_units">'
-		table_header = '<tr><th>provider</th><th>library</th><th>assessor</th><th>moderator</th></tr>'
+		table_header = '<tr><th>Provider Q</th><th>Provider U</th><th>library</th><th>assessor</th><th>moderator</th></tr>'
 		rows = ''
 		for k,v in prov_dict.items():
 			dbg(k)
@@ -6323,6 +6323,7 @@ class provider_accreditation(models.Model):
 			ass_moderator = prov_dict.get(k).get('moderator')
 			rows += '<tr>'
 			rows += '<td>' + k + '</td>'
+			rows += '<td>' + v + '</td>'
 			if k in ass_dict and ass_assessor == prov_assessor:
 				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
 				mismatch_dict.update({k:{'assessor':ass_assessor,'units':[]}})
@@ -6337,7 +6338,7 @@ class provider_accreditation(models.Model):
 				rows += '<td>' + k + '</td>'
 			else:
 				rows += '<td>not found</td>'
-			end_rows = '</tr>'
+			rows += '</tr>'
 		table_end = '</table>'
 		text_guy += style + start_table + table_header + rows + table_end
 		self.unit_standard_report = text_guy
