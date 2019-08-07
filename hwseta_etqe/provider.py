@@ -6319,12 +6319,12 @@ class provider_accreditation(models.Model):
 			rows += '<tr>'
 			rows += '<td>' + key + '</td><td>x</td>' + (key if key in prov_dict else 'nope') + '</td><td>x</td></tr>'
 			for lib_us in lib_dict.get(key).get('units'):
-				rows += '<tr><td>lib Q</td><td>' + lib_us + '</td>'
+				rows += '<tr><td>'+key+'</td><td>' + lib_us + '</td>'
 				# check for lib units in prov dict
 				if lib_us in prov_dict.get(key).get('units'):
-					rows += '<td><td>US</td>' + lib_us + '</td>'
+					rows += '<td><td>'+key+'</td>' + lib_us + '</td>'
 				else:
-					rows += '<td><td>US</td>x</td>'
+					rows += '<td><td>'+key+'</td>x</td>'
 				rows += '</tr>'
 			for k,v in prov_dict.items():
 				prov_assessor = prov_dict.get(k).get('assessor')
