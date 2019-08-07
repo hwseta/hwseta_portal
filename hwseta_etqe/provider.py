@@ -6305,6 +6305,7 @@ class provider_accreditation(models.Model):
 	def compare_unit_standard_dicts(self):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
+		lib_dict = self.build_lib_dict()[0]
 		mismatch_dict = {}
 		dbg('prov' + str(type(prov_dict)))
 		dbg('ass' + str(type(ass_dict)))
@@ -6312,8 +6313,13 @@ class provider_accreditation(models.Model):
 		text_guy = ''
 		style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;text-align: center;}</style>'
 		start_table = '<table id="lib_units">'
-		table_header = '<tr><th>Provider Q</th><th>Provider U</th><th>library</th><th>assessor</th><th>moderator</th></tr>'
+		table_header = '<tr><th>library Q</th><th>library U</th><th>Provider Q</th><th>Provider U</th><th>assessor</th><th>moderator</th></tr>'
 		rows = ''
+		for k,v in lib_dict.items():
+			rows += '<tr>'
+			rows += '<td>' + k + '</td>'
+			for lib_us in lib_dict.get(k).get('units'):
+				rows += '<tr><td>' + lib_us + '</td><td></td><td></td><td></td><td></td><td></td></tr>'
 		for k,v in prov_dict.items():
 			dbg(k)
 			dbg(type(k))
@@ -6325,6 +6331,7 @@ class provider_accreditation(models.Model):
 			rows += '<td>' + k + '</td>'
 			for us in prov_dict.get(k).get('units'):
 				rows += '<tr><td></td><td>' + us + '</td><td></td><td></td><td></td></tr>'
+
 			if k in ass_dict and ass_assessor == prov_assessor:
 				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
 				mismatch_dict.update({k:{'assessor':ass_assessor,'units':[]}})
@@ -6374,6 +6381,20 @@ class provider_accreditation(models.Model):
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
 		dbg('build_ass_dict :' + str(ass_dict))
 		return ass_dict
+
+	@api.one
+	def build_lib_dict(self):
+		lib_dict = {}
+		if self.qualification_ids:
+			for prov_quals in self.qualification_ids:
+				for lib_quals in self.env['provider.qualification'].search([('id','=',prov_quals.qualification_id.id)]):
+					if lib_quals.saqa_qual_id not in lib_dict:
+						dbg('not in ass dict' + str(lib_quals.saqa_qual_id))
+						lib_dict.update({lib_quals.saqa_qual_id:{'units':[]}})
+						for lib_us in lib_quals.qualification_line_hr:
+							lib_dict.get(lib_quals.saqa_qual_id).get('units').append(lib_us.id_no)
+		dbg('build_ass_dict :' + str(lib_dict))
+		return lib_dict
 
 	@api.one
 	def check_min_sp(self):
