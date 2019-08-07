@@ -6301,38 +6301,6 @@ class provider_accreditation(models.Model):
 			dbg('total' + str(this_total))
 		return this_total
 
-	# @api.multi
-	# def check_all_assessors(self):
-	# 	for this in self.env['provider.accreditation'].search([]):
-	# 		this.check_assessor()
-	# 		this.check_moderator()
-
-	# @api.one
-	# def check_assessor(self):
-	# 	# dbg('check_assessor')
-	# 	# dbg(self.id)
-	# 	quals_dict = {}
-	# 	text_guy = ''
-	# 	stat = False
-	# 	if self.qualification_ids:
-	# 		text_guy += '-------------provider vs lib--------------\n'
-	# 		for prov_quals in self.qualification_ids:
-	# 			matching_qual = False
-	# 			assessor_quals = prov_quals.assessors_id.qualification_ids
-	# 			quals_dict.update({prov_quals: []})
-	# 			if prov_quals.saqa_qual_id in [ass_qual.id for ass_qual in assessor_quals]:
-	# 				matching_qual = True
-	# 			for prov_us in prov_quals.qualification_line:
-	# 				if prov_us.id_no not in quals_dict.get(prov_quals) and\
-	# 						prov_us.selection and\
-	# 						matching_qual and\
-	# 						prov_us.id_no not in[us_id.id_no for us_id in assessor_quals.qualification_line_hr]:
-	# 					stat = True
-	# 					dbg(self.id)
-	# 					quals_dict.get(prov_quals).append(prov_us.id_no)
-	# 		self.broken_rec = stat
-			# raise Warning(_(quals_dict))
-
 	@api.one
 	def compare_unit_standard_dicts(self):
 		prov_dict = self.build_prov_dict()[0]
@@ -6389,38 +6357,6 @@ class provider_accreditation(models.Model):
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
 		dbg('build_ass_dict :' + str(ass_dict))
 		return ass_dict
-		# raise Warning(_(ass_dict))
-
-	# @api.one
-	# def check_moderator(self):
-	# 	# dbg('check_moderator')
-	# 	# dbg(self.id)
-	# 	quals_dict = {}
-	# 	mod_quals_dict = {}
-	# 	text_guy = ''
-	# 	stat = False
-	# 	if self.qualification_ids:
-	# 		text_guy += '-------------provider vs lib--------------\n'
-	# 		for prov_quals in self.qualification_ids:
-	# 			matching_qual = False
-	# 			moderator_quals = prov_quals.moderators_id.moderator_qualification_ids
-	# 			for mod_quals in moderator_quals:
-	# 				if mod_quals not in mod_quals_dict:
-	# 					mod_quals_dict.update({mod_quals: []})
-	# 			quals_dict.update({prov_quals: []})
-	# 			if prov_quals.saqa_qual_id in [mod_qual.saqa_qual_id for mod_qual in moderator_quals]:
-	# 				matching_qual = True
-	# 				dbg('matching qual!!!!!!!!')
-	# 			for prov_us in prov_quals.qualification_line:
-	# 				if prov_us.id_no not in quals_dict.get(prov_quals) and \
-	# 						prov_us.selection and \
-	# 						matching_qual and \
-	# 						prov_us.id_no not in [us_id.id_no for us_id in moderator_quals.qualification_line_hr]:
-	# 					stat = True
-	# 					dbg(self.id)
-	# 					quals_dict.get(prov_quals).append(prov_us.id_no)
-	# 	dbg(mod_quals_dict)
-	# 	self.broken_rec = stat
 
 	@api.one
 	def check_min_sp(self):
@@ -6472,7 +6408,7 @@ class provider_accreditation(models.Model):
 			text_guy += self.check_min_sp()[0]
 			text_guy += '----------------------------------------\n'
 		self.unit_standard_report = text_guy
-		raise Warning(_(text_guy))
+		# raise Warning(_(text_guy))
 
 	@api.one
 	def check_unit_standards_lib(self):
