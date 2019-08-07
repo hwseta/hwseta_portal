@@ -6323,7 +6323,8 @@ class provider_accreditation(models.Model):
 			ass_moderator = prov_dict.get(k).get('moderator')
 			rows += '<tr>'
 			rows += '<td>' + k + '</td>'
-			rows += '<td>' + v + '</td>'
+			for us in prov_dict.get(k).get('units'):
+				rows += '<tr><td></td><td>' + us + '</td><td></td><td></td><td></td></tr>'
 			if k in ass_dict and ass_assessor == prov_assessor:
 				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
 				mismatch_dict.update({k:{'assessor':ass_assessor,'units':[]}})
