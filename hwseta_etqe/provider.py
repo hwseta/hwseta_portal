@@ -6315,38 +6315,34 @@ class provider_accreditation(models.Model):
 		start_table = '<table id="lib_units">'
 		table_header = '<tr><th>library Q</th><th>library U</th><th>Provider Q</th><th>Provider U</th><th>assessor</th><th>moderator</th></tr>'
 		rows = ''
-		for k,v in lib_dict.items():
+		for key,value in lib_dict.items():
 			rows += '<tr>'
-			rows += '<td>' + k + '</td>'
-			for lib_us in lib_dict.get(k).get('units'):
+			rows += '<td>' + key + '</td>'
+			for lib_us in lib_dict.get(key).get('units'):
 				rows += '<tr><td>' + lib_us + '</td><td></td><td></td><td></td><td></td><td></td></tr>'
-		for k,v in prov_dict.items():
-			dbg(k)
-			dbg(type(k))
-			prov_assessor = prov_dict.get(k).get('assessor')
-			ass_assessor = ass_dict.get(k).get('assessor')
-			prov_moderator = prov_dict.get(k).get('moderator')
-			ass_moderator = prov_dict.get(k).get('moderator')
-			rows += '<tr>'
-			rows += '<td>' + k + '</td>'
-			for us in prov_dict.get(k).get('units'):
-				rows += '<tr><td></td><td>' + us + '</td><td></td><td></td><td></td></tr>'
-
-			if k in ass_dict and ass_assessor == prov_assessor:
-				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
-				mismatch_dict.update({k:{'assessor':ass_assessor,'units':[]}})
-				for us in prov_dict.get(k).get('units'):
-					if us in ass_dict.get(k).get('units'):
-						dbg(str(k) + '--us:' + str(us))
+			for k,v in prov_dict.items():
+				prov_assessor = prov_dict.get(k).get('assessor')
+				ass_assessor = ass_dict.get(k).get('assessor')
+				if k in lib_dict:
+					rows += '<tr>'
+					rows += '<td>' + k + '</td>'
+					for us in prov_dict.get(k).get('units'):
+						rows += '<tr><td></td><td>' + us + '</td><td></td><td></td><td></td></tr>'
+					if k in ass_dict and ass_assessor == prov_assessor:
+						dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
+						mismatch_dict.update({k:{'assessor':ass_assessor,'units':[]}})
+						for us in prov_dict.get(k).get('units'):
+							if us in ass_dict.get(k).get('units'):
+								dbg(str(k) + '--us:' + str(us))
+							else:
+								mismatch_dict.get(k).get('units').append(us)
 					else:
-						mismatch_dict.get(k).get('units').append(us)
-			else:
-				mismatch_dict.update({k: "not found"})
-			if k in mismatch_dict:
-				rows += '<td>' + k + '</td>'
-			else:
-				rows += '<td>not found</td>'
-			rows += '</tr>'
+						mismatch_dict.update({k: "not found"})
+					if k in mismatch_dict:
+						rows += '<td>' + k + '</td>'
+					else:
+						rows += '<td>not found</td>'
+					rows += '</tr>'
 		table_end = '</table>'
 		text_guy += style + start_table + table_header + rows + table_end
 		self.unit_standard_report = text_guy
