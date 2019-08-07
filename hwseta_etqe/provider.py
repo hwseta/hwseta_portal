@@ -6309,6 +6309,8 @@ class provider_accreditation(models.Model):
 		dbg('prov' + str(type(prov_dict)))
 		dbg('ass' + str(type(ass_dict)))
 		dbg(prov_dict)
+		text_guy = ''
+		text_guy += '<table><tr><th>provider</th><th>library</th><th>assessor</th></tr>'
 		for k,v in prov_dict.items():
 			dbg(k)
 			dbg(type(k))
@@ -6326,7 +6328,9 @@ class provider_accreditation(models.Model):
 						mismatch_dict.get(k).get('units').append(us)
 			else:
 				mismatch_dict.update({k: "not found"})
-		raise Warning(_(mismatch_dict))
+		text_guy += '</table>'
+		self.unit_standard_report = text_guy
+		# raise Warning(_(mismatch_dict))
 
 	@api.one
 	def build_prov_dict(self):
@@ -6414,8 +6418,6 @@ class provider_accreditation(models.Model):
 	def check_unit_standards_lib(self):
 		dbg('check_unit_standards_lib')
 		quals_dict = {}
-		sp_dict = {}
-		lp_dict = {}
 		text_guy = ''
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
@@ -6425,7 +6427,6 @@ class provider_accreditation(models.Model):
 						quals_dict.get(prov_quals).append(prov_us.id_no)
 			for k,v in quals_dict.items():
 				if self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
-					# dbg('')
 					for z in self.env['provider.qualification'].search([('id','=',k.qualification_id.id)]):
 						for x in z.qualification_line:
 							if x.id_no in quals_dict.get(k):
