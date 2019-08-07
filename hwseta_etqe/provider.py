@@ -6391,7 +6391,7 @@ class provider_accreditation(models.Model):
 					if lib_quals.saqa_qual_id not in lib_dict:
 						dbg('not in ass dict' + str(lib_quals.saqa_qual_id))
 						lib_dict.update({lib_quals.saqa_qual_id:{'units':[]}})
-						for lib_us in lib_quals.qualification_line_hr:
+						for lib_us in lib_quals.qualification_line:
 							lib_dict.get(lib_quals.saqa_qual_id).get('units').append(lib_us.id_no)
 		dbg('build_ass_dict :' + str(lib_dict))
 		return lib_dict
