@@ -6310,7 +6310,9 @@ class provider_accreditation(models.Model):
 		dbg('ass' + str(type(ass_dict)))
 		dbg(prov_dict)
 		text_guy = ''
-		text_guy += '<table><tr><th>provider</th><th>library</th><th>assessor</th><th>moderator</th></tr>'
+		style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;text-align: center;}</style>'
+		start_table = '<table id="lib_units">'
+		table_header = '<tr><th>provider</th><th>library</th><th>assessor</th><th>moderator</th></tr>'
 		for k,v in prov_dict.items():
 			dbg(k)
 			dbg(type(k))
@@ -6329,8 +6331,8 @@ class provider_accreditation(models.Model):
 						mismatch_dict.get(k).get('units').append(us)
 			else:
 				mismatch_dict.update({k: "not found"})
-
-		text_guy += '</table>'
+		table_end = '</table>'
+		text_guy += style + start_table + table_header + table_end
 		self.unit_standard_report = text_guy
 		# raise Warning(_(mismatch_dict))
 
