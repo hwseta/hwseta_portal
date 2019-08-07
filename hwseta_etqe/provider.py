@@ -6327,7 +6327,7 @@ class provider_accreditation(models.Model):
 				rows += '<tr><td>'+key+'</td><td>' + lib_us + '</td>'
 				# check for lib units in prov dict
 				if lib_us in prov_dict.get(key).get('units'):
-					rows += '<td>'+key+'</td>' + lib_us + '</td>'
+					rows += '<td>'+key+'</td><td>' + lib_us + '</td>'
 				else:
 					rows += '<td>'+key+'</td><td>x</td>'
 				rows += '</tr>'
