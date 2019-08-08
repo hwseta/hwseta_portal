@@ -6450,10 +6450,10 @@ class provider_accreditation(models.Model):
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
 				moderator = prov_quals.moderators_id
-				for mod_quals in prov_quals.moderators_id.qualification_ids:
+				for mod_quals in prov_quals.moderators_id.moderator_qualification_ids:
 					if mod_quals.saqa_qual_id not in mod_dict:
-						dbg('not in mod dict' + str(mod_dict.saqa_qual_id))
-						ass_dict.update({mod_quals.saqa_qual_id:{'moderator':moderator,'units':[]}})
+						dbg('not in mod dict' + str(mod_quals.saqa_qual_id))
+						mod_dict.update({mod_quals.saqa_qual_id:{'moderator':moderator,'units':[]}})
 						for mod_us in mod_quals.qualification_line_hr:
 							mod_dict.get(mod_quals.saqa_qual_id).get('units').append(mod_us.id_no)
 		dbg('build_mod_dict :' + str(mod_dict))
