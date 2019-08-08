@@ -529,6 +529,10 @@ class learner_registration_qualification(models.Model):
 				for line in self.env.user.partner_id.qualification_ids:
 					if qualification_obj.id == line.qualification_id.id:
 						for u_line in line.qualification_line:
+							if u_line.selection == True:
+								select = True
+							else:
+								select = False
 							is_achieve = False
 							if self._context.get('learner_master_id_number'):
 								learner_master_obj = self.env['hr.employee'].search([('learner_identification_id', '=', self._context.get('learner_master_id_number'))])
@@ -549,12 +553,15 @@ class learner_registration_qualification(models.Model):
 									'level1':u_line.level1,
 									'level2':u_line.level2,
 									'level3': u_line.level3,
-									'selection':True,
+									'selection':select,
 									'is_seta_approved': u_line.is_seta_approved,
 									'is_provider_approved': u_line.is_provider_approved,
 									'achieve':is_achieve,
 									}
-							learner_qualification_line.append((0, 0, val))
+							if select == True:
+								learner_qualification_line.append((0, 0, val))
+							else:
+								pass
 			elif not user_data.partner_id.provider:
 				qualification_obj = self.env['provider.qualification'].search([('seta_branch_id','=','11'),('id','=',learner_qualification_parent_id)])
 				for qualification_lines in qualification_obj.qualification_line:
