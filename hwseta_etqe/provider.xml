@@ -1445,7 +1445,7 @@
                         <button name="check_min_cred" string="check_min_cred" type="object"
 							class="oe_highlight"
 							/>
-                        <button name="compare_unit_standard_dicts" string="compare_unit_standard_dicts" type="object"
+                        <button name="compare_us_dicts" string="compare_us_dicts" type="object"
 							class="oe_highlight"
 							/>
                         <button name="action_submit_button" string="Submit" type="object"

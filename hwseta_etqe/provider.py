@@ -6302,6 +6302,55 @@ class provider_accreditation(models.Model):
 		return this_total
 
 	@api.one
+	def compare_us_dicts(self):
+		prov_dict = self.build_prov_dict()[0]
+		ass_dict = self.build_ass_dict()[0]
+		mismatch_dict = {}
+		mod_mismatch_dict = {}
+		dbg('prov' + str(type(prov_dict)))
+		dbg('ass' + str(type(ass_dict)))
+		dbg(prov_dict)
+		text_guy = ''
+		for k, v in prov_dict.items():
+			prov_assessor = prov_dict.get(k).get('assessor')
+			ass_assessor = ass_dict.get(k).get('assessor')
+			if k in lib_dict:
+				if k in ass_dict and ass_assessor == prov_assessor:
+					dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
+					mismatch_dict.update({k: {'assessor': ass_assessor, 'units': []}})
+					for us in prov_dict.get(k).get('units'):
+						if us in ass_dict.get(k).get('units'):
+							dbg(str(k) + '--us:' + str(us))
+						else:
+							mismatch_dict.get(k).get('units').append(us)
+				else:
+					mismatch_dict.update({k: "not found"})
+		for k, v in prov_dict.items():
+			prov_moderator = prov_dict.get(k).get('moderator')
+			mod_moderator = ass_dict.get(k).get('moderator')
+			if k in mod_dict and mod_moderator == prov_moderator:
+				dbg('same assessor:' + str(mod_moderator) + '-prov ass:' + str(prov_moderator))
+				mod_mismatch_dict.update({k: {'assessor': mod_moderator, 'units': []}})
+				for us in prov_dict.get(k).get('units'):
+					if us in mod_dict.get(k).get('units'):
+						dbg(str(k) + '--us:' + str(us))
+					else:
+						mod_mismatch_dict.get(k).get('units').append(us)
+			else:
+				mod_mismatch_dict.update({k: "not found"})
+		for k,v in mismatch_dict:
+			text_guy += 'Qualification:' + k + ' Assessor' + mismatch_dict.get(k).get('assessor') + '\n'
+			if mod_mismatch_dict.get(k).get('units'):
+				for unit in mod_mismatch_dict.get(k).get('units'):
+					text_guy += unit + '\n'
+		for k,v in mod_mismatch_dict:
+			text_guy += 'Qualification:' + k + ' Assessor' + mismatch_dict.get(k).get('moderator') + '\n'
+			if mod_mismatch_dict.get(k).get('units'):
+				for unit in mod_mismatch_dict.get(k).get('units'):
+					text_guy += unit + '\n'
+		raise Warning(_(text_guy))
+
+	@api.one
 	def compare_unit_standard_dicts(self):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
