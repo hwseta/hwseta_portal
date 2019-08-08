@@ -6312,6 +6312,7 @@ class provider_accreditation(models.Model):
 	def compare_us_dicts(self):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
+		dbg(self.build_mod_dict())
 		mod_dict = self.build_mod_dict()[0]
 		mismatch_dict = {}
 		mod_mismatch_dict = {}
