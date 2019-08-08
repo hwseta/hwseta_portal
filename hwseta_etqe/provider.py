@@ -6312,6 +6312,7 @@ class provider_accreditation(models.Model):
 	def compare_us_dicts(self):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
+		mod_dict = self.build_mod_dict()[0]
 		mismatch_dict = {}
 		mod_mismatch_dict = {}
 		dbg('prov' + str(type(prov_dict)))
@@ -6333,10 +6334,10 @@ class provider_accreditation(models.Model):
 				mismatch_dict.update({k: "not found"})
 		for k, v in prov_dict.items():
 			prov_moderator = prov_dict.get(k).get('moderator')
-			mod_moderator = ass_dict.get(k).get('moderator')
+			mod_moderator = mod_dict.get(k).get('moderator')
 			if k in mod_dict and mod_moderator == prov_moderator:
-				dbg('same assessor:' + str(mod_moderator) + '-prov ass:' + str(prov_moderator))
-				mod_mismatch_dict.update({k: {'assessor': mod_moderator, 'units': []}})
+				dbg('same moderator:' + str(mod_moderator) + '-prov mod:' + str(prov_moderator))
+				mod_mismatch_dict.update({k: {'moderator': mod_moderator, 'units': []}})
 				for us in prov_dict.get(k).get('units'):
 					if us in mod_dict.get(k).get('units'):
 						dbg(str(k) + '--us:' + str(us))
@@ -6443,6 +6444,20 @@ class provider_accreditation(models.Model):
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
 		dbg('build_ass_dict :' + str(ass_dict))
 		return ass_dict
+
+	def build_mod_dict(self):
+		mod_dict = {}
+		if self.qualification_ids:
+			for prov_quals in self.qualification_ids:
+				moderator = prov_quals.moderators_id
+				for mod_quals in prov_quals.moderators_id.qualification_ids:
+					if mod_quals.saqa_qual_id not in mod_dict:
+						dbg('not in mod dict' + str(mod_dict.saqa_qual_id))
+						ass_dict.update({mod_quals.saqa_qual_id:{'moderator':moderator,'units':[]}})
+						for mod_us in mod_quals.qualification_line_hr:
+							mod_dict.get(mod_quals.saqa_qual_id).get('units').append(mod_us.id_no)
+		dbg('build_mod_dict :' + str(mod_dict))
+		return mod_dict
 
 	@api.one
 	def build_lib_dict(self):
