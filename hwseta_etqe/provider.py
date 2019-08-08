@@ -6321,17 +6321,16 @@ class provider_accreditation(models.Model):
 		for k, v in prov_dict.items():
 			prov_assessor = prov_dict.get(k).get('assessor')
 			ass_assessor = ass_dict.get(k).get('assessor')
-			if k in lib_dict:
-				if k in ass_dict and ass_assessor == prov_assessor:
-					dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
-					mismatch_dict.update({k: {'assessor': ass_assessor, 'units': []}})
-					for us in prov_dict.get(k).get('units'):
-						if us in ass_dict.get(k).get('units'):
-							dbg(str(k) + '--us:' + str(us))
-						else:
-							mismatch_dict.get(k).get('units').append(us)
-				else:
-					mismatch_dict.update({k: "not found"})
+			if k in ass_dict and ass_assessor == prov_assessor:
+				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
+				mismatch_dict.update({k: {'assessor': ass_assessor, 'units': []}})
+				for us in prov_dict.get(k).get('units'):
+					if us in ass_dict.get(k).get('units'):
+						dbg(str(k) + '--us:' + str(us))
+					else:
+						mismatch_dict.get(k).get('units').append(us)
+			else:
+				mismatch_dict.update({k: "not found"})
 		for k, v in prov_dict.items():
 			prov_moderator = prov_dict.get(k).get('moderator')
 			mod_moderator = ass_dict.get(k).get('moderator')
