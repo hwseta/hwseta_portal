@@ -6346,12 +6346,12 @@ class provider_accreditation(models.Model):
 						mod_mismatch_dict.get(k).get('units').append(us)
 			else:
 				mod_mismatch_dict.update({k: "not found"})
-		for k,v in mismatch_dict:
+		for k,v in mismatch_dict.items():
 			text_guy += 'Qualification:' + k + ' Assessor' + mismatch_dict.get(k).get('assessor') + '\n'
 			if mod_mismatch_dict.get(k).get('units'):
 				for unit in mod_mismatch_dict.get(k).get('units'):
 					text_guy += unit + '\n'
-		for k,v in mod_mismatch_dict:
+		for k,v in mod_mismatch_dict.items():
 			text_guy += 'Qualification:' + k + ' Assessor' + mismatch_dict.get(k).get('moderator') + '\n'
 			if mod_mismatch_dict.get(k).get('units'):
 				for unit in mod_mismatch_dict.get(k).get('units'):
