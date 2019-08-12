@@ -10769,7 +10769,7 @@ class provider_assessment(models.Model):
 									if u_line.achieve:
 										achieved_line += 1
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
-									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + achieved_line)
+									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
 									line.is_learner_achieved = True
 									line.certificate_no = self.env['ir.sequence'].get('learner.certificate.no')
 									line.certificate_date = str(datetime.today().date())
