@@ -529,7 +529,7 @@ class learner_registration_qualification(models.Model):
 				for line in self.env.user.partner_id.qualification_ids:
 					if qualification_obj.id == line.qualification_id.id:
 						for u_line in line.qualification_line:
-							if u_line.selection == True:
+							if u_line.selection == True or u_line.type == 'Exit Level Outcomes':
 								select = True
 							else:
 								select = False
