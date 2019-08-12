@@ -10757,9 +10757,12 @@ class provider_assessment(models.Model):
 						# This code is used to assign True value to achieve field of etqe learner qualification line
 						qual_line_obj = self.env['hr.employee'].search([('id', '=', learner_dict['learner_id'])])
 						for line in qual_line_obj.learner_qualification_ids:
+							dbg(line)
 							selected_line, achieved_line = 0, 0
 							if line.learner_qualification_parent_id.id in qual_ids and line.provider_id.id == self.provider_id.id:
+								dbg('match prov and quals for id:' + str(line))
 								for u_line in line.learner_registration_line_ids:
+									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
 										selected_line += 1
 										for assessment_unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
@@ -10779,6 +10782,9 @@ class provider_assessment(models.Model):
 									qual_line_obj.state= 'achieved'
 									qual_line_obj.learners_status= 'achieved'
 									learner_dict.update({'is_learner_achieved': True})
+								else:
+									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
+									dbg(learner_dict)
 						learner_achieved.append((0, 0, learner_dict))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
