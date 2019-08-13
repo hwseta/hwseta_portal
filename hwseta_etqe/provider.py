@@ -10739,12 +10739,14 @@ class provider_assessment(models.Model):
 				for learner_data in self.learner_achieve_ids:
 					min_qual_creds = learner_data.qual_learner_assessment_achieve_line_id.m_credits
 					min_creds_found = 0
-					for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
-						dbg(us_min.level3)
-						min_creds_found += int(us_min.level3)
-					raise Warning(_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
-					dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
+
 					if learner_data.achieve:
+						for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
+							dbg(us_min.level3)
+							min_creds_found += int(us_min.level3)
+						# raise Warning(
+						# 	_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
+						dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
 						qual_ids = []
 						unit_ids = []
 						for qual in learner_data.qual_learner_assessment_achieve_line_id:
@@ -10780,7 +10782,9 @@ class provider_assessment(models.Model):
 												line.is_complete = True
 									if u_line.achieve:
 										achieved_line += 1
-								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
+								# check if the counts are same or if min creds requirement are met
+								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
+										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
 									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
 									line.is_learner_achieved = True
 									line.certificate_no = self.env['ir.sequence'].get('learner.certificate.no')
