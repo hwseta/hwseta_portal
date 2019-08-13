@@ -6348,16 +6348,19 @@ class provider_accreditation(models.Model):
 				mod_mismatch_dict.update({k: "not found"})
 		for k,v in mismatch_dict.items():
 			if mismatch_dict.get(k).get('units'):
-				text_guy += 'Qualification:' + k + ' Assessor' + mismatch_dict.get(k).get('assessor').name + '\n'
+				text_guy += 'Qualification:' + k + ' Assessor:' + mismatch_dict.get(k).get('assessor').name + '\n'
 
 				for unit in mismatch_dict.get(k).get('units'):
 					text_guy += unit + '\n'
 		for k,v in mod_mismatch_dict.items():
 			if mod_mismatch_dict.get(k).get('units'):
-				text_guy += 'Qualification:' + k + ' Moderator' + mod_mismatch_dict.get(k).get('moderator').name + '\n'
+				text_guy += 'Qualification:' + k + ' Moderator:' + mod_mismatch_dict.get(k).get('moderator').name + '\n'
 				for unit in mod_mismatch_dict.get(k).get('units'):
 					text_guy += unit + '\n'
-		raise Warning(_(text_guy))
+		if text_guy == '':
+			pass
+		else:
+			raise Warning(_(text_guy))
 
 	@api.one
 	def compare_unit_standard_dicts(self):
