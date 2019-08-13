@@ -6318,7 +6318,8 @@ class provider_accreditation(models.Model):
 		mod_mismatch_dict = {}
 		dbg('prov' + str(type(prov_dict)))
 		dbg('ass' + str(type(ass_dict)))
-		dbg(prov_dict)
+		dbg('prov dict' + str(prov_dict))
+		dbg('ass dict' + str(ass_dict))
 		text_guy = ''
 		for k, v in prov_dict.items():
 			prov_assessor = prov_dict.get(k).get('assessor')
