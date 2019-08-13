@@ -6308,8 +6308,14 @@ class provider_accreditation(models.Model):
 			dbg('total' + str(this_total))
 		return this_total
 
+	@api.multi
+	def compare_all_us_dicts(self):
+		for this in self.env['provider.accreditation'].search([('state','!=','draft')]):
+			this.compare_us_dicts(multi=True)
+
+
 	@api.one
-	def compare_us_dicts(self):
+	def compare_us_dicts(self,multi=multi):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
 		# dbg(self.build_mod_dict())
@@ -6321,7 +6327,16 @@ class provider_accreditation(models.Model):
 		dbg('prov dict' + str(prov_dict))
 		dbg('ass dict' + str(ass_dict))
 		text_guy = ''
+		text_guy_issues = ''
 		for k, v in prov_dict.items():
+			if prov_dict.get(k).get('assessor') is None:
+				text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
+				# dbg(str(self.id) + 'missing assessor from prov dict:')
+				continue
+			if ass_dict.get(k).get('assessor') is None:
+				text_guy_issues += str(self.id) + 'missing assessor from ass dict:'
+				# dbg(str(self.id) + 'missing assessor from ass dict:')
+				continue
 			prov_assessor = prov_dict.get(k).get('assessor')
 			dbg('ass ass_assessor' + str(ass_dict.get(k)))
 			ass_assessor = ass_dict.get(k).get('assessor')
@@ -6336,6 +6351,14 @@ class provider_accreditation(models.Model):
 			else:
 				mismatch_dict.update({k: "not found"})
 		for k, v in prov_dict.items():
+			if prov_dict.get(k).get('moderator') is None:
+				text_guy_issues += str(self.id) + 'missing moderator from prov dict:'
+				# dbg(str(self.id) + 'missing moderator from prov dict:')
+				# continue
+			if ass_dict.get(k).get('moderator') is None:
+				text_guy_issues += str(self.id) + 'missing moderator from ass dict:'
+				# dbg(str(self.id) + 'missing moderator from ass dict:')
+				continue
 			prov_moderator = prov_dict.get(k).get('moderator')
 			mod_moderator = mod_dict.get(k).get('moderator')
 			if k in mod_dict and mod_moderator == prov_moderator:
@@ -6359,8 +6382,14 @@ class provider_accreditation(models.Model):
 				text_guy += 'Qualification:' + k + ' Moderator:' + mod_mismatch_dict.get(k).get('moderator').name + '\n'
 				for unit in mod_mismatch_dict.get(k).get('units'):
 					text_guy += unit + '\n'
+		if text_guy_issues == '':
+			pass
+		else:
+			dbg(text_guy_issues)
 		if text_guy == '':
 			pass
+		elif text_guy != '' and multi:
+			dbg(str(self.id) + text_guy)
 		else:
 			raise Warning(_(text_guy))
 
