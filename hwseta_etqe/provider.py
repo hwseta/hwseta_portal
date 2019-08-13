@@ -6323,6 +6323,7 @@ class provider_accreditation(models.Model):
 		text_guy = ''
 		for k, v in prov_dict.items():
 			prov_assessor = prov_dict.get(k).get('assessor')
+			dbg('ass ass_assessor' + str(ass_dict.get(k)))
 			ass_assessor = ass_dict.get(k).get('assessor')
 			if k in ass_dict and ass_assessor == prov_assessor:
 				dbg('same assessor:' + str(ass_assessor) + '-prov ass:' + str(prov_assessor))
