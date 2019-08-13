@@ -10737,6 +10737,11 @@ class provider_assessment(models.Model):
 			learner_achieved = []
 			if not self.learner_achieved_ids:
 				for learner_data in self.learner_achieve_ids:
+					min_qual_creds = learner_data.qual_learner_assessment_achieve_line_id.m_credits
+					min_creds_found = 0
+					for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
+						min_creds_found += us_min.level3
+					dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
 					if learner_data.achieve:
 						qual_ids = []
 						unit_ids = []
@@ -10757,10 +10762,12 @@ class provider_assessment(models.Model):
 						# This code is used to assign True value to achieve field of etqe learner qualification line
 						qual_line_obj = self.env['hr.employee'].search([('id', '=', learner_dict['learner_id'])])
 						for line in qual_line_obj.learner_qualification_ids:
+							min_expected_creds = line.learner_qualification_parent_id.m_credits
 							dbg(line)
 							selected_line, achieved_line = 0, 0
 							if line.learner_qualification_parent_id.id in qual_ids and line.provider_id.id == self.provider_id.id:
 								dbg('match prov and quals for id:' + str(line))
+								registration_min_creds = 0
 								for u_line in line.learner_registration_line_ids:
 									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
