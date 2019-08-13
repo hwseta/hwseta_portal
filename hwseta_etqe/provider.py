@@ -6315,7 +6315,7 @@ class provider_accreditation(models.Model):
 
 
 	@api.one
-	def compare_us_dicts(self,multi=multi):
+	def compare_us_dicts(self,**kwargs):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
 		# dbg(self.build_mod_dict())
@@ -6388,7 +6388,7 @@ class provider_accreditation(models.Model):
 			dbg(text_guy_issues)
 		if text_guy == '':
 			pass
-		elif text_guy != '' and multi:
+		elif text_guy != '' and kwargs.get('multi'):
 			dbg(str(self.id) + text_guy)
 		else:
 			raise Warning(_(text_guy))
