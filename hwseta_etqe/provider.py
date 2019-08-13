@@ -10741,6 +10741,7 @@ class provider_assessment(models.Model):
 					min_creds_found = 0
 					for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
 						min_creds_found += us_min.level3
+					raise Warning(_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
 					dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
 					if learner_data.achieve:
 						qual_ids = []
