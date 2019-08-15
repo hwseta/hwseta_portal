@@ -10835,7 +10835,7 @@ class provider_assessment(models.Model):
 									dbg('problems' + str(req_units) + '\n' + str(req_units_found))
 								# check if the counts are same or if min creds requirement are met
 								if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
-									raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + missing_req_units))
+									raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units)))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
 										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
 									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
