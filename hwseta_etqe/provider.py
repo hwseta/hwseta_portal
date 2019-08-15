@@ -10781,7 +10781,7 @@ class provider_assessment(models.Model):
 							min_creds_found += int(us_min.level3)
 							dbg('unit--' + str(us_min) + 'type found' + str(us_min.type))
 							if us_min.type in ['Core','Fundamental']:
-								req_units_found.append(us_min.id)
+								req_units_found.append(us_min.id_no)
 						# raise Warning(
 						# 	_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
 						dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
@@ -10818,7 +10818,7 @@ class provider_assessment(models.Model):
 									if u_line.selection:
 										dbg('reg unit expected' + str(u_line) + 'type---' + str(u_line.type))
 										if u_line.type in ['Core', 'Fundamental']:
-											req_units.append(u_line.id)
+											req_units.append(u_line.id_no)
 										selected_line += 1
 										for assessment_unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
 											if u_line.title == assessment_unit.title:
