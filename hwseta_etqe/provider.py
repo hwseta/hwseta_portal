@@ -6322,13 +6322,14 @@ class provider_accreditation(models.Model):
 		mod_dict = self.build_mod_dict()
 		mismatch_dict = {}
 		mod_mismatch_dict = {}
-		dbg('prov' + str(type(prov_dict)))
-		dbg('ass' + str(type(ass_dict)))
-		dbg('prov dict' + str(prov_dict))
-		dbg('ass dict' + str(ass_dict))
+		# dbg('prov' + str(type(prov_dict)))
+		# dbg('ass' + str(type(ass_dict)))
+		# dbg('prov dict' + str(prov_dict))
+		# dbg('ass dict' + str(ass_dict))
 		text_guy = ''
 		text_guy_issues = ''
 		for k, v in prov_dict.items():
+			dbg(prov_dict.get(k))
 			if prov_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
 				text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
 				# dbg(str(self.id) + 'missing assessor from prov dict:')
@@ -6462,7 +6463,7 @@ class provider_accreditation(models.Model):
 				for prov_us in prov_quals.qualification_line:
 					if prov_us.selection:
 						prov_dict.get(prov_quals.saqa_qual_id).get('units').append(prov_us.id_no)
-		dbg('build_prov_dict :' + str(prov_dict))
+		# dbg('build_prov_dict :' + str(prov_dict))
 		return prov_dict
 		# raise Warning(_(prov_dict))
 
@@ -6477,12 +6478,11 @@ class provider_accreditation(models.Model):
 					assessor = self.env['hr.employee'].search([('id','=',421344)])
 				for ass_quals in prov_quals.assessors_id.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
-						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
-
+						# dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
 						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
-		dbg('build_ass_dict :' + str(ass_dict))
+		# dbg('build_ass_dict :' + str(ass_dict))
 		return ass_dict
 
 	def build_mod_dict(self):
@@ -6495,11 +6495,11 @@ class provider_accreditation(models.Model):
 					moderator = self.env['hr.employee'].search([('id','=',421344)])
 				for mod_quals in prov_quals.moderators_id.moderator_qualification_ids:
 					if mod_quals.saqa_qual_id not in mod_dict:
-						dbg('not in mod dict' + str(mod_quals.saqa_qual_id))
+						# dbg('not in mod dict' + str(mod_quals.saqa_qual_id))
 						mod_dict.update({mod_quals.saqa_qual_id:{'moderator':moderator,'units':[]}})
 						for mod_us in mod_quals.qualification_line_hr:
 							mod_dict.get(mod_quals.saqa_qual_id).get('units').append(mod_us.id_no)
-		dbg('build_mod_dict :' + str(mod_dict))
+		# dbg('build_mod_dict :' + str(mod_dict))
 		return mod_dict
 
 	@api.one
