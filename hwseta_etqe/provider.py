@@ -6329,11 +6329,11 @@ class provider_accreditation(models.Model):
 		text_guy = ''
 		text_guy_issues = ''
 		for k, v in prov_dict.items():
-			if not prov_dict.get(k).get('assessor'):
+			if prov_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
 				text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
 				# dbg(str(self.id) + 'missing assessor from prov dict:')
 				continue
-			if not ass_dict.get(k).get('assessor'):
+			if ass_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
 				text_guy_issues += str(self.id) + 'missing assessor from ass dict:'
 				# dbg(str(self.id) + 'missing assessor from ass dict:')
 				continue
@@ -6471,10 +6471,14 @@ class provider_accreditation(models.Model):
 		ass_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
-				assessor = prov_quals.assessors_id
+				if prov_quals.assessors_id:
+					assessor = prov_quals.assessors_id
+				else:
+					assessor = self.env['hr.employee'].search([('id','=',421344)])
 				for ass_quals in prov_quals.assessors_id.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
 						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
+
 						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
@@ -6485,7 +6489,10 @@ class provider_accreditation(models.Model):
 		mod_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
-				moderator = prov_quals.moderators_id
+				if prov_quals.moderators_id:
+					moderator = prov_quals.moderators_id
+				else:
+					moderator = self.env['hr.employee'].search([('id','=',421344)])
 				for mod_quals in prov_quals.moderators_id.moderator_qualification_ids:
 					if mod_quals.saqa_qual_id not in mod_dict:
 						dbg('not in mod dict' + str(mod_quals.saqa_qual_id))
