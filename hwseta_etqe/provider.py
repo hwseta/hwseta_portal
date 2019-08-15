@@ -10826,12 +10826,16 @@ class provider_assessment(models.Model):
 												line.is_complete = True
 									if u_line.achieve:
 										achieved_line += 1
-								# check if the counts are same or if min creds requirement are met
+								missing_req_units = []
+								for x in req_units:
+									if x not in req_units_found:
+										missing_req_units.append(x)
 								if (x for x in req_units) not in req_units_found:
 									# raise Warning(_('problems' + str(req_units) + '\n' + str(req_units_found)))
 									dbg('problems' + str(req_units) + '\n' + str(req_units_found))
+								# check if the counts are same or if min creds requirement are met
 								if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
-									raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required'))
+									raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + missing_req_units))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
 										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
 									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
