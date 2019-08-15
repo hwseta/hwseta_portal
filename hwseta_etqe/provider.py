@@ -6329,11 +6329,11 @@ class provider_accreditation(models.Model):
 		text_guy = ''
 		text_guy_issues = ''
 		for k, v in prov_dict.items():
-			if prov_dict.get(k).get('assessor') is None:
+			if not prov_dict.get(k).get('assessor'):
 				text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
 				# dbg(str(self.id) + 'missing assessor from prov dict:')
 				continue
-			if ass_dict.get(k).get('assessor') is None:
+			if not ass_dict.get(k).get('assessor'):
 				text_guy_issues += str(self.id) + 'missing assessor from ass dict:'
 				# dbg(str(self.id) + 'missing assessor from ass dict:')
 				continue
@@ -6351,11 +6351,11 @@ class provider_accreditation(models.Model):
 			else:
 				mismatch_dict.update({k: "not found"})
 		for k, v in prov_dict.items():
-			if prov_dict.get(k).get('moderator') is None:
+			if not prov_dict.get(k).get('moderator'):
 				text_guy_issues += str(self.id) + 'missing moderator from prov dict:'
 				# dbg(str(self.id) + 'missing moderator from prov dict:')
 				# continue
-			if ass_dict.get(k).get('moderator') is None:
+			if not ass_dict.get(k).get('moderator'):
 				text_guy_issues += str(self.id) + 'missing moderator from ass dict:'
 				# dbg(str(self.id) + 'missing moderator from ass dict:')
 				continue
@@ -10774,11 +10774,13 @@ class provider_assessment(models.Model):
 				for learner_data in self.learner_achieve_ids:
 					min_qual_creds = learner_data.qual_learner_assessment_achieve_line_id.m_credits
 					min_creds_found = 0
-
 					if learner_data.achieve:
+						req_units_found = []
 						for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
 							dbg(us_min.level3)
 							min_creds_found += int(us_min.level3)
+							if us_min.type in ['core','fundemental']:
+								req_units_found.append(us_min.id)
 						# raise Warning(
 						# 	_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
 						dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
@@ -10786,8 +10788,10 @@ class provider_assessment(models.Model):
 						unit_ids = []
 						for qual in learner_data.qual_learner_assessment_achieve_line_id:
 							qual_ids.append(qual.id)
+						req_units = []
 						for unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
 							unit_ids.append(unit.id)
+
 						learner_dict = {
 								 'learner_id':learner_data.learner_id and learner_data.learner_id.id,
 								 'learner_identity_number' : learner_data.learner_identity_number,
@@ -10807,9 +10811,12 @@ class provider_assessment(models.Model):
 							if line.learner_qualification_parent_id.id in qual_ids and line.provider_id.id == self.provider_id.id:
 								dbg('match prov and quals for id:' + str(line))
 								registration_min_creds = 0
+								req_units = []
 								for u_line in line.learner_registration_line_ids:
 									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
+										if u_line.type in ['core', 'fundemental']:
+											req_units.append(u_line.id)
 										selected_line += 1
 										for assessment_unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
 											if u_line.title == assessment_unit.title:
@@ -10818,6 +10825,8 @@ class provider_assessment(models.Model):
 									if u_line.achieve:
 										achieved_line += 1
 								# check if the counts are same or if min creds requirement are met
+								if (x for x in req_units) not in req_units_found:
+									raise Warning(_('problems'))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
 										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
 									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
