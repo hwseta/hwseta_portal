@@ -6483,7 +6483,7 @@ class provider_accreditation(models.Model):
 						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
-		# dbg('build_ass_dict :' + str(ass_dict))
+		dbg(str(self) + 'build_ass_dict :' + str(ass_dict))
 		return ass_dict
 
 	def build_mod_dict(self):
