@@ -10779,7 +10779,8 @@ class provider_assessment(models.Model):
 						for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
 							dbg(us_min.level3)
 							min_creds_found += int(us_min.level3)
-							if us_min.type in ['core','fundemental']:
+							dbg('unit--' + str(us_min) + 'type found' + str(us_min.type))
+							if us_min.type == 'core' or us_min.type == 'fundemental':
 								req_units_found.append(us_min.id)
 						# raise Warning(
 						# 	_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
@@ -10788,7 +10789,7 @@ class provider_assessment(models.Model):
 						unit_ids = []
 						for qual in learner_data.qual_learner_assessment_achieve_line_id:
 							qual_ids.append(qual.id)
-						req_units = []
+
 						for unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
 							unit_ids.append(unit.id)
 
@@ -10815,6 +10816,7 @@ class provider_assessment(models.Model):
 								for u_line in line.learner_registration_line_ids:
 									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
+										dbg('reg unit expected' + str(u_line) + 'type---' + str(u_line.type))
 										if u_line.type in ['core', 'fundemental']:
 											req_units.append(u_line.id)
 										selected_line += 1
@@ -10826,7 +10828,10 @@ class provider_assessment(models.Model):
 										achieved_line += 1
 								# check if the counts are same or if min creds requirement are met
 								if (x for x in req_units) not in req_units_found:
-									raise Warning(_('problems' + str(req_units) + '\n' + str(req_units_found)))
+									# raise Warning(_('problems' + str(req_units) + '\n' + str(req_units_found)))
+									dbg('problems' + str(req_units) + '\n' + str(req_units_found))
+								if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
+									raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required'))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
 										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
 									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
