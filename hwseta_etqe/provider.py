@@ -10855,6 +10855,7 @@ class provider_assessment(models.Model):
 								for x in req_units:
 									if x not in req_units_found:
 										missing_req_units.append(x)
+								raise Warning(_(missing_req_units))
 								if not missing_req_units:
 									missing_required = False
 								else:
