@@ -6492,6 +6492,8 @@ class provider_accreditation(models.Model):
 						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
+					elif ass_quals.saqa_qual_id not in ass_dict and ass_quals.saqa_qual_id != prov_quals.saqa_qual_id:
+						ass_dict.update({prov_quals.saqa_qual_id: {'assessor': assessor, 'units': [],'missing_qual':True}})
 		dbg(str(self) + 'build_ass_dict :' + str(ass_dict))
 		return ass_dict
 
