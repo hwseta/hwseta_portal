@@ -10856,12 +10856,13 @@ class provider_assessment(models.Model):
 									if x not in req_units_found:
 										missing_req_units.append(x)
 								# raise Warning(_(missing_req_units))
-								if not missing_req_units:
+								missing_required = False
+								if missing_req_units == []:
 									missing_required = False
 								else:
 									missing_required = True
-									raise Warning(_(missing_req_units))
-								raise Warning(_(missing_required))
+									# raise Warning(_(missing_req_units))
+								raise Warning(_('required' + str(missing_required) + 'units' + str(missing_req_units)))
 
 								if (x for x in req_units) not in req_units_found:
 									missing_required = True
