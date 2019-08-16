@@ -6318,8 +6318,8 @@ class provider_accreditation(models.Model):
 	def compare_us_dicts(self,**kwargs):
 		prov_dict = self.build_prov_dict()[0]
 		ass_dict = self.build_ass_dict()[0]
-		dbg('ass dict as is ----------------------------------' + str(self.build_ass_dict()))
-		dbg('ass dict as variable ----------------------------------' + str(ass_dict))
+		# dbg('ass dict as is ----------------------------------' + str(self.build_ass_dict()))
+		# dbg('ass dict as variable ----------------------------------' + str(ass_dict))
 		mod_dict = self.build_mod_dict()
 		mismatch_dict = {}
 		mod_mismatch_dict = {}
@@ -6477,14 +6477,15 @@ class provider_accreditation(models.Model):
 				if prov_quals.assessors_id:
 					assessor = prov_quals.assessors_id
 				else:
+					dbg('missing assessor rec!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 					assessor = self.env['hr.employee'].search([('id','=',421344)])
-				for ass_quals in prov_quals.assessors_id.qualification_ids:
+				for ass_quals in assessor.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
 						# dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
 						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
-		dbg(str(self) + 'build_ass_dict :' + str(ass_dict))
+		# dbg(str(self) + 'build_ass_dict :' + str(ass_dict))
 		return ass_dict
 
 	def build_mod_dict(self):
@@ -6495,7 +6496,7 @@ class provider_accreditation(models.Model):
 					moderator = prov_quals.moderators_id
 				else:
 					moderator = self.env['hr.employee'].search([('id','=',421344)])
-				for mod_quals in prov_quals.moderators_id.moderator_qualification_ids:
+				for mod_quals in moderator.moderator_qualification_ids:
 					if mod_quals.saqa_qual_id not in mod_dict:
 						# dbg('not in mod dict' + str(mod_quals.saqa_qual_id))
 						mod_dict.update({mod_quals.saqa_qual_id:{'moderator':moderator,'units':[]}})
