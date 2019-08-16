@@ -6402,9 +6402,9 @@ class provider_accreditation(models.Model):
 		ass_dict = self.build_ass_dict()[0]
 		lib_dict = self.build_lib_dict()[0]
 		mismatch_dict = {}
-		dbg('prov' + str(type(prov_dict)))
-		dbg('ass' + str(type(ass_dict)))
-		dbg(prov_dict)
+		# dbg('prov' + str(type(prov_dict)))
+		# dbg('ass' + str(type(ass_dict)))
+		# dbg(prov_dict)
 		text_guy = ''
 		style = '<style>#lib_units table, #lib_units th, #lib_units td {border: 1px solid black;text-align: center;}</style>'
 		start_table = '<table id="lib_units">'
@@ -6475,9 +6475,10 @@ class provider_accreditation(models.Model):
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
 				if prov_quals.assessors_id:
+					dbg('found assessor!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + str(prov_quals.assessors_id))
 					assessor = prov_quals.assessors_id
 				else:
-					dbg('missing assessor rec!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+					dbg('missing assessor rec!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + str(prov_quals.assessors_id))
 					assessor = self.env['hr.employee'].search([('id','=',421344)])
 				for ass_quals in assessor.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
