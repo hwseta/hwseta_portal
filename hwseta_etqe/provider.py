@@ -6482,7 +6482,7 @@ class provider_accreditation(models.Model):
 					assessor = self.env['hr.employee'].search([('id','=',421344)])
 				for ass_quals in assessor.qualification_ids:
 					if ass_quals.saqa_qual_id not in ass_dict:
-						# dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
+						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
 						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
 						for ass_us in ass_quals.qualification_line_hr:
 							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
