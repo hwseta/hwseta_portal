@@ -10797,10 +10797,8 @@ class provider_assessment(models.Model):
 						unit_ids = []
 						for qual in learner_data.qual_learner_assessment_achieve_line_id:
 							qual_ids.append(qual.id)
-
 						for unit in learner_data.unit_standards_learner_assessment_achieve_line_id:
 							unit_ids.append(unit.id)
-
 						learner_dict = {
 								 'learner_id':learner_data.learner_id and learner_data.learner_id.id,
 								 'learner_identity_number' : learner_data.learner_identity_number,
@@ -10838,15 +10836,16 @@ class provider_assessment(models.Model):
 								for x in req_units:
 									if x not in req_units_found:
 										missing_req_units.append(x)
+								missing_required = False
 								if (x for x in req_units) not in req_units_found:
+									missing_required = True
 									# raise Warning(_('problems' + str(req_units) + '\n' + str(req_units_found)))
 									dbg('problems' + str(req_units) + '\n' + str(req_units_found))
 								# check if the counts are same or if min creds requirement are met
 								if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
-									raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units)))
+									dbg('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
-										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found:
-									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
+										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found and not missing_required:
 									line.is_learner_achieved = True
 									line.certificate_no = self.env['ir.sequence'].get('learner.certificate.no')
 									line.certificate_date = str(datetime.today().date())
@@ -10856,9 +10855,8 @@ class provider_assessment(models.Model):
 									qual_line_obj.state= 'achieved'
 									qual_line_obj.learners_status= 'achieved'
 									learner_dict.update({'is_learner_achieved': True})
-								else:
-									dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
-									dbg(learner_dict)
+								# else:
+								# 	dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
 						learner_achieved.append((0, 0, learner_dict))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
