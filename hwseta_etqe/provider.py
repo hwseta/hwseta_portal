@@ -6317,7 +6317,7 @@ class provider_accreditation(models.Model):
 	@api.one
 	def compare_us_dicts(self,**kwargs):
 		prov_dict = self.build_prov_dict()[0]
-		ass_dict = self.build_ass_dict()[0]
+		ass_dict = self.build_ass_dict()
 		# dbg(self.build_mod_dict())
 		mod_dict = self.build_mod_dict()
 		mismatch_dict = {}
