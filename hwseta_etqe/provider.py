@@ -6379,9 +6379,9 @@ class provider_accreditation(models.Model):
 			else:
 				mod_mismatch_dict.update({k: "not found"})
 		for k,v in mismatch_dict.items():
+			dbg('mismatch dict k' + str(mismatch_dict.get(k)))
 			if mismatch_dict.get(k).get('units'):
 				text_guy += 'Qualification:' + k + ' Assessor:' + mismatch_dict.get(k).get('assessor').name + '\n'
-
 				for unit in mismatch_dict.get(k).get('units'):
 					text_guy += unit + '\n'
 		for k,v in mod_mismatch_dict.items():
