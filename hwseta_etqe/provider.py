@@ -6333,14 +6333,17 @@ class provider_accreditation(models.Model):
 			dbg('prov_dict' + str(prov_dict.get(k)))
 			dbg(k)
 			dbg('ass dict' + str(ass_dict.get(k)))
-			if prov_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
-				text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
-				# dbg(str(self.id) + 'missing assessor from prov dict:')
-				continue
-			if ass_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
-				text_guy_issues += str(self.id) + 'missing assessor from ass dict:'
-				# dbg(str(self.id) + 'missing assessor from ass dict:')
-				continue
+			if ass_dict.get(k).get('missing_qual'):
+				text_guy_issues += str(self.id) + 'missing Qual from assessor dict:' + str(k)
+			else:
+				if prov_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
+					text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
+					# dbg(str(self.id) + 'missing assessor from prov dict:')
+					continue
+				if ass_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
+					text_guy_issues += str(self.id) + 'missing assessor from ass dict:'
+					# dbg(str(self.id) + 'missing assessor from ass dict:')
+					continue
 			prov_assessor = prov_dict.get(k).get('assessor')
 			dbg('ass ass_assessor' + str(ass_dict.get(k)))
 			ass_assessor = ass_dict.get(k).get('assessor')
