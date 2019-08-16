@@ -6379,7 +6379,7 @@ class provider_accreditation(models.Model):
 			else:
 				mod_mismatch_dict.update({k: "not found"})
 		for k,v in mismatch_dict.items():
-			dbg('mismatch dict k' + str(mismatch_dict.get(k)))
+			dbg('mismatch dict k' + str(mismatch_dict.get(k)) + 'key:' + str(k))
 			if mismatch_dict.get(k) == 'not found':
 				text_guy += 'Qualification:' + k + ' no dict found:' + '\n'
 			else:
