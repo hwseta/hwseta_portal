@@ -6331,6 +6331,7 @@ class provider_accreditation(models.Model):
 		text_guy_issues = ''
 		for k, v in prov_dict.items():
 			dbg('prov_dict' + str(prov_dict.get(k)))
+			dbg(k)
 			dbg('ass dict' + str(ass_dict.get(k)))
 			if prov_dict.get(k).get('assessor') == self.env['hr.employee'].search([('id','=',421344)]):
 				text_guy_issues += str(self.id) + 'missing assessor from prov dict:'
