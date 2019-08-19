@@ -6468,12 +6468,17 @@ class provider_accreditation(models.Model):
 		prov_dict = {}
 		if self.qualification_ids:
 			for prov_quals in self.qualification_ids:
-				prov_dict.update({prov_quals.saqa_qual_id:{'assessor':prov_quals.assessors_id,
-				                                           'moderator':prov_quals.moderators_id,
-				                                           'units':[]}})
-				for prov_us in prov_quals.qualification_line:
-					if prov_us.selection:
-						prov_dict.get(prov_quals.saqa_qual_id).get('units').append(prov_us.id_no)
+				if prov_quals.saqa_qual_id:
+					prov_dict.update({prov_quals.saqa_qual_id:{'assessor':prov_quals.assessors_id,
+					                                           'moderator':prov_quals.moderators_id,
+					                                           'units':[]}})
+					for prov_us in prov_quals.qualification_line:
+						if prov_us.selection:
+							prov_dict.get(prov_quals.saqa_qual_id).get('units').append(prov_us.id_no)
+				else:
+					with open("accrediation_issues.txt", "a+") as f:
+						f.write(str(self.id) + 'missing qualification:' + str(prov_quals.qualification_id.saqa_qual_id))
+						f.close()
 		# dbg('build_prov_dict :' + str(prov_dict))
 		return prov_dict
 		# raise Warning(_(prov_dict))
