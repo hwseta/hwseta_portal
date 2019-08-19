@@ -6322,19 +6322,19 @@ class provider_accreditation(models.Model):
 						pass
 					else:
 						with open("accrediation_assessors.txt", "a+") as f:
-							f.write(str(self.id) + 'missing assessor:')
+							f.write(str(this.id) + 'missing assessor:\n')
 							f.close()
 					if quals.moderators_id:
 						pass
 					else:
 						with open("accrediation_moderators.txt", "a+") as f:
-							f.write(str(self.id) + 'missing moderator:')
+							f.write(str(this.id) + 'missing moderator:\n')
 							f.close()
 					if quals.saqa_qual_id:
 						pass
 					else:
 						with open("accrediation_quals.txt", "a+") as f:
-							f.write(str(self.id) + 'missing quals:')
+							f.write(str(this.id) + 'missing quals:\n')
 							f.close()
 
 
