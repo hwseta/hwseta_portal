@@ -6313,7 +6313,7 @@ class provider_accreditation(models.Model):
 		for this in self.env['provider.accreditation'].search([('state','!=','draft')]):
 			this.compare_us_dicts(multi=True)
 
-	@pi.multi
+	@api.multi
 	def check_assessors_ids(self):
 		for this in self.env['provider.accreditation'].search([('state', '!=', 'draft')]):
 			if this.qualification_ids:
