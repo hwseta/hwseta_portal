@@ -6491,22 +6491,25 @@ class provider_accreditation(models.Model):
 				if prov_quals.assessors_id:
 					dbg('found assessor!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + str(prov_quals.assessors_id))
 					assessor = prov_quals.assessors_id
+					for ass_quals in assessor.qualification_ids:
+						dbg(ass_quals.saqa_qual_id)
+						if ass_quals.saqa_qual_id == prov_quals.saqa_qual_id:
+							dbg('matching quals!!!!' + str(ass_quals.saqa_qual_id) + '-vs-' + str(
+								prov_quals.saqa_qual_id))
+						else:
+							dbg('!!!!!!!!!!!!!!!non-matching quals!!!!' + str(ass_quals.saqa_qual_id) + '-vs-' + str(
+								prov_quals.saqa_qual_id))
+						if ass_quals.saqa_qual_id not in ass_dict and ass_quals.saqa_qual_id == prov_quals.saqa_qual_id:
+							dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
+							ass_dict.update({ass_quals.saqa_qual_id: {'assessor': assessor, 'units': []}})
+							for ass_us in ass_quals.qualification_line_hr:
+								ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
+						elif ass_quals.saqa_qual_id not in ass_dict and ass_quals.saqa_qual_id != prov_quals.saqa_qual_id:
+							ass_dict.update(
+								{prov_quals.saqa_qual_id: {'assessor': assessor, 'units': [], 'missing_qual': True}})
 				else:
-					dbg('missing assessor rec!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + str(prov_quals.assessors_id))
-					assessor = self.env['hr.employee'].search([('id','=',421344)])
-				for ass_quals in assessor.qualification_ids:
-					dbg(ass_quals.saqa_qual_id)
-					if ass_quals.saqa_qual_id == prov_quals.saqa_qual_id:
-						dbg('matching quals!!!!' + str(ass_quals.saqa_qual_id) + '-vs-' + str(prov_quals.saqa_qual_id))
-					else:
-						dbg('!!!!!!!!!!!!!!!non-matching quals!!!!' + str(ass_quals.saqa_qual_id) + '-vs-' + str(prov_quals.saqa_qual_id))
-					if ass_quals.saqa_qual_id not in ass_dict and ass_quals.saqa_qual_id == prov_quals.saqa_qual_id:
-						dbg('not in ass dict' + str(ass_quals.saqa_qual_id))
-						ass_dict.update({ass_quals.saqa_qual_id:{'assessor':assessor,'units':[]}})
-						for ass_us in ass_quals.qualification_line_hr:
-							ass_dict.get(ass_quals.saqa_qual_id).get('units').append(ass_us.id_no)
-					elif ass_quals.saqa_qual_id not in ass_dict and ass_quals.saqa_qual_id != prov_quals.saqa_qual_id:
-						ass_dict.update({prov_quals.saqa_qual_id: {'assessor': assessor, 'units': [],'missing_qual':True}})
+					with open("accrediation_issues", "a+") as f:
+						f.write(str(self.id) + 'missing Assessor on Qual:' + str(prov_quals.qualification_id.saqa_qual_id))
 		dbg(str(self) + 'build_ass_dict :' + str(ass_dict))
 		return ass_dict
 
