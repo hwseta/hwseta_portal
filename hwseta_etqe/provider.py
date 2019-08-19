@@ -6313,6 +6313,30 @@ class provider_accreditation(models.Model):
 		for this in self.env['provider.accreditation'].search([('state','!=','draft')]):
 			this.compare_us_dicts(multi=True)
 
+	@pi.multi
+	def check_assessors_ids(self):
+		for this in self.env['provider.accreditation'].search([('state', '!=', 'draft')]):
+			if this.qualification_ids:
+				for quals in this.qualification_ids:
+					if quals.assessors_id:
+						pass
+					else:
+						with open("accrediation_assessors.txt", "a+") as f:
+							f.write(str(self.id) + 'missing assessor:')
+							f.close()
+					if quals.moderators_id:
+						pass
+					else:
+						with open("accrediation_moderators.txt", "a+") as f:
+							f.write(str(self.id) + 'missing moderator:')
+							f.close()
+					if quals.saqa_qual_id:
+						pass
+					else:
+						with open("accrediation_quals.txt", "a+") as f:
+							f.write(str(self.id) + 'missing quals:')
+							f.close()
+
 
 	@api.one
 	def compare_us_dicts(self,**kwargs):
@@ -6371,14 +6395,19 @@ class provider_accreditation(models.Model):
 				dbg('adding to mistmatch dict' + str(k))
 				mismatch_dict.update({k: "not found"})
 		for k, v in prov_dict.items():
-			if not prov_dict.get(k).get('moderator'):
-				text_guy_issues += str(self.id) + 'missing moderator from prov dict:'
-				# dbg(str(self.id) + 'missing moderator from prov dict:')
-				# continue
-			if not ass_dict.get(k).get('moderator'):
-				text_guy_issues += str(self.id) + 'missing moderator from ass dict:'
-				# dbg(str(self.id) + 'missing moderator from ass dict:')
-				continue
+			if k == 'moderator':
+				if not prov_dict.get(k).get('moderator'):
+					text_guy_issues += str(self.id) + 'missing moderator from prov dict:'
+					# dbg(str(self.id) + 'missing moderator from prov dict:')
+					# continue
+				if not ass_dict.get(k).get('moderator'):
+					text_guy_issues += str(self.id) + 'missing moderator from ass dict:'
+					# dbg(str(self.id) + 'missing moderator from ass dict:')
+					continue
+				else:
+					with open("accrediation_issues.txt", "a+") as f:
+						f.write(str(self.id) + 'missing moderator:' + str())
+						f.close()
 			prov_moderator = prov_dict.get(k).get('moderator')
 			mod_moderator = mod_dict.get(k).get('moderator')
 			if k in mod_dict and mod_moderator == prov_moderator:
