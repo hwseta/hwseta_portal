@@ -10981,7 +10981,7 @@ class provider_assessment(models.Model):
 												line.is_complete = True
 									if u_line.achieve:
 										achieved_line += 1
-								text += 'selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line) + '\n'
+								text += 'line:' + str(line) + '-found skill:' + str(line.skills_programme_id.id) + 'selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line) + '\n'
 								# raise Warning(_('selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line)))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
 									line.is_learner_achieved = True
@@ -10994,6 +10994,7 @@ class provider_assessment(models.Model):
 									qual_line_obj.learners_status= 'achieved'
 									learner_dict.update({'is_learner_achieved': True})
 						learner_achieved.append((0, 0, learner_dict))
+				text += str(skill_ids)
 				raise Warning(_(text))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
