@@ -10972,16 +10972,21 @@ class provider_assessment(models.Model):
 						for line in qual_line_obj.skills_programme_ids:
 							selected_line, achieved_line = 0, 0
 							if line.skills_programme_id.id in skill_ids and line.provider_id.id == self.provider_id.id:
+								reg_units_found = []
+								ass_units_found = []
 								for u_line in line.unit_standards_line:
 									if u_line.selection:
 										selected_line += 1
+										reg_units_found.append(u_line.title)
 										for assessment_unit in learner_data.skill_unit_standards_learner_assessment_achieve_line_id:
+											ass_units_found.append(assessment_unit.title)
 											if u_line.title == assessment_unit.title:
 												u_line.achieve = True
 												line.is_complete = True
 									if u_line.achieve:
 										achieved_line += 1
 								text += 'line:' + str(line) + '-found skill:' + str(line.skills_programme_id.id) + 'selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line) + '\n'
+								text += 'reg units:' + str(reg_units_found) + 'assessment units' + '\n' + str(ass_units_found)
 								# raise Warning(_('selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line)))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
 									line.is_learner_achieved = True
