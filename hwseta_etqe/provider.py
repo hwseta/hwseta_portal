@@ -10987,7 +10987,7 @@ class provider_assessment(models.Model):
 									if u_line.achieve:
 										achieved_line += 1
 								text += 'line:' + str(line) + '-found skill:' + str(line.skills_programme_id.id) + 'selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line) + '\n'
-								text += 'reg units:' + str(reg_units_found) + 'assessment units' + '\n' + str(ass_units_found)
+								text += 'reg units:' + '\n' + str(reg_units_found) + '\n' + 'assessment units' + '\n' + str(ass_units_found) + '\n'
 								# raise Warning(_('selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line)))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
 									line.is_learner_achieved = True
