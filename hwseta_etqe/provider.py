@@ -10979,7 +10979,8 @@ class provider_assessment(models.Model):
 										selected_line += 1
 										reg_units_found.append(u_line.id_no)
 										for assessment_unit in learner_data.skill_unit_standards_learner_assessment_achieve_line_id:
-											ass_units_found.append(assessment_unit.id_no)
+											if assessment_unit.id_no not in ass_units_found:
+												ass_units_found.append(assessment_unit.id_no)
 											if u_line.title == assessment_unit.title:
 												u_line.achieve = True
 												line.is_complete = True
