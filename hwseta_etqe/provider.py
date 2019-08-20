@@ -10948,6 +10948,7 @@ class provider_assessment(models.Model):
 		elif self.qual_skill_assessment == 'skill':
 			learner_achieved = []
 			if not self.learner_achieved_ids_for_skills:
+				text = ''
 				for learner_data in self.learner_achieve_ids_for_skills:
 					if learner_data.achieve:
 						skill_ids = []
@@ -10980,7 +10981,8 @@ class provider_assessment(models.Model):
 												line.is_complete = True
 									if u_line.achieve:
 										achieved_line += 1
-								raise Warning(_('selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line)))
+								text += 'selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line) + '\n'
+								# raise Warning(_('selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line)))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
 									line.is_learner_achieved = True
 									line.certificate_no = self.env['ir.sequence'].get('learner.certificate.no')
@@ -10992,6 +10994,7 @@ class provider_assessment(models.Model):
 									qual_line_obj.learners_status= 'achieved'
 									learner_dict.update({'is_learner_achieved': True})
 						learner_achieved.append((0, 0, learner_dict))
+				raise Warning(_(text))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
 																  'pro_id':self.id,
