@@ -10977,9 +10977,9 @@ class provider_assessment(models.Model):
 								for u_line in line.unit_standards_line:
 									if u_line.selection:
 										selected_line += 1
-										reg_units_found.append(u_line.title)
+										reg_units_found.append(u_line.saqa_qual_id)
 										for assessment_unit in learner_data.skill_unit_standards_learner_assessment_achieve_line_id:
-											ass_units_found.append(assessment_unit.title)
+											ass_units_found.append(assessment_unit.saqa_qual_id)
 											if u_line.title == assessment_unit.title:
 												u_line.achieve = True
 												line.is_complete = True
