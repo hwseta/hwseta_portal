@@ -10896,7 +10896,7 @@ class provider_assessment(models.Model):
 									# text_guy += 'units:' + str(u_line.id_data) + '\n'
 									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
-										text_guy += 'reg unit expected:' + str(u_line.id_data) + 'type---' + str(u_line.type) + '\n'
+										# text_guy += 'reg unit expected:' + str(u_line.id_data) + 'type---' + str(u_line.type) + '\n'
 										dbg('reg unit expected' + str(u_line) + 'type---' + str(u_line.type))
 										if u_line.type in ['Core', 'Fundamental']:
 											req_units.append(u_line.id_data)
@@ -10918,7 +10918,7 @@ class provider_assessment(models.Model):
 									text_guy += 'no missing required units\n'
 								else:
 									missing_required = True
-									text_guy += '!!!!!!!!!!missing required\n'
+									text_guy += '!!!!!!!!!!missing required\n' + str(missing_req_units)
 								# check if the counts are same or if min creds requirement are met
 								# if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found and not missing_required:
 								# 	dbg('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units))
@@ -10936,8 +10936,8 @@ class provider_assessment(models.Model):
 									learner_dict.update({'is_learner_achieved': True})
 								# else:
 								# 	dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
-						raise Warning(_(text_guy))
 						learner_achieved.append((0, 0, learner_dict))
+				raise Warning(_(text_guy))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
 																  'pro_id':self.id,
