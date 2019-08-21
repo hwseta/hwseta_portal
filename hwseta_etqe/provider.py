@@ -10844,13 +10844,16 @@ class provider_assessment(models.Model):
 		if context is None:
 			context = {}
 		self = self.with_context(assessed=True)
+		provider = self.provider_id
 		if self.qual_skill_assessment == 'qual':
 			learner_achieved = []
 			if not self.learner_achieved_ids:
+				text_guy = ''
 				for learner_data in self.learner_achieve_ids:
 					min_qual_creds = learner_data.qual_learner_assessment_achieve_line_id.m_credits
 					min_creds_found = 0
 					if learner_data.achieve:
+						text_guy += learner_data.learner_id.name + '\n'
 						req_units_found = []
 						for us_min in learner_data.unit_standards_learner_assessment_achieve_line_id:
 							dbg(us_min.level3)
@@ -10858,9 +10861,10 @@ class provider_assessment(models.Model):
 							dbg('unit--' + str(us_min) + 'type found' + str(us_min.type))
 							if us_min.type in ['Core','Fundamental']:
 								req_units_found.append(us_min.id_no)
+						text_guy += str(req_units_found) + '\n'
 						# raise Warning(
 						# 	_('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found)))
-						dbg('min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found))
+						text_guy += 'min_qual_creds:' + str(min_qual_creds) + '-min_creds_found:' + str(min_creds_found) + '\n'
 						qual_ids = []
 						unit_ids = []
 						for qual in learner_data.qual_learner_assessment_achieve_line_id:
@@ -10881,6 +10885,7 @@ class provider_assessment(models.Model):
 						qual_line_obj = self.env['hr.employee'].search([('id', '=', learner_dict['learner_id'])])
 						for line in qual_line_obj.learner_qualification_ids:
 							min_expected_creds = line.learner_qualification_parent_id.m_credits
+							text_guy += 'min_expected_creds:' +  str(min_expected_creds) + '\n'
 							dbg(line)
 							selected_line, achieved_line = 0, 0
 							if line.learner_qualification_parent_id.id in qual_ids and line.provider_id.id == self.provider_id.id:
@@ -10888,8 +10893,10 @@ class provider_assessment(models.Model):
 								registration_min_creds = 0
 								req_units = []
 								for u_line in line.learner_registration_line_ids:
+									text_guy += 'units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj) + '\n'
 									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
+										text_guy += 'reg unit expected' + str(u_line) + 'type---' + str(u_line.type) + '\n'
 										dbg('reg unit expected' + str(u_line) + 'type---' + str(u_line.type))
 										if u_line.type in ['Core', 'Fundamental']:
 											req_units.append(u_line.id_data)
@@ -10908,8 +10915,10 @@ class provider_assessment(models.Model):
 								missing_required = False
 								if missing_req_units == []:
 									missing_required = False
+									text_guy += 'no missing required units\n'
 								else:
 									missing_required = True
+									text_guy += '!!!!!!!!!!missing required\n'
 								# check if the counts are same or if min creds requirement are met
 								# if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found and not missing_required:
 								# 	dbg('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units))
@@ -10927,6 +10936,7 @@ class provider_assessment(models.Model):
 									learner_dict.update({'is_learner_achieved': True})
 								# else:
 								# 	dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
+						raise Warning(_(text_guy))
 						learner_achieved.append((0, 0, learner_dict))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
@@ -10951,12 +10961,23 @@ class provider_assessment(models.Model):
 				text = ''
 				for learner_data in self.learner_achieve_ids_for_skills:
 					if learner_data.achieve:
+						# TODO: search for the providers matching SP and append to a list if selection is true, then check if the same SP is in the above loop
+						prov_units = []
+						prov_skills = []
+						for skill in provider.skills_programme_ids:
+							prov_skills.append(skill.skill_saqa_id)
+							for us in skill.unit_standards_line:
+								prov_units.append(us.id_no)
 						skill_ids = []
+						skill_id_nos = []
+						unit_id_nos = []
 						unit_ids = []
 						for skill in learner_data.skill_learner_assessment_achieve_line_id:
 							skill_ids.append(skill.id)
+							skill_id_nos.append(skill.saqa_qual_id)
 						for unit in learner_data.skill_unit_standards_learner_assessment_achieve_line_id:
 							unit_ids.append(unit.id)
+							unit_id_nos.append(unit.id_no)
 						learner_dict = {
 								 'learner_id':learner_data.learner_id and learner_data.learner_id.id,
 								 'learner_identity_number' : learner_data.learner_identity_number,
@@ -10969,8 +10990,10 @@ class provider_assessment(models.Model):
 								}
 						# This code is used to assign True value to achieve field of Skills Programme learner rel
 						qual_line_obj = self.env['hr.employee'].search([('id', '=', learner_dict['learner_id'])])
+						reg_skills_found = []
 						for line in qual_line_obj.skills_programme_ids:
 							selected_line, achieved_line = 0, 0
+							reg_skills_found.append(line.saqa_skill_id)
 							if line.skills_programme_id.id in skill_ids and line.provider_id.id == self.provider_id.id:
 								reg_units_found = []
 								ass_units_found = []
@@ -10988,6 +11011,15 @@ class provider_assessment(models.Model):
 										achieved_line += 1
 								text += 'line:' + str(line) + '-found skill:' + str(line.skills_programme_id.id) + 'selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line) + '\n'
 								text += 'reg units:' + '\n' + str(reg_units_found) + '\n' + 'assessment units' + '\n' + str(ass_units_found) + '\n'
+								achieved = False
+								if reg_units_found == ass_units_found:
+									achieved = True
+								text += 'achieved:' + str(achieved) + '\n'
+								if prov_units == unit_id_nos == reg_units_found:
+									text += 'units X3 match!!!\n'
+								else:
+									text += 'units X3 failed :( \n' + str(prov_units) + '\n' + str(unit_id_nos) + '\n' + str(reg_units_found) + '\n'
+
 								# raise Warning(_('selected lines:' + str(selected_line) + '-achieved_line:' + str(achieved_line)))
 								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line:
 									line.is_learner_achieved = True
@@ -10999,8 +11031,16 @@ class provider_assessment(models.Model):
 									qual_line_obj.state= 'achieved'
 									qual_line_obj.learners_status= 'achieved'
 									learner_dict.update({'is_learner_achieved': True})
+						# checking skills and adding to the text warning
+						if prov_skills == reg_skills_found == skill_id_nos:
+							text += 'skills X3 match!!!\n'
+						else:
+							text += 'units X3 failed :( \n' + str(prov_skills) + '\n' + str(skill_id_nos) + '\n' + str(
+								reg_skills_found) + '\n'
 						learner_achieved.append((0, 0, learner_dict))
-				text += str(skill_ids)
+				text += str(skill_ids) + '\n'
+
+
 				raise Warning(_(text))
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
