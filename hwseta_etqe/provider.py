@@ -10923,7 +10923,7 @@ class provider_assessment(models.Model):
 								# if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found and not missing_required:
 								# 	dbg('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units))
 									# raise Warning(_('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units) + 'required' + str(missing_required)))
-								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line or\
+								if selected_line > 0 and achieved_line > 0 and selected_line == achieved_line and not missing_required or\
 										selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found and not missing_required:
 									line.is_learner_achieved = True
 									line.certificate_no = self.env['ir.sequence'].get('learner.certificate.no')
