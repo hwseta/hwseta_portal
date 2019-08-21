@@ -10893,10 +10893,10 @@ class provider_assessment(models.Model):
 								registration_min_creds = 0
 								req_units = []
 								for u_line in line.learner_registration_line_ids:
-									text_guy += 'units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj) + '\n'
+									# text_guy += 'units:' + str(u_line.id_data) + '\n'
 									dbg('units:' + str(u_line) + '-qual:' + str(line) + 'learner:' + str(qual_line_obj))
 									if u_line.selection:
-										text_guy += 'reg unit expected' + str(u_line) + 'type---' + str(u_line.type) + '\n'
+										text_guy += 'reg unit expected:' + str(u_line.id_data) + 'type---' + str(u_line.type) + '\n'
 										dbg('reg unit expected' + str(u_line) + 'type---' + str(u_line.type))
 										if u_line.type in ['Core', 'Fundamental']:
 											req_units.append(u_line.id_data)
