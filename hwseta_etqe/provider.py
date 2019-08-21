@@ -10918,7 +10918,7 @@ class provider_assessment(models.Model):
 									text_guy += 'no missing required units\n'
 								else:
 									missing_required = True
-									text_guy += '!!!!!!!!!!missing required\n' + str(missing_req_units)
+									text_guy += '!!!!!!!!!!missing required\n' + str(missing_req_units) + '\n'
 								# check if the counts are same or if min creds requirement are met
 								# if selected_line > 0 and achieved_line > 0 and min_qual_creds <= min_creds_found and not missing_required:
 								# 	dbg('minimun creds met:' + str(min_creds_found) + 'found---' + str(min_qual_creds) + 'required-------missing required units:' + str(missing_req_units))
@@ -10934,7 +10934,9 @@ class provider_assessment(models.Model):
 									qual_line_obj.state= 'achieved'
 									qual_line_obj.learners_status= 'achieved'
 									learner_dict.update({'is_learner_achieved': True})
-								# else:
+									text_guy += 'learner achieved!!!\n'
+								else:
+									text_guy += '!!!!!!!!!learner NOT achieved\n'
 								# 	dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
 						learner_achieved.append((0, 0, learner_dict))
 				raise Warning(_(text_guy))
