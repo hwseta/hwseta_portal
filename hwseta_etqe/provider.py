@@ -10855,6 +10855,17 @@ class provider_assessment(models.Model):
 				for learner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
 					if learner_us.id_no not in learner_qual_dict.get(qual_id):
 						learner_qual_dict.get(qual_id).append(learner_us.id_no)
+				for k,v in learner_qual_dict.items():
+					if k in qual_dict.keys():
+						dbg('matches qual in provider')
+						learner_us_list = learner_qual_dict.get(k)
+						prov_us_list = qual_dict.get(k)
+						if learner_us_list == prov_us_list:
+							dbg('us lists match')
+						else:
+							raise Warning(_('us lists dont match\n' + str(learner_us_list) + '\n' + str(prov_us_list)))
+					else:
+						raise Warning(_('key doesnt exist in prov quals'))
 			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict)))
 
 	@api.multi
