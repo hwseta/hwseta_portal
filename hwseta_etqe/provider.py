@@ -10852,20 +10852,30 @@ class provider_assessment(models.Model):
 				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id.saqa_qual_id
 				learner_qual_dict = {qual_id:[]}
 				learner = ass_qual_line.learner_id
+				learner_reg_dict = {}
+				for reg_qual in learner.learner_qualification_ids:
+					qual_id = reg_qual.learner_qualification_parent_id.saqa_qual_id
+					learner_reg_dict.update({qual_id:[]})
+					for reg_us in learner_registration_line_ids:
+						if reg_us.id_data not in learner_reg_dict.get(qual_id):
+							learner_reg_dict.get(qual_id).append(reg_us.id_data)
 				for learner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
 					if learner_us.id_no not in learner_qual_dict.get(qual_id):
 						learner_qual_dict.get(qual_id).append(learner_us.id_no)
 				for k,v in learner_qual_dict.items():
 					if k in qual_dict.keys():
 						dbg('matches qual in provider')
+						learner_reg_us_list = learner_reg_dict.get(k)
 						learner_us_list = learner_qual_dict.get(k)
 						prov_us_list = qual_dict.get(k)
-						if learner_us_list == prov_us_list:
+						if learner_us_list == prov_us_list == learner_reg_us_list:
 							dbg('us lists match')
 						else:
-							mismatch_list = [x for x in learner_us_list if x not in prov_us_list]
-							inverse_mismatch_list = [x for x in prov_us_list if x not in learner_us_list]
-							raise Warning(_('us lists dont match\n mis:' + str(mismatch_list) + '\n inverse:' + str(inverse_mismatch_list)))
+							learner_prov_list = [x for x in learner_us_list if x not in prov_us_list]
+							prov_learner_list = [x for x in prov_us_list if x not in learner_us_list]
+							reg_prov_list = [x for x in prov_us_list if x not in learner_reg_us_list]
+							reg_ass_list = [x for x in learner_us_list if x not in learner_reg_us_list]
+							raise Warning(_('us lists dont match\n prov_learner_list:' + str(prov_learner_list) + '\n prov_learner_list:' + str(prov_learner_list) + '\n reg_prov_list:' + str(reg_prov_list) + '\n reg_ass_list:' + str(reg_ass_list)))
 					else:
 						raise Warning(_('key doesnt exist in prov quals'))
 			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict)))
