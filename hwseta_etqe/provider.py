@@ -10863,7 +10863,9 @@ class provider_assessment(models.Model):
 						if learner_us_list == prov_us_list:
 							dbg('us lists match')
 						else:
-							raise Warning(_('us lists dont match\n' + str(learner_us_list) + '\n' + str(prov_us_list)))
+							mismatch_list = [x for x in learner_us_list if x not in prov_us_list]
+							inverse_mismatch_list = [x for x in prov_us_list if x not in learner_us_list]
+							raise Warning(_('us lists dont match\n mis:' + str(mismatch_list) + '\n inverse:' + str(inverse_mismatch_list)))
 					else:
 						raise Warning(_('key doesnt exist in prov quals'))
 			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict)))
