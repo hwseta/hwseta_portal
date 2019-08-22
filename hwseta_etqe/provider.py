@@ -10849,10 +10849,12 @@ class provider_assessment(models.Model):
 					if us.id_data not in qual_dict.get(qual.saqa_qual_id):
 						qual_dict.get(qual.saqa_qual_id).append(us.id_data)
 			for ass_qual_line in self.learner_achieve_ids:
-				learner_qual_dict = {ass_qual_line.qual_learner_assessment_achieve_line_id:[]}
+				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id.saqa_qual_id
+				learner_qual_dict = {qual_id:[]}
 				learner = ass_qual_line.learner_id
-				for leaner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
-					learner_qual_dict.get(ass_qual_line.qual_learner_assessment_achieve_line_id).append(leaner_us)
+				for learner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
+					if learner_us.id_no not in learner_qual_dict.get(qual_id):
+						learner_qual_dict.get(qual_id).append(learner_us.id_no)
 			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict)))
 
 	@api.multi
