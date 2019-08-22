@@ -10844,10 +10844,10 @@ class provider_assessment(models.Model):
 			qual_dict = {}
 			learner_qual_dict = {}
 			for qual in self.provider_id.qualification_ids:
-				qual_dict.update({qual:[]})
+				qual_dict.update({qual.saqa_qual_id:[]})
 				for us in qual.qualification_line:
-					if us not in qual_dict.get(qual):
-						qual_dict.get(qual).append(us)
+					if us.id_no not in qual_dict.get(qual.saqa_qual_id):
+						qual_dict.get(qual.saqa_qual_id).append(us.id_no)
 			for ass_qual_line in self.learner_achieve_ids:
 				learner_qual_dict = {ass_qual_line.qual_learner_assessment_achieve_line_id:[]}
 				learner = ass_qual_line.learner_id
