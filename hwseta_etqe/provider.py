@@ -10856,7 +10856,7 @@ class provider_assessment(models.Model):
 				for reg_qual in learner.learner_qualification_ids:
 					qual_id = reg_qual.learner_qualification_parent_id.saqa_qual_id
 					learner_reg_dict.update({qual_id:[]})
-					for reg_us in learner_registration_line_ids:
+					for reg_us in learner.learner_registration_line_ids:
 						if reg_us.id_data not in learner_reg_dict.get(qual_id):
 							learner_reg_dict.get(qual_id).append(reg_us.id_data)
 				for learner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
