@@ -10853,7 +10853,7 @@ class provider_assessment(models.Model):
 				learner = ass_qual_line.learner_id
 				for leaner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
 					learner_qual_dict.get(ass_qual_line.qual_learner_assessment_achieve_line_id).append(leaner_us)
-			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict))
+			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict)))
 
 	@api.multi
 	def action_achieved_button(self):
