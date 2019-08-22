@@ -10847,7 +10847,7 @@ class provider_assessment(models.Model):
 				qual_dict.update({qual.saqa_qual_id:[]})
 				for us in qual.qualification_line:
 					if us.id_data not in qual_dict.get(qual.saqa_qual_id) and us.selection:
-						qual_dict.get(qual.saqa_qual_id).append(us.id_data)
+						qual_dict.get(qual.saqa_qual_id).append((us.id_data,us))
 			for ass_qual_line in self.learner_achieve_ids:
 				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id.saqa_qual_id
 				learner_qual_dict = {qual_id:[]}
@@ -10858,10 +10858,10 @@ class provider_assessment(models.Model):
 					learner_reg_dict.update({qual_id:[]})
 					for reg_us in reg_qual.learner_registration_line_ids:
 						if reg_us.id_data not in learner_reg_dict.get(qual_id) and reg_us.selection:
-							learner_reg_dict.get(qual_id).append(reg_us.id_data)
+							learner_reg_dict.get(qual_id).append((reg_us.id_data,reg_us))
 				for learner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
 					if learner_us.id_no not in learner_qual_dict.get(qual_id):
-						learner_qual_dict.get(qual_id).append(learner_us.id_no)
+						learner_qual_dict.get(qual_id).append((learner_us.id_no,learner_us))
 				for k,v in learner_qual_dict.items():
 					if k in qual_dict.keys():
 						dbg('matches qual in provider')
