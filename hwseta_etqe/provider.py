@@ -10842,12 +10842,18 @@ class provider_assessment(models.Model):
 	def fix_nic_mpilo(self):
 		if self.provider_id:
 			qual_dict = {}
+			learner_qual_dict = {}
 			for qual in self.provider_id.qualification_ids:
 				qual_dict.update({qual:[]})
 				for us in qual.qualification_line:
 					if us not in qual_dict.get(qual):
 						qual_dict.get(qual).append(us)
-			raise Warning(_(qual_dict))
+			for ass_qual_line in self.learner_achieve_ids:
+				learner_qual_dict = {ass_qual_line.qual_learner_assessment_achieve_line_id:[]}
+				learner = ass_qual_line.learner_id
+				for leaner_us in ass_qual_line.unit_standards_learner_assessment_achieve_line_id:
+					learner_qual_dict.get(ass_qual_line.qual_learner_assessment_achieve_line_id).append(leaner_us)
+			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict))
 
 	@api.multi
 	def action_achieved_button(self):
