@@ -10875,7 +10875,7 @@ class provider_assessment(models.Model):
 							prov_learner_list = [x for x in prov_us_list if x not in learner_us_list]
 							reg_prov_list = [x for x in prov_us_list if x not in learner_reg_us_list]
 							reg_ass_list = [x for x in learner_us_list if x not in learner_reg_us_list]
-							raise Warning(_('us lists dont match\n prov_learner_list:' + str(prov_learner_list) + '\n prov_learner_list:' + str(prov_learner_list) + '\n reg_prov_list:' + str(reg_prov_list) + '\n reg_ass_list:' + str(reg_ass_list)))
+							raise Warning(_('us lists dont match\n learner_prov_list:' + str(learner_prov_list) + '\n prov_learner_list:' + str(prov_learner_list) + '\n reg_prov_list:' + str(reg_prov_list) + '\n reg_ass_list:' + str(reg_ass_list)))
 					else:
 						raise Warning(_('key doesnt exist in prov quals'))
 			raise Warning(_(str(qual_dict) + '\n' + str(learner_qual_dict)))
