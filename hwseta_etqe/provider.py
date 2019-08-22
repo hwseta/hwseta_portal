@@ -10839,6 +10839,17 @@ class provider_assessment(models.Model):
 			return True
 
 	@api.multi
+	def fix_nic_mpilo(self):
+		if self.provider_id:
+			qual_dict = {}
+			for qual in self.provider_id.qualification_ids:
+				qual_dict.update({qual:[]})
+				for us in qual.qualification_line:
+					if us not in qual_dict.get(qual):
+						qual_dict.get(qual).append(us)
+			raise Warning(_(qual_dict))
+
+	@api.multi
 	def action_achieved_button(self):
 		context = self._context
 		if context is None:
@@ -11040,7 +11051,7 @@ class provider_assessment(models.Model):
 							text += 'units X3 failed :( \n' + str(prov_skills) + '\n' + str(skill_id_nos) + '\n' + str(
 								reg_skills_found) + '\n'
 						learner_achieved.append((0, 0, learner_dict))
-				text += str(skill_ids) + '\n'
+					text += str(skill_ids) + '\n'
 
 
 				raise Warning(_(text))
