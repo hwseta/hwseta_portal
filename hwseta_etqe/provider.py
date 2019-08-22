@@ -10868,10 +10868,10 @@ class provider_assessment(models.Model):
 						learner_reg_us_list = learner_reg_dict.get(k)
 						learner_us_list = learner_qual_dict.get(k)
 						prov_us_list = qual_dict.get(k)
-						if learner_us_list == prov_us_list:
+						if learner_us_list[0] == prov_us_list[0]:
 							dbg('matches lists x2')
 						else:
-							learner_prov_list = [x[0] for x in learner_us_list if x[0] not in prov_us_list]
+							learner_prov_list = [x[0] for x in learner_us_list if x not in prov_us_list]
 							raise Warning(_('prov\n' + str(prov_us_list) + '\n learner\n' + str(learner_us_list)+ '\n diff\n' + str(learner_prov_list)))
 						if learner_us_list == prov_us_list == learner_reg_us_list:
 							dbg('us lists match')
