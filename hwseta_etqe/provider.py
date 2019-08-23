@@ -10850,7 +10850,7 @@ class provider_assessment(models.Model):
 				qual_dict.update({qual.saqa_qual_id:[]})
 				for us in qual.qualification_line:
 					if us.id_data not in qual_dict.get(qual.saqa_qual_id) and us.selection:
-						qual_dict.get(qual.saqa_qual_id).append(us)
+						qual_dict.get(qual.saqa_qual_id).append(us.id_data)
 			for ass_qual_line in self.learner_achieve_ids:
 				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id
 				learner = ass_qual_line.learner_id
@@ -10863,11 +10863,15 @@ class provider_assessment(models.Model):
 						end = reg_qual.end_date
 						reg_qual.unlink()
 						reg_qual_line = []
-						raise Warning(_(qual_dict))
+						# raise Warning(_(qual_dict))
+						units_list = []
+						for unitz in qual_dict.get(qual_id.saqa_qual_id):
+							units_list.append(self.env['provider.qualification.line'].search({('id_no','=',unitz),('line_id.saqa_qual_id','=',qual_id.saqa_qual_id)}))
 						units = qual_dict.get(qual_id.saqa_qual_id)
-						raise Warning(_(units))
+						raise Warning(_(units_list))
 						val = {
 							'batch_id': batch,
+							'provider_id': self.provider_id,
 							'moderators_id': mod,
 							'assessors_id': ass,
 							'start_date': start,
