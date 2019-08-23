@@ -10859,6 +10859,8 @@ class provider_assessment(models.Model):
 				# raise Warning(_(qual_dict.get(qual_id.saqa_qual_id)))
 				dbg('--------------------------------------------------')
 				for reg_qual in learner.learner_qualification_ids:
+					if not reg_qual.batch_id:
+						reg_qual.unlink()
 					# raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
 					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.saqa_qual_id:
 						start = reg_qual.start_date
