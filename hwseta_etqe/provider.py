@@ -10898,9 +10898,12 @@ class provider_assessment(models.Model):
 							# units_list.append(self.env['provider.qualification.line'].search(
 							# 	[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
 
-						raise Warning(_('done'))
+						# raise Warning(_('done'))
 						# raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
 				ass_qual_line.unlink()
+			if self.learner_achieved_ids:
+				for achieved in self.learner_achieved_ids:
+					achieved.unlink()
 
 
 
