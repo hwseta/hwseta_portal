@@ -10885,7 +10885,7 @@ class provider_assessment(models.Model):
 								'provider_id': self.provider_id,
 								'id_data': lib_unit.id_no,
 								'title': lib_unit.title,
-								'type': lib_unit.title,
+								'type': lib_unit.type,
 								'level1': lib_unit.level1,
 								'level3': lib_unit.level3,
 								'selection': True,
