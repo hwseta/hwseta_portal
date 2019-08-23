@@ -10872,7 +10872,7 @@ class provider_assessment(models.Model):
 							'start_date': start,
 							'end_date': end,
 							'learner_qualification_parent_id': qual_id,
-							'learner_registration_line_ids': qual_id,
+							# 'learner_registration_line_ids': qual_id,
 						}
 						reg_qual_line.append((0, 0, val))
 						# learner.write({'learner_qualification_ids': reg_qual_line})
@@ -10894,7 +10894,7 @@ class provider_assessment(models.Model):
 							}
 							units_list.append(self.env['provider.qualification.line'].search(
 								[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
-						
+
 						raise Warning(_(units_list))
 						# raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
 				ass_qual_line.unlink()
