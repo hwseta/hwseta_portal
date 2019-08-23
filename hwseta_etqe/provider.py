@@ -10852,12 +10852,12 @@ class provider_assessment(models.Model):
 					if us.id_data not in qual_dict.get(qual.saqa_qual_id) and us.selection:
 						qual_dict.get(qual.saqa_qual_id).append(us)
 			for ass_qual_line in self.learner_achieve_ids:
-				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id.saqa_qual_id
+				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id
 				learner = ass_qual_line.learner_id
 				mod = ass_qual_line.moderators_id
 				ass = ass_qual_line.assessors_id
 				for reg_qual in learner.learner_qualification_ids:
-					raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
+					# raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
 					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.qual_learner_assessment_achieve_line_id.saqa_qual_id:
 						start = reg_qual.start_date
 						end = reg_qual.end_date
