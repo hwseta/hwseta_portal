@@ -10904,6 +10904,12 @@ class provider_assessment(models.Model):
 			if self.learner_achieved_ids:
 				for achieved in self.learner_achieved_ids:
 					achieved.unlink()
+		self.state = 'draft'
+		self.status = 'new'
+		self.assessed = False
+		self.evaluated = False
+		self.verified = False
+
 
 
 
