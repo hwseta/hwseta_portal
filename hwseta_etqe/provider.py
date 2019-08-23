@@ -10864,11 +10864,6 @@ class provider_assessment(models.Model):
 						reg_qual.unlink()
 						reg_qual_line = []
 						# raise Warning(_(qual_dict))
-						units_list = []
-						for unitz in qual_dict.get(qual_id.saqa_qual_id):
-							units_list.append(self.env['provider.qualification.line'].search([('id_no','=',unitz),('line_id.saqa_qual_id','=',qual_id.saqa_qual_id)]))
-						units = qual_dict.get(qual_id.saqa_qual_id)
-						raise Warning(_(units_list))
 						val = {
 							'batch_id': batch,
 							'provider_id': self.provider_id,
@@ -10882,6 +10877,25 @@ class provider_assessment(models.Model):
 						reg_qual_line.append((0, 0, val))
 						# learner.write({'learner_qualification_ids': reg_qual_line})
 						learner.learner_qualification_ids = reg_qual_line
+						units_list = []
+						for unitz in qual_dict.get(qual_id.saqa_qual_id):
+							lib_unit = self.env['provider.qualification.line'].search(
+								[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)])
+							unit_vals = {
+								'provider_id': self.provider_id,
+								'id_data': lib_unit.id_no,
+								'title': lib_unit.title,
+								'type': lib_unit.title,
+								'level1': lib_unit.level1,
+								'level3': lib_unit.level3,
+								'selection': True,
+								'level2': lib_unit.level2,
+								'learner_reg_id': reg_qual_line,
+							}
+							units_list.append(self.env['provider.qualification.line'].search(
+								[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
+						
+						raise Warning(_(units_list))
 						# raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
 				ass_qual_line.unlink()
 
