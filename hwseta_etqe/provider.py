@@ -10862,21 +10862,6 @@ class provider_assessment(models.Model):
 						start = reg_qual.start_date
 						end = reg_qual.end_date
 						reg_qual.unlink()
-						reg_qual_line = []
-						# raise Warning(_(qual_dict))
-						val = {
-							'batch_id': batch,
-							'provider_id': self.provider_id,
-							'moderators_id': mod,
-							'assessors_id': ass,
-							'start_date': start,
-							'end_date': end,
-							'learner_qualification_parent_id': qual_id,
-							# 'learner_registration_line_ids': qual_id,
-						}
-						reg_qual_line.append((0, 0, val))
-						# learner.write({'learner_qualification_ids': reg_qual_line})
-						learner.learner_qualification_ids = reg_qual_line
 						units_list = []
 						for unitz in qual_dict.get(qual_id.saqa_qual_id):
 							lib_unit = self.env['provider.qualification.line'].search(
@@ -10890,9 +10875,26 @@ class provider_assessment(models.Model):
 								'level3': lib_unit.level3,
 								'selection': True,
 								'level2': lib_unit.level2,
-								'learner_reg_id': reg_qual_line,
+								# 'learner_reg_id': reg_qual_line,
 							}
-							self.env['learner.registration.qualification.line'].create(unit_vals)
+							units_list.append(unit_vals)
+						reg_qual_line = []
+						# raise Warning(_(qual_dict))
+						val = {
+							'batch_id': batch,
+							'provider_id': self.provider_id,
+							'moderators_id': mod,
+							'assessors_id': ass,
+							'start_date': start,
+							'end_date': end,
+							'learner_qualification_parent_id': qual_id,
+							'learner_registration_line_ids': units_list,
+						}
+						reg_qual_line.append((0, 0, val))
+						# learner.write({'learner_qualification_ids': reg_qual_line})
+						learner.learner_qualification_ids = reg_qual_line
+
+							# self.env['learner.registration.qualification.line'].create(unit_vals)
 							# units_list.append(self.env['provider.qualification.line'].search(
 							# 	[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
 
