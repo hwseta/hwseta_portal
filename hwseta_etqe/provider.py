@@ -10892,10 +10892,11 @@ class provider_assessment(models.Model):
 								'level2': lib_unit.level2,
 								'learner_reg_id': reg_qual_line,
 							}
+							self.env['learner.registration.qualification.line'].create(unit_vals)
 							units_list.append(self.env['provider.qualification.line'].search(
 								[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
 
-						raise Warning(_(units_list))
+						raise Warning(_('done'))
 						# raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
 				ass_qual_line.unlink()
 
