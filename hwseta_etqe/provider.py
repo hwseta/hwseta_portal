@@ -10863,7 +10863,8 @@ class provider_assessment(models.Model):
 						end = reg_qual.end_date
 						reg_qual.unlink()
 						reg_qual_line = []
-						units = qual_dict.get(reg_qual.learner_qualification_parent_id.saqa_qual_id)
+						raise Warning(_(qual_dict))
+						units = qual_dict.get(qual_id.saqa_qual_id)
 						raise Warning(_(units))
 						val = {
 							'batch_id': batch,
