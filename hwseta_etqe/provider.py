@@ -10851,6 +10851,8 @@ class provider_assessment(models.Model):
 				for us in qual.qualification_line:
 					if us.id_data not in qual_dict.get(qual.saqa_qual_id) and us.selection:
 						qual_dict.get(qual.saqa_qual_id).append(us.id_data)
+			for learner_id in self.learner_ids:
+				learner_id.unlink()
 			for ass_qual_line in self.learner_achieve_ids:
 				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id
 				learner = ass_qual_line.learner_id
