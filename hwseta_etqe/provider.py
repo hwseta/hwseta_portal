@@ -10914,13 +10914,7 @@ class provider_assessment(models.Model):
 		self.assessed = False
 		self.evaluated = False
 		self.verified = False
-		raise Warning(_('done'))
-
-
-
-
-
-
+		# raise Warning(_('done'))
 
 
 	# @api.multi
