@@ -10850,13 +10850,33 @@ class provider_assessment(models.Model):
 				qual_dict.update({qual.saqa_qual_id:[]})
 				for us in qual.qualification_line:
 					if us.id_data not in qual_dict.get(qual.saqa_qual_id) and us.selection:
-						qual_dict.get(qual.saqa_qual_id).append((us.id_data,us))
+						qual_dict.get(qual.saqa_qual_id).append(us)
 			for ass_qual_line in self.learner_achieve_ids:
 				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id.saqa_qual_id
 				learner = ass_qual_line.learner_id
+				mod = ass_qual_line.moderator_id
+				ass = ass_qual_line.assessor_id
 				for reg_qual in learner.learner_qualification_ids:
-					if reg_qual.batch_id == batch:
+					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.qual_learner_assessment_achieve_line_id.saqa_qual_id:
+						start = reg_qual.start_date
+						end = reg_qual.end_date
+						reg_qual.unlink()
+						val = {
+							'batch_id': batch,
+							'moderators_id': mod,
+							'assessors_id': ass,
+							'start_date': start,
+							'end_date': end,
+							'learner_qualification_parent_id': qual_id,
+						}
+						reg_qual_line.append((0, 0, val))
+						learner.write({'learner_qualification_ids': reg_qual_line})
 						raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
+				ass_qual_line.unlink()
+
+
+
+
 
 
 	# @api.multi
