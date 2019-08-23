@@ -10858,7 +10858,7 @@ class provider_assessment(models.Model):
 				ass = ass_qual_line.assessors_id
 				for reg_qual in learner.learner_qualification_ids:
 					# raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
-					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.qual_learner_assessment_achieve_line_id.saqa_qual_id:
+					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.saqa_qual_id:
 						start = reg_qual.start_date
 						end = reg_qual.end_date
 						reg_qual.unlink()
