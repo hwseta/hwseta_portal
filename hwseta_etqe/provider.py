@@ -10856,7 +10856,7 @@ class provider_assessment(models.Model):
 				learner = ass_qual_line.learner_id
 				mod = ass_qual_line.moderators_id
 				ass = ass_qual_line.assessors_id
-				raise Warning(_(qual_dict.get(qual_id.saqa_qual_id)))
+				# raise Warning(_(qual_dict.get(qual_id.saqa_qual_id)))
 				for reg_qual in learner.learner_qualification_ids:
 					# raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
 					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.saqa_qual_id:
@@ -10865,6 +10865,7 @@ class provider_assessment(models.Model):
 						reg_qual.unlink()
 						units_list = []
 						for unitz in qual_dict.get(qual_id.saqa_qual_id):
+							dbg(unitz)
 							lib_unit = self.env['provider.qualification.line'].search(
 								[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)])
 							unit_vals = {
@@ -10911,6 +10912,7 @@ class provider_assessment(models.Model):
 		self.assessed = False
 		self.evaluated = False
 		self.verified = False
+		raise Warning(_('done'))
 
 
 
