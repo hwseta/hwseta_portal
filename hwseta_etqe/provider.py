@@ -10872,7 +10872,7 @@ class provider_assessment(models.Model):
 							'learner_qualification_parent_id': qual_id,
 						}
 						reg_qual_line.append((0, 0, val))
-						learner.write({'learner_qualification_ids': reg_qual_line})
+						# learner.write({'learner_qualification_ids': reg_qual_line})
 						learner.learner_qualification_ids = reg_qual_line
 						raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
 				ass_qual_line.unlink()
