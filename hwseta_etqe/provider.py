@@ -10863,6 +10863,8 @@ class provider_assessment(models.Model):
 						end = reg_qual.end_date
 						reg_qual.unlink()
 						reg_qual_line = []
+						units = qual_dict.get(reg_qual.learner_qualification_parent_id.saqa_qual_id)
+						raise Warning(_(units))
 						val = {
 							'batch_id': batch,
 							'moderators_id': mod,
@@ -10870,6 +10872,7 @@ class provider_assessment(models.Model):
 							'start_date': start,
 							'end_date': end,
 							'learner_qualification_parent_id': qual_id,
+							'learner_registration_line_ids': qual_id,
 						}
 						reg_qual_line.append((0, 0, val))
 						# learner.write({'learner_qualification_ids': reg_qual_line})
