@@ -10909,6 +10909,7 @@ class provider_assessment(models.Model):
 		self.assessed = False
 		self.evaluated = False
 		self.verified = False
+		self.submited = False
 
 
 
