@@ -10866,7 +10866,7 @@ class provider_assessment(models.Model):
 						# raise Warning(_(qual_dict))
 						units_list = []
 						for unitz in qual_dict.get(qual_id.saqa_qual_id):
-							units_list.append(self.env['provider.qualification.line'].search({('id_no','=',unitz),('line_id.saqa_qual_id','=',qual_id.saqa_qual_id)}))
+							units_list.append(self.env['provider.qualification.line'].search([('id_no','=',unitz),('line_id.saqa_qual_id','=',qual_id.saqa_qual_id)]))
 						units = qual_dict.get(qual_id.saqa_qual_id)
 						raise Warning(_(units_list))
 						val = {
