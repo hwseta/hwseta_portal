@@ -10862,6 +10862,7 @@ class provider_assessment(models.Model):
 						start = reg_qual.start_date
 						end = reg_qual.end_date
 						reg_qual.unlink()
+						reg_qual_line = []
 						val = {
 							'batch_id': batch,
 							'moderators_id': mod,
