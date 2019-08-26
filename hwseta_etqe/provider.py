@@ -10855,6 +10855,8 @@ class provider_assessment(models.Model):
 				learner_id.unlink()
 			for verify in self.learner_verify_ids:
 				verify.unlink()
+			for evaluate in self.learner_evaluate_ids:
+				evaluate.unlink()
 			for ass_qual_line in self.learner_achieve_ids:
 				qual_id = ass_qual_line.qual_learner_assessment_achieve_line_id
 				learner = ass_qual_line.learner_id
