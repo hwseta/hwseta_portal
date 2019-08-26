@@ -10861,56 +10861,58 @@ class provider_assessment(models.Model):
 				# raise Warning(_(qual_dict.get(qual_id.saqa_qual_id)))
 				dbg('--------------------------------------------------')
 				for reg_qual in learner.learner_qualification_ids:
-					if not reg_qual.batch_id:
-						reg_qual.unlink()
-					# raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
-					dbg('reg_qual.batch_id' + str(reg_qual.batch_id))
-					dbg('reg_qual.learner_qualification_parent_id.saqa_qual_id' + str(reg_qual.learner_qualification_parent_id.saqa_qual_id))
-					dbg('qual_id.saqa_qual_id' + str(qual_id.saqa_qual_id))
-					if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.saqa_qual_id:
-						start = reg_qual.start_date
-						end = reg_qual.end_date
-						reg_qual.unlink()
-						units_list = []
-						dbg('-----------------------------!!!!!!!!!!!!!!!!')
-						for unitz in qual_dict.get(qual_id.saqa_qual_id):
-							dbg(unitz)
-							lib_unit = self.env['provider.qualification.line'].search(
-								[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)])
-							unit_vals = {
+					if reg_qual.batch_id:
+						# raise Warning(_(str(reg_qual.learner_qualification_parent_id.saqa_qual_id) + '\n' + str(qual_id)))
+						dbg('reg_qual.batch_id' + str(reg_qual.batch_id))
+						dbg('reg_qual.learner_qualification_parent_id.saqa_qual_id' + str(
+							reg_qual.learner_qualification_parent_id.saqa_qual_id))
+						dbg('qual_id.saqa_qual_id' + str(qual_id.saqa_qual_id))
+						if reg_qual.batch_id == batch and reg_qual.learner_qualification_parent_id.saqa_qual_id == qual_id.saqa_qual_id:
+							start = reg_qual.start_date
+							end = reg_qual.end_date
+							reg_qual.unlink()
+							units_list = []
+							dbg('-----------------------------!!!!!!!!!!!!!!!!')
+							for unitz in qual_dict.get(qual_id.saqa_qual_id):
+								dbg(unitz)
+								lib_unit = self.env['provider.qualification.line'].search(
+									[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)])
+								unit_vals = {
+									'provider_id': self.provider_id,
+									'id_data': lib_unit.id_no,
+									'title': lib_unit.title,
+									'type': lib_unit.type,
+									'level1': lib_unit.level1,
+									'level3': lib_unit.level3,
+									'selection': True,
+									'level2': lib_unit.level2,
+									# 'learner_reg_id': reg_qual_line,
+								}
+								units_list.append(unit_vals)
+							reg_qual_line = []
+							# raise Warning(_(qual_dict))
+							val = {
+								'batch_id': batch,
 								'provider_id': self.provider_id,
-								'id_data': lib_unit.id_no,
-								'title': lib_unit.title,
-								'type': lib_unit.type,
-								'level1': lib_unit.level1,
-								'level3': lib_unit.level3,
-								'selection': True,
-								'level2': lib_unit.level2,
-								# 'learner_reg_id': reg_qual_line,
+								'moderators_id': mod,
+								'assessors_id': ass,
+								'start_date': start,
+								'end_date': end,
+								'learner_qualification_parent_id': qual_id,
+								'learner_registration_line_ids': units_list,
 							}
-							units_list.append(unit_vals)
-						reg_qual_line = []
-						# raise Warning(_(qual_dict))
-						val = {
-							'batch_id': batch,
-							'provider_id': self.provider_id,
-							'moderators_id': mod,
-							'assessors_id': ass,
-							'start_date': start,
-							'end_date': end,
-							'learner_qualification_parent_id': qual_id,
-							'learner_registration_line_ids': units_list,
-						}
-						reg_qual_line.append((0, 0, val))
-						# learner.write({'learner_qualification_ids': reg_qual_line})
-						learner.learner_qualification_ids = reg_qual_line
+							reg_qual_line.append((0, 0, val))
+							# learner.write({'learner_qualification_ids': reg_qual_line})
+							learner.learner_qualification_ids = reg_qual_line
 
-							# self.env['learner.registration.qualification.line'].create(unit_vals)
-							# units_list.append(self.env['provider.qualification.line'].search(
-							# 	[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
+					# self.env['learner.registration.qualification.line'].create(unit_vals)
+					# units_list.append(self.env['provider.qualification.line'].search(
+					# 	[('id_no', '=', unitz), ('line_id.saqa_qual_id', '=', qual_id.saqa_qual_id)]))
 
-						# raise Warning(_('done'))
-						# raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
+					# raise Warning(_('done'))
+					# raise Warning(_('matching batch: this reg line should be deleted' + str(reg_qual)))
+					else:
+						reg_qual.unlink()
 				ass_qual_line.unlink()
 			if self.learner_achieved_ids:
 				for achieved in self.learner_achieved_ids:
