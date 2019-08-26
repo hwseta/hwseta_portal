@@ -11075,6 +11075,7 @@ class provider_assessment(models.Model):
 								# 	dbg(str(line) + 'selected line' + str(selected_line) + 'achieved line:' + str(achieved_line))
 						learner_achieved.append((0, 0, learner_dict))
 				# raise Warning(_(text_guy))
+				self.unit_standard_variance = text_guy
 			assessment_status_obj = self.env['assessment.status'].create({'name': self._uid,
 																  'state':'achieved',
 																  'pro_id':self.id,
