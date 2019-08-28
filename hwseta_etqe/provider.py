@@ -11346,7 +11346,10 @@ class provider_assessment(models.Model):
 		dbg(vals.get('submited'))
 		dbg(vals.get('state'))
 		if self.state == "submitted" and self.submited == False:
-			raise Warning(_('Sorry!!! you can not change state to submit'))
+			if vals.get('state') == 'draft':
+				raise Warning(_('Sorry!!! you can not change state to submit'))
+			else:
+				pass
 
 		if self.state == "verify" and self.verified == False:
 			raise Warning(_('Sorry! you can not change state to Verified'))
