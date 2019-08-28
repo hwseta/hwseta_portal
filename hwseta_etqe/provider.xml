@@ -4708,7 +4708,7 @@
 						<field name="verified" invisible="1" />
 						<field name="assessed" invisible="1" />
 						<field name="evaluated" invisible="1" />
-						<button name="fix_nic_mpilo" class="oe_highlight" string="Amend Assessment" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_seta_administrator"/>
+						<button name="fix_nic_mpilo" type="object" class="oe_highlight" string="Amend Assessment &amp; LR" groups="hwseta_etqe.group_etqe_manager,hwseta_etqe.group_seta_administrator"/>
 
 						<!-- <button name="action_submit_button" string="Submit" type="object" 
 							class="oe_highlight" attrs="{'invisible':['|',('state','in',['achieved','verify']),('submited','=',True)]}" 

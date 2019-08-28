@@ -9729,8 +9729,12 @@ class provider_assessment(models.Model):
 		user = self._uid
 		user_obj = self.env['res.users']
 		user_data = user_obj.browse(user)
+		if self.provider_id == user_data.partner_id:
+			prov_partner = user_data.partner_id
+		else:
+			prov_partner = self.provider_id
 		if qual_skill_assessment:
-			if not user_data.partner_id.provider:
+			if not prov_partner.provider:
 				if qual_skill_assessment == 'qual':
 					all_batch_ids = self.env['batch.master'].search([('qual_skill_batch','=','qual'),('batch_status','=','open')])
 					if all_batch_ids:
@@ -9747,7 +9751,7 @@ class provider_assessment(models.Model):
 					if all_batch_ids:
 						for b_id in all_batch_ids:
 							batch_lst.append(b_id.id)
-			elif user_data.partner_id.provider:
+			elif prov_partner.provider:
 				for batch in self.env.user.partner_id.provider_batch_ids:
 					if qual_skill_assessment == 'qual':
 						if batch.batch_master_id.qual_skill_batch == 'qual' and batch.batch_status == 'open':
