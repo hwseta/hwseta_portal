@@ -9597,6 +9597,9 @@ assessment_status()
 class provider_assessment(models.Model):
 	_inherit = 'provider.assessment'
 
+	def chatter(self, author, msg):
+		self.message_post(body=_(msg), subtype='mail.mt_comment', author_id=author.partner_id.id)
+
 	@api.model
 	def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
 		""" Override read_group to filter provider assessment status count based on logged provider """
@@ -10937,6 +10940,7 @@ class provider_assessment(models.Model):
 		self.assessed = False
 		self.evaluated = False
 		self.verified = False
+		self.chatter(self.env.user, 'the "bla bla button" was pressed')
 		# raise Warning(_('done'))
 
 
@@ -11350,7 +11354,6 @@ class provider_assessment(models.Model):
 				raise Warning(_('Sorry!!! you can not change state to submit'))
 			else:
 				pass
-
 		if self.state == "verify" and self.verified == False:
 			raise Warning(_('Sorry! you can not change state to Verified'))
 
