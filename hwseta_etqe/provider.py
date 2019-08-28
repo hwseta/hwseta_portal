@@ -10351,16 +10351,20 @@ class provider_assessment(models.Model):
 		''' This method is used to fetch approved learners from learner master to provider assessment based on assessment type and selected batch '''
 		learners_list = []
 		assessment_line_list = []
+		if self.provider_id == self.env.user.partner_id:
+			prov_partner = self.env.user.partner_id
+		else:
+			prov_partner = self.provider_id
 		if self.batch_id and self.qual_skill_assessment == 'qual':
 			for record in self.learner_ids:
 				learners_list.append(record.learner_id.id)
-			learner_obj = self.env['hr.employee'].search([('logged_provider_id', '=', self.env.user.partner_id.id)])
+			learner_obj = self.env['hr.employee'].search([('logged_provider_id', '=', prov_partner.id)])
 			new_learner_list = [learner.id for learner in learner_obj]
 			if learner_obj:
 				for learner in learner_obj:
 					if learner.id not in learners_list:
 						for learner_qual in learner.learner_qualification_ids:
-							if learner_qual.batch_id.id == self.batch_id.id and learner_qual.is_learner_achieved == False and learner_qual.provider_id.id == self.env.user.partner_id.id:
+							if learner_qual.batch_id.id == self.batch_id.id and learner_qual.is_learner_achieved == False and learner_qual.provider_id.id == prov_partner.id:
 								qual_list, unit_line_list = [], []
 								qual_list.append(learner_qual.learner_qualification_parent_id.id)
 								learners_assessor_id = learner_qual.assessors_id.id
@@ -10384,13 +10388,13 @@ class provider_assessment(models.Model):
 		elif self.batch_id and self.qual_skill_assessment == 'skill':
 			for record in self.learner_ids_for_skills:
 				learners_list.append(record.learner_id.id)
-			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_skills', '=', self.env.user.partner_id.id)])
+			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_skills', '=', prov_partner.id)])
 			new_learner_list = [learner.id for learner in learner_obj]
 			if learner_obj:
 				for learner in learner_obj:
 					if learner.id not in learners_list:
 						for learner_skill in learner.skills_programme_ids:
-							if learner_skill.batch_id.id == self.batch_id.id and  learner_skill.is_learner_achieved == False and learner_skill.provider_id.id == self.env.user.partner_id.id:
+							if learner_skill.batch_id.id == self.batch_id.id and  learner_skill.is_learner_achieved == False and learner_skill.provider_id.id == prov_partner.id:
 								skill_list, unit_line_list = [], []
 								skill_list.append(learner_skill.skills_programme_id.id)
 								learners_assessor_id = learner_skill.assessors_id.id
@@ -10411,13 +10415,13 @@ class provider_assessment(models.Model):
 		elif self.batch_id and self.qual_skill_assessment == 'lp':
 			for record in self.learner_ids_for_lp:
 				learners_list.append(record.learner_id.id)
-			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_lp', '=', self.env.user.partner_id.id)])
+			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_lp', '=', prov_partner.id)])
 			new_learner_list = [learner.id for learner in learner_obj]
 			if learner_obj:
 				for learner in learner_obj:
 					if learner.id not in learners_list:
 						for learner_lp in learner.learning_programme_ids:
-							if learner_lp.batch_id.id == self.batch_id.id and learner_lp.is_learner_achieved == False and learner_lp.provider_id.id == self.env.user.partner_id.id:
+							if learner_lp.batch_id.id == self.batch_id.id and learner_lp.is_learner_achieved == False and learner_lp.provider_id.id == prov_partner.id:
 								lp_list, unit_line_list = [], []
 								lp_list.append(learner_lp.learning_programme_id.id)
 								learners_assessor_id = learner_lp.assessors_id.id
