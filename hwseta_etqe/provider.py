@@ -11343,6 +11343,8 @@ class provider_assessment(models.Model):
 		res = super(provider_assessment, self).write(vals)
 		dbg(self.submited)
 		dbg(self.state)
+		dbg(vals.get('submited'))
+		dbg(vals.get('state'))
 		if self.state == "submitted" and self.submited == False:
 			raise Warning(_('Sorry!!! you can not change state to submit'))
 
