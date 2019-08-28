@@ -10931,9 +10931,8 @@ class provider_assessment(models.Model):
 					achieved.unlink()
 		
 		
-
-		self.state = 'draft'
 		self.submited = False
+		self.state = 'draft'
 		self.status = 'new'
 		self.assessed = False
 		self.evaluated = False
