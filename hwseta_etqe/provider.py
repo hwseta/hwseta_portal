@@ -11341,9 +11341,10 @@ class provider_assessment(models.Model):
 		if context is None:
 			context = {}
 		res = super(provider_assessment, self).write(vals)
-
+		dbg(self.submited)
+		dbg(self.state)
 		if self.state == "submitted" and self.submited == False:
-			raise Warning(_('Sorry! you can not change state to submit'))
+			raise Warning(_('Sorry!!! you can not change state to submit'))
 
 		if self.state == "verify" and self.verified == False:
 			raise Warning(_('Sorry! you can not change state to Verified'))
