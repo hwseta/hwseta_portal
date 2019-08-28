@@ -11337,6 +11337,7 @@ class provider_assessment(models.Model):
 	@api.multi
 	def write(self, vals):
 		context = self._context
+		dbg(context)
 		if context is None:
 			context = {}
 		res = super(provider_assessment, self).write(vals)
