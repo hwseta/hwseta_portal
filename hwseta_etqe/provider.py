@@ -10940,7 +10940,7 @@ class provider_assessment(models.Model):
 		self.assessed = False
 		self.evaluated = False
 		self.verified = False
-		# self.chatter(self.env.user, 'the "bla bla button" was pressed')
+		self.chatter(self.env.user, 'the "bla bla button" was pressed')
 		# raise Warning(_('done'))
 
 
