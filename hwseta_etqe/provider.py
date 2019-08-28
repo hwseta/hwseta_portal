@@ -9752,7 +9752,7 @@ class provider_assessment(models.Model):
 						for b_id in all_batch_ids:
 							batch_lst.append(b_id.id)
 			elif prov_partner.provider:
-				for batch in self.env.user.partner_id.provider_batch_ids:
+				for batch in prov_partner.provider_batch_ids:
 					if qual_skill_assessment == 'qual':
 						if batch.batch_master_id.qual_skill_batch == 'qual' and batch.batch_status == 'open':
 							batch_lst.append(batch.batch_master_id.id)
@@ -9764,11 +9764,11 @@ class provider_assessment(models.Model):
 						if batch.batch_master_id.qual_skill_batch == 'lp' and batch.batch_status == 'open':
 							batch_lst.append(batch.batch_master_id.id)
 		if batch_id and qual_skill_assessment == 'qual':
-			learner_obj = self.env['hr.employee'].search([('logged_provider_id', '=', self.env.user.partner_id.id)])
+			learner_obj = self.env['hr.employee'].search([('logged_provider_id', '=', prov_partner.id)])
 			if learner_obj:
 				for learner in learner_obj:
 					for learner_qual in learner.learner_qualification_ids:
-						if learner_qual.batch_id.id == batch_id and  learner_qual.is_learner_achieved == False and learner_qual.provider_id.id == self.env.user.partner_id.id:
+						if learner_qual.batch_id.id == batch_id and  learner_qual.is_learner_achieved == False and learner_qual.provider_id.id == prov_partner.id:
 							qual_list, unit_line_list = [], []
 							qual_list.append(learner_qual.learner_qualification_parent_id.id)
 							learners_assessor_id = learner_qual.assessors_id.id
@@ -9786,11 +9786,11 @@ class provider_assessment(models.Model):
 
 		#changes by pradip
 		elif batch_id and qual_skill_assessment == 'skill':
-			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_skills', '=', self.env.user.partner_id.id)])
+			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_skills', '=', prov_partner.id)])
 			if learner_obj:
 				for learner in learner_obj:
 					for learner_skill in learner.skills_programme_ids:
-						if  learner_skill.batch_id.id == batch_id and  learner_skill.is_learner_achieved == False and learner_skill.provider_id.id == self.env.user.partner_id.id:
+						if  learner_skill.batch_id.id == batch_id and  learner_skill.is_learner_achieved == False and learner_skill.provider_id.id == prov_partner.id:
 							skill_list, unit_line_list = [], []
 							skill_list.append(learner_skill.skills_programme_id.id)
 							learners_assessor_id = learner_skill.assessors_id.id
@@ -9807,11 +9807,11 @@ class provider_assessment(models.Model):
 									 assessment_line_list.append((0, 0, {'identification_id':learner.national_id or '', 'learner_id':learner.id, 'skill_learner_assessment_line_id': [[6, 0, list(set(skill_list))]], 'skill_unit_standards_learner_assessment_line_id':[[6, 0, list(set(unit_line_list))]], 'assessors_id':learners_assessor_id, 'moderators_id':learners_moderator_id}))
 		# Changes Added by Ganesh
 		elif batch_id and qual_skill_assessment == 'lp':
-			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_lp', '=', self.env.user.partner_id.id)])
+			learner_obj = self.env['hr.employee'].search([('logged_provider_id_for_lp', '=', prov_partner.id)])
 			if learner_obj:
 				for learner in learner_obj:
 					for learner_lp in learner.learning_programme_ids:
-						if learner_lp.batch_id.id == batch_id and  learner_lp.is_learner_achieved == False and learner_lp.provider_id.id == self.env.user.partner_id.id:
+						if learner_lp.batch_id.id == batch_id and  learner_lp.is_learner_achieved == False and learner_lp.provider_id.id == prov_partner.id:
 							lp_list, unit_line_list = [], []
 							lp_list.append(learner_lp.learning_programme_id.id)
 							learners_assessor_id = learner_lp.assessors_id.id
