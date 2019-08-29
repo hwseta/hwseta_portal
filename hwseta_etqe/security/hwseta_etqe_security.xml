@@ -12,7 +12,12 @@
 		    <field name="name">Providers</field>
 		    <field name="category_id" ref="hwseta_etqe.etqe_module_category_hidden"/>
 		</record>
-		
+
+        <record id="group_assess_rollback" model="res.groups">
+		    <field name="name">Assessment Rollbacks</field>
+		    <field name="category_id" ref="hwseta_etqe.etqe_module_category_hidden"/>
+		</record>
+
 		<record id="group_assessors" model="res.groups">
 		    <field name="name">Assessors</field>
 		    <field name="category_id" ref="hwseta_etqe.etqe_module_category_hidden"/>
