@@ -68,7 +68,7 @@ PyYAML==3.10
 qrcode==5.2.2
 reportlab==3.3.0
 requests==2.2.1
-roman==2.0.0
+roman==3.2
 SecretStorage==2.0.0
 simplejson==3.3.1
 six==1.5.2
