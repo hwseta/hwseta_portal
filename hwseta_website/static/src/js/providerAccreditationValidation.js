@@ -3162,12 +3162,12 @@ $(document)
                                                     value) {
                                                     //element variable is for holding dynamic HTML tag for seta_approved_lp checkbox
                                                     var element = result[index]['is_seta_approved'] == true ? (
-                                                        "<input id='is_seta_approved' disabled='true' type='checkbox' name='is_seta_approved' checked='true' value='" + result[index]['is_seta_approved'] + "'/>") : (
-                                                        "<input id='is_seta_approved' disabled='true' type='checkbox' name='is_seta_approved' value='" + result[index]['is_seta_approved'] + "'/>");
+                                                        "<input id='is_seta_approved' type='checkbox' name='is_seta_approved' checked='true' value='" + result[index]['is_seta_approved'] + "'/>") : (
+                                                        "<input id='is_seta_approved' type='checkbox' name='is_seta_approved' value='" + result[index]['is_seta_approved'] + "'/>");
 
                                                     var element2 = result[index]['is_provider_approved'] == true ? (
-                                                        "<input id='is_provider_approved' disabled='true' type='checkbox' name='is_provider_approved' checked='true' value='" + result[index]['is_provider_approved'] + "'/>") : (
-                                                        "<input id='is_provider_approved' disabled='true' type='checkbox' name='is_provider_approved' value='" + result[index]['is_provider_approved'] + "'/>");
+                                                        "<input id='is_provider_approved' type='checkbox' name='is_provider_approved' checked='true' value='" + result[index]['is_provider_approved'] + "'/>") : (
+                                                        "<input id='is_provider_approved' type='checkbox' name='is_provider_approved' value='" + result[index]['is_provider_approved'] + "'/>");
                                                     if ($
                                                         .inArray(
                                                             parseInt(result[index]['saqa_qual_id']),
