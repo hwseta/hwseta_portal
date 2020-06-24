@@ -43,7 +43,7 @@ passlib==1.5.3
 pdftools==0.37
 Pillow==5.2.0
 psutil==1.2.1
-psycogreen==1.0
+psycogreen==1.0.1
 psycopg2==2.4.5
 PyChart==1.39
 pycrypto==2.6.1
