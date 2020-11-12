@@ -1,6 +1,6 @@
 aeroolib==1.3.0
 apt-xapian-index==0.45
-Babel==1.3
+Babel==2.9.0
 bzr==2.7.0.dev1
 BzrTools==2.6.0
 chardet==2.0.1
