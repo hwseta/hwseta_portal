@@ -6,7 +6,7 @@ BzrTools==2.6.0
 chardet==2.0.1
 colorama==0.2.5
 configobj==4.7.2
-decorator==3.4.0
+decorator==5.0.4
 docutils==0.11
 et-xmlfile==1.0.1
 feedparser==5.1.3
