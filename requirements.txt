@@ -9,7 +9,7 @@ configobj==4.7.2
 decorator==3.4.0
 docutils==0.11
 et-xmlfile==1.0.1
-feedparser==5.1.3
+feedparser==5.2.1
 gdata==2.0.18
 Genshi==0.7
 GeoIP-Python==1.2.4
