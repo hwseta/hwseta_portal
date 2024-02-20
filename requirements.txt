@@ -1,4 +1,4 @@
-aeroolib==1.3.0
+aeroolib==66.0.3
 apt-xapian-index==0.45
 Babel==1.3
 bzr==2.7.0.dev1
