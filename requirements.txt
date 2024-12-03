@@ -65,7 +65,7 @@ pytz==2015.7
 pyusb==1.0.0b2
 PyWebDAV==0.9.8
 PyYAML==3.10
-qrcode==5.2.2
+qrcode==6.1
 reportlab==3.3.0
 requests==2.2.1
 roman==2.0.0
