@@ -17,7 +17,7 @@ gevent==1.0
 gevent-psycopg2==0.0.3
 greenlet==0.4.2
 gyp==0.1
-html5lib==0.999
+html5lib==1.0.1
 httplib2==0.8
 iotop==0.6
 jcconv==0.2.3
