@@ -1,7 +1,7 @@
 aeroolib==1.3.0
 apt-xapian-index==0.45
 Babel==1.3
-bzr==2.7.0.dev1
+bzr==2.7.0
 BzrTools==2.6.0
 chardet==2.0.1
 colorama==0.2.5
