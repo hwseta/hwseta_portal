@@ -27,7 +27,7 @@ keyring==3.5
 Landscape-Client==14.12
 launchpadlib==1.10.2
 lazr.restfulclient==0.13.3
-lazr.uri==1.0.3
+lazr.uri==1.0.8
 lxml==3.3.3
 Mako==0.9.1
 MarkupSafe==0.18
